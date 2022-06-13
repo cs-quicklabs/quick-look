@@ -1,3 +1,3 @@
 export default function Index() {
-  return <div className='text-4xl'>QuickLook</div>
+  return <div className='text-5xl'>QuickLook</div>
 }
