@@ -33,8 +33,7 @@ function Document({ children, title }: any) {
 function Layout({ children }: any) {
   return (
     <div>
-      <nav className='flex p-4 justify-between from-blue-300 via-teal-300 to-purple-300 bg-gradient-to-r'>
-      </nav>
+      <nav className='flex p-4 justify-between from-blue-300 via-teal-300 to-purple-300 bg-gradient-to-r'></nav>
       <div>{children}</div>
     </div>
   )
