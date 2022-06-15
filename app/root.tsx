@@ -1,4 +1,6 @@
-import { Outlet, LiveReload, Links, Link } from '@remix-run/react'
+import { LinksFunction } from '@remix-run/node'
+import { Outlet, LiveReload, Link, Scripts, Links } from '@remix-run/react'
+import Footer from './Footer'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
 export function links() {
@@ -10,6 +12,7 @@ export default function App() {
     <Document>
       <Layout>
         <Outlet />
+        <Footer />
       </Layout>
     </Document>
   )
@@ -18,12 +21,11 @@ function Document({ children }: any) {
   return (
     <html lang='en'>
       <head>
-        <title>'QuickLook'</title>
+        <title>QuickLook</title>
         <Links />
       </head>
       <body>
         {process.env.Node_ENV === 'development' ? <LiveReload /> : null}
-
         {children}
       </body>
     </html>
