@@ -5,7 +5,7 @@ import {
   LinkIcon,
   BriefcaseIcon,
 } from '@heroicons/react/outline'
-import { useState } from 'react'
+// import { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -35,13 +35,14 @@ export default function Feature() {
 }
 
 export function SideBar({ children }: any) {
-  const [current, setCurrent] = useState(false)
+  // const [current, setCurrent] = useState(false)
 
   type NavItem = {
     name: string
     icon?: any
     to: string
-    select: any
+    img?: any
+
     list?: boolean
     class?: any
   }[]
@@ -51,7 +52,6 @@ export function SideBar({ children }: any) {
       name: 'QuickLook.Me',
       icon: AtSymbolIcon,
       to: '/feature',
-      select: current,
       list: true,
       class: 'ml-9',
     },
@@ -59,19 +59,16 @@ export function SideBar({ children }: any) {
       name: 'Email Signature',
       icon: AtSymbolIcon,
       to: '/feature/signature',
-      select: current,
     },
     {
       name: 'Spot Light Button',
       icon: LightBulbIcon,
       to: '/feature/spotlight',
-      select: current,
     },
     {
       name: 'Visit my Website',
       icon: LightBulbIcon,
       to: '/feature/visitmywebsite',
-      select: current,
       list: true,
       class: 'ml-16',
     },
@@ -79,7 +76,6 @@ export function SideBar({ children }: any) {
       name: 'Lead Capture',
       icon: LightBulbIcon,
       to: '/feature/leadcapture',
-      select: current,
       list: true,
 
       class: 'ml-16',
@@ -89,7 +85,6 @@ export function SideBar({ children }: any) {
       icon: LightBulbIcon,
       to: '/feature/scheduling',
 
-      select: current,
       list: true,
 
       class: 'ml-16',
@@ -98,15 +93,12 @@ export function SideBar({ children }: any) {
       name: 'Connect a Domain',
       icon: LinkIcon,
       to: '/feature/domain',
-
-      select: current,
     },
     {
       name: 'Custom Search Result',
       icon: LightBulbIcon,
       to: '/feature/customsearchresults',
 
-      select: current,
       list: true,
 
       class: 'ml-16',
@@ -116,25 +108,22 @@ export function SideBar({ children }: any) {
       name: 'Testimonials',
       img: 'https://cdn-icons-png.flaticon.com/512/2438/2438002.png',
       to: '/feature/testimonials',
-      select: current,
     },
     {
       name: 'Contact Me',
       icon: InboxIcon,
       to: '/feature/contactme',
-      select: current,
     },
     {
       name: 'Portfolio',
       icon: BriefcaseIcon,
       to: '/feature/portfolio',
-      select: current,
     },
   ]
-  const Selected = (e: any) => {
-    setCurrent(true)
-    console.log(current)
-  }
+  // const Selected = (e: any) => {
+  //   setCurrent(true)
+  //   console.log(current)
+  // }
 
   return (
     <div className=''>

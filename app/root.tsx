@@ -54,13 +54,13 @@ function Layout({ children }: any) {
             </div>
             <div className='hidden md:flex md:items-center md:space-x-2'>
               <Link
-                to='/beta'
+                to='/signup'
                 className='inline-block py-3 px-4 text-xl text-center font-medium text-white'
               >
                 Get your free page
               </Link>
               <Link
-                to='/pricing'
+                to='/feature'
                 className='inline-block py-3 px-4 text-xl text-center font-medium text-white'
               >
                 Features
@@ -72,7 +72,7 @@ function Layout({ children }: any) {
                 Pricing
               </Link>
               <Link
-                to='/pricing'
+                to='/login'
                 className='inline-block py-3 px-4 text-xl text-center font-medium text-white'
               >
                 Log In
