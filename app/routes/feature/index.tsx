@@ -5,7 +5,9 @@ import {
   LinkIcon,
   BriefcaseIcon,
 } from '@heroicons/react/outline'
+import * as React from 'react'
 // import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 
@@ -35,14 +37,14 @@ export default function Feature() {
 }
 
 export function SideBar({ children }: any) {
-  // const [current, setCurrent] = useState(false)
+  const Location = useLocation()
 
   type NavItem = {
     name: string
     icon?: any
     to: string
     img?: any
-
+    selected?: boolean
     list?: boolean
     class?: any
   }[]
@@ -107,23 +109,22 @@ export function SideBar({ children }: any) {
     {
       name: 'Testimonials',
       img: 'https://cdn-icons-png.flaticon.com/512/2438/2438002.png',
+
       to: '/feature/testimonials',
     },
     {
       name: 'Contact Me',
       icon: InboxIcon,
+
       to: '/feature/contactme',
     },
     {
       name: 'Portfolio',
       icon: BriefcaseIcon,
+
       to: '/feature/portfolio',
     },
   ]
-  // const Selected = (e: any) => {
-  //   setCurrent(true)
-  //   console.log(current)
-  // }
 
   return (
     <div className=''>
@@ -135,12 +136,17 @@ export function SideBar({ children }: any) {
               <nav className='px-2 space-y-1 pl-6'>
                 {navigation.map((item) => (
                   <Link
+                    id={item.name}
                     key={item.name}
                     to={`${item.to}`}
                     className={classNames(
                       `flex items-center px-2 py-6 text-sm font-semibold rounded-md transition ease-in-out  hover:translate-x-4 hover:scale-110 hover:bg-sky-600 duration-300 h-2 hover:text-white w-44 ${
                         item.class
-                      }  ${item.select ? 'bg-sky-600' : ''}`
+                      }  ${
+                        Location.pathname === item.to
+                          ? 'bg-sky-600 text-white'
+                          : ''
+                      }`
                     )}
                   >
                     {item.list === true ? (
@@ -185,7 +191,7 @@ export function SideBar({ children }: any) {
             {children}
           </div>
         </div>
-        <div className=' flex flex-col justify-center items-center'>
+        <div className=' flex flex-col justify-center items-center mb-16'>
           <h1 className='text-2xl mt-12'>Ready to unlock more features?</h1>
           <button className='text-lg transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 mt-4 text-white p-2 rounded-md font-medium gap-4 w-40'>
             Compare Plans

@@ -1,5 +1,11 @@
-import { LinksFunction } from '@remix-run/node'
-import { Outlet, LiveReload, Link, Scripts, Links, useCatch } from '@remix-run/react'
+import {
+  Outlet,
+  LiveReload,
+  Link,
+  Scripts,
+  Links,
+  useCatch,
+} from '@remix-run/react'
 import Footer from './Footer'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
@@ -14,6 +20,7 @@ export default function App() {
         <Outlet />
         <Footer />
       </Layout>
+      <Scripts />
     </Document>
   )
 }
@@ -25,8 +32,8 @@ function Document({ children }: any) {
         <Links />
       </head>
       <body>
-        {process.env.Node_ENV === 'development' ? <LiveReload /> : null}
         {children}
+        <LiveReload />
       </body>
     </html>
   )
@@ -87,22 +94,19 @@ function Layout({ children }: any) {
 }
 
 export function CatchBoundary() {
-  const caught = useCatch();
+  const caught = useCatch()
 
   if (caught.status === 404) {
-    return ( 
-    <>
-          <div className="mb-3">
-            {caught.statusText}
-          </div>
-          <p>
-            {caught.status} {caught.statusText}
-          </p>
-    </>
-
-    );
+    return (
+      <>
+        <div className='mb-3'>{caught.statusText}</div>
+        <p>
+          {caught.status} {caught.statusText}
+        </p>
+      </>
+    )
   }
-  throw new Error('Not Found!');
+  throw new Error('Not Found!')
 }
 
 export function ErrorBoundary({ error }: any) {
