@@ -40,22 +40,20 @@ function Layout({ children }: any) {
                 <div className="flex flex-1 items-center">
                     <div className="flex w-full items-center justify-between md:w-auto">
                         <Link to="/" className="flex items-center justify-center space-x-2">
-                            {/* <img className="h-8 w-auto sm:h-10" src="https://image.shutterstock.com/shutterstock/photos/249041452/display_1500/stock-vector-smartphone-with-speech-bubble-social-media-icons-chat-speech-bubble-and-share-link-symbols-short-249041452.jpg" alt="Image is missing"/> */}
-                              <span className="text-2xl font-semibold text-white">QuickLook.me</span>
-                          </Link>
-                      </div>
-                      <div className="hidden space-x-8 md:ml-10 md:flex"></div>
-                  </div>
-                  <div className="hidden md:flex md:items-center md:space-x-2">
-                      <Link to="/beta" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Get your free page</Link>
-                      <Link to="/pricing" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Features</Link>
-                      <Link to="/pricing" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Pricing</Link>
-                      <Link to="/pricing" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Log In</Link>
-                  </div>
-              </nav>
-          </div>
-        </header>
-        <div>{children}</div>
+                          <span className="text-2xl font-semibold text-white">QuickLook.me</span>
+                        </Link>
+                    </div>
+                </div>
+                <div className="hidden md:flex md:items-center md:space-x-2">
+                    <Link to="/beta" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Get your free page</Link>
+                    <Link to="/pricing" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Features</Link>
+                    <Link to="/pricing" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Pricing</Link>
+                    <Link to="/pricing" className="inline-block py-3 px-4 text-xl text-center font-medium text-white">Log In</Link>
+                </div>
+            </nav>
+        </div>
+      </header>
+      <div>{children}</div>
     </>
   )
 }
