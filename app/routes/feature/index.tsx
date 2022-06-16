@@ -4,6 +4,7 @@ import {
   LightBulbIcon,
   LinkIcon,
   BriefcaseIcon,
+  ArrowNarrowRightIcon,
 } from '@heroicons/react/outline'
 import * as React from 'react'
 // import { useState } from 'react'
@@ -17,9 +18,9 @@ function classNames(...classes: string[]) {
 
 export default function Feature() {
   return (
-    <div className='flex flex-col gap-12 -mt-10'>
+    <div className='flex flex-col gap-12 -mt-10 max-w-7xl'>
       <div>
-        <h1 className='text-xl text-center'>
+        <h1 className='text-center object-cover text-xl'>
           Create a portfolio of images and videos to showcase
           <br />
           you or your products or services.
@@ -55,7 +56,7 @@ export function SideBar({ children }: any) {
       icon: AtSymbolIcon,
       to: '/feature',
       list: true,
-      class: 'ml-9',
+      // class: 'ml-9',
     },
     {
       name: 'Email Signature',
@@ -69,14 +70,14 @@ export function SideBar({ children }: any) {
     },
     {
       name: 'Visit my Website',
-      icon: LightBulbIcon,
+      icon: ArrowNarrowRightIcon,
       to: '/feature/visitmywebsite',
       list: true,
       class: 'ml-16',
     },
     {
       name: 'Lead Capture',
-      icon: LightBulbIcon,
+      icon: ArrowNarrowRightIcon,
       to: '/feature/leadcapture',
       list: true,
 
@@ -84,7 +85,7 @@ export function SideBar({ children }: any) {
     },
     {
       name: 'Appointment Scheduling',
-      icon: LightBulbIcon,
+      icon: ArrowNarrowRightIcon,
       to: '/feature/scheduling',
 
       list: true,
@@ -98,7 +99,7 @@ export function SideBar({ children }: any) {
     },
     {
       name: 'Custom Search Result',
-      icon: LightBulbIcon,
+      icon: ArrowNarrowRightIcon,
       to: '/feature/customsearchresults',
 
       list: true,
@@ -108,7 +109,7 @@ export function SideBar({ children }: any) {
 
     {
       name: 'Testimonials',
-      img: 'https://cdn-icons-png.flaticon.com/512/2438/2438002.png',
+      // img: 'https://cdn-icons-png.flaticon.com/512/2438/2438002.png',
 
       to: '/feature/testimonials',
     },
@@ -127,11 +128,13 @@ export function SideBar({ children }: any) {
   ]
 
   return (
-    <div className=''>
-      <div className=' text-4xl text-center mt-12 '>Features</div>
-      <div className='flex flex-col px-32 pt-6'>
-        <div className='flex border  '>
-          <div className='flex flex-col pt-5 pb-4 bg-neutral-100 w-max'>
+    <div className=' lg:mx-28 max-w-7xl '>
+      <div className=' text-4xl text-center mt-12 mx-auto max-w-7xl lg:px-8'>
+        Features
+      </div>
+      <div className='flex flex-col pl-36 pt-6'>
+        <div className='flex border w-full'>
+          <div className='flex flex-col pt-5  pb-4 bg-neutral-100 w-max'>
             <div className='flex flex-col pr-5'>
               <nav className='px-2 space-y-1 pl-6'>
                 {navigation.map((item) => (
@@ -158,17 +161,17 @@ export function SideBar({ children }: any) {
                       </span>
                     ) : item.name !== 'Testimonials' ? (
                       <>
-                        <item.icon
+                        {/* <item.icon
                           className='h-6 w-6 mr-3 flex-shrink-0'
                           aria-hidden='true'
-                        />
+                        /> */}
                         <span className='flex-1 text-sm gap-4'>
                           {item.name}
                         </span>
                       </>
                     ) : (
                       <>
-                        <img
+                        {/* <img
                           className={classNames(
                             'text-black',
                             'mr-3 flex-shrink-0 h-6 w-6'
@@ -176,7 +179,7 @@ export function SideBar({ children }: any) {
                           aria-hidden='true'
                           src={item.img}
                           alt='img'
-                        />
+                        /> */}
                         <span className='flex-1 text-sm gap-4'>
                           {item.name}
                         </span>
@@ -187,7 +190,7 @@ export function SideBar({ children }: any) {
               </nav>
             </div>
           </div>
-          <div className='w-max flex justify-center items-center border-l'>
+          <div className=' flex justify-center items-center border-l max-w-7xl'>
             {children}
           </div>
         </div>
