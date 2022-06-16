@@ -161,7 +161,7 @@ export default function Index() {
                                             </li>
                                         </ul>
                                         <div className="rounded-md shadow">
-                                            <a href="#" className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-600" aria-describedby="tier-standard"> Get started </a>
+                                            <Link to="#" className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-600" aria-describedby="tier-standard"> Get started </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -212,7 +212,7 @@ export default function Index() {
                                             </li>
                                         </ul>
                                         <div className="rounded-md shadow">
-                                            <a href="#" className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-600" aria-describedby="tier-standard"> Get started </a>
+                                            <Link to="#" className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-600" aria-describedby="tier-standard"> Get started </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -230,7 +230,7 @@ export default function Index() {
                                     </div>
                                 </div>
                                 <div className="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
-                                    <a href="#" className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"> Buy Discounted License </a>
+                                    <Link to="#" className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"> Buy Discounted License </Link>
                                 </div>
                             </div>
                         </div>

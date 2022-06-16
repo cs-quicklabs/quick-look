@@ -48,7 +48,7 @@ export default function Footer() {
 
             <div className='px-5 py-2'>
               <Link
-                to='terms'
+                to='terms&conditions'
                 className='text-base text-gray-400 hover:text-white'
               >
                 {' '}
