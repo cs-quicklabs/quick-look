@@ -1,6 +1,10 @@
-import tailwindStylesheetUrl from '../styles/tailwind.css'
-import { Link, Links } from '@remix-run/react'
-import { customError } from '~/types/error'
+import { customError } from "~/types/error";
+import tailwindStylesheetUrl from '../styles/tailwind.css';
+import {
+  Link,
+  Links
+} from '@remix-run/react'
+import Footer from "~/Footer";
 
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
@@ -10,7 +14,7 @@ export default function ErrorHandler({ name, status }: customError) {
   return (
     <>
       <Links />
-      <div className='min-h-full pt-16 pb-12 flex flex-col bg-white'>
+      <div className='min-h-full pt-16 pb-12 flex flex-col bg-white mb-72 mt-28'>
         <main className='flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex-shrink-0 flex justify-center'>
             <Link to='/' className='inline-flex'>
@@ -40,6 +44,7 @@ export default function ErrorHandler({ name, status }: customError) {
           </div>
         </main>
       </div>
+      <Footer />
     </>
   )
 }
