@@ -6,6 +6,7 @@ import {
   Links,
   useCatch,
 } from '@remix-run/react'
+import ErrorHandler from './components/error'
 import Footer from './Footer'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
@@ -94,23 +95,21 @@ function Layout({ children }: any) {
 }
 
 export function CatchBoundary() {
-  const caught = useCatch()
+  const caughtError = useCatch()
 
-  if (caught.status === 404) {
+  if (caughtError.status === 404) {
     return (
-      <>
-        <div className='mb-3'>{caught.statusText}</div>
+      <div>
         <p>
-          {caught.status} {caught.statusText}
+          <ErrorHandler status= {caughtError.status} name= {caughtError.statusText} />
         </p>
-      </>
+      </div>
     )
   }
   throw new Error('Not Found!')
 }
 
 export function ErrorBoundary({ error }: any) {
-  console.log(error)
   return (
     <Document>
       <Layout>
