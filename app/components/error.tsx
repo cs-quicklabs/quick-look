@@ -23,7 +23,7 @@ export default function ErrorHandler({ name, status }: customError) {
                 {status} error : {name}
               </p>
               <h1 className='mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl'>
-               Page not found.
+                Page not found.
               </h1>
               <p className='mt-2 text-base text-gray-500'>
                 Sorry, we couldn’t find the page you’re looking for.
@@ -32,7 +32,6 @@ export default function ErrorHandler({ name, status }: customError) {
                 <a
                   href='/'
                   className='text-base font-medium text-indigo-600 hover:text-indigo-500'
-
                 >
                   Try Again
                 </a>

@@ -9,17 +9,26 @@ import {
 import ErrorHandler from './components/error'
 import Footer from './Footer'
 import tailwindStylesheetUrl from './styles/tailwind.css'
+import { useLocation } from 'react-router-dom'
 
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
 }
 
 export default function App() {
+  const Location = useLocation()
+  console.log(Location)
+
   return (
     <Document>
       <Layout>
         <Outlet />
-        <Footer />
+        {Location.pathname.includes('/login') ||
+        Location.pathname.includes('/signup') ? (
+          <></>
+        ) : (
+          <Footer />
+        )}
       </Layout>
       <Scripts />
     </Document>
