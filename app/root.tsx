@@ -100,9 +100,10 @@ export function CatchBoundary() {
   if (caughtError.status === 404) {
     return (
       <div>
-        <p>
-          <ErrorHandler status= {caughtError.status} name= {caughtError.statusText} />
-        </p>
+        <ErrorHandler
+          name={caughtError.statusText}
+          status={caughtError.status}
+        />
       </div>
     )
   }

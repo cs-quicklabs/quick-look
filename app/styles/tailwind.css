@@ -1572,6 +1572,11 @@ video {
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
+.hover\:text-indigo-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
+}
+
 .hover\:ease-\[cubic-bezier\(\.4\2c 0\2c \.2\2c 1\)\]:hover {
   transition-timing-function: cubic-bezier(.4,0,.2,1);
 }
