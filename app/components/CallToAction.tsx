@@ -16,7 +16,7 @@ export function CallToAction() {
           alt=''
           width={2347}
           height={1244}
-          className='fixed'
+          // className='fixed'
           style={{
             position: 'absolute',
             inset: ' 0px',

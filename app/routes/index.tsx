@@ -7,7 +7,7 @@ import { PrimaryFeatures } from '../components/PrimaryFeatures'
 import { SecondaryFeatures } from '../components/SecondaryFeatures'
 import { Testimonials } from '../components/Testimonials'
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <main>
@@ -23,3 +23,4 @@ export default function Home() {
     </>
   )
 }
+export default Home

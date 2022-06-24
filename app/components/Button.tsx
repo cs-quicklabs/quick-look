@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { Link } from '@remix-run/react'
 import clsx from 'clsx'
 
 const baseStyles = {
@@ -40,14 +39,16 @@ export function Button({ variant, color, className, ...props }: any) {
 
 export function ButtonLink({ variant, color, href, className, ...props }: any) {
   return (
-    <a
-      href={href}
-      className={clsx(
-        baseStyles['solid'],
-        variantStyles['solid']['slate'],
-        className
-      )}
-      {...props}
-    />
+    <>
+      <a
+        href={href}
+        className={clsx(
+          baseStyles['solid'],
+          variantStyles['solid']['slate'],
+          className
+        )}
+        {...props}
+      />
+    </>
   )
 }

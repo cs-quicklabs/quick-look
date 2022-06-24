@@ -1,4 +1,6 @@
-// import { RemixBrowser } from '@remix-run/react'
-// import { hydrate } from 'react-dom'
+import { hydrate } from 'react-dom'
+import { RemixBrowser } from '@remix-run/react'
 
-// hydrate(<RemixBrowser />, document)
+if (typeof document === 'undefined') {
+  hydrate(<RemixBrowser />, document)
+}
