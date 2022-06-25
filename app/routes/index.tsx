@@ -9,7 +9,7 @@ import { Testimonials } from '../components/Testimonials'
 import { Header } from '../components/Header'
 const Home = () => {
   return (
-    <>
+    <span>
       <Header />
       <Hero />
       <PrimaryFeatures />
@@ -19,7 +19,7 @@ const Home = () => {
       <Pricing />
       <Faqs />
       <Footer />
-    </>
+    </span>
   )
 }
 export default Home
