@@ -68,7 +68,7 @@ export function Faqs() {
       <div className='absolute top-0 left-1/2 -translate-x-[30%] -translate-y-[25%]'>
         <img
           src={backgroundImage}
-          alt=''
+          alt='sad'
           width={1558}
           height={946}
           // className='fixed'
