@@ -6,7 +6,7 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import { Link } from '@remix-run/react'
 
-function MobileNavigation() {
+export function MobileNavigation() {
   return (
     <Popover>
       {({ open, close }: any) => (
@@ -94,7 +94,7 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+export default function Header() {
   return (
     <header className='py-10'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>

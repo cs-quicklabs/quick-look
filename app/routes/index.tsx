@@ -6,7 +6,7 @@
 // import { PrimaryFeatures } from '../components/PrimaryFeatures'
 // import { SecondaryFeatures } from '../components/SecondaryFeatures'
 // import { Testimonials } from '../components/Testimonials'
-import { Header } from '../components/Header'
+import Header from '../components/Header'
 const Home = () => {
   return (
     <>
