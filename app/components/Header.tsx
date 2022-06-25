@@ -98,7 +98,7 @@ export function Header() {
   return (
     <header className='py-10'>
       <Container>
-        <nav className='relative z-50 text-sm text-xl'>
+        <nav className='relative z-50 text-xl'>
           <ul className='flex items-center'>
             <li>
               <a href='/#'>

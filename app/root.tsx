@@ -2,16 +2,12 @@ import { Outlet, LiveReload, Scripts, Links, useCatch } from '@remix-run/react'
 import ErrorHandler from './components/error'
 
 import tailwindStylesheetUrl from './styles/tailwind.css'
-import { useLocation } from 'react-router-dom'
 
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
 }
 
 export default function App() {
-  const Location = useLocation()
-  console.log(Location)
-
   return (
     <Document>
       <Outlet />
