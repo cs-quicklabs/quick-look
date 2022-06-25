@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Tab } from '@headlessui/react'
 
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 import backgroundImage from '../images/background-features.jpg'
 import screenshotExpenses from '../images/screenshots/expenses.png'
 import screenshotPayroll from '../images/screenshots/payroll.png'
@@ -70,7 +70,7 @@ export function PrimaryFeatures() {
           // className='fixed'
         />
       </div>
-      <Container className='relative'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative'>
         <div className='max-w-2xl md:mx-auto md:text-center xl:max-w-none'>
           <h2
             id='features-title'
@@ -157,7 +157,7 @@ export function PrimaryFeatures() {
             </>
           )}
         </Tab.Group>
-      </Container>
+      </div>
     </section>
   )
 }

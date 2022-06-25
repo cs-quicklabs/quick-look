@@ -1,4 +1,4 @@
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 import avatarImage1 from '../images/avatars/avatar-1.png'
 import avatarImage2 from '../images/avatars/avatar-2.png'
 import avatarImage3 from '../images/avatars/avatar-3.png'
@@ -75,7 +75,7 @@ export function Testimonials() {
       aria-labelledby='testimonials-title'
       className='bg-slate-50 py-20 sm:py-32 text-2xl font-medium'
     >
-      <Container>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl md:text-center text-2xl font-medium'>
           <h2
             id='testimonials-title'
@@ -129,7 +129,7 @@ export function Testimonials() {
             </li>
           ))}
         </ul>
-      </Container>
+      </div>
     </section>
   )
 }

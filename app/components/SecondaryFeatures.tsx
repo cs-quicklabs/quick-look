@@ -2,7 +2,7 @@
 
 import { Tab } from '@headlessui/react'
 
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 import screenshotContacts from '../images/screenshots/contacts.png'
 import screenshotInventory from '../images/screenshots/inventory.png'
 import screenshotProfitLoss from '../images/screenshots/profit-loss.png'
@@ -205,7 +205,7 @@ export function SecondaryFeatures() {
       aria-labelledby='secondary-features-title'
       className='pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 text-xl font-medium'
     >
-      <Container>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl md:text-center'>
           <h2
             id='secondary-features-title'
@@ -220,7 +220,7 @@ export function SecondaryFeatures() {
         </div>
         <FeaturesMobile />
         <FeaturesDesktop />
-      </Container>
+      </div>
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 import backgroundImage from '../images/background-faqs.jpg'
 
 const faqs = [
@@ -74,7 +74,7 @@ export function Faqs() {
           // className='fixed'
         />
       </div>
-      <Container className='relative'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative'>
         <div className='mx-auto max-w-2xl lg:mx-0'>
           <p className='font-display text-3xl tracking-tight text-slate-900 sm:text-4xl'>
             Frequently asked questions
@@ -100,7 +100,7 @@ export function Faqs() {
             </li>
           ))}
         </ul>
-      </Container>
+      </div>
     </section>
   )
 }

@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 
 import clsx from 'clsx'
 import { Link } from '@remix-run/react'
@@ -97,7 +97,7 @@ function MobileNavigation() {
 export function Header() {
   return (
     <header className='py-10'>
-      <Container>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <nav className='relative z-50 text-sm text-xl'>
           <ul className='flex items-center'>
             <li>
@@ -187,7 +187,7 @@ export function Header() {
             </li>
           </ul>
         </nav>
-      </Container>
+      </div>
     </header>
   )
 }

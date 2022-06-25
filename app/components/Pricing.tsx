@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 
 type props = {
   name?: any
@@ -98,7 +98,7 @@ export function Pricing() {
       <h2 id='pricing-title' className='sr-only'>
         Pricing
       </h2>
-      <Container className='text-xl font-med'>
+      <div className='text-xl font-med mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='md:text-center'>
           <p className='font-display text-3xl tracking-tight text-white sm:text-4xl'>
             <span className='relative whitespace-nowrap'>
@@ -167,7 +167,7 @@ export function Pricing() {
             ]}
           />
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

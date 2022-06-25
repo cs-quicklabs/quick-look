@@ -1,4 +1,4 @@
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 import backgroundImage from '../images/background-call-to-action.jpg'
 
 export function CallToAction() {
@@ -26,7 +26,7 @@ export function CallToAction() {
           }}
         />
       </div>
-      <Container className='relative'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative'>
         <div className='mx-auto max-w-lg text-center'>
           <h2 className='font-display text-3xl tracking-tight text-white sm:text-4xl'>
             Get started today
@@ -42,7 +42,7 @@ export function CallToAction() {
             <a href='/login'>Get 6 months free</a>
           </button>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

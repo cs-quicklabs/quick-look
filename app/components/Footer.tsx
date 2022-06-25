@@ -1,10 +1,10 @@
 import { Link } from '@remix-run/react'
-import { Container } from '../components/Container'
+// import { Container } from '../components/Container'
 
 export function Footer() {
   return (
     <footer className='bg-slate-50'>
-      <Container>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='py-16'>
           <svg
             aria-hidden='true'
@@ -103,7 +103,7 @@ export function Footer() {
             reserved.
           </p>
         </div>
-      </Container>
+      </div>
     </footer>
   )
 }
