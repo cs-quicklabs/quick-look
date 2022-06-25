@@ -1,10 +1,6 @@
-import { customError } from "~/types/error";
-import tailwindStylesheetUrl from '../styles/tailwind.css';
-import {
-  Link,
-  Links
-} from '@remix-run/react'
-import Footer from "~/Footer";
+import type { customError } from '~/types/error'
+import tailwindStylesheetUrl from '../styles/tailwind.css'
+import { Link, Links } from '@remix-run/react'
 
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
@@ -44,7 +40,6 @@ export default function ErrorHandler({ name, status }: customError) {
           </div>
         </main>
       </div>
-      <Footer />
     </>
   )
 }
