@@ -1,10 +1,7 @@
-// import { ButtonLink } from '../components/Button'
-import { redirect } from '@remix-run/node'
 import { Container } from '../components/Container'
 import backgroundImage from '../images/background-call-to-action.jpg'
 
 export function CallToAction() {
-  redirect
   return (
     <section
       id='get-started-today'

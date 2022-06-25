@@ -1,4 +1,3 @@
-import { ButtonLink } from '../components/Button'
 import { Container } from '../components/Container'
 import logoLaravel from '../images/logos/laravel.svg'
 import logoMirage from '../images/logos/mirage.svg'
