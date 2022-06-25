@@ -162,11 +162,11 @@ export function Header() {
               </a>
             </li>
             <li className='ml-auto hidden md:block'>
-              <Link to='/login'>
+              <a href='/login'>
                 <p className='rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900 cursor-pointer'>
                   Login
                 </p>
-              </Link>
+              </a>
             </li>
             <li className='ml-auto md:ml-8'>
               <a

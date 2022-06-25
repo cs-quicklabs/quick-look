@@ -43,7 +43,6 @@ function Document({ children }: any) {
 function Layout({ children }: any) {
   return (
     <>
-      <Header />
       <div>{children}</div>
     </>
   )

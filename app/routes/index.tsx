@@ -6,10 +6,11 @@ import { Pricing } from '../components/Pricing'
 import { PrimaryFeatures } from '../components/PrimaryFeatures'
 import { SecondaryFeatures } from '../components/SecondaryFeatures'
 import { Testimonials } from '../components/Testimonials'
-
+import { Header } from '../components/Header'
 const Home = () => {
   return (
     <>
+      <Header />
       <Hero />
       <PrimaryFeatures />
       <SecondaryFeatures />
@@ -17,7 +18,6 @@ const Home = () => {
       <Testimonials />
       <Pricing />
       <Faqs />
-
       <Footer />
     </>
   )
