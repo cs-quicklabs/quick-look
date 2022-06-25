@@ -1,11 +1,4 @@
-import {
-  Outlet,
-  LiveReload,
-  Link,
-  Scripts,
-  Links,
-  useCatch,
-} from '@remix-run/react'
+import { Outlet, LiveReload, Scripts, Links, useCatch } from '@remix-run/react'
 import ErrorHandler from './components/error'
 
 import tailwindStylesheetUrl from './styles/tailwind.css'
@@ -64,12 +57,10 @@ export function CatchBoundary() {
 export function ErrorBoundary({ error }: any) {
   return (
     <Document>
-      <Layout>
-        <div className='bg-red-200'>
-          <h1 className='text-5xl'>Error</h1>
-          <p className='font-sans text-xl'>{error.message}</p>
-        </div>
-      </Layout>
+      <div className='bg-red-200'>
+        <h1 className='text-5xl'>Error</h1>
+        <p className='font-sans text-xl'>{error.message}</p>
+      </div>
     </Document>
   )
 }
