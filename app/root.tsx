@@ -49,31 +49,31 @@ function Layout({ children }: any) {
   )
 }
 
-// export function CatchBoundary() {
-//   const caughtError = useCatch()
+export function CatchBoundary() {
+  const caughtError = useCatch()
 
-//   if (caughtError.status === 404) {
-//     return (
-//       <div>
-//         <ErrorHandler
-//           name={caughtError.statusText}
-//           status={caughtError.status}
-//         />
-//       </div>
-//     )
-//   }
-//   throw new Error('Not Found!')
-// }
+  if (caughtError.status === 404) {
+    return (
+      <div>
+        <ErrorHandler
+          name={caughtError.statusText}
+          status={caughtError.status}
+        />
+      </div>
+    )
+  }
+  throw new Error('Not Found!')
+}
 
-// export function ErrorBoundary({ error }: any) {
-//   return (
-//     <Document>
-//       <Layout>
-//         <div className='bg-red-200'>
-//           <h1 className='text-5xl'>Error</h1>
-//           <p className='font-sans text-xl'>{error.message}</p>
-//         </div>
-//       </Layout>
-//     </Document>
-//   )
-// }
+export function ErrorBoundary({ error }: any) {
+  return (
+    <Document>
+      <Layout>
+        <div className='bg-red-200'>
+          <h1 className='text-5xl'>Error</h1>
+          <p className='font-sans text-xl'>{error.message}</p>
+        </div>
+      </Layout>
+    </Document>
+  )
+}
