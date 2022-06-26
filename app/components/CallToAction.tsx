@@ -32,14 +32,11 @@ export function CallToAction() {
             Get started today
           </h2>
           <p className='mt-4 text-lg tracking-tight text-white'>
-            It’s time to take control of your books. Buy our software so you can
-            feel like you’re doing something productive.
+            Create one link to connect all your social profile and get
+            discovered .
           </p>
-          <button
-            color='white'
-            className='group inline-flex items-center justify-center rounded-full py-2 px-4  focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white mt-10 font-medium text-lg'
-          >
-            <a href='/login'>Get 6 months free</a>
+          <button className='group inline-flex items-center justify-center rounded-full py-2 px-4  focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white mt-10 font-medium text-lg'>
+            <a href='/login'>Get Started for free</a>
           </button>
         </div>
       </div>

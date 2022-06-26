@@ -119,15 +119,15 @@ export function Pricing() {
             for everyone.
           </p>
           <p className='mt-4 text-lg text-slate-400'>
-            It doesn’t matter what size your business is, our software won’t
-            work well for you.
+            Pay once and get a life time access to all features. No pay per
+            month setup.
           </p>
         </div>
-        <div className='-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-3 xl:mx-0 xl:gap-x-8'>
+        <div className='-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-2 xl:mx-0 xl:gap-x-8'>
           <Plan
             name='Starter'
-            price='$9'
-            description='Good for anyone who is self-employed and just getting started.'
+            price='free'
+            description='Good for anyone who wants just a basic link to combine all their social profile'
             href='/register'
             features={[
               'Send 10 quotes and invoices',
@@ -139,9 +139,9 @@ export function Pricing() {
           />
           <Plan
             featured
-            name='Small business'
-            price='$15'
-            description='Perfect for small / medium sized businesses.'
+            name='Full Access'
+            price='$49'
+            description='Everything in Free plan and all advance features.'
             href='/register'
             features={[
               'Send 25 quotes and invoices',
@@ -151,19 +151,6 @@ export function Pricing() {
               'Export up to 12 reports',
               'Bulk reconcile transactions',
               'Track in multiple currencies',
-            ]}
-          />
-          <Plan
-            name='Enterprise'
-            price='$39'
-            description='For even the biggest enterpise companies.'
-            href='/register'
-            features={[
-              'Send unlimited quotes and invoices',
-              'Connect up to 15 bank accounts',
-              'Track up to 200 expenses per month',
-              'Automated payroll support',
-              'Export up to 25 reports, including TPS',
             ]}
           />
         </div>
