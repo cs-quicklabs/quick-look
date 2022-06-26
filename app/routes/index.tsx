@@ -10,7 +10,7 @@ import { Header } from '../components/Header'
 
 export default function Home() {
   return (
-    <span>
+    <>
       <Header />
       <Hero />
       <PrimaryFeatures />
@@ -20,6 +20,6 @@ export default function Home() {
       <Pricing />
       <Faqs />
       <Footer />
-    </span>
+    </>
   )
 }
