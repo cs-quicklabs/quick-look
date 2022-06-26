@@ -4,7 +4,6 @@ import { Popover, Transition } from '@headlessui/react'
 // import { Container } from '../components/Container'
 
 import clsx from 'clsx'
-import { Link } from '@remix-run/react'
 
 type MobProps = {
   open: any
