@@ -18,17 +18,14 @@ export default function App() {
 }
 function Document({ children }: any) {
   return (
-    <html
-      className="h-full scroll-smooth bg-white antialiased [font-feature-settings:'ss01']"
-      lang='en'
-    >
+    <html lang='en'>
       <head>
-        <title>TaxPal - Accounting made simple for small businesses</title>
+        <title>TaxPal</title>
         <Links />
       </head>
-      <body className='flex h-full flex-col'>
-        {children}
+      <body>
         <LiveReload />
+        {children}
       </body>
     </html>
   )
