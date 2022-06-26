@@ -1,6 +1,6 @@
-import { renderToString } from 'react-dom/server'
-import type { EntryContext, HandleDataRequestFunction } from '@remix-run/node' // or "@remix-run/cloudflare"
+import type { EntryContext } from '@remix-run/node'
 import { RemixServer } from '@remix-run/react'
+import { renderToString } from 'react-dom/server'
 
 export default function handleRequest(
   request: Request,
@@ -8,7 +8,7 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  const markup = renderToString(
+  let markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
   )
 
@@ -18,14 +18,4 @@ export default function handleRequest(
     status: responseStatusCode,
     headers: responseHeaders,
   })
-}
-
-// this is an optional export
-export const handleDataRequest: HandleDataRequestFunction = (
-  response: Response,
-  // same args that get passed to the action or loader that was called
-  { request, params, context }
-) => {
-  response.headers.set('x-custom', 'yay!')
-  return response
 }
