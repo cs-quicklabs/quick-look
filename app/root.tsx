@@ -2,7 +2,7 @@ import { Outlet, LiveReload, Scripts, Links, useCatch } from '@remix-run/react'
 import ErrorHandler from './components/error'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 // import { useLocation } from 'react-router-dom'
-import { Header } from './components/Header'
+// import { Header } from './components/Header'
 
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]

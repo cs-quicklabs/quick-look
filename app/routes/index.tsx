@@ -7,7 +7,8 @@ import { PrimaryFeatures } from '../components/PrimaryFeatures'
 import { SecondaryFeatures } from '../components/SecondaryFeatures'
 import { Testimonials } from '../components/Testimonials'
 import { Header } from '../components/Header'
-const Home = () => {
+
+export default function Home() {
   return (
     <span>
       <Header />
@@ -22,4 +23,3 @@ const Home = () => {
     </span>
   )
 }
-export default Home
