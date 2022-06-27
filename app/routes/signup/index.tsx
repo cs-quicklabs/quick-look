@@ -68,6 +68,7 @@ export default function SignUp() {
                     >
                       <div>
                         <FormikInput
+                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
                           type="firstName"
                           name="firstName"
                           label="First Name"
@@ -75,6 +76,7 @@ export default function SignUp() {
                       </div>
                       <div>
                         <FormikInput
+                          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
                           type="lastName"
                           name="lastName"
                           label="Last Name"
@@ -82,6 +84,7 @@ export default function SignUp() {
                       </div>
                       <div>
                         <FormikInput
+                          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
                           type="email"
                           name="email"
                           label="Email address"
@@ -89,6 +92,7 @@ export default function SignUp() {
                       </div>
                       <div>
                         <FormikInput
+                          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
                           type="password"
                           name="password"
                           label="Password"
@@ -96,6 +100,7 @@ export default function SignUp() {
                       </div>
                       <div>
                         <FormikInput
+                          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
                           type="password"
                           name="confirmPassword"
                           label="Confirm Password"

@@ -58,7 +58,7 @@ export default function Login() {
                       <div className=''>
                       <div>
                         <FormikInput
-                          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                          className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                           type="email"
                           name="email"
                           placeholder="Email address"
@@ -66,7 +66,7 @@ export default function Login() {
                       </div>
                       <div>
                         <FormikInput
-                          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                          className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                           type="password"
                           name="password"
                           placeholder="Password"
@@ -74,7 +74,7 @@ export default function Login() {
                       </div>
                       </div>
                       <div className="flex items-center justify-between">
-                      <div className="flex items-center mt-5">
+                      <div className="flex items-center mt-3.5 font-semibold">
                         <FormikCheckbox
                           type="checkbox"
                           name="remember_me"
@@ -82,16 +82,16 @@ export default function Login() {
                           className="h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm"
                         />
                       </div>
-                      <div className="text-sm mt-5">    
+                      <div className="text-sm mt-3.5">    
                         <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                           Forgot your password?
                         </Link>
                       </div>
                     </div>
-                      <div className="mt-5">
+                      <div>
                         <button
                           type="submit"
-                          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6"
                         >
                           <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                             <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
@@ -99,6 +99,11 @@ export default function Login() {
                           Sign in
                         </button>
                         </div>
+                        <p className="mt-2 text-center text-sm">
+                          <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            Did not receive confirmation email? 
+                          </Link>
+                        </p>
                     </Form>
                     )}
               </Formik>
