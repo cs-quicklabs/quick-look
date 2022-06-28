@@ -15,29 +15,22 @@ const features = [
     description:
       'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
     image: screenshotProfitLoss,
-    icon: function ReportingIcon() {
-      // let id = useId()
+    icon: function InventoryIcon() {
       return (
         <>
-          <defs>
-            <linearGradient
-              id={'1'}
-              x1='11.5'
-              y1={18}
-              x2={36}
-              y2='15.5'
-              gradientUnits='userSpaceOnUse'
-            >
-              <stop offset='.194' stopColor='#fff' />
-              <stop offset={1} stopColor='#6692F1' />
-            </linearGradient>
-          </defs>
           <path
-            d='m30 15-4 5-4-11-4 18-4-11-4 7-4-5'
-            stroke={`url(#${'1'})`}
-            strokeWidth={2}
-            strokeLinecap='round'
-            strokeLinejoin='round'
+            opacity='.5'
+            d='M8 17a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2Z'
+            fill='#fff'
+          />
+          <path
+            opacity='.3'
+            d='M8 24a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2Z'
+            fill='#fff'
+          />
+          <path
+            d='M8 10a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2Z'
+            fill='#fff'
           />
         </>
       )
@@ -99,31 +92,39 @@ const features = [
 function Feature({ feature, isActive, className, ...props }: any) {
   return (
     <div
-      className={clsx(className, { 'opacity-75 hover:opacity-100': !isActive })}
+      className={clsx(className, {
+        'opacity-75 outline-none hover:opacity-100': !isActive,
+      })}
       {...props}
     >
       <div
-        className={clsx('w-9 rounded-lg', {
+        className={clsx('w-9 rounded-lg outline-none', {
           'bg-blue-600': isActive,
           'bg-slate-500': !isActive,
         })}
       >
-        <svg aria-hidden='true' className='h-9 w-9' fill='none'>
-          <feature.icon />
-        </svg>
+        {Feature.name === 'Reporting' ? (
+          <img src={feature.iconimg} alt='' />
+        ) : (
+          <svg aria-hidden='true' className='h-9 w-9 outline-none' fill='none'>
+            <feature.icon />
+          </svg>
+        )}
       </div>
       <h3
-        className={clsx('mt-6 text-sm font-medium', {
-          'text-blue-600': isActive,
+        className={clsx('mt-6 text-sm font-medium outline-none', {
+          'text-blue-600 outline-none': isActive,
           'text-slate-600': !isActive,
         })}
       >
         {feature.name}
       </h3>
-      <p className='mt-2 font-display text-xl text-slate-900'>
+      <p className='mt-2 outline-none font-display text-xl text-slate-900'>
         {feature.summary}
       </p>
-      <p className='mt-4 text-sm text-slate-600'>{feature.description}</p>
+      <p className='mt-4 text-sm text-slate-600 outline-none'>
+        {feature.description}
+      </p>
     </div>
   )
 }
@@ -133,7 +134,7 @@ function FeaturesMobile() {
     <div className='-mx-4 mt-20 space-y-10 overflow-hidden px-4 sm:-mx-6 sm:px-6 lg:hidden'>
       {features.map((feature) => (
         <div key={feature.name}>
-          <Feature feature={feature} className='mx-auto max-w-2xl' isActive />
+          <Feature feature={feature} className='mx-auto max-w-2xl ' isActive />
           <div className='relative mt-10 pb-10'>
             <div className='absolute -inset-x-4 bottom-0 top-8 bg-slate-200 sm:-inset-x-6' />
             <div className='relative mx-auto aspect-[844/428] w-[52.75rem] overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10'>
@@ -148,18 +149,18 @@ function FeaturesMobile() {
 
 function FeaturesDesktop() {
   return (
-    <Tab.Group as='div' className='hidden lg:mt-20 lg:block'>
+    <Tab.Group as='div' className='hidden lg:mt-20 lg:block outline-none'>
       {({ selectedIndex }) => (
         <>
-          <Tab.List className='grid grid-cols-3 gap-x-8'>
+          <Tab.List className='grid grid-cols-3 gap-x-8 outline-none'>
             {features.map((feature, featureIndex) => (
               <Feature
                 key={feature.name}
                 feature={{
                   ...feature,
                   name: (
-                    <Tab className='[&:not(:focus-visible)]:focus:outline-none'>
-                      <span className='absolute inset-0' />
+                    <Tab className='outline-none'>
+                      <span className='absolute inset-0 outline-none' />
                       {feature.name}
                     </Tab>
                   ),
@@ -203,7 +204,7 @@ export function SecondaryFeatures() {
     <section
       id='secondary-features'
       aria-labelledby='secondary-features-title'
-      className='pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 text-xl font-medium'
+      className='pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 text-xl font-medium outline-none'
     >
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl md:text-center'>
