@@ -103,13 +103,9 @@ function Feature({ feature, isActive, className, ...props }: any) {
           'bg-slate-500': !isActive,
         })}
       >
-        {Feature.name === 'Reporting' ? (
-          <img src={feature.iconimg} alt='' />
-        ) : (
-          <svg aria-hidden='true' className='h-9 w-9 outline-none' fill='none'>
-            <feature.icon />
-          </svg>
-        )}
+        <svg aria-hidden='true' className='h-9 w-9 outline-none' fill='none'>
+          <feature.icon />
+        </svg>
       </div>
       <h3
         className={clsx('mt-6 text-sm font-medium outline-none', {
