@@ -791,6 +791,14 @@ video {
   margin-left: 2rem;
 }
 
+.mt-60 {
+  margin-top: 15rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -887,6 +895,10 @@ video {
   height: 1rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-20 {
   height: 5rem;
 }
@@ -945,6 +957,14 @@ video {
 
 .w-4 {
   width: 1rem;
+}
+
+.w-20 {
+  width: 5rem;
+}
+
+.w-2\/5 {
+  width: 40%;
 }
 
 .w-5 {
@@ -1101,6 +1121,10 @@ video {
   gap: 1.5rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-y-10 {
   row-gap: 2.5rem;
 }
@@ -1232,6 +1256,10 @@ video {
 
 .border {
   border-width: 1px;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .border-t {
@@ -1610,6 +1638,10 @@ video {
   font-weight: 700;
 }
 
+.font-black {
+  font-weight: 900;
+}
+
 .font-\[750\] {
   font-weight: 750;
 }
@@ -1730,6 +1762,11 @@ video {
   color: rgb(21 128 61 / var(--tw-text-opacity));
 }
 
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1811,6 +1848,12 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-blue-900\/20 {
   --tw-shadow-color: rgb(30 58 138 / 0.2);
   --tw-shadow: var(--tw-shadow-colored);
@@ -1823,6 +1866,21 @@ video {
 
 .shadow-slate-900\/10 {
   --tw-shadow-color: rgb(15 23 42 / 0.1);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-gray-300 {
+  --tw-shadow-color: #d1d5db;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-gray-800 {
+  --tw-shadow-color: #1f2937;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-gray-400 {
+  --tw-shadow-color: #9ca3af;
   --tw-shadow: var(--tw-shadow-colored);
 }
 
