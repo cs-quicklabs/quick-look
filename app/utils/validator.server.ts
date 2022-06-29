@@ -8,7 +8,7 @@ export const validateEmail = async (email: string): Promise<string | undefined> 
   }
   
   export const validatePassword = async (password: string): Promise<string | undefined> => {
-    if (password.length < 5) {
+    if (password.length < 4) {
       return "Please enter a password that is at least 5 characters long"
     }
   }
