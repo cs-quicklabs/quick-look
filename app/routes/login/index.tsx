@@ -1,9 +1,30 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
+import { ActionFunction, json } from '@remix-run/node';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { createUserSession, login } from '~/services/auth.service.server';
+import { validateEmail, validatePassword } from '~/utils/validator.server';
 import { FormikCheckbox, FormikInput } from "../../components/Common/FormikInput";
 import logo from '../../images/logos/quicklook-icon.svg';
+
+export const action: ActionFunction = async ({request}) => {
+  const form = await request.formData();
+  let email = form.get('email') as string
+  let password = form.get('password') as string
+
+  const errors = {
+      email: validateEmail(email),
+      password: validatePassword(password),
+    }
+  
+  if (Object.values(errors).some(Boolean)){
+      return json({ errors, fields: { email, password }, form: action }, { status: 400 })
+  }
+  const user = await login({email, password})
+  
+  return createUserSession(user.id, '/')
+}
 
 export default function Login() {
   const validate = Yup.object().shape({
@@ -30,7 +51,7 @@ export default function Login() {
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <img src={logo} alt='' className='mx-auto h-12 w-auto' />
+            <img src={logo} alt='' className='mx-auto h-20 w-auto' />
             <h2 className="mt-6 text-center text-3xl font-[750] text-gray-900">Sign in to your account</h2>
           </div>
           <div>
@@ -50,7 +71,7 @@ export default function Login() {
                       method="POST"
                       noValidate
                     >
-                      <div className=''>
+                      <div>
                       <div>
                         <FormikInput
                           className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -78,7 +99,7 @@ export default function Login() {
                         />
                       </div>
                       <div className="text-sm mt-3.5">    
-                        <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link to="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
                           Forgot your password?
                         </Link>
                       </div>
@@ -111,5 +132,3 @@ export default function Login() {
   )
 }
 
-
-      

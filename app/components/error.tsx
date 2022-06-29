@@ -1,4 +1,4 @@
-import type { customError } from '~/types/error'
+import type { customError } from '~/types/error.server'
 import tailwindStylesheetUrl from '../styles/tailwind.css'
 import { Link, Links } from '@remix-run/react'
 
