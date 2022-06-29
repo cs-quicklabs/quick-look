@@ -36,7 +36,7 @@ export function CallToAction() {
             discovered .
           </p>
           <button className='group inline-flex items-center justify-center rounded-full py-2 px-4  focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white mt-10 font-medium text-lg'>
-            <a href='/login'>Get Started for free</a>
+            <a href='/signup'>Get Started for free</a>
           </button>
         </div>
       </div>

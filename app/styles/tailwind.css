@@ -791,12 +791,12 @@ video {
   margin-left: 2rem;
 }
 
-.mt-3\.5 {
-  margin-top: 0.875rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
+}
+
+.mt-3\.5 {
+  margin-top: 0.875rem;
 }
 
 .-mb-32 {
@@ -887,12 +887,12 @@ video {
   height: 1rem;
 }
 
-.h-5 {
-  height: 1.25rem;
-}
-
 .h-20 {
   height: 5rem;
+}
+
+.h-5 {
+  height: 1.25rem;
 }
 
 .min-h-full {

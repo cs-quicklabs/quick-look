@@ -4,7 +4,6 @@ import logo from '../images/logos/quicklook-icon.svg'
 // import { Container } from '../components/'
 
 import clsx from 'clsx'
-import { Link } from '@remix-run/react'
 
 type MobProps = {
   open: any

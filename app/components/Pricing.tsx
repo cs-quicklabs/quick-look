@@ -70,8 +70,8 @@ function Plan({
           </li>
         ))}
       </ul>
-      <button
-        // href={href}
+      <a
+        href='/signup'
         // variant={featured ? 'solid' : 'outline'}
         // color='white'
         className={clsx(' mt-10 space-y-3 text-sm', {
@@ -83,7 +83,7 @@ function Plan({
         aria-label={`Get started with ${name} plan for ${price}`}
       >
         Get started
-      </button>
+      </a>
     </section>
   )
 }
