@@ -1,7 +1,14 @@
-import { Outlet, LiveReload, Scripts, Links, useCatch, useLocation } from '@remix-run/react';
-import ErrorHandler from './components/error';
-import tailwindStylesheetUrl from './styles/tailwind.css';
-import HeaderSecondary from './components/Common/Header';
+import {
+  Outlet,
+  LiveReload,
+  Scripts,
+  Links,
+  useCatch,
+  useLocation,
+} from '@remix-run/react'
+import ErrorHandler from './components/error'
+import tailwindStylesheetUrl from './styles/tailwind.css'
+import HeaderSecondary from './components/Common/Header'
 
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
@@ -40,20 +47,22 @@ function Document({ children }: any) {
   )
 }
 function Layout({ children }: any) {
-  const Location = useLocation();
-  console.log(Location, 'location');
+  const Location = useLocation()
+  console.log(Location, 'location')
 
   return (
-  <>
-    {Location.pathname.includes('/login') ||
-    Location.pathname.includes('/signup') ? (
-    <HeaderSecondary />
-     ) : (
+    <>
+      {Location.pathname.includes('/login') ||
+      Location.pathname.includes('/signup') ||
+      Location.pathname.includes('/terms') ||
+      Location.pathname.includes('/privacy') ? (
+        <HeaderSecondary />
+      ) : (
         <></>
-     )}
-    <div>{children}</div>
-  </>
-)
+      )}
+      <div>{children}</div>
+    </>
+  )
 }
 
 export function CatchBoundary() {
