@@ -1,9 +1,53 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
+import { User } from '@prisma/client';
+import { ActionFunction, json } from '@remix-run/node';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { createUserSession, register } from '~/services/auth.service.server';
+import { sendMail } from '~/services/mail.service';
+import { findUserByEmail } from '~/services/user.service';
+import { createUserVerificationToken } from '~/services/userVerification.service';
+import { validateEmail, validateName, validatePassword } from '~/utils/validator.server';
 import { FormikInput } from "../../components/Common/FormikInput";
 import logo from '../../images/logos/quicklook-icon.svg';
+
+export const action: ActionFunction = async ({ request }) => {
+  let sentMail;
+
+  const form = await request.formData();
+  let firstname = form.get('firstName') as string
+  let lastname = form.get('lastName') as string
+  let email = form.get('email') as string
+  let password = form.get('password') as string
+  let username = form.get('username') as string
+  let url = request.url
+
+  const errors = {
+      email: validateEmail(email),
+      password: validatePassword(password),
+      firstname: validateName(firstname),
+      lastname: validateName(lastname),
+  }
+
+  if (Object.values(errors).some(Boolean)){
+      return json({ errors, fields: { email, password, firstname, lastname }, form: action }, { status: 400 })
+  }
+
+  const isregistered = await register({firstname, lastname, username, email, password})
+  const generatedToken = uuidv4() as unknown as string;
+  if(isregistered){
+      sentMail = await sendMail({
+          to: email,
+          from: process.env.SENDGRID_EMAIL as string, 
+          subject: 'Email Verification',
+          text: `${url}/verification/${generatedToken}`
+      })
+  }
+  const user: User = await findUserByEmail(email);
+  await createUserVerificationToken(user.id, generatedToken)
+  return createUserSession(user.id, '/');
+}
 
 export default function SignUp() {
   const validate = Yup.object({
@@ -56,7 +100,7 @@ export default function SignUp() {
                   {formik => (
                     <Form
                       className="space-y-4"
-                      action="#"
+                      action= ''
                       method="POST"
                       noValidate
                     >
@@ -120,3 +164,8 @@ export default function SignUp() {
     </>
   )
 }
+
+function uuidv4() {
+  throw new Error('Function not implemented.');
+}
+
