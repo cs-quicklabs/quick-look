@@ -1,7 +1,7 @@
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { createUserSession, getUser } from "~/services/auth.service.server";
-import { verifyEmail } from "~/services/mail.service";
-import { deleteUserVerificationToken } from "~/services/userVerification.service";
+import { verifyEmail } from "~/services/mail.service.server";
+import { deleteUserVerificationToken } from "~/services/userVerification.service.server";
 
 export const loader: LoaderFunction = async ({request, params}) => {
     const user = await getUser(request)
