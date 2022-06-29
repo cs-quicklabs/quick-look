@@ -48,21 +48,21 @@ export function Footer() {
         </div>
         <div className='flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between'>
           <div className='flex space-x-6'>
-            <Link to='/terms'>
+            <a href='/terms'>
               <p className='group'>
                 <span> Terms & Conditions</span>
               </p>
-            </Link>
-            <Link to='/privacy'>
+            </a>
+            <a href='/privacy'>
               <p className='group'>
                 <span> Privacy Policy</span>
               </p>
-            </Link>
-            <Link to='/refund'>
+            </a>
+            <a href='/refund'>
               <p className='group'>
                 <span> Refund Policy </span>
               </p>
-            </Link>
+            </a>
           </div>
           <p className='mt-6 text-sm text-slate-500 sm:mt-0'>
             Copyright @2022 Crownstack Technologies. All rights reserved
