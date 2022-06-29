@@ -46,7 +46,8 @@ function Layout({ children }: any) {
   return (
   <>
     {Location.pathname.includes('/login') ||
-    Location.pathname.includes('/signup') ? (
+    Location.pathname.includes('/signup') ||
+    Location.pathname.includes('/forgot-password') ? (
     <HeaderSecondary />
      ) : (
         <></>
