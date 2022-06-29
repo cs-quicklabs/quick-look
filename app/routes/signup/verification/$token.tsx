@@ -1,25 +1,16 @@
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { useActionData, useLoaderData, useParams } from "@remix-run/react";
-import { verifyEmail } from "~/services/userVerification.service";
-import { getUser } from "~/services/auth.service.server";
-
-export const action: ActionFunction = ({request, params}) => {
-
-}
+import { createUserSession, getUser } from "~/services/auth.service.server";
+import { verifyEmail } from "~/services/mail.service";
+import { deleteUserVerificationToken } from "~/services/userVerification.service";
 
 export const loader: LoaderFunction = async ({request, params}) => {
     const user = await getUser(request)
-    const res = await verifyEmail(params.token as string, user?.id as string)
-    return res;
-}
+    const verified = await verifyEmail(params.token as string, user?.id as string)
+    if(verified){
+            // redirect user from here to login page with success message 
 
-export default function VerifyToken(){
-    let actionData = useActionData();
-    return (
-        <div>
-            {actionData}
-        </div>
-    )
+            // delete userverificationentry
+            await deleteUserVerificationToken(user?.id as string)
+    }
+    return createUserSession(user?.id as string, '/')
 }
-
-// delete user after verification 

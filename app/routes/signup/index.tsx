@@ -1,16 +1,20 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { User } from '@prisma/client';
 import { ActionFunction, json } from '@remix-run/node';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
+
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { createUserSession, register } from '~/services/auth.service.server';
 import { sendMail } from '~/services/mail.service';
 import { findUserByEmail } from '~/services/user.service';
 import { createUserVerificationToken } from '~/services/userVerification.service';
-import { validateEmail, validateName, validatePassword } from '~/utils/validator.server';
+import { validateEmail, validateName, validatePassword, validateUsername } from '~/utils/validator.server';
 import { FormikInput } from "../../components/Common/FormikInput";
+import { v4 as uuidv4 } from 'uuid';
 import logo from '../../images/logos/quicklook-icon.svg';
+import { Form } from '@remix-run/react';
+
 
 export const action: ActionFunction = async ({ request }) => {
   let sentMail;
@@ -20,23 +24,24 @@ export const action: ActionFunction = async ({ request }) => {
   let lastname = form.get('lastName') as string
   let email = form.get('email') as string
   let password = form.get('password') as string
-  let username = form.get('username') as string
+  let username = form.get('profileId') as string
   let url = request.url
 
   const errors = {
-      email: validateEmail(email),
-      password: validatePassword(password),
-      firstname: validateName(firstname),
-      lastname: validateName(lastname),
+      email: await validateEmail(email),
+      password: await validatePassword(password),
+      firstname: await validateName(firstname),
+      lastname: await validateName(lastname),
+      username: await validateUsername(username)
   }
 
   if (Object.values(errors).some(Boolean)){
-      return json({ errors, fields: { email, password, firstname, lastname }, form: action }, { status: 400 })
+      return json({ errors, fields: { email, password, firstname, lastname, username }, form: action }, { status: 400 })
   }
 
-  const isregistered = await register({firstname, lastname, username, email, password})
-  const generatedToken = uuidv4() as unknown as string;
-  if(isregistered){
+  const registered = await register({firstname, lastname, username, email, password})
+  const generatedToken = uuidv4()  as string;
+  if(registered){
       sentMail = await sendMail({
           to: email,
           from: process.env.SENDGRID_EMAIL as string, 
@@ -44,9 +49,10 @@ export const action: ActionFunction = async ({ request }) => {
           text: `${url}/verification/${generatedToken}`
       })
   }
+  
   const user: User = await findUserByEmail(email);
   await createUserVerificationToken(user.id, generatedToken)
-  return createUserSession(user.id, '/');
+  return createUserSession(user.id, '/'); //redirect to confirm email page 
 }
 
 export default function SignUp() {
@@ -85,7 +91,7 @@ export default function SignUp() {
           <img src={logo} alt='' className='mx-auto h-20 w-auto' />
           <h2 className="mt-4 text-center text-3xl font-[750] text-gray-900">Create new account</h2>
           <p className="mt-2 text-center text-sm">
-            <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500"> 
               No credit card required. Starting with free plan.
             </Link>
           </p>
@@ -95,15 +101,12 @@ export default function SignUp() {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validate}
-                onSubmit={values => {
-                  console.log(values)
-                }}
+                onSubmit={values => {}}
               >
                   {formik => (
                     <Form
                       className="space-y-4"
-                      action= ''
-                      method="POST"
+                      method="post"
                       noValidate
                     >
                       <div className="mt-1 grid grid-cols-2 gap-2">
@@ -175,9 +178,5 @@ export default function SignUp() {
       </div>
     </>
   )
-}
-
-function uuidv4() {
-  throw new Error('Function not implemented.');
 }
 

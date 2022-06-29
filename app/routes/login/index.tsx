@@ -1,12 +1,13 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { ActionFunction, json } from '@remix-run/node';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { createUserSession, login } from '~/services/auth.service.server';
 import { validateEmail, validatePassword } from '~/utils/validator.server';
 import { FormikCheckbox, FormikInput } from "../../components/Common/FormikInput";
 import logo from '../../images/logos/quicklook-icon.svg';
+import { Form } from '@remix-run/react';
 
 export const action: ActionFunction = async ({request}) => {
   const form = await request.formData();
@@ -14,14 +15,14 @@ export const action: ActionFunction = async ({request}) => {
   let password = form.get('password') as string
 
   const errors = {
-      email: validateEmail(email),
-      password: validatePassword(password),
+      email: await validateEmail(email),
+      password: await validatePassword(password),
     }
   
   if (Object.values(errors).some(Boolean)){
       return json({ errors, fields: { email, password }, form: action }, { status: 400 })
   }
-  const user = await login({email, password})
+  const user = await login({email, password}) 
   
   return createUserSession(user.id, '/')
 }
@@ -60,15 +61,12 @@ export default function Login() {
               <Formik
                     initialValues={initialValues}
                     validationSchema={validate}
-                    onSubmit={values => {
-                      console.log(values)
-                    }}
+                    onSubmit={values => {}}
                   >
                     {formik => (
                     <Form
                       className="space-y-4"
-                      action="#"
-                      method="POST"
+                      method="post"
                       noValidate
                     >
                       <div>
@@ -93,7 +91,7 @@ export default function Login() {
                       <div className="flex items-center mt-3.5 font-semibold">
                         <FormikCheckbox
                           type="checkbox"
-                          name="remember_me"
+                          name="rememberMe"
                           label="Remember Me"
                           className="h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm"
                         />

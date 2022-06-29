@@ -13,14 +13,10 @@ export async function createUserVerificationToken(userId: string, token: string)
     })
 }
 
-export async function verifyEmail(token: string, userId: string) {
-    await db.user.update({
+export async function deleteUserVerificationToken(userId: string){
+    await db.userVerification.delete({
         where: {
-            id: userId
-        },
-        data: {
-            isVerified: true
+            userId
         }
     })
-    return true
 }

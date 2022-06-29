@@ -48,7 +48,6 @@ function Document({ children }: any) {
 }
 function Layout({ children }: any) {
   const Location = useLocation()
-  console.log(Location, 'location')
 
   return (
     <>
