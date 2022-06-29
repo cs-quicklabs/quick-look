@@ -2,7 +2,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:css && remix build",
+    "build": "remix build",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "build:css": "tailwindcss -o ./app/styles/tailwind.css",
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css --watch",
