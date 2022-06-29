@@ -52,7 +52,7 @@ export const action: ActionFunction = async ({ request }) => {
   
   const user: User = await findUserByEmail(email);
   await createUserVerificationToken(user.id, generatedToken)
-  return createUserSession(user.id, '/');
+  return createUserSession(user.id, '/'); //redirect to confirm email page 
 }
 
 export default function SignUp() {
@@ -91,7 +91,7 @@ export default function SignUp() {
           <img src={logo} alt='' className='mx-auto h-20 w-auto' />
           <h2 className="mt-4 text-center text-3xl font-[750] text-gray-900">Create new account</h2>
           <p className="mt-2 text-center text-sm">
-            <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500"> 
               No credit card required. Starting with free plan.
             </Link>
           </p>
@@ -101,9 +101,7 @@ export default function SignUp() {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validate}
-                onSubmit={values => {
-                  console.log(values)
-                }}
+                onSubmit={values => {}}
               >
                   {formik => (
                     <Form
