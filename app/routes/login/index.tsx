@@ -1,9 +1,30 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
+import { ActionFunction, json } from '@remix-run/node';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { createUserSession, login } from '~/services/auth.service.server';
+import { validateEmail, validatePassword } from '~/utils/validator.server';
 import { FormikCheckbox, FormikInput } from "../../components/Common/FormikInput";
 import logo from '../../images/logos/quicklook-icon.svg';
+
+export const action: ActionFunction = async ({request}) => {
+  const form = await request.formData();
+  let email = form.get('email') as string
+  let password = form.get('password') as string
+
+  const errors = {
+      email: validateEmail(email),
+      password: validatePassword(password),
+    }
+  
+  if (Object.values(errors).some(Boolean)){
+      return json({ errors, fields: { email, password }, form: action }, { status: 400 })
+  }
+  const user = await login({email, password})
+  
+  return createUserSession(user.id, '/')
+}
 
 export default function Login() {
   const validate = Yup.object().shape({
@@ -111,5 +132,3 @@ export default function Login() {
   )
 }
 
-
-      
