@@ -13,6 +13,8 @@ export default function SignUp() {
     lastName: Yup.string()
       .max(20, 'Must be 20 characters or less')
       .required('Required'),
+    profileId: Yup.string()
+      .required('Required'),
     email: Yup.string()
       .email('Email is invalid')
       .required('Email is required'),
@@ -36,16 +38,16 @@ export default function SignUp() {
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img src={logo} alt='' className='mx-auto h-12 w-auto' />
-          <h2 className="mt-6 text-center text-3xl font-[750] text-gray-900">Create new account</h2>
+          <img src={logo} alt='' className='mx-auto h-20 w-auto' />
+          <h2 className="mt-4 text-center text-3xl font-[750] text-gray-900">Create new account</h2>
           <p className="mt-2 text-center text-sm">
             <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
               No credit card required. Starting with free plan.
             </Link>
           </p>
         </div>
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 sm:rounded-lg sm:px-10">
             <Formik
                 initialValues={initialValues}
                 validationSchema={validate}
@@ -60,20 +62,30 @@ export default function SignUp() {
                       method="POST"
                       noValidate
                     >
-                      <div>
-                        <FormikInput
-                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
-                          type="firstName"
-                          name="firstName"
-                          label="First Name"
-                        />
+                      <div className="mt-1 grid grid-cols-2 gap-2">
+                        <div>
+                          <FormikInput
+                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
+                            type="firstName"
+                            name="firstName"
+                            label="First Name"
+                          />
+                        </div>
+                        <div>
+                          <FormikInput
+                            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
+                            type="lastName"
+                            name="lastName"
+                            label="Last Name"
+                          />
+                        </div>
                       </div>
                       <div>
                         <FormikInput
                           className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3"
-                          type="lastName"
-                          name="lastName"
-                          label="Last Name"
+                          type="profileId"
+                          name="profileId"
+                          label="Choose your Profile ID"
                         />
                       </div>
                       <div>
