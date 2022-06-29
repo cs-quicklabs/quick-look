@@ -1,10 +1,11 @@
+import { db } from "~/database/connection.server";
 import { SendMail } from "~/types/sendmail.type";
 
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_KEY)
 
 export async function sendMail({ to, from, subject, text, html }: SendMail) {
-    let emailStatus ;
+    let emailStatus;
     const msg = {
         to,
         from,
@@ -20,4 +21,16 @@ export async function sendMail({ to, from, subject, text, html }: SendMail) {
         .catch((error: any) => {
             throw error
         })
+}
+
+export async function verifyEmail(token: string, userId: string) {
+    await db.user.update({
+        where: {
+            id: userId
+        },
+        data: {
+            isVerified: true
+        }
+    })
+    return true
 }
