@@ -7,9 +7,14 @@ export function Footer() {
     <footer className='bg-slate-50'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='py-16'>
-          <a href='/' className='flex items-center'>
-            <img src={logo} alt='' className='mx-auto h-16 w-auto'></img>
-          </a>
+          <div className='flex items-center justify-center gap-2'>
+            <a href='/' className='flex items-center'>
+              <img src={logo} alt='' className='mx-auto h-16 w-auto'></img>
+            </a>
+            <a href='/' className='text-lg font-medium'>
+              QuickLook.me
+            </a>
+          </div>
 
           <nav className='mt-10 text-sm' aria-label='quick links'>
             <ul className='-my-1 flex justify-center space-x-6'>
