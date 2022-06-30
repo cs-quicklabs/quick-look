@@ -24,7 +24,7 @@ export const action: ActionFunction = async ({request}) => {
   }
   const user = await login({email, password}) 
   
-  return createUserSession(user.id, '/')
+  return createUserSession(user.id, '/dashboard')
 }
 
 export default function Login() {
