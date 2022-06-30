@@ -1,7 +1,7 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { ActionFunction, json } from '@remix-run/node';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { createUserSession, login } from '~/services/auth.service.server';
 import { validateEmail, validatePassword } from '~/utils/validator.server';
@@ -28,6 +28,9 @@ export const action: ActionFunction = async ({request}) => {
 }
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const validate = Yup.object().shape({
     email: Yup.string()
       .email('Email is invalid')
@@ -47,6 +50,21 @@ export default function Login() {
     remember_me: false,
   };
 
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const actualData = {
+      email: data.get('email'),
+      password: data.get('password'),
+    }
+    if (actualData.email && actualData.password) {
+      console.log(actualData);
+      navigate('/dashboard')
+    } else {
+      return 'Error';
+    }
+  }
+
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16">
@@ -61,7 +79,8 @@ export default function Login() {
               <Formik
                     initialValues={initialValues}
                     validationSchema={validate}
-                    onSubmit={values => {}}
+                    // @ts-ignore
+                    onSubmit={handleSubmit}
                   >
                     {formik => (
                     <Form
