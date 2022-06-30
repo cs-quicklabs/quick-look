@@ -1,5 +1,5 @@
 import logo from '../../images/quicklook-icon.png'
-export default function confirmsignup() {
+export default function confirmEmail() {
   return (
     <>
       <div className='flex flex-col items-center justify-center mt-60'>
@@ -14,8 +14,8 @@ export default function confirmsignup() {
             <h1 className='text-lg font-semibold '>Check your Inbox</h1>
             <p>
               An confirmation email has been sent to you on your specified email
-              Id. Please check your email and click on email confirmation link.
-              You should be login into your account after confirming your email.{' '}
+              Id. Please check <br /> your email and click on email confirmation link.
+              You should be login into your account <br /> after confirming your email.{' '}
             </p>
             <a
               href='/login'
