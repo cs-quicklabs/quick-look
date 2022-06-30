@@ -67,7 +67,7 @@ export async function login(loginForm: LoginForm){
     }
 
     if (!user || !(await bcrypt.compare(loginForm.password, user.password))){
-            throw json({ error: `Incorrect login` }, { status: 400 })
+            throw json({ error: `Either email or password you entered was not correct. Please try again.` }, { status: 400 })
     }
 
     return { id: user.id, email: loginForm.email }
