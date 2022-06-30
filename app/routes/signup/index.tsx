@@ -63,13 +63,14 @@ export const action: ActionFunction = async ({ request }) => {
       to: email,
       from: process.env.SENDGRID_EMAIL as string,
       subject: 'Email Verification',
-      text: `${url}/verification/${generatedToken}`,
+      text: `${url}/verification/${generatedToken}`, 
+      html: `<a href= ${url}/verification/${generatedToken} > Click On this link to verify  </button>`
     })
   }
 
   const user: User = await findUserByEmail(email)
   await createUserVerificationToken(user.id, generatedToken)
-  return createUserSession(user.id, '/confirmsignin') //redirect to confirm email page
+  return createUserSession(user.id, '/confirmemail') 
 }
 
 export default function SignUp() {
