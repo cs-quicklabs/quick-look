@@ -81,7 +81,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   const user: User = await findUserByEmail(email)
   await createUserVerificationToken(user.id, generatedToken)
-  return createUserSession(user.id, '/confirmsignin') //redirect to confirm email page
+  return createUserSession(user.id, '/confirmemail') 
 }
 
 export default function SignUp() {

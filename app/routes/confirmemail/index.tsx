@@ -1,5 +1,5 @@
 import logo from '../../images/quicklook-icon.png'
-export default function confirmsignup() {
+export default function confirmEmail() {
   return (
     <>
       <div className='flex flex-col items-center justify-center mt-60'>
