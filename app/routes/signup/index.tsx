@@ -30,6 +30,12 @@ export const action: ActionFunction = async ({ request }) => {
   let password = form.get('password') as string
   let username = form.get('profileId') as string
   let url = request.url
+  console.log(url)
+
+  // const res = await fetch(url)
+  const res = new Response(JSON.stringify({ url }))
+  const json = await res.json()
+  console.log('sup', json)
 
   const errors = {
     email: await validateEmail(email),
@@ -49,6 +55,7 @@ export const action: ActionFunction = async ({ request }) => {
       { status: 400 }
     )
   }
+  console.log(Object.values(errors))
 
   const registered = await register({
     firstname,
@@ -63,8 +70,12 @@ export const action: ActionFunction = async ({ request }) => {
       to: email,
       from: process.env.SENDGRID_EMAIL as string,
       subject: 'Email Verification',
-      text: `${url}/verification/${generatedToken}`, 
-      html: `<a href= ${url}/verification/${generatedToken} > Click On this link to verify  </button>`
+      text: `${url}/verification/${generatedToken}`,
+      html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
+      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
+      <div style="margin-top:40px">
+      <h3>QuickLook.me</h3>
+      <span>Describing you with just one link</span></div>`,
     })
   }
 
@@ -94,6 +105,7 @@ export default function SignUp() {
   const initialValues = {
     firstName: '',
     lastName: '',
+    profileId: 'quicklook.me/',
     email: '',
     password: '',
     confirmPassword: '',
@@ -197,4 +209,7 @@ export default function SignUp() {
       </div>
     </>
   )
+}
+function searchCities(arg0: string | null): any {
+  throw new Error('Function not implemented.')
 }
