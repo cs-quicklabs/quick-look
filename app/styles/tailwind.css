@@ -1362,6 +1362,11 @@ video {
   background-color: rgb(240 253 244 / var(--tw-bg-opacity));
 }
 
+.bg-slate-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+
 .fill-blue-300\/70 {
   fill: rgb(147 197 253 / 0.7);
 }
