@@ -58,7 +58,7 @@ export function Footer() {
                 <span> Privacy Policy</span>
               </p>
             </a>
-            <a href='/refund'>
+            <a href='/refund-policy'>
               <p className='group'>
                 <span> Refund Policy </span>
               </p>
