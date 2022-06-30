@@ -1,10 +1,37 @@
-import { Form, Formik } from 'formik';
+import type { ActionFunction} from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { Formik } from 'formik';
+import { Form } from '@remix-run/react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FormikCheckbox, FormikInput } from '~/components/Common/FormikInput';
+import { sendResetPasswordLink } from '~/services/password.service.server';
 import { validateRequiredEmail } from "../../components/Utils/validators";
 import logo from '../../images/logos/quicklook-icon.svg';
+import { validateEmail } from '~/utils/validator.server';
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const email = formData.get('email') as string;
+  
+  let url = request.url;
+  const errors = {
+    email: await validateEmail(email),
+  }
+
+  if (Object.values(errors).some(Boolean)){
+    return json({ errors, fields: { email }, form: action }, { status: 400 })
+  }
+  const sentLink = await sendResetPasswordLink(email, url);
+  
+  if(sentLink) {
+    return  json({success: true, message: 'Reset Password Link Sent'}, {status: 200});
+  }
+  else {
+    throw json({success: false, message: 'Something went wrong'}, {status: 400})
+  }
+}
 
 export default function Forgotpassword()  {
   const SignInSchema = Yup.object().shape({
@@ -43,15 +70,12 @@ export default function Forgotpassword()  {
               <Formik
                     initialValues={initialValues}
                     validationSchema={SignInSchema}
-                    onSubmit={values => {
-                      console.log(values)
-                    }}
+                    onSubmit={values => {}}
                   >
                     {formik => (
                     <Form
                     className="space-y-4"
-                    action="#"
-                    method="POST"
+                    method="post"
                     noValidate
                   >
                     <div>

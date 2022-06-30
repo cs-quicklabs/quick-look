@@ -18,6 +18,7 @@ model User {
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   userVerification UserVerification?
+  resetPasswordLink ResetPasswordLink?
 
   @@map("user")
 }
@@ -32,4 +33,16 @@ model UserVerification {
   updatedAt    DateTime @updatedAt
 
   @@map("userverification")
+}
+
+model ResetPasswordLink {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @unique
+  uniqueString String
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("resetpassword")
 }

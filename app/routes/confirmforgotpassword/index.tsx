@@ -1,21 +1,23 @@
 import logo from '../../images/quicklook-icon.png'
-export default function confirmsignup() {
+export default function confirmforgotpassword() {
   return (
     <>
       <div className='flex flex-col items-center justify-center mt-60'>
         {/* image and p tag */}
         <div className='flex flex-col '>
           <img src={logo} alt='' className='h-auto w-20 mx-auto' />
-          <p className='text-3xl text-center font-black'>Confirm your email</p>
+          <p className='text-3xl text-center font-black'>Reset Your Password</p>
         </div>
         {/* content */}
         <div className='w-2/5 h-auto shadow-sm shadow-gray-300 mt-12 p-4'>
           <div className='flex flex-col gap-4 p-auto'>
             <h1 className='text-lg font-semibold '>Check your Inbox</h1>
             <p>
-              An confirmation email has been sent to you on your specified email
-              Id. Please check your email and click on email confirmation link.
-              You should be login into your account after confirming your email.{' '}
+              A password reset email has been sent to you on your specified
+              email ID if it exists.
+              <br /> Please check your email and click on reset password link.
+              You should be login into your
+              <br /> account after resetting your password.{' '}
             </p>
             <a
               href='/login'
