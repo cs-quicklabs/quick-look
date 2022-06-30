@@ -1,11 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from '../../images/logos/quicklook-icon.svg';
 
-export default function HeaderSecondary({ children }: any) {
-  const Location = useLocation();
-
+export default function Dashboard() {
+  
   return (
-  <header className='relative'>
+    <>
+      <header className='relative'>
         <div className='bg-gray-800 pt-2 pb-2'>
           <nav
             className='relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6'
@@ -25,24 +25,16 @@ export default function HeaderSecondary({ children }: any) {
               </div>
             </div>
             <div className='hidden md:flex md:items-center md:space-x-2'>
-            {Location.pathname.includes('/signup') ||
-              Location.pathname.includes('/forgot-password')?
-              (<Link
+              <Link
                 to='/login'
                 className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center'
               >
-                Sign in to your Account
-              </Link>) :
-              (<Link
-              to='/signup'
-              className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center'
-            >
-                Get Started For Free
-              </Link>)
-              }
+                Sign out
+              </Link>
             </div>
           </nav>
         </div>
       </header>
+    </>
   )
 }
