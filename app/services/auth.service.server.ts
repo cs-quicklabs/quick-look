@@ -62,12 +62,12 @@ export async function login(loginForm: LoginForm){
         }
     })
 
-    if(!user?.isVerified){
-      throw json({error: 'Account Not verified'}, {status: 401})
-    }
-
     if (!user || !(await bcrypt.compare(loginForm.password, user.password))){
             throw json({ error: `Either email or password you entered was not correct. Please try again.` }, { status: 400 })
+    }
+    
+    if(!user?.isVerified){
+      throw json({error: 'Account Not verified'}, {status: 401})
     }
 
     return { id: user.id, email: loginForm.email }
