@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import logo from '../images/logos/quicklook-icon.svg'
+import logo from '../../assets/images/logos/quicklook-icon.svg'
 // import { Container } from '../components/'
 
 import clsx from 'clsx'

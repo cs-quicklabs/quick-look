@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { FormikCheckbox, FormikInput } from '~/components/Common/FormikInput';
 import { sendResetPasswordLink } from '~/services/password.service.server';
 import { validateRequiredEmail } from "../../components/Utils/validators";
-import logo from '../../images/logos/quicklook-icon.svg';
+import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import { validateEmail } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {

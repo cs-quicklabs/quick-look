@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react'
 // import { Container } from '../components/Container'
-import logo from '../images/logos/quicklook-icon.svg'
+import logo from '../../assets/images/logos/quicklook-icon.svg'
 
 export function Footer() {
   return (

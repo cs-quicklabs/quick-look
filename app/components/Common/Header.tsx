@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import logo from '../../images/logos/quicklook-icon.svg';
+import logo from '../../../assets/images/logos/quicklook-icon.svg';
 
 export default function HeaderSecondary({ children }: any) {
   const Location = useLocation();

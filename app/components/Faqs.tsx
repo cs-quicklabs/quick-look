@@ -1,5 +1,5 @@
 // import { Container } from '../components/Container'
-import backgroundImage from '../images/background-faqs.jpg'
+import backgroundImage from '../../assets/images/background-faqs.jpg'
 
 const faqs = [
   [
