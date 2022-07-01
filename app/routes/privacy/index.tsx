@@ -16,7 +16,7 @@ export default function privacy() {
                     <h3 className='text-sm font-semibold text-gray-500 '>
                       Send us an email
                       <br />
-                      abc@email.com
+                      admin@quicklook.me
                     </h3>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ export default function privacy() {
               <span> Privacy Policy</span>
             </p>
           </Link>
-          <Link to='/refund'>
+          <Link to='/refund-policy'>
             <p className='group'>
               <span> Refund Policy </span>
             </p>

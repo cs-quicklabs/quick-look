@@ -16,7 +16,7 @@ export default function terms() {
                     <h3 className='text-sm font-semibold text-gray-500 '>
                       Send us an email
                       <br />
-                      abc@email.com
+                      admin@quicklook.me 
                     </h3>
                   </div>
                 </div>
@@ -772,7 +772,7 @@ export default function terms() {
               <span> Privacy Policy</span>
             </p>
           </a>
-          <a href='/refund'>
+          <a href='/refund-policy'>
             <p className='group'>
               <span> Refund Policy </span>
             </p>

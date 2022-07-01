@@ -1,7 +1,7 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { User } from '@prisma/client'
 import { ActionFunction, json } from '@remix-run/node'
-import { Formik, useFormikContext } from 'formik'
+import { Formik } from 'formik'
 
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -19,6 +19,7 @@ import { FormikInput } from '../../components/Common/FormikInput'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../images/logos/quicklook-icon.svg'
 import { Form } from '@remix-run/react'
+
 
 export const action: ActionFunction = async ({ request }) => {
   let sentMail
@@ -116,14 +117,6 @@ export default function SignUp() {
     confirmPassword: '',
   }
 
-  // const formik = useFormikContext();
-  // const { setFieldValue } = formik;
-  
-  // ele.addEventListener('focus', function (e) {
-//     const value = e.target.innerHTML;
-//     value === placeholder && (e.target.innerHTML = '');
-// });
-
   return (
     <>
       <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
@@ -208,7 +201,8 @@ export default function SignUp() {
                       // type='submit'
                       onClick={()=> {
                         formik.values.profileId= "quicklook.me/" + formik.values.profileId
-                        console.log(formik)}}
+                        // console.log(formik)
+                        }}
                       className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                     >
                       <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
@@ -232,7 +226,3 @@ export default function SignUp() {
 function searchCities(arg0: string | null): any {
   throw new Error('Function not implemented.')
 }
-function e(e: any): any {
-  throw new Error('Function not implemented.')
-}
-
