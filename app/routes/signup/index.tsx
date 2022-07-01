@@ -20,6 +20,7 @@ import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form } from '@remix-run/react'
 
+
 export const action: ActionFunction = async ({ request }) => {
   let sentMail
 
@@ -85,14 +86,19 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function SignUp() {
-  const validate = Yup.object({
+  const validate = Yup.object().shape({
     firstName: Yup.string()
       .max(15, 'Must be 15 characters or less')
       .required('Required'),
     lastName: Yup.string()
       .max(20, 'Must be 20 characters or less')
       .required('Required'),
-    profileId: Yup.string().required('Required'),
+    profileId: Yup.string()
+    .required('Required')
+    .matches(
+      /^[a-zA-Z.-]+$/,
+      ('Profile ID is invalid')
+    ),
     email: Yup.string().email('Email is invalid').required('Email is required'),
     password: Yup.string()
       .min(4, 'Your Password must not be less than 4 characters.')
@@ -105,7 +111,7 @@ export default function SignUp() {
   const initialValues = {
     firstName: '',
     lastName: '',
-    profileId: 'quicklook.me/',
+    profileId: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -157,7 +163,10 @@ export default function SignUp() {
                   </div>
                   <div>
                     <FormikInput
-                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                      className='pl-24 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                      xyz='quicklook.me/'
+                      // value = 'quicklook.me/'
+                      // onClick = {(e: any) => setFieldValue('quicklook.me/', e ? e : "")}
                       type='profileId'
                       name='profileId'
                       label='Choose your Profile ID'
@@ -189,7 +198,11 @@ export default function SignUp() {
                   </div>
                   <div className='mt-5'>
                     <button
-                      type='submit'
+                      // type='submit'
+                      onClick={()=> {
+                        formik.values.profileId= "quicklook.me/" + formik.values.profileId
+                        // console.log(formik)
+                        }}
                       className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                     >
                       <span className='absolute left-0 inset-y-0 flex items-center pl-3'>

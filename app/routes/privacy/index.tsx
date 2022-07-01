@@ -16,7 +16,7 @@ export default function privacy() {
                     <h3 className='text-sm font-semibold text-gray-500 '>
                       Send us an email
                       <br />
-                      abc@email.com
+                      admin@quicklook.me
                     </h3>
                   </div>
                 </div>
@@ -37,7 +37,7 @@ export default function privacy() {
                     1. Introduction
                   </h2>
                   <p className='mt-2 text-base text-gray-800'>
-                    Skia, registered at New Delhi (India) takes your privacy
+                  Quicklook, registered at New Delhi (India) takes your privacy
                     seriously and considers it important for your personal data
                     (hereafter “your data”) to be treated with the necessary
                     care and confidentiality at all times.
@@ -45,7 +45,7 @@ export default function privacy() {
                       This Privacy Statement explains how our organisation uses
                       the personal data we collect from you when you and why. If
                       you have any questions after reading this Privacy
-                      Statement, feel free to contact us at admin@skia.me
+                      Statement, feel free to contact us at admin@quicklook.me
                     </p>
                     <p>
                       To avoid any misunderstandings, we would like to clarify
@@ -55,7 +55,7 @@ export default function privacy() {
                     </p>
                     <p>
                       Website visitors: persons who visit our marketing landing
-                      page Skia is a provider of this service, and not the owner
+                      page quicklook is a provider of this service, and not the owner
                       of the collected data. The creator (the person who sends
                       out a form) is responsible for the data he/she collects
                       and thus data controller of respondent data
@@ -104,11 +104,11 @@ export default function privacy() {
                     5. Data retention
                   </h2>
                   <p className='mt-5 text-base text-gray-800'>
-                    If you are a skia user we do not delete the data in your
+                    If you are a quicklook user we do not delete the data in your
                     account. You are responsible for the time period for which
-                    you store the data. You can delete data in your skia
+                    you store the data. You can delete data in your quicklook
                     account. If you are a respondent, you will need to ask the
-                    creator how long your responses will be stored in skia. We
+                    creator how long your responses will be stored in quicklook. We
                     honor all deletions, If you wish to delete all records from
                     our server, just write as an email and everything will be
                     deleted.
@@ -118,9 +118,9 @@ export default function privacy() {
                   </h2>
                   <p>
                     As our Privacy Policy states, if you’ve submitted your
-                    personal data through skia web app, the creator of that
-                    record is responsible for this data. Skia only processes
-                    this data on the creator’s behalf. Skia creators can
+                    personal data through quicklook web app, the creator of that
+                    record is responsible for this data. Quicklook only processes
+                    this data on the creator’s behalf. Quicklook creators can
                     exercise their rights directly with us, but respondents
                     should contact the person or organization which created the
                     records. If this isn't possible, please contact us. We'll
@@ -133,7 +133,7 @@ export default function privacy() {
                     We would like to send you information about products and
                     services of ours that we think you might like. If you have
                     agreed to receive marketing, you may always op out at a
-                    later date. You have the right at any time to stop Skia from
+                    later date. You have the right at any time to stop quicklook from
                     contacting you for marketing purposes.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
@@ -144,7 +144,7 @@ export default function privacy() {
                     computer or mobile device by websites you visit. They are
                     widely used in order to make a website work, or work more
                     efficiently, as well as to provide information to the owners
-                    of the site. Skia uses cookies to improve your experience on
+                    of the site. Quicklook uses cookies to improve your experience on
                     our website and with our product.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
@@ -168,7 +168,7 @@ export default function privacy() {
                     please contact us at:
                   </p>
                   <p> Crownstack Technologies Pvt. Ltd</p>
-                  <p> admin@skia.me</p>
+                  <p> admin@quicklook.me</p>
                 </div>
               </div>
             </div>
@@ -216,7 +216,7 @@ export default function privacy() {
               <span> Privacy Policy</span>
             </p>
           </Link>
-          <Link to='/refund'>
+          <Link to='/refund-policy'>
             <p className='group'>
               <span> Refund Policy </span>
             </p>

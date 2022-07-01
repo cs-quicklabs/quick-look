@@ -16,7 +16,7 @@ export default function terms() {
                     <h3 className='text-sm font-semibold text-gray-500 '>
                       Send us an email
                       <br />
-                      abc@email.com
+                      admin@quicklook.me 
                     </h3>
                   </div>
                 </div>
@@ -41,7 +41,7 @@ export default function terms() {
                     made between you, whether personally or on behalf of an
                     entity (“you”) and Crownstack ("Company", “we”, “us”, or
                     “our”), concerning your access to and use of the
-                    https://skia.me website as well as any other media form,
+                    https://quicklook.me website as well as any other media form,
                     media channel, mobile website or mobile application related,
                     linked, or otherwise connected thereto (collectively, the
                     “Site”). You agree that by accessing the Site, you have
@@ -177,11 +177,11 @@ export default function terms() {
                   </h2>
                   <p>
                     All purchases are non-refundable. You can cancel your
-                    subscription at any by sending us an email at admin@skia.me
+                    subscription at any by sending us an email at admin@quicklook.me
                     or from your accout itself under billing settings. Your
                     cancellation will take effect at the end of the current paid
                     term. If you are unsatisfied with our services, please email
-                    us at admin@skia.me.
+                    us at admin@quicklook.me.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     7. Prohibited activities
@@ -426,7 +426,7 @@ export default function terms() {
                   </h2>
                   <p className='mt-2 text-base text-gray-800'>
                     We care about data privacy and security. Please review our
-                    Privacy Policy: https://www.skia.me/privacy. By using the
+                    Privacy Policy: https://www.quicklook.me/privacy. By using the
                     Site, you agree to be bound by our Privacy Policy, which is
                     incorporated into these Terms of Use. Please be advised the
                     Site is hosted on Render. If you access the Site from any
@@ -501,7 +501,7 @@ export default function terms() {
                     is expressly excluded. If your habitual residence is in the
                     EU, and you are a consumer, you additionally possess the
                     protection provided to you by obligatory provisions of the
-                    law of your country of residence. Skia and yourself both
+                    law of your country of residence. Quicklook and yourself both
                     agree to submit to the non-exclusive jurisdiction of the
                     courts of New Delhi, which means that you may make a claim
                     to defend your consumer protection rights in regards to
@@ -723,7 +723,7 @@ export default function terms() {
                   <p className='mt-2 text-base text-gray-800'>
                     In order to resolve a complaint regarding the Site or to
                     receive further information regarding use of the Site,
-                    please contact us at: admin@skia.me
+                    please contact us at: admin@quicklook.me
                   </p>
                 </div>
               </div>
@@ -772,7 +772,7 @@ export default function terms() {
               <span> Privacy Policy</span>
             </p>
           </a>
-          <a href='/refund'>
+          <a href='/refund-policy'>
             <p className='group'>
               <span> Refund Policy </span>
             </p>
