@@ -1,4 +1,4 @@
-import type { ActionFunction} from '@remix-run/node';
+import { ActionFunction, redirect} from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Formik } from 'formik';
 import { Form } from '@remix-run/react'
@@ -25,12 +25,12 @@ export const action: ActionFunction = async ({ request }) => {
   }
   const sentLink = await sendResetPasswordLink(email, url);
   
-  if(sentLink) {
-    return  json({success: true, message: 'Reset Password Link Sent'}, {status: 200});
+  if(!sentLink) {
+    return redirect('/login')
+    // return  json({success: true, message: 'Reset Password Link Sent'}, {status: 200});
   }
-  else {
-    throw json({success: false, message: 'Something went wrong'}, {status: 400})
-  }
+  
+  return redirect('/confirmforgotpassword');
 }
 
 export default function Forgotpassword()  {
