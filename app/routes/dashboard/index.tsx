@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from '../../images/logos/quicklook-icon.svg';
+import logo from '../../../assets/images/logos/quicklook-icon.svg';
 
 export default function Dashboard() {
   

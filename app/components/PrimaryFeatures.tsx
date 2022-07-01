@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 
 // import { Container } from '../components/Container'
-import backgroundImage from '../images/background-features.jpg'
-import screenshotExpenses from '../images/screenshots/expenses.png'
-import screenshotPayroll from '../images/screenshots/payroll.png'
-import screenshotReporting from '../images/screenshots/reporting.png'
-import screenshotVatReturns from '../images/screenshots/vat-returns.png'
+import backgroundImage from '../../assets/images/background-features.jpg'
+import screenshotExpenses from '../../assets/images/screenshots/expenses.png'
+import screenshotPayroll from '../../assets/images/screenshots/payroll.png'
+import screenshotReporting from '../../assets/images/screenshots/reporting.png'
+import screenshotVatReturns from '../../assets/images/screenshots/vat-returns.png'
 import clsx from 'clsx'
 
 const features = [

@@ -1,4 +1,4 @@
-import logo from '../../images/quicklook-icon.png'
+import logo from '../../../assets/images/quicklook-icon.png'
 export default function confirmEmail() {
   return (
     <>

@@ -3,9 +3,9 @@
 import { Tab } from '@headlessui/react'
 
 // import { Container } from '../components/Container'
-import screenshotContacts from '../images/screenshots/contacts.png'
-import screenshotInventory from '../images/screenshots/inventory.png'
-import screenshotProfitLoss from '../images/screenshots/profit-loss.png'
+import screenshotContacts from '../../assets/images/screenshots/contacts.png'
+import screenshotInventory from '../../assets/images/screenshots/inventory.png'
+import screenshotProfitLoss from '../../assets/images/screenshots/profit-loss.png'
 import clsx from 'clsx'
 
 const features = [

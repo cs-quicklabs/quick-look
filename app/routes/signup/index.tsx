@@ -17,7 +17,7 @@ import {
 } from '~/utils/validator.server'
 import { FormikInput } from '../../components/Common/FormikInput'
 import { v4 as uuidv4 } from 'uuid'
-import logo from '../../images/logos/quicklook-icon.svg'
+import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form } from '@remix-run/react'
 
 export const action: ActionFunction = async ({ request }) => {

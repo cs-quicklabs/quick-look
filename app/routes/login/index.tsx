@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { createUserSession, login } from '~/services/auth.service.server';
 import { validateEmail, validatePassword } from '~/utils/validator.server';
 import { FormikCheckbox, FormikInput } from "../../components/Common/FormikInput";
-import logo from '../../images/logos/quicklook-icon.svg';
+import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import { Form } from '@remix-run/react';
 
 export const action: ActionFunction = async ({request}) => {
