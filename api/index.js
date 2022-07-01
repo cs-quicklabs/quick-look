@@ -492,45 +492,30 @@ var loader2 = async ({ request, params }) => {
 // route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\signup\verification\index.tsx
 var verification_exports = {};
 __export(verification_exports, {
-  default: () => Example
-});
-var import_solid = require("@heroicons/react/solid");
-function Example() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "rounded-md bg-green-50 p-4"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "flex"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "flex-shrink-0"
-  }, /* @__PURE__ */ React.createElement(import_solid.CheckCircleIcon, {
-    className: "h-5 w-5 text-green-400",
-    "aria-hidden": "true"
-  })), /* @__PURE__ */ React.createElement("div", {
-    className: "ml-3"
-  }, /* @__PURE__ */ React.createElement("h3", {
-    className: "text-sm font-medium text-green-800"
-  }, "Email Sent successfully"), /* @__PURE__ */ React.createElement("div", {
-    className: "mt-2 text-sm text-green-700"
-  }, /* @__PURE__ */ React.createElement("p", null, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam.")), /* @__PURE__ */ React.createElement("div", {
-    className: "mt-4"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "-mx-2 -my-1.5 flex"
-  }, /* @__PURE__ */ React.createElement("button", {
-    type: "button",
-    className: "bg-green-50 px-2 py-1.5 rounded-md text-sm font-medium text-green-800 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
-  }, "View status"), /* @__PURE__ */ React.createElement("button", {
-    type: "button",
-    className: "ml-3 bg-green-50 px-2 py-1.5 rounded-md text-sm font-medium text-green-800 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
-  }, "Dismiss"))))));
-}
-
-// route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\forgot-password\index.tsx
-var forgot_password_exports = {};
-__export(forgot_password_exports, {
   action: () => action,
-  default: () => Forgotpassword
+  default: () => SignUp
 });
-var import_node5 = require("@remix-run/node"), import_node6 = require("@remix-run/node"), import_formik2 = require("formik"), import_react4 = require("@remix-run/react"), import_react5 = require("react"), Yup = __toESM(require("yup"));
+var import_solid = require("@heroicons/react/solid"), import_formik2 = require("formik"), import_react_router_dom2 = require("react-router-dom"), Yup = __toESM(require("yup"));
+
+// app/utils/validator.server.ts
+var validateEmail = async (email) => {
+  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (!email.length || !validRegex.test(email))
+    return "Please enter a valid email address";
+}, validatePassword = async (password) => {
+  if (password.length < 4)
+    return "Please enter a password that is at least 5 characters long";
+}, validateName = async (name) => {
+  if (!name.length)
+    return "Please enter a value";
+}, validateUsername = async (username) => {
+  if (await db.user.count({
+    where: {
+      username
+    }
+  }))
+    return "This ID has already been taken. Please choose another.";
+};
 
 // app/components/Common/FormikInput.tsx
 var import_formik = require("formik");
@@ -584,42 +569,161 @@ var FormikInput = (_a) => {
   }));
 };
 
+// route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\signup\verification\index.tsx
+var import_uuid2 = require("uuid");
+var import_react4 = require("@remix-run/react"), action = async ({ request }) => {
+  let sentMail, form = await request.formData(), firstname = form.get("firstName"), lastname = form.get("lastName"), email = form.get("email"), password = form.get("password"), username = form.get("profileId"), url = request.url;
+  console.log(url);
+  let json8 = await new Response(JSON.stringify({ url })).json();
+  console.log("sup", json8);
+  let errors = {
+    email: await validateEmail(email),
+    password: await validatePassword(password),
+    firstname: await validateName(firstname),
+    lastname: await validateName(lastname),
+    username: await validateUsername(username)
+  };
+  if (Object.values(errors).some(Boolean))
+    return json8({
+      errors,
+      fields: { email, password, firstname, lastname, username },
+      form: action
+    }, { status: 400 });
+  console.log(Object.values(errors));
+  let registered = await register({
+    firstname,
+    lastname,
+    username,
+    email,
+    password
+  }), generatedToken = (0, import_uuid2.v4)();
+  registered && (sentMail = await sendMail({
+    to: email,
+    from: process.env.SENDGRID_EMAIL,
+    subject: "Email Verification",
+    text: `${url}/verification/${generatedToken}`,
+    html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
+      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
+      <div style="margin-top:40px">
+      <h3>QuickLook.me</h3>
+      <span>Describing you with just one link</span></div>`
+  }));
+  let user = await findUserByEmail(email);
+  return await createUserVerificationToken(user.id, generatedToken), createUserSession(user.id, "/confirmemail");
+};
+function SignUp() {
+  let validate = Yup.object({
+    firstName: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
+    lastName: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
+    profileId: Yup.string().required("Required"),
+    email: Yup.string().email("Email is invalid").required("Email is required"),
+    password: Yup.string().min(4, "Your Password must not be less than 4 characters.").required("Password is required"),
+    confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Password must match").required("Confirm password is required")
+  });
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
+    className: "min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "sm:mx-auto sm:w-full sm:max-w-md"
+  }, /* @__PURE__ */ React.createElement("img", {
+    src: quicklook_icon_default,
+    alt: "",
+    className: "mx-auto h-20 w-auto"
+  }), /* @__PURE__ */ React.createElement("h2", {
+    className: "mt-4 text-center text-3xl font-[750] text-gray-900"
+  }, "Create new account"), /* @__PURE__ */ React.createElement("p", {
+    className: "mt-2 text-center text-sm"
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom2.Link, {
+    to: "#",
+    className: "font-medium text-indigo-600 hover:text-indigo-500"
+  }, "No credit card required. Starting with free plan."))), /* @__PURE__ */ React.createElement("div", {
+    className: "mt-4 sm:mx-auto sm:w-full sm:max-w-md"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "bg-white py-8 px-4 sm:rounded-lg sm:px-10"
+  }, /* @__PURE__ */ React.createElement(import_formik2.Formik, {
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      profileId: "quicklook.me/",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    },
+    validationSchema: validate,
+    onSubmit: (values) => {
+    }
+  }, (formik) => /* @__PURE__ */ React.createElement(import_react4.Form, {
+    className: "space-y-4",
+    method: "post",
+    noValidate: !0
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "mt-1 grid grid-cols-2 gap-2"
+  }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(FormikInput, {
+    className: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3",
+    type: "firstName",
+    name: "firstName",
+    label: "First Name"
+  })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(FormikInput, {
+    className: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3",
+    type: "lastName",
+    name: "lastName",
+    label: "Last Name"
+  }))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(FormikInput, {
+    className: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3",
+    type: "profileId",
+    name: "profileId",
+    label: "Choose your Profile ID"
+  })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(FormikInput, {
+    className: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3",
+    type: "email",
+    name: "email",
+    label: "Email address"
+  })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(FormikInput, {
+    className: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3",
+    type: "password",
+    name: "password",
+    label: "Password"
+  })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(FormikInput, {
+    className: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3",
+    type: "password",
+    name: "confirmPassword",
+    label: "Confirm Password"
+  })), /* @__PURE__ */ React.createElement("div", {
+    className: "mt-5"
+  }, /* @__PURE__ */ React.createElement("button", {
+    type: "submit",
+    className: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  }, /* @__PURE__ */ React.createElement("span", {
+    className: "absolute left-0 inset-y-0 flex items-center pl-3"
+  }, /* @__PURE__ */ React.createElement(import_solid.LockClosedIcon, {
+    className: "h-5 w-5 text-indigo-500 group-hover:text-indigo-400",
+    "aria-hidden": "true"
+  })), "Create New Account"))))))));
+}
+
+// route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\forgot-password\index.tsx
+var forgot_password_exports = {};
+__export(forgot_password_exports, {
+  action: () => action2,
+  default: () => Forgotpassword
+});
+var import_node5 = require("@remix-run/node"), import_node6 = require("@remix-run/node"), import_formik3 = require("formik"), import_react5 = require("@remix-run/react"), import_react6 = require("react"), Yup2 = __toESM(require("yup"));
+
 // app/components/Utils/validators.ts
 var yup = __toESM(require("yup")), hasEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/, validateRequiredEmail = () => yup.string().trim().email("Email is not valid").required("Email is required").matches(hasEmail, "Email is not valid");
 
-// app/utils/validator.server.ts
-var validateEmail = async (email) => {
-  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  if (!email.length || !validRegex.test(email))
-    return "Please enter a valid email address";
-}, validatePassword = async (password) => {
-  if (password.length < 4)
-    return "Please enter a password that is at least 5 characters long";
-}, validateName = async (name) => {
-  if (!name.length)
-    return "Please enter a value";
-}, validateUsername = async (username) => {
-  if (await db.user.count({
-    where: {
-      username
-    }
-  }))
-    return "This ID has already been taken. Please choose another.";
-};
-
 // route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\forgot-password\index.tsx
-var action = async ({ request }) => {
+var action2 = async ({ request }) => {
   let email = (await request.formData()).get("email"), url = request.url, errors = {
     email: await validateEmail(email)
   };
-  return Object.values(errors).some(Boolean) ? (0, import_node6.json)({ errors, fields: { email }, form: action }, { status: 400 }) : await sendResetPasswordLink(email, url) ? (0, import_node5.redirect)("/confirmforgotpassword") : (0, import_node5.redirect)("/login");
+  return Object.values(errors).some(Boolean) ? (0, import_node6.json)({ errors, fields: { email }, form: action2 }, { status: 400 }) : await sendResetPasswordLink(email, url) ? (0, import_node5.redirect)("/confirmforgotpassword") : (0, import_node5.redirect)("/login");
 };
 function Forgotpassword() {
-  let SignInSchema = Yup.object().shape({
+  let SignInSchema = Yup2.object().shape({
     email: validateRequiredEmail()
   }), initialValues = {
     email: ""
-  }, [showModal, toggleModal] = (0, import_react5.useState)(!1), popUpProps = {
+  }, [showModal, toggleModal] = (0, import_react6.useState)(!1), popUpProps = {
     toggleModal,
     headline: "Password reset email sent!",
     text: "Password reset email has been shared on registered email address. Please set new password with the help of link",
@@ -643,12 +747,12 @@ function Forgotpassword() {
     className: "mt-8 space-y-6"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "rounded-md shadow-sm -space-y-px"
-  }, /* @__PURE__ */ React.createElement(import_formik2.Formik, {
+  }, /* @__PURE__ */ React.createElement(import_formik3.Formik, {
     initialValues,
     validationSchema: SignInSchema,
     onSubmit: (values) => {
     }
-  }, (formik) => /* @__PURE__ */ React.createElement(import_react4.Form, {
+  }, (formik) => /* @__PURE__ */ React.createElement(import_react5.Form, {
     className: "space-y-4",
     method: "post",
     noValidate: !0
@@ -670,7 +774,7 @@ var refund_policy_exports = {};
 __export(refund_policy_exports, {
   default: () => Refund
 });
-var import_react_router_dom2 = require("react-router-dom"), import_solid2 = require("@heroicons/react/solid");
+var import_react_router_dom3 = require("react-router-dom"), import_solid2 = require("@heroicons/react/solid");
 
 // app/components/Footer.tsx
 function Footer() {
@@ -773,11 +877,11 @@ function Refund() {
     className: "text-gray-400"
   }, "CATEGORIES")), /* @__PURE__ */ React.createElement("ul", {
     className: "list-none list-inside ml-5 mt-2 mb-5 text-sm font-semibold text-gray-500"
-  }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react_router_dom2.Link, {
+  }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react_router_dom3.Link, {
     to: "#"
-  }, "Free Pages")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react_router_dom2.Link, {
+  }, "Free Pages")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react_router_dom3.Link, {
     to: "#"
-  }, "Pro Pages")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react_router_dom2.Link, {
+  }, "Pro Pages")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react_router_dom3.Link, {
     to: "#"
   }, "Domains")))))))), /* @__PURE__ */ React.createElement("div", {
     className: "bg-white lg:min-w-0 lg:flex-1"
@@ -829,7 +933,7 @@ function Refund() {
     "fill-rule": "evenodd",
     d: "M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z",
     "clip-rule": "evenodd"
-  }))), /* @__PURE__ */ React.createElement(import_react_router_dom2.Link, {
+  }))), /* @__PURE__ */ React.createElement(import_react_router_dom3.Link, {
     to: "#",
     className: "ml-2 font-medium text-indigo-600 hover:text-indigo-500"
   }, "How do I delete my page?")))))))), /* @__PURE__ */ React.createElement("div", {
@@ -868,24 +972,24 @@ function confirmEmail() {
 // route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\successlogin\index.tsx
 var successlogin_exports = {};
 __export(successlogin_exports, {
-  action: () => action2,
+  action: () => action3,
   default: () => SuccessLogin
 });
-var import_solid3 = require("@heroicons/react/solid"), import_node7 = require("@remix-run/node"), import_formik3 = require("formik"), import_react_router_dom3 = require("react-router-dom"), Yup2 = __toESM(require("yup"));
-var import_react6 = require("@remix-run/react"), action2 = async ({ request }) => {
+var import_solid3 = require("@heroicons/react/solid"), import_node7 = require("@remix-run/node"), import_formik4 = require("formik"), import_react_router_dom4 = require("react-router-dom"), Yup3 = __toESM(require("yup"));
+var import_react7 = require("@remix-run/react"), action3 = async ({ request }) => {
   let form = await request.formData(), email = form.get("email"), password = form.get("password"), errors = {
     email: await validateEmail(email),
     password: await validatePassword(password)
   };
   if (Object.values(errors).some(Boolean))
-    return (0, import_node7.json)({ errors, fields: { email, password }, form: action2 }, { status: 400 });
+    return (0, import_node7.json)({ errors, fields: { email, password }, form: action3 }, { status: 400 });
   let user = await login({ email, password });
   return createUserSession(user.id, "/");
 };
 function SuccessLogin() {
-  let validate = Yup2.object().shape({
-    email: Yup2.string().email("Email is invalid").required("Email is required").matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/, "Email is invalid"),
-    password: Yup2.string().required("Password is required").min(4, "Your Password must not be less than 4 characters.")
+  let validate = Yup3.object().shape({
+    email: Yup3.string().email("Email is invalid").required("Email is required").matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/, "Email is invalid"),
+    password: Yup3.string().required("Password is required").min(4, "Your Password must not be less than 4 characters.")
   });
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16"
@@ -916,7 +1020,7 @@ function SuccessLogin() {
     className: "mt-8 space-y-6"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "rounded-md shadow-sm -space-y-px"
-  }, /* @__PURE__ */ React.createElement(import_formik3.Formik, {
+  }, /* @__PURE__ */ React.createElement(import_formik4.Formik, {
     initialValues: {
       email: "",
       password: "",
@@ -925,7 +1029,7 @@ function SuccessLogin() {
     validationSchema: validate,
     onSubmit: (values) => {
     }
-  }, (formik) => /* @__PURE__ */ React.createElement(import_react6.Form, {
+  }, (formik) => /* @__PURE__ */ React.createElement(import_react7.Form, {
     className: "space-y-4",
     method: "post",
     noValidate: !0
@@ -950,7 +1054,7 @@ function SuccessLogin() {
     className: "h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm"
   })), /* @__PURE__ */ React.createElement("div", {
     className: "text-sm mt-3.5"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom3.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom4.Link, {
     to: "/forgot-password",
     className: "font-medium text-indigo-600 hover:text-indigo-500"
   }, "Forgot your password?"))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("button", {
@@ -963,7 +1067,7 @@ function SuccessLogin() {
     "aria-hidden": "true"
   })), "Sign in")), /* @__PURE__ */ React.createElement("p", {
     className: "mt-2 text-center text-sm"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom3.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom4.Link, {
     to: "#",
     className: "font-medium text-indigo-600 hover:text-indigo-500"
   }, "Did not receive confirmation email?"))))))))));
@@ -974,7 +1078,7 @@ var dashboard_exports = {};
 __export(dashboard_exports, {
   default: () => Dashboard
 });
-var import_react_router_dom4 = require("react-router-dom");
+var import_react_router_dom5 = require("react-router-dom");
 function Dashboard() {
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("header", {
     className: "relative"
@@ -987,7 +1091,7 @@ function Dashboard() {
     className: "flex flex-1 items-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex w-full items-center justify-between md:w-auto"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom4.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom5.Link, {
     to: "/",
     className: "flex items-center justify-center space-x-2"
   }, /* @__PURE__ */ React.createElement("img", {
@@ -998,7 +1102,7 @@ function Dashboard() {
     className: "text-2xl font-bold text-white"
   }, "QuickLook.me")))), /* @__PURE__ */ React.createElement("div", {
     className: "hidden md:flex md:items-center md:space-x-2"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom4.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom5.Link, {
     to: "/login",
     className: "ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center"
   }, "Sign out"))))));
@@ -1009,7 +1113,7 @@ var privacy_exports = {};
 __export(privacy_exports, {
   default: () => privacy
 });
-var import_react7 = require("@remix-run/react");
+var import_react8 = require("@remix-run/react");
 function privacy() {
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-32"
@@ -1083,27 +1187,27 @@ function privacy() {
     className: "mt-8 flex lg:mt-0 lg:flex-shrink-0"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "inline-flex rounded-md shadow"
-  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react8.Link, {
     to: "/signup",
     className: "inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
   }, "Get started")), /* @__PURE__ */ React.createElement("div", {
     className: "ml-3 inline-flex rounded-md shadow"
-  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react8.Link, {
     to: "#",
     className: "inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
   }, "Learn more"))))), /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between bg-gray-800 "
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex space-x-6 text-white mx-4"
-  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react8.Link, {
     to: "/terms"
   }, /* @__PURE__ */ React.createElement("p", {
     className: "group"
-  }, /* @__PURE__ */ React.createElement("span", null, " Terms & Conditions"))), /* @__PURE__ */ React.createElement(import_react7.Link, {
+  }, /* @__PURE__ */ React.createElement("span", null, " Terms & Conditions"))), /* @__PURE__ */ React.createElement(import_react8.Link, {
     to: "/privacy"
   }, /* @__PURE__ */ React.createElement("p", {
     className: "group"
-  }, /* @__PURE__ */ React.createElement("span", null, " Privacy Policy"))), /* @__PURE__ */ React.createElement(import_react7.Link, {
+  }, /* @__PURE__ */ React.createElement("span", null, " Privacy Policy"))), /* @__PURE__ */ React.createElement(import_react8.Link, {
     to: "/refund-policy"
   }, /* @__PURE__ */ React.createElement("p", {
     className: "group"
@@ -1115,12 +1219,12 @@ function privacy() {
 // route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\signup\index.tsx
 var signup_exports = {};
 __export(signup_exports, {
-  action: () => action3,
-  default: () => SignUp
+  action: () => action4,
+  default: () => SignUp2
 });
-var import_solid4 = require("@heroicons/react/solid"), import_formik4 = require("formik"), import_react_router_dom5 = require("react-router-dom"), Yup3 = __toESM(require("yup"));
-var import_uuid2 = require("uuid");
-var import_react8 = require("@remix-run/react"), action3 = async ({ request }) => {
+var import_solid4 = require("@heroicons/react/solid"), import_formik5 = require("formik"), import_react_router_dom6 = require("react-router-dom"), Yup4 = __toESM(require("yup"));
+var import_uuid3 = require("uuid");
+var import_react9 = require("@remix-run/react"), action4 = async ({ request }) => {
   let sentMail, form = await request.formData(), firstname = form.get("firstName"), lastname = form.get("lastName"), email = form.get("email"), password = form.get("password"), username = form.get("profileId"), url = request.url;
   console.log(url);
   let json8 = await new Response(JSON.stringify({ url })).json();
@@ -1136,7 +1240,7 @@ var import_react8 = require("@remix-run/react"), action3 = async ({ request }) =
     return json8({
       errors,
       fields: { email, password, firstname, lastname, username },
-      form: action3
+      form: action4
     }, { status: 400 });
   console.log(Object.values(errors));
   let registered = await register({
@@ -1145,7 +1249,7 @@ var import_react8 = require("@remix-run/react"), action3 = async ({ request }) =
     username,
     email,
     password
-  }), generatedToken = (0, import_uuid2.v4)();
+  }), generatedToken = (0, import_uuid3.v4)();
   registered && (sentMail = await sendMail({
     to: email,
     from: process.env.SENDGRID_EMAIL,
@@ -1160,14 +1264,14 @@ var import_react8 = require("@remix-run/react"), action3 = async ({ request }) =
   let user = await findUserByEmail(email);
   return await createUserVerificationToken(user.id, generatedToken), createUserSession(user.id, "/confirmemail");
 };
-function SignUp() {
-  let validate = Yup3.object().shape({
-    firstName: Yup3.string().max(15, "Must be 15 characters or less").required("Required"),
-    lastName: Yup3.string().max(20, "Must be 20 characters or less").required("Required"),
-    profileId: Yup3.string().required("Required").matches(/^[a-zA-Z.-]+$/, "Profile ID is invalid"),
-    email: Yup3.string().email("Email is invalid").required("Email is required"),
-    password: Yup3.string().min(4, "Your Password must not be less than 4 characters.").required("Password is required"),
-    confirmPassword: Yup3.string().oneOf([Yup3.ref("password"), null], "Password must match").required("Confirm password is required")
+function SignUp2() {
+  let validate = Yup4.object().shape({
+    firstName: Yup4.string().max(15, "Must be 15 characters or less").required("Required"),
+    lastName: Yup4.string().max(20, "Must be 20 characters or less").required("Required"),
+    profileId: Yup4.string().required("Required").matches(/^[a-zA-Z.-]+$/, "Profile ID is invalid"),
+    email: Yup4.string().email("Email is invalid").required("Email is required"),
+    password: Yup4.string().min(4, "Your Password must not be less than 4 characters.").required("Password is required"),
+    confirmPassword: Yup4.string().oneOf([Yup4.ref("password"), null], "Password must match").required("Confirm password is required")
   });
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8"
@@ -1181,14 +1285,14 @@ function SignUp() {
     className: "mt-4 text-center text-3xl font-[750] text-gray-900"
   }, "Create new account"), /* @__PURE__ */ React.createElement("p", {
     className: "mt-2 text-center text-sm"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom5.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom6.Link, {
     to: "#",
     className: "font-medium text-indigo-600 hover:text-indigo-500"
   }, "No credit card required. Starting with free plan."))), /* @__PURE__ */ React.createElement("div", {
     className: "mt-4 sm:mx-auto sm:w-full sm:max-w-md"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "bg-white py-8 px-4 sm:rounded-lg sm:px-10"
-  }, /* @__PURE__ */ React.createElement(import_formik4.Formik, {
+  }, /* @__PURE__ */ React.createElement(import_formik5.Formik, {
     initialValues: {
       firstName: "",
       lastName: "",
@@ -1200,7 +1304,7 @@ function SignUp() {
     validationSchema: validate,
     onSubmit: (values) => {
     }
-  }, (formik) => /* @__PURE__ */ React.createElement(import_react8.Form, {
+  }, (formik) => /* @__PURE__ */ React.createElement(import_react9.Form, {
     className: "space-y-4",
     method: "post",
     noValidate: !0
@@ -1255,24 +1359,24 @@ function SignUp() {
 // route:C:\Users\Tushar\office-Projects\Quicklook\app\routes\login\index.tsx
 var login_exports = {};
 __export(login_exports, {
-  action: () => action4,
+  action: () => action5,
   default: () => Login
 });
-var import_solid5 = require("@heroicons/react/solid"), import_node8 = require("@remix-run/node"), import_formik5 = require("formik"), import_react_router_dom6 = require("react-router-dom"), Yup4 = __toESM(require("yup"));
-var import_react9 = require("@remix-run/react"), action4 = async ({ request }) => {
+var import_solid5 = require("@heroicons/react/solid"), import_node8 = require("@remix-run/node"), import_formik6 = require("formik"), import_react_router_dom7 = require("react-router-dom"), Yup5 = __toESM(require("yup"));
+var import_react10 = require("@remix-run/react"), action5 = async ({ request }) => {
   let form = await request.formData(), email = form.get("email"), password = form.get("password"), errors = {
     email: await validateEmail(email),
     password: await validatePassword(password)
   };
   if (Object.values(errors).some(Boolean))
-    return (0, import_node8.json)({ errors, fields: { email, password }, form: action4 }, { status: 400 });
+    return (0, import_node8.json)({ errors, fields: { email, password }, form: action5 }, { status: 400 });
   let user = await login({ email, password });
   return createUserSession(user.id, "/dashboard");
 };
 function Login() {
-  let navigate = (0, import_react_router_dom6.useNavigate)(), validate = Yup4.object().shape({
-    email: Yup4.string().email("Email is invalid").required("Email is required").matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/, "Email is invalid"),
-    password: Yup4.string().required("Password is required").min(4, "Your Password must not be less than 4 characters.")
+  let navigate = (0, import_react_router_dom7.useNavigate)(), validate = Yup5.object().shape({
+    email: Yup5.string().email("Email is invalid").required("Email is required").matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/, "Email is invalid"),
+    password: Yup5.string().required("Password is required").min(4, "Your Password must not be less than 4 characters.")
   });
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16"
@@ -1288,7 +1392,7 @@ function Login() {
     className: "mt-8 space-y-6"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "rounded-md shadow-sm -space-y-px"
-  }, /* @__PURE__ */ React.createElement(import_formik5.Formik, {
+  }, /* @__PURE__ */ React.createElement(import_formik6.Formik, {
     initialValues: {
       email: "",
       password: "",
@@ -1306,7 +1410,7 @@ function Login() {
       else
         return "Error";
     }
-  }, (formik) => /* @__PURE__ */ React.createElement(import_react9.Form, {
+  }, (formik) => /* @__PURE__ */ React.createElement(import_react10.Form, {
     className: "space-y-4",
     method: "post",
     noValidate: !0
@@ -1331,7 +1435,7 @@ function Login() {
     className: "h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm"
   })), /* @__PURE__ */ React.createElement("div", {
     className: "text-sm mt-3.5"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom6.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom7.Link, {
     to: "/forgot-password",
     className: "font-medium text-indigo-600 hover:text-indigo-500"
   }, "Forgot your password?"))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("button", {
@@ -1344,7 +1448,7 @@ function Login() {
     "aria-hidden": "true"
   })), "Sign in")), /* @__PURE__ */ React.createElement("p", {
     className: "mt-2 text-center text-sm"
-  }, /* @__PURE__ */ React.createElement(import_react_router_dom6.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react_router_dom7.Link, {
     to: "#",
     className: "font-medium text-indigo-600 hover:text-indigo-500"
   }, "Did not receive confirmation email?"))))))))));
@@ -1355,7 +1459,7 @@ var terms_exports = {};
 __export(terms_exports, {
   default: () => terms
 });
-var import_react10 = require("@remix-run/react");
+var import_react11 = require("@remix-run/react");
 function terms() {
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-32"
@@ -1494,7 +1598,7 @@ function terms() {
     className: "inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
   }, "Get started")), /* @__PURE__ */ React.createElement("div", {
     className: "ml-3 inline-flex rounded-md shadow"
-  }, /* @__PURE__ */ React.createElement(import_react10.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react11.Link, {
     to: "#",
     className: "inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
   }, "Learn more"))))), /* @__PURE__ */ React.createElement("div", {
@@ -1800,7 +1904,7 @@ function Pricing() {
 }
 
 // app/components/PrimaryFeatures.tsx
-var import_react11 = require("react"), import_react12 = require("@headlessui/react");
+var import_react12 = require("react"), import_react13 = require("@headlessui/react");
 
 // assets/images/background-features.jpg
 var background_features_default = "/build/_assets/background-features-L55JVSLL.jpg";
@@ -1841,8 +1945,8 @@ var import_clsx2 = __toESM(require("clsx")), features = [
   }
 ];
 function PrimaryFeatures() {
-  let [tabOrientation, setTabOrientation] = (0, import_react11.useState)("horizontal");
-  return (0, import_react11.useEffect)(() => {
+  let [tabOrientation, setTabOrientation] = (0, import_react12.useState)("horizontal");
+  return (0, import_react12.useEffect)(() => {
     let lgMediaQuery = window.matchMedia("(min-width: 1024px)");
     function onMediaQueryChange({ matches }) {
       setTabOrientation(matches ? "vertical" : "horizontal");
@@ -1870,13 +1974,13 @@ function PrimaryFeatures() {
     className: "font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl"
   }, "Everything you need to run your books."), /* @__PURE__ */ React.createElement("p", {
     className: "mt-6 text-lg tracking-tight text-blue-100"
-  }, "Well everything you need if you aren\u2019t that picky about minor details like tax compliance.")), /* @__PURE__ */ React.createElement(import_react12.Tab.Group, {
+  }, "Well everything you need if you aren\u2019t that picky about minor details like tax compliance.")), /* @__PURE__ */ React.createElement(import_react13.Tab.Group, {
     as: "div",
     className: "mt-16 grid grid-cols-1 items-center gap-y-2 pt-10 sm:gap-y-6 md:mt-20 lg:grid-cols-12 lg:pt-0",
     vertical: tabOrientation === "vertical"
   }, ({ selectedIndex }) => /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "-mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-5"
-  }, /* @__PURE__ */ React.createElement(import_react12.Tab.List, {
+  }, /* @__PURE__ */ React.createElement(import_react13.Tab.List, {
     className: "relative z-10 flex space-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:space-y-1 lg:space-x-0 lg:whitespace-normal"
   }, features.map((feature, featureIndex) => /* @__PURE__ */ React.createElement("div", {
     key: feature.title,
@@ -1884,7 +1988,7 @@ function PrimaryFeatures() {
       "bg-white lg:bg-white/10 ": selectedIndex === featureIndex,
       "hover:bg-white/10 lg:hover:bg-white/5": selectedIndex !== featureIndex
     })
-  }, /* @__PURE__ */ React.createElement("h3", null, /* @__PURE__ */ React.createElement(import_react12.Tab, {
+  }, /* @__PURE__ */ React.createElement("h3", null, /* @__PURE__ */ React.createElement(import_react13.Tab, {
     className: (0, import_clsx2.default)("font-display text-lg outline-none", {
       "text-blue-600 lg:text-white": selectedIndex === featureIndex,
       "text-blue-100 hover:text-white lg:text-white": selectedIndex !== featureIndex
@@ -1896,9 +2000,9 @@ function PrimaryFeatures() {
       "text-white": selectedIndex === featureIndex,
       "text-blue-100 group-hover:text-white": selectedIndex !== featureIndex
     })
-  }, feature.description))))), /* @__PURE__ */ React.createElement(import_react12.Tab.Panels, {
+  }, feature.description))))), /* @__PURE__ */ React.createElement(import_react13.Tab.Panels, {
     className: "lg:col-span-7"
-  }, features.map((feature) => /* @__PURE__ */ React.createElement(import_react12.Tab.Panel, {
+  }, features.map((feature) => /* @__PURE__ */ React.createElement(import_react13.Tab.Panel, {
     key: feature.title,
     unmount: !1
   }, /* @__PURE__ */ React.createElement("div", {
@@ -1918,7 +2022,7 @@ function PrimaryFeatures() {
 }
 
 // app/components/SecondaryFeatures.tsx
-var import_react13 = require("@headlessui/react");
+var import_react14 = require("@headlessui/react");
 
 // assets/images/screenshots/contacts.png
 var contacts_default = "/build/_assets/contacts-UYO45FPD.png";
@@ -2036,15 +2140,15 @@ function FeaturesMobile() {
   }))))));
 }
 function FeaturesDesktop() {
-  return /* @__PURE__ */ React.createElement(import_react13.Tab.Group, {
+  return /* @__PURE__ */ React.createElement(import_react14.Tab.Group, {
     as: "div",
     className: "hidden lg:mt-20 lg:block outline-none"
-  }, ({ selectedIndex }) => /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_react13.Tab.List, {
+  }, ({ selectedIndex }) => /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_react14.Tab.List, {
     className: "grid grid-cols-3 gap-x-8 outline-none"
   }, features2.map((feature, featureIndex) => /* @__PURE__ */ React.createElement(Feature, {
     key: feature.name,
     feature: __spreadProps(__spreadValues({}, feature), {
-      name: /* @__PURE__ */ React.createElement(import_react13.Tab, {
+      name: /* @__PURE__ */ React.createElement(import_react14.Tab, {
         className: "outline-none"
       }, /* @__PURE__ */ React.createElement("span", {
         className: "absolute inset-0 outline-none"
@@ -2052,11 +2156,11 @@ function FeaturesDesktop() {
     }),
     isActive: featureIndex === selectedIndex,
     className: "relative"
-  }))), /* @__PURE__ */ React.createElement(import_react13.Tab.Panels, {
+  }))), /* @__PURE__ */ React.createElement(import_react14.Tab.Panels, {
     className: "relative mt-20 overflow-hidden rounded-4xl bg-slate-200 px-14 py-16 xl:px-16"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "-mx-5 flex"
-  }, features2.map((feature, featureIndex) => /* @__PURE__ */ React.createElement(import_react13.Tab.Panel, {
+  }, features2.map((feature, featureIndex) => /* @__PURE__ */ React.createElement(import_react14.Tab.Panel, {
     static: !0,
     key: feature.name,
     className: (0, import_clsx3.default)("px-5 transition duration-500 ease-in-out [&:not(:focus-visible)]:focus:outline-none", {
@@ -2213,10 +2317,10 @@ function Testimonials() {
 }
 
 // app/components/Header.tsx
-var import_react14 = require("react"), import_react15 = require("@headlessui/react");
+var import_react15 = require("react"), import_react16 = require("@headlessui/react");
 var import_clsx4 = __toESM(require("clsx"));
 function MobileNavigation() {
-  return /* @__PURE__ */ React.createElement(import_react15.Popover, null, ({ open, close }) => /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_react15.Popover.Button, {
+  return /* @__PURE__ */ React.createElement(import_react16.Popover, null, ({ open, close }) => /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_react16.Popover.Button, {
     className: "relative z-10 flex h-8 w-8 items-center justify-center [&:not(:focus-visible)]:focus:outline-none"
   }, /* @__PURE__ */ React.createElement("span", {
     className: "sr-only"
@@ -2236,25 +2340,25 @@ function MobileNavigation() {
     className: (0, import_clsx4.default)("origin-center transition", {
       "scale-90 opacity-0": !open
     })
-  }))), /* @__PURE__ */ React.createElement(import_react15.Transition.Root, null, /* @__PURE__ */ React.createElement(import_react15.Transition.Child, {
-    as: import_react14.Fragment,
+  }))), /* @__PURE__ */ React.createElement(import_react16.Transition.Root, null, /* @__PURE__ */ React.createElement(import_react16.Transition.Child, {
+    as: import_react15.Fragment,
     enter: "duration-150 ease-out",
     enterFrom: "opacity-0",
     enterTo: "opacity-100",
     leave: "duration-150 ease-in",
     leaveFrom: "opacity-100",
     leaveTo: "opacity-0"
-  }, /* @__PURE__ */ React.createElement(import_react15.Popover.Overlay, {
+  }, /* @__PURE__ */ React.createElement(import_react16.Popover.Overlay, {
     className: "fixed inset-0 bg-slate-300/50"
-  })), /* @__PURE__ */ React.createElement(import_react15.Transition.Child, {
-    as: import_react14.Fragment,
+  })), /* @__PURE__ */ React.createElement(import_react16.Transition.Child, {
+    as: import_react15.Fragment,
     enter: "duration-150 ease-out",
     enterFrom: "opacity-0 scale-95",
     enterTo: "opacity-100 scale-100",
     leave: "duration-100 ease-in",
     leaveFrom: "opacity-100 scale-100",
     leaveTo: "opacity-0 scale-95"
-  }, /* @__PURE__ */ React.createElement(import_react15.Popover.Panel, {
+  }, /* @__PURE__ */ React.createElement(import_react16.Popover.Panel, {
     as: "ul",
     className: "absolute inset-x-0 top-full mt-4 origin-top space-y-4 rounded-2xl bg-white p-6 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
   }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", {
@@ -2334,7 +2438,7 @@ function Home() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "8d7ce0d8", entry: { module: "/build/entry.client-XMUY2SDH.js", imports: ["/build/_shared/chunk-TK6REQJU.js", "/build/_shared/chunk-V75SRAHZ.js", "/build/_shared/chunk-O6YYFGCX.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-OE3HCAK5.js", imports: ["/build/_shared/chunk-PG6GI53N.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/confirmemail/index": { id: "routes/confirmemail/index", parentId: "root", path: "confirmemail", index: !0, caseSensitive: void 0, module: "/build/routes/confirmemail/index-ZLYW5BZJ.js", imports: ["/build/_shared/chunk-VFCT7F5Y.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/confirmforgotpassword/index": { id: "routes/confirmforgotpassword/index", parentId: "root", path: "confirmforgotpassword", index: !0, caseSensitive: void 0, module: "/build/routes/confirmforgotpassword/index-45O3JAH4.js", imports: ["/build/_shared/chunk-VFCT7F5Y.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard/index": { id: "routes/dashboard/index", parentId: "root", path: "dashboard", index: !0, caseSensitive: void 0, module: "/build/routes/dashboard/index-QW327HIH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/forgot-password/index": { id: "routes/forgot-password/index", parentId: "root", path: "forgot-password", index: !0, caseSensitive: void 0, module: "/build/routes/forgot-password/index-464T5OVA.js", imports: ["/build/_shared/chunk-B2G3BBLA.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/forgot-password/verification/$token": { id: "routes/forgot-password/verification/$token", parentId: "root", path: "forgot-password/verification/:token", index: void 0, caseSensitive: void 0, module: "/build/routes/forgot-password/verification/$token-R3SV3YCL.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-LTHQZLMH.js", imports: ["/build/_shared/chunk-JYFR6D26.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login/index": { id: "routes/login/index", parentId: "root", path: "login", index: !0, caseSensitive: void 0, module: "/build/routes/login/index-OTIG6KFD.js", imports: ["/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-B2G3BBLA.js", "/build/_shared/chunk-BO2MNKBI.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy/index": { id: "routes/privacy/index", parentId: "root", path: "privacy", index: !0, caseSensitive: void 0, module: "/build/routes/privacy/index-ISXTOBSB.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/refund-policy/index": { id: "routes/refund-policy/index", parentId: "root", path: "refund-policy", index: !0, caseSensitive: void 0, module: "/build/routes/refund-policy/index-7JSH2337.js", imports: ["/build/_shared/chunk-JYFR6D26.js", "/build/_shared/chunk-BO2MNKBI.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/signup/index": { id: "routes/signup/index", parentId: "root", path: "signup", index: !0, caseSensitive: void 0, module: "/build/routes/signup/index-6MXDO7T3.js", imports: ["/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-B2G3BBLA.js", "/build/_shared/chunk-BO2MNKBI.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/signup/verification/$token": { id: "routes/signup/verification/$token", parentId: "root", path: "signup/verification/:token", index: void 0, caseSensitive: void 0, module: "/build/routes/signup/verification/$token-IIIROTS2.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/signup/verification/index": { id: "routes/signup/verification/index", parentId: "root", path: "signup/verification", index: !0, caseSensitive: void 0, module: "/build/routes/signup/verification/index-RZR2ILIZ.js", imports: ["/build/_shared/chunk-BO2MNKBI.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/successlogin/index": { id: "routes/successlogin/index", parentId: "root", path: "successlogin", index: !0, caseSensitive: void 0, module: "/build/routes/successlogin/index-FLQCTEHA.js", imports: ["/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-B2G3BBLA.js", "/build/_shared/chunk-BO2MNKBI.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms/index": { id: "routes/terms/index", parentId: "root", path: "terms", index: !0, caseSensitive: void 0, module: "/build/routes/terms/index-PK6ECXWJ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, url: "/build/manifest-8D7CE0D8.js" };
+var assets_manifest_default = { version: "cb7471de", entry: { module: "/build/entry.client-XMUY2SDH.js", imports: ["/build/_shared/chunk-TK6REQJU.js", "/build/_shared/chunk-V75SRAHZ.js", "/build/_shared/chunk-O6YYFGCX.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-OE3HCAK5.js", imports: ["/build/_shared/chunk-PG6GI53N.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/confirmemail/index": { id: "routes/confirmemail/index", parentId: "root", path: "confirmemail", index: !0, caseSensitive: void 0, module: "/build/routes/confirmemail/index-ZLYW5BZJ.js", imports: ["/build/_shared/chunk-VFCT7F5Y.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/confirmforgotpassword/index": { id: "routes/confirmforgotpassword/index", parentId: "root", path: "confirmforgotpassword", index: !0, caseSensitive: void 0, module: "/build/routes/confirmforgotpassword/index-45O3JAH4.js", imports: ["/build/_shared/chunk-VFCT7F5Y.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard/index": { id: "routes/dashboard/index", parentId: "root", path: "dashboard", index: !0, caseSensitive: void 0, module: "/build/routes/dashboard/index-QW327HIH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/forgot-password/index": { id: "routes/forgot-password/index", parentId: "root", path: "forgot-password", index: !0, caseSensitive: void 0, module: "/build/routes/forgot-password/index-C5YGEVN3.js", imports: ["/build/_shared/chunk-3IXISN5T.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/forgot-password/verification/$token": { id: "routes/forgot-password/verification/$token", parentId: "root", path: "forgot-password/verification/:token", index: void 0, caseSensitive: void 0, module: "/build/routes/forgot-password/verification/$token-R3SV3YCL.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-LTHQZLMH.js", imports: ["/build/_shared/chunk-JYFR6D26.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login/index": { id: "routes/login/index", parentId: "root", path: "login", index: !0, caseSensitive: void 0, module: "/build/routes/login/index-PCVJVQ4W.js", imports: ["/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-3IXISN5T.js", "/build/_shared/chunk-SXTW6BCG.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy/index": { id: "routes/privacy/index", parentId: "root", path: "privacy", index: !0, caseSensitive: void 0, module: "/build/routes/privacy/index-ISXTOBSB.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/refund-policy/index": { id: "routes/refund-policy/index", parentId: "root", path: "refund-policy", index: !0, caseSensitive: void 0, module: "/build/routes/refund-policy/index-OS62VBK4.js", imports: ["/build/_shared/chunk-JYFR6D26.js", "/build/_shared/chunk-SXTW6BCG.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/signup/index": { id: "routes/signup/index", parentId: "root", path: "signup", index: !0, caseSensitive: void 0, module: "/build/routes/signup/index-L5SOHSPH.js", imports: ["/build/_shared/chunk-ZEA4O7EZ.js", "/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-3IXISN5T.js", "/build/_shared/chunk-SXTW6BCG.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/signup/verification/$token": { id: "routes/signup/verification/$token", parentId: "root", path: "signup/verification/:token", index: void 0, caseSensitive: void 0, module: "/build/routes/signup/verification/$token-IIIROTS2.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/signup/verification/index": { id: "routes/signup/verification/index", parentId: "root", path: "signup/verification", index: !0, caseSensitive: void 0, module: "/build/routes/signup/verification/index-K6JP34EH.js", imports: ["/build/_shared/chunk-ZEA4O7EZ.js", "/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-3IXISN5T.js", "/build/_shared/chunk-SXTW6BCG.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/successlogin/index": { id: "routes/successlogin/index", parentId: "root", path: "successlogin", index: !0, caseSensitive: void 0, module: "/build/routes/successlogin/index-PJ6V7H5K.js", imports: ["/build/_shared/chunk-5CFZKEHT.js", "/build/_shared/chunk-3IXISN5T.js", "/build/_shared/chunk-SXTW6BCG.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms/index": { id: "routes/terms/index", parentId: "root", path: "terms", index: !0, caseSensitive: void 0, module: "/build/routes/terms/index-PK6ECXWJ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, url: "/build/manifest-CB7471DE.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports }, routes = {
