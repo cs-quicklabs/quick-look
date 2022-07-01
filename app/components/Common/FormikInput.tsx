@@ -4,12 +4,15 @@ import InputCheckbox from './InputCheckbox';
 export const FormikInput = ({ label, ...props }:any) => {
   const [field, meta] = useField(props);
   return (
-    <div>
+    <div className='relative'>
       <label htmlFor={field.name} className="block text-sm font-medium text-gray-700">{label}</label>
       <input
         {...field} {...props}
         autoComplete="off"
       />
+      {props?.xyz && <label htmlFor={field.name} className='w-24 pl-2 inset-x-0 top-10 absolute sm:text-sm'>
+          {props.xyz}
+        </label>}
       <ErrorMessage className="text-red-600 mt-2 text-sm" component="div" name={field.name} />
     </div>
   )
