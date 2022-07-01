@@ -1,7 +1,7 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { User } from '@prisma/client'
 import { ActionFunction, json } from '@remix-run/node'
-import { Formik } from 'formik'
+import { Form, Formik, useFormikContext } from 'formik'
 
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -18,7 +18,6 @@ import {
 import { FormikInput } from '../../components/Common/FormikInput'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../images/logos/quicklook-icon.svg'
-import { Form } from '@remix-run/react'
 
 export const action: ActionFunction = async ({ request }) => {
   let sentMail
@@ -85,14 +84,19 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function SignUp() {
-  const validate = Yup.object({
+  const validate = Yup.object().shape({
     firstName: Yup.string()
       .max(15, 'Must be 15 characters or less')
       .required('Required'),
     lastName: Yup.string()
       .max(20, 'Must be 20 characters or less')
       .required('Required'),
-    profileId: Yup.string().required('Required'),
+    profileId: Yup.string()
+    .required('Required')
+    .matches(
+      /^['quicklook.me/']+[a-zA-Z.-]+$/,
+      ('Profile ID is invalid')
+    ),
     email: Yup.string().email('Email is invalid').required('Email is required'),
     password: Yup.string()
       .min(4, 'Your Password must not be less than 4 characters.')
@@ -110,6 +114,14 @@ export default function SignUp() {
     password: '',
     confirmPassword: '',
   }
+
+  // const formik = useFormikContext();
+  // const { setFieldValue } = formik;
+  
+  // ele.addEventListener('focus', function (e) {
+//     const value = e.target.innerHTML;
+//     value === placeholder && (e.target.innerHTML = '');
+// });
 
   return (
     <>
@@ -158,6 +170,8 @@ export default function SignUp() {
                   <div>
                     <FormikInput
                       className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                      // value = 'quicklook.me/'
+                      // onClick = {(e: any) => setFieldValue('quicklook.me/', e ? e : "")}
                       type='profileId'
                       name='profileId'
                       label='Choose your Profile ID'
@@ -213,3 +227,7 @@ export default function SignUp() {
 function searchCities(arg0: string | null): any {
   throw new Error('Function not implemented.')
 }
+function e(e: any): any {
+  throw new Error('Function not implemented.')
+}
+

@@ -78,10 +78,10 @@ export default function Refund() {
                                       <p className="mt-5 text-base text-gray-800">If your request is received after that 3-day window, the charge is non-refundable. </p>
                                       <ul className="list-disc list-inside ml-5 mt-5 mb-5 text-base text-gray-800">
                                         <li>
-                                          Email address associated with your about.me page
+                                          Email address associated with your quicklook.me page
                                         </li>
 																				<li>
-																					Link to your about.me page (about.me/yourusername)
+																					Link to your quicklook.me page (quicklook.me/yourusername)
                                         </li>
 																				<li>
 																					Date of purchase or renewal (if you have a screenshot of the receipt, even better!)
