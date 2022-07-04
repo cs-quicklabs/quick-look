@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/images/logos/quicklook-icon.svg';
+import Modal from '../../components/Common/ConfirmModal'
 
 export default function Dashboard() {
+  const [isOpen, setIsOpen] = useState(false)
   
   return (
     <>
@@ -25,12 +28,14 @@ export default function Dashboard() {
               </div>
             </div>
             <div className='hidden md:flex md:items-center md:space-x-2'>
-              <Link
-                to='/login'
+              <button
+                onClick={() => setIsOpen(true)}
                 className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center'
               >
                 Sign out
-              </Link>
+              </button>
+              <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+              </Modal>
             </div>
           </nav>
         </div>
