@@ -1,11 +1,16 @@
 node_modules
 
+# cache and vercel deployment folders
 .cache
 .env
 .vercel
 .output
 
+# api files
 /build/
 /public/build
 /api/index.js
 /api/index.js.map
+
+# Tailwind file 
+/app/styles/tailwind.css
