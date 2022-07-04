@@ -1,14 +1,10 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, redirect } from '@remix-run/node'
-
 import { Link } from 'react-router-dom'
-
 import { createUserSession, login } from '~/services/auth.service.server'
-import { userEmailExists, validateEmail, validatePassword } from '~/utils/validator.server'
-import * as Yup from 'yup'
+import { checkIncorrectCredentials, validateEmail, validatePassword } from '~/utils/validator.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
-
 import { useState } from 'react'
 import crossimg from '../../../assets/images/remove.png'
 
@@ -20,12 +16,12 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
-    userExists: await userEmailExists(email)
+    checkIncorrectCredentials: await checkIncorrectCredentials(email)
   }
 
   if (Object.values(errors).some(Boolean)) {
     return json(
-      { errors, fields: { email, password }, form: action },
+      { errors, fields: { email, password, checkIncorrectCredentials }, form: action },
       { status: 400 }
     )
   }
@@ -47,16 +43,14 @@ export default function Login() {
       <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
         <div
           className={`flex gap-4 mb-8 items-center justify-center  rounded-md px-6 py-2 w-2/7 ${
-            actionData?.errors['email'] ? 'bg-red-50' : ''
+            actionData?.errors['checkIncorrectCredentials'] ? 'bg-red-50' : ''
           }`}
         >
-          {/* change email to whatever name we pass */}
-          {actionData?.errors['email'] ? (
+          {actionData?.errors['checkIncorrectCredentials'] ? (
             <>
               <img src={crossimg} alt='' className='h-4 w-4' />
               <p className='text-#065F46 font-normal'>
-                {/* change email to whatever name we pass */}
-                {actionData?.errors['email']}
+                {actionData?.errors['checkIncorrectCredentials']}
               </p>
             </>
           ) : (
