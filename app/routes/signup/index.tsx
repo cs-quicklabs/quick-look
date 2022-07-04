@@ -31,8 +31,8 @@ export const action: ActionFunction = async ({ request }) => {
   let email = form.get('email') as string
   let password = form.get('password') as string
   let username = form.get('profileId') as string
-  let confirmpassword = form.get('confirmpassword') as string
-  console.log(confirmpassword)
+  let confirmPassword = form.get('confirmpassword') as string
+
 
   let url = request.url
   console.log(url)
@@ -43,7 +43,7 @@ export const action: ActionFunction = async ({ request }) => {
     firstname: await validateName(firstname),
     lastname: await validateName(lastname),
     username: await validateUsername(username),
-    confirmpassword: await validateComfirmPassword(password, confirmpassword),
+    isPasswordSame: await validateComfirmPassword(password, confirmPassword),
   }
 
   if (Object.values(errors).some(Boolean)) {
@@ -56,7 +56,7 @@ export const action: ActionFunction = async ({ request }) => {
           firstname,
           lastname,
           username,
-          confirmpassword,
+          confirmPassword,
         },
         form: action,
       },
@@ -71,7 +71,7 @@ export const action: ActionFunction = async ({ request }) => {
     username,
     email,
     password,
-    // confirmpassword,
+    confirmPassword,
   })
   const generatedToken = uuidv4() as string
   if (registered) {
