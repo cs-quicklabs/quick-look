@@ -29,7 +29,6 @@ export const action: ActionFunction = async ({ request }) => {
     )
   }
   const user = await login({ email, password })
-
   try {
     return createUserSession(user.id, '/dashboard')
   } catch (errors) {
@@ -39,7 +38,6 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Login() {
   const actionData = useActionData()
-  console.log(actionData?.data?.error)
 
   const [val, setVal] = useState({ email: '', password: '' })
 
