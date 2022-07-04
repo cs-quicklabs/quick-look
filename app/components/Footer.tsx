@@ -12,7 +12,7 @@ export function Footer() {
               <img src={logo} alt='' className='mx-auto h-16 w-auto'></img>
             </a>
             <a href='/' className='text-lg font-medium'>
-              QuickLook.me
+              QuickLook
             </a>
           </div>
 
