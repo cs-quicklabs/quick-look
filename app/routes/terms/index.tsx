@@ -1,14 +1,16 @@
 import { Link } from '@remix-run/react'
+import { CallToAction } from '~/components/CallToAction'
+import { Footer } from '~/components/Footer'
 
 export default function terms() {
   return (
     <>
-      <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-32'>
+      <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-96'>
         <div className='flex-1 bg-white xl:flex '>
           <div className='b xl:flex-shrink-0 xl:w-64 bg-white h-full'>
             <div className='h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0 '>
-              <div className='h-full relative '>
-                <div className='absolute inset-0 border-gray-200 rounded-lg '>
+              <div className='h-full md:relative sm:-top-5 lg:top-auto'>
+                <div className='md:absolute inset-0 border-gray-200 rounded-lg '>
                   <div className=' '>
                     <h1 className='text-base font-extrabold py-2 sm:tracking-tight '>
                       <span className='text-gray-400'>CONTACT US</span>
@@ -16,7 +18,7 @@ export default function terms() {
                     <h3 className='text-sm font-semibold text-gray-500 '>
                       Send us an email
                       <br />
-                      admin@quicklook.me 
+                      admin@quicklook.me
                     </h3>
                   </div>
                 </div>
@@ -41,29 +43,29 @@ export default function terms() {
                     made between you, whether personally or on behalf of an
                     entity (“you”) and Crownstack ("Company", “we”, “us”, or
                     “our”), concerning your access to and use of the
-                    https://quicklook.me website as well as any other media form,
-                    media channel, mobile website or mobile application related,
-                    linked, or otherwise connected thereto (collectively, the
-                    “Site”). You agree that by accessing the Site, you have
-                    read, understood, and agree to be bound by all of these
-                    Terms of Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS OF
-                    USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SITE
-                    AND YOU MUST DISCONTINUE USE IMMEDIATELY. Supplemental terms
-                    and conditions or documents that may be posted on the Site
-                    from time to time are hereby expressly incorporated herein
-                    by reference. We reserve the right, in our sole discretion,
-                    to make changes or modifications to these Terms of Use at
-                    any time and for any reason. We will alert you about any
-                    changes by updating the “Last updated” date of these Terms
-                    of Use, and you waive any right to receive specific notice
-                    of each such change. It is your responsibility to
-                    periodically review these Terms of Use to stay informed of
-                    updates. You will be subject to, and will be deemed to have
-                    been made aware of and to have accepted, the changes in any
-                    revised Terms of Use by your continued use of the Site after
-                    the date such revised Terms of Use are posted. The
-                    information provided on the Site is not intended for
-                    distribution to or use by any person or entity in any
+                    https://quicklook.me website as well as any other media
+                    form, media channel, mobile website or mobile application
+                    related, linked, or otherwise connected thereto
+                    (collectively, the “Site”). You agree that by accessing the
+                    Site, you have read, understood, and agree to be bound by
+                    all of these Terms of Use. IF YOU DO NOT AGREE WITH ALL OF
+                    THESE TERMS OF USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM
+                    USING THE SITE AND YOU MUST DISCONTINUE USE IMMEDIATELY.
+                    Supplemental terms and conditions or documents that may be
+                    posted on the Site from time to time are hereby expressly
+                    incorporated herein by reference. We reserve the right, in
+                    our sole discretion, to make changes or modifications to
+                    these Terms of Use at any time and for any reason. We will
+                    alert you about any changes by updating the “Last updated”
+                    date of these Terms of Use, and you waive any right to
+                    receive specific notice of each such change. It is your
+                    responsibility to periodically review these Terms of Use to
+                    stay informed of updates. You will be subject to, and will
+                    be deemed to have been made aware of and to have accepted,
+                    the changes in any revised Terms of Use by your continued
+                    use of the Site after the date such revised Terms of Use are
+                    posted. The information provided on the Site is not intended
+                    for distribution to or use by any person or entity in any
                     jurisdiction or country where such distribution or use would
                     be contrary to law or regulation or which would subject us
                     to any registration requirement within such jurisdiction or
@@ -177,11 +179,11 @@ export default function terms() {
                   </h2>
                   <p>
                     All purchases are non-refundable. You can cancel your
-                    subscription at any by sending us an email at admin@quicklook.me
-                    or from your accout itself under billing settings. Your
-                    cancellation will take effect at the end of the current paid
-                    term. If you are unsatisfied with our services, please email
-                    us at admin@quicklook.me.
+                    subscription at any by sending us an email at
+                    admin@quicklook.me or from your accout itself under billing
+                    settings. Your cancellation will take effect at the end of
+                    the current paid term. If you are unsatisfied with our
+                    services, please email us at admin@quicklook.me.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     7. Prohibited activities
@@ -426,16 +428,16 @@ export default function terms() {
                   </h2>
                   <p className='mt-2 text-base text-gray-800'>
                     We care about data privacy and security. Please review our
-                    Privacy Policy: https://www.quicklook.me/privacy. By using the
-                    Site, you agree to be bound by our Privacy Policy, which is
-                    incorporated into these Terms of Use. Please be advised the
-                    Site is hosted on Render. If you access the Site from any
-                    other region of the world with laws or other requirements
-                    governing personal data collection, use, or disclosure that
-                    differ from applicable laws in the Netherlands, then through
-                    your continued use of the Site, you are transferring your
-                    data to the Render, and you agree to have your data
-                    transferred to and processed via Render.
+                    Privacy Policy: https://www.quicklook.me/privacy. By using
+                    the Site, you agree to be bound by our Privacy Policy, which
+                    is incorporated into these Terms of Use. Please be advised
+                    the Site is hosted on Render. If you access the Site from
+                    any other region of the world with laws or other
+                    requirements governing personal data collection, use, or
+                    disclosure that differ from applicable laws in the
+                    Netherlands, then through your continued use of the Site,
+                    you are transferring your data to the Render, and you agree
+                    to have your data transferred to and processed via Render.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     {' '}
@@ -501,12 +503,12 @@ export default function terms() {
                     is expressly excluded. If your habitual residence is in the
                     EU, and you are a consumer, you additionally possess the
                     protection provided to you by obligatory provisions of the
-                    law of your country of residence. Quicklook and yourself both
-                    agree to submit to the non-exclusive jurisdiction of the
-                    courts of New Delhi, which means that you may make a claim
-                    to defend your consumer protection rights in regards to
-                    these Conditions of Use in Belgium, or in the EU country in
-                    which you reside.
+                    law of your country of residence. Quicklook and yourself
+                    both agree to submit to the non-exclusive jurisdiction of
+                    the courts of New Delhi, which means that you may make a
+                    claim to defend your consumer protection rights in regards
+                    to these Conditions of Use in Belgium, or in the EU country
+                    in which you reside.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     {' '}
@@ -731,57 +733,9 @@ export default function terms() {
           </div>
         </div>
       </div>
-      <div>
-        <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between'>
-          <h2 className='text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl'>
-            <span className='block'>Ready to dive in?</span>
-            <span className='block text-indigo-600'>
-              Start your free trial today.
-            </span>
-          </h2>
-          <div className='mt-8 flex lg:mt-0 lg:flex-shrink-0'>
-            <div className='inline-flex rounded-md shadow'>
-              <a
-                href='/signup'
-                className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'
-              >
-                Get started
-              </a>
-            </div>
-            <div className='ml-3 inline-flex rounded-md shadow'>
-              <Link
-                to='#'
-                className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50'
-              >
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div className='flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between bg-gray-800 '>
-        <div className='flex space-x-6 text-white mx-4'>
-          <a href='/terms'>
-            <p className='group'>
-              <span> Terms & Conditions</span>
-            </p>
-          </a>
-          <a href='/privacy'>
-            <p className='group'>
-              <span> Privacy Policy</span>
-            </p>
-          </a>
-          <a href='/refund-policy'>
-            <p className='group'>
-              <span> Refund Policy </span>
-            </p>
-          </a>
-        </div>
-        <p className='mt-6 text-sm text-slate-500 sm:mt-0 ml-2'>
-          Copyright @2022 Crownstack Technologies. All rights reserved reserved.
-        </p>
-      </div>
+      <CallToAction />
+      <Footer />
     </>
   )
 }

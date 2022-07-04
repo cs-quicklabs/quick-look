@@ -15,11 +15,11 @@ import {
   validatePassword,
   validateUsername,
 } from '~/utils/validator.server'
-import { FormikInput } from '../../components/Common/FormikInput'
+import { input } from '../../components/Common/input'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
-import { Form } from '@remix-run/react'
-
+import { Form, useActionData } from '@remix-run/react'
+import { useState } from 'react'
 
 export const action: ActionFunction = async ({ request }) => {
   let sentMail
@@ -32,11 +32,6 @@ export const action: ActionFunction = async ({ request }) => {
   let username = form.get('profileId') as string
   let url = request.url
   console.log(url)
-
-  // const res = await fetch(url)
-  const res = new Response(JSON.stringify({ url }))
-  const json = await res.json()
-  console.log('sup', json)
 
   const errors = {
     email: await validateEmail(email),
@@ -82,40 +77,30 @@ export const action: ActionFunction = async ({ request }) => {
 
   const user: User = await findUserByEmail(email)
   await createUserVerificationToken(user.id, generatedToken)
-  return createUserSession(user.id, '/confirmemail') 
+
+  try {
+    // validate
+    // const project = await validateForm(form)
+    //save
+    // const newProject = await addProject(project)
+    return createUserSession(user.id, '/confirmemail')
+  } catch (errors) {
+    return { errors }
+  }
 }
 
 export default function SignUp() {
-  const validate = Yup.object().shape({
-    firstName: Yup.string()
-      .max(15, 'Must be 15 characters or less')
-      .required('Required'),
-    lastName: Yup.string()
-      .max(20, 'Must be 20 characters or less')
-      .required('Required'),
-    profileId: Yup.string()
-    .required('Required')
-    .matches(
-      /^[a-zA-Z.-]+$/,
-      ('Profile ID is invalid')
-    ),
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    password: Yup.string()
-      .min(4, 'Your Password must not be less than 4 characters.')
-      .required('Password is required'),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Password must match')
-      .required('Confirm password is required'),
-  })
+  const actionData = useActionData()
 
-  const initialValues = {
+  const [val, setVal] = useState({
     firstName: '',
     lastName: '',
     profileId: '',
     email: '',
     password: '',
     confirmPassword: '',
-  }
+  })
+  console.log(val)
 
   return (
     <>
@@ -136,93 +121,160 @@ export default function SignUp() {
         </div>
         <div className='mt-4 sm:mx-auto sm:w-full sm:max-w-md'>
           <div className='bg-white py-8 px-4 sm:rounded-lg sm:px-10'>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validate}
-              onSubmit={(values) => {}}
-            >
-              {(formik) => (
-                <Form className='space-y-4' method='post' noValidate>
-                  <div className='mt-1 grid grid-cols-2 gap-2'>
-                    <div>
-                      <FormikInput
-                        className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                        type='firstName'
-                        name='firstName'
-                        label='First Name'
-                      />
-                    </div>
-                    <div>
-                      <FormikInput
-                        className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                        type='lastName'
-                        name='lastName'
-                        label='Last Name'
-                      />
-                    </div>
+            <Form className='space-y-4' method='post' noValidate>
+              <div className='mt-1 grid grid-cols-2 gap-2'>
+                <div>
+                  <label>First Name</label>
+                  <input
+                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                    type='firstName'
+                    name='firstName'
+                    value={val.firstName}
+                    onChange={(event) => {
+                      setVal({
+                        ...val,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                    // label='First Name'
+                  />
+                  <div className='text-red-600 text-sm '>
+                    {actionData?.errors['firstname']}
                   </div>
-                  <div>
-                    <FormikInput
-                      className='pl-24 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                      xyz='quicklook.me/'
-                      // value = 'quicklook.me/'
-                      // onClick = {(e: any) => setFieldValue('quicklook.me/', e ? e : "")}
-                      type='profileId'
-                      name='profileId'
-                      label='Choose your Profile ID'
+                </div>
+                <div>
+                  <label>Last Name</label>
+                  <input
+                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                    type='lastName'
+                    name='lastName'
+                    value={val.lastName}
+                    onChange={(event) => {
+                      setVal({
+                        ...val,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                    // label='Last Name'
+                  />
+                  <div className='text-red-600 text-sm '>
+                    {actionData?.errors['lastname']}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label>Choose your Profile ID</label>
+
+                <input
+                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  type='text'
+                  name='profileId'
+                  value={val.profileId}
+                  onChange={(event) => {
+                    setVal({
+                      ...val,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
+                  // label='Email address'
+                />
+                <div className='text-red-600 text-sm '>
+                  {actionData?.errors['username']}
+                </div>
+              </div>
+              <div>
+                <label>Email address</label>
+                <input
+                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  type='email'
+                  name='email'
+                  value={val.email}
+                  onChange={(event) => {
+                    setVal({
+                      ...val,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
+                  // label='Email address'
+                />
+                <div className='text-red-600 text-sm '>
+                  {actionData?.errors['email']}
+                </div>
+              </div>
+              <div>
+                <label>Password</label>
+                <input
+                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  type='password'
+                  name='password'
+                  value={val.password}
+                  onChange={(event) => {
+                    setVal({
+                      ...val,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
+                  // label='Password'
+                />
+                <div className='text-red-600 text-sm '>
+                  {actionData?.errors['password']}
+                </div>
+              </div>
+              <div>
+                <label>Confirm Password</label>
+                <input
+                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  type='password'
+                  name='confirmPassword'
+                  value={val.confirmPassword}
+                  onChange={(event) => {
+                    setVal({
+                      ...val,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
+                  // label='Confirm Password'
+                />
+                <div className='text-red-600 text-sm '>
+                  {actionData?.errors['confirmPassword']}
+                </div>
+              </div>
+              <div className='mt-5'>
+                <button
+                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+                    val.profileId !== '' &&
+                    val.confirmPassword !== '' &&
+                    val.email !== ''
+                      ? ''
+                      : 'bg-gray-400 hover:bg-gray-400'
+                  }`}
+                  disabled={
+                    val.profileId !== '' &&
+                    val.confirmPassword !== '' &&
+                    val.email !== ''
+                      ? false
+                      : true
+                  }
+                >
+                  <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
+                    <LockClosedIcon
+                      className={`h-5 w-5  ${
+                        val.profileId !== '' &&
+                        val.confirmPassword !== '' &&
+                        val.email !== ''
+                          ? 'text-indigo-500 group-hover:text-indigo-400'
+                          : ''
+                      }`}
+                      aria-hidden='true'
                     />
-                  </div>
-                  <div>
-                    <FormikInput
-                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                      type='email'
-                      name='email'
-                      label='Email address'
-                    />
-                  </div>
-                  <div>
-                    <FormikInput
-                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                      type='password'
-                      name='password'
-                      label='Password'
-                    />
-                  </div>
-                  <div>
-                    <FormikInput
-                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                      type='password'
-                      name='confirmPassword'
-                      label='Confirm Password'
-                    />
-                  </div>
-                  <div className='mt-5'>
-                    <button
-                      // type='submit'
-                      onClick={()=> {
-                        formik.values.profileId= "quicklook.me/" + formik.values.profileId
-                        // console.log(formik)
-                        }}
-                      className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                    >
-                      <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                        <LockClosedIcon
-                          className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400'
-                          aria-hidden='true'
-                        />
-                      </span>
-                      Create New Account
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
+                  </span>
+                  Create New Account
+                </button>
+              </div>
+            </Form>
           </div>
         </div>
       </div>
     </>
   )
-}
-function searchCities(arg0: string | null): any {
-  throw new Error('Function not implemented.')
 }

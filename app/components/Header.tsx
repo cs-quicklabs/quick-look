@@ -117,7 +117,9 @@ export function Header() {
             <li>
               <a href='/#' className='flex items-center gap-2'>
                 <img src={logo} alt='hello' className='h-12 w-12' />
-                <span className='font-medium'>QuickLook.me</span>
+                <span className='text-lg font-bold '>
+                  Quick<span className='text-indigo-500'>Look</span>
+                </span>
               </a>
             </li>
             <li className='ml-12 hidden md:block'>
@@ -160,7 +162,7 @@ export function Header() {
                   Get started
                   <span className='hidden lg:inline font-semibold text-lg'>
                     {' '}
-                    today
+                    for Free
                   </span>
                 </span>
               </a>
