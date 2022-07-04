@@ -70,7 +70,7 @@ function Layout({ children }: any) {
 export function CatchBoundary() {
   const caughtError = useCatch()
 
-  if (caughtError.status === 404) {
+  if (caughtError.status) {
     return (
       <div>
         <ErrorHandler
