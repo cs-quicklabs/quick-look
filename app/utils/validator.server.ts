@@ -3,25 +3,42 @@ import { db } from '~/database/connection.server'
 export const validateEmail = async (
   email: string
 ): Promise<string | undefined> => {
-  var validRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-  if (!email.length || !validRegex.test(email)) {
-    return 'Please enter a valid email address'
+  if (!email) {
+    return 'Email is Required'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return 'Invalid emaill address'
   }
 }
 
 export const validatePassword = async (
   password: string
 ): Promise<string | undefined> => {
-  if (password.length < 4) {
-    return 'Please enter a password that is at least 5 characters long'
+  if (!password) {
+    return 'Password is required'
+  } else if (typeof password !== 'string' || password.length < 5) {
+    return `Passwords must be at least 5 characters long`
+  }
+}
+
+export const validateComfirmPassword = async (
+  confirmPassword: string,
+  password: string
+): Promise<string | undefined> => {
+  if (!confirmPassword) {
+    return 'Confirm Password is required'
+  } else if (password !== confirmPassword) {
+    return 'Password does not match'
   }
 }
 
 export const validateName = async (
   name: string
 ): Promise<string | undefined> => {
-  if (!name.length) return `Please enter a value`
+  if (!name) {
+    return 'Name is required'
+  } else if (typeof name !== 'string' || name.length < 3) {
+    return `Name must be at least 3 characters long`
+  }
 }
 
 export const validateUsername = async (
@@ -32,8 +49,9 @@ export const validateUsername = async (
       username,
     },
   })
-
-  if (usernameExist) {
+  if (!username) {
+    return 'UserName is required'
+  } else if (usernameExist) {
     return 'This ID has already been taken. Please choose another.'
   }
   return
