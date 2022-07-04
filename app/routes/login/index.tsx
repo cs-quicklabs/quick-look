@@ -81,7 +81,11 @@ export default function Login() {
                         placeholder='Email address'
                       />
 
-                      <div className='text-red-600 text-sm '>
+                      <div
+                        className={`text-red-600 text-sm ${
+                          actionData?.errors['email'] ? 'my-2' : ''
+                        }`}
+                      >
                         {actionData?.errors['email']}
                       </div>
                     </div>
@@ -100,7 +104,11 @@ export default function Login() {
                         placeholder='Password'
                       />
 
-                      <div className='text-red-600 text-sm '>
+                      <div
+                        className={`text-red-600 text-sm ${
+                          actionData?.errors['password'] ? 'mt-1' : ''
+                        }`}
+                      >
                         {actionData?.errors['password']}
                       </div>
                     </div>
