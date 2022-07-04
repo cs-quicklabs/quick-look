@@ -4,8 +4,8 @@ import { ActionFunction, json, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 
 import { createUserSession, login } from '~/services/auth.service.server'
-import { validateEmail, validatePassword } from '~/utils/validator.server'
-
+import { userEmailExists, validateEmail, validatePassword } from '~/utils/validator.server'
+import * as Yup from 'yup'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 
@@ -20,6 +20,7 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
+    userExists: await userEmailExists(email)
   }
 
   if (Object.values(errors).some(Boolean)) {
