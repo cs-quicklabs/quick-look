@@ -1,24 +1,16 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { ActionFunction, json } from '@remix-run/node'
+import { ActionFunction, json, redirect } from '@remix-run/node'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { createUserSession, login } from '~/services/auth.service.server'
 import { userEmailExists, validateEmail, validatePassword } from '~/utils/validator.server'
 import * as Yup from 'yup'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
-import { ErrorMessage, Formik } from 'formik'
-import { FormikInput } from '~/components/Common/FormikInput'
-import { useState } from 'react'
 
-// const ValidateEmail = ({ email }: any) => {
-//   if (!email) {
-//     return 'Email is Required'
-//   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-//     return 'Invalid emaill address'
-//   }
-// }
+import { useState } from 'react'
+import crossimg from '../../../assets/images/remove.png'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -38,12 +30,7 @@ export const action: ActionFunction = async ({ request }) => {
     )
   }
   const user = await login({ email, password })
-
   try {
-    // validate
-    // const project = await validateForm(form)
-    //save
-    // const newProject = await addProject(project)
     return createUserSession(user.id, '/dashboard')
   } catch (errors) {
     return { errors }
@@ -51,45 +38,31 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function Login() {
-  // const navigate = useNavigate()
   const actionData = useActionData()
+
   const [val, setVal] = useState({ email: '', password: '' })
-  // const navigate = useNavigate()
-  console.log(val)
 
-  // const validate = Yup.object().shape({
-  //   email: Yup.string()
-  //     .email('Email is invalid')
-  //     .required('Email is required')
-  //     .matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/, 'Email is invalid'),
-  //   password: Yup.string()
-  //     .required('Password is required')
-  //     .min(4, 'Your Password must not be less than 4 characters.'),
-  // })
-
-  // const initialValues = {
-  //   email: '',
-  //   password: '',
-  //   remember_me: false,
-  // }
-
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault()
-  //   const data = new FormData(e.currentTarget)
-  //   const actualData = {
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   }
-  //   if (actualData.email && actualData.password) {
-  //     console.log(actualData)
-  //     navigate('/dashboard')
-  //   } else {
-  //     return 'Error'
-  //   }
-  // }
   return (
     <>
-      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
+      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
+        <div
+          className={`flex gap-4 mb-8 items-center justify-center  rounded-md px-6 py-2 w-2/7 ${
+            actionData?.errors['email'] ? 'bg-red-50' : ''
+          }`}
+        >
+          {/* change email to whatever name we pass */}
+          {actionData?.errors['email'] ? (
+            <>
+              <img src={crossimg} alt='' className='h-4 w-4' />
+              <p className='text-#065F46 font-normal'>
+                {/* change email to whatever name we pass */}
+                {actionData?.errors['email']}
+              </p>
+            </>
+          ) : (
+            <span></span>
+          )}
+        </div>
         <div className='max-w-md w-full space-y-8'>
           <div>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />
@@ -105,12 +78,15 @@ export default function Login() {
                     <div>
                       <input
                         className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
-                        // type='email'
                         name='email'
                         placeholder='Email address'
                       />
 
-                      <div className='text-red-600 text-sm '>
+                      <div
+                        className={`text-red-600 text-sm ${
+                          actionData?.errors['email'] ? 'my-2' : ''
+                        }`}
+                      >
                         {actionData?.errors['email']}
                       </div>
                     </div>
@@ -129,7 +105,11 @@ export default function Login() {
                         placeholder='Password'
                       />
 
-                      <div className='text-red-600 text-sm '>
+                      <div
+                        className={`text-red-600 text-sm ${
+                          actionData?.errors['password'] ? 'mt-1' : ''
+                        }`}
+                      >
                         {actionData?.errors['password']}
                       </div>
                     </div>
@@ -157,19 +137,10 @@ export default function Login() {
                   </div>
                   <div>
                     <button
-                      // disabled={val.password !== '' ? false : true}
                       type='submit'
                       className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 `}
                     >
                       <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                        {/* <LockClosedIcon
-                          className={`h-5 w-5  ${
-                            val.email !== '' && val.password !== ''
-                              ? 'text-indigo-500 group-hover:text-indigo-400'
-                              : ''
-                          }`}
-                          aria-hidden='true'
-                        /> */}
                         <LockClosedIcon
                           className={`h-5 w-5 text-indigo-500 group-hover:text-indigo-400 
                           `}
