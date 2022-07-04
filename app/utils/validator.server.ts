@@ -20,14 +20,14 @@ export const validatePassword = async (
   }
 }
 
-export const userEmailExists = async (email: string) => {
+export const checkIncorrectCredentials = async (email: string) => {
   const user = await db.user.findFirst({
     where: {
       email
     }
   })
   if(!user){
-    return 'Either email or password you entered was not correct. Please try again.'
+    return `Either email or password you entered was not correct. Please try again.`
   }
   return user
 }
