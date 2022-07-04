@@ -21,7 +21,7 @@ export function Footer() {
               <li>
                 {/* <Link to='#features'> */}
                 <a
-                  href='#features'
+                  href='/#features'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Features
@@ -31,7 +31,7 @@ export function Footer() {
               <li>
                 {/* <Link to='#testimonials'> */}
                 <a
-                  href='#testimonials'
+                  href='/#testimonials'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Testimonials
@@ -41,7 +41,7 @@ export function Footer() {
               <li>
                 {/* <Link to='#pricing'> */}
                 <a
-                  href='#pricing'
+                  href='/#pricing'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Pricing
@@ -70,8 +70,7 @@ export function Footer() {
             </a>
           </div>
           <p className='mt-6 text-sm text-slate-500 sm:mt-0'>
-            Copyright @2022 Crownstack Technologies. All rights reserved
-            reserved.
+            Copyright @2022 Crownstack Technologies. All rights reserved.
           </p>
         </div>
       </div>

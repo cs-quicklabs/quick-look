@@ -1,14 +1,16 @@
 import { Link } from '@remix-run/react'
+import { CallToAction } from '~/components/CallToAction'
+import { Footer } from '~/components/Footer'
 
 export default function privacy() {
   return (
     <>
-      <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-32'>
+      <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-96'>
         <div className='flex-1 bg-white xl:flex '>
           <div className='b xl:flex-shrink-0 xl:w-64 bg-white h-full'>
             <div className='h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0 '>
-              <div className='h-full relative '>
-                <div className='absolute inset-0 border-gray-200 rounded-lg '>
+              <div className='h-full md:relative sm:-top-5 lg:top-auto'>
+                <div className='md:absolute inset-0 border-gray-200 rounded-lg '>
                   <div className=' '>
                     <h1 className='text-base font-extrabold py-2 sm:tracking-tight '>
                       <span className='text-gray-400'>CONTACT US</span>
@@ -37,10 +39,10 @@ export default function privacy() {
                     1. Introduction
                   </h2>
                   <p className='mt-2 text-base text-gray-800'>
-                  Quicklook, registered at New Delhi (India) takes your privacy
-                    seriously and considers it important for your personal data
-                    (hereafter “your data”) to be treated with the necessary
-                    care and confidentiality at all times.
+                    Quicklook, registered at New Delhi (India) takes your
+                    privacy seriously and considers it important for your
+                    personal data (hereafter “your data”) to be treated with the
+                    necessary care and confidentiality at all times.
                     <p>
                       This Privacy Statement explains how our organisation uses
                       the personal data we collect from you when you and why. If
@@ -55,10 +57,10 @@ export default function privacy() {
                     </p>
                     <p>
                       Website visitors: persons who visit our marketing landing
-                      page quicklook is a provider of this service, and not the owner
-                      of the collected data. The creator (the person who sends
-                      out a form) is responsible for the data he/she collects
-                      and thus data controller of respondent data
+                      page quicklook is a provider of this service, and not the
+                      owner of the collected data. The creator (the person who
+                      sends out a form) is responsible for the data he/she
+                      collects and thus data controller of respondent data
                     </p>
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
@@ -104,14 +106,14 @@ export default function privacy() {
                     5. Data retention
                   </h2>
                   <p className='mt-5 text-base text-gray-800'>
-                    If you are a quicklook user we do not delete the data in your
-                    account. You are responsible for the time period for which
-                    you store the data. You can delete data in your quicklook
-                    account. If you are a respondent, you will need to ask the
-                    creator how long your responses will be stored in quicklook. We
-                    honor all deletions, If you wish to delete all records from
-                    our server, just write as an email and everything will be
-                    deleted.
+                    If you are a quicklook user we do not delete the data in
+                    your account. You are responsible for the time period for
+                    which you store the data. You can delete data in your
+                    quicklook account. If you are a respondent, you will need to
+                    ask the creator how long your responses will be stored in
+                    quicklook. We honor all deletions, If you wish to delete all
+                    records from our server, just write as an email and
+                    everything will be deleted.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     6. Your data protection rights
@@ -119,12 +121,12 @@ export default function privacy() {
                   <p>
                     As our Privacy Policy states, if you’ve submitted your
                     personal data through quicklook web app, the creator of that
-                    record is responsible for this data. Quicklook only processes
-                    this data on the creator’s behalf. Quicklook creators can
-                    exercise their rights directly with us, but respondents
-                    should contact the person or organization which created the
-                    records. If this isn't possible, please contact us. We'll
-                    help in any way we can.
+                    record is responsible for this data. Quicklook only
+                    processes this data on the creator’s behalf. Quicklook
+                    creators can exercise their rights directly with us, but
+                    respondents should contact the person or organization which
+                    created the records. If this isn't possible, please contact
+                    us. We'll help in any way we can.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     7. Marketing
@@ -133,8 +135,8 @@ export default function privacy() {
                     We would like to send you information about products and
                     services of ours that we think you might like. If you have
                     agreed to receive marketing, you may always op out at a
-                    later date. You have the right at any time to stop quicklook from
-                    contacting you for marketing purposes.
+                    later date. You have the right at any time to stop quicklook
+                    from contacting you for marketing purposes.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     8. Cookies
@@ -144,8 +146,8 @@ export default function privacy() {
                     computer or mobile device by websites you visit. They are
                     widely used in order to make a website work, or work more
                     efficiently, as well as to provide information to the owners
-                    of the site. Quicklook uses cookies to improve your experience on
-                    our website and with our product.
+                    of the site. Quicklook uses cookies to improve your
+                    experience on our website and with our product.
                   </p>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     9. Changes to our Privacy Policy
@@ -176,35 +178,11 @@ export default function privacy() {
         </div>
       </div>
       <div>
-        <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between'>
-          <h2 className='text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl'>
-            <span className='block'>Ready to dive in?</span>
-            <span className='block text-indigo-600'>
-              Start your free trial today.
-            </span>
-          </h2>
-          <div className='mt-8 flex lg:mt-0 lg:flex-shrink-0'>
-            <div className='inline-flex rounded-md shadow'>
-              <Link
-                to='/signup'
-                className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'
-              >
-                Get started
-              </Link>
-            </div>
-            <div className='ml-3 inline-flex rounded-md shadow'>
-              <Link
-                to='#'
-                className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50'
-              >
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div>
+        <CallToAction />
+        <Footer />
       </div>
 
-      <div className='flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between bg-gray-800 '>
+      {/* <div className='flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between bg-gray-800 '>
         <div className='flex space-x-6 text-white mx-4'>
           <Link to='/terms'>
             <p className='group'>
@@ -223,9 +201,9 @@ export default function privacy() {
           </Link>
         </div>
         <p className='mt-6 text-sm text-slate-500 sm:mt-0 ml-2'>
-          Copyright @2022 Crownstack Technologies. All rights reserved reserved.
+          Copyright @2022 Crownstack Technologies. All rights reserved.
         </p>
-      </div>
+      </div> */}
     </>
   )
 }
