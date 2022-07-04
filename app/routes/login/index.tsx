@@ -12,6 +12,14 @@ import { ErrorMessage, Formik } from 'formik'
 import { FormikInput } from '~/components/Common/FormikInput'
 import { useState } from 'react'
 
+// const ValidateEmail = ({ email }: any) => {
+//   if (!email) {
+//     return 'Email is Required'
+//   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+//     return 'Invalid emaill address'
+//   }
+// }
+
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
   let email = form.get('email') as string
@@ -148,21 +156,22 @@ export default function Login() {
                   </div>
                   <div>
                     <button
-                      disabled={val.password !== '' ? false : true}
+                      // disabled={val.password !== '' ? false : true}
                       type='submit'
-                      className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 ${
-                        val.password !== ''
-                          ? ''
-                          : 'bg-gray-400 hover:bg-gray-400'
-                      }`}
+                      className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 `}
                     >
                       <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                        <LockClosedIcon
+                        {/* <LockClosedIcon
                           className={`h-5 w-5  ${
                             val.email !== '' && val.password !== ''
                               ? 'text-indigo-500 group-hover:text-indigo-400'
                               : ''
                           }`}
+                          aria-hidden='true'
+                        /> */}
+                        <LockClosedIcon
+                          className={`h-5 w-5 text-indigo-500 group-hover:text-indigo-400 
+                          `}
                           aria-hidden='true'
                         />
                       </span>
