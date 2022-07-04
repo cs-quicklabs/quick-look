@@ -10,12 +10,13 @@ import { sendMail } from '~/services/mail.service.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
+  validateComfirmPassword,
   validateEmail,
   validateName,
   validatePassword,
   validateUsername,
 } from '~/utils/validator.server'
-import { input } from '../../components/Common/input'
+// import { input } from '../../components/Common/input'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
@@ -30,6 +31,9 @@ export const action: ActionFunction = async ({ request }) => {
   let email = form.get('email') as string
   let password = form.get('password') as string
   let username = form.get('profileId') as string
+  let confirmpassword = form.get('confirmpassword') as string
+  console.log(confirmpassword)
+
   let url = request.url
   console.log(url)
 
@@ -39,13 +43,21 @@ export const action: ActionFunction = async ({ request }) => {
     firstname: await validateName(firstname),
     lastname: await validateName(lastname),
     username: await validateUsername(username),
+    confirmpassword: await validateComfirmPassword(password, confirmpassword),
   }
 
   if (Object.values(errors).some(Boolean)) {
     return json(
       {
         errors,
-        fields: { email, password, firstname, lastname, username },
+        fields: {
+          email,
+          password,
+          firstname,
+          lastname,
+          username,
+          confirmpassword,
+        },
         form: action,
       },
       { status: 400 }
@@ -59,6 +71,7 @@ export const action: ActionFunction = async ({ request }) => {
     username,
     email,
     password,
+    // confirmpassword,
   })
   const generatedToken = uuidv4() as string
   if (registered) {
@@ -236,35 +249,23 @@ export default function SignUp() {
                   // label='Confirm Password'
                 />
                 <div className='text-red-600 text-sm '>
-                  {actionData?.errors['confirmPassword']}
+                  {actionData?.errors['confirmpassword']}
                 </div>
               </div>
               <div className='mt-5'>
                 <button
-                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-                    val.profileId !== '' &&
-                    val.confirmPassword !== '' &&
-                    val.email !== ''
-                      ? ''
-                      : 'bg-gray-400 hover:bg-gray-400'
-                  }`}
-                  disabled={
-                    val.profileId !== '' &&
-                    val.confirmPassword !== '' &&
-                    val.email !== ''
-                      ? false
-                      : true
-                  }
+                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 `}
+                  // disabled={
+                  //   val.profileId !== '' &&
+                  //   val.confirmPassword !== '' &&
+                  //   val.email !== ''
+                  //     ? false
+                  //     : true
+                  // }
                 >
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon
-                      className={`h-5 w-5  ${
-                        val.profileId !== '' &&
-                        val.confirmPassword !== '' &&
-                        val.email !== ''
-                          ? 'text-indigo-500 group-hover:text-indigo-400'
-                          : ''
-                      }`}
+                      className={`h-5 w-5 text-indigo-500 group-hover:text-indigo-400 `}
                       aria-hidden='true'
                     />
                   </span>
