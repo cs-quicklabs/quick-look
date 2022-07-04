@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SearchIcon } from '@heroicons/react/solid';
 import { Footer } from '../../components/Footer';
+import { CallToAction } from "~/components/CallToAction";
 
 export default function Refund() {
 
@@ -110,6 +111,9 @@ export default function Refund() {
                       </div>
                   </div>
               </div>
+							<div>
+								<CallToAction />
+							</div>
               <div className='w-full max-w-container px-2 sm:px-6 lg:px-8'>
             		<Footer />
               </div>
