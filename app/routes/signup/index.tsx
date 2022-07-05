@@ -32,9 +32,7 @@ export const action: ActionFunction = async ({ request }) => {
   let username = form.get('profileId') as string
   let confirmPassword = form.get('confirmPassword') as string
 
-console.log(confirmPassword)
   let url = request.url
-  console.log(url)
 
   const errors = {
     email: await validateEmail(email),

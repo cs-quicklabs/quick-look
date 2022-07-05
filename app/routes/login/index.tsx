@@ -1,18 +1,24 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
-import { createUserSession, login } from '~/services/auth.service.server'
+import { createUserSession, getUser, login } from '~/services/auth.service.server'
 import { checkIncorrectCredentials, validateEmail, validatePassword } from '~/utils/validator.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import crossimg from '../../../assets/images/remove.png'
+import { checkUserVerificationStatus, findUserByEmail } from '~/services/user.service.serevr'
+import { sendMail } from '~/services/mail.service.server'
+import { v4 as uuidv4 } from 'uuid'
+import { createUserVerificationToken, deleteUserVerificationToken } from '~/services/userVerification.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
   let email = form.get('email') as string
   let password = form.get('password') as string
 
+  let url = request.url
+  const generatedToken = uuidv4() as string
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
@@ -24,6 +30,25 @@ export const action: ActionFunction = async ({ request }) => {
       { errors, fields: { email, password, checkIncorrectCredentials }, form: action },
       { status: 400 }
     )
+  }
+  const isVerifiedUser = await checkUserVerificationStatus(email)
+  if(!isVerifiedUser){
+    // send verification email and redirect to successregistration 
+    await sendMail({
+      to: email,
+      from: process.env.SENDGRID_EMAIL as string,
+      subject: 'Email Verification',
+      text: `${url}/verification/${generatedToken}`,
+      html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
+      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
+      <div style="margin-top:40px">
+      <h3>QuickLook.me</h3>
+      <span>Describing you with just one link</span></div>`,
+    })
+    const user = await findUserByEmail(email)
+    await deleteUserVerificationToken(user.id)
+    await createUserVerificationToken(user.id, generatedToken)
+    return redirect('/confirmemail')
   }
   const user = await login({ email, password })
   try {
