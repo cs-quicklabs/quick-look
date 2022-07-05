@@ -28,7 +28,7 @@ export async function deleteUserVerificationToken(userId: string) {
     })
 
     if(existsUserVerification) {
-        await db.userVerification.findFirst({
+        await db.userVerification.delete({
             where: {
                 userId
             }
