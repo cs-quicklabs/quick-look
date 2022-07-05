@@ -3,6 +3,8 @@ import { json } from '@remix-run/node'
 
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
+import { getUser } from '~/services/auth.service.server'
+import { changeUserPassword } from '~/services/user.service.serevr'
 import {
   validateComfirmPassword,
   validatePassword,
@@ -11,6 +13,8 @@ import {
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 
 export const action: ActionFunction = async ({ request }) => {
+  const user  = await getUser(request)
+
   const formData = await request.formData()
   const password = formData.get('password') as string
   const confirmpassword = formData.get('confirmpassword') as string
@@ -27,15 +31,8 @@ export const action: ActionFunction = async ({ request }) => {
     )
   }
 
-  try {
-    // validate
-    // const project = await validateForm(formData)
-    //save
-    // const newProject = await addProject(project)
-    return redirect('/')
-  } catch (errors) {
-    return { errors }
-  }
+  await changeUserPassword(user?.id as string, password);
+  return redirect('/')
 }
 
 export default function Password() {
@@ -51,7 +48,7 @@ export default function Password() {
           <div>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />
             <h2 className='mt-6 text-center text-3xl font-[750] text-gray-900'>
-              Password Reset!
+              Password Reset
             </h2>
           </div>
           <div>

@@ -12,6 +12,7 @@ import { createUserVerificationToken } from '~/services/userVerification.service
 import {
   validateComfirmPassword,
   validateEmail,
+  validateLastName,
   validateName,
   validatePassword,
   validateUsername,
@@ -38,7 +39,7 @@ export const action: ActionFunction = async ({ request }) => {
     email: await validateEmail(email),
     password: await validatePassword(password),
     firstname: await validateName(firstname),
-    lastname: await validateName(lastname),
+    lastname: await validateLastName(lastname),
     username: await validateUsername(username),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),
   }

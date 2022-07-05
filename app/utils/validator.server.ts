@@ -58,6 +58,17 @@ export const validateName = async (
   }
 }
 
+export const validateLastName = async (
+  name: string
+): Promise<string | undefined> => {
+  if (!name) {
+    return 'Last Name is required.'
+  } else if (!isNaN(name)) {
+    return `Last Name must be in Alphabets.`
+  } else if (name.length < 3) {
+    return `Last Name must be at least 3 characters long.`
+  }
+}
 export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {

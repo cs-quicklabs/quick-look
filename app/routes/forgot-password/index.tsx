@@ -6,6 +6,7 @@ import { sendResetPasswordLink } from '~/services/password.service.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
+import { createUserSession } from '~/services/auth.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -19,9 +20,9 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-
-  const sentLink = await sendResetPasswordLink(email, url)
-  return redirect('/confirmforgotpassword')
+  const user = await findUserByEmail(email)
+  await sendResetPasswordLink(email, url)
+  return await createUserSession(user?.id, '/confirmforgotpassword')
 }
 
 export default function Forgotpassword() {
