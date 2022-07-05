@@ -60,7 +60,7 @@ export const action: ActionFunction = async ({ request }) => {
       { status: 400 }
     )
   }
-  console.log(Object.values(errors))
+
 
   const registered = await register({
     firstname,

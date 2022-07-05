@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { sendResetPasswordLink } from '~/services/password.service.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
+import { findUserByEmail } from '~/services/user.service.serevr'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -18,23 +19,9 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-  
+
   const sentLink = await sendResetPasswordLink(email, url)
-
-  if (!sentLink) {
-    return redirect('/login')
-    // return  json({success: true, message: 'Reset Password Link Sent'}, {status: 200});
-  }
-
-  try {
-    // validate
-    // const project = await validateForm(formData)
-    //save
-    // const newProject = await addProject(project)
-    return redirect('/confirmforgotpassword')
-  } catch (errors) {
-    return { errors }
-  }
+  return redirect('/confirmforgotpassword')
 }
 
 export default function Forgotpassword() {
