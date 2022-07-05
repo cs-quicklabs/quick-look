@@ -32,26 +32,6 @@ export default function Forgotpassword() {
   const actionData = useActionData()
   const [val, setVal] = useState('')
 
-
-  // const SignInSchema = Yup.object().shape({
-  //   email: validateRequiredEmail(),
-  // })
-  // const initialValues = {
-  //   email: '',
-  // }
-
-  // const [showModal, toggleModal] = useState(false);
-
-  // const popUpProps = {
-  //   toggleModal,
-  //   headline: "Password reset email sent!",
-  //   text:
-  //     "Password reset email has been shared on registered email address. Please set new password with the help of link"
-  //   ,
-  //   buttonText: "Go back to login",
-  //   linkText: "signin",
-  //   dataAttr: "back-to-login",
-  // };
   return (
     <>
       <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
@@ -81,19 +61,8 @@ export default function Forgotpassword() {
                         style={{
                           borderColor: actionData?.errors['email'] && 'red',
                         }}
-                        // value={val}
-                        // onInput={event => setVal(event.target.value)}}
                       />
                     </label>
-                    {/* <input
-                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                      type='email'
-                      name='email'
-                      style={{
-                        borderColor: actionData?.errors['name'] && 'red',
-                      }} */}
-                    {/* // label='Email address' */}
-                    {/* /> */}
                     <div className='text-red-600'>
                       {actionData?.errors['email']}
                     </div>

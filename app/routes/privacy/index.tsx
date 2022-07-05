@@ -181,29 +181,6 @@ export default function privacy() {
         <CallToAction />
         <Footer />
       </div>
-
-      {/* <div className='flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between bg-gray-800 '>
-        <div className='flex space-x-6 text-white mx-4'>
-          <Link to='/terms'>
-            <p className='group'>
-              <span> Terms & Conditions</span>
-            </p>
-          </Link>
-          <Link to='/privacy'>
-            <p className='group'>
-              <span> Privacy Policy</span>
-            </p>
-          </Link>
-          <Link to='/refund-policy'>
-            <p className='group'>
-              <span> Refund Policy </span>
-            </p>
-          </Link>
-        </div>
-        <p className='mt-6 text-sm text-slate-500 sm:mt-0 ml-2'>
-          Copyright @2022 Crownstack Technologies. All rights reserved.
-        </p>
-      </div> */}
     </>
   )
 }

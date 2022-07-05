@@ -52,7 +52,6 @@ export const action: ActionFunction = async ({ request }) => {
   }
   const isVerifiedUser = await checkUserVerificationStatus(email)
   if (!isVerifiedUser) {
-    // send verification email and redirect to successregistration
     await sendMail({
       to: email,
       from: process.env.SENDGRID_EMAIL as string,

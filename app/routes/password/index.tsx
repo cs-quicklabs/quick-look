@@ -39,7 +39,6 @@ export default function Password() {
   const actionData = useActionData()
 
   const [val, setVal] = useState({ password: '', confirmpassword: '' })
-  console.log(val)
 
   return (
     <>

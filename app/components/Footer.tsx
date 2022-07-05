@@ -1,5 +1,3 @@
-import { Link } from '@remix-run/react'
-// import { Container } from '../components/Container'
 import logo from '../../assets/images/logos/quicklook-icon.svg'
 
 export function Footer() {
@@ -19,34 +17,28 @@ export function Footer() {
           <nav className='mt-10 text-sm' aria-label='quick links'>
             <ul className='-my-1 flex justify-center space-x-6'>
               <li>
-                {/* <Link to='#features'> */}
                 <a
                   href='/#features'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Features
                 </a>
-                {/* </Link> */}
               </li>
               <li>
-                {/* <Link to='#testimonials'> */}
                 <a
                   href='/#testimonials'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Testimonials
                 </a>
-                {/* </Link> */}
               </li>
               <li>
-                {/* <Link to='#pricing'> */}
                 <a
                   href='/#pricing'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Pricing
                 </a>
-                {/* </Link> */}
               </li>
             </ul>
           </nav>
