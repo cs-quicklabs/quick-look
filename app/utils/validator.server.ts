@@ -1,3 +1,4 @@
+import string from 'yup/lib/string'
 import { db } from '~/database/connection.server'
 
 export const validateEmail = async (
@@ -15,6 +16,8 @@ export const validatePassword = async (
 ): Promise<string | undefined> => {
   if (!password) {
     return 'Password is required.'
+  } else if (password.length > 18) {
+    return 'Password can not be bigger than 18 characters.'
   } else if (typeof password !== 'string' || password.length < 5) {
     return `Passwords must be at least 5 characters long.`
   }
@@ -48,7 +51,9 @@ export const validateName = async (
 ): Promise<string | undefined> => {
   if (!name) {
     return 'Name is required.'
-  } else if (typeof name !== 'string' || name.length < 3) {
+  } else if (!isNaN(name)) {
+    return `Name must be in Alphabets.`
+  } else if (name.length < 3) {
     return `Name must be at least 3 characters long.`
   }
 }
@@ -56,6 +61,8 @@ export const validateName = async (
 export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
+  var regex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  var result = username.match(regex)
   const usernameExist = await db.user.count({
     where: {
       username,
@@ -63,6 +70,10 @@ export const validateUsername = async (
   })
   if (!username) {
     return 'Username is required.'
+  } else if (username.length > 33) {
+    return 'Id can not be bigger than 20 characters.'
+  } else if (!result) {
+    return 'Only alphabets, number and - sign is allowed.'
   } else if (usernameExist) {
     return 'This ID has already been taken. Please choose another.'
   }
