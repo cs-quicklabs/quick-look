@@ -29,7 +29,7 @@ export const checkIncorrectCredentials = async (email: string) => {
   if(!user){
     return `Either email or password you entered was not correct. Please try again.`
   }
-  return user
+  return undefined
 }
 
 export const validateComfirmPassword = async (

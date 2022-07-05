@@ -26,3 +26,15 @@ export async function findUserByEmail(email: string): Promise<any>{
     })
     return user? user : undefined
 }
+
+export async function checkUserVerificationStatus(email: string) {
+    const user= await db.user.findFirst({
+        where: {
+            email: email
+        }
+    })
+    if(user?.isVerified == true){
+        return true
+    }
+    return false
+}
