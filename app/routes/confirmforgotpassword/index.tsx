@@ -14,10 +14,8 @@ export default function confirmforgotpassword() {
             <h1 className='text-lg font-semibold '>Check your Inbox</h1>
             <p>
               A password reset email has been sent to you on your specified
-              email ID if it exists.
-              <br /> Please check your email and click on reset password link.
-              You should be login into your
-              <br /> account after resetting your password.{' '}
+              email ID if it exists. <br />
+              Please check your email and click on reset password link. You should be able to login into your account after resetting your password.{' '}
             </p>
             <a
               href='/login'
