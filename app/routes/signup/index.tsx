@@ -16,7 +16,6 @@ import {
   validatePassword,
   validateUsername,
 } from '~/utils/validator.server'
-// import { input } from '../../components/Common/input'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
@@ -31,9 +30,9 @@ export const action: ActionFunction = async ({ request }) => {
   let email = form.get('email') as string
   let password = form.get('password') as string
   let username = form.get('profileId') as string
-  let confirmPassword = form.get('confirmpassword') as string
+  let confirmPassword = form.get('confirmPassword') as string
 
-
+console.log(confirmPassword)
   let url = request.url
   console.log(url)
 
@@ -149,7 +148,7 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                    // label='First Name'
+                  // label='First Name'
                   />
                   <div className='text-red-600 text-sm '>
                     {actionData?.errors['firstname']}
@@ -168,7 +167,7 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                    // label='Last Name'
+                  // label='Last Name'
                   />
                   <div className='text-red-600 text-sm '>
                     {actionData?.errors['lastname']}
@@ -189,7 +188,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Email address'
+                // label='Email address'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['username']}
@@ -208,7 +207,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Email address'
+                // label='Email address'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['email']}
@@ -227,7 +226,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Password'
+                // label='Password'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['password']}
@@ -246,22 +245,22 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Confirm Password'
+                // label='Confirm Password'
                 />
                 <div className='text-red-600 text-sm '>
-                  {actionData?.errors['confirmpassword']}
+                  {actionData?.errors['isPasswordSame']}
                 </div>
               </div>
               <div className='mt-5'>
                 <button
                   className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 `}
-                  // disabled={
-                  //   val.profileId !== '' &&
-                  //   val.confirmPassword !== '' &&
-                  //   val.email !== ''
-                  //     ? false
-                  //     : true
-                  // }
+                // disabled={
+                //   val.profileId !== '' &&
+                //   val.confirmPassword !== '' &&
+                //   val.email !== ''
+                //     ? false
+                //     : true
+                // }
                 >
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon
