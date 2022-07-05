@@ -35,7 +35,7 @@ export default function Forgotpassword() {
           <div className='max-w-md w-full space-y-8'>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />
             <h2 className='mt-6 text-center text-3xl font-[750] text-gray-900'>
-              Receive Email
+              Receive Confirmation Email
             </h2>
             </div>
             <p className='mt-5 flex items-center justify-end text-base text-gray-400'>
