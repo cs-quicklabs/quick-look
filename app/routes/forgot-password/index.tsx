@@ -68,7 +68,7 @@ export default function Forgotpassword() {
   // };
   return (
     <>
-      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
+      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
         <div className='max-w-md w-full space-y-8'>
           <div>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />

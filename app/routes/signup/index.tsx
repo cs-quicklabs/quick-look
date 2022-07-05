@@ -105,7 +105,7 @@ export default function SignUp() {
   const [val, setVal] = useState({
     firstName: '',
     lastName: '',
-    profileId: '',
+    profileId: `quicklook.me/`,
     email: '',
     password: '',
     confirmPassword: '',
@@ -114,7 +114,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
+      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm font-inter'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <img src={logo} alt='' className='mx-auto h-20 w-auto' />
           <h2 className='mt-4 text-center text-3xl font-[750] text-gray-900'>
@@ -146,7 +146,7 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                  // label='First Name'
+                    // label='First Name'
                   />
                   <div className='text-red-600 text-sm '>
                     {actionData?.errors['firstname']}
@@ -165,7 +165,7 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                  // label='Last Name'
+                    // label='Last Name'
                   />
                   <div className='text-red-600 text-sm '>
                     {actionData?.errors['lastname']}
@@ -186,7 +186,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                // label='Email address'
+                  // label='Email address'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['username']}
@@ -205,7 +205,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                // label='Email address'
+                  // label='Email address'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['email']}
@@ -224,7 +224,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                // label='Password'
+                  // label='Password'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['password']}
@@ -243,7 +243,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                // label='Confirm Password'
+                  // label='Confirm Password'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['isPasswordSame']}
@@ -252,13 +252,13 @@ export default function SignUp() {
               <div className='mt-5'>
                 <button
                   className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 `}
-                // disabled={
-                //   val.profileId !== '' &&
-                //   val.confirmPassword !== '' &&
-                //   val.email !== ''
-                //     ? false
-                //     : true
-                // }
+                  // disabled={
+                  //   val.profileId !== '' &&
+                  //   val.confirmPassword !== '' &&
+                  //   val.email !== ''
+                  //     ? false
+                  //     : true
+                  // }
                 >
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon
