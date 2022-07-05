@@ -47,19 +47,19 @@ export const validateComfirmPassword = async (
 }
 
 export const validateName = async (
-  name: string
+  name: any
 ): Promise<string | undefined> => {
   if (!name) {
     return 'Name is required.'
   } else if (!isNaN(name)) {
-    return `Name must be in Alphabets.`
+    return `FirstName should contain alphabets only.`
   } else if (name.length < 3) {
     return `Name must be at least 3 characters long.`
   }
 }
 
 export const validateLastName = async (
-  name: string
+  name: any
 ): Promise<string | undefined> => {
   if (!name) {
     return 'Last Name is required.'

@@ -21,7 +21,10 @@ export const action: ActionFunction = async ({ request }) => {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
   const user = await findUserByEmail(email)
-  await sendResetPasswordLink(email, url)
+
+  if(user){
+    await sendResetPasswordLink(email, url)
+  }
   return await createUserSession(user?.id, '/confirmforgotpassword')
 }
 
