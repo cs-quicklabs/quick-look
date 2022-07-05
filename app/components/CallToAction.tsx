@@ -1,4 +1,3 @@
-// import { Container } from '../components/Container'
 import backgroundImage from '../../assets/images/background-call-to-action.jpg'
 
 export function CallToAction() {
@@ -13,7 +12,6 @@ export function CallToAction() {
           alt=''
           width={2347}
           height={1244}
-          // className='fixed'
           style={{
             position: 'absolute',
             inset: ' 0px',
