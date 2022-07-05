@@ -16,12 +16,12 @@ export default function Modal({ open, children, onClose }:any) {
                 <h3 className="mb-5 text-lg font-normal text-gray-500">
                   Are you sure you want to sign out?
                 </h3>
-                <button type="button" className="text-gray-500 bg-gray-200 hover:text-gray-900 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-1.5 text-center mr-2">
-                  <a href='/login'>Yes</a>
-                </button>
-                <button type="button" className="text-gray-500 bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-3 py-1.5 hover:text-gray-900 focus:z-10 hover:bg-indigo-600">
-                  <a href='/dashboard'>No</a>
-                </button>
+                <a href='/login' type="button" className="text-gray-500 bg-gray-200 hover:text-gray-900 hover:bg-indigo-600 focus:outline-none  font-medium rounded-lg text-sm inline-flex items-center px-3 py-1.5 text-center mr-2">
+                  Yes
+                </a>
+                <a href='/dashboard' type="button" className="text-gray-500 bg-gray-200 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-3 py-1.5 hover:text-gray-900 focus:z-10 hover:bg-indigo-600">
+                  No
+                </a>
                 {children} 
             </div>
           </div>
