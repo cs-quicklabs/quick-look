@@ -38,3 +38,14 @@ export async function checkUserVerificationStatus(email: string) {
     }
     return false
 }
+
+export async function changeUserPassword(userId: string, password:string){
+    await db.user.update({
+        where: {
+            id: userId
+        },
+        data: {
+            password: await bcrypt.hash(password, 10)
+        }
+    })
+}

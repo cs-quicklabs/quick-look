@@ -75,6 +75,7 @@ export async function deletePasswordResetLink(userId: string){
 }
 
 export async function verifyResetPasswordLink(token: string, userId: string) {
+
   const resetPasswordLink = await db.resetPasswordLink.findFirst({
       where: {
           userId,

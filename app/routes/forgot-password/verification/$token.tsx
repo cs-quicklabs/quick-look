@@ -8,11 +8,7 @@ import {
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const user = await getUser(request)
-
-  const verified = await verifyResetPasswordLink(
-    params.token as string,
-    user?.id as string
-  )
+  const verified = await verifyResetPasswordLink(params.token as string, user?.id as string)
 
   if (verified) {
     const deleted = await deletePasswordResetLink(user?.id as string)
@@ -29,4 +25,5 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
     return await createUserSession(user?.id as string, ' /password')
   }
+  return null
 }
