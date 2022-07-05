@@ -43,10 +43,10 @@ export default function Login() {
       <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
         <div
           className={`flex gap-4 mb-8 items-center justify-center  rounded-md px-6 py-2 w-2/7 ${
-            actionData?.errors['checkIncorrectCredentials'] ? 'bg-red-50' : ''
+            actionData?.errors['checkIncorrectCredentials'] && actionData?.errors['email'] == null || undefined ? 'bg-red-50' : ''
           }`}
         >
-          {actionData?.errors['checkIncorrectCredentials'] ? (
+          {actionData?.errors['checkIncorrectCredentials'] && actionData?.errors['email'] == null || undefined ? (
             <>
               <img src={crossimg} alt='' className='h-4 w-4' />
               <p className='text-#065F46 font-normal'>
