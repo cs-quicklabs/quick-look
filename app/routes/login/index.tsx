@@ -1,16 +1,31 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
-import { createUserSession, getUser, login } from '~/services/auth.service.server'
-import { checkIncorrectCredentials, validateEmail, validatePassword } from '~/utils/validator.server'
+import {
+  createUserSession,
+  getUser,
+  login,
+} from '~/services/auth.service.server'
+
+import {
+  checkIncorrectCredentials,
+  validateEmail,
+  validatePassword,
+} from '~/utils/validator.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import crossimg from '../../../assets/images/remove.png'
-import { checkUserVerificationStatus, findUserByEmail } from '~/services/user.service.serevr'
+import {
+  checkUserVerificationStatus,
+  findUserByEmail,
+} from '~/services/user.service.serevr'
 import { sendMail } from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
-import { createUserVerificationToken, deleteUserVerificationToken } from '~/services/userVerification.service.server'
+import {
+  createUserVerificationToken,
+  deleteUserVerificationToken,
+} from '~/services/userVerification.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -22,18 +37,22 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
-    checkIncorrectCredentials: await checkIncorrectCredentials(email)
+    checkIncorrectCredentials: await checkIncorrectCredentials(email),
   }
 
   if (Object.values(errors).some(Boolean)) {
     return json(
-      { errors, fields: { email, password, checkIncorrectCredentials }, form: action },
+      {
+        errors,
+        fields: { email, password, checkIncorrectCredentials },
+        form: action,
+      },
       { status: 400 }
     )
   }
   const isVerifiedUser = await checkUserVerificationStatus(email)
-  if(!isVerifiedUser){
-    // send verification email and redirect to successregistration 
+  if (!isVerifiedUser) {
+    // send verification email and redirect to successregistration
     await sendMail({
       to: email,
       from: process.env.SENDGRID_EMAIL as string,
@@ -65,16 +84,22 @@ export default function Login() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
+      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
         <div
           className={`flex gap-4 mb-8 items-center justify-center  rounded-md px-6 py-2 w-2/7 ${
-            actionData?.errors['checkIncorrectCredentials'] && actionData?.errors['email'] == null || undefined ? 'bg-red-50' : ''
+            (actionData?.errors['checkIncorrectCredentials'] &&
+              actionData?.errors['email'] == null) ||
+            undefined
+              ? 'bg-red-50'
+              : ''
           }`}
         >
-          {actionData?.errors['checkIncorrectCredentials'] && actionData?.errors['email'] == null || undefined ? (
+          {(actionData?.errors['checkIncorrectCredentials'] &&
+            actionData?.errors['email'] == null) ||
+          undefined ? (
             <>
               <img src={crossimg} alt='' className='h-4 w-4' />
-              <p className='text-#065F46 font-normal'>
+              <p className='text-#065F46 font-normal w-9/12'>
                 {actionData?.errors['checkIncorrectCredentials']}
               </p>
             </>
