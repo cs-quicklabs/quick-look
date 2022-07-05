@@ -86,7 +86,7 @@ export default function Login() {
     <>
       <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
         <div
-          className={`flex gap-4 mb-8 items-center justify-center  rounded-md px-6 py-2 w-2/7 ${
+          className={`flex gap-4 mb-8 items-center justify-center  rounded-md py-2  ${
             (actionData?.errors['checkIncorrectCredentials'] &&
               actionData?.errors['email'] == null) ||
             undefined
@@ -159,7 +159,7 @@ export default function Login() {
                     </div>
                   </div>
                   <div className='flex items-center justify-between'>
-                    <div className='flex items-center mt-3.5 font-semibold gap-2'>
+                    <div className='flex items-center mt-3.5  gap-2'>
                       <input
                         type='checkbox'
                         name='rememberMe'
