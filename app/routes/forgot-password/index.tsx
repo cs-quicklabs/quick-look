@@ -1,13 +1,8 @@
 import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import { Formik } from 'formik'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import * as Yup from 'yup'
-import { FormikCheckbox, FormikInput } from '~/components/Common/FormikInput'
 import { sendResetPasswordLink } from '~/services/password.service.server'
-import { validateRequiredEmail } from '../../components/Utils/validators'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
 
@@ -23,7 +18,7 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-
+  
   const sentLink = await sendResetPasswordLink(email, url)
 
   if (!sentLink) {
@@ -45,7 +40,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Forgotpassword() {
   const actionData = useActionData()
   const [val, setVal] = useState('')
-  console.log(val)
+
 
   // const SignInSchema = Yup.object().shape({
   //   email: validateRequiredEmail(),
