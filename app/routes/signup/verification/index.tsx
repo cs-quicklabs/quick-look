@@ -10,6 +10,7 @@ import { sendMail } from '~/services/mail.service.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
+  validateComfirmPassword,
   validateEmail,
   validateName,
   validatePassword,
@@ -29,13 +30,11 @@ export const action: ActionFunction = async ({ request }) => {
   let email = form.get('email') as string
   let password = form.get('password') as string
   let username = form.get('profileId') as string
+  let confirmPassword = form.get('confirmPassword') as string
   let url = request.url
-  console.log(url)
 
-  // const res = await fetch(url)
   const res = new Response(JSON.stringify({ url }))
   const json = await res.json()
-  console.log('sup', json)
 
   const errors = {
     email: await validateEmail(email),
@@ -43,6 +42,7 @@ export const action: ActionFunction = async ({ request }) => {
     firstname: await validateName(firstname),
     lastname: await validateName(lastname),
     username: await validateUsername(username),
+    confirmPassword: await validateComfirmPassword(password, confirmPassword)
   }
 
   if (Object.values(errors).some(Boolean)) {
@@ -55,7 +55,6 @@ export const action: ActionFunction = async ({ request }) => {
       { status: 400 }
     )
   }
-  console.log(Object.values(errors))
 
   const registered = await register({
     firstname,
@@ -63,6 +62,7 @@ export const action: ActionFunction = async ({ request }) => {
     username,
     email,
     password,
+    confirmPassword
   })
   const generatedToken = uuidv4() as string
   if (registered) {

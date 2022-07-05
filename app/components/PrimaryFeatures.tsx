@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-
 import { Tab } from '@headlessui/react'
-
-// import { Container } from '../components/Container'
 import backgroundImage from '../../assets/images/background-features.jpg'
 import screenshotExpenses from '../../assets/images/screenshots/expenses.png'
 import screenshotPayroll from '../../assets/images/screenshots/payroll.png'
@@ -67,7 +64,6 @@ export function PrimaryFeatures() {
           alt=''
           width={2245}
           height={1636}
-          // className='fixed'
         />
       </div>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative'>

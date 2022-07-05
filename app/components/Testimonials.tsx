@@ -1,4 +1,3 @@
-// import { Container } from '../components/Container'
 import avatarImage1 from '../../assets/images/avatars/avatar-1.png'
 import avatarImage2 from '../../assets/images/avatars/avatar-2.png'
 import avatarImage3 from '../../assets/images/avatars/avatar-3.png'

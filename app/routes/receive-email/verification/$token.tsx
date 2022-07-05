@@ -21,7 +21,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
         { status: 400 }
       )
     }
-    //need to redirect to reset password page
 
     return await createUserSession(user?.id as string, ' /password')
   }

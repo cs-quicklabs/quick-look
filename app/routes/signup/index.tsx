@@ -90,10 +90,6 @@ export const action: ActionFunction = async ({ request }) => {
   await createUserVerificationToken(user.id, generatedToken)
 
   try {
-    // validate
-    // const project = await validateForm(form)
-    //save
-    // const newProject = await addProject(project)
     return createUserSession(user.id, '/confirmemail')
   } catch (errors) {
     return { errors }
@@ -111,7 +107,6 @@ export default function SignUp() {
     password: '',
     confirmPassword: '',
   })
-  console.log(val)
 
   return (
     <>
@@ -147,7 +142,6 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                    // label='First Name'
                   />
                   <div className='text-red-600 text-sm '>
                     {actionData?.errors['firstname']}
@@ -166,7 +160,6 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                    // label='Last Name'
                   />
                   <div className='text-red-600 text-sm '>
                     {actionData?.errors['lastname']}
@@ -187,7 +180,6 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Email address'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['username']}
@@ -206,7 +198,7 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Email address'
+
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['email']}
@@ -225,7 +217,6 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Password'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['password']}
@@ -244,7 +235,6 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-                  // label='Confirm Password'
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['isPasswordSame']}
@@ -253,13 +243,6 @@ export default function SignUp() {
               <div className='mt-5'>
                 <button
                   className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 `}
-                  // disabled={
-                  //   val.profileId !== '' &&
-                  //   val.confirmPassword !== '' &&
-                  //   val.email !== ''
-                  //     ? false
-                  //     : true
-                  // }
                 >
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon
