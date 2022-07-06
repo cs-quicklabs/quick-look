@@ -37,7 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
   let url = request.url
 
   const errors = {
-    email:  await validateSignupEmail(email),
+    email: await validateSignupEmail(email),
     password: await validatePassword(password),
     firstname: await validateName(firstname),
     lastname: await validateLastName(lastname),
@@ -62,7 +62,6 @@ export const action: ActionFunction = async ({ request }) => {
       { status: 400 }
     )
   }
-
 
   const registered = await register({
     firstname,
@@ -103,7 +102,7 @@ export default function SignUp() {
   const [val, setVal] = useState({
     firstName: '',
     lastName: '',
-    profileId: `quicklook.me/`,
+    profileId: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -169,19 +168,26 @@ export default function SignUp() {
               </div>
               <div>
                 <label>Choose your Profile ID</label>
-
-                <input
-                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                  type='text'
-                  name='profileId'
-                  value={val.profileId}
-                  onChange={(event) => {
-                    setVal({
-                      ...val,
-                      [event.target.name]: event.target.value,
-                    })
-                  }}
-                />
+                <div className='flex  appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'>
+                  <input
+                    type='text'
+                    value='quicklook.me/'
+                    disabled
+                    className='w-24'
+                  />
+                  <input
+                    className='outline-none appearance-none w-full '
+                    type='text'
+                    name='profileId'
+                    value={val.profileId}
+                    onChange={(event) => {
+                      setVal({
+                        ...val,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                  />
+                </div>
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['username']}
                 </div>
@@ -199,7 +205,6 @@ export default function SignUp() {
                       [event.target.name]: event.target.value,
                     })
                   }}
-
                 />
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['email']}
