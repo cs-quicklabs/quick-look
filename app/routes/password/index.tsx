@@ -76,25 +76,28 @@ export default function Password() {
                     <div className='text-red-600'>
                       {actionData?.errors['password']}
                     </div>
-                    <label>
-                      Confirm Password
-                      <input
-                        value={val.confirmpassword}
-                        onChange={(event) => {
-                          setVal({
-                            ...val,
-                            [event.target.name]: event.target.value,
-                          })
-                        }}
-                        className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
-                        name='confirmpassword'
-                        type='password'
-                        style={{
-                          borderColor:
-                            actionData?.errors['confirmpassword'] && 'red',
-                        }}
-                      />
-                    </label>
+                    <div className='mt-2'>
+                      <label>
+                        Confirm Password
+                        <input
+                          value={val.confirmpassword}
+                          onChange={(event) => {
+                            setVal({
+                              ...val,
+                              [event.target.name]: event.target.value,
+                            })
+                          }}
+                          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                          name='confirmpassword'
+                          type='password'
+                          style={{
+                            borderColor:
+                              actionData?.errors['confirmpassword'] && 'red',
+                          }}
+                        />
+                      </label>
+                    </div>
+
                     <div className='text-red-600'>
                       {actionData?.errors['confirmpassword']}
                     </div>
