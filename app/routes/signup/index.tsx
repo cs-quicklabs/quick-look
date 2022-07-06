@@ -15,6 +15,7 @@ import {
   validateLastName,
   validateName,
   validatePassword,
+  validateSignupEmail,
   validateUsername,
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
@@ -36,7 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
   let url = request.url
 
   const errors = {
-    email: await validateEmail(email),
+    email:  await validateSignupEmail(email),
     password: await validatePassword(password),
     firstname: await validateName(firstname),
     lastname: await validateLastName(lastname),

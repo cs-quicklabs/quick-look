@@ -11,6 +11,21 @@ export const validateEmail = async (
   }
 }
 
+export const validateSignupEmail = async(email: string) => {
+  const user = await db.user.findFirst({
+    where: {
+      email,
+    },
+  })
+  if (!email) {
+    return 'Email is required.'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return 'Invalid emaill address.'
+  } else if(user && email) {
+    return 'Email already exists.'
+  }
+}
+
 export const validatePassword = async (
   password: string
 ): Promise<string | undefined> => {
@@ -72,14 +87,15 @@ export const validateUsername = async (
 ): Promise<String | undefined> => {
   var regex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
   var result = username.match(regex)
+  const parsedUsername = username.substring(13);
   const usernameExist = await db.user.count({
     where: {
       username,
     },
   })
-  if (!username) {
+  if ( !parsedUsername ) {
     return 'Username is required.'
-  } else if (username.length > 33) {
+  } else if ( parsedUsername.length > 20 ) {
     return 'Id can not be bigger than 20 characters.'
   } else if (!result) {
     return 'Only alphabets, number and - sign is allowed.'
