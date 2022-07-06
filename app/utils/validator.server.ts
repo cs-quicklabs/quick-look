@@ -12,7 +12,7 @@ export const validateEmail = async (
   }
 }
 
-export const validateSignupEmail = async(email: string) => {
+export const validateSignupEmail = async (email: string) => {
   const user = await db.user.findFirst({
     where: {
       email,
@@ -22,7 +22,7 @@ export const validateSignupEmail = async(email: string) => {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return 'Invalid emaill address.'
-  } else if(user && email) {
+  } else if (user && email) {
     return 'Email already exists.'
   }
 }
@@ -39,15 +39,18 @@ export const validatePassword = async (
   }
 }
 
-export const checkIncorrectCredentials = async (email: string, password: string) => {
+export const checkIncorrectCredentials = async (
+  email: string,
+  password: string
+) => {
   const user = await db.user.findFirst({
     where: {
       email,
     },
   })
-  if (!user || !(await bcrypt.compare(password, user.password))){
+  if (!user || !(await bcrypt.compare(password, user.password))) {
     return `Either email or password you entered was not correct. Please try again.`
-}
+  }
   return undefined
 }
 
@@ -65,7 +68,7 @@ export const validateComfirmPassword = async (
 export const validateName = async (name: any): Promise<string | undefined> => {
   let regex = /^[a-zA-Z]+$/
   let result = name.match(regex)
-  if(!result){
+  if (!result) {
     return 'Only alphabets allowed.'
   } else if (!name) {
     return 'First Name is required.'
@@ -73,7 +76,7 @@ export const validateName = async (name: any): Promise<string | undefined> => {
     return `First Name should contain alphabets only.`
   } else if (name.length < 3) {
     return `First Name must be at least 3 characters long.`
-  } else if(name.length > 12){
+  } else if (name.length > 12) {
     return `First Name must be less than 12 characters.`
   }
 }
@@ -83,7 +86,7 @@ export const validateLastName = async (
 ): Promise<string | undefined> => {
   let regex = /^[a-zA-Z]+$/
   let result = name.match(regex)
-  if(!result){
+  if (!result) {
     return 'Only alphabets allowed.'
   } else if (!name) {
     return 'Last Name is required.'
@@ -91,7 +94,7 @@ export const validateLastName = async (
     return `Last Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `Last Name must be at least 3 characters long.`
-  } else if(name.length > 12){
+  } else if (name.length > 12) {
     return `Last Name must be less than 12 characters.`
   }
 }
@@ -107,7 +110,7 @@ export const validateUsername = async (
   })
   if ( !username ) {
     return 'Username is required.'
-  } else if ( username.length > 20 ) {
+  } else if (username.length > 20) {
     return 'Id can not be bigger than 20 characters.'
   } else if (!result) {
     return 'Only alphabets, number and - sign is allowed.'
@@ -119,6 +122,7 @@ export const validateUsername = async (
   return
 }
 
-export const validateLoginCredentials = async(email: string, password: string) => {
-
-}
+export const validateLoginCredentials = async (
+  email: string,
+  password: string
+) => {}
