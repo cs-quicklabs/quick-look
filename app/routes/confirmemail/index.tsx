@@ -14,7 +14,7 @@ export default function confirmEmail() {
               An confirmation email has been sent to you on your specified email
               Id. Please check your email and click on email confirmation link.
               You should be able to login into your account
-              <br /> after confirming your email.{' '}
+               after confirming your email.{' '}
             </p>
             <a
               href='/login'
