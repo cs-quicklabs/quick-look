@@ -35,10 +35,11 @@ export const action: ActionFunction = async ({ request }) => {
   let userData = await findUserByEmail(email);
   let url = request.url
   const generatedToken = uuidv4() as string
+
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
-    checkIncorrectCredentials: await checkIncorrectCredentials(email),
+    checkIncorrectCredentials: await checkIncorrectCredentials(email, password),
   }
 
   if (Object.values(errors).some(Boolean)) {

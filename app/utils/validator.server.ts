@@ -1,5 +1,6 @@
-import string from 'yup/lib/string'
+import { json } from '@remix-run/node'
 import { db } from '~/database/connection.server'
+import bcrypt from 'bcryptjs'
 
 export const validateEmail = async (
   email: string
@@ -38,15 +39,15 @@ export const validatePassword = async (
   }
 }
 
-export const checkIncorrectCredentials = async (email: string) => {
+export const checkIncorrectCredentials = async (email: string, password: string) => {
   const user = await db.user.findFirst({
     where: {
       email,
     },
   })
-  if (email && !user) {
+  if (!user || !(await bcrypt.compare(password, user.password))){
     return `Either email or password you entered was not correct. Please try again.`
-  }
+}
   return undefined
 }
 
@@ -103,4 +104,8 @@ export const validateUsername = async (
     return 'This ID has already been taken. Please choose another.'
   }
   return
+}
+
+export const validateLoginCredentials = async(email: string, password: string) => {
+
 }
