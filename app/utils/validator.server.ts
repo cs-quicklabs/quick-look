@@ -63,40 +63,51 @@ export const validateComfirmPassword = async (
 }
 
 export const validateName = async (name: any): Promise<string | undefined> => {
-  if (!name) {
-    return 'Name is required.'
+  let regex = /^[a-zA-Z]+$/
+  let result = name.match(regex)
+  if(!result){
+    return 'Only alphabets allowed.'
+  } else if (!name) {
+    return 'First Name is required.'
   } else if (!isNaN(name)) {
-    return `FirstName should contain alphabets only.`
+    return `First Name should contain alphabets only.`
   } else if (name.length < 3) {
-    return `Name must be at least 3 characters long.`
+    return `First Name must be at least 3 characters long.`
+  } else if(name.length > 12){
+    return `First Name must be less than 12 characters.`
   }
 }
 
 export const validateLastName = async (
   name: any
 ): Promise<string | undefined> => {
-  if (!name) {
+  let regex = /^[a-zA-Z]+$/
+  let result = name.match(regex)
+  if(!result){
+    return 'Only alphabets allowed.'
+  } else if (!name) {
     return 'Last Name is required.'
   } else if (!isNaN(name)) {
     return `Last Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `Last Name must be at least 3 characters long.`
+  } else if(name.length > 12){
+    return `Last Name must be less than 12 characters.`
   }
 }
 export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
-  var regex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
-  var result = username.match(regex)
-  const parsedUsername = username.substring(13);
+  let regex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let result = username.match(regex)
   const usernameExist = await db.user.count({
     where: {
       username,
     },
   })
-  if ( !parsedUsername ) {
+  if ( username ) {
     return 'Username is required.'
-  } else if ( parsedUsername.length > 20 ) {
+  } else if ( username.length > 20 ) {
     return 'Id can not be bigger than 20 characters.'
   } else if (!result) {
     return 'Only alphabets, number and - sign is allowed.'
