@@ -61,7 +61,9 @@ function Layout({ children }: any) {
       Location.pathname.includes('/forgot-password') ||
       Location.pathname.includes('/refund-policy') ||
       Location.pathname.includes('/successlogin') ||
-      Location.pathname.includes('/password') ? (
+      Location.pathname.includes('/password') ||
+      Location.pathname.includes('/confirmforgotpassword') ||
+      Location.pathname.includes('/receive-email') ? (
         <HeaderSecondary />
       ) : (
         <></>
