@@ -108,6 +108,7 @@ export const validateUsername = async (
       username,
     },
   })
+
   if (!username) {
     return 'Username is required.'
   } else if (username.length > 20) {
@@ -116,6 +117,8 @@ export const validateUsername = async (
     return 'Only alphabets, number and - sign is allowed.'
   } else if (usernameExist) {
     return 'This ID has already been taken. Please choose another.'
+  } else if (username.length < 6) {
+    return 'Profile Id should be atleast 6 charcaters long.'
   }
   return
 }
