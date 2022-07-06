@@ -32,7 +32,7 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   await changeUserPassword(user?.id as string, password)
-  return redirect('/login')
+  return redirect('/passwordchangesuccess')
 }
 
 export default function Password() {
