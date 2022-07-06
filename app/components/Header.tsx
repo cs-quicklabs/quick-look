@@ -62,6 +62,7 @@ function MobileNavigation() {
                 className='absolute inset-x-0 top-full mt-4 origin-top space-y-4 rounded-2xl bg-white p-6 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5'
               >
                 <li>
+                  {/* <Link to='#features'> */}
                   <a
                     href='#features'
                     className='block w-full'
@@ -69,8 +70,10 @@ function MobileNavigation() {
                   >
                     Features
                   </a>
+                  {/* </Link> */}
                 </li>
                 <li>
+                  {/* <Link to='#testimonials'> */}
                   <a
                     href='#testimonials'
                     className='block w-full'
@@ -78,8 +81,10 @@ function MobileNavigation() {
                   >
                     Testimonials
                   </a>
+                  {/* </Link> */}
                 </li>
                 <li>
+                  {/* <Link to='#pricing'> */}
                   <a
                     href='#pricing'
                     className='block w-full'
@@ -87,6 +92,7 @@ function MobileNavigation() {
                   >
                     Pricing
                   </a>
+                  {/* </Link> */}
                 </li>
                 <li className='border-t border-slate-300/40 pt-4  font-medium'>
                   <a href='/login'>Login </a>
@@ -100,7 +106,7 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+export function Header({ isloggedin }: any) {
   return (
     <header className='py-10'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
@@ -140,9 +146,13 @@ export function Header() {
             </li>
             <li className='ml-auto hidden md:block'>
               <a href='/login'>
-                <p className='rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900 cursor-pointer'>
-                  Login
-                </p>
+                {isloggedin ? (
+                  <span></span>
+                ) : (
+                  <p className='rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900 cursor-pointer'>
+                    Login
+                  </p>
+                )}
               </a>
             </li>
             <li className='ml-auto md:ml-8'>

@@ -61,9 +61,7 @@ export const validateComfirmPassword = async (
   }
 }
 
-export const validateName = async (
-  name: any
-): Promise<string | undefined> => {
+export const validateName = async (name: any): Promise<string | undefined> => {
   if (!name) {
     return 'Name is required.'
   } else if (!isNaN(name)) {

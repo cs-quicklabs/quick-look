@@ -60,7 +60,8 @@ function Layout({ children }: any) {
       Location.pathname.includes('/privacy') ||
       Location.pathname.includes('/forgot-password') ||
       Location.pathname.includes('/refund-policy') ||
-      Location.pathname.includes('/successlogin') ? (
+      Location.pathname.includes('/successlogin') ||
+      Location.pathname.includes('/password') ? (
         <HeaderSecondary />
       ) : (
         <></>

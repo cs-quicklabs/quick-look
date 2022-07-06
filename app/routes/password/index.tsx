@@ -13,7 +13,7 @@ import {
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 
 export const action: ActionFunction = async ({ request }) => {
-  const user  = await getUser(request)
+  const user = await getUser(request)
 
   const formData = await request.formData()
   const password = formData.get('password') as string
@@ -31,8 +31,8 @@ export const action: ActionFunction = async ({ request }) => {
     )
   }
 
-  await changeUserPassword(user?.id as string, password);
-  return redirect('/')
+  await changeUserPassword(user?.id as string, password)
+  return redirect('/login')
 }
 
 export default function Password() {
