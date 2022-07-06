@@ -26,12 +26,13 @@ import {
   createUserVerificationToken,
   deleteUserVerificationToken,
 } from '~/services/userVerification.service.server'
+import { db } from '~/database/connection.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
   let email = form.get('email') as string
   let password = form.get('password') as string
-
+  let userData = await findUserByEmail(email);
   let url = request.url
   const generatedToken = uuidv4() as string
   const errors = {
@@ -56,7 +57,7 @@ export const action: ActionFunction = async ({ request }) => {
       to: email,
       from: process.env.SENDGRID_EMAIL as string,
       subject: 'Email Verification',
-      text: `${url}/verification/${generatedToken}`,
+      text: `Hi ${userData.name}`,
       html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
       <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
       <div style="margin-top:40px">
