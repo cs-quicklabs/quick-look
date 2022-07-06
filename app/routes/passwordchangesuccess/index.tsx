@@ -37,7 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
-    checkIncorrectCredentials: await checkIncorrectCredentials(email),
+    checkIncorrectCredentials: await checkIncorrectCredentials(email, password),
   }
 
   if (Object.values(errors).some(Boolean)) {
