@@ -12,9 +12,9 @@ export default function confirmEmail() {
             <h1 className='text-lg font-semibold '>Check your Inbox</h1>
             <p>
               An confirmation email has been sent to you on your specified email
-              Id. Please check <br /> your email and click on email confirmation
-              link. You should be able to login into  <br /> your account after
-              confirming your email.{' '}
+              Id. Please check your email and click on email confirmation link.
+              You should be able to login into your account
+              <br /> after confirming your email.{' '}
             </p>
             <a
               href='/login'
