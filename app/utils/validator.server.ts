@@ -68,9 +68,7 @@ export const validateComfirmPassword = async (
 export const validateName = async (name: any): Promise<string | undefined> => {
   let regex = /^[a-zA-Z]+$/
   let result = name.match(regex)
-  if (!result) {
-    return 'Only alphabets allowed.'
-  } else if (!name) {
+    if (!name) {
     return 'First Name is required.'
   } else if (!isNaN(name)) {
     return `First Name should contain alphabets only.`
@@ -78,6 +76,8 @@ export const validateName = async (name: any): Promise<string | undefined> => {
     return `First Name must be at least 3 characters long.`
   } else if (name.length > 12) {
     return `First Name must be less than 12 characters.`
+  } else if (!result) {
+    return 'Only alphabets allowed.'
   }
 }
 
@@ -86,9 +86,7 @@ export const validateLastName = async (
 ): Promise<string | undefined> => {
   let regex = /^[a-zA-Z]+$/
   let result = name.match(regex)
-  if (!result) {
-    return 'Only alphabets allowed.'
-  } else if (!name) {
+  if (!name) {
     return 'Last Name is required.'
   } else if (!isNaN(name)) {
     return `Last Name must be in Alphabets.`
@@ -96,6 +94,8 @@ export const validateLastName = async (
     return `Last Name must be at least 3 characters long.`
   } else if (name.length > 12) {
     return `Last Name must be less than 12 characters.`
+  } if (!result) {
+    return 'Only alphabets allowed.'
   }
 }
 export const validateUsername = async (
