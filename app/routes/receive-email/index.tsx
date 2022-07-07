@@ -6,6 +6,7 @@ import { sendResetPasswordLink } from '~/services/password.service.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
+import { createUserSession } from '~/services/auth.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -19,9 +20,12 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
+  const user = await findUserByEmail(email)
 
-  const sentLink = await sendResetPasswordLink(email, url)
-  return redirect('/confirmforgotpassword')
+  if (user) {
+    await sendResetPasswordLink(email, url)
+  }
+  return await createUserSession(user?.id, '/confirmforgotpassword')
 }
 
 export default function Forgotpassword() {
@@ -37,10 +41,10 @@ export default function Forgotpassword() {
             <h2 className='mt-6 text-center text-3xl font-[750] text-gray-900'>
               Receive Confirmation Email
             </h2>
-            </div>
-            <p className='mt-5 flex items-center justify-end text-base text-gray-400'>
-              Please enter your email address to receive reset password link
-            </p>
+          </div>
+          <p className='mt-5 flex items-center justify-end text-base text-gray-400'>
+            Please enter your email address to receive reset password link
+          </p>
           <div className='max-w-md w-full space-y-8'>
             <div className='mt-8 space-y-6'>
               <div className='rounded-md shadow-sm -space-y-px'>

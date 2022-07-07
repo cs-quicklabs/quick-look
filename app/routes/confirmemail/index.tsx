@@ -10,11 +10,11 @@ export default function confirmEmail() {
         <div className='w-2/5 h-auto shadow-sm shadow-gray-300 mt-12 p-4'>
           <div className='flex flex-col gap-4 p-auto'>
             <h1 className='text-lg font-semibold '>Check your Inbox</h1>
-            <p>
+            <p className='text-gray-500'>
               An confirmation email has been sent to you on your specified email
               Id. Please check your email and click on email confirmation link.
-              You should be able to login into your account
-               after confirming your email.{' '}
+              You should be able to login into your account after confirming
+              your email.{' '}
             </p>
             <a
               href='/login'

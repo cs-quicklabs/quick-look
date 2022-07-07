@@ -110,8 +110,8 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm font-inter'>
-        <div className='sm:mx-auto sm:w-full sm:max-w-md'>
+      <div className='h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
+        <div className='sm:mx-auto sm:w-full sm:max-w-md bg-gray-50'>
           <img src={logo} alt='' className='mx-auto h-20 w-auto' />
           <h2 className='mt-4 text-center text-3xl font-[750] text-gray-900'>
             Create new account
@@ -125,9 +125,9 @@ export default function SignUp() {
             </Link>
           </p>
         </div>
-        <div className='mt-4 sm:mx-auto sm:w-full sm:max-w-md'>
-          <div className='bg-white py-8 px-4 sm:rounded-lg sm:px-10'>
-            <Form className='space-y-4' method='post' noValidate>
+        <div className='mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-gray-50'>
+          <div className=' py-8 px-4 sm:rounded-lg sm:px-10 bg-gray-50'>
+            <Form className='space-y-4 bg-gray-50' method='post' noValidate>
               <div className='mt-1 grid grid-cols-2 gap-2'>
                 <div>
                   <label>First Name</label>

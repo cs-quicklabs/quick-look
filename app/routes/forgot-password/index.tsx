@@ -22,7 +22,7 @@ export const action: ActionFunction = async ({ request }) => {
   }
   const user = await findUserByEmail(email)
 
-  if(user){
+  if (user) {
     await sendResetPasswordLink(email, url)
   }
   return await createUserSession(user?.id, '/confirmforgotpassword')
@@ -35,22 +35,23 @@ export default function Forgotpassword() {
   return (
     <>
       <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
-        <div >
+        <div>
           <div className='max-w-md w-full space-y-8'>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />
-            <h2 className='mt-6 text-center text-3xl font-[750] text-gray-900'>
+            <h2 className='mt-6 text-center text-3xl font-[800] text-gray-900'>
               Forgot Password?
             </h2>
-            </div>
-            <p className='mt-5 flex items-center justify-start text-base text-gray-400'>
-              Please enter your email address to receive reset password link
-            </p>
+          </div>
+          <p className='mt-5 flex items-center justify-start text-gray-500 '>
+            Please enter your email address to receive reset
+            <br /> password link
+          </p>
           <div className='max-w-md w-full space-y-8'>
             <div className='mt-8 space-y-6'>
-              <div className='rounded-md shadow-sm -space-y-px'>
+              <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
-                    <label>
+                    <label className='font-medium'>
                       Email address
                       <input
                         value={val}
