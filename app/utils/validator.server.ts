@@ -21,8 +21,8 @@ export const validateSignupEmail = async (email: string) => {
   if (!email) {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return 'Invalid emaill address.'
-  } else if (user && email) {
+    return 'Invalid email address.'
+  } else if (user && user.email === email) {
     return 'Email already exists.'
   }
 }
