@@ -11,17 +11,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   const verified = await verifyResetPasswordLink(params.token as string, user?.id as string)
 
   if (verified) {
-    const deleted = await deletePasswordResetLink(user?.id as string)
-
-    if (!deleted) {
-      throw json(
-        {
-          error: `You Cannot Use the reset passsword link`,
-        },
-        { status: 400 }
-      )
-    }
-
     return await createUserSession(user?.id as string, ' /password')
   }
   return null
