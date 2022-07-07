@@ -1,22 +1,5 @@
-// import { Form, useSubmit } from '@remix-run/react'
-
-// import { ActionFunction, LoaderFunction, redirect } from '@remix-run/node'
-// import { useFormAction } from '@remix-run/react'
-// import { logout } from '~/services/auth.service.server'
-// import { useActionData } from '@remix-run/react'
-
-// export const action: ActionFunction = async ({ request }) => {
-//   console.log('FOrmdata', request)
-
-//   return logout(request)
-// }
-
 export default function Modal({ open, children, onClose }: any) {
-  // const submit = useSubmit()
-  // function handleChange(event: any) {
-  //   submit(null, { method: 'post', action: '/logout' })
-  // }
-  // const logout = useActionData()
+
   if (!open) return null
   return (
     <>
@@ -48,11 +31,7 @@ export default function Modal({ open, children, onClose }: any) {
               <div className='flex gap-8 justify-center items-center'>
                 <form method='POST' action='/logout'>
                   <button
-                    // href='/'
-                    // eslint-disable-next-line react-hooks/rules-of-hooks
-                    // formAction={useFormAction(logout)}
                     type='submit'
-                    // formMethod='post'
                     className='text-gray-500 bg-white hover:bg-indigo-400 hover:text-gray-900  focus:outline-none  font-medium rounded-lg text-sm inline-flex items-center px-3 py-1.5 text-center mr-2'
                   >
                     Yes
