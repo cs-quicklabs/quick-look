@@ -14,29 +14,6 @@ export default function Refund() {
                 <div className='h-full relative '>
                   <div className='absolute inset-0 border-gray-200 rounded-lg '>
                     <div className='flex-1 flex justify-center lg:justify-end '>
-                      {/* <div className='max-w-lg w-full lg:max-w-xs'>
-                          <label htmlFor='search' className='sr-only'>
-                            Search
-                          </label>
-                          <div className='relative text-gray-400 focus-within:text-gray-600'>
-                            <input
-                              id='search'
-                              className='block w-full bg-white py-2 pl-2 pr-3 border border-solid border-gray-300 rounded-md leading-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white focus:border-white sm:text-sm'
-                              placeholder='Search'
-                              type='text'
-                              name='search'
-                            />
-                            <button
-                              type='submit'
-                              className='absolute inset-y-0 right-2 pl-3 flex items-center'
-                            >
-                              <SearchIcon
-                                className='h-5 w-5'
-                                aria-hidden='true'
-                              />
-                            </button>
-                          </div>
-                        </div> */}
                     </div>
                     <div className='h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0 '>
                       <div className='h-full md:relative -top-16 lg:top-auto'>

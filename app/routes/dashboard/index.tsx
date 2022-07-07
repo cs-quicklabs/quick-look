@@ -28,16 +28,8 @@ export default function Dashboard() {
               </div>
             </div>
             <div className='hidden md:flex md:items-center md:space-x-2'>
-              {/*               <button
-                
-                className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center'
-              >
-
-              </button> */}
-
               <button
                 type='submit'
-                // onChange={() => handleChange()}
                 onClick={() => setIsOpen(true)}
                 className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center'
               >
