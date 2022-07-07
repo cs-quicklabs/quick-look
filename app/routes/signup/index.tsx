@@ -90,7 +90,7 @@ export default function SignUp() {
           </p>
         </div>
         <div className='mt-4 sm:mx-auto sm:w-full sm:max-w-md bg-gray-50'>
-          <div className='py-8 px-4 sm:rounded-lg sm:px-10 bg-gray-50'>
+          <div className=' py-8 px-4 sm:rounded-lg sm:px-10 bg-gray-50'>
             <Form className='space-y-4 bg-gray-50' method='post' noValidate>
               <div className='mt-1 grid grid-cols-2 gap-2'>
                 <div>
