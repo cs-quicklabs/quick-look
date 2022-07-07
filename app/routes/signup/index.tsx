@@ -1,5 +1,5 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { User } from '@prisma/client'
+
 import { ActionFunction, json } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 import { createUserSession, register } from '~/services/auth.service.server'
