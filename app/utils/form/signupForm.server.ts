@@ -1,5 +1,3 @@
-import { RegisterForm } from "~/types/regirsterForm.server";
-
 export async function SignUpFormGenerator(request: Request) {
     const form = await request.formData()
 
