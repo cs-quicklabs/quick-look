@@ -71,7 +71,7 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
-
+  
   if (!name) {
     return 'First Name is required.'
   } else if (!notContainsWhitespace){
