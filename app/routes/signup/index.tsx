@@ -1,19 +1,15 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { User } from '@prisma/client'
 import { ActionFunction, json } from '@remix-run/node'
-import { Formik } from 'formik'
-
 import { Link } from 'react-router-dom'
-import * as Yup from 'yup'
 import { createUserSession, register } from '~/services/auth.service.server'
 import { sendMail } from '~/services/mail.service.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
   validateComfirmPassword,
-  validateEmail,
+  validateFirstName,
   validateLastName,
-  validateName,
   validatePassword,
   validateSignupEmail,
   validateUsername,
@@ -24,7 +20,7 @@ import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 
 export const action: ActionFunction = async ({ request }) => {
-  let sentMail
+  let sentMail;
 
   const form = await request.formData()
   let firstname = form.get('firstName') as string
@@ -39,7 +35,7 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateSignupEmail(email),
     password: await validatePassword(password),
-    firstname: await validateName(firstname),
+    firstname: await validateFirstName(firstname),
     lastname: await validateLastName(lastname),
     username: await validateUsername(username),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),

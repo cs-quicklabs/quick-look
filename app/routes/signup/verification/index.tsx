@@ -12,7 +12,8 @@ import { createUserVerificationToken } from '~/services/userVerification.service
 import {
   validateComfirmPassword,
   validateEmail,
-  validateName,
+  validateFirstName,
+  validateLastName,
   validatePassword,
   validateUsername,
 } from '~/utils/validator.server'
@@ -39,8 +40,8 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateEmail(email),
     password: await validatePassword(password),
-    firstname: await validateName(firstname),
-    lastname: await validateName(lastname),
+    firstname: await validateFirstName(firstname),
+    lastname: await validateLastName(lastname),
     username: await validateUsername(username),
     confirmPassword: await validateComfirmPassword(password, confirmPassword)
   }
