@@ -84,25 +84,50 @@ export default function passwordchangesuccess() {
   return (
     <>
       <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
-        <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-2/7'>
-          <svg
-            width='16'
-            height='16'
-            viewBox='0 0 16 16'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+        {actionData?.errors['checkIncorrectCredentials'] ? (
+          <div
+            className={`flex gap-4 mb-8 items-center justify-center  rounded-md py-2  ${
+              (actionData?.errors['checkIncorrectCredentials'] &&
+                actionData?.errors['email'] == null) ||
+              undefined
+                ? 'bg-red-50'
+                : ''
+            }`}
           >
-            <path
-              fill-rule='evenodd'
-              clip-rule='evenodd'
-              d='M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM11.7071 6.70711C12.0976 6.31658 12.0976 5.68342 11.7071 5.29289C11.3166 4.90237 10.6834 4.90237 10.2929 5.29289L7 8.58579L5.70711 7.29289C5.31658 6.90237 4.68342 6.90237 4.29289 7.29289C3.90237 7.68342 3.90237 8.31658 4.29289 8.70711L6.29289 10.7071C6.68342 11.0976 7.31658 11.0976 7.70711 10.7071L11.7071 6.70711Z'
-              fill='#34D399'
-            />
-          </svg>
-          <p className='text-#065F46 font-normal'>
-            Your Password has been updated successfully.
-          </p>
-        </div>
+            {(actionData?.errors['checkIncorrectCredentials'] &&
+              actionData?.errors['email'] == null) ||
+            undefined ? (
+              <>
+                <img src={crossimg} alt='' className='h-4 w-4' />
+                <p className='text-#065F46 font-normal w-9/12'>
+                  {actionData?.errors['checkIncorrectCredentials']}
+                </p>
+              </>
+            ) : (
+              <span></span>
+            )}
+          </div>
+        ) : (
+          <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-2/7'>
+            <svg
+              width='16'
+              height='16'
+              viewBox='0 0 16 16'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                fill-rule='evenodd'
+                clip-rule='evenodd'
+                d='M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM11.7071 6.70711C12.0976 6.31658 12.0976 5.68342 11.7071 5.29289C11.3166 4.90237 10.6834 4.90237 10.2929 5.29289L7 8.58579L5.70711 7.29289C5.31658 6.90237 4.68342 6.90237 4.29289 7.29289C3.90237 7.68342 3.90237 8.31658 4.29289 8.70711L6.29289 10.7071C6.68342 11.0976 7.31658 11.0976 7.70711 10.7071L11.7071 6.70711Z'
+                fill='#34D399'
+              />
+            </svg>
+            <p className='text-#065F46 font-normal'>
+              Your Password has been updated successfully.
+            </p>
+          </div>
+        )}
         <div className='max-w-md w-full space-y-8'>
           <div>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />
