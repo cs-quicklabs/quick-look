@@ -1,13 +1,30 @@
-export default function Modal({ open, children, onClose }: any) {
-  if (!open) return null
+// import { Form, useSubmit } from '@remix-run/react'
 
+// import { ActionFunction, LoaderFunction, redirect } from '@remix-run/node'
+// import { useFormAction } from '@remix-run/react'
+// import { logout } from '~/services/auth.service.server'
+// import { useActionData } from '@remix-run/react'
+
+// export const action: ActionFunction = async ({ request }) => {
+//   console.log('FOrmdata', request)
+
+//   return logout(request)
+// }
+
+export default function Modal({ open, children, onClose }: any) {
+  // const submit = useSubmit()
+  // function handleChange(event: any) {
+  //   submit(null, { method: 'post', action: '/logout' })
+  // }
+  // const logout = useActionData()
+  if (!open) return null
   return (
     <>
       <div className='flex justify-center overflow-y-auto overflow-x-hidden fixed pt-48 z-50 md:inset-0 h-modal md:h-full '>
         <div className='relative p-4 w-full max-w-md h-full md:h-auto '>
           <div className='relative rounded-lg shadow-2xl'>
-            <a
-              href='/dashboard'
+            <button
+              onClick={onClose}
               type='button'
               className='absolute top-3 right-0 mr-1  bg-transparent hover:bg-white hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
             >
@@ -23,26 +40,32 @@ export default function Modal({ open, children, onClose }: any) {
                   clip-rule='evenodd'
                 ></path>
               </svg>
-            </a>
+            </button>
             <div className='p-6 text-center '>
               <h3 className='mb-5 text-lg font-normal '>
                 Are you sure you want to sign out?
               </h3>
-
-              <a
-                href='/'
-                type='button'
-                className='text-gray-500 bg-white hover:bg-indigo-400 hover:text-gray-900  focus:outline-none  font-medium rounded-lg text-sm inline-flex items-center px-3 py-1.5 text-center mr-2'
-              >
-                Yes
-              </a>
-              <a
-                href='/dashboard'
-                type='button'
-                className='text-gray-500 bg-white focus:outline-none rounded-lg border hover:bg-indigo-400 border-gray-200 text-sm font-medium px-3 py-1.5 hover:text-gray-900 focus:z-10 '
-              >
-                No
-              </a>
+              <div className='flex gap-8 justify-center items-center'>
+                <form method='POST' action='/logout'>
+                  <button
+                    // href='/'
+                    // eslint-disable-next-line react-hooks/rules-of-hooks
+                    // formAction={useFormAction(logout)}
+                    type='submit'
+                    // formMethod='post'
+                    className='text-gray-500 bg-white hover:bg-indigo-400 hover:text-gray-900  focus:outline-none  font-medium rounded-lg text-sm inline-flex items-center px-3 py-1.5 text-center mr-2'
+                  >
+                    Yes
+                  </button>
+                </form>
+                <button
+                  onClick={onClose}
+                  type='button'
+                  className='text-gray-500 bg-white focus:outline-none rounded-lg border hover:bg-indigo-400 border-gray-200 text-sm font-medium px-3 py-1.5 hover:text-gray-900 focus:z-10 '
+                >
+                  No
+                </button>
+              </div>
               {children}
             </div>
           </div>
