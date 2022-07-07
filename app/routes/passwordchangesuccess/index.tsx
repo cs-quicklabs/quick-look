@@ -86,7 +86,7 @@ export default function passwordchangesuccess() {
       <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
         {actionData?.errors['checkIncorrectCredentials'] ? (
           <div
-            className={`flex gap-4 mb-8 items-center justify-center  rounded-md py-2  ${
+            className={`gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center justify-center px-4 sm:px-6 lg:px-8  ${
               (actionData?.errors['checkIncorrectCredentials'] &&
                 actionData?.errors['email'] == null) ||
               undefined
@@ -99,7 +99,7 @@ export default function passwordchangesuccess() {
             undefined ? (
               <>
                 <img src={crossimg} alt='' className='h-4 w-4' />
-                <p className='text-#065F46 font-normal w-9/12'>
+                <p className='text-red-800 font-medium '>
                   {actionData?.errors['checkIncorrectCredentials']}
                 </p>
               </>
@@ -108,7 +108,7 @@ export default function passwordchangesuccess() {
             )}
           </div>
         ) : (
-          <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-2/7'>
+          <div className='w-[28.5rem] flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-2/7'>
             <svg
               width='16'
               height='16'
@@ -123,7 +123,7 @@ export default function passwordchangesuccess() {
                 fill='#34D399'
               />
             </svg>
-            <p className='text-#065F46 font-normal'>
+            <p className='text-green-800 font-medium'>
               Your Password has been updated successfully.
             </p>
           </div>
@@ -137,7 +137,7 @@ export default function passwordchangesuccess() {
           </div>
           <div>
             <div className='mt-8 space-y-6'>
-              <div className='rounded-md shadow-sm -space-y-px'>
+              <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
                     <div>
