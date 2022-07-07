@@ -83,7 +83,7 @@ export default function SuccessLogin() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
+      <div className='h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
         {actionData?.errors['checkIncorrectCredentials'] ? (
           <div
             className={` flex gap-4 mb-8 items-center justify-center rounded-md px-6 py-2 w-[28.5rem] ${

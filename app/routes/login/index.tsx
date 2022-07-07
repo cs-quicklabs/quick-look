@@ -85,7 +85,7 @@ export default function Login() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
+      <div className='h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
         <div
           className={` gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm ${
             (actionData?.errors['checkIncorrectCredentials'] &&
