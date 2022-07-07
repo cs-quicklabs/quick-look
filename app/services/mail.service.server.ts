@@ -39,7 +39,7 @@ export async function verifyEmail(token: string, userId: string) {
             }
         })
         return true
-    } else {
+    } else { // redirect to error page token invalid 
         throw json({
             success: false,
             message: 'Verification Token Invalid'
