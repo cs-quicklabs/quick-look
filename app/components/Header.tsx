@@ -62,7 +62,6 @@ function MobileNavigation() {
                 className='absolute inset-x-0 top-full mt-4 origin-top space-y-4 rounded-2xl bg-white p-6 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5'
               >
                 <li>
-                  {/* <Link to='#features'> */}
                   <a
                     href='#features'
                     className='block w-full'
@@ -70,10 +69,8 @@ function MobileNavigation() {
                   >
                     Features
                   </a>
-                  {/* </Link> */}
                 </li>
                 <li>
-                  {/* <Link to='#testimonials'> */}
                   <a
                     href='#testimonials'
                     className='block w-full'
@@ -81,10 +78,8 @@ function MobileNavigation() {
                   >
                     Testimonials
                   </a>
-                  {/* </Link> */}
                 </li>
                 <li>
-                  {/* <Link to='#pricing'> */}
                   <a
                     href='#pricing'
                     className='block w-full'
@@ -92,7 +87,6 @@ function MobileNavigation() {
                   >
                     Pricing
                   </a>
-                  {/* </Link> */}
                 </li>
                 <li className='border-t border-slate-300/40 pt-4  font-medium'>
                   <a href='/login'>Login </a>
