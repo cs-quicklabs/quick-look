@@ -36,13 +36,15 @@ function Document({ children }: any) {
           name='description'
           content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
         />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
         <link
-          href='https://fonts.googleapis.com/css?family=Inter'
+          href='https://fonts.googleapis.com/css2?family=Inter&display=swap'
           rel='stylesheet'
-        ></link>
+        />
         <Links />
       </head>
-      <body className='flex h-full flex-col'>
+      <body className='flex h-full flex-col '>
         {children}
         <LiveReload />
       </body>

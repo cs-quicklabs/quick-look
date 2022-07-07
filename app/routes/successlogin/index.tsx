@@ -83,10 +83,10 @@ export default function SuccessLogin() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16'>
+      <div className='h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
         {actionData?.errors['checkIncorrectCredentials'] ? (
           <div
-            className={`flex gap-4 mb-8 items-center justify-center  rounded-md py-2  ${
+            className={` flex gap-4 mb-8 items-center justify-center rounded-md px-6 py-2 w-[28.5rem] ${
               (actionData?.errors['checkIncorrectCredentials'] &&
                 actionData?.errors['email'] == null) ||
               undefined
@@ -99,7 +99,7 @@ export default function SuccessLogin() {
             undefined ? (
               <>
                 <img src={crossimg} alt='' className='h-4 w-4' />
-                <p className='text-#065F46 font-normal w-9/12'>
+                <p className='text-red-800 font-medium '>
                   {actionData?.errors['checkIncorrectCredentials']}
                 </p>
               </>
@@ -108,7 +108,7 @@ export default function SuccessLogin() {
             )}
           </div>
         ) : (
-          <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-2/7'>
+          <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-[28.5rem]'>
             <svg
               width='16'
               height='16'
@@ -123,7 +123,7 @@ export default function SuccessLogin() {
                 fill='#34D399'
               />
             </svg>
-            <p className='text-#065F46 font-normal'>
+            <p className='text-green-800 font-medium'>
               Your email has been confirmed. Please login to
               <br /> continue.
             </p>
@@ -138,7 +138,7 @@ export default function SuccessLogin() {
           </div>
           <div>
             <div className='mt-8 space-y-6'>
-              <div className='rounded-md shadow-sm -space-y-px'>
+              <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
                     <div>
