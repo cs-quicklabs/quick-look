@@ -2,8 +2,9 @@ import { json, createCookieSessionStorage, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import { LoginForm } from '~/types/loginForm.server'
 import { RegisterForm } from '~/types/regirsterForm.server'
-import { createUser } from './user.service.serevr'
+import { createUser, findUserByEmail } from './user.service.serevr'
 import bcrypt from 'bcryptjs'
+import { ServerResponse } from '~/types/response.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 if (!sessionSecret) {
@@ -32,29 +33,31 @@ export async function createUserSession(userId: string, redirectTo: string) {
   })
 }
 
-export async function register(user: RegisterForm) {
-  const exists = await db.user.count({
-    where: {
-      email: user.email,
-    },
-  })
+export async function register(user: RegisterForm): Promise<ServerResponse> {
+  const exists = await findUserByEmail(user.email);
   if (exists) {
     throw json(
-      { success: false, message: 'User Already Exists' },
+      { success: false, message: 'User Already Exists.' },
       { status: 400 }
     )
   }
+
   const newUser = await createUser(user)
   if (!newUser) {
     throw json(
       {
         error: `Something went wrong trying to create a new user.`,
-        fields: { email: user.email, password: user.password },
+        fields: { email: user.email },
       },
-      { status: 400 }
+      { status: 500 }
     )
   }
-  return json({ success: true, id: newUser.id })
+
+  return {
+    success: true,
+    message: 'User created Successfully',
+    data: { userId: newUser.id }
+  }
 }
 
 export async function login(loginForm: LoginForm) {

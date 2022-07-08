@@ -34,24 +34,23 @@ export default function Forgotpassword() {
 
   return (
     <>
-      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
+      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm bg-gray-50'>
         <div>
           <div className='max-w-md w-full space-y-8'>
-            <img src={logo} alt='' className='mx-auto h-20 w-auto' />
-            <h2 className='mt-6 text-center text-3xl font-[800] text-gray-900'>
+            <img src={logo} alt='' className='mt-44 mx-auto h-20 w-20' />
+            <h2 className='mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900'>
               Forgot Password?
             </h2>
-          </div>
-          <p className='mt-5 flex items-center justify-start text-gray-500 '>
-            Please enter your email address to receive reset
-            <br /> password link
-          </p>
-          <div className='max-w-md w-full space-y-8'>
-            <div className='mt-8 space-y-6'>
-              <div className='rounded-md -space-y-px'>
+            </div>    
+          <div className='max-w-md w-full space-y-8 font-inter'>
+            <div className='space-y-6'>
+              <p className='mt-4 flex items-center w-96 h-10 justify-start text-sm leading-5 font-normal text-gray-500'>
+                Please enter your email address to receive reset password link
+              </p>
+              <div className='rounded-md shadow-sm -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
-                    <label className='font-medium'>
+                    <label className='w-24 h-5 text-sm leading-5 font-medium'>
                       Email address
                       <input
                         value={val}

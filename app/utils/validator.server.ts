@@ -1,4 +1,3 @@
-import { json } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import bcrypt from 'bcryptjs'
 
@@ -18,11 +17,12 @@ export const validateSignupEmail = async (email: string) => {
       email,
     },
   })
+
   if (!email) {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return 'Invalid emaill address.'
-  } else if (user && email) {
+    return 'Invalid email address.'
+  } else if (user && user.email === email) {
     return 'Email already exists.'
   }
 }
@@ -33,7 +33,7 @@ export const validatePassword = async (
   if (!password) {
     return 'Password is required.'
   } else if (password.length > 18) {
-    return 'Password can not be bigger than 18 characters.'
+    return 'Password must not be more than 18 characters.'
   } else if (typeof password !== 'string' || password.length < 5) {
     return `Passwords must be at least 5 characters long.`
   }
@@ -65,18 +65,24 @@ export const validateComfirmPassword = async (
   }
 }
 
-export const validateName = async (name: any): Promise<string | undefined> => {
-  let regex = /^[a-zA-Z]+$/
-  let result = name.match(regex)
-    if (!name) {
+export const validateFirstName = async (name: any): Promise<string | undefined> => {
+  let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
+  let whiteSpaceRegex = /[^-\s]/
+
+  let notContainsSymbols = name.match(onlyAlphabetsRegex)
+  let notContainsWhitespace = name.match(whiteSpaceRegex)
+  
+  if (!name) {
     return 'First Name is required.'
+  } else if (!notContainsWhitespace){
+    return 'Whitespaces are not allowed.'
   } else if (!isNaN(name)) {
     return `First Name should contain alphabets only.`
   } else if (name.length < 3) {
     return `First Name must be at least 3 characters long.`
   } else if (name.length > 12) {
     return `First Name must be less than 12 characters.`
-  } else if (!result) {
+  } else if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
   }
 }
@@ -84,35 +90,44 @@ export const validateName = async (name: any): Promise<string | undefined> => {
 export const validateLastName = async (
   name: any
 ): Promise<string | undefined> => {
-  let regex = /^[a-zA-Z]+$/
-  let result = name.match(regex)
+  let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
+  let whiteSpaceRegex = /[^-\s]/
+
+  let notContainsSymbols = name.match(onlyAlphabetsRegex)
+  let notContainsWhitespace = name.match(whiteSpaceRegex)
+
   if (!name) {
     return 'Last Name is required.'
-  } else if (!isNaN(name)) {
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  }else if (!isNaN(name)) {
     return `Last Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `Last Name must be at least 3 characters long.`
   } else if (name.length > 12) {
     return `Last Name must be less than 12 characters.`
-  } if (!result) {
+  } if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
   }
 }
 export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
-  let regex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
-  let result = username.match(regex)
+
+  let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let notcontainSymbol = username.match(notcontainSymbolsRegex)
+
   const usernameExist = await db.user.count({
     where: {
       username,
     },
   })
+
   if ( !username ) {
     return 'Username is required.'
   } else if (username.length > 20) {
     return 'Id can not be bigger than 20 characters.'
-  } else if (!result) {
+  } else if (!notcontainSymbol) {
     return 'Only alphabets, number and - sign is allowed.'
   } else if (usernameExist) {
     return 'This ID has already been taken. Please choose another.'
@@ -122,7 +137,3 @@ export const validateUsername = async (
   return
 }
 
-export const validateLoginCredentials = async (
-  email: string,
-  password: string
-) => {}

@@ -68,13 +68,21 @@ export async function createPasswordResetLink(userId: string, token: string) {
 
 export async function deletePasswordResetLink(userId: string){
   
-   const linkDeleted =  await db.resetPasswordLink.delete({
+   const existsResetPasswordToken =  await db.resetPasswordLink.findFirst({
         where: {
             userId
         }
     });
-    if(!linkDeleted) return false;
-    return true;
+
+    if(existsResetPasswordToken) {
+      await db.userVerification.delete({
+          where: {
+              userId
+          }
+      })
+      return true
+  }
+    return false;
 }
 
 export async function verifyResetPasswordLink(token: string, userId: string) {
@@ -84,6 +92,9 @@ export async function verifyResetPasswordLink(token: string, userId: string) {
           userId,
       }
   });
+  if(!resetPasswordLink){
+    // redirect to error page 
+  }
   const isSameToken = await bcrypt.compare(token, resetPasswordLink?.uniqueString as string);
   if(isSameToken){            
       if (resetPasswordLink && (await differenceInHours(new Date(Date.now()), resetPasswordLink?.expiresAt) <= 6)){
