@@ -4,7 +4,7 @@ export default function confirmEmail() {
     <>
       <div className='flex flex-col items-center justify-center mt-60'>
         <div className='flex flex-col '>
-          <img src={logo} alt='' className='h-auto w-20 mx-auto' />
+          <img src={logo} alt='' className='h-20 w-20 mx-auto' />
           <p className='text-3xl text-center font-black'>Confirm your email</p>
         </div>
         <div className='w-2/5 h-auto shadow-sm shadow-gray-300 mt-12 p-4'>

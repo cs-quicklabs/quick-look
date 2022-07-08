@@ -110,29 +110,29 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm font-inter'>
+      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-          <img src={logo} alt='' className='mx-auto h-20 w-auto' />
-          <h2 className='mt-4 text-center text-3xl font-[750] text-gray-900'>
+          <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
+          <h2 className='w-full font-inter h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
             Create new account
           </h2>
           <p className='mt-2 text-center text-sm'>
             <Link
               to='#'
-              className='font-medium text-indigo-600 hover:text-indigo-500'
+              className='font-medium text-indigo-600 leading-5 w-80 h-5 hover:text-indigo-500'
             >
               No credit card required. Starting with free plan.
             </Link>
           </p>
         </div>
-        <div className='mt-4 sm:mx-auto sm:w-full sm:max-w-md'>
-          <div className='bg-white py-8 px-4 sm:rounded-lg sm:px-10'>
+        <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-md'>
+          <div className='bg-gray-50 sm:px-10'>
             <Form className='space-y-4' method='post' noValidate>
-              <div className='mt-1 grid grid-cols-2 gap-2'>
+              <div className='grid grid-cols-2 gap-2'>
                 <div>
-                  <label>First Name</label>
+                  <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>First Name</label>
                   <input
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                    className='flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
                     type='firstName'
                     name='firstName'
                     value={val.firstName}
@@ -148,9 +148,9 @@ export default function SignUp() {
                   </div>
                 </div>
                 <div>
-                  <label>Last Name</label>
+                  <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>Last Name</label>
                   <input
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                    className='flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
                     type='lastName'
                     name='lastName'
                     value={val.lastName}
@@ -167,8 +167,8 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label>Choose your Profile ID</label>
-                <div className='flex  appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Choose your Profile ID</label>
+                <div className='flex appearance-none w-full h-10 px-1 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'>
                   <input
                     type='text'
                     value='quicklook.me/'
@@ -193,9 +193,9 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label>Email address</label>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Email address</label>
                 <input
-                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  className='box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
                   type='email'
                   name='email'
                   value={val.email}
@@ -211,9 +211,9 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label>Password</label>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Password</label>
                 <input
-                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  className='box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
                   type='password'
                   name='password'
                   value={val.password}
@@ -229,9 +229,9 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label>Confirm Password</label>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Confirm Password</label>
                 <input
-                  className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                  className='box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
                   type='password'
                   name='confirmPassword'
                   value={val.confirmPassword}
@@ -246,9 +246,9 @@ export default function SignUp() {
                   {actionData?.errors['isPasswordSame']}
                 </div>
               </div>
-              <div className='mt-5'>
+              <div className=''>
                 <button
-                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 `}
+                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white leading-5 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-8`}
                 >
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon

@@ -37,16 +37,16 @@ export default function Forgotpassword() {
       <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
         <div >
           <div className='max-w-md w-full space-y-8'>
-            <img src={logo} alt='' className='mx-auto h-20 w-auto' />
-            <h2 className='mt-6 text-center text-3xl font-[750] text-gray-900'>
+            <img src={logo} alt='' className='mx-auto h-20 w-20' />
+            <h2 className='mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900'>
               Forgot Password?
             </h2>
-            </div>
-            <p className='mt-5 flex items-center justify-start text-base text-gray-400'>
-              Please enter your email address to receive reset password link
-            </p>
+            </div>    
           <div className='max-w-md w-full space-y-8'>
             <div className='mt-8 space-y-6'>
+              <p className='mt-5 flex items-center justify-start text-base text-gray-400'>
+                Please enter your email address to receive reset password link
+              </p>
               <div className='rounded-md shadow-sm -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
