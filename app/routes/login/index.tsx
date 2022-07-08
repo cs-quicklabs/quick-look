@@ -27,6 +27,7 @@ import {
   deleteUserVerificationToken,
 } from '~/services/userVerification.service.server'
 import { db } from '~/database/connection.server'
+import toast, { Toaster } from 'react-hot-toast'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -81,11 +82,66 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Login() {
   const actionData = useActionData()
 
+  const notify = () =>
+    toast.custom((t: any) => (
+      <div
+        className={`${
+          t.visible ? 'animate-enter' : 'animate-leave'
+        } absolute max-w-md w-full bg-green-50 shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 top-[15rem] left-[44.5rem]`}
+      >
+        <div className='flex-1 w-0 p-4'>
+          <div className='flex items-center'>
+            <div className='flex-shrink-0 pt-0.5'>
+              <svg
+                width='16'
+                height='16'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  fill-rule='evenodd'
+                  clip-rule='evenodd'
+                  d='M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM11.7071 6.70711C12.0976 6.31658 12.0976 5.68342 11.7071 5.29289C11.3166 4.90237 10.6834 4.90237 10.2929 5.29289L7 8.58579L5.70711 7.29289C5.31658 6.90237 4.68342 6.90237 4.29289 7.29289C3.90237 7.68342 3.90237 8.31658 4.29289 8.70711L6.29289 10.7071C6.68342 11.0976 7.31658 11.0976 7.70711 10.7071L11.7071 6.70711Z'
+                  fill='#34D399'
+                />
+              </svg>
+            </div>
+            <div className='ml-3 flex-1'>
+              <p className='text-green-800 font-medium'>
+                Your email has been confirmed. Please login to continue.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className='flex relative'>
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className='w-full  p-4 flex items-center justify-center text-sm font-medium'
+          >
+            <svg
+              className='w-5 h-5 absolute top-2'
+              fill='currentColor'
+              viewBox='0 0 20 20'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                fill-rule='evenodd'
+                d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    ))
+
   const [val, setVal] = useState({ email: '', password: '' })
 
   return (
     <>
-      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm bg-gray-50'>
+      <div className='relative h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
+        {/* <button onClick={notify}>Make me a toast</button> */}
         <div
           className={` gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm ${
             (actionData?.errors['checkIncorrectCredentials'] &&
@@ -108,21 +164,21 @@ export default function Login() {
             <span></span>
           )}
         </div>
-        <div className='max-w-md w-full space-y-8 bg-gray-50 '>
+        <div className='max-w-md w-full space-y-8'>
           <div>
-            <img src={logo} alt='' className='ml-48 h-20 w-20 mt-32' />
-            <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
+            <img src={logo} alt='' className='mx-auto h-20 w-auto' />
+            <h2 className='mt-6 text-center text-3xl font-[800] text-gray-900'>
               Sign in to your account
             </h2>
           </div>
           <div>
-            <div className='mt-8 space-y-6 font-inter'>
+            <div className='mt-8 space-y-6'>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
                     <div>
                       <input
-                        className='flex items-center h-11 mt-16 shadow-sm rounded-b-none self-stretch appearance-none rounded-t-md text-gray-900 relative w-full px-2.5 py-3.5 border placeholder-gray-500 placeholder:w-28 placeholder:h-6 placeholder:leading-6 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+                        className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
                         name='email'
                         placeholder='Email address'
                       />
@@ -137,7 +193,7 @@ export default function Login() {
                     </div>
                     <div>
                       <input
-                        className='box-border flex items-center h-11 shadow-sm rounded-b-md self-stretch rounded-t-none appearance-none text-gray-900 relative w-full px-2.5 py-3.5 border placeholder-gray-500 placeholder:w-28 placeholder:h-6 placeholder:leading-6 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+                        className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
                         type='password'
                         name='password'
                         value={val.password}
@@ -160,21 +216,23 @@ export default function Login() {
                     </div>
                   </div>
                   <div className='flex items-center justify-between'>
-                    <div className='flex items-center mt-3.5 gap-2'>
+                    <div className='flex mt-3.5 items-center gap-2'>
                       <input
                         type='checkbox'
                         name='rememberMe'
                         style={{
                           borderColor: actionData?.errors['name'] && 'red',
                         }}
-                        className='h-4 w-4 text-gray-900 top-0.5 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm'
+                        className='h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm'
                       />
-                      <label htmlFor=''> Remember Me</label>
+                      <label htmlFor='' className='font-sm'>
+                        Remember me
+                      </label>
                     </div>
-                    <div>
+                    <div className='text-sm mt-3.5'>
                       <Link
                         to='/forgot-password'
-                        className='w-40 h-5 text-right leading-5 text-sm mt-3.5 font-medium text-indigo-600 hover:text-indigo-500'
+                        className='font-medium text-indigo-600 hover:text-indigo-500'
                       >
                         Forgot your password?
                       </Link>
@@ -183,7 +241,7 @@ export default function Login() {
                   <div>
                     <button
                       type='submit'
-                      className={`shadow-sm h-10 group relative w-full self-stretch order-2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 `}
+                      className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 `}
                     >
                       <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                         <LockClosedIcon
@@ -195,10 +253,10 @@ export default function Login() {
                       Sign in
                     </button>
                   </div>
-                  <p className='text-center text-sm'>
+                  <p className='mt-2 text-center text-sm'>
                     <Link
                       to='/receive-email'
-                      className='mt-9 w-60 h-5 leading-5 font-medium text-indigo-600 hover:text-indigo-500'
+                      className='font-medium text-indigo-600 hover:text-indigo-500'
                     >
                       Did not receive confirmation email?
                     </Link>
