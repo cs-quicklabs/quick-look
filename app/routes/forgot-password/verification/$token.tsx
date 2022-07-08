@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     if (!deleted) {
       throw json(
         {
-          error: `You Cannot Use the reset passsword link`,
+          error: `Provided reset password token is invalid. `,
         },
         { status: 400 }
       )
