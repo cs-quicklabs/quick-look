@@ -84,6 +84,9 @@ export async function verifyResetPasswordLink(token: string, userId: string) {
           userId,
       }
   });
+  if(!resetPasswordLink){
+    // redirect to error page 
+  }
   const isSameToken = await bcrypt.compare(token, resetPasswordLink?.uniqueString as string);
   if(isSameToken){            
       if (resetPasswordLink && (await differenceInHours(new Date(Date.now()), resetPasswordLink?.expiresAt) <= 6)){
