@@ -110,22 +110,22 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
+      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm bg-gray-50'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
-          <h2 className='w-full font-inter h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
+          <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
             Create new account
           </h2>
-          <p className='mt-2 text-center text-sm'>
+          <p className='mt-2 text-center text-sm font-inter'>
             <Link
               to='#'
-              className='font-medium text-indigo-600 leading-5 w-80 h-5 hover:text-indigo-500'
+              className='font-medium text-indigo-600 font-inter leading-5 w-80 h-5 hover:text-indigo-500'
             >
               No credit card required. Starting with free plan.
             </Link>
           </p>
         </div>
-        <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-md'>
+        <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-md font-inter'>
           <div className='bg-gray-50 sm:px-10'>
             <Form className='space-y-4' method='post' noValidate>
               <div className='grid grid-cols-2 gap-2'>

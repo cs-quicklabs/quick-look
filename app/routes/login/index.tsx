@@ -32,7 +32,7 @@ export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
   let email = form.get('email') as string
   let password = form.get('password') as string
-  let userData = await findUserByEmail(email);
+  let userData = await findUserByEmail(email)
   let url = request.url
   const generatedToken = uuidv4() as string
 
@@ -85,9 +85,9 @@ export default function Login() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
+      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm bg-gray-50'>
         <div
-          className={`flex gap-4 mb-8 items-center justify-center  rounded-md py-2  ${
+          className={` gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm ${
             (actionData?.errors['checkIncorrectCredentials'] &&
               actionData?.errors['email'] == null) ||
             undefined
@@ -100,7 +100,7 @@ export default function Login() {
           undefined ? (
             <>
               <img src={crossimg} alt='' className='h-4 w-4' />
-              <p className='text-#065F46 font-normal w-9/12'>
+              <p className='text-red-800 font-medium '>
                 {actionData?.errors['checkIncorrectCredentials']}
               </p>
             </>
@@ -108,15 +108,15 @@ export default function Login() {
             <span></span>
           )}
         </div>
-        <div className='max-w-md w-full space-y-8 bg-gray-50'>
+        <div className='max-w-md w-full space-y-8 bg-gray-50 '>
           <div>
-            <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
-            <h2 className='w-full font-inter h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
+            <img src={logo} alt='' className='ml-48 h-20 w-20 mt-32' />
+            <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
               Sign in to your account
             </h2>
           </div>
           <div>
-            <div className='mt-8 space-y-6'>
+            <div className='mt-8 space-y-6 font-inter'>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
