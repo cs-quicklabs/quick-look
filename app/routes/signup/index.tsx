@@ -21,7 +21,15 @@ import { ServerResponse } from '~/types/response.server'
 import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
 
 export const action: ActionFunction = async ({ request }) => {
-  const {firstname, lastname, email, password, username, confirmPassword, url} = await SignUpFormGenerator(request)
+  const {
+    firstname,
+    lastname,
+    email,
+    password,
+    username,
+    confirmPassword,
+    url,
+  } = await SignUpFormGenerator(request)
 
   const errors = {
     email: await validateSignupEmail(email),
@@ -42,7 +50,7 @@ export const action: ActionFunction = async ({ request }) => {
     )
   }
 
-  const registeredResponse : ServerResponse = await register({
+  const registeredResponse: ServerResponse = await register({
     firstname,
     lastname,
     username,
@@ -52,11 +60,17 @@ export const action: ActionFunction = async ({ request }) => {
   })
 
   const generatedToken = uuidv4() as string
-  let createVerificationToken =  await createUserVerificationToken(registeredResponse.data.userId as string, generatedToken)
-  if(createVerificationToken.success && registeredResponse.success){
+  let createVerificationToken = await createUserVerificationToken(
+    registeredResponse.data.userId as string,
+    generatedToken
+  )
+  if (createVerificationToken.success && registeredResponse.success) {
     await sendAccountVerificationMail(email, url, generatedToken)
   }
-  return createUserSession(registeredResponse.data.userId as string, '/confirmemail')
+  return createUserSession(
+    registeredResponse.data.userId as string,
+    '/confirmemail'
+  )
 }
 
 export default function SignUp() {
@@ -73,11 +87,11 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-sm bg-gray-50'>
+      <div className='h-screen flex flex-col sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
-          <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
-            Create new account
+          <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>
+            Create new Account
           </h2>
           <p className='mt-2 text-center text-sm font-inter'>
             <Link
@@ -93,9 +107,15 @@ export default function SignUp() {
             <Form className='space-y-4' method='post' noValidate>
               <div className='grid grid-cols-2 gap-2'>
                 <div>
-                  <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>First Name</label>
+                  <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
+                    First Name
+                  </label>
                   <input
-                    className='flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
+                    className={`flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['firstname']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
                     type='firstName'
                     name='firstName'
                     value={val.firstName}
@@ -111,9 +131,15 @@ export default function SignUp() {
                   </div>
                 </div>
                 <div>
-                  <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>Last Name</label>
+                  <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
+                    Last Name
+                  </label>
                   <input
-                    className='flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
+                    className={`flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['lastname']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
                     type='lastName'
                     name='lastName'
                     value={val.lastName}
@@ -130,13 +156,21 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Choose your Profile ID</label>
-                <div className='flex appearance-none w-full h-10 px-1 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
+                  Choose your Profile ID
+                </label>
+                <div
+                  className={`flex appearance-none w-full h-10 px-1 py-2 border bg-white border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                    actionData?.errors['username']
+                      ? 'border border-red-400'
+                      : ''
+                  }`}
+                >
                   <input
                     type='text'
                     value='quicklook.me/'
                     disabled
-                    className='w-24'
+                    className='w-24 bg-white '
                   />
                   <input
                     className='outline-none appearance-none w-full '
@@ -156,9 +190,13 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Email address</label>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
+                  Email address
+                </label>
                 <input
-                  className='box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
+                  className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                    actionData?.errors['email'] ? 'border border-red-400' : ''
+                  }`}
                   type='email'
                   name='email'
                   value={val.email}
@@ -174,9 +212,15 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Password</label>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
+                  Password
+                </label>
                 <input
-                  className='box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
+                  className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                    actionData?.errors['password']
+                      ? 'border border-red-400'
+                      : ''
+                  }`}
                   type='password'
                   name='password'
                   value={val.password}
@@ -192,9 +236,15 @@ export default function SignUp() {
                 </div>
               </div>
               <div>
-                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>Confirm Password</label>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
+                  Confirm Password
+                </label>
                 <input
-                  className='box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5'
+                  className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                    actionData?.errors['isPasswordSame']
+                      ? 'border border-red-400'
+                      : ''
+                  }`}
                   type='password'
                   name='confirmPassword'
                   value={val.confirmPassword}

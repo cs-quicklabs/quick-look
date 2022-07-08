@@ -83,67 +83,82 @@ export default function SuccessLogin() {
 
   return (
     <>
-      <div className='h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
-        {actionData?.errors['checkIncorrectCredentials'] ? (
-          <div
-            className={` flex gap-4 mb-8 items-center justify-center rounded-md px-6 py-2 w-[28.5rem] ${
-              (actionData?.errors['checkIncorrectCredentials'] &&
-                actionData?.errors['email'] == null) ||
-              undefined
-                ? 'bg-red-50'
-                : ''
-            }`}
-          >
-            {(actionData?.errors['checkIncorrectCredentials'] &&
-              actionData?.errors['email'] == null) ||
-            undefined ? (
-              <>
-                <img src={crossimg} alt='' className='h-4 w-4' />
-                <p className='text-red-800 font-medium '>
-                  {actionData?.errors['checkIncorrectCredentials']}
-                </p>
-              </>
-            ) : (
-              <span></span>
-            )}
-          </div>
-        ) : (
-          <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 w-[28.5rem]'>
-            <svg
-              width='16'
-              height='16'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
+      <div className='relative h-screen flex flex-col items-center justify-center  px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
+        <div className='max-w-md w-full space-y-8 bg-gray-50'>
+          {actionData?.errors['checkIncorrectCredentials'] ? (
+            <div
+              className={` flex gap-4 mb-8 items-center justify-center rounded-md px-6 py-2 w-[28.5rem] ${
+                (actionData?.errors['checkIncorrectCredentials'] &&
+                  actionData?.errors['email'] == null) ||
+                undefined
+                  ? 'bg-red-50'
+                  : ''
+              }`}
             >
-              <path
-                fill-rule='evenodd'
-                clip-rule='evenodd'
-                d='M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM11.7071 6.70711C12.0976 6.31658 12.0976 5.68342 11.7071 5.29289C11.3166 4.90237 10.6834 4.90237 10.2929 5.29289L7 8.58579L5.70711 7.29289C5.31658 6.90237 4.68342 6.90237 4.29289 7.29289C3.90237 7.68342 3.90237 8.31658 4.29289 8.70711L6.29289 10.7071C6.68342 11.0976 7.31658 11.0976 7.70711 10.7071L11.7071 6.70711Z'
-                fill='#34D399'
-              />
-            </svg>
-            <p className='text-green-800 font-medium'>
-              Your email has been confirmed. Please login to
-              <br /> continue.
-            </p>
-          </div>
-        )}
-        <div className='max-w-md w-full space-y-8'>
+              {(actionData?.errors['checkIncorrectCredentials'] &&
+                actionData?.errors['email'] == null) ||
+              undefined ? (
+                <>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='text-red-400 h-5 w-5'
+                    viewBox='0 0 20 20'
+                    fill='currentColor'
+                  >
+                    <path
+                      fill-rule='evenodd'
+                      d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z'
+                      clip-rule='evenodd'
+                    />
+                  </svg>
+                  <p className='text-red-800 font-medium '>
+                    {actionData?.errors['checkIncorrectCredentials']}
+                  </p>
+                </>
+              ) : (
+                <span></span>
+              )}
+            </div>
+          ) : (
+            <div className='flex gap-4 mb-8 items-center justify-center bg-green-50 rounded-md px-6 py-2 max-w-md'>
+              <svg
+                width='16'
+                height='16'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  fill-rule='evenodd'
+                  clip-rule='evenodd'
+                  d='M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM11.7071 6.70711C12.0976 6.31658 12.0976 5.68342 11.7071 5.29289C11.3166 4.90237 10.6834 4.90237 10.2929 5.29289L7 8.58579L5.70711 7.29289C5.31658 6.90237 4.68342 6.90237 4.29289 7.29289C3.90237 7.68342 3.90237 8.31658 4.29289 8.70711L6.29289 10.7071C6.68342 11.0976 7.31658 11.0976 7.70711 10.7071L11.7071 6.70711Z'
+                  fill='#34D399'
+                />
+              </svg>
+              <p className='text-green-800 font-medium w-96'>
+                Your email has been confirmed. Please login to
+                <br /> continue.
+              </p>
+            </div>
+          )}
           <div>
-            <img src={logo} alt='' className='mx-auto h-20 w-auto' />
-            <h2 className='mt-6 text-center text-3xl font-[750] text-gray-900'>
+            <img src={logo} alt='' className='ml-48 h-20 w-20' />
+            <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
               Sign in to your account
             </h2>
           </div>
           <div>
-            <div className='mt-8 space-y-6'>
+            <div className='mt-8 space-y-6 font-inter'>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
                     <div>
                       <input
-                        className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+                        className={`appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm ${
+                          actionData?.errors['email']
+                            ? 'border border-red-400'
+                            : ''
+                        }`}
                         name='email'
                         placeholder='Email address'
                       />
@@ -158,7 +173,11 @@ export default function SuccessLogin() {
                     </div>
                     <div>
                       <input
-                        className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+                        className={`appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm ${
+                          actionData?.errors['password']
+                            ? 'border border-red-400'
+                            : ''
+                        }`}
                         type='password'
                         name='password'
                         value={val.password}
@@ -181,27 +200,30 @@ export default function SuccessLogin() {
                     </div>
                   </div>
                   <div className='flex items-center justify-between'>
-                    <div className='flex items-center mt-3.5  gap-2'>
+                    <div className='flex items-center'>
                       <input
+                        id='remember-me'
+                        name='remember-me'
                         type='checkbox'
-                        name='rememberMe'
-                        style={{
-                          borderColor: actionData?.errors['name'] && 'red',
-                        }}
-                        className='h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm'
+                        className='h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded'
                       />
-                      <label htmlFor='' className='text-sm'>
+                      <label
+                        htmlFor='remember-me'
+                        className='ml-2 block text-sm text-gray-900'
+                      >
                         {' '}
-                        Remember Me
+                        Remember me{' '}
                       </label>
                     </div>
-                    <div className='text-sm mt-3.5'>
-                      <Link
-                        to='/forgot-password'
+
+                    <div className='text-sm'>
+                      <a
+                        href='forgot-password'
                         className='font-medium text-indigo-600 hover:text-indigo-500'
                       >
-                        Forgot your password?
-                      </Link>
+                        {' '}
+                        Forgot your password?{' '}
+                      </a>
                     </div>
                   </div>
                   <div>
@@ -221,7 +243,7 @@ export default function SuccessLogin() {
                   </div>
                   <p className='mt-2 text-center text-sm'>
                     <Link
-                      to='#'
+                      to='/receive-email'
                       className='font-medium text-indigo-600 hover:text-indigo-500'
                     >
                       Did not receive confirmation email?
