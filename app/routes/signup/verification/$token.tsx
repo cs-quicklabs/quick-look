@@ -1,4 +1,4 @@
-import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
+import { LoaderFunction } from "@remix-run/node";
 import { createUserSession, getUser } from "~/services/auth.service.server";
 import { verifyEmail } from "~/services/mail.service.server";
 import { deleteUserVerificationToken } from "~/services/userVerification.service.server";
@@ -12,5 +12,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
         await deleteUserVerificationToken(user?.id as string)
         return await createUserSession(user?.id as string, '/successlogin')
     }
+    // redirect to error page 
 }
 

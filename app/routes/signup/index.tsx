@@ -1,19 +1,14 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { User } from '@prisma/client'
-import { ActionFunction, json } from '@remix-run/node'
-import { Formik } from 'formik'
 
+import { ActionFunction, json } from '@remix-run/node'
 import { Link } from 'react-router-dom'
-import * as Yup from 'yup'
 import { createUserSession, register } from '~/services/auth.service.server'
-import { sendMail } from '~/services/mail.service.server'
-import { findUserByEmail } from '~/services/user.service.serevr'
+import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
   validateComfirmPassword,
-  validateEmail,
+  validateFirstName,
   validateLastName,
-  validateName,
   validatePassword,
   validateSignupEmail,
   validateUsername,
@@ -22,24 +17,16 @@ import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
+import { ServerResponse } from '~/types/response.server'
+import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
 
 export const action: ActionFunction = async ({ request }) => {
-  let sentMail
-
-  const form = await request.formData()
-  let firstname = form.get('firstName') as string
-  let lastname = form.get('lastName') as string
-  let email = form.get('email') as string
-  let password = form.get('password') as string
-  let username = form.get('profileId') as string
-  let confirmPassword = form.get('confirmPassword') as string
-
-  let url = request.url
+  const {firstname, lastname, email, password, username, confirmPassword, url} = await SignUpFormGenerator(request)
 
   const errors = {
     email: await validateSignupEmail(email),
     password: await validatePassword(password),
-    firstname: await validateName(firstname),
+    firstname: await validateFirstName(firstname),
     lastname: await validateLastName(lastname),
     username: await validateUsername(username),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),
@@ -49,21 +36,13 @@ export const action: ActionFunction = async ({ request }) => {
     return json(
       {
         errors,
-        fields: {
-          email,
-          password,
-          firstname,
-          lastname,
-          username,
-          confirmPassword,
-        },
         form: action,
       },
       { status: 400 }
     )
   }
 
-  const registered = await register({
+  const registeredResponse : ServerResponse = await register({
     firstname,
     lastname,
     username,
@@ -71,29 +50,13 @@ export const action: ActionFunction = async ({ request }) => {
     password,
     confirmPassword,
   })
+
   const generatedToken = uuidv4() as string
-  if (registered) {
-    sentMail = await sendMail({
-      to: email,
-      from: process.env.SENDGRID_EMAIL as string,
-      subject: 'Email Verification',
-      text: `${url}/verification/${generatedToken}`,
-      html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
-      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
-      <div style="margin-top:40px">
-      <h3>QuickLook.me</h3>
-      <span>Describing you with just one link</span></div>`,
-    })
+  let createVerificationToken =  await createUserVerificationToken(registeredResponse.data.userId as string, generatedToken)
+  if(createVerificationToken.success && registeredResponse.success){
+    await sendAccountVerificationMail(email, url, generatedToken)
   }
-
-  const user: User = await findUserByEmail(email)
-  await createUserVerificationToken(user.id, generatedToken)
-
-  try {
-    return createUserSession(user.id, '/confirmemail')
-  } catch (errors) {
-    return { errors }
-  }
+  return createUserSession(registeredResponse.data.userId as string, '/confirmemail')
 }
 
 export default function SignUp() {

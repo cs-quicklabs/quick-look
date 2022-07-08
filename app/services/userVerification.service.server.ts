@@ -18,6 +18,7 @@ export async function createUserVerificationToken(userId: string, token: string)
             expiresAt: await addHoursToDate(new Date(Date.now()), 6)
         }
     })
+    return {success: true, message: 'Verification token generated.'}
 }
 
 export async function deleteUserVerificationToken(userId: string) {
@@ -42,6 +43,9 @@ export async function checkTokenValidation(userId: string, token: string) {
             userId,
         }
     })
+    if(!userVerification){
+        // redirect to error page 
+    }
     const isSameToken = await bcrypt.compare(token, userVerification?.uniqueString as string)
     if(isSameToken){            
         if (userVerification && (await differenceInHours(new Date(Date.now()), userVerification?.expiresAt) <= 6)){
