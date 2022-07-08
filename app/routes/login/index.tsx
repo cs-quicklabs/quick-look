@@ -15,7 +15,6 @@ import {
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
-import crossimg from '../../../assets/images/remove.png'
 import {
   checkUserVerificationStatus,
   findUserByEmail,
@@ -86,31 +85,33 @@ export default function Login() {
   return (
     <>
       <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm bg-gray-50'>
-        <div
-          className={` gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm ${
-            (actionData?.errors['checkIncorrectCredentials'] &&
+        <div className='max-w-md w-full space-y-8 bg-gray-50 mt-32'>
+          <div
+            className={` gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center flex-start justify-center px-4 sm:px-6 lg:px-8 text-sm ${
+              (actionData?.errors['checkIncorrectCredentials'] &&
+                actionData?.errors['email'] == null) ||
+              undefined
+                ? 'bg-red-50'
+                : ''
+            }`}
+          >
+            {(actionData?.errors['checkIncorrectCredentials'] &&
               actionData?.errors['email'] == null) ||
-            undefined
-              ? 'bg-red-50'
-              : ''
-          }`}
-        >
-          {(actionData?.errors['checkIncorrectCredentials'] &&
-            actionData?.errors['email'] == null) ||
-          undefined ? (
-            <>
-              <img src={crossimg} alt='' className='h-4 w-4' />
-              <p className='text-red-800 font-medium '>
-                {actionData?.errors['checkIncorrectCredentials']}
-              </p>
-            </>
-          ) : (
-            <span></span>
-          )}
-        </div>
-        <div className='max-w-md w-full space-y-8 bg-gray-50 '>
+            undefined ? (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" className='text-red-400 h-5 w-5' viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+                <p className='text-red-800 font-medium '>
+                  {actionData?.errors['checkIncorrectCredentials']}
+                </p>
+              </>
+            ) : (
+              <span></span>
+            )}
+          </div>
           <div>
-            <img src={logo} alt='' className='ml-48 h-20 w-20 mt-32' />
+            <img src={logo} alt='' className='ml-48 h-20 w-20' />
             <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
               Sign in to your account
             </h2>
