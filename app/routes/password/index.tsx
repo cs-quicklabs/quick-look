@@ -42,7 +42,7 @@ export default function Password() {
 
   return (
     <>
-      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-16 text-sm font-inter'>
+      <div className='h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
         <div className='max-w-md w-full space-y-8'>
           <div>
             <img src={logo} alt='' className='mx-auto h-20 w-auto' />
@@ -52,7 +52,7 @@ export default function Password() {
           </div>
           <div>
             <div className='mt-8 space-y-6'>
-              <div className='rounded-md shadow-sm -space-y-px'>
+              <div className='rounded-md  -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
                     <label>
@@ -65,7 +65,11 @@ export default function Password() {
                             [event.target.name]: event.target.value,
                           })
                         }}
-                        className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                        className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                          actionData?.errors['password']
+                            ? 'border border-red-400'
+                            : ''
+                        }`}
                         name='password'
                         type='password'
                         style={{
@@ -87,7 +91,11 @@ export default function Password() {
                               [event.target.name]: event.target.value,
                             })
                           }}
-                          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                          className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                            actionData?.errors['confirmpassword']
+                              ? 'border border-red-400'
+                              : ''
+                          }`}
                           name='confirmpassword'
                           type='password'
                           style={{

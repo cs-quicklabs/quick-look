@@ -34,20 +34,20 @@ export default function Forgotpassword() {
 
   return (
     <>
-      <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm bg-gray-50'>
+      <div className='h-screen flex  justify-center px-4 sm:px-6 lg:px-8 text-sm bg-gray-50 font-inter'>
         <div>
           <div className='max-w-md w-full space-y-8'>
             <img src={logo} alt='' className='mt-44 mx-auto h-20 w-20' />
             <h2 className='mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900'>
               Forgot Password?
             </h2>
-            </div>    
+          </div>
           <div className='max-w-md w-full space-y-8 font-inter'>
             <div className='space-y-6'>
               <p className='mt-4 flex items-center w-96 h-10 justify-start text-sm leading-5 font-normal text-gray-500'>
                 Please enter your email address to receive reset password link
               </p>
-              <div className='rounded-md shadow-sm -space-y-px'>
+              <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
                     <label className='w-24 h-5 text-sm leading-5 font-medium'>
@@ -55,7 +55,11 @@ export default function Forgotpassword() {
                       <input
                         value={val}
                         onChange={(event) => setVal(event.target.value)}
-                        className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3'
+                        className={`${
+                          actionData?.errors['email']
+                            ? 'border border-red-400'
+                            : ''
+                        } appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3`}
                         name='email'
                         type='email'
                         style={{
