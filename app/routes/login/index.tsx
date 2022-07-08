@@ -85,7 +85,7 @@ export default function Login() {
 
   return (
     <>
-      <div className='h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 font-inter'>
+      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-sm bg-gray-50'>
         <div
           className={` gap-4 mb-8 w-[28.5rem] rounded-md py-2 flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm ${
             (actionData?.errors['checkIncorrectCredentials'] &&
@@ -108,21 +108,21 @@ export default function Login() {
             <span></span>
           )}
         </div>
-        <div className='max-w-md w-full space-y-8'>
+        <div className='max-w-md w-full space-y-8 bg-gray-50 '>
           <div>
-            <img src={logo} alt='' className='mx-auto h-20 w-auto' />
-            <h2 className='mt-6 text-center text-3xl font-[800] text-gray-900'>
+            <img src={logo} alt='' className='ml-48 h-20 w-20 mt-32' />
+            <h2 className='w-full h-9 mt-6 text-center text-3xl font-extrabold leading-9 text-gray-900'>
               Sign in to your account
             </h2>
           </div>
           <div>
-            <div className='mt-8 space-y-6'>
+            <div className='mt-8 space-y-6 font-inter'>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
                     <div>
                       <input
-                        className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+                        className='flex items-center h-11 mt-16 shadow-sm rounded-b-none self-stretch appearance-none rounded-t-md text-gray-900 relative w-full px-2.5 py-3.5 border placeholder-gray-500 placeholder:w-28 placeholder:h-6 placeholder:leading-6 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
                         name='email'
                         placeholder='Email address'
                       />
@@ -137,7 +137,7 @@ export default function Login() {
                     </div>
                     <div>
                       <input
-                        className='appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+                        className='box-border flex items-center h-11 shadow-sm rounded-b-md self-stretch rounded-t-none appearance-none text-gray-900 relative w-full px-2.5 py-3.5 border placeholder-gray-500 placeholder:w-28 placeholder:h-6 placeholder:leading-6 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
                         type='password'
                         name='password'
                         value={val.password}
@@ -160,21 +160,21 @@ export default function Login() {
                     </div>
                   </div>
                   <div className='flex items-center justify-between'>
-                    <div className='flex items-center mt-3.5  gap-2'>
+                    <div className='flex items-center mt-3.5 gap-2'>
                       <input
                         type='checkbox'
                         name='rememberMe'
                         style={{
                           borderColor: actionData?.errors['name'] && 'red',
                         }}
-                        className='h-4 w-4 text-gray-900 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm'
+                        className='h-4 w-4 text-gray-900 top-0.5 focus:ring-indigo-500 border-gray-300 rounded ml-2 block text-sm'
                       />
                       <label htmlFor=''> Remember Me</label>
                     </div>
-                    <div className='text-sm mt-3.5'>
+                    <div>
                       <Link
                         to='/forgot-password'
-                        className='font-medium text-indigo-600 hover:text-indigo-500'
+                        className='w-40 h-5 text-right leading-5 text-sm mt-3.5 font-medium text-indigo-600 hover:text-indigo-500'
                       >
                         Forgot your password?
                       </Link>
@@ -183,7 +183,7 @@ export default function Login() {
                   <div>
                     <button
                       type='submit'
-                      className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 `}
+                      className={`shadow-sm h-10 group relative w-full self-stretch order-2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6 `}
                     >
                       <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                         <LockClosedIcon
@@ -195,10 +195,10 @@ export default function Login() {
                       Sign in
                     </button>
                   </div>
-                  <p className='mt-2 text-center text-sm'>
+                  <p className='text-center text-sm'>
                     <Link
                       to='/receive-email'
-                      className='font-medium text-indigo-600 hover:text-indigo-500'
+                      className='mt-9 w-60 h-5 leading-5 font-medium text-indigo-600 hover:text-indigo-500'
                     >
                       Did not receive confirmation email?
                     </Link>
