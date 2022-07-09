@@ -19,7 +19,7 @@ export default function HeaderSecondary({ children }: any) {
               >
                 <img className='w-10 h-10 ml-6 mr-3 sm:h-10' src={logo} alt='' />
                 <span className='text-2xl pt-5 pb-5 font-extrabold text-white'>
-                  QuickLook.me
+                  Quicklook.me
                 </span>
               </Link>
             </div>
