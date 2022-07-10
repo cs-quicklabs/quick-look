@@ -60,7 +60,7 @@ export const action: ActionFunction = async ({ request }) => {
       html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
       <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
       <div style="margin-top:40px">
-      <h3>QuickLook.me</h3>
+      <h3>Quicklook.me</h3>
       <span>Describing you with just one link</span></div>`,
     })
     const user = await findUserByEmail(email)
