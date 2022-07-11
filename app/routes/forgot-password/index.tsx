@@ -17,13 +17,21 @@ export const action: ActionFunction = async ({ request }) => {
     email: await validateEmail(email),
   }
 
-  let user = await findUserByEmail(email)
-
   if (Object.values(errors).some(Boolean)) { 
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-  await sendResetPasswordLink(email, url)
-  return await createUserSession(user?.id, '/confirmforgotpassword')
+
+  let user = await findUserByEmail(email)
+
+  if(user && user['isVerified'] == false) {
+    await sendResetPasswordLink(email, url)
+    return await createUserSession(user?.id, '/confirmforgotpassword')
+  } else if(user && user['isVerified'] == true){
+    return await createUserSession(user?.id, '/successlogin')
+  }
+  else if(!user){
+    return redirect('/confirmforgotpassword')
+  }
 }
 
 export default function Forgotpassword() {

@@ -3,10 +3,13 @@ import { json } from '@remix-run/node'
 import { Form, Link, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import { sendResetPasswordLink } from '~/services/password.service.server'
+import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserSession } from '~/services/auth.service.server'
+import { createUserVerificationToken } from '~/services/userVerification.service.server'
+import { sendAccountVerificationMail } from '~/services/mail.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -16,19 +19,23 @@ export const action: ActionFunction = async ({ request }) => {
   const errors = {
     email: await validateEmail(email),
   }
+  const generatedToken = uuidv4() as string
 
   if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
   const user = await findUserByEmail(email)
   if(user && user['isVerified'] == false) {
-    await sendResetPasswordLink(email, url)
+    const createVerificationToken= await createUserVerificationToken(user.id, generatedToken)
+    if (createVerificationToken.success) {
+      await sendAccountVerificationMail(email, url, generatedToken)
+    }
     return await createUserSession(user?.id, '/confirmforgotpassword')
   } else if(user && user['isVerified'] == true){
     return await createUserSession(user?.id, '/successlogin')
   }
   else if(!user){
-    return redirect('/confirmforgotpassword')
+    return redirect('/confirmemail')
   }
 }
 
