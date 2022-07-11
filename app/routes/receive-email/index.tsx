@@ -21,12 +21,15 @@ export const action: ActionFunction = async ({ request }) => {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
   const user = await findUserByEmail(email)
-
-  if (user?.isVerfied == false) {
+  if(user && user['isVerified'] == false) {
     await sendResetPasswordLink(email, url)
     return await createUserSession(user?.id, '/confirmforgotpassword')
+  } else if(user && user['isVerified'] == true){
+    return await createUserSession(user?.id, '/successlogin')
   }
-  return redirect('/successlogin')
+  else if(!user){
+    return redirect('/confirmforgotpassword')
+  }
 }
 
 export default function Forgotpassword() {
@@ -77,7 +80,7 @@ export default function Forgotpassword() {
                       type='submit'
                       className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 `}
                     >
-                      Send Reset Password Instructions
+                      Send verification mail
                     </button>
                   </div>
                   
