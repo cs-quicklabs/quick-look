@@ -116,10 +116,11 @@ export const validateUsername = async (
 
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
+  let lowerCasedUserName = username.toLocaleLowerCase();
 
   const usernameExist = await db.user.count({
     where: {
-      username,
+      username: lowerCasedUserName,
     },
   })
 
