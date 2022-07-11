@@ -9,7 +9,6 @@ import {
 import ErrorHandler from './components/error'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 import HeaderSecondary from './components/Common/Header'
-
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
 }
@@ -17,7 +16,7 @@ export function links() {
 export default function App() {
   return (
     <Document>
-      <Layout>
+      <Layout >
         <Outlet />
       </Layout>
       <Scripts />
@@ -31,20 +30,27 @@ function Document({ children }: any) {
       lang='en'
     >
       <head>
+        <link rel="icon" type="image/x-icon" href="../assets/images/quicklook-icon.png"/>
         <title>QuickLook.me</title>
         <meta
           name='description'
           content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
         />
+        
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin='anonymous'
+        />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
         <link
-          href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap'
           rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@400;500&display=swap'
         />
         <Links />
       </head>
-      <body className='flex h-full flex-col '>
+      <body className='flex h-screen w-screen flex-col antialiased '>
         {children}
         <LiveReload />
       </body>

@@ -196,7 +196,7 @@ export function SecondaryFeatures() {
     <section
       id='secondary-features'
       aria-labelledby='secondary-features-title'
-      className='pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 text-xl font-medium outline-none'
+      className='pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 text-xl outline-none'
     >
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl md:text-center'>

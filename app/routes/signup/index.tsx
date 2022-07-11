@@ -87,7 +87,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='h-screen flex flex-col sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
+      <div className='h-screen w-screen flex flex-col sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
           <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>
@@ -159,22 +159,13 @@ export default function SignUp() {
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Choose your Profile ID
                 </label>
-                <div
-                  className={`flex appearance-none w-full h-10 px-1 py-2 border bg-white border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
-                    actionData?.errors['username']
-                      ? 'border border-red-400'
-                      : ''
-                  }`}
-                >
+               <div className="mt-2 sm:mt-0 sm:col-span-2 ">
+                <div className="max-w-lg flex rounded-md ">
+                  <span className={`inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm `}>
+                    quicklook.me/
+                  </span>
                   <input
-                    type='text'
-                    value='quicklook.me/'
-                    disabled
-                    className='w-24 bg-white '
-                  />
-                  <input
-                    className='outline-none appearance-none w-full '
-                    type='text'
+                   type='text'
                     name='profileId'
                     value={val.profileId}
                     onChange={(event) => {
@@ -183,12 +174,22 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
+                    className={`flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 border  ${actionData?.errors['username']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
                   />
                 </div>
+              </div>
+                
+                  
+                
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['username']}
                 </div>
               </div>
+           
+            
               <div>
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Email address

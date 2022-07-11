@@ -30,13 +30,18 @@ export const validateSignupEmail = async (email: string) => {
 export const validatePassword = async (
   password: string
 ): Promise<string | undefined> => {
+  let whiteSpaceRegex = /^\S*$/
+  let notContainsWhitespace = password.match(whiteSpaceRegex)
+
   if (!password) {
     return 'Password is required.'
   } else if (password.length > 18) {
     return 'Password must not be more than 18 characters.'
   } else if (typeof password !== 'string' || password.length < 5) {
     return `Passwords must be at least 5 characters long.`
-  }
+  }else if (!notContainsWhitespace){
+    return 'Whitespaces are not allowed.'
+  } 
 }
 
 export const checkIncorrectCredentials = async (
@@ -67,7 +72,7 @@ export const validateComfirmPassword = async (
 
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
-  let whiteSpaceRegex = /[^-\s]/
+  let whiteSpaceRegex =  /^\S*$/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
@@ -77,7 +82,7 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
   } else if (!notContainsWhitespace){
     return 'Whitespaces are not allowed.'
   } else if (!isNaN(name)) {
-    return `First Name should contain alphabets only.`
+    return `First Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `First Name must be at least 3 characters long.`
   } else if (name.length > 12) {
@@ -91,7 +96,7 @@ export const validateLastName = async (
   name: any
 ): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
-  let whiteSpaceRegex = /[^-\s]/
+  let whiteSpaceRegex =  /^\S*$/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
@@ -113,13 +118,16 @@ export const validateLastName = async (
 export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
+  let whiteSpaceRegex =  /^\S*$/
+  let notContainsWhitespace = username.match(whiteSpaceRegex)
 
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
+  let lowerCasedUserName = username.toLocaleLowerCase();
 
   const usernameExist = await db.user.count({
     where: {
-      username,
+      username: lowerCasedUserName,
     },
   })
 
@@ -133,7 +141,8 @@ export const validateUsername = async (
     return 'This ID has already been taken. Please choose another.'
   } else if (username.length < 6 ){
     return 'Profile Id should be atleast 6 charcaters long.'
+  }else if(!notContainsWhitespace){
+     return 'Whitespaces are not allowed.'
   }
-  return
 }
 

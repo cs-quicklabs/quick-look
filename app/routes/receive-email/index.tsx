@@ -1,6 +1,6 @@
 import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import { Form, useActionData } from '@remix-run/react'
+import { Form, Link, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import { sendResetPasswordLink } from '~/services/password.service.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
@@ -44,8 +44,8 @@ export default function Forgotpassword() {
           </div>
           <div className='max-w-md w-full space-y-8 font-inter'>
             <div className='space-y-6'>
-              <p className='mt-4 flex items-center w-96 h-10 justify-start text-sm leading-5 font-normal text-gray-500'>
-                Please enter your email address to receive reset password link
+              <p className='mt-4 flex items-center  justify-start text-sm leading-5 font-normal text-gray-500'>
+                Please enter your email address to receive confirmation mail link.
               </p>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
@@ -79,6 +79,7 @@ export default function Forgotpassword() {
                       Send Reset Password Instructions
                     </button>
                   </div>
+                  
                 </Form>
               </div>
             </div>
