@@ -1,6 +1,7 @@
 import { db } from "~/database/connection.server";
 import { addHoursToDate, differenceInHours } from "~/utils/date.server";
 import bcrypt from 'bcryptjs'
+import { redirect } from "@remix-run/node";
 
 export async function createUserVerificationToken(userId: string, token: string) {
     const hashedToken = await bcrypt.hash(token, 10)
@@ -44,7 +45,7 @@ export async function checkTokenValidation(userId: string, token: string) {
         }
     })
     if(!userVerification){
-        // redirect to error page 
+        return redirect('tokenerror')
     }
     const isSameToken = await bcrypt.compare(token, userVerification?.uniqueString as string)
     if(isSameToken){            
