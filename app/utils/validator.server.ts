@@ -1,5 +1,6 @@
 import { db } from '~/database/connection.server'
 import bcrypt from 'bcryptjs'
+import { match } from 'assert'
 
 export const validateEmail = async (
   email: string
@@ -119,11 +120,14 @@ export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
   let whiteSpaceRegex =  /^\S*$/
-  let notContainsWhitespace = username.match(whiteSpaceRegex)
-
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let notOnlyNumberRegex = /(?!^\d+$)^.+$/
+
+  let notOnlyNumber = username.match(notOnlyNumberRegex)
+  let notContainsWhitespace = username.match(whiteSpaceRegex)
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
   let lowerCasedUserName = username.toLocaleLowerCase();
+
 
   const usernameExist = await db.user.count({
     where: {
@@ -143,6 +147,8 @@ export const validateUsername = async (
     return 'Profile Id should be atleast 6 charcaters long.'
   }else if(!notContainsWhitespace){
      return 'Whitespaces are not allowed.'
+  }else if( !notOnlyNumber){
+    return 'Only Numbers are not allowed. '
   }
 }
 
