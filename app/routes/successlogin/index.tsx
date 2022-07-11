@@ -85,9 +85,9 @@ export default function SuccessLogin() {
     <>
     
       <div className="h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
-        <div className='mb-8 sm:mx-auto sm:w-full sm:max-w-md '>
+        <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
       {!actionData?.errors ?  <div className="rounded-md bg-green-50 p-4">
-      <div className="flex">
+      <div className="flex ">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
@@ -96,7 +96,7 @@ export default function SuccessLogin() {
         </div>
        
       </div>
-    </div> : <div className={`rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
+    </div> : <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
       <div className="flex">
         {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
           <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
