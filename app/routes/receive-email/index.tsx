@@ -22,10 +22,11 @@ export const action: ActionFunction = async ({ request }) => {
   }
   const user = await findUserByEmail(email)
 
-  if (user) {
+  if (user?.isVerfied == false) {
     await sendResetPasswordLink(email, url)
+    return await createUserSession(user?.id, '/confirmforgotpassword')
   }
-  return await createUserSession(user?.id, '/confirmforgotpassword')
+  return redirect('/successlogin')
 }
 
 export default function Forgotpassword() {
