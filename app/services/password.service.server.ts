@@ -10,9 +10,11 @@ import { createUserSession } from "./auth.service.server";
 
 export async function sendResetPasswordLink(email: string, url: string) {
   let userData = await findUserByEmail(email)
+
   if (!userData) {
     return false;
   }
+  
   const generatedToken = uuidv4() as string;
   try {
     await sendMail({
