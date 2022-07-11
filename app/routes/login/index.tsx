@@ -80,8 +80,8 @@ export default function Login() {
    return (
     <>
     
-      <div className="h-screen flex flex-col justify-center py-12  bg-gray-50 m-0 p-0 overflow-hidden">
-        <div className='mb-8 sm:mx-auto sm:w-full sm:max-w-md '>
+      <div className="h-screen overflow-hidden flex flex-col justify-center py-12  bg-gray-50">
+        <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
       {!actionData?.errors ?  <span></span> : <div className={`rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
       <div className="flex">
         {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">

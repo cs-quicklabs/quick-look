@@ -30,9 +30,9 @@ function Document({ children }: any) {
       lang='en'
     >
       <head>
-        <link rel="icon" type="image/x-icon" href="../assets/images/quicklook-icon.png"/>
+     
         <title>QuickLook.me</title>
-        <link rel="icon" type="image/x-icon" href="..assets/images/quicklook-icon.png"/>
+       
         <meta
           name='description'
           content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
@@ -78,7 +78,14 @@ function Layout({ children }: any) {
       ) : (
         <></>
       )}
-      <div>{children}</div>
+      <div className={`${Location.pathname.includes('/login') ||
+      Location.pathname.includes('/signup') ||
+      Location.pathname.includes('/forgot-password')  ||
+      Location.pathname.includes('/successlogin') ||
+      Location.pathname.includes('/password') ||
+      Location.pathname.includes('/confirmforgotpassword') ||
+      Location.pathname.includes('/receive-email') ||
+      Location.pathname.includes('/confirmemail')? 'overflow-hidden' : ''} `}>{children}</div>
     </>
   )
 }
