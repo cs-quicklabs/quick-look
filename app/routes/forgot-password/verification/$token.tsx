@@ -21,9 +21,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
         { status: 400 }
       )
     }
-
-    await createUserSession(user?.id as string, ' /password')
-    return redirect('/tokenerror')
+    return await createUserSession(user?.id as string, ' /password')
   }
-  return null
+  return redirect('/tokenerror')
 }
