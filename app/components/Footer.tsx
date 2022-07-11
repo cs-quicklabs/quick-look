@@ -13,7 +13,7 @@ export function Footer() {
             <a href='/' className='flex items-center'>
               <img src={logo} alt='' className='mx-auto h-16 w-auto'></img>
             </a>
-            <a href='/' className='text-lg font-[600]'>
+            <a href='/' className='text-lg font-bold'>
               Quick<span className='text-blue-600'>Look</span>
             </a>
           </div>

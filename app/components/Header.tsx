@@ -323,7 +323,7 @@ export function Header({ isloggedin }: any) {
             <li className='ml-auto md:ml-8'>
               <ButtonLink href='/signup' color='blue' className={undefined}>
                 <span>
-                  Get started<span className='hidden lg:inline'> today</span>
+                  Get Started<span className='hidden lg:inline'> For Free</span>
                 </span>
               </ButtonLink>
             </li>
