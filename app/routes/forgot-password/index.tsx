@@ -17,14 +17,12 @@ export const action: ActionFunction = async ({ request }) => {
     email: await validateEmail(email),
   }
 
-  if (Object.values(errors).some(Boolean)) {
+  let user = await findUserByEmail(email)
+
+  if (Object.values(errors).some(Boolean)) { console.log('HERE0')
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-  const user = await findUserByEmail(email)
-
-  if (user) {
-    await sendResetPasswordLink(email, url)
-  }
+  await sendResetPasswordLink(email, url)
   return await createUserSession(user?.id, '/confirmforgotpassword')
 }
 

@@ -30,7 +30,7 @@ export const validateSignupEmail = async (email: string) => {
 export const validatePassword = async (
   password: string
 ): Promise<string | undefined> => {
-    let whiteSpaceRegex = /(\s|^)\S\s+\S(\s|$)/
+  let whiteSpaceRegex = /^\S*$/
   let notContainsWhitespace = password.match(whiteSpaceRegex)
 
   if (!password) {
@@ -72,7 +72,7 @@ export const validateComfirmPassword = async (
 
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
-  let whiteSpaceRegex = /(\s|^)\S\s+\S(\s|$)/
+  let whiteSpaceRegex =  /^\S*$/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
@@ -96,7 +96,7 @@ export const validateLastName = async (
   name: any
 ): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
-  let whiteSpaceRegex = /(\s|^)\S\s+\S(\s|$)/
+  let whiteSpaceRegex =  /^\S*$/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
@@ -118,7 +118,7 @@ export const validateLastName = async (
 export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
-  let whiteSpaceRegex = /(\s|^)\S\s+\S(\s|$)/
+  let whiteSpaceRegex =  /^\S*$/
   let notContainsWhitespace = username.match(whiteSpaceRegex)
 
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
@@ -144,6 +144,5 @@ export const validateUsername = async (
   }else if(!notContainsWhitespace){
      return 'Whitespaces are not allowed.'
   }
-  return
 }
 
