@@ -29,7 +29,7 @@ export function CallToAction() {
             discovered .
           </p>
           <ButtonLink href="/register" color="white" className="mt-10">
-            Get Started for free
+            Get Started For Free
           </ButtonLink>
         </div>
       </div>

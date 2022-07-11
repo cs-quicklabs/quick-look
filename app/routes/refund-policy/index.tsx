@@ -101,12 +101,8 @@ export default function Refund() {
             </div>
           </div>
         </div>
-        <div>
-          <CallToAction />
-        </div>
-        <div className='w-full max-w-container px-2 sm:px-6 lg:px-8'>
-          <Footer />
-        </div>
+       <CallToAction />
+      <Footer />
       </div>
     </>
   )

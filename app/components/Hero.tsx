@@ -24,7 +24,7 @@ export function Hero() {
       <div className='mt-10 flex justify-center space-x-6'>
         <ButtonLink href='/signup' color='blue'>
                 <span>
-                  Get started<span className='hidden lg:inline'> for free</span>
+                   Get Started<span className='hidden lg:inline'> For Free</span>
                 </span>
               </ButtonLink>
       </div>
