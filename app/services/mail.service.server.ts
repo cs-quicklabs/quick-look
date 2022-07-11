@@ -41,7 +41,7 @@ export async function verifyEmail(token: string, userId: string) {
     })
     return true
   } else {
-    return redirect('tokenerror')
+    return false
   }
 }
 
