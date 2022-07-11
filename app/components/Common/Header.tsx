@@ -12,19 +12,19 @@ export default function HeaderSecondary({ children }: any) {
           className='flex items-center justify-between px-8'
           aria-label='Global'
         >
-          <div className='flex flex-1 items-center '>
+          {/* <div className='flex flex-1 items-center '> */}
             <div className='flex w-full items-center justify-between md:w-auto '>
               <Link
                 to='/'
-                className='flex items-center justify-center gap-6 -mt-[12px]'
+                className='flex items-center justify-center gap-4 -mt-[12px]'
               >
-                <img className='w-8 h-8 mt-2.5 ml-3' src={logo} alt='' />
-                <span className='text-2xl pt-5 pb-3 font-extrabold text-white'>
+                <img className='w-auto h-9 mt-[8px]' src={logo} alt='' />
+                <span className='text-xl pt-5 pb-3 font-extrabold text-white'>
                   QuickLook.me
                 </span>
               </Link>
             </div>
-          </div>
+          {/* </div> */}
           <div className='hidden md:flex md:items-center md:space-x-2 mr-6 '>
             {Location.pathname.includes('/signup') ||
             Location.pathname.includes('/forgot-password') ? (
