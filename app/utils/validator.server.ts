@@ -132,13 +132,13 @@ export const validateUsername = async (
   })
 
   if ( !username ) {
-    return 'Username is required.'
+    return 'Profile Id is required.'
   } else if (username.length > 20) {
-    return 'Id can not be bigger than 20 characters.'
+    return 'Profile Id can not be bigger than 20 characters.'
   } else if (!notcontainSymbol) {
     return 'Only alphabets, number and - sign is allowed.'
   } else if (usernameExist) {
-    return 'This ID has already been taken. Please choose another.'
+    return 'This Id has already been taken. Please choose another.'
   } else if (username.length < 6 ){
     return 'Profile Id should be atleast 6 charcaters long.'
   }else if(!notContainsWhitespace){
