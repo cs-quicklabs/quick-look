@@ -11,8 +11,9 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     if (verified) {
         await deleteUserVerificationToken(user?.id as string)
         return await createUserSession(user?.id as string, '/successlogin')
+    } else {
+        return redirect('tokenerror')
     }
 
-    // redirect to error page 
 }
 

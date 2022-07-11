@@ -1,7 +1,15 @@
+import { LoaderFunction } from '@remix-run/node'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Modal from '~/components/Common/ConfirmModal'
+import { requireUserId } from '~/services/auth.service.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
+
+
+export const loader: LoaderFunction = async ({ request }) => {
+  await requireUserId(request)
+  return null
+}
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(false)
