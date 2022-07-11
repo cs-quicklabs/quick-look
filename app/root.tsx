@@ -79,7 +79,7 @@ function Layout({ children }: any) {
         <></>
       )}
       <div className={`${Location.pathname.includes('/login') ||
-      Location.pathname.includes('/signup') ||
+      
       Location.pathname.includes('/forgot-password')  ||
       Location.pathname.includes('/successlogin') ||
       Location.pathname.includes('/password') ||

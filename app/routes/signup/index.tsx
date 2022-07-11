@@ -93,13 +93,10 @@ export default function SignUp() {
           <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>
             Create new Account
           </h2>
-          <p className='mt-2 text-center text-sm font-inter'>
-            <Link
-              to='#'
-              className='font-medium text-indigo-600 font-inter leading-5 w-80 h-5 hover:text-indigo-500'
-            >
+          <p className='mt-2 text-center text-sm font-inter font-medium'>
+            
               No credit card required. Starting with free plan.
-            </Link>
+            
           </p>
         </div>
         <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-md font-inter'>
