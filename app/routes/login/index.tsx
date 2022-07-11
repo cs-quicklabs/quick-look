@@ -181,6 +181,14 @@ export default function Login() {
                   Sign in
                 </button>
               </div>
+              <p className='mt-2 text-center text-sm'>
+                    <Link
+                      to='/receive-email'
+                      className='font-medium text-indigo-600 hover:text-indigo-500'
+                    >
+                      Did not receive confirmation email?
+                    </Link>
+                  </p>
             </Form>
 
             
