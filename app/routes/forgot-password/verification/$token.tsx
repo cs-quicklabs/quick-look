@@ -1,4 +1,4 @@
-import type { LoaderFunction } from '@remix-run/node'
+import { LoaderFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { createUserSession, getUser } from '~/services/auth.service.server'
 import {
@@ -22,7 +22,8 @@ export const loader: LoaderFunction = async ({ request, params }) => {
       )
     }
 
-    return await createUserSession(user?.id as string, ' /password')
+    await createUserSession(user?.id as string, ' /password')
+    return redirect('/tokenerror')
   }
   return null
 }
