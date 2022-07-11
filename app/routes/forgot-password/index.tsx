@@ -19,7 +19,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   let user = await findUserByEmail(email)
 
-  if (Object.values(errors).some(Boolean)) { console.log('HERE0')
+  if (Object.values(errors).some(Boolean)) { 
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
   await sendResetPasswordLink(email, url)

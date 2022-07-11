@@ -24,7 +24,7 @@ export async function findUserByEmail(email: string): Promise<any>{
             email: email
         }
     })
-    return user? user : undefined
+    return user? user : false
 }
 
 export async function checkUserVerificationStatus(email: string) {

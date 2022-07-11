@@ -83,6 +83,7 @@ function Layout({ children }: any) {
       Location.pathname.includes('/forgot-password')  ||
       Location.pathname.includes('/successlogin') ||
       Location.pathname.includes('/password') ||
+      Location.pathname.includes('/tokenerror') || 
       Location.pathname.includes('/confirmforgotpassword') ||
       Location.pathname.includes('/receive-email') ||
       Location.pathname.includes('/confirmemail')? 'overflow-hidden' : ''} `}>{children}</div>
