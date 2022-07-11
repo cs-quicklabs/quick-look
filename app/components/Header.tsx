@@ -270,7 +270,7 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+export function Header({ isloggedin }: any) {
   return (
     <header className='py-10'>
       <Container className={undefined}>
@@ -310,11 +310,15 @@ export function Header() {
               </a>
             </li>
             <li className='ml-auto hidden md:block'>
-              <Link to='/login'>
-                <a className='rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>
-                  Sign in
-                </a>
-              </Link>
+               <a href='/login'>
+                 {isloggedin ? (
+                   <span></span>
+               ) : (
+                 <p className='rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900 cursor-pointer'>
+                    Sign in
+                  </p>
+                )}
+              </a>
             </li>
             <li className='ml-auto md:ml-8'>
               <ButtonLink href='/signup' color='blue' className={undefined}>
