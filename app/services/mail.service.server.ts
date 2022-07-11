@@ -61,7 +61,7 @@ export async function sendAccountVerificationMail(
         userData?.firstname + ' ' + userData?.lastname
       },</p>
       <p>Please click on below link to verify your email.</p>
-      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> verify my mail</a>
+      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Verify my mail</a>
       <p>If you didn't request this, please ignore this email.</p>
       `,
     })
