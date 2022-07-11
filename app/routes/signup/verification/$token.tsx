@@ -15,6 +15,5 @@ export const loader: LoaderFunction = async ({ request, params }) => {
         return redirect('tokenerror')
     }
 
-
 }
 
