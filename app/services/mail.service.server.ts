@@ -1,4 +1,4 @@
-import { json } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import { SendMail } from '~/types/sendmail.type'
 import { findUserByEmail } from './user.service.serevr'
@@ -41,11 +41,7 @@ export async function verifyEmail(token: string, userId: string) {
     })
     return true
   } else {
-    // redirect to error page token invalid
-    throw json({
-      success: false,
-      message: 'Verification Token Invalid',
-    })
+    return redirect('tokenerror')
   }
 }
 
@@ -53,7 +49,6 @@ export async function sendAccountVerificationMail(
   to: string,
   url: string,
   generatedToken: string
-  //   email:string
 ) {
   let userData = await findUserByEmail(to)
   try {

@@ -32,6 +32,7 @@ function Document({ children }: any) {
       <head>
         {/* <link rel="icon" type="image/x-icon" href="../assets/images/quicklook-icon.png"/> */}
         <title>QuickLook.me</title>
+        <link rel="icon" type="image/x-icon" href="..assets/images/quicklook-icon.png"/>
         <meta
           name='description'
           content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
