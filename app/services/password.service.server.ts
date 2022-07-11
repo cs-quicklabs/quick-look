@@ -92,7 +92,7 @@ export async function verifyResetPasswordLink(token: string, userId: string) {
     }
   });
   if (!resetPasswordLink) {
-    // 
+    return redirect('/tokenerror');
   }
   const isSameToken = await bcrypt.compare(token, resetPasswordLink?.uniqueString as string);
   if (isSameToken) {
@@ -100,7 +100,7 @@ export async function verifyResetPasswordLink(token: string, userId: string) {
       return true;
     }
   }
-  return false;
+  return redirect('/tokenerror');
 }
 
 export async function resetPassword(userId: string, password: string) {

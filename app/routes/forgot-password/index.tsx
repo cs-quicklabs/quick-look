@@ -42,7 +42,7 @@ export default function Forgotpassword() {
           </div>
           <div className='max-w-md w-full space-y-8 font-inter'>
             <div className='space-y-6'>
-              <p className='mt-4 flex items-center w-96 h-10 justify-start text-sm leading-5 font-normal text-gray-500'>
+              <p className='mt-4 flex items-center justify-start text-sm leading-5 font-normal text-gray-500'>
                 Please enter your email address to receive reset password link
               </p>
               <div className='rounded-md -space-y-px'>
