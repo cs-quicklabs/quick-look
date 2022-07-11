@@ -119,8 +119,9 @@ export function Pricing() {
             month setup.
           </p>
         </div>
-        <div className='-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-2 xl:mx-0 xl:gap-x-8'>
-          <Plan
+        <div className='-mx-4 mt-16  max-w-2xl  gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none flex flex-col lg:flex-row xl:mx-0 xl:gap-x-8 lg:px-28'>
+          <div className='flex-1 lg:pl-24'>
+          <Plan 
             name='Starter'
             price='Free'
             description='Good for anyone who wants just a basic link to combine all their social profile'
@@ -132,7 +133,8 @@ export function Pricing() {
               'Manual payroll support',
               'Export up to 3 reports',
             ]}
-          />
+          /></div>
+          <div className='flex-1 lg:pr-24'>
           <Plan
             featured
             name='Full Access'
@@ -148,7 +150,7 @@ export function Pricing() {
               'Bulk reconcile transactions',
               'Track in multiple currencies',
             ]}
-          />
+          /></div>
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import screenshotPayroll from '../../assets/images/screenshots/payroll.png'
 import screenshotReporting from '../../assets/images/screenshots/reporting.png'
 import screenshotVatReturns from '../../assets/images/screenshots/vat-returns.png'
 import clsx from 'clsx'
+import { Container } from './Container'
 
 const features = [
   {
@@ -56,15 +57,10 @@ export function PrimaryFeatures() {
     <section
       id='features'
       aria-labelledby='features-title'
-      className='relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32 text-xl font-medium'
+      className='relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32'
     >
       <div className='absolute top-1/2 left-1/2 -translate-x-[44%] -translate-y-[42%]'>
-        <img
-          src={backgroundImage}
-          alt=''
-          width={2245}
-          height={1636}
-        />
+        <img src={backgroundImage} alt='' width={2245} height={1636} />
       </div>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative'>
         <div className='max-w-2xl md:mx-auto md:text-center xl:max-w-none'>

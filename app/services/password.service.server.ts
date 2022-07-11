@@ -24,10 +24,10 @@ export async function sendResetPasswordLink(email: string, url: string) {
       html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${
         userData?.firstname + ' ' + userData?.lastname
       },</p>
-      <p>Someone has requested a link to change your password.you can do this through the link below</p>
+      <p>Someone has requested a link to change your password. You can do this through the link below.</p>
       <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Change my password</a>
-      <p>if you didn't request this,please ignore this email</p>
-      <p>your password won't change until you access the link above and create a new one</p>`,
+      <p>If you didn't request this, please ignore this email.</p>
+      <p>Your password won't change until you access the link above and create a new one.</p>`,
     });
     await createPasswordResetLink(user.id, generatedToken)
     return true;

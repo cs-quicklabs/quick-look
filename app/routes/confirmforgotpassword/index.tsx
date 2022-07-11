@@ -2,7 +2,7 @@ import logo from '../../../assets/images/quicklook-icon.png'
 export default function confirmforgotpassword() {
   return (
     <>
-      <div className='flex flex-col items-center bg-gray-50 h-screen font-inter '>
+      <div className='flex flex-col items-center bg-gray-50 h-screen font-inter'>
         <div className='flex flex-col '>
           <img src={logo} alt='' className='h-20 w-20 mt-60 mx-auto' />
           <p className='text-3xl leading-9 font-extrabold text-center mt-6 text-gray-900'>

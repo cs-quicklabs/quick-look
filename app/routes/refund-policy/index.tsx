@@ -43,20 +43,7 @@ export default function Refund() {
                       <h1 className='text-4xl font-extrabold py-4 sm:text-5xl sm:tracking-tight'>
                         <span className='text-gray-900'>Refund Policy</span>
                       </h1>
-                      <div className='flex items-center text-gray-400'>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          className='h-5 w-5'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                        >
-                          <path
-                            fill-rule='evenodd'
-                            d='M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z'
-                            clip-rule='evenodd'
-                          />
-                        </svg>
-                      </div>
+                      
                     </div>
                     <h2 className='text-lg font-semibold text-gray-800 mt-6'>
                       Last updated: 29/06/2022
@@ -98,36 +85,16 @@ export default function Refund() {
                       <p className='mt-2 text-base text-gray-800'>
                         If you do not qualify for a refund because you contacted
                         us beyond 3 days of the charge, we'd recommend{' '}
-                        <a href='#' style={{ color: '#0974b6' }}>
+                        
                           canceling your account
-                        </a>{' '}
+                        
                         so that it does not automatically renew again. You'll
                         still have access to your Pro features until the end of
                         your billing cycle.
                       </p>
                     </div>
-                    <h2 className='text-lg font-semibold text-gray-800 mt-6'>
-                      RELATED ARTICLES
-                    </h2>
-                    <p className='flex mt-2 text-base text-gray-800'>
-                      <div className='flex items-center text-gray-400'>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          className='h-6 w-4'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                        >
-                          <path
-                            fill-rule='evenodd'
-                            d='M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z'
-                            clip-rule='evenodd'
-                          />
-                        </svg>
-                      </div>
-                      <Link to='#' className='ml-2 text-indigo-500'>
-                        How do I delete my page?
-                      </Link>
-                    </p>
+                    
+                    
                   </div>
                 </div>
               </div>

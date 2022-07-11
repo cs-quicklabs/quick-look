@@ -77,7 +77,7 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
   } else if (!notContainsWhitespace){
     return 'Whitespaces are not allowed.'
   } else if (!isNaN(name)) {
-    return `First Name should contain alphabets only.`
+    return `First Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `First Name must be at least 3 characters long.`
   } else if (name.length > 12) {

@@ -17,7 +17,7 @@ export function links() {
 export default function App() {
   return (
     <Document>
-      <Layout>
+      <Layout className='overflow-y-hidden'>
         <Outlet />
       </Layout>
       <Scripts />
@@ -36,15 +36,20 @@ function Document({ children }: any) {
           name='description'
           content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
         />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin='anonymous'
+        />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
         <link
-          href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap'
           rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@400;500&display=swap'
         />
         <Links />
       </head>
-      <body className='flex h-full flex-col '>
+      <body className='flex h-screen flex-col antialiased '>
         {children}
         <LiveReload />
       </body>
