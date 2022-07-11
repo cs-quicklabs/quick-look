@@ -279,7 +279,7 @@ export function Header() {
             <li>
               {' '}
               <a href='/#' className='flex items-center gap-2'>
-                <img src={logo} alt='hello' className='h-12 w-12' />{' '}
+                <img src={logo} alt='hello' className='h-10 w-auto' />{' '}
                 <span className='text-lg font-bold '>
                   Quick<span className='text-blue-600'>Look</span>{' '}
                 </span>{' '}

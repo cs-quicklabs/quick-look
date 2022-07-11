@@ -9,7 +9,6 @@ import {
 import ErrorHandler from './components/error'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 import HeaderSecondary from './components/Common/Header'
-
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
 }
@@ -17,7 +16,7 @@ export function links() {
 export default function App() {
   return (
     <Document>
-      <Layout className='overflow-y-hidden'>
+      <Layout >
         <Outlet />
       </Layout>
       <Scripts />
@@ -31,11 +30,13 @@ function Document({ children }: any) {
       lang='en'
     >
       <head>
+        <link rel="icon" type="image/x-icon" href="../assets/images/quicklook-icon.png"/>
         <title>QuickLook.me</title>
         <meta
           name='description'
           content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
         />
+        
         <link
           rel='preconnect'
           href='https://fonts.gstatic.com'
@@ -49,7 +50,7 @@ function Document({ children }: any) {
         />
         <Links />
       </head>
-      <body className='flex h-screen flex-col antialiased '>
+      <body className='flex h-screen w-screen flex-col antialiased '>
         {children}
         <LiveReload />
       </body>

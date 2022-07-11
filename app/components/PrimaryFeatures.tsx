@@ -60,7 +60,7 @@ export function PrimaryFeatures() {
       className='relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32'
     >
       <div className='absolute top-1/2 left-1/2 -translate-x-[44%] -translate-y-[42%]'>
-        <img src={backgroundImage} alt='' width={2245} height={1636} />
+        <img src={backgroundImage} alt='' width={2245} height={1636} className='absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2' />
       </div>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative'>
         <div className='max-w-2xl md:mx-auto md:text-center xl:max-w-none'>

@@ -87,7 +87,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='h-screen flex flex-col sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
+      <div className='h-screen w-screen flex flex-col sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
           <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>
