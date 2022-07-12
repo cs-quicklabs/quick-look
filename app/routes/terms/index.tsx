@@ -35,6 +35,7 @@ export default function terms() {
                   <h2 className='text-lg font-semibold text-gray-800 mt-6 ml-2'>
                     Last updated: 29/06/2022{' '}
                   </h2>
+                  <div className='text-sm text-slate-600 outline-none'>
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     1. Agreement to terms
                   </h2>
@@ -727,6 +728,7 @@ export default function terms() {
                     receive further information regarding use of the Site,
                     please contact us at: admin@quicklook.me
                   </p>
+                </div>
                 </div>
               </div>
             </div>

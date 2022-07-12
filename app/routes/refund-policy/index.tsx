@@ -48,7 +48,7 @@ export default function Refund() {
                     <h2 className='text-lg font-semibold text-gray-800 mt-6'>
                       Last updated: 29/06/2022
                     </h2>
-                    <div className='mt-5'>
+                    <div className='mt-5 text-sm text-slate-600 outline-none'>
                       <p className='text-[14px] text-gray-800'>
                         {' '}
                         You may request a refund within 3 days of your annual
