@@ -30,6 +30,7 @@ export async function findUserByEmail(email: string): Promise<any>{
 }
 
 export async function checkUserVerificationStatus(email: string) {
+    let lowerCasedEmail = email.toLocaleLowerCase();
     const user= await db.user.findFirst({
         where: {
             email: email
