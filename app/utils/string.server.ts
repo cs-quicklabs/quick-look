@@ -1,5 +1,4 @@
 export function nameCasing(name: string){
-    name = name[0].toLocaleUpperCase();
-    console.log(name)
+    name = name.charAt(0).toUpperCase() + name.slice(1);
     return name 
 }
