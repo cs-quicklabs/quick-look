@@ -14,6 +14,9 @@ export const validateEmail = async (
 
 export const validateSignupEmail = async (email: string) => {
   let lowerCasedEmail = email.toLocaleLowerCase();
+  let nosymbolregex = /@"^[^\W_](?:[\w.-]*[^\W_])?@(?:\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.|(?:[\w-]+\.)+)(?:[a-zA-Z]{2,3}|[0-9]{1,3})\]?$"/
+
+  let notContainsSymbols = email.match(nosymbolregex)
   const user = await db.user.findFirst({
     where: {
       email: lowerCasedEmail,
@@ -26,6 +29,8 @@ export const validateSignupEmail = async (email: string) => {
     return 'Invalid email address.'
   } else if (user && user.email === lowerCasedEmail) {
     return 'Email already exists.'
+  } else if(!notContainsSymbols){
+    return 'Invalid email address.'
   }
 }
 
