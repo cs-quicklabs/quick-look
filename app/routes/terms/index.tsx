@@ -1,5 +1,6 @@
-import { Link } from '@remix-run/react'
+
 import { CallToAction } from '~/components/CallToAction'
+
 import { Footer } from '~/components/Footer'
 
 export default function terms() {
@@ -28,7 +29,7 @@ export default function terms() {
           <div className='bg-white lg:min-w-0 lg:flex-1'>
             <div className=' py-6 px-4 sm:px-6 lg:px-8 '>
               <div className=' h-full '>
-                <div className=' relative inset-0 border-gray-200 rounded-lg'>
+                <div className=' border-gray-200 rounded-lg'>
                   <h1 className='text-4xl font-extrabold py-4 sm:text-5xl sm:tracking-tight'>
                     <span className='text-gray-900'>Terms and Conditions</span>
                   </h1>
@@ -39,7 +40,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     1. Agreement to terms
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     These Terms of Use constitute a legally binding agreement
                     made between you, whether personally or on behalf of an
                     entity (“you”) and Crownstack ("Company", “we”, “us”, or
@@ -87,7 +88,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     2. Intellectual property rights
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     Unless otherwise indicated, the Site is our proprietary
                     property and all source code, databases, functionality,
                     software, website designs, audio, video, text, photographs,
@@ -117,7 +118,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     3. User representations
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     By using the Site, you represent and warrant that: (1) all
                     registration information you submit will be true, accurate,
                     current, and complete; (2) you will maintain the accuracy of
@@ -138,7 +139,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     4. User registration
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     You may be required to register with the Site. You agree to
                     keep your password confidential and will be responsible for
                     all use of your account and password. We reserve the right
@@ -149,7 +150,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     5. Fees and payment
                   </h2>
-                  <p className='mt-5 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     We accept payment through Stripe and all the payment methods
                     enabled by stripe are valid. You may be required to purchase
                     or pay a fee to access some of our services. You agree to
@@ -178,7 +179,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6 '>
                     6. Cancellation
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     All purchases are non-refundable. You can cancel your
                     subscription at any by sending us an email at
                     admin@quicklook.me or from your accout itself under billing
@@ -189,7 +190,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     7. Prohibited activities
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     You may not access or use the Site for any purpose other
                     than that for which we make the Site available. The Site may
                     not be used in connection with any commercial endeavors
@@ -257,7 +258,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     8. User generated contributions
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     The Site does not offer users to submit or post content to
                     public. We may provide you with the opportunity to create,
                     submit, post, display, transmit, perform, publish,
@@ -319,7 +320,7 @@ export default function terms() {
                   <h2 className='text-2xl font-semibold text-gray-800 mt-6'>
                     9. Contribution license
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     You and the Site agree that we may access, store, process,
                     and use any information and personal data that you provide
                     following the terms of the Privacy Policy and your choices
@@ -341,7 +342,7 @@ export default function terms() {
                     {' '}
                     10. Submissions
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     You acknowledge and agree that any questions, comments,
                     suggestions, ideas, feedback, or other information regarding
                     the Site ("Submissions") provided by you to us are
@@ -362,7 +363,7 @@ export default function terms() {
                     {' '}
                     11. Third-party website and content
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     The Site may contain (or you may be sent via the Site) links
                     to other websites ("Third-Party Websites") as well as
                     articles, photographs, text, graphics, pictures, designs,
@@ -405,7 +406,7 @@ export default function terms() {
                     {' '}
                     12. Site management
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     We reserve the right, but not the obligation, to: (1)
                     monitor the Site for violations of these Terms of Use; (2)
                     take appropriate legal action against anyone who, in our
@@ -427,7 +428,7 @@ export default function terms() {
                     {' '}
                     13. Privacy Policy
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     We care about data privacy and security. Please review our
                     Privacy Policy: https://www.quicklook.me/privacy. By using
                     the Site, you agree to be bound by our Privacy Policy, which
@@ -444,7 +445,7 @@ export default function terms() {
                     {' '}
                     14. Term and termination
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     These Terms of Use shall remain in full force and effect
                     while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION
                     OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE
@@ -470,7 +471,7 @@ export default function terms() {
                     {' '}
                     15. Modifications and interruptions
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     We reserve the right to change, modify, or remove the
                     contents of the Site at any time or for any reason at our
                     sole discretion without notice. However, we have no
@@ -497,7 +498,7 @@ export default function terms() {
                     {' '}
                     16. Governing law
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     These conditions are governed by and interpreted following
                     the laws of India, and the use of the United Nations
                     Convention of Contracts for the International Sale of Goods
@@ -515,7 +516,7 @@ export default function terms() {
                     {' '}
                     17. Dispute resolution
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     Informal Negotiations To expedite resolution and control the
                     cost of any dispute, controversy, or claim related to these
                     Terms of Use (each a "Dispute" and collectively, the
@@ -558,7 +559,7 @@ export default function terms() {
                     {' '}
                     18. Corrections
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     There may be information on the Site that contains
                     typographical errors, inaccuracies, or omissions, including
                     descriptions, pricing, availability, and various other
@@ -570,7 +571,7 @@ export default function terms() {
                     {' '}
                     19. Disclaimer
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     THE SITE IS PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU
                     AGREE THAT YOUR USE OF THE SITE AND OUR SERVICES WILL BE AT
                     YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE
@@ -609,7 +610,7 @@ export default function terms() {
                     {' '}
                     20. Limitations of liability
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS
                     BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT,
                     INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR
@@ -631,7 +632,7 @@ export default function terms() {
                     {' '}
                     21. Indemnification
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     You agree to defend, indemnify, and hold us harmless,
                     including our subsidiaries, affiliates, and all of our
                     respective officers, agents, partners, and employees, from
@@ -656,7 +657,7 @@ export default function terms() {
                     {' '}
                     22. User data
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     We will maintain certain data that you transmit to the Site
                     for the purpose of managing the performance of the Site, as
                     well as data relating to your use of the Site. Although we
@@ -672,7 +673,7 @@ export default function terms() {
                     {' '}
                     23. Electronic communications, transactions, and signatures
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     Visiting the Site, sending us emails, and completing online
                     forms constitute electronic communications. You consent to
                     receive electronic communications, and you agree that all
@@ -694,7 +695,7 @@ export default function terms() {
                     {' '}
                     24. Miscellaneous
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     These Terms of Use and any policies or operating rules
                     posted by us on the Site or in respect to the Site
                     constitute the entire agreement and understanding between
@@ -723,7 +724,7 @@ export default function terms() {
                     {' '}
                     25. Contact us
                   </h2>
-                  <p className='mt-2 text-[14px] text-gray-800'>
+                  <p className='mt-2 text-slate-600 text-[14px]'>
                     In order to resolve a complaint regarding the Site or to
                     receive further information regarding use of the Site,
                     please contact us at: admin@quicklook.me
@@ -735,7 +736,7 @@ export default function terms() {
           </div>
         </div>
       </div>
-
+    
       <CallToAction />
       <Footer />
     </>
