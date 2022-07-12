@@ -61,7 +61,7 @@ export default function Forgotpassword() {
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
-                    <label className='w-24 h-5 text-sm leading-5 font-medium'>
+                    <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                       Email address
                       <input
                         value={val}

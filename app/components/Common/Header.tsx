@@ -1,11 +1,15 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
-import { ButtonLink } from '../Button'
+// import { ButtonLink } from '../Button'
+import Modal from '~/components/Common/ConfirmModal'
+
 
 export default function HeaderSecondary({ children }: any) {
   const Location = useLocation()
-
+const [isOpen, setIsOpen] = useState(false)
   return (
+    <>
     <header className='h-12'>
       <div className='bg-gray-800'>
         <nav
@@ -35,7 +39,12 @@ export default function HeaderSecondary({ children }: any) {
                 Sign in to your Account
               </Link>
               
-            ) : (
+            ) : Location.pathname.includes('/dashboard') ? <button
+                
+                className='h-8 mb-1 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded shadow-sm font-[500] text-white bg-indigo-600 hover:bg-indigo-700 text-center group py-2.5 px-4 text-sm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  hover:text-slate-100  active:bg-blue-800 active:text-blue-100 focus-visible:outline-blue-600'
+               onClick={() => setIsOpen(true)} >
+                Sign out
+              </button> : (
               <Link
                 to='/signup'
                 className='h-8 mb-1 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded shadow-sm font-[500] text-white bg-indigo-600 hover:bg-indigo-700 text-center group py-2.5 px-4 text-sm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  hover:text-slate-100  active:bg-blue-800 active:text-blue-100 focus-visible:outline-blue-600'
@@ -48,5 +57,7 @@ export default function HeaderSecondary({ children }: any) {
         </nav>
       </div>
     </header>
+    <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
+    </>
   )
 }
