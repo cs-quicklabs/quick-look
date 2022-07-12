@@ -14,7 +14,7 @@ export function Footer() {
               <img src={logo} alt='' className='mx-auto h-10 w-auto'></img>
             </a>
             <a href='/' className='text-lg font-bold'>
-              Quick<span className='text-blue-600'>Look</span>
+              Quick<span className='text-indigo-600'>Look</span>
             </a>
           </div>
           <nav className="mt-10 text-sm" aria-label="quick links">

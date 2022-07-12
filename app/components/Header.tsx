@@ -281,7 +281,7 @@ export function Header({ isloggedin }: any) {
               <a href='/#' className='flex items-center gap-2'>
                 <img src={logo} alt='hello' className='h-10 w-auto' />{' '}
                 <span className='text-lg font-bold '>
-                  Quick<span className='text-blue-600'>Look</span>{' '}
+                  Quick<span className='text-indigo-600'>Look</span>{' '}
                 </span>{' '}
               </a>{' '}
             </li>
