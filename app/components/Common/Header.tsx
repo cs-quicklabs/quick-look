@@ -10,8 +10,8 @@ export default function HeaderSecondary({ children }: any) {
 const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-    <header className='h-12'>
-      <div className='bg-gray-800'>
+    <header className='h-[3rem] bg-gray-800'>
+      
         <nav
           className='flex items-center justify-between px-8'
           aria-label='Global'
@@ -55,7 +55,7 @@ const [isOpen, setIsOpen] = useState(false)
             )}
           </div>
         </nav>
-      </div>
+      
     </header>
     <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
     </>
