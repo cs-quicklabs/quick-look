@@ -122,7 +122,7 @@ export default function SignUp() {
                       })
                     }}
                   />
-                  <div className='text-red-600 text-sm '>
+                  <div className='text-red-600 text-sm w-44'>
                     {actionData?.errors['firstname']}
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export default function SignUp() {
                       })
                     }}
                   />
-                  <div className='text-red-600 text-sm '>
+                  <div className='text-red-600 text-sm w-44'>
                     {actionData?.errors['lastname']}
                   </div>
                 </div>
