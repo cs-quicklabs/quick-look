@@ -19,7 +19,7 @@ import logo from '../../../assets/images/logos/quicklook-icon.svg'
               <img src={logo} alt='' className='mx-auto h-16 w-auto'></img>
             </a>
             <a href='/' className='text-lg font-[600]'>
-              Quick<span className='text-blue-600'>Look</span>
+              Quick<span className='text-indigo-600'>Look</span>
             </a>
           </div>
             <div className='text-center'>
