@@ -13,9 +13,10 @@ export const validateEmail = async (
 }
 
 export const validateSignupEmail = async (email: string) => {
+  let lowerCasedEmail = email.toLocaleLowerCase();
   const user = await db.user.findFirst({
     where: {
-      email,
+      email: lowerCasedEmail,
     },
   })
 
@@ -23,7 +24,7 @@ export const validateSignupEmail = async (email: string) => {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return 'Invalid email address.'
-  } else if (user && user.email === email) {
+  } else if (user && user.email === lowerCasedEmail) {
     return 'Email already exists.'
   }
 }
