@@ -63,8 +63,9 @@ export default function Forgotpassword() {
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
-                    <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
-                      Email address
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email address
+                </label>
                       <input
                         value={val}
                         onChange={(event) => setVal(event.target.value)}
@@ -79,7 +80,7 @@ export default function Forgotpassword() {
                           borderColor: actionData?.errors['email'] && 'red',
                         }}
                       />
-                    </label>
+                    
                     <div className='text-red-600'>
                       {actionData?.errors['email']}
                     </div>
