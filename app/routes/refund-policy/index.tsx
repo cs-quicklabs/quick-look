@@ -49,20 +49,20 @@ export default function Refund() {
                       Last updated: 29/06/2022
                     </h2>
                     <div className='mt-5 text-sm text-slate-600 outline-none'>
-                      <p className='text-[14px] text-gray-800'>
+                      <p className=''>
                         {' '}
                         You may request a refund within 3 days of your annual
                         Pro purchase or Pro renewal.
                       </p>
-                      <p className='mt-5 text-[14px] text-gray-800'>
+                      <p className='mt-5 '>
                         If your request is received after that 3-day window, the
                         charge is non-refundable.{' '}
                       </p>
-                      <p className='mt-5 text-[14px] text-gray-800'>
+                      <p className='mt-5 '>
                         To request a refund, simply include the following in a
                         message to our support team:
                       </p>
-                      <ul className='list-disc list-inside ml-5 mt-5 mb-5 text-[14px] text-gray-800'>
+                      <ul className='list-disc list-inside ml-5 mt-5 mb-5 '>
                         <li className='mt-2 text-[14px]'>
                           Email address associated with your quicklook.me page
                         </li>
@@ -78,11 +78,11 @@ export default function Refund() {
                           The word "REFUND" in the body of your email
                         </li>
                       </ul>
-                      <p className='mt-2 text-[14px] text-gray-800'>
+                      <p className='mt-2 '>
                         If you are eligible for a refund, your request will be
                         evaluated and granted within 30 days.{' '}
                       </p>
-                      <p className='mt-2 text-[14px] text-gray-800'>
+                      <p className='mt-2 '>
                         If you do not qualify for a refund because you contacted
                         us beyond 3 days of the charge, we'd recommend{' '}
                         
