@@ -84,7 +84,7 @@ export default function passwordchangesuccess() {
      return (
     <>
     
-      <div className="h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50 overflow-y-auto">
         <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
       {!actionData?.errors ?  <div className="rounded-md bg-green-50 p-4">
       <div className="flex">

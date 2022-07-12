@@ -49,40 +49,40 @@ export default function Refund() {
                       Last updated: 29/06/2022
                     </h2>
                     <div className='mt-5'>
-                      <p className='text-base text-gray-800'>
+                      <p className='text-[14px] text-gray-800'>
                         {' '}
                         You may request a refund within 3 days of your annual
                         Pro purchase or Pro renewal.
                       </p>
-                      <p className='mt-5 text-base text-gray-800'>
+                      <p className='mt-5 text-[14px] text-gray-800'>
                         If your request is received after that 3-day window, the
                         charge is non-refundable.{' '}
                       </p>
-                      <p className='mt-5 text-base text-gray-800'>
+                      <p className='mt-5 text-[14px] text-gray-800'>
                         To request a refund, simply include the following in a
                         message to our support team:
                       </p>
-                      <ul className='list-disc list-inside ml-5 mt-5 mb-5 text-base text-gray-800'>
-                        <li className='mt-2'>
+                      <ul className='list-disc list-inside ml-5 mt-5 mb-5 text-[14px] text-gray-800'>
+                        <li className='mt-2 text-[14px]'>
                           Email address associated with your quicklook.me page
                         </li>
-                        <li className='mt-2'>
+                        <li className='mt-2 text-[14px]'>
                           Link to your quicklook.me page
                           (quicklook.me/yourusername)
                         </li>
-                        <li className='mt-2'>
+                        <li className='mt-2 text-[14px]'>
                           Date of purchase or renewal (if you have a screenshot
                           of the receipt, even better!)
                         </li>
-                        <li className='mt-2'>
+                        <li className='mt-2 text-[14px]'>
                           The word "REFUND" in the body of your email
                         </li>
                       </ul>
-                      <p className='mt-2 text-base text-gray-800'>
+                      <p className='mt-2 text-[14px] text-gray-800'>
                         If you are eligible for a refund, your request will be
                         evaluated and granted within 30 days.{' '}
                       </p>
-                      <p className='mt-2 text-base text-gray-800'>
+                      <p className='mt-2 text-[14px] text-gray-800'>
                         If you do not qualify for a refund because you contacted
                         us beyond 3 days of the charge, we'd recommend{' '}
                         
