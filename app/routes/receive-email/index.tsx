@@ -30,7 +30,7 @@ export const action: ActionFunction = async ({ request }) => {
     if (createVerificationToken.success) {
       await sendAccountVerificationMail(email, url, generatedToken)
     }
-    return await createUserSession(user?.id, '/confirmforgotpassword')
+    return await createUserSession(user?.id, '/confirmemail')
   } else if(user && user['isVerified'] == true){
     return await createUserSession(user?.id, '/successlogin')
   }
