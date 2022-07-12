@@ -9,7 +9,8 @@ import { Testimonials } from '../components/Testimonials'
 import { Header } from '../components/Header'
 import { LoaderFunction } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData, useLocation } from '@remix-run/react'
+import HeaderSecondary from '~/components/Common/Header'
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await getUser(request)
@@ -17,10 +18,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Home() {
+  const Location = useLocation()
   const loaderData = useLoaderData()
   const isLoggedin = loaderData?.id
   return (
     <>
+     {Location.pathname.includes('/dashboard') ? <HeaderSecondary /> :''}
+    
       <Header isloggedin={isLoggedin} />
       <Hero />
       <PrimaryFeatures />
