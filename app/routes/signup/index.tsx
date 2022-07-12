@@ -122,7 +122,7 @@ export default function SignUp() {
                       })
                     }}
                   />
-                  <div className='text-red-600 text-sm '>
+                  <div className='text-red-500 text-sm w-44'>
                     {actionData?.errors['firstname']}
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export default function SignUp() {
                       })
                     }}
                   />
-                  <div className='text-red-600 text-sm '>
+                  <div className='text-red-500 text-sm w-44'>
                     {actionData?.errors['lastname']}
                   </div>
                 </div>
@@ -177,10 +177,8 @@ export default function SignUp() {
                   />
                 </div>
               </div>
-                
-                  
-                
-                <div className='text-red-600 text-sm '>
+               
+                <div className='text-red-500 text-sm '>
                   {actionData?.errors['username']}
                 </div>
               </div>
@@ -204,7 +202,7 @@ export default function SignUp() {
                     })
                   }}
                 />
-                <div className='text-red-600 text-sm '>
+                <div className='text-red-500 text-sm'>
                   {actionData?.errors['email']}
                 </div>
               </div>
@@ -228,7 +226,7 @@ export default function SignUp() {
                     })
                   }}
                 />
-                <div className='text-red-600 text-sm '>
+                <div className='text-red-500 text-sm'>
                   {actionData?.errors['password']}
                 </div>
               </div>
@@ -252,7 +250,7 @@ export default function SignUp() {
                     })
                   }}
                 />
-                <div className='text-red-600 text-sm '>
+                <div className='text-red-500 text-sm'>
                   {actionData?.errors['isPasswordSame']}
                 </div>
               </div>

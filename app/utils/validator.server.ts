@@ -151,7 +151,7 @@ export const validateUsername = async (
   } else if (usernameExist) {
     return 'This Id has already been taken. Please choose another.'
   } else if (username.length < 6 ){
-    return 'Profile Id should be atleast 6 charcaters long.'
+    return 'Profile Id should be atleast 6 characters long.'
   }else if(!notContainsWhitespace){
      return 'Whitespaces are not allowed.'
   }else if( !notOnlyNumber){
