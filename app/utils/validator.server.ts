@@ -1,5 +1,6 @@
 import { db } from '~/database/connection.server'
 import bcrypt from 'bcryptjs'
+import { match } from 'assert'
 
 export const validateEmail = async (
   email: string
@@ -12,9 +13,13 @@ export const validateEmail = async (
 }
 
 export const validateSignupEmail = async (email: string) => {
+  let lowerCasedEmail = email.toLocaleLowerCase();
+  let nosymbolregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+  let notContainsSymbols = email.match(nosymbolregex)
   const user = await db.user.findFirst({
     where: {
-      email,
+      email: lowerCasedEmail,
     },
   })
 
@@ -22,8 +27,10 @@ export const validateSignupEmail = async (email: string) => {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return 'Invalid email address.'
-  } else if (user && user.email === email) {
+  } else if (user && user.email === lowerCasedEmail) {
     return 'Email already exists.'
+  } else if(!notContainsSymbols){
+    return 'Invalid email address.'
   }
 }
 
@@ -48,9 +55,10 @@ export const checkIncorrectCredentials = async (
   email: string,
   password: string
 ) => {
+  let lowerCasedEmail = email.toLocaleLowerCase();
   const user = await db.user.findFirst({
     where: {
-      email,
+      email: lowerCasedEmail,
     },
   })
   if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -119,11 +127,14 @@ export const validateUsername = async (
   username: string
 ): Promise<String | undefined> => {
   let whiteSpaceRegex =  /^\S*$/
-  let notContainsWhitespace = username.match(whiteSpaceRegex)
-
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let notOnlyNumberRegex = /(?!^\d+$)^.+$/
+
+  let notOnlyNumber = username.match(notOnlyNumberRegex)
+  let notContainsWhitespace = username.match(whiteSpaceRegex)
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
   let lowerCasedUserName = username.toLocaleLowerCase();
+
 
   const usernameExist = await db.user.count({
     where: {
@@ -132,17 +143,19 @@ export const validateUsername = async (
   })
 
   if ( !username ) {
-    return 'Username is required.'
+    return 'Profile Id is required.'
   } else if (username.length > 20) {
-    return 'Id can not be bigger than 20 characters.'
+    return 'Profile Id can not be bigger than 20 characters.'
   } else if (!notcontainSymbol) {
     return 'Only alphabets, number and - sign is allowed.'
   } else if (usernameExist) {
-    return 'This ID has already been taken. Please choose another.'
+    return 'This Id has already been taken. Please choose another.'
   } else if (username.length < 6 ){
     return 'Profile Id should be atleast 6 charcaters long.'
   }else if(!notContainsWhitespace){
      return 'Whitespaces are not allowed.'
+  }else if( !notOnlyNumber){
+    return 'Only Numbers are not allowed. '
   }
 }
 

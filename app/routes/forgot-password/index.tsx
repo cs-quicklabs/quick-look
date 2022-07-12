@@ -7,23 +7,38 @@ import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserSession } from '~/services/auth.service.server'
-
+import { sendAccountVerificationMail } from '~/services/mail.service.server'
+import { v4 as uuidv4 } from 'uuid'
+import { createUserVerificationToken } from '~/services/userVerification.service.server'
+ 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
   const email = formData.get('email') as string
 
   let url = request.url
+  let modifiedVerificationUrl= url.substring(0, url.lastIndexOf("/") + 1) + 'signup'
   const errors = {
     email: await validateEmail(email),
   }
 
-  let user = await findUserByEmail(email)
-
   if (Object.values(errors).some(Boolean)) { 
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-  await sendResetPasswordLink(email, url)
-  return await createUserSession(user?.id, '/confirmforgotpassword')
+
+  let user = await findUserByEmail(email)
+
+  if(user && user['isVerified'] == true) {
+    await sendResetPasswordLink(email, url)
+    return await createUserSession(user?.id, '/confirmforgotpassword')
+  } else if(user && user['isVerified'] == false ){
+    const generatedToken = uuidv4() as string
+    await sendAccountVerificationMail(email, modifiedVerificationUrl, generatedToken)
+    await createUserVerificationToken(user.id, generatedToken)
+    return await createUserSession(user?.id, '/confirmemail')
+  }
+  else if(!user){
+    return redirect('/confirmforgotpassword')
+  }
 }
 
 export default function Forgotpassword() {

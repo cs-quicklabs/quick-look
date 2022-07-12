@@ -1,7 +1,5 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-
 import { ActionFunction, json } from '@remix-run/node'
-import { Link } from 'react-router-dom'
 import { createUserSession, register } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'

@@ -45,13 +45,13 @@ export async function checkTokenValidation(userId: string, token: string) {
         }
     })
     if(!userVerification){
-        return redirect('tokenerror')
+        return false
     }
     const isSameToken = await bcrypt.compare(token, userVerification?.uniqueString as string)
     if(isSameToken){            
         if (userVerification && (await differenceInHours(new Date(Date.now()), userVerification?.expiresAt) <= 6)){
             return true
         }
+        return false
     }
-    return false
 }
