@@ -124,7 +124,7 @@ export function Pricing() {
           <Plan 
             name='Starter'
             price='Free'
-            description='Good for anyone who wants just a basic link to combine all their social profile'
+            description='Good for anyone who wants just a basic link to combine all their social profile.'
             href='/register'
             features={[
               'Send 10 quotes and invoices',

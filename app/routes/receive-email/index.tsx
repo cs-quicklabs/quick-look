@@ -61,27 +61,24 @@ export default function Forgotpassword() {
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
-                    <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
-                      Email address
-                      <input
-                        value={val}
-                        onChange={(event) => setVal(event.target.value)}
-                        className={`${
-                          actionData?.errors['email']
-                            ? 'border border-red-400'
-                            : ''
-                        } appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3`}
-                        name='email'
-                        type='email'
-                        style={{
-                          borderColor: actionData?.errors['email'] && 'red',
-                        }}
-                      />
-                    </label>
-                    <div className='text-red-600'>
-                      {actionData?.errors['email']}
-                    </div>
-                  </div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email address
+                </label>
+                <div className='mt-1'>
+                <input
+                  name='email'
+                  type='email'
+                  
+                 
+                  className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                    actionData?.errors['email'] ? 'border border-red-400' : ''
+                  }`}
+                />
+              </div>
+              <div className={`text-red-600 text-sm`}>
+                {actionData?.errors['email']}
+              </div>
+              </div>
                   <div className='mt-5'>
                     <button
                       type='submit'
