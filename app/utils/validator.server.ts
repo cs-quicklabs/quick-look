@@ -50,9 +50,10 @@ export const checkIncorrectCredentials = async (
   email: string,
   password: string
 ) => {
+  let lowerCasedEmail = email.toLocaleLowerCase();
   const user = await db.user.findFirst({
     where: {
-      email,
+      email: lowerCasedEmail,
     },
   })
   if (!user || !(await bcrypt.compare(password, user.password))) {
