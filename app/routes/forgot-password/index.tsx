@@ -9,6 +9,7 @@ import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserSession } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
+import { createUserVerificationToken } from '~/services/userVerification.service.server'
  
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -32,6 +33,7 @@ export const action: ActionFunction = async ({ request }) => {
   } else if(user && user['isVerified'] == false ){
     const generatedToken = uuidv4() as string
     await sendAccountVerificationMail(email, modifiedVerificationUrl, generatedToken)
+    await createUserVerificationToken(user.id, generatedToken)
     return await createUserSession(user?.id, '/confirmemail')
   }
   else if(!user){
