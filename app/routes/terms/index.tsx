@@ -6,7 +6,7 @@ import { Footer } from '~/components/Footer'
 export default function terms() {
   return (
     <>
-      <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10'>
+      <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-96'>
         <div className='flex-1 bg-white xl:flex '>
           <div className='b xl:flex-shrink-0 xl:w-64 bg-white h-full'>
             <div className='h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0 '>
