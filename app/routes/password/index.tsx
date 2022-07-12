@@ -55,7 +55,7 @@ export default function Password() {
               <div className='rounded-md  -space-y-px'>
                 <Form className='space-y-4' method='post'>
                   <div>
-                    <label>
+                    <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                       Password
                       <input
                         value={val.password}
@@ -81,7 +81,7 @@ export default function Password() {
                       {actionData?.errors['password']}
                     </div>
                     <div className='mt-2'>
-                      <label>
+                      <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                         Confirm Password
                         <input
                           value={val.confirmpassword}
