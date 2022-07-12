@@ -11,7 +11,7 @@ export function Footer() {
         <div className="py-16">
          <div className='flex items-center justify-center gap-2'>
             <a href='/' className='flex items-center'>
-              <img src={logo} alt='' className='mx-auto h-16 w-auto'></img>
+              <img src={logo} alt='' className='mx-auto h-10 w-auto'></img>
             </a>
             <a href='/' className='text-lg font-bold'>
               Quick<span className='text-blue-600'>Look</span>

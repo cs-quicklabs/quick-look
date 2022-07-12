@@ -85,9 +85,10 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='h-screen w-screen flex flex-col sm:px-6 lg:px-8 text-sm font-inter bg-gray-50'>
-        <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-          <img src={logo} alt='' className='ml-48 h-20 w-20 mt-20' />
+      <div className=' h-screen flex flex-col  text-sm font-inter bg-gray-50 my-0 py-0 overflow-y-auto'>
+        <div className='mx-auto flex flex-col items-center justify-center mt-20'>
+          <img src={logo} alt='' className='h-20 w-20' />
+          <div className='flex flex-col items-center justify-center'>
           <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>
             Create new Account
           </h2>
@@ -95,10 +96,10 @@ export default function SignUp() {
             
               No credit card required. Starting with free plan.
             
-          </p>
+          </p></div>
         </div>
-        <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-md font-inter'>
-          <div className='bg-gray-50 sm:px-10'>
+        <div className='mt-5 mx-auto font-inter'>
+          <div className='bg-gray-50 '>
             <Form className='space-y-4' method='post' noValidate>
               <div className='grid grid-cols-2 gap-2'>
                 <div>
