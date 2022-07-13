@@ -1,18 +1,24 @@
 import { LoaderFunction } from "@remix-run/node";
-import HeaderSecondary from "~/components/Common/Header";
-import { requireUserId } from "~/services/auth.service.server";
 
-export const loader: LoaderFunction = async ({ request }) => {
+import { requireUserId } from "~/services/auth.service.server";
+import { LoginHeader } from "~/components/LoginHeader";
+import {SideNav} from "~/components/Sidenavbar";
+
+export const loader: LoaderFunction = async ({ request  }) => {
   await requireUserId(request)
+
   return null
 }
 
-
 export default function Dashboard() {
 
+
   return (
-    <>
-<HeaderSecondary/>
-    </>
+    <div>
+    <LoginHeader/>
+    <div className=''>
+    <SideNav/>
+    </div>
+    </div>
   )
 }
