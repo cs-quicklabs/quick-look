@@ -26,7 +26,6 @@ export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
   let email = form.get('email') as string
   let password = form.get('password') as string
-  let userData = await findUserByEmail(email)
   let url = request.url
   const generatedToken = uuidv4() as string
 
@@ -46,19 +45,17 @@ export const action: ActionFunction = async ({ request }) => {
       { status: 400 }
     )
   }
+
   const isVerifiedUser = await checkUserVerificationStatus(email)
   if (!isVerifiedUser) {
     const user = await findUserByEmail(email)
-    await sendAccountVerificationMail(email, url, generatedToken)
-    await deleteUserVerificationToken(user.id)
     await createUserVerificationToken(user.id, generatedToken)
+    await sendAccountVerificationMail(email, url, generatedToken)
     return redirect('/confirmemail')
   }
-  const user = await login({ email, password })
-  try {
-    return createUserSession(user.id, '/dashboard')
-  } catch (errors) {
-    return { errors }
+  const islogInData = await login({ email, password })
+  if(islogInData){
+    return createUserSession(islogInData.id, '/dashboard')
   }
 }
 
