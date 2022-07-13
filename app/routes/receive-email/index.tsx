@@ -2,7 +2,6 @@ import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, Link, useActionData } from '@remix-run/react'
 import { useState } from 'react'
-import { sendResetPasswordLink } from '~/services/password.service.server'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
@@ -25,17 +24,16 @@ export const action: ActionFunction = async ({ request }) => {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
   const user = await findUserByEmail(email)
-  if(user && user['isVerified'] == false) {
-    const createVerificationToken= await createUserVerificationToken(user.id, generatedToken)
+  if(!user){
+    return redirect('/confirmemail')
+  } else if(user && user['isVerified'] == false) {
+    const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     if (createVerificationToken.success) {
       await sendAccountVerificationMail(email, url, generatedToken)
     }
-    return await createUserSession(user?.id, '/confirmemail')
-  } else if(user && user['isVerified'] == true){
-    return await createUserSession(user?.id, '/successlogin')
-  }
-  else if(!user){
     return redirect('/confirmemail')
+  } else if(user && user['isVerified'] == true){
+    return redirect('/successlogin')
   }
 }
 
