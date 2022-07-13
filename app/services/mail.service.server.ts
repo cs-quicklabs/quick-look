@@ -29,7 +29,7 @@ export async function sendMail({ to, from, subject, text, html }: SendMail) {
     })
 }
 
-export async function verifyEmail(token: string, userId: string) { console.log('---=-=-=-=-', token, userId)
+export async function verifyEmail(token: string, userId: string) {
   const isTokenValid = await checkTokenValidation(userId, token)
   if (isTokenValid) {
     await db.user.update({
@@ -69,5 +69,33 @@ export async function sendAccountVerificationMail(
     })
   } catch (error) {
     throw json({ success: false, message: error }, { status: 500 })
+  }
+}
+
+export async function sendResetPasswordMail(to: string, url: string, generatedToken: string) {
+  let userData = await findUserByEmail(to)
+  const verificationHostUrl = await getHostUrl(url);
+  try {
+    await sendMail({
+      to,
+      from: process.env.SENDGRID_EMAIL as string,
+      subject: "Reset Password",
+      text: `${verificationHostUrl}verification/reset-password/${userData.id}/${generatedToken}`,
+      html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${userData?.firstname + ' ' + userData?.lastname
+        },</p>
+      <p>Someone has requested a link to change your password. You can do this through the link below.</p>
+      <a href=${verificationHostUrl}verification/reset-password/${userData.id}/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Change my password</a>
+      <p>If you didn't request this, please ignore this email.</p>
+      <p>Your password won't change until you access the link above and create a new one.</p>`,
+    });
+    return true;
+  } catch(error) {
+    throw json(
+      {
+        success: false,
+        message: { error },
+      },
+      { status: 500 },
+    )
   }
 }

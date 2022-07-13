@@ -2,12 +2,10 @@ import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
-import { sendResetPasswordLink } from '~/services/password.service.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
-import { createUserSession } from '~/services/auth.service.server'
-import { sendAccountVerificationMail } from '~/services/mail.service.server'
+import { sendAccountVerificationMail, sendResetPasswordMail } from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
  
@@ -16,7 +14,6 @@ export const action: ActionFunction = async ({ request }) => {
   const email = formData.get('email') as string
 
   let url = request.url
-  let modifiedVerificationUrl= url.substring(0, url.lastIndexOf("/") + 1) + 'signup'
   const errors = {
     email: await validateEmail(email),
   }
@@ -24,21 +21,20 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(errors).some(Boolean)) { 
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
-
   let user = await findUserByEmail(email)
 
-  if(user && user['isVerified'] == true) {
-    await sendResetPasswordLink(email, url)
-    return await createUserSession(user?.id, '/confirmforgotpassword')
-  } else if(user && user['isVerified'] == false ){
-    const generatedToken = uuidv4() as string
-    await sendAccountVerificationMail(email, modifiedVerificationUrl, generatedToken)
-    await createUserVerificationToken(user.id, generatedToken)
-    return await createUserSession(user?.id, '/confirmemail')
-  }
-  else if(!user){
+  const generatedToken = uuidv4() as string
+  await createUserVerificationToken(user.id, generatedToken)
+
+  if(!user){
     return redirect('/confirmforgotpassword')
-  }
+  } else if(user && user['isVerified'] == true) {
+    await sendResetPasswordMail(email, url, generatedToken)
+    return redirect('/confirmforgotpassword')
+  } else if(user && user['isVerified'] == false ){
+    await sendAccountVerificationMail(email, url, generatedToken)
+    return redirect('/confirmemail')
+  } 
 }
 
 export default function Forgotpassword() {
