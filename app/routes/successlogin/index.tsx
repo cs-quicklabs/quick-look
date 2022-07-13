@@ -20,7 +20,7 @@ import {
   checkUserVerificationStatus,
   findUserByEmail,
 } from '~/services/user.service.serevr'
-import { sendMail } from '~/services/mail.service.server'
+import { sendAccountVerificationMail, sendMail } from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
 import {
   createUserVerificationToken,
@@ -52,20 +52,11 @@ export const action: ActionFunction = async ({ request }) => {
   }
   const isVerifiedUser = await checkUserVerificationStatus(email)
   if (!isVerifiedUser) {
-    await sendMail({
-      to: email,
-      from: process.env.SENDGRID_EMAIL as string,
-      subject: 'Email Verification',
-      text: `${url}/verification/${generatedToken}`,
-      html: `<h1 style=" font-family: Arial, Helvetica, sans-serif; font-size: 32px;">Click on the Link below to Verify your mail</h1>
-      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; font-size: 22px; border:2px solid blue; border-radius:5px; padding:5px"> Click to Verify</a>
-      <div style="margin-top:40px">
-      <h3>Quicklook.me</h3>
-      <span>Describing you with just one link</span></div>`,
-    })
     const user = await findUserByEmail(email)
-    await deleteUserVerificationToken(user.id)
-    await createUserVerificationToken(user.id, generatedToken)
+    const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
+    if(createVerificationToken.success){
+      await sendAccountVerificationMail(email, url, generatedToken)
+    }
     return redirect('/confirmemail')
   }
   const user = await login({ email, password })

@@ -14,6 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
   const email = formData.get('email') as string
 
   let url = request.url
+  
   const errors = {
     email: await validateEmail(email),
   }
@@ -21,17 +22,18 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(errors).some(Boolean)) { 
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
+
   let user = await findUserByEmail(email)
 
   const generatedToken = uuidv4() as string
-  await createUserVerificationToken(user.id, generatedToken)
+  const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
 
   if(!user){
     return redirect('/confirmforgotpassword')
-  } else if(user && user['isVerified'] == true) {
+  } else if(user['isVerified'] == true && createVerificationToken.success) {
     await sendResetPasswordMail(email, url, generatedToken)
     return redirect('/confirmforgotpassword')
-  } else if(user && user['isVerified'] == false ){
+  } else if(user['isVerified'] == false && createVerificationToken.success) {
     await sendAccountVerificationMail(email, url, generatedToken)
     return redirect('/confirmemail')
   } 

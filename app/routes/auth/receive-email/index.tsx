@@ -14,14 +14,17 @@ export const action: ActionFunction = async ({ request }) => {
   const email = formData.get('email') as string
 
   let url = request.url
+
   const errors = {
     email: await validateEmail(email),
   }
+
   const generatedToken = uuidv4() as string
 
   if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
+
   const user = await findUserByEmail(email)
   if(!user){
     return redirect('/confirmemail')
