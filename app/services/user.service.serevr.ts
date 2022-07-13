@@ -16,7 +16,10 @@ export async function createUser(userRegister: RegisterForm){
             password
         }
     })
-    return {id: user.id, email: user.email}
+    return {
+        id: user.id,
+        email: user.email
+    }
 }
 
 export async function findUserByEmail(email: string): Promise<any>{
@@ -51,4 +54,13 @@ export async function changeUserPassword(userId: string, password:string){
             password: await bcrypt.hash(password, 10)
         }
     })
+}
+
+export async function getUserById(id: string){
+    const user = await db.user.findFirst({
+        where: {
+            id
+        }
+    })
+    return user 
 }
