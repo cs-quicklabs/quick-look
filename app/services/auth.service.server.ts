@@ -34,16 +34,11 @@ export async function createUserSession(userId: string, redirectTo: string) {
 }
 
 export async function register(user: RegisterForm): Promise<ServerResponse> {
-  const exists = await findUserByEmail(user.email);
-  if (exists) {
-    throw json(
-      { success: false, message: 'User Already Exists.' },
-      { status: 400 }
-    )
+  let newUser; 
+  try {
+    newUser = await createUser(user)
   }
-
-  const newUser = await createUser(user)
-  if (!newUser) {
+  catch(error){
     throw json(
       {
         error: `Something went wrong trying to create a new user.`,
@@ -52,7 +47,6 @@ export async function register(user: RegisterForm): Promise<ServerResponse> {
       { status: 500 }
     )
   }
-
   return {
     success: true,
     message: 'User created Successfully',

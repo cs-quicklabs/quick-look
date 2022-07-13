@@ -1,5 +1,5 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { ActionFunction, json } from '@remix-run/node'
+import { ActionFunction, json, redirect } from '@remix-run/node'
 import { createUserSession, register } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
@@ -65,10 +65,7 @@ export const action: ActionFunction = async ({ request }) => {
   if (createVerificationToken.success && registeredResponse.success) {
     await sendAccountVerificationMail(email, url, generatedToken)
   }
-  return createUserSession(
-    registeredResponse.data.userId as string,
-    '/confirmemail'
-  )
+  return redirect('/confirmemail')
 }
 
 export default function SignUp() {
