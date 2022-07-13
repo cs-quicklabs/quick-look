@@ -1,7 +1,6 @@
 import { RegisterForm } from "~/types/regirsterForm.server";
 import bcrypt from 'bcryptjs'
 import { db } from "~/database/connection.server";
-import { User } from "@prisma/client";
 import { nameCasing } from "~/utils/string.server";
 
 
@@ -36,7 +35,7 @@ export async function checkUserVerificationStatus(email: string) {
     let lowerCasedEmail = email.toLocaleLowerCase();
     const user= await db.user.findFirst({
         where: {
-            email: email
+            email: lowerCasedEmail
         }
     })
     if(user?.isVerified == true){
@@ -45,7 +44,7 @@ export async function checkUserVerificationStatus(email: string) {
     return false
 }
 
-export async function changeUserPassword(userId: string, password:string){
+export async function upateUserPassword(userId: string, password:string){
     await db.user.update({
         where: {
             id: userId

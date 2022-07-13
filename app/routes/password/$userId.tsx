@@ -1,20 +1,17 @@
 import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
-
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
-import { getUser } from '~/services/auth.service.server'
-import { changeUserPassword } from '~/services/user.service.serevr'
+import { getUserById, upateUserPassword } from '~/services/user.service.serevr'
 import {
   validateComfirmPassword,
   validatePassword,
 } from '~/utils/validator.server'
-
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 
-export const action: ActionFunction = async ({ request }) => {
-  const user = await getUser(request)
-
+export const action: ActionFunction = async ({ request, params }) => {
+  const user = await getUserById(params.userId as string)
+  
   const formData = await request.formData()
   const password = formData.get('password') as string
   const confirmpassword = formData.get('confirmpassword') as string
@@ -31,7 +28,7 @@ export const action: ActionFunction = async ({ request }) => {
     )
   }
 
-  await changeUserPassword(user?.id as string, password)
+  await upateUserPassword(user?.id as string, password)
   return redirect('/passwordchangesuccess')
 }
 
@@ -127,3 +124,4 @@ export default function Password() {
     </>
   )
 }
+
