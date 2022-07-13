@@ -7,7 +7,7 @@ import {
   validateComfirmPassword,
   validatePassword,
 } from '~/utils/validator.server'
-import logo from '../../../assets/images/logos/quicklook-icon.svg'
+import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 
 export const action: ActionFunction = async ({ request, params }) => {
   const user = await getUserById(params.userId as string)

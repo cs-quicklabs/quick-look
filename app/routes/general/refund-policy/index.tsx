@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
-import { SearchIcon } from '@heroicons/react/solid'
-import { Footer } from '../../components/Footer'
+import { Footer } from '../../../components/Footer'
 import { CallToAction } from '~/components/CallToAction'
 
 export default function Refund() {

@@ -1,4 +1,4 @@
-import { CheckCircleIcon, LockClosedIcon, XCircleIcon } from '@heroicons/react/solid'
+import { XCircleIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 import { createUserSession, login } from '~/services/auth.service.server'
@@ -8,18 +8,17 @@ import {
   validateEmail,
   validatePassword,
 } from '~/utils/validator.server'
-import logo from '../../../assets/images/logos/quicklook-icon.svg'
+import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import {
   checkUserVerificationStatus,
   findUserByEmail,
 } from '~/services/user.service.serevr'
-import { sendAccountVerificationMail, sendMail } from '~/services/mail.service.server'
+import { sendAccountVerificationMail} from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
 import {
   createUserVerificationToken,
-  deleteUserVerificationToken,
 } from '~/services/userVerification.service.server'
 
 export const action: ActionFunction = async ({ request }) => {

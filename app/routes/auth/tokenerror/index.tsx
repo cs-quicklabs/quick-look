@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react'
-import logo from '../../../assets/images/logos/quicklook-icon.svg'
+import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 
  const tokenerror= () => {
 

@@ -1,6 +1,6 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, redirect } from '@remix-run/node'
-import { createUserSession, register } from '~/services/auth.service.server'
+import { register } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
@@ -12,7 +12,7 @@ import {
   validateUsername,
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
-import logo from '../../../assets/images/logos/quicklook-icon.svg'
+import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import { ServerResponse } from '~/types/response.server'
