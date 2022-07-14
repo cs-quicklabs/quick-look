@@ -54,7 +54,6 @@ export async function sendAccountVerificationMail(
   let userData = await findUserByEmail(to)
   try {
     const verificationHostUrl = await getHostUrl(url);
-    console.log(verificationHostUrl)
     await sendMail({
       to,
       from: process.env.SENDGRID_EMAIL as string,
