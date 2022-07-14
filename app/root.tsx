@@ -33,10 +33,7 @@ function Document({ children }: any) {
      
         <title>QuickLook.me</title>
        
-        <meta
-          name='description'
-          content='Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.'
-        />
+       <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         <link
           rel='preconnect'
@@ -51,7 +48,7 @@ function Document({ children }: any) {
         />
         <Links />
       </head>
-      <body className='flex h-screen w-screen flex-col antialiased '>
+      <body className='flex h-screen w-screen flex-col antialiased min-h-full'>
         {children}
         <LiveReload />
       </body>
