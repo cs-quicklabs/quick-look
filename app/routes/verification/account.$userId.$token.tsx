@@ -12,7 +12,7 @@ export const loader: LoaderFunction = async ({request, params}) => {
         await deleteUserVerificationToken(user?.id as string)
         return redirect('/successlogin')
     } else {
-        return redirect('/tokenerror')
+        return redirect('/auth/tokenerror')
     }
 }
 

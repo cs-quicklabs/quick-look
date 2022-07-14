@@ -24,7 +24,7 @@ export default function confirmforgotpassword() {
             </p>
             <div className='mt-3'>
               <a
-                href='/login'
+                href='/auth/login'
                 className='text-indigo-600 flex items-center cursor-pointer font-medium text-sm'
               >
                 Go to Login Page

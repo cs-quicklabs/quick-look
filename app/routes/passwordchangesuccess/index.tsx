@@ -171,7 +171,7 @@ export default function passwordchangesuccess() {
                 </div>
 
                 <div className="text-sm">
-                  <a href="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a href="/auth/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
                     Forgot your password?
                   </a>
                 </div>
@@ -187,7 +187,7 @@ export default function passwordchangesuccess() {
               </div>
               <p className='mt-2 text-center text-sm'>
                     <Link
-                      to='/receive-email'
+                      to='/auth/receive-email'
                       className='font-medium text-indigo-600 hover:text-indigo-500'
                     >
                       Did not receive confirmation email?

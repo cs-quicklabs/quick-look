@@ -63,29 +63,29 @@ function Layout({ children }: any) {
 
   return (
     <>
-      {Location.pathname.includes('/login') ||
-      Location.pathname.includes('/signup') ||
-      Location.pathname.includes('/terms') ||
-      Location.pathname.includes('/privacy') ||
-      Location.pathname.includes('/forgot-password') ||
-      Location.pathname.includes('/refund-policy') ||
-      Location.pathname.includes('/successlogin') ||
-      Location.pathname.includes('/password') ||
+      {Location.pathname.includes('/auth/login') ||
+      Location.pathname.includes('/auth/signup') ||
+      Location.pathname.includes('/general/terms') ||
+      Location.pathname.includes('/general/privacy') ||
+      Location.pathname.includes('/auth/forgot-password') ||
+      Location.pathname.includes('/general/refund-policy') ||
+      Location.pathname.includes('successlogin') ||
+      Location.pathname.includes('/auth/password') ||
       Location.pathname.includes('/confirmforgotpassword') ||
-      Location.pathname.includes('/receive-email') ||
+      Location.pathname.includes('/auth/receive-email') ||
       Location.pathname.includes('/confirmemail') ? (
         <HeaderSecondary />
       ) : (
         <></>
       )}
-      <div className={`${Location.pathname.includes('/login') ||
+      <div className={`${Location.pathname.includes('/auth/login') ||
       
       Location.pathname.includes('/forgot-password')  ||
       Location.pathname.includes('/successlogin') ||
-      Location.pathname.includes('/password') ||
-      Location.pathname.includes('/tokenerror') || 
+      Location.pathname.includes('/auth/password') ||
+      Location.pathname.includes('/auth/tokenerror') || 
       Location.pathname.includes('/confirmforgotpassword') ||
-      Location.pathname.includes('/receive-email') ||
+      Location.pathname.includes('/auth/receive-email') ||
       Location.pathname.includes('/confirmemail')? 'overflow-hidden' : ''} `}>{children}</div>
     </>
   )

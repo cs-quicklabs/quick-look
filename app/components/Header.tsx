@@ -257,7 +257,7 @@ function MobileNavigation() {
                   </Link>
                 </li>
                 <li className='border-t border-slate-300/40 pt-4'>
-                  <Link to='/login'>
+                  <Link to='/auth/login'>
                     <a className='block w-full'>Sign in</a>
                   </Link>
                 </li>
@@ -310,7 +310,7 @@ export function Header({ isloggedin }: any) {
               </a>
             </li>
             <li className='ml-auto hidden md:block'>
-               <a href='/login'>
+               <a href='/auth/login'>
                  {isloggedin ? (
                    <span></span>
                ) : (
@@ -321,7 +321,7 @@ export function Header({ isloggedin }: any) {
               </a>
             </li>
             <li className='ml-auto md:ml-8'>
-              <ButtonLink href='/signup' color='blue' className={undefined}>
+              <ButtonLink href='/auth/signup' color='blue' className={undefined}>
                 <span>
                   Get Started<span className='hidden lg:inline'> For Free</span>
                 </span>
