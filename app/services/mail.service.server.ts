@@ -1,6 +1,7 @@
 import { json, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import { SendMail } from '~/types/sendmail.type'
+import { getHostUrl } from '~/utils/url.server'
 import { findUserByEmail } from './user.service.serevr'
 import { checkTokenValidation } from './userVerification.service.server'
 
@@ -52,20 +53,49 @@ export async function sendAccountVerificationMail(
 ) {
   let userData = await findUserByEmail(to)
   try {
+    const verificationHostUrl = await getHostUrl(url);
     await sendMail({
       to,
       from: process.env.SENDGRID_EMAIL as string,
       subject: 'Email Verification',
-      text: `${url}/verification/${generatedToken}`,
+      text: `${verificationHostUrl}verification/account/${userData.id}/${generatedToken}`,
       html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${
         userData?.firstname + ' ' + userData?.lastname
       },</p>
       <p>Please click on below link to verify your email.</p>
-      <a href=${url}/verification/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Verify my mail</a>
+      <a href=${verificationHostUrl}verification/account/${userData.id}/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Verify my mail</a>
       <p>If you didn't request this, please ignore this email.</p>
       `,
     })
   } catch (error) {
     throw json({ success: false, message: error }, { status: 500 })
+  }
+}
+
+export async function sendResetPasswordMail(to: string, url: string, generatedToken: string) {
+  let userData = await findUserByEmail(to)
+  const verificationHostUrl = await getHostUrl(url);
+  try {
+    await sendMail({
+      to,
+      from: process.env.SENDGRID_EMAIL as string,
+      subject: "Reset Password",
+      text: `${verificationHostUrl}verification/reset-password/${userData.id}/${generatedToken}`,
+      html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${userData?.firstname + ' ' + userData?.lastname
+        },</p>
+      <p>Someone has requested a link to change your password. You can do this through the link below.</p>
+      <a href=${verificationHostUrl}verification/reset-password/${userData.id}/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Change my password</a>
+      <p>If you didn't request this, please ignore this email.</p>
+      <p>Your password won't change until you access the link above and create a new one.</p>`,
+    });
+    return true;
+  } catch(error) {
+    throw json(
+      {
+        success: false,
+        message: { error },
+      },
+      { status: 500 },
+    )
   }
 }

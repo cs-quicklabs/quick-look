@@ -28,7 +28,7 @@ export function CallToAction() {
             Create one link to connect all your social profile and get
             discovered .
           </p>
-          <ButtonLink href="/signup" color="white" className="mt-10">
+          <ButtonLink href="/auth/signup" color="white" className="mt-10">
             Get Started For Free
           </ButtonLink>
         </div>

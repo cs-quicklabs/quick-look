@@ -18,13 +18,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Home() {
-  const Location = useLocation()
+
   const loaderData = useLoaderData()
   const isLoggedin = loaderData?.id
+  console.log(isLoggedin);
+  
   return (
     <>
-     {Location.pathname.includes('/dashboard') ? <HeaderSecondary /> :''}
-    
       <Header isloggedin={isLoggedin} />
       <Hero />
       <PrimaryFeatures />

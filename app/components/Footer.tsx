@@ -28,18 +28,18 @@ export function Footer() {
         <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
           <div className='flex md:space-x-6 space-x-0 text-sm '>
             <a
-                  href='/terms'
+                  href='/general/terms'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Terms & Conditions
                 </a>
             <a
-                  href='/privacy'
+                  href='/general/privacy'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   Privacy Policy
                 </a>
-            <a href='/refund-policy' className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>
+            <a href='/general/refund-policy' className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>
               
                  Refund Policy 
               

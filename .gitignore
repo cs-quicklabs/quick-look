@@ -14,3 +14,7 @@ node_modules
 
 # Tailwind file 
 /app/styles/tailwind.css
+
+# LOCAL PLAN 
+roadmap.txt
+

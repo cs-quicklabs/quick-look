@@ -2,7 +2,7 @@ import { json, createCookieSessionStorage, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import { LoginForm } from '~/types/loginForm.server'
 import { RegisterForm } from '~/types/regirsterForm.server'
-import { createUser, findUserByEmail } from './user.service.serevr'
+import { createUser } from './user.service.serevr'
 import bcrypt from 'bcryptjs'
 import { ServerResponse } from '~/types/response.server'
 
@@ -34,16 +34,11 @@ export async function createUserSession(userId: string, redirectTo: string) {
 }
 
 export async function register(user: RegisterForm): Promise<ServerResponse> {
-  const exists = await findUserByEmail(user.email);
-  if (exists) {
-    throw json(
-      { success: false, message: 'User Already Exists.' },
-      { status: 400 }
-    )
+  let newUser; 
+  try {
+    newUser = await createUser(user)
   }
-
-  const newUser = await createUser(user)
-  if (!newUser) {
+  catch(error){
     throw json(
       {
         error: `Something went wrong trying to create a new user.`,
@@ -52,7 +47,6 @@ export async function register(user: RegisterForm): Promise<ServerResponse> {
       { status: 500 }
     )
   }
-
   return {
     success: true,
     message: 'User created Successfully',
@@ -92,7 +86,7 @@ export async function requireUserId(
   const userId = session.get('userId')
   if (!userId || typeof userId !== 'string') {
     const searchParams = new URLSearchParams([['redirectTo', redirectTo]])
-    throw redirect(`/login?${searchParams}`)
+    throw redirect(`/auth/login?${searchParams}`)
   }
   return userId
 }
@@ -101,10 +95,10 @@ function getUserSession(request: Request) {
   return storage.getSession(request.headers.get('Cookie'))
 }
 
-async function getUserId(request: Request) {
+export async function getUserId(request: Request) {
   const session = await getUserSession(request)
   const userId = session.get('userId')
-  if (!userId || typeof userId !== 'string') return null
+  // if (!userId || typeof userId !== 'string') return null
   return userId
 }
 
