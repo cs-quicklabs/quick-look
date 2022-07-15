@@ -1,5 +1,5 @@
 import { LockClosedIcon, XCircleIcon } from '@heroicons/react/solid'
-import { ActionFunction, json, redirect } from '@remix-run/node'
+import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 import {
   createUserSession,
@@ -13,19 +13,19 @@ import {
   validatePassword,
 } from '~/utils/validator.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData } from '@remix-run/react'
+import { Form, useActionData, useLoaderData } from '@remix-run/react'
 import { useState } from 'react'
-import crossimg from '../../../assets/images/remove.png'
 import {
   checkUserVerificationStatus,
   findUserByEmail,
 } from '~/services/user.service.serevr'
-import { sendAccountVerificationMail, sendMail } from '~/services/mail.service.server'
+import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
 import {
   createUserVerificationToken,
   deleteUserVerificationToken,
 } from '~/services/userVerification.service.server'
+import { getSession } from '~/services/session.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -66,10 +66,19 @@ export const action: ActionFunction = async ({ request }) => {
     return { errors }
   }
 }
+export const loader: LoaderFunction = async ({request}) => {
+  const session = await getSession(
+    request.headers.get("Cookie")
+  );
+  const message = session.get("globalMessage") || null;
+
+  return message 
+}
 
 export default function SuccessLogin() {
-  const actionData = useActionData()
-
+  const actionData = useActionData();
+const loaderData = useLoaderData();
+console.log('======', loaderData)
   const [val, setVal] = useState({ email: '', password: '' })
 
    return (
@@ -83,7 +92,7 @@ export default function SuccessLogin() {
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">Your email has been confirmed. Please login to continue.</p>
+          <p className="text-sm font-medium text-green-800">{loaderData}</p>
         </div>
        
       </div>
