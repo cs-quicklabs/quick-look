@@ -1,5 +1,5 @@
-import { XCircleIcon } from '@heroicons/react/solid'
-import { ActionFunction, json, redirect } from '@remix-run/node'
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/solid'
+import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 import { createUserSession, login } from '~/services/auth.service.server'
 
@@ -9,7 +9,7 @@ import {
   validatePassword,
 } from '~/utils/validator.server'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData } from '@remix-run/react'
+import { Form, useActionData, useLoaderData } from '@remix-run/react'
 import { useState } from 'react'
 import {
   checkUserVerificationStatus,
@@ -20,6 +20,7 @@ import { v4 as uuidv4 } from 'uuid'
 import {
   createUserVerificationToken,
 } from '~/services/userVerification.service.server'
+import { getSession } from '~/services/session.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -63,8 +64,21 @@ export const action: ActionFunction = async ({ request }) => {
   }
 }
 
+export const loader: LoaderFunction = async ({request}) => {
+  const session = await getSession(
+    request.headers.get("Cookie")
+   
+  );
+  const message = session.get("authMessage") || null;
+ 
+  return message 
+}
+
 export default function Login() {
   const actionData = useActionData()
+  
+const loaderData = useLoaderData();
+console.log('succeslogin',loaderData);
 
   const [val, setVal] = useState({ email: '', password: '' })
 
@@ -73,7 +87,16 @@ export default function Login() {
     
       <div className="h-screen overflow-hidden flex flex-col justify-center py-12  bg-gray-50">
         <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
-      {!actionData?.errors ?  <span></span> : <div className={`rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
+      {!actionData?.errors && loaderData?  <div className="rounded-md bg-green-50 p-4">
+      <div className="flex ">
+        <div className="flex-shrink-0">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{loaderData}</p>
+        </div>
+      </div>
+    </div> : <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
       <div className="flex">
         {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
           <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />

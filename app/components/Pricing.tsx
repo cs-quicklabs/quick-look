@@ -69,7 +69,7 @@ function Plan({
         ))}
       </ul>
       <a
-        href='/signup'
+        href='/auth/signup'
         className={clsx(' mt-10 space-y-3 text-sm', {
           'group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white mt-8':
             featured,
@@ -125,7 +125,7 @@ export function Pricing() {
             name='Starter'
             price='Free'
             description='Good for anyone who wants just a basic link to combine all their social profile.'
-            href='/register'
+            href='/auth/signup'
             features={[
               'Send 10 quotes and invoices',
               'Connect up to 2 bank accounts',
@@ -140,7 +140,7 @@ export function Pricing() {
             name='Full Access'
             price='$49'
             description='Everything in Free plan and all advance features.'
-            href='/register'
+            href='/auth/signup'
             features={[
               'Send 25 quotes and invoices',
               'Connect up to 5 bank accounts',

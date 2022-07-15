@@ -22,7 +22,7 @@ export function Hero() {
         Describe yourself with just one link which connects all your social profile together.
       </p>
       <div className='mt-10 flex justify-center space-x-6'>
-        <ButtonLink href='/signup' color='blue'>
+        <ButtonLink href='/auth/signup' color='blue' className={undefined}>
                 <span>
                    Get Started<span className='hidden lg:inline'> For Free</span>
                 </span>
