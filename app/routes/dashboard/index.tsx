@@ -2,7 +2,7 @@ import { LoaderFunction } from "@remix-run/node";
 
 import { requireUserId } from "~/services/auth.service.server";
 import { LoginHeader } from "~/components/LoginHeader";
-import {SideNav} from "~/components/Sidenavbar";
+import SideNav from "~/components/Sidenavbar";
 
 export const loader: LoaderFunction = async ({ request  }) => {
   await requireUserId(request)
@@ -16,9 +16,9 @@ export default function Dashboard() {
   return (
     <div>
     <LoginHeader/>
-    <div className=''>
-    <SideNav/>
-    </div>
+  <SideNav>
+    sadas
+  </SideNav>
     </div>
   )
 }
