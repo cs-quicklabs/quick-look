@@ -68,9 +68,9 @@ function Layout({ children }: any) {
       Location.pathname.includes('/general/refund-policy') ||
       Location.pathname.includes('successlogin') ||
       Location.pathname.includes('/auth/password') ||
-      Location.pathname.includes('/confirmforgotpassword') ||
+      Location.pathname.includes('/confirm/password') ||
       Location.pathname.includes('/auth/receive-email') ||
-      Location.pathname.includes('/confirmemail') ? (
+      Location.pathname.includes('/confirm/email') ? (
         <HeaderSecondary />
       ) : (
         <></>
@@ -81,9 +81,9 @@ function Layout({ children }: any) {
       Location.pathname.includes('/successlogin') ||
       Location.pathname.includes('/auth/password') ||
       Location.pathname.includes('/auth/tokenerror') || 
-      Location.pathname.includes('/confirmforgotpassword') ||
+      Location.pathname.includes('/confirm/password') ||
       Location.pathname.includes('/auth/receive-email') ||
-      Location.pathname.includes('/confirmemail')? 'overflow-hidden' : ''} `}>{children}</div>
+      Location.pathname.includes('/confirm/email')? 'overflow-hidden' : ''} `}>{children}</div>
     </>
   )
 }

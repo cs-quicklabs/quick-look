@@ -29,13 +29,13 @@ export const action: ActionFunction = async ({ request }) => {
   const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
 
   if(!user){
-    return redirect('/confirmforgotpassword')
+    return redirect('/confirm/password')
   } else if(user['isVerified'] == true && createVerificationToken.success) {
     await sendResetPasswordMail(email, url, generatedToken)
-    return redirect('/confirmforgotpassword')
+    return redirect('/confirm/password')
   } else if(user['isVerified'] == false && createVerificationToken.success) {
     await sendAccountVerificationMail(email, url, generatedToken)
-    return redirect('/confirmemail')
+    return redirect('/confirm/email')
   } 
 }
 

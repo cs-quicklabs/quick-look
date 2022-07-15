@@ -65,7 +65,7 @@ export const action: ActionFunction = async ({ request }) => {
   if (createVerificationToken.success && registeredResponse.success) {
     await sendAccountVerificationMail(email, url, generatedToken)
   }
-  return redirect('/confirmemail')
+  return redirect('/confirm/email')
 }
 
 export default function SignUp() {

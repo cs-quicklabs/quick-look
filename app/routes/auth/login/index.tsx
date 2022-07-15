@@ -55,7 +55,7 @@ export const action: ActionFunction = async ({ request }) => {
     if(createVerificationToken.success){
       await sendAccountVerificationMail(email, url, generatedToken)
     }
-    return redirect('/confirmemail')
+    return redirect('/confirm/email')
   }
   
   const islogInData = await login({ email, password })
