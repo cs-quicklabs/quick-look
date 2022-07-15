@@ -19,14 +19,14 @@ export function Footer() {
           </div>
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
-              <a href="#features" className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>Features</a>
-              <a href="#testimonials" className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>Testimonials</a>
-              <a href="#pricing" className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>Pricing</a>
+              <a href="/#features" className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>Features</a>
+              <a href="/#testimonials" className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>Testimonials</a>
+              <a href="/#pricing" className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>Pricing</a>
             </div>
           </nav>
         </div>
         <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
-          <div className='flex space-x-6 text-sm'>
+          <div className='flex md:space-x-6 space-x-0 text-sm '>
             <a
                   href='/general/terms'
                   className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
