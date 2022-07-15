@@ -20,7 +20,7 @@ import { v4 as uuidv4 } from 'uuid'
 import {
   createUserVerificationToken,
 } from '~/services/userVerification.service.server'
-import { getSession } from '~/services/session.service.server'
+import { commitSession, getSession } from '~/services/session.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -71,14 +71,20 @@ export const loader: LoaderFunction = async ({request}) => {
   );
   const message = session.get("authMessage") || null;
  
-  return message 
+  return json(
+    { message },
+    {
+      headers: {
+        "Set-Cookie": await commitSession(session),
+      },
+    }
+  );
 }
 
 export default function Login() {
-  const actionData = useActionData()
+const actionData = useActionData()
   
 const loaderData = useLoaderData();
-console.log('succeslogin',loaderData);
 
   const [val, setVal] = useState({ email: '', password: '' })
 
@@ -87,13 +93,13 @@ console.log('succeslogin',loaderData);
     
       <div className="h-screen overflow-hidden flex flex-col justify-center py-12  bg-gray-50">
         <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
-      {!actionData?.errors && loaderData?  <div className="rounded-md bg-green-50 p-4">
+      {!actionData?.errors && loaderData?.message?  <div className="rounded-md bg-green-50 p-4">
       <div className="flex ">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{loaderData}</p>
+          <p className="text-sm font-medium text-green-800">{loaderData.message}</p>
         </div>
       </div>
     </div> : <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
