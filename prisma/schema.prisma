@@ -6,6 +6,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
 
   id               String            @id @unique @default(uuid())
@@ -13,9 +14,10 @@ model User {
   lastname         String
   email            String
   username         String            @unique
-  password         String          
+  password         String
   oldpassword      String
   isVerified       Boolean           @default(false)
+  isPublished      Boolean           @default(false)
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   userVerification UserVerification?
@@ -33,4 +35,3 @@ model UserVerification {
 
   @@map("userverification")
 }
-
