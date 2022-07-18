@@ -1,7 +1,14 @@
+import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
+import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 
 export default function Profile() {
+  const [open, setopen] = useState(false)
+  const [openModal, setopenModal] = useState(false)
+const onClose=()=>{
+  setopen(false)
+}
   return (
     <>
       <div>
@@ -29,12 +36,13 @@ export default function Profile() {
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
+                      <form action="">
                       <input
                         id="productUpdate"
                         name="productUpdate"
                         type="checkbox"
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      />
+                      /></form>
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="productUpdate" className="font-medium text-gray-700">
@@ -45,12 +53,13 @@ export default function Profile() {
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
+                      <form action="">
                       <input
                         id="marketingUpdates"
                         name="marketingUpdates"
                         type="checkbox"
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      />
+                      /></form>
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
@@ -85,9 +94,9 @@ export default function Profile() {
                     Once you delete your account, you will lose all data associated with it.
                     </p>
                     <div className="flex justify-start items-center">
-                      <a className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 font-medium py-2 px-4">
+                      <button onClick={()=>{setopen(true)}} className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 hover:text-white font-medium py-2 px-4">
                         Delete account
-                      </a>
+                      </button>
                     </div>
                 </div>
               </div>
@@ -95,6 +104,8 @@ export default function Profile() {
           </div>
         </div>
       </div>
+        <Delete open={open} onClose={() => setopen(false)} />
+
     </>
   )
 }
