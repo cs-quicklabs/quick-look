@@ -2,13 +2,12 @@ import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
+import Unpublish from "~/components/Common/unpublishModal";
 
 export default function Profile() {
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
-const onClose=()=>{
-  setopen(false)
-}
+
   return (
     <>
       <div>
@@ -79,9 +78,9 @@ const onClose=()=>{
               . You can enable your profile anytime you want.
               </p>
               <div className="flex justify-start ml-1 items-center">
-                <div className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
+                <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
                   Unpublish my account
-                </div>
+                </button>
               </div>
             </div>
 
@@ -105,7 +104,7 @@ const onClose=()=>{
         </div>
       </div>
         <Delete open={open} onClose={() => setopen(false)} />
-
+<Unpublish open={openModal} onClose={() => setopenModal(false)}/>
     </>
   )
 }
