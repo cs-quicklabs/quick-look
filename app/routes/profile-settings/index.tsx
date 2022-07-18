@@ -11,10 +11,10 @@ export default function Profile() {
         <div>
           <ProfileSetting />
         </div>
-        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl divide-y divide-gray-200">
+        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl divide-y divide-gray-200 bg-white">
         <form action="#" method="POST">
           <div className="sm:rounded-md sm:overflow-hidden">
-            <div className="bg-white py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
+            <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
               <div>
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Profile</h3>
                 <p className="mt-1 text-sm text-gray-500">
@@ -60,7 +60,7 @@ export default function Profile() {
 
               </div>
             </div>
-            <div className="mt-1.5 text-right sm:px-8 max-w-xl">
+            <div className="mt-1.5 text-right sm:px-10 max-w-xl">
               <button
                 type="submit"
                 className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -74,7 +74,7 @@ export default function Profile() {
         <div className='pt-8'>
           <form action="#" method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
-              <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
+              <div className="py-6 px-4 space-y-6 sm:p-6">
                 <div className='max-w-3xl'>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Change Password</h3>
                   <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
@@ -113,7 +113,7 @@ export default function Profile() {
  
                 </div>
               </div>
-              <div className="px-4 py-3 bg-gray-50 text-right sm:px-8">
+              <div className="px-4 py-3 text-right sm:px-10">
                 <button
                   type="submit"
                   className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
