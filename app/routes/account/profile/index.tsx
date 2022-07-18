@@ -1,10 +1,11 @@
 import { useActionData } from '@remix-run/react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
+import { useRouteData } from '~/hooks/useRouteData';
 
 export default function Profile() {
-  const actionData = useActionData()
 
+  const actionData = useActionData()
   return (
     <>
       <div>
@@ -15,7 +16,7 @@ export default function Profile() {
           <ProfileSetting />
         </div>
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl bg-white">
-        <form action="#" method="POST">
+        <form action="profile/profile-settings" method="POST">
           <div className="sm:rounded-md sm:overflow-hidden">
             <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
               <div>
@@ -102,7 +103,7 @@ export default function Profile() {
         </div>
                       
         <div className=''>
-          <form action="#" method="POST">
+          <form action="profile/password-settings" method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
               <div className="px-4 sm:p-6">
                 <div className='max-w-3xl'>

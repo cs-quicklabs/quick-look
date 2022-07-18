@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs'
 import { db } from "~/database/connection.server";
 import { nameCasing } from "~/utils/string.server";
 import { json } from "stream/consumers";
-import { validateOldPassword } from "~/utils/validator.server";
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -69,8 +68,7 @@ export async function getUserById(id: string) {
 
 export async function updateUsingOldPassword(userId: string, password: string) {
     const user = await getUserById(userId);
-
-    const isLastPasswordSame = await validateOldPassword(user, user?.oldpassword as string, password)
+    const isLastPasswordSame = await bcrypt.compare(password, user?.oldpassword as string)
     if (isLastPasswordSame === false) {
         await upateUserPassword(userId, password)
     }
