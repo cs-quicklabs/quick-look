@@ -1,0 +1,121 @@
+import { LoaderFunction } from "@remix-run/node";
+import { requireUserId } from "~/services/auth.service.server";
+import { LoginHeader } from "~/components/LoginHeader";
+import SideNav from "~/components/Sidenavbar";
+import ProfileSetting from "~/components/Common/ProfileSetting";
+import { useState } from "react";
+import Modal from "~/components/Common/ConfirmModal";
+import { Link } from "react-router-dom";
+import logo from '../../../assets/images/logos/quicklook-icon.svg';
+import DefaultProfileIcon from '../../../assets/images/profile.png';
+
+export const loader: LoaderFunction = async ({ request  }) => {
+  await requireUserId(request)
+
+  return null
+}
+
+export default function Profile() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [showUserSetting, setShowUserSetting] = useState(false);
+  
+  const toggleSetting = () => {
+    setShowUserSetting(!showUserSetting);
+  };
+
+  return (
+    <>
+      <div>
+      <header className='relative font-inter h-[3rem] bg-gray-800'>
+        <div className='bg-gray-800 font-inter'>
+          <nav
+            className='relative flex items-center justify-between px-4'
+            aria-label='Global'
+          >
+            <div className='flex flex-1 items-center'>
+              <div className='flex w-full items-center justify-between md:w-auto'>
+                <Link
+                  to='/'
+                  className='flex items-center justify-center space-x-2'
+                >
+                  <img className='w-10 h-10 ml-6 mr-3 sm:h-10' src={logo} alt='' />
+                  <span className='text-2xl pt-3 pb-3 font-extrabold text-white'>
+                    Quicklook.me/ Username
+                    {/* User name goes here */}
+                  </span>
+                </Link>
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div className='flex justify-center items-center mr-7'>
+              {/* <img className='w-4 h-4 text-white' src={bell} alt='bell' /> */}
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </div>
+            <div>
+              <div>
+                <button
+                  type="button"
+                  className="bg-gray-800 flex flex-col justify-center items-center mr-10 text-sm rounded-full focus:outline-none"
+                  id="user-menu"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span className="sr-only">Open user menu</span>
+                  <img
+                    width={32}
+                    height={32}
+                    id="OpenProfile"
+                    data-cy="profile-menu"
+                    alt="Profile Pic"
+                    title="Open Profile"
+                    loading="eager"
+                    className="h-8 w-8 rounded-full"
+                    src={DefaultProfileIcon}
+                    onClick={() => toggleSetting()}
+                  />
+                </button>
+              </div>
+            
+              {showUserSetting && (
+                  <div
+                    className="flex flex-col flex-start origin-top-right absolute right-0 mt-0.5 h-20 top-14 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu"
+                  >
+                    <a
+                      // onClick={goToProfile}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer w-full text-left"
+                      data-cy="profile"
+                      role="menuitem"
+                      href="/profile-settings"
+                    >
+                      Profile Settings
+                    </a>
+                    <a
+                      onClick={() => setIsOpen(true)}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer w-full text-left"
+                      data-cy="sign-out"
+                      role="menuitem"
+                      href="# "
+                    >
+                      Sign out
+                    </a>
+                    <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
+                  </div>
+                )}
+
+            </div>
+          </nav>
+        </div>
+      </header>
+      </div>
+    </>
+  )
+}
