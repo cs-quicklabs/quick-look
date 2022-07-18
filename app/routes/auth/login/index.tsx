@@ -60,14 +60,13 @@ export const action: ActionFunction = async ({ request }) => {
   
   const islogInData = await login({ email, password })
   if(islogInData){
-    return createUserSession(islogInData.id, '/dashboard')
+    return createUserSession(islogInData.id, '/profile')
   }
 }
 
 export const loader: LoaderFunction = async ({request}) => {
   const session = await getSession(
     request.headers.get("Cookie")
-   
   );
   const message = session.get("authMessage") || null;
  
