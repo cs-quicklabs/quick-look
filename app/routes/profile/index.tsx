@@ -10,10 +10,9 @@ export const loader: LoaderFunction = async ({ request  }) => {
 }
 
 export default function Profile() {
- 
   return (
     <>
-      <DashboardHeader/>
+      <DashboardHeader />
     </>
   )
 }
