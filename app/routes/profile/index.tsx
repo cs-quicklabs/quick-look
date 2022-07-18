@@ -1,5 +1,6 @@
-import { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
 import { requireUserId } from "~/services/auth.service.server";
+
 import DashboardHeader from "~/components/Common/DashboardHeader";
 
 export const loader: LoaderFunction = async ({ request  }) => {
@@ -9,7 +10,6 @@ export const loader: LoaderFunction = async ({ request  }) => {
 }
 
 export default function Profile() {
-  
   return (
     <>
       <DashboardHeader />
