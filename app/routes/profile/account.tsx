@@ -70,9 +70,9 @@ export default function Profile() {
               . You can enable your profile anytime you want.
               </p>
               <div className="flex justify-start ml-1 items-center">
-                <a className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
+                <div className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
                   Unpublish my account
-                </a>
+                </div>
               </div>
             </div>
             <div className="py-4 px-4 sm:p-6 rounded-lg mt-4">
@@ -81,9 +81,9 @@ export default function Profile() {
                Once you delete your account, you will lose all data associated with it.
               </p>
               <div className="flex justify-start ml-a items-center">
-                <a className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 font-medium py-2 px-4">
+                <div className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 font-medium py-2 px-4">
                   Delete account
-                </a>
+                </div>
               </div>
             </div>
           </div>

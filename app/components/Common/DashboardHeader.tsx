@@ -83,7 +83,7 @@ export default function DashboardHeader() {
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer w-full text-left"
                         data-cy="profile"
                         role="menuitem"
-                        href="/profile-settings"
+                        href="/profile/settings"
                       >
                         Profile Settings
                       </a>

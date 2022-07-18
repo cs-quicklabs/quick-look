@@ -1,7 +1,10 @@
+import { useActionData } from '@remix-run/react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
 
 export default function Profile() {
+  const actionData = useActionData()
+
   return (
     <>
       <div>
@@ -29,17 +32,32 @@ export default function Profile() {
                     First Name
                   </label>
                   <input
-                    className="w-full flex items-center box-border appearance-none  h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 "
+                    className={`w-full flex items-center box-border appearance-none  h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['firstname']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }` }
                   />
+                  <div className='text-red-600 text-sm w-44'>
+                    {actionData?.errors['firstname']}
+                  </div>
                 </div>
                 <div className='mt-3.5'>
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                     Last Name
                   </label>
                   <input
-                    className='w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5' 
+                    className={`w-full flex items-center box-border appearance-none  h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['lastname']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }` }
                   />
+                  <div className='text-red-600 text-sm w-44'>
+                    {actionData?.errors['lastname']}
+                  </div>
                 </div>
+                 
                 <div className='w-full mt-3.5'>
                   <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                     Profile ID
@@ -52,9 +70,17 @@ export default function Profile() {
                       type="text"
                       name="profileId"
                       id="profileId"
-                      className="focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                      className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${
+                      actionData?.errors['profileId']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
                     />
+                    
                     </div>
+                    <div className='text-red-600 text-sm w-44'>
+                    {actionData?.errors['profileId']}
+                  </div>
                   </div>
                 </div>
 
@@ -85,18 +111,32 @@ export default function Profile() {
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                     Old Password
                     <input
-                      className="w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5"
-                      name='password'
+                      className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['oldpassword']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
+                      name='oldpassword'
                       type='password'
                     />
+                    <div className='text-red-600 text-sm w-44'>
+                    {actionData?.errors['oldpassword']}
+                  </div>
                   </label>
                     
                   <div className='mt-3.5'>
                     <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                       New Password
                       <input
-                        className="w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5"
+                        className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['newpassword']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
                       />
+                      <div className='text-red-600 text-sm w-44'>
+                    {actionData?.errors['newpassword']}
+                  </div>
                     </label>
                   </div>
 
@@ -104,8 +144,15 @@ export default function Profile() {
                     <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                       Confirm New Password
                       <input
-                        className="w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5"
+                        className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                      actionData?.errors['confirmpassword']
+                        ? 'border border-red-400'
+                        : 'first-line:'
+                    }`}
                       />
+                      <div className='text-red-600 text-sm w-44'>
+                    {actionData?.errors['confirmpassword']}
+                  </div>
                     </label>
                   </div>
               
@@ -116,7 +163,7 @@ export default function Profile() {
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-8">
                 <button
                   type="submit"
-                  className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className='bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                 >
                   Save
                 </button>

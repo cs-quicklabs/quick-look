@@ -2,8 +2,8 @@ import { EmojiHappyIcon ,CogIcon } from '@heroicons/react/outline';
 import { useLocation } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Profile', icon: EmojiHappyIcon, href: '/profile-settings' },
-  { name: 'Settings', icon: CogIcon, href: '/settings'},
+  { name: 'Profile', icon: EmojiHappyIcon, href: '/profile/settings' },
+  { name: 'Settings', icon: CogIcon, href: '/profile/account'},
 ]
 const secondaryNavigation = [
   { name: 'Help Center', href: '#' },
