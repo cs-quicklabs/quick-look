@@ -14,7 +14,7 @@ export default function Profile() {
         <div>
           <ProfileSetting />
         </div>
-        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl divide-y divide-gray-200 bg-white">
+        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl bg-white">
         <form action="#" method="POST">
           <div className="sm:rounded-md sm:overflow-hidden">
             <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
@@ -97,10 +97,14 @@ export default function Profile() {
           </div>
         </form>
 
-        <div className='pt-8'>
+        <div className='ml-5 w-11/12 border-t border-gray-800'>
+        
+        </div>
+                      
+        <div className=''>
           <form action="#" method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
-              <div className="py-6 px-4 space-y-6 sm:p-6">
+              <div className="px-4 sm:p-6">
                 <div className='max-w-3xl'>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Change Password</h3>
                   <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
