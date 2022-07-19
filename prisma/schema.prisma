@@ -8,19 +8,21 @@ datasource db {
 }
 
 model User {
+  id                      String            @id @unique @default(uuid())
+  firstname               String
+  lastname                String
+  email                   String
+  username                String            @unique
+  password                String
+  oldpassword             String
+  isVerified              Boolean           @default(false)
+  isPublished             Boolean           @default(false)
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+  recieveProductUpdates   Boolean           @default(false)
+  recieveMarketingUpdates Boolean           @default(false)
+  userVerification        UserVerification?
 
-  id               String            @id @unique @default(uuid())
-  firstname        String
-  lastname         String
-  email            String
-  username         String            @unique
-  password         String
-  oldpassword      String
-  isVerified       Boolean           @default(false)
-  isPublished      Boolean           @default(false)
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  userVerification UserVerification?
   @@map("user")
 }
 
