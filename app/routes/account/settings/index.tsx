@@ -5,8 +5,12 @@ import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import Unpublish from "~/components/Common/unpublishModal";
 
-export const action: ActionFunction = ({request}) => {
-  
+export const action: ActionFunction = async({request}) => {
+  const formData = await request.formData()
+  let productUpdate = formData.get('productUpdate')
+  let marketingUpdate = formData.get('marketingUpdate')
+
+  console.log(productUpdate, marketingUpdate)
 }
 
 export default function Profile() {
@@ -59,7 +63,7 @@ export default function Profile() {
                       <form action="">
                       <input
                         id="marketingUpdates"
-                        name="marketingUpdates"
+                        name="marketingUpdate"
                         type="checkbox"
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                       /></form>
