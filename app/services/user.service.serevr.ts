@@ -4,6 +4,7 @@ import { db } from "~/database/connection.server";
 import { nameCasing } from "~/utils/string.server";
 import { json } from "stream/consumers";
 import { UpdateProfileDetails } from "~/types/updateProfile.server";
+import { UserPreferences } from "~/types/updateUserPreferences.server";
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -111,5 +112,16 @@ export async function unpublishUserAccount(user?: any){
         })
     }
     return 'Account unpublished successfully.'
+}
 
+export async function updateUserPreferences({recieveMarketingUpdates, recieveProductUpdates, user}: UserPreferences){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            recieveMarketingUpdates: recieveMarketingUpdates,
+            recieveProductUpdates: recieveProductUpdates,
+        }
+    })
 }
