@@ -159,3 +159,10 @@ export const validateUsername = async (
   }
 }
 
+export async function validateOldPassword(user: any, password: string ){
+  const isLastPasswordSame = await bcrypt.compare(password, user?.oldpassword as string)
+  if(isLastPasswordSame){
+    return 'New password cannot be same as last password.'
+  }
+}
+

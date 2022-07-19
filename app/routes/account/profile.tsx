@@ -1,14 +1,83 @@
+import { ActionFunction, json, LoaderFunction } from '@remix-run/node';
 import { useActionData } from '@remix-run/react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
-import { useRouteData } from '~/hooks/useRouteData';
+import { getUser, requireUserId } from '~/services/auth.service.server';
+import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
 
+export const action: ActionFunction = async ({ request }) => {
+  const user = await getUser(request)
+
+  const formData = await request.formData();
+  let { _action } = Object.fromEntries(formData)
+
+  if (_action === 'updateProfile') {
+    const firstName = formData.get('firstname') as string
+    const lastName = formData.get('lastname') as string
+    const profileId = formData.get('profileId') as string
+
+    const errors = {
+      firstname: await validateFirstName(firstName),
+      lastname: await validateLastName(lastName),
+      username: await validateUsername(profileId),
+    }
+
+    if (Object.values(errors).some(Boolean)) {
+      return json(
+        {
+          errors,
+          form: action,
+        },
+        { status: 400 }
+      )
+    } else {
+      return json(
+        {
+          success: true,
+          message: 'Your profile has been updated successfully.'
+        },
+        { status: 200 }
+      )
+    }
+  } else if (_action === 'updatePassword') {
+    const oldPassword = formData.get('oldpassword') as string
+    const newPassword = formData.get('newpassword') as string
+    const confirmNewPassword = formData.get('confirmnewpassword') as string
+
+    const errors = {
+      isOldPasswordSame: await validateOldPassword(user, newPassword),
+      password: await validatePassword(newPassword),
+      isPasswordSame: await validateComfirmPassword(newPassword, confirmNewPassword),
+    }
+
+    if (Object.values(errors).some(Boolean)) {
+      return json(
+        {
+          errors,
+          form: action,
+        },
+        { status: 400 }
+      )
+    } else {
+      return json(
+        {
+          success: true,
+          message: 'Your password has been updated successfully.'
+        }
+      )
+    }
+  }
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  await requireUserId(request);
+  return null;
+}
 
 export default function Profile() {
-const passwordPathId = 'routes/account/profile/password-setting'
-const actionData = useActionData()
 
-const passwordActionData = useRouteData(passwordPathId)
+  const actionData = useActionData()
+  console.log(actionData)
   return (
     <>
       <div>
@@ -19,7 +88,7 @@ const passwordActionData = useRouteData(passwordPathId)
           <ProfileSetting />
         </div>
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl bg-white">
-          <form action="profile/profile-settings" method="POST">
+          <form method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
               <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
                 <div>
@@ -28,7 +97,6 @@ const passwordActionData = useRouteData(passwordPathId)
                     This information will be displayed publicly so be careful what you share.
                   </p>
                 </div>
-
                 <div className="grid grid-cols-1 gap-6 max-w-lg">
                   <div className="col-span-3 sm:col-span-2">
                     <div>
@@ -37,8 +105,8 @@ const passwordActionData = useRouteData(passwordPathId)
                       </label>
                       <input
                         className={`w-full flex items-center box-border appearance-none  h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['firstname']
-                            ? 'border border-red-400'
-                            : 'first-line:'
+                          ? 'border border-red-400'
+                          : 'first-line:'
                           }`}
                         name="firstname"
                       />
@@ -52,8 +120,8 @@ const passwordActionData = useRouteData(passwordPathId)
                       </label>
                       <input
                         className={`w-full flex items-center box-border appearance-none  h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['lastname']
-                            ? 'border border-red-400'
-                            : 'first-line:'
+                          ? 'border border-red-400'
+                          : 'first-line:'
                           }`}
                         name='lastname'
                       />
@@ -61,7 +129,6 @@ const passwordActionData = useRouteData(passwordPathId)
                         {actionData?.errors['lastname']}
                       </div>
                     </div>
-
                     <div className='w-full mt-3.5'>
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                         Profile ID
@@ -75,23 +142,23 @@ const passwordActionData = useRouteData(passwordPathId)
                           name="profileId"
                           id="profileId"
                           className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${actionData?.errors['profileId']
-                              ? 'border border-red-400'
-                              : 'first-line:'
+                            ? 'border border-red-400'
+                            : 'first-line:'
                             }`}
                         />
-
                       </div>
                       <div className='text-red-600 text-sm w-44'>
                         {actionData?.errors['profileId']}
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div className="mt-1.5 text-right sm:px-10 max-w-xl">
                 <button
                   type="submit"
+                  name='_action'
+                  value='updateProfile'
                   className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Save
@@ -99,28 +166,24 @@ const passwordActionData = useRouteData(passwordPathId)
               </div>
             </div>
           </form>
-
           <div className='ml-5 w-11/12 border-t border-gray-800'>
-
           </div>
-
           <div className=''>
-            <form action="profile/password-settings" method="POST">
+            <form method="POST">
               <div className="sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 sm:p-6">
                   <div className='max-w-3xl'>
                     <h3 className="text-lg leading-6 font-medium text-gray-900">Change Password</h3>
                     <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
                   </div>
-
                   <div className="grid grid-cols-1 gap-6 max-w-lg">
                     <div>
                       <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                         Old Password
                         <input
                           className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['oldpassword']
-                              ? 'border border-red-400'
-                              : 'first-line:'
+                            ? 'border border-red-400'
+                            : 'first-line:'
                             }`}
                           name='oldpassword'
                           type='password'
@@ -129,16 +192,15 @@ const passwordActionData = useRouteData(passwordPathId)
                           {actionData?.errors['oldpassword']}
                         </div>
                       </label>
-
                       <div className='mt-3.5'>
                         <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                           New Password
                           <input
                             className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['newpassword']
-                                ? 'border border-red-400'
-                                : 'first-line:'
+                              ? 'border border-red-400'
+                              : 'first-line:'
                               }`}
-                            name= 'newpassword'
+                            name='newpassword'
                             type="password"
                           />
                           <div className='text-red-600 text-sm w-44'>
@@ -146,16 +208,15 @@ const passwordActionData = useRouteData(passwordPathId)
                           </div>
                         </label>
                       </div>
-
                       <div className='mt-3.5'>
                         <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                           Confirm New Password
                           <input
                             className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['confirmpassword']
-                                ? 'border border-red-400'
-                                : 'first-line:'
+                              ? 'border border-red-400'
+                              : 'first-line:'
                               }`}
-                              name= 'confirmnewpassword'
+                            name='confirmnewpassword'
                             type="password"
                           />
                           <div className='text-red-600 text-sm w-44'>
@@ -169,6 +230,8 @@ const passwordActionData = useRouteData(passwordPathId)
                 <div className="px-4 py-3 text-right sm:px-10">
                   <button
                     type="submit"
+                    name='_action'
+                    value='updatePassword'
                     className='bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                   >
                     Save

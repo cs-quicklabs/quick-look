@@ -1,5 +1,10 @@
+import { ActionFunction } from "@remix-run/node";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import ProfileSetting from "~/components/Common/ProfileSetting";
+
+export const action: ActionFunction = ({request}) => {
+  
+}
 
 export default function Profile() {
   return (
