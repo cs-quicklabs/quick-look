@@ -92,6 +92,8 @@ const passwordActionData = useRouteData(passwordPathId)
               <div className="mt-1.5 text-right sm:px-10 max-w-xl">
                 <button
                   type="submit"
+                  name='_action'
+                  value='updateId'
                   className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Save
@@ -169,6 +171,8 @@ const passwordActionData = useRouteData(passwordPathId)
                 <div className="px-4 py-3 text-right sm:px-10">
                   <button
                     type="submit"
+                     name='_action'
+                    value='updatePassword'
                     className='bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                   >
                     Save
