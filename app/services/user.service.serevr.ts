@@ -90,3 +90,26 @@ export async function updateUserProfileDetails({firstname, lastname, profileId, 
         }
     })
 }
+
+export async function deleteUser(user?: any){
+    await db.user.delete({
+        where: {
+            id: user.id
+        }
+    })
+}
+
+export async function unpublishUserAccount(user?: any){
+    if(user.isPublished){
+        await db.user.update({
+            where: {
+                id: user.id
+            },
+            data: {
+                isPublished: false
+            }
+        })
+    }
+    return 'Account unpublished successfully.'
+
+}
