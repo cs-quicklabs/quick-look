@@ -1,12 +1,18 @@
 import { ActionFunction } from "@remix-run/node";
+import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
+import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
+import Unpublish from "~/components/Common/unpublishModal";
 
 export const action: ActionFunction = ({request}) => {
   
 }
 
 export default function Profile() {
+  const [open, setopen] = useState(false)
+  const [openModal, setopenModal] = useState(false)
+
   return (
     <>
       <div>
@@ -33,12 +39,13 @@ export default function Profile() {
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
+                      <form action="">
                       <input
                         id="productUpdate"
                         name="productUpdate"
                         type="checkbox"
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      />
+                      /></form>
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="productUpdate" className="font-medium text-gray-700">
@@ -49,12 +56,13 @@ export default function Profile() {
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
+                      <form action="">
                       <input
                         id="marketingUpdates"
                         name="marketingUpdates"
                         type="checkbox"
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      />
+                      /></form>
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
@@ -74,9 +82,9 @@ export default function Profile() {
               . You can enable your profile anytime you want.
               </p>
               <div className="flex justify-start ml-1 items-center">
-                <div className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
+                <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
                   Unpublish my account
-                </div>
+                </button>
               </div>
             </div>
 
@@ -89,9 +97,9 @@ export default function Profile() {
                     Once you delete your account, you will lose all data associated with it.
                     </p>
                     <div className="flex justify-start items-center">
-                      <a className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 font-medium py-2 px-4">
+                      <button onClick={()=>{setopen(true)}} className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 hover:text-white font-medium py-2 px-4">
                         Delete account
-                      </a>
+                      </button>
                     </div>
                 </div>
               </div>
@@ -99,6 +107,8 @@ export default function Profile() {
           </div>
         </div>
       </div>
+        <Delete open={open} onClose={() => setopen(false)} />
+<Unpublish open={openModal} onClose={() => setopenModal(false)}/>
     </>
   )
 }
