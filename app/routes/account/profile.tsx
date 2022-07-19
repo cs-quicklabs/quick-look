@@ -3,10 +3,12 @@ import { useActionData } from '@remix-run/react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
+import { getUserById, updateUserProfileDetails, updateUsingOldPassword } from '~/services/user.service.serevr';
 import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {
-  const user = await getUser(request)
+  const userInfo = await getUser(request)
+  const user = await getUserById(userInfo?.id as string)
 
   const formData = await request.formData();
   let { _action } = Object.fromEntries(formData)
@@ -19,7 +21,7 @@ export const action: ActionFunction = async ({ request }) => {
     const errors = {
       firstname: await validateFirstName(firstName),
       lastname: await validateLastName(lastName),
-      username: await validateUsername(profileId),
+      username: await validateUsername(profileId, true),
     }
 
     if (Object.values(errors).some(Boolean)) {
@@ -31,6 +33,13 @@ export const action: ActionFunction = async ({ request }) => {
         { status: 400 }
       )
     } else {
+
+      await updateUserProfileDetails({
+        firstname: firstName,
+        lastname: lastName,
+        profileId, user
+      })
+
       return json(
         {
           success: true,
@@ -39,13 +48,14 @@ export const action: ActionFunction = async ({ request }) => {
         { status: 200 }
       )
     }
+
   } else if (_action === 'updatePassword') {
     const oldPassword = formData.get('oldpassword') as string
     const newPassword = formData.get('newpassword') as string
     const confirmNewPassword = formData.get('confirmnewpassword') as string
 
     const errors = {
-      isOldPasswordSame: await validateOldPassword(user, newPassword),
+      isOldPasswordSame: await validateOldPassword(user, newPassword, oldPassword),
       password: await validatePassword(newPassword),
       isPasswordSame: await validateComfirmPassword(newPassword, confirmNewPassword),
     }
@@ -59,6 +69,8 @@ export const action: ActionFunction = async ({ request }) => {
         { status: 400 }
       )
     } else {
+
+      await updateUsingOldPassword(user, newPassword)
       return json(
         {
           success: true,
@@ -75,9 +87,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Profile() {
-
   const actionData = useActionData()
-  console.log(actionData)
   return (
     <>
       <div>

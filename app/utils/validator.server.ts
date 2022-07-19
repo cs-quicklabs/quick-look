@@ -124,7 +124,7 @@ export const validateLastName = async (
   }
 }
 export const validateUsername = async (
-  username: string
+  username: string, forUpdate?: Boolean 
 ): Promise<String | undefined> => {
   let whiteSpaceRegex =  /^\S*$/
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
@@ -135,12 +135,17 @@ export const validateUsername = async (
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
   let lowerCasedUserName = username.toLocaleLowerCase();
 
-
   const usernameExist = await db.user.count({
     where: {
       username: lowerCasedUserName,
     },
   })
+
+  if(forUpdate){
+    if(usernameExist > 1) {
+      return 'This Id has already been taken. Please choose another.'
+    } 
+  }
 
   if ( !username ) {
     return 'Profile Id is required.'
@@ -159,9 +164,13 @@ export const validateUsername = async (
   }
 }
 
-export async function validateOldPassword(user: any, password: string ){
-  const isLastPasswordSame = await bcrypt.compare(password, user?.oldpassword as string)
-  if(isLastPasswordSame){
+export async function validateOldPassword(user: any, newPassword: string, oldpassword: string ){
+  const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.oldpassword as string)
+  const isLastPasswordSame = await bcrypt.compare(newPassword, user?.oldpassword as string)
+  if(!isoldPasswordMatch){ 
+    return 'Old password does not match.'
+  }
+  if(isLastPasswordSame){ 
     return 'New password cannot be same as last password.'
   }
 }

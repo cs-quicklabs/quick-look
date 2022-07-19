@@ -78,7 +78,6 @@ export default function Profile() {
               <h3 className="text-lg leading-6 font-medium text-gray-900">Unpublish your Account</h3>
               <p className="text-sm text-gray-500 max-w-lg">
               Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link quicklook.me/
-              {/* User name goes here */}
               . You can enable your profile anytime you want.
               </p>
               <div className="flex justify-start ml-1 items-center">
