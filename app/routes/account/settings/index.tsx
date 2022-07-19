@@ -12,7 +12,6 @@ export default function Profile() {
           <div>
             <ProfileSetting />
           </div>
-        {/* notifications */}
           <div className="sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-3xl">
             <div className="py-6 px-4 sm:p-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
