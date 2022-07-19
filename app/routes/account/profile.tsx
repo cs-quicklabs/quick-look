@@ -166,7 +166,7 @@ export default function Profile() {
               </div>
             </div>
           </form>
-          <div className='ml-5 w-11/12 border-t border-gray-800'>
+          <div className='mr-9 ml-5 border-t border-gray-200'>
           </div>
           <div className=''>
             <form method="POST">
