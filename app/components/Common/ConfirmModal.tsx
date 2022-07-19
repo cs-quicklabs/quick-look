@@ -4,7 +4,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon, XIcon } from '@heroicons/react/outline'
 
 export default function Modal({ open, children, onClose }: any) {
-  // const [open, setOpen] = useState(true)
 
   return (
     <Transition.Root show={open} as={Fragment}>

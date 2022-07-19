@@ -6,7 +6,6 @@ if (!sessionSecret) {
 } 
 const { getSession, commitSession, destroySession } =
   createCookieSessionStorage({
-    // a Cookie from `createCookie` or the CookieOptions to create one
     cookie: {
       name: 'quicklook-session',
       secure: process.env.NODE_ENV === 'production',
