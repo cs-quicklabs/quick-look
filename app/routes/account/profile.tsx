@@ -127,16 +127,13 @@ export default function Profile() {
                           ? 'border border-red-400'
                           : 'first-line:'
                           }`}
+                          
                         name="firstname"
+                        id='firstname'
                         value={val.firstName}
-                        onChange={(event) => {
-                          setVal({
-                            ...val,
-                            [event.target.name]: event.target.value,
-                          })
-                        }}
+                        onChange={(e:any) => setVal(e.target.value)}
                       />
-                      <div className='text-red-600 text-sm w-44'>
+                      <div className='text-red-600 text-sm w-max'>
                         {actionData?.errors['firstname']}
                       </div>
                     </div>
@@ -149,16 +146,14 @@ export default function Profile() {
                           ? 'border border-red-400'
                           : 'first-line:'
                           }`}
-                        name='lastname'
+                        name='lastname' 
+                        id='lastname'
                         value ={val.lastName}
-                        onChange={(event) => {
-                          setVal({
-                            ...val,
-                            [event.target.name]: event.target.value,
-                          })
-                        }}
+                        type="text"
+                         onChange={(e:any) => setVal(e.target.value)}
+
                       />
-                      <div className='text-red-600 text-sm w-44'>
+                      <div className='text-red-600 text-sm w-max'>
                         {actionData?.errors['lastname']}
                       </div>
                     </div>
@@ -174,21 +169,17 @@ export default function Profile() {
                           type="text"
                           name="profileId"
                           value={val.profileId}
-                          onChange={(event) => {
-                            setVal({
-                              ...val,
-                              [event.target.name]: event.target.value,
-                            })
-                          }}
+                           onChange={(e:any) => setVal(e.target.value)}
                           id="profileId"
-                          className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${actionData?.errors['profileId']
+                          className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${actionData?.errors['username']
                             ? 'border border-red-400'
                             : 'first-line:'
                             }`}
                         />
+                        
                       </div>
-                      <div className='text-red-600 text-sm w-44'>
-                        {actionData?.errors['profileId']}
+                      <div className='text-red-600 text-sm w-max'>
+                        {actionData?.errors['username']}
                       </div>
                     </div>
                   </div>
@@ -221,30 +212,30 @@ export default function Profile() {
                       <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                         Old Password
                         <input
-                          className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['oldpassword']
+                          className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['isOldPasswordSame']
                             ? 'border border-red-400'
                             : 'first-line:'
                             }`}
                           name='oldpassword'
                           type='password'
                         />
-                        <div className='text-red-600 text-sm w-44'>
-                          {actionData?.errors['oldpassword']}
+                        <div className='text-red-600 text-sm w-max'>
+                          {actionData?.errors['isOldPasswordSame']}
                         </div>
                       </label>
                       <div className='mt-3.5'>
                         <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                           New Password
                           <input
-                            className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['newpassword']
+                            className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['password']
                               ? 'border border-red-400'
                               : 'first-line:'
                               }`}
                             name='newpassword'
                             type="password"
                           />
-                          <div className='text-red-600 text-sm w-44'>
-                            {actionData?.errors['newpassword']}
+                          <div className='text-red-600 text-sm w-max'>
+                            {actionData?.errors['password']}
                           </div>
                         </label>
                       </div>
@@ -252,15 +243,15 @@ export default function Profile() {
                         <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                           Confirm New Password
                           <input
-                            className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['confirmpassword']
+                            className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['isPasswordSame']
                               ? 'border border-red-400'
                               : 'first-line:'
                               }`}
                             name='confirmnewpassword'
                             type="password"
                           />
-                          <div className='text-red-600 text-sm w-44'>
-                            {actionData?.errors['confirmpassword']}
+                          <div className='text-red-600 text-sm w-max'>
+                            {actionData?.errors['isPasswordSame']}
                           </div>
                         </label>
                       </div>

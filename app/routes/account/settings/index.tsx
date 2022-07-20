@@ -1,4 +1,4 @@
-import { ActionFunction, LoaderFunction } from "@remix-run/node";
+import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
@@ -9,11 +9,16 @@ import { getUser, requireUserId } from "~/services/auth.service.server";
 
 export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
+  
+  // const user = await getUser(request)
   let productUpdate = formData.getAll('productUpdate')
   let marketingUpdate = formData.getAll('marketingUpdate')
   console.log('Checkbox',productUpdate);
-  console.log('Checkbox2',marketingUpdate);
+  // console.log('Checkbox2',marketingUpdate);
+  
 
+  
+  
   
 }
 
@@ -27,18 +32,31 @@ export default function Profile() {
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
-  console.log(loaderData);
-  
-  const [check, setcheck] = useState(false)
-  const [check1, setcheck1] = useState(false)
+  // console.log(loaderData);
 
+
+
+  
+  const [check, setcheck] = useState(loaderData?.recieveMarketingUpdates)
+  const [check1, setcheck1] = useState(loaderData?.recieveProductUpdates)
+
+const recieveMarketingUpdates =(e:any)=>{
+  check ? setcheck(loaderData.recieveMarketingUpdates = false) : setcheck(loaderData.recieveMarketingUpdates = true)
+console.log(e.target.value);
+console.log(loaderData);
+}
+const recieveProductUpdates =(e:any)=>{
+  check1 ? setcheck1(loaderData.recieveProductUpdates = false) : setcheck1(loaderData.recieveProductUpdates = true)
+console.log(e.target.value);
+console.log(loaderData);
+}
   return (
     <>
       <div>
         <div>
           <DashboardHeader username={loaderData.username}/>
         </div>
-        <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
+        <div className='grid grid-cols-12 gap-x-5'>
           <div>
             <ProfileSetting />
           </div>
@@ -63,9 +81,10 @@ export default function Profile() {
                         id="productUpdate"
                         name="productUpdate"
                         type="checkbox"
-                        value={check ? 'true' : 'false'}
-                        checked={check === true}
-                        onChange={()=>check ? setcheck(false) : setcheck(true)}
+                        // value={check}
+                                              checked={loaderData.recieveProductUpdates ? true : false}
+                        onChange={recieveProductUpdates}
+
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                       /></form>
                     </div>
@@ -83,10 +102,11 @@ export default function Profile() {
                         id="marketingUpdates"
                         name="marketingUpdate"
                         type="checkbox"
-                        value={check1 ? 'true' : 'false'}
+                        checked={loaderData.recieveMarketingUpdates}
+                        onChange={recieveMarketingUpdates}
+                        // value={loaderData.recieveMarketingUpdates}
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                        checked={check1 === true}
-                        onChange={()=>check1 ? setcheck1(false) : setcheck1(true)}
+                        
                       /></form>
                     </div>
                     <div className="ml-3 text-sm">
