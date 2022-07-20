@@ -100,7 +100,7 @@ export default function Profile() {
   return (
     <>
       <div>
-        <DashboardHeader />
+        <DashboardHeader username={loaderData.username}/>
       </div>
       <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
         <div>

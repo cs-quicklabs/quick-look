@@ -1,9 +1,11 @@
-import { ActionFunction } from "@remix-run/node";
+import { ActionFunction, LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import Unpublish from "~/components/Common/unpublishModal";
+import { getUser, requireUserId } from "~/services/auth.service.server";
 
 export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
@@ -11,15 +13,22 @@ export const action: ActionFunction = async({request}) => {
   let marketingUpdate = formData.get('marketingUpdate')
 }
 
+export const loader: LoaderFunction = async ({ request }) => {
+  await requireUserId(request);
+  const user = await getUser(request)
+  return user;
+}
+
 export default function Profile() {
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
-
+  const loaderData = useLoaderData()
+  const [check, setcheck] = useState(false)
   return (
     <>
       <div>
         <div>
-          <DashboardHeader />
+          <DashboardHeader username={loaderData.username}/>
         </div>
         <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
           <div>
@@ -46,6 +55,8 @@ export default function Profile() {
                         id="productUpdate"
                         name="productUpdate"
                         type="checkbox"
+                        checked={check === true}
+                        onChange={()=>check ? setcheck(false) : setcheck(true)}
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                       /></form>
                     </div>
