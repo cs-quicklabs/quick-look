@@ -18,7 +18,7 @@ export default function Profile() {
   return (
     <>
       <DashboardHeader />
-      <div className='flex'>
+      <div className='flex overflow-hidden'>
      
       <div >
         <div>
@@ -30,8 +30,8 @@ export default function Profile() {
   <img className='w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
 </div>
 </div>
-<div className='px-[11rem] md:px-[14rem] lg:px-[21rem]'>
-<div className='m-auto  pt-1'> 
+{/* <div className='px-[11rem] md:px-[14rem] lg:px-[21rem]'> */}
+<div className='m-auto  pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'> 
   <h1 className='text-2xl font-semibold text-gray-900'>
     Kunal Verma
   </h1>
@@ -39,15 +39,20 @@ export default function Profile() {
     I am A Frontend React.js Developer
   </h3>
 </div>
+<div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
 <div className='m-auto  pt-16'>
   <p className="text-gray-500">
     {/* bio */}
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi necessitatibus, harum quod ipsam laborum nihil natus ratione doloremque voluptates repudiandae totam adipisci architecto neque minus nam dolor consequatur illo soluta!
   </p>
+  <br/>
+  
+
+  <p>suscipit vel vero recusandae mollitia eum amet eligendi persdfendis. Vero!</p>
 </div>
 <div className='flex flex-col gap-20'>
-<div className='flex gap-40 md:gap-0 md:justify-between pt-16'>
-  <div className='flex flex-col'>
+<div className='flex  pt-16'>
+  <div className='flex flex-col w-[50%]'>
     <h2 className="text-gray-500 w-max">WORK</h2>
     <h2 className="text-gray-900 w-max">
       {/* workplace */}
@@ -60,20 +65,22 @@ export default function Profile() {
       {/* Educationplace */}
       Kr Mangalam University
     </h2>
-  </div>
+  </div></div>
 </div>
-<footer className='flex gap-8 justify-around m-auto'>
-  <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-11 h-auto"/></a>
+<footer className='flex pt-[2rem] md:pt-[5rem] gap-4 md:gap-8 w-[40%] justify-center mx-[4.6rem]  md:mx-[6rem]'>
+  <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-9 md:w-11 h-auto"/></a>
   <a href="http://www.twitter.com"> 
-  <img src={twitter} alt="" className="w-11 h-auto"/>
+  <img src={twitter} alt="" className="w-9 md:w-11 h-auto"/>
   </a>
   <a href="http://www.youtube.com">
-  <img src={youtube} alt="" className="w-11 h-auto"/>
+  <img src={youtube} alt="" className="w-9 md:w-11 h-auto"/>
 
   </a>
-</footer></div>
+</footer>
 </div>
+
 </div>
+{/* </div> */}
 </div>
 </>
   )
