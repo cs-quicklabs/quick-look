@@ -21,7 +21,7 @@ export default function Delete({open,onClose}:any) {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed z-10 inset-0 overflow-y-auto">
+        <div className="fixed z-10 inset-0 overflow-y-auto font-inter">
           <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -39,12 +39,11 @@ export default function Delete({open,onClose}:any) {
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                      Deactivate account
+                    Delete Account
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to deactivate your account? All of your data will be permanently removed
-                        from our servers forever. This action cannot be undone.
+                      Are you sure you want to delete your account? All of your data will be permanently removed from our servers forever. This action cannot be undone.
                       </p>
                     </div>
                   </div>
@@ -53,9 +52,9 @@ export default function Delete({open,onClose}:any) {
                  <form action="">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
                   >
-                    Deactivate
+                    Delete 
                   </button></form>
                   <button
                     type="button"
