@@ -21,7 +21,7 @@ export default function Delete({open,onClose}:any) {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed z-10 inset-0 overflow-y-auto">
+        <div className="fixed z-10 inset-0 overflow-y-auto font-inter">
           <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -43,7 +43,7 @@ export default function Delete({open,onClose}:any) {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to unpublish your account? Your profile will be hidden and will not be available to those who already have your profile link. Although you can publish your profile if you wish to anytime.
+                      Are you sure you want to unpublish your account? Your profile will be hidden and will not be available to those who already have your profile link. Although you can publish your profile if you wish to anytime.
                       </p>
                     </div>
                   </div>
@@ -52,7 +52,7 @@ export default function Delete({open,onClose}:any) {
                  <form action="">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
                   >
                     Unpublish
                   </button></form>
