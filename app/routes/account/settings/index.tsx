@@ -9,8 +9,12 @@ import { getUser, requireUserId } from "~/services/auth.service.server";
 
 export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
-  let productUpdate = formData.get('productUpdate')
-  let marketingUpdate = formData.get('marketingUpdate')
+  let productUpdate = formData.getAll('productUpdate')
+  let marketingUpdate = formData.getAll('marketingUpdate')
+  console.log('Checkbox',productUpdate);
+  console.log('Checkbox2',marketingUpdate);
+
+  
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -23,7 +27,11 @@ export default function Profile() {
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
+  console.log(loaderData);
+  
   const [check, setcheck] = useState(false)
+  const [check1, setcheck1] = useState(false)
+
   return (
     <>
       <div>
@@ -50,11 +58,12 @@ export default function Profile() {
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form action="">
+                      <form method='POST'>
                       <input
                         id="productUpdate"
                         name="productUpdate"
                         type="checkbox"
+                        value={check ? 'true' : 'false'}
                         checked={check === true}
                         onChange={()=>check ? setcheck(false) : setcheck(true)}
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
@@ -74,7 +83,10 @@ export default function Profile() {
                         id="marketingUpdates"
                         name="marketingUpdate"
                         type="checkbox"
+                        value={check1 ? 'true' : 'false'}
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        checked={check1 === true}
+                        onChange={()=>check1 ? setcheck1(false) : setcheck1(true)}
                       /></form>
                     </div>
                     <div className="ml-3 text-sm">
