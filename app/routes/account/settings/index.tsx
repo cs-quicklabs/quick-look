@@ -8,20 +8,19 @@ import Unpublish from "~/components/Common/unpublishModal";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import { updateUserPreferences, updateUserProfileDetails } from "~/services/user.service.serevr";
 
-/* export const action: ActionFunction = async({request}) => {
+export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
   
   // const user = await getUser(request)
   let productUpdate = formData.getAll('productUpdate')
   let marketingUpdate = formData.getAll('marketingUpdate')
-  console.log('Checkbox--------------',productUpdate);
-  // console.log('Checkbox2',marketingUpdate);
+
   
 
   
   
   
-} */
+}
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
@@ -34,7 +33,6 @@ export default function Profile() {
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
-  // console.log(loaderData);
 
   const submit = useSubmit();
 
@@ -52,8 +50,6 @@ const recieveMarketingUpdates = (e:any)=>{
 }
 const recieveProductUpdates =(e:any)=>{
   check1 ? setcheck1(loaderData.recieveProductUpdates = false) : setcheck1(loaderData.recieveProductUpdates = true)
-console.log(e.target.value);
-console.log(loaderData);
 }
   return (
     <>
