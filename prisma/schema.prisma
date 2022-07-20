@@ -22,6 +22,10 @@ model User {
   recieveProductUpdates   Boolean           @default(false)
   recieveMarketingUpdates Boolean           @default(false)
   bio                     String
+  location                String
+  occupation              String
+  company                 String
+  education               String
   userVerification        UserVerification?
   profile                 Profile?
 
@@ -47,6 +51,10 @@ model Profile {
   isVerified              Boolean  @default(false)
   isPublished             Boolean  @default(false)
   bio                     String
+  location                String
+  occupation              String
+  company                 String
+  education               String
   recieveProductUpdates   Boolean  @default(false)
   recieveMarketingUpdates Boolean  @default(false)
   createdAt               DateTime @default(now())
