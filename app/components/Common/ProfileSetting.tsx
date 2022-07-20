@@ -22,13 +22,13 @@ export default function ProfileSetting() {
   return (
     <>
       <div className=''>
-        <div className="w-56 flex flex-col flex-grow border-r font-inter border-white mt-10 bg-white overflow-y-auto ml-16">
+        <div className="w-56 flex flex-col flex-grow border-r font-inter border-white mt-8 bg-white overflow-y-auto ml-12">
           <div className="flex items-center flex-shrink-0 px-4">
-            <h2 className="text-lg leading-6 font-semibold text-gray-900 font-inter">Account</h2>
+            <h2 className="text-lg leading-6 font-medium text-gray-900">Account</h2>
           </div>
-          <div className="mt-5 flex-grow flex flex-col">
+          <div className="mt-3 flex-grow flex flex-col">
             <nav className="flex-1 px-2 space-y-8 bg-white" aria-label="Sidebar">
-              <div className="space-y-1">
+              <div className="space-y-1 ml-2">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
@@ -49,7 +49,7 @@ export default function ProfileSetting() {
                   </a>
                 ))}
               </div>
-              <div className="space-y-1">
+              <div className="space-y-1 ml-2">
                 <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
                   SUPPORT
                 </h3>

@@ -106,7 +106,7 @@ export default function Profile() {
         <div>
           <ProfileSetting />
         </div>
-        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl bg-white">
+        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-xl bg-white">
           <form method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
               <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
