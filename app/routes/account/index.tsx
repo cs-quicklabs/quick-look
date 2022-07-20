@@ -12,10 +12,10 @@ export const loader: LoaderFunction = async ({ request  }) => {
 
 export default function Profile() {
   const loaderData = useLoaderData();
+
   return (
     <>
       <DashboardHeader username={loaderData.username}/>
-
 </>
   )
 }

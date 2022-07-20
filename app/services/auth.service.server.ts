@@ -107,16 +107,12 @@ export async function getUser(request: Request) {
   if (typeof userId !== 'string') {
     return null
   }
-
-  try {
     const user = await db.user.findFirst({
-      where: { id: userId as string }
+      where: { id: userId as string}
     })
     return user
-  } catch {
-    throw logout(request)
-  }
-}
+  } 
+
 
 export async function logout(request: Request) {
   const session = await getUserSession(request)

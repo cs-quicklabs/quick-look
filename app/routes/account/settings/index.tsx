@@ -9,8 +9,6 @@ export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
   let productUpdate = formData.get('productUpdate')
   let marketingUpdate = formData.get('marketingUpdate')
-
-  console.log(productUpdate, marketingUpdate)
 }
 
 export default function Profile() {
