@@ -120,8 +120,8 @@ export async function updateUserPreferences({recieveMarketingUpdates, recievePro
             id: user.id
         },
         data: {
-            recieveMarketingUpdates: recieveMarketingUpdates,
-            recieveProductUpdates: recieveProductUpdates,
+            recieveMarketingUpdates,
+            recieveProductUpdates,
         }
     })
 }

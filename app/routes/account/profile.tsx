@@ -1,5 +1,6 @@
 import { ActionFunction, json, LoaderFunction } from '@remix-run/node';
-import { useActionData } from '@remix-run/react';
+import { useActionData, useLoaderData } from '@remix-run/react';
+import { useState } from 'react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
@@ -7,8 +8,7 @@ import { getUserById, updateUserProfileDetails, updateUsingOldPassword } from '~
 import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {
-  const userInfo = await getUser(request)
-  const user = await getUserById(userInfo?.id as string)
+  const user = await getUser(request)
 
   const formData = await request.formData();
   let { _action } = Object.fromEntries(formData)
@@ -83,11 +83,20 @@ export const action: ActionFunction = async ({ request }) => {
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
-  return null;
+  const user = await getUser(request)
+  return user;
 }
 
 export default function Profile() {
   const actionData = useActionData()
+  const loaderData = useLoaderData()
+
+  const [val, setVal] = useState({
+    firstName: `${loaderData.firstname}`,
+    lastName:  `${loaderData.lastname}`,
+    profileId: `${loaderData.username}`,
+  })
+
   return (
     <>
       <div>
@@ -119,6 +128,13 @@ export default function Profile() {
                           : 'first-line:'
                           }`}
                         name="firstname"
+                        value={val.firstName}
+                        onChange={(event) => {
+                          setVal({
+                            ...val,
+                            [event.target.name]: event.target.value,
+                          })
+                        }}
                       />
                       <div className='text-red-600 text-sm w-44'>
                         {actionData?.errors['firstname']}
@@ -134,6 +150,13 @@ export default function Profile() {
                           : 'first-line:'
                           }`}
                         name='lastname'
+                        value ={val.lastName}
+                        onChange={(event) => {
+                          setVal({
+                            ...val,
+                            [event.target.name]: event.target.value,
+                          })
+                        }}
                       />
                       <div className='text-red-600 text-sm w-44'>
                         {actionData?.errors['lastname']}
@@ -150,6 +173,13 @@ export default function Profile() {
                         <input
                           type="text"
                           name="profileId"
+                          value={val.profileId}
+                          onChange={(event) => {
+                            setVal({
+                              ...val,
+                              [event.target.name]: event.target.value,
+                            })
+                          }}
                           id="profileId"
                           className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${actionData?.errors['profileId']
                             ? 'border border-red-400'

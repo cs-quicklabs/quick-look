@@ -1,5 +1,5 @@
 export type UserPreferences = {
-    recieveMarketingUpdates?: Boolean 
-    recieveProductUpdates?: Boolean,
+    recieveMarketingUpdates?: boolean 
+    recieveProductUpdates?: boolean,
     user?: any
 }
