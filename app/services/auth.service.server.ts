@@ -104,14 +104,13 @@ export async function getUserId(request: Request) {
 
 export async function getUser(request: Request) {
   const userId = await getUserId(request)
-/*   if (typeof userId !== 'string') {
+  if (typeof userId !== 'string') {
     return null
-  } */
+  }
 
   try {
     const user = await db.user.findFirst({
-      where: { id: userId as string },
-      select: { id: true, email: true },
+      where: { id: userId as string }
     })
     return user
   } catch {

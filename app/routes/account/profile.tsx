@@ -8,8 +8,7 @@ import { getUserById, updateUserProfileDetails, updateUsingOldPassword } from '~
 import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {
-  const userInfo = await getUser(request)
-  const user = await getUserById(userInfo?.id as string)
+  const user = await getUser(request)
 
   const formData = await request.formData();
   let { _action } = Object.fromEntries(formData)
@@ -84,9 +83,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
-  const userInfo = await getUser(request)
-  const user = await getUserById(userInfo?.id as string)
-
+  const user = await getUser(request)
   return user;
 }
 
