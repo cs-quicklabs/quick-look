@@ -1,3 +1,4 @@
+import { CheckCircleIcon } from '@heroicons/react/outline';
 import { ActionFunction, json, LoaderFunction } from '@remix-run/node';
 import { useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
@@ -109,6 +110,14 @@ export default function Profile() {
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-xl bg-white">
           <form method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
+              <div className="flex ">
+        <div className="flex-shrink-0">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{actionData.message}</p>
+        </div>
+      </div>
               <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Profile</h3>
