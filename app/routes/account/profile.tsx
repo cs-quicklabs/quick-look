@@ -97,7 +97,7 @@ export default function Profile() {
           </div>
         </form>
 
-        <div className='ml-5 w-11/12 border-t border-gray-800'>
+        <div className='ml-5 mr-5 w-11/12 border-t border-gray-200'>
         
         </div>
                       

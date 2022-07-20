@@ -5,7 +5,8 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import { useLocation } from 'react-router-dom'
-import DashboardBio from './DashboardBio'
+import AccountBio from './AccountBio'
+import AccountTemplate from './AccountTemplate'
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template', href: '#' },
@@ -27,7 +28,8 @@ function classNames(...classes: string[]) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showDashboard, setshowDashboard] = useState(false);
+  const [showBio, setshowBio] = useState(false);
+  const [showTemplate, setshowTemplate] = useState(false);
   const Location = useLocation();
 
   return (
@@ -152,18 +154,21 @@ export default function Example() {
               <div className='text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5'>
                 Basic Profile
               </div>
-              {/* <Popover className=""> */}
-                {/* <Popover.Button className=""> */}
                   <nav className="flex-1 bg-white ">
                     {navigationFirst.map((item) => (
                       <div
                         key={item.name}
                         // href={item.href}
                         onClick={() =>{
-                          item.name==='Bio' &&
-                          setshowDashboard(true) }}
+                          if(item.name==='Bio'){
+                          setshowBio(true) 
+                          }
+                          if(item.name==='Design Templates'){
+                            setshowTemplate(true)
+                          }
+                        }}
                         className={classNames(
-                          Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:bg-gray-50 hover:text-gray-600 ',
+                          Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600 ',
                           ''
                         )}
                       >
@@ -186,14 +191,13 @@ export default function Example() {
                       </div>
                     ))}
                   </nav>
-                {/* </Popover.Button> */}
-                {/* <Popover.Panel className="mt-20">
-                  {<DashboardBio />}
-                </Popover.Panel> */}
-              {/* </Popover> */}
-              {showDashboard?
-              <DashboardBio setshowDashboard={setshowDashboard} />:
+              {showBio?
+              <AccountBio setshowBio={setshowBio} />:
               null
+              }
+              {showTemplate?
+              <AccountTemplate setshowTemplate={setshowTemplate} />:
+                null
               }
               
               </div>
@@ -209,7 +213,7 @@ export default function Example() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:bg-gray-50 hover:text-gray-600',
+                      Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
                       ''
                     )}
                   >

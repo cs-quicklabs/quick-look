@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function DashboardBio({setshowDashboard}:any) {
+export default function DashboardBio({setshowBio}:any) {
   const [open, setOpen] = useState(true)
 
   return (
@@ -15,10 +15,10 @@ export default function DashboardBio({setshowDashboard}:any) {
             <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-lg">
               <Transition.Child
                 as={Fragment}
-                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enter=""
                 enterFrom="translate-x-full"
                 enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leave=""
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
@@ -35,7 +35,7 @@ export default function DashboardBio({setshowDashboard}:any) {
                               onClick={() => setOpen(false)}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon onClick={() => setshowDashboard(false)} className="h-6 w-6" aria-hidden="true" />
+                              <XIcon onClick={() => setshowBio(false)} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -127,7 +127,7 @@ export default function DashboardBio({setshowDashboard}:any) {
                       <button
                         type="button"
                         className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        onClick={() => setOpen(false)}
+                        onClick={() => setshowBio(false)}
                       >
                         Cancel
                       </button>
