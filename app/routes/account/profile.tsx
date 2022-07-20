@@ -1,15 +1,20 @@
 import { CheckCircleIcon } from '@heroicons/react/outline';
-import { ActionFunction, json, LoaderFunction } from '@remix-run/node';
+import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node';
 import { useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
-import { getUserById, updateUserProfileDetails, updateUsingOldPassword } from '~/services/user.service.serevr';
+import { commitSession, getSession } from '~/services/session.service.server';
+import { updateUserProfileDetails, updateUsingOldPassword } from '~/services/user.service.serevr';
 import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {
   const user = await getUser(request)
+
+  const session = await getSession(
+    request.headers.get("Cookie")
+  );
 
   const formData = await request.formData();
   let { _action } = Object.fromEntries(formData)
@@ -34,20 +39,23 @@ export const action: ActionFunction = async ({ request }) => {
         { status: 400 }
       )
     } else {
-
-      await updateUserProfileDetails({
+      const isUpdated = await updateUserProfileDetails({
         firstname: firstName,
         lastname: lastName,
         profileId, user
       })
 
-      return json(
-        {
-          success: true,
-          message: 'Your profile has been updated successfully.'
+      if(isUpdated){
+        session.flash(
+          "updateMessage",
+          `Your profile has been updated successfully.`
+      );
+      return redirect('/account/profile', {
+        headers: {
+          "Set-Cookie": await commitSession(session),
         },
-        { status: 200 }
-      )
+      })
+      } 
     }
 
   } else if (_action === 'updatePassword') {
@@ -71,13 +79,18 @@ export const action: ActionFunction = async ({ request }) => {
       )
     } else {
 
-      await updateUsingOldPassword(user, newPassword)
-      return json(
-        {
-          success: true,
-          message: 'Your password has been updated successfully.'
-        }
-      )
+      const isPasswordUpdated = await updateUsingOldPassword(user, newPassword)
+      if(isPasswordUpdated){
+        session.flash(
+          "updateMessage",
+          `Your password has been updated successfully.`
+      );
+      return redirect('/account/profile', {
+        headers: {
+          "Set-Cookie": await commitSession(session),
+        },
+      })
+      }
     }
   }
 }
@@ -85,7 +98,18 @@ export const action: ActionFunction = async ({ request }) => {
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
   const user = await getUser(request)
-  return user;
+  const session = await getSession(
+    request.headers.get("Cookie")
+  );
+  const message = session.get("updateMessage") || null;
+  return json(
+    { message, user },
+    {
+      headers: {
+        "Set-Cookie": await commitSession(session),
+      },
+    }
+  );
 }
 
 export default function Profile() {
@@ -93,15 +117,15 @@ export default function Profile() {
   const loaderData = useLoaderData()
 
   const [val, setVal] = useState({
-    firstName: `${loaderData.firstname}`,
-    lastName:  `${loaderData.lastname}`,
-    profileId: `${loaderData.username}`,
+    firstName: `${loaderData.user.firstname}`,
+    lastName:  `${loaderData.user.lastname}`,
+    profileId: `${loaderData.user.username}`,
   })
 
   return (
     <>
       <div>
-        <DashboardHeader username={loaderData.username}/>
+        <DashboardHeader username={loaderData.user.username}/>
       </div>
       <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
         <div>
@@ -109,7 +133,14 @@ export default function Profile() {
         </div>
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-xl bg-white">
           <form method="POST">
-            
+          <div className="flex ">
+        <div className="flex-shrink-0">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{loaderData.message}</p>
+        </div>
+      </div>
             <div className="sm:rounded-md sm:overflow-hidden">
               <div className="flex ">
       </div>

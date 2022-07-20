@@ -90,6 +90,7 @@ export async function updateUserProfileDetails({firstname, lastname, profileId, 
             username: profileId ?? user.profileId
         }
     })
+    return true
 }
 
 export async function deleteUser(user?: any){
