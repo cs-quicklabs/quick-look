@@ -7,9 +7,9 @@ const navigation = [
 ]
 const secondaryNavigation = [
   { name: 'Help Center', href: '#' },
-  { name: 'Terms of Use', href: '/terms' },
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Refund Policy', href: '/refund-policy' },
+  { name: 'Terms of Use', href: '/general/terms' },
+  { name: 'Privacy Policy', href: '/general/privacy' },
+  { name: 'Refund Policy', href: '/general/refund-policy' },
 ]
 
 function classNames(...classes: string[]) {

@@ -46,6 +46,7 @@ function Document({ children }: any) {
           rel='stylesheet'
           href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@400;500&display=swap'
         />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet"></link>
         <Links />
       </head>
       <body className='flex h-screen w-screen flex-col antialiased min-h-full'>
