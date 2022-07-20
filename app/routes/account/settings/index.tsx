@@ -1,30 +1,32 @@
 import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useSubmit } from "@remix-run/react";
 import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import Unpublish from "~/components/Common/unpublishModal";
 import { getUser, requireUserId } from "~/services/auth.service.server";
+import { updateUserPreferences, updateUserProfileDetails } from "~/services/user.service.serevr";
 
-export const action: ActionFunction = async({request}) => {
+/* export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
   
   // const user = await getUser(request)
   let productUpdate = formData.getAll('productUpdate')
   let marketingUpdate = formData.getAll('marketingUpdate')
-  console.log('Checkbox',productUpdate);
+  console.log('Checkbox--------------',productUpdate);
   // console.log('Checkbox2',marketingUpdate);
   
 
   
   
   
-}
+} */
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
   const user = await getUser(request)
+
   return user;
 }
 
@@ -34,16 +36,19 @@ export default function Profile() {
   const loaderData = useLoaderData()
   // console.log(loaderData);
 
+  const submit = useSubmit();
 
-
+  function handleChange(event: any) {
+    submit(event.currentTarget, { replace: true });
+    
+  }
   
   const [check, setcheck] = useState(loaderData?.recieveMarketingUpdates)
   const [check1, setcheck1] = useState(loaderData?.recieveProductUpdates)
 
-const recieveMarketingUpdates =(e:any)=>{
+const recieveMarketingUpdates = (e:any)=>{
   check ? setcheck(loaderData.recieveMarketingUpdates = false) : setcheck(loaderData.recieveMarketingUpdates = true)
-console.log(e.target.value);
-console.log(loaderData);
+
 }
 const recieveProductUpdates =(e:any)=>{
   check1 ? setcheck1(loaderData.recieveProductUpdates = false) : setcheck1(loaderData.recieveProductUpdates = true)
@@ -76,7 +81,7 @@ console.log(loaderData);
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form method='POST'>
+                      <form onChange={handleChange} method='POST'>
                       <input
                         id="productUpdate"
                         name="productUpdate"
@@ -104,7 +109,7 @@ console.log(loaderData);
                         type="checkbox"
                         checked={loaderData.recieveMarketingUpdates}
                         onChange={recieveMarketingUpdates}
-                        // value={loaderData.recieveMarketingUpdates}
+                        value={loaderData.recieveProductUpdates ? 'true' : 'false'}
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         
                       /></form>

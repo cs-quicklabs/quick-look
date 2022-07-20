@@ -2,8 +2,6 @@ import type { LoaderFunction } from "@remix-run/node";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import { useLoaderData } from "@remix-run/react";
-import Delete from "~/components/Common/deleteaccountModal";
-import ProfileSetting from "~/components/Common/ProfileSetting";
 import AccountSidebar from "~/components/Common/AccountSidebar";
 import facebook from '../../../assets/images/logos/facebook_logo.png'
 import twitter from '../../../assets/images/logos/twitter_logo.png'
@@ -41,7 +39,7 @@ export default function Profile() {
 {/* <div className='px-[11rem] md:px-[14rem] lg:px-[21rem]'> */}
 <div className='m-auto  pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'> 
   <h1 className='text-2xl font-semibold text-gray-900'>
-    Kunal Verma
+    {loaderData.firstname} {loaderData.lastname}
   </h1>
   <h3 className="text-gray-500 w-max">
     I am A Frontend React.js Developer
