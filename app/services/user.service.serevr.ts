@@ -5,6 +5,7 @@ import { nameCasing } from "~/utils/string.server";
 import { json } from "stream/consumers";
 import { UpdateProfileDetails } from "~/types/updateProfile.server";
 import { UserPreferences } from "~/types/updateUserPreferences.server";
+import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -125,4 +126,20 @@ export async function updateUserPreferences({recieveMarketingUpdates, recievePro
             recieveProductUpdates,
         }
     })
+}
+
+export async function updateUserBioDetails({about, location, occupation, education, company, user}: UpdateUserBioDetails){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            bio: about ?? user.bio,
+            location: location ?? user.location,
+            company: company ?? user.company,
+            education: education ?? user.education,
+            occupation: occupation ?? user.occupation
+        }
+    })
+    return true;
 }
