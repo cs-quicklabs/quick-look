@@ -14,7 +14,7 @@ type props = {
   input?:any
   loaderData?:any
 }
-export default function Template1({ firstname, lastname, occupation, company, education, bio, location,input,loaderData }: props) {
+export default function Template1({  input,loaderData }: props) {
   return (
     <div className='flex pl-0 md:pl-[129px]'>
 
@@ -31,33 +31,33 @@ export default function Template1({ firstname, lastname, occupation, company, ed
         {/* <div className='px-[11rem] md:px-[14rem] lg:px-[21rem]'> */}
         <div className='m-auto  pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'>
           <h1 className='text-2xl font-semibold text-gray-900'>
-            {firstname} {lastname}
+            {loaderData.firstname} {loaderData.lastname}
           </h1>
-          {occupation || input.occupation ?
+          {loaderData.occupation || input.occupation ?
           <h3 className="text-gray-500 w-max">
-            I am a {occupation ? occupation : input.occupation}
+            I am a {loaderData.occupation ? loaderData.occupation : input.occupation}
           </h3> : <span></span>}
         </div>
         <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
           <div className='m-auto  pt-16'>
             <p className="text-gray-500">
-              { bio ? bio : input.description}
+              { loaderData.bio ? loaderData.bio : input.description}
             </p>
           </div>
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16'>
-              {company || input.company ?
+              {loaderData.company || input.company ?
               <div className='flex flex-col w-[50%]'>
                 <h2 className="text-gray-500 w-max">WORK</h2>
                 <h2 className="text-gray-900 w-max">
-                  { company ? company :input.company }
+                  { loaderData.company ? loaderData.company :input.company }
                 </h2>
               </div>: <span></span>}
-              {education || input.education ?
+              {loaderData.education || input.education ?
               <div className='flex flex-col'>
                 <h2 className="text-gray-500 w-max">Education</h2>
                 <h2 className="text-gray-900 w-max">
-                  { education ? education : input.education}
+                  { loaderData.education ? loaderData.education : input.education}
                 </h2>
               </div>: <span></span>}
               </div>

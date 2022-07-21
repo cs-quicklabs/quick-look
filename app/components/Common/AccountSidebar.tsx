@@ -26,15 +26,23 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({firstname,loaderData, lastname, setshow,occupation,company,education,bio,location,input,setinput}: any ) {
+export default function AccountSideBar({loaderData,setshow,input,setinput}: any ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showBio, setshowBio] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const Location = useLocation();
-
+// const Clickhandler = (e:any,item:any)=>{
+//                          if(item.name === 'Bio'){
+//                           setshowBio(true)
+//                            e.stoppropagation()
+//                           }
+//                           if(item.name==='Design Templates'){
+//                             setshowTemplate(true)
+//                           }
+// }
   return (
     <>
-      <div className=''>
+      <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -144,7 +152,7 @@ export default function AccountSideBar({firstname,loaderData, lastname, setshow,
                       />
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{firstname} {lastname}</p>
+                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
                       <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                     </div>
                   </div>
@@ -162,9 +170,12 @@ export default function AccountSideBar({firstname,loaderData, lastname, setshow,
                         onClick={() =>{
                           if(item.name==='Bio'){
                           setshowBio(true) 
+                           
+                          
                           }
                           if(item.name==='Design Templates'){
                             setshowTemplate(true)
+                            
                           }
                         }}
                         className={classNames(
@@ -192,7 +203,7 @@ export default function AccountSideBar({firstname,loaderData, lastname, setshow,
                     ))}
                   </nav>
               {showBio?
-              <AccountBio setshowBio={setshowBio} occupation={occupation} company={company} education={education} bio={bio}location={location} input={input} setinput={setinput}/>:
+              <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio}location={loaderData.location} input={input} setinput={setinput}/>:
               null
               }
               {showTemplate?
