@@ -22,5 +22,7 @@ export const action: ActionFunction = async ({ request }) => {
         company : company ?? user?.company, 
         user
     })
-
+    if(isUpdated){
+        return redirect('/account')
+    }  
 }   

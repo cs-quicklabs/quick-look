@@ -17,7 +17,6 @@ export default function Profile() {
 
   const loaderData = useLoaderData();
   const [show, setshow] = useState(0)
-  console.log('state',show)
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function Profile() {
       occupation = {loaderData.occupation}
       location = {loaderData.location}
       company = {loaderData.company}
-      education= {loaderData.company}
+      education= {loaderData.education}
       bio = {loaderData.bio}
        /> : null}
         </div>

@@ -32,7 +32,7 @@ export default function Template1({ firstname, lastname, occupation, company, ed
             {firstname} {lastname}
           </h1>
           <h3 className="text-gray-500 w-max">
-            I am a {occupation}
+            {occupation}
           </h3>
         </div>
         <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
