@@ -17,22 +17,28 @@ export default function Profile() {
 
   const loaderData = useLoaderData();
   const [show, setshow] = useState(0)
-  console.log('state',show)
+  const [input, setinput] = useState({description:'',projectname:'',occupation:'',company:'',education:''})
+  // console.log('state',show)
+console.log('input',input);
 
   return (
     <>
       <DashboardHeader username={loaderData.username} />
       <div className='flex'>
-      <AccountSidebar firstname={loaderData.firstname} lastname={loaderData.lastname} setshow={setshow}/>
+      <AccountSidebar  occupation = {loaderData.occupation}
+      location = {loaderData.location} firstname = {loaderData.firstname} lastname = {loaderData.lastname}
+      company = {loaderData.company}
+      education= {loaderData.company}
+      bio = {loaderData.bio}  setshow={setshow} input={input} setinput={setinput}/>
       {show === 0 ?
-      <Template1 
+      <Template1  input={input} 
       firstname={loaderData.firstname}
       lastname={loaderData.lastname}
       occupation = {loaderData.occupation}
       location = {loaderData.location}
       company = {loaderData.company}
       education= {loaderData.company}
-      bio = {loaderData.bio}
+      bio = {loaderData.bio} 
        /> : null}
         </div>
 </>

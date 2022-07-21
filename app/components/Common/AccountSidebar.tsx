@@ -26,7 +26,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({firstname, lastname, setshow}: any ) {
+export default function AccountSideBar({firstname,loaderData, lastname, setshow,occupation,company,education,bio,location,input,setinput}: any ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showBio, setshowBio] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
@@ -192,7 +192,7 @@ export default function AccountSideBar({firstname, lastname, setshow}: any ) {
                     ))}
                   </nav>
               {showBio?
-              <AccountBio setshowBio={setshowBio} />:
+              <AccountBio setshowBio={setshowBio} occupation={occupation} company={company} education={education} bio={bio}location={location} input={input} setinput={setinput}/>:
               null
               }
               {showTemplate?
