@@ -4,6 +4,7 @@ import DashboardHeader from "~/components/Common/DashboardHeader";
 import { useLoaderData } from "@remix-run/react";
 import AccountSidebar from "~/components/Common/AccountSidebar";
 import Template1 from "~/components/Templates/template1";
+import Template2 from "~/components/Templates/template2";
 
 
 export const loader: LoaderFunction = async ({ request  }) => {
@@ -20,8 +21,8 @@ export default function Profile() {
       <DashboardHeader username={loaderData.username}/>
       <div className='flex'>
       <AccountSidebar />
-<Template1 firstname={loaderData.firstname} lastname={loaderData.lastname}/>
-
+{/* <Template1 firstname={loaderData.firstname} lastname={loaderData.lastname}/> */}
+      <Template2 />
         </div>
 </>
   
