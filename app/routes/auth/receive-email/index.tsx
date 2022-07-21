@@ -26,15 +26,15 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   const user = await findUserByEmail(email)
-  if(!user){
+  if (!user) {
     return redirect('/confirm/email')
-  } else if(user && user['isVerified'] == false) {
+  } else if (user && user['isVerified'] == false) {
     const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     if (createVerificationToken.success) {
       await sendAccountVerificationMail(email, url, generatedToken)
     }
     return redirect('/confirm/email')
-  } else if(user && user['isVerified'] == true){
+  } else if (user && user['isVerified'] == true) {
     return redirect('/successlogin')
   }
 }
@@ -61,24 +61,23 @@ export default function Forgotpassword() {
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email address
-                </label>
-                <div className='mt-1'>
-                <input
-                  name='email'
-                  type='email'
-                  
-                 
-                  className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                    actionData?.errors['email'] ? 'border border-red-400' : ''
-                  }`}
-                />
-              </div>
-              <div className={`text-red-600 text-sm`}>
-                {actionData?.errors['email']}
-              </div>
-              </div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                      Email address
+                    </label>
+                    <div className='mt-1'>
+                      <input
+                        name='email'
+                        type='email'
+
+
+                        className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${actionData?.errors['email'] ? 'border border-red-400' : ''
+                          }`}
+                      />
+                    </div>
+                    <div className={`text-red-600 text-sm`}>
+                      {actionData?.errors['email']}
+                    </div>
+                  </div>
                   <div className='mt-5'>
                     <button
                       type='submit'
@@ -87,7 +86,7 @@ export default function Forgotpassword() {
                       Send verification mail
                     </button>
                   </div>
-                  
+
                 </Form>
               </div>
             </div>
