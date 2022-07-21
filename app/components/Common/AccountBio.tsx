@@ -23,7 +23,8 @@ export default function DashboardBio({setshowBio}:any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form className="flex h-full flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
+                  <form action="" method="POST">
+                  <div className="flex h-full flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
@@ -45,6 +46,7 @@ export default function DashboardBio({setshowBio}:any) {
                           </p>
                         </div>
                       </div>
+                     
                       <div className="flex flex-1 flex-col justify-between">
                         <div className="divide-y divide-gray-200 px-4 sm:px-6">
                           <div className="space-y-6 pt-6 pb-5">
@@ -138,7 +140,7 @@ export default function DashboardBio({setshowBio}:any) {
                         Update
                       </button>
                     </div>
-                  </form>
+                  </div></form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
