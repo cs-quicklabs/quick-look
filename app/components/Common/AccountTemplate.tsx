@@ -23,7 +23,7 @@ export default function AccountTemplate({setshowTemplate}:any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-96 max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex h-full flex-col bg-white shadow-xl">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Select Template </Dialog.Title>
@@ -38,7 +38,7 @@ export default function AccountTemplate({setshowTemplate}:any) {
                           </button>
                         </div>
                       </div>
-                      <div className="mt-1">
+                      <div className="pt-1 pr-2">
                         <p className="text-sm leading-5 font-normal text-gray-500">
                         Select how you want your profile to look like. Click on Toggle button to view in mobile and Desktop mode
                         </p>

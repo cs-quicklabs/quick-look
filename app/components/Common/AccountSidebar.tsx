@@ -172,7 +172,7 @@ export default function Example() {
                           ''
                         )}
                       >
-                        <div className='flex justify-between border-t border-gray-200 px-5 py-4'>
+                        <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
                           <div className=''>
                             <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md'>
                               {item.name}
@@ -217,7 +217,7 @@ export default function Example() {
                       ''
                     )}
                   >
-                    <div className='flex justify-between border-t border-gray-200 px-5 py-4'>
+                    <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
                       <div className=''>
                         <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md'>
                           {item.name}
