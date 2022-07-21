@@ -23,9 +23,17 @@ export default function Profile() {
     <>
       <DashboardHeader username={loaderData.username} />
       <div className='flex'>
-      <AccountSidebar setshow={setshow}/>
+      <AccountSidebar firstname={loaderData.firstname} lastname={loaderData.lastname} setshow={setshow}/>
       {show === 0 ?
-      <Template1 firstname={loaderData.firstname} lastname={loaderData.lastname}/> : null}
+      <Template1 
+      firstname={loaderData.firstname}
+      lastname={loaderData.lastname}
+      occupation = {loaderData.occupation}
+      location = {loaderData.location}
+      company = {loaderData.company}
+      education= {loaderData.company}
+      bio = {loaderData.bio}
+       /> : null}
         </div>
 </>
   
