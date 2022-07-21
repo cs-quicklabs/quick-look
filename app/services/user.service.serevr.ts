@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs'
 import { db } from "~/database/connection.server";
 import { nameCasing } from "~/utils/string.server";
 import { json } from "stream/consumers";
+import { UpdateProfileDetails } from "~/types/updateProfile.server";
+import { UserPreferences } from "~/types/updateUserPreferences.server";
+import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -46,13 +49,14 @@ export async function checkUserVerificationStatus(email: string) {
     return false
 }
 
-export async function upateUserPassword(userId: string, password: string) {
+export async function upateUserPassword(userId: string, password: string, user?: any) {
     await db.user.update({
         where: {
             id: userId
         },
         data: {
-            password: await bcrypt.hash(password, 10)
+            password: await bcrypt.hash(password, 10),
+            oldpassword: user.password
         }
     })
 }
@@ -66,16 +70,76 @@ export async function getUserById(id: string) {
     return user
 }
 
-export async function updateUsingOldPassword(userId: string, password: string) {
-    const user = await getUserById(userId);
-
-    const isLastPasswordSame = await bcrypt.compare(password, user?.oldpassword as string)
-    if (!isLastPasswordSame) {
-        await upateUserPassword(userId, password)
+export async function updateUsingOldPassword(user: any, newPassword: string) {
+    try{
+        await upateUserPassword(user.id, newPassword, user)
+        return true
     }
-    return {
-        success: true,
-        message: 'New password cannot be same as current password'
+    catch(error){
+        throw 'Something unexpected happend.'
     }
+}
 
+export async function updateUserProfileDetails({firstname, lastname, profileId, user}: UpdateProfileDetails){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            firstname: firstname ?? user.firstname,
+            lastname: lastname ?? user.lastname,
+            username: profileId ?? user.profileId
+        }
+    })
+    return true
+}
+
+export async function deleteUser(user?: any){
+    await db.user.delete({
+        where: {
+            id: user.id
+        }
+    })
+}
+
+export async function unpublishUserAccount(user?: any){
+    if(user.isPublished){
+        await db.user.update({
+            where: {
+                id: user.id
+            },
+            data: {
+                isPublished: false
+            }
+        })
+    }
+    return 'Account unpublished successfully.'
+}
+
+export async function updateUserPreferences({recieveMarketingUpdates, recieveProductUpdates, user}: UserPreferences){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            recieveMarketingUpdates,
+            recieveProductUpdates,
+        }
+    })
+}
+
+export async function updateUserBioDetails({about, location, occupation, education, company, user}: UpdateUserBioDetails){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            bio: about ?? user.bio,
+            location: location ?? user.location,
+            company: company ?? user.company,
+            education: education ?? user.education,
+            occupation: occupation ?? user.occupation
+        }
+    })
+    return true;
 }

@@ -6,19 +6,32 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model User {
 
-  id               String            @id @unique @default(uuid())
-  firstname        String
-  lastname         String
-  email            String
-  username         String            @unique
-  password         String          
-  oldpassword      String
-  isVerified       Boolean           @default(false)
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  userVerification UserVerification?
+model User {
+  id                      String            @id @unique @default(uuid())
+  firstname               String
+  lastname                String
+  email                   String
+  username                String            @unique
+  password                String
+  oldpassword             String
+  isVerified              Boolean           @default(false)
+  isPublished             Boolean           @default(false)
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+  recieveProductUpdates   Boolean           @default(false)
+  recieveMarketingUpdates Boolean           @default(false)
+  bio                     String?
+  location                String?
+  occupation              String?
+  company                 String?
+  education               String?
+  facebookLink            String?
+  twitterLink             String?
+  youtubeLink             String?
+  userVerification        UserVerification?
+  profile                 Profile?
+
   @@map("user")
 }
 
@@ -34,3 +47,19 @@ model UserVerification {
   @@map("userverification")
 }
 
+model Profile {
+  id                      String   @id @unique @default(uuid())
+  user                    User     @relation(fields: [userId], references: [id])
+  userId                  String   @unique
+  isVerified              Boolean  @default(false)
+  isPublished             Boolean  @default(false)
+  bio                     String
+  location                String
+  occupation              String   
+  company                 String
+  education               String
+  recieveProductUpdates   Boolean  @default(false)
+  recieveMarketingUpdates Boolean  @default(false)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}

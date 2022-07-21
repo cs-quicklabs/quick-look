@@ -1,19 +1,67 @@
+import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
+import { useLoaderData, useSubmit } from "@remix-run/react";
+import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
+import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
+import Unpublish from "~/components/Common/unpublishModal";
+import { getUser, requireUserId } from "~/services/auth.service.server";
+import { updateUserPreferences, updateUserProfileDetails } from "~/services/user.service.serevr";
+
+export const action: ActionFunction = async({request}) => {
+  const formData = await request.formData()
+  
+  // const user = await getUser(request)
+  let productUpdate = formData.getAll('productUpdate')
+  let marketingUpdate = formData.getAll('marketingUpdate')
+
+  
+
+  
+  
+  
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  await requireUserId(request);
+  const user = await getUser(request)
+
+  return user;
+}
 
 export default function Profile() {
+  const [open, setopen] = useState(false)
+  const [openModal, setopenModal] = useState(false)
+  const loaderData = useLoaderData()
+
+  const submit = useSubmit();
+
+  function handleChange(event: any) {
+    submit(event.currentTarget, { replace: true });
+    
+  }
+  
+  const [check, setcheck] = useState(loaderData?.recieveMarketingUpdates)
+  const [check1, setcheck1] = useState(loaderData?.recieveProductUpdates)
+
+const recieveMarketingUpdates = (e:any)=>{
+  check ? setcheck(loaderData.recieveMarketingUpdates = false) : setcheck(loaderData.recieveMarketingUpdates = true)
+
+}
+const recieveProductUpdates =(e:any)=>{
+  check1 ? setcheck1(loaderData.recieveProductUpdates = false) : setcheck1(loaderData.recieveProductUpdates = true)
+}
   return (
     <>
       <div>
         <div>
-          <DashboardHeader />
+          <DashboardHeader username={loaderData.username}/>
         </div>
-        <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
+        <div className='grid grid-cols-12 gap-x-5'>
           <div>
             <ProfileSetting />
           </div>
-        {/* notifications */}
-          <div className="sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-6 font-inter max-w-3xl">
+          <div className="sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-3xl">
             <div className="py-6 px-4 sm:p-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
               <p className="text-sm text-gray-500 max-w-lg">
@@ -29,12 +77,17 @@ export default function Profile() {
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
+                      <form onChange={handleChange} method='POST'>
                       <input
                         id="productUpdate"
                         name="productUpdate"
                         type="checkbox"
+                        // value={check}
+                                              checked={loaderData.recieveProductUpdates ? true : false}
+                        onChange={recieveProductUpdates}
+
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      />
+                      /></form>
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="productUpdate" className="font-medium text-gray-700">
@@ -45,12 +98,17 @@ export default function Profile() {
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
+                      <form action="">
                       <input
                         id="marketingUpdates"
-                        name="marketingUpdates"
+                        name="marketingUpdate"
                         type="checkbox"
+                        checked={loaderData.recieveMarketingUpdates}
+                        onChange={recieveMarketingUpdates}
+                        value={loaderData.recieveProductUpdates ? 'true' : 'false'}
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      />
+                        
+                      /></form>
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
@@ -66,13 +124,12 @@ export default function Profile() {
               <h3 className="text-lg leading-6 font-medium text-gray-900">Unpublish your Account</h3>
               <p className="text-sm text-gray-500 max-w-lg">
               Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link quicklook.me/
-              {/* User name goes here */}
               . You can enable your profile anytime you want.
               </p>
               <div className="flex justify-start ml-1 items-center">
-                <div className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
+                <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
                   Unpublish my account
-                </div>
+                </button>
               </div>
             </div>
 
@@ -85,9 +142,9 @@ export default function Profile() {
                     Once you delete your account, you will lose all data associated with it.
                     </p>
                     <div className="flex justify-start items-center">
-                      <a className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 font-medium py-2 px-4">
+                      <button onClick={()=>{setopen(true)}} className="mt-3.5 rounded-md bg-red-100 hover:bg-red-400 text-red-700 hover:text-white font-medium py-2 px-4">
                         Delete account
-                      </a>
+                      </button>
                     </div>
                 </div>
               </div>
@@ -95,6 +152,8 @@ export default function Profile() {
           </div>
         </div>
       </div>
+        <Delete open={open} onClose={() => setopen(false)} />
+<Unpublish open={openModal} onClose={() => setopenModal(false)}/>
     </>
   )
 }

@@ -100,7 +100,6 @@ function MobileNavigation() {
 }
 
 export function Header({ isloggedin }: any) {
-  console.log(isloggedin);
   
   return (
     <header className='py-10'>

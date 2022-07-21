@@ -34,7 +34,7 @@ export const action: ActionFunction = async ({ request }) => {
     password: await validatePassword(password),
     firstname: await validateFirstName(firstname),
     lastname: await validateLastName(lastname),
-    username: await validateUsername(username),
+    username: await validateUsername(username, false),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),
   }
 

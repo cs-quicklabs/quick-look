@@ -21,7 +21,6 @@ export default function Home() {
 
   const loaderData = useLoaderData()
   const isLoggedin = loaderData?.id
-  console.log(isLoggedin);
   
   return (
     <>

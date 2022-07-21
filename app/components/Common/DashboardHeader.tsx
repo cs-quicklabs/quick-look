@@ -3,15 +3,16 @@ import Modal from "~/components/Common/ConfirmModal";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
+import { useLoaderData } from "@remix-run/react";
 
-export default function DashboardHeader() {
+export default function DashboardHeader({username}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [showUserSetting, setShowUserSetting] = useState(false);
   
   const toggleSetting = () => {
     setShowUserSetting(!showUserSetting);
   };
-
+  const loaderData = useLoaderData();
   return (
     <>
       
@@ -24,12 +25,12 @@ export default function DashboardHeader() {
               <div className='flex flex-1 items-center'>
                 <div className='flex w-full items-center justify-between md:w-auto'>
                   <Link
-                    to='/'
+                    to='/account'
                     className='flex items-center justify-center gap-4 -mt-[12px]'
                   >
                     <img className='w-auto h-9 mt-[8px]' src={logo} alt='' />
                     <span className='text-xl pt-5 pb-3 font-extrabold text-white'>
-                      Quicklook.me/ Username
+                      Quicklook.me/{username}
                       {/* User name goes here */}
                     </span>
                   </Link>
@@ -79,7 +80,6 @@ export default function DashboardHeader() {
                       aria-labelledby="user-menu"
                     >
                       <a
-                        // onClick={goToProfile}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer w-full text-left"
                         data-cy="profile"
                         role="menuitem"

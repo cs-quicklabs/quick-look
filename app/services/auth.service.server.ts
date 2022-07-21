@@ -98,7 +98,7 @@ function getUserSession(request: Request) {
 export async function getUserId(request: Request) {
   const session = await getUserSession(request)
   const userId = session.get('userId')
-  // if (!userId || typeof userId !== 'string') return null
+  if (!userId || typeof userId !== 'string') return null
   return userId
 }
 
@@ -107,17 +107,12 @@ export async function getUser(request: Request) {
   if (typeof userId !== 'string') {
     return null
   }
-
-  try {
-    const user = await db.user.findUnique({
-      where: { id: userId },
-      select: { id: true, email: true },
+    const user = await db.user.findFirst({
+      where: { id: userId as string}
     })
     return user
-  } catch {
-    throw logout(request)
-  }
-}
+  } 
+
 
 export async function logout(request: Request) {
   const session = await getUserSession(request)
