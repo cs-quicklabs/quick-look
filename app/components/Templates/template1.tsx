@@ -11,14 +11,12 @@ export default function Template1({  input,loaderData }: any) {
       <div >
         <div>
           <div className='relative '>
-            {/* Cover picture */}
             <img className='h-[16rem] w-screen object-cover' src={bgimage} alt="" />
           </div>
           <div className='absolute top-[15rem] left-[6rem] md:left-[29.5rem] lg:left-[36.5rem]'>
             <img className='w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
           </div>
         </div>
-        {/* <div className='px-[11rem] md:px-[14rem] lg:px-[21rem]'> */}
         <div className='m-auto  pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'>
           <h1 className='text-2xl font-semibold text-gray-900'>
             {loaderData.firstname} {loaderData.lastname}
