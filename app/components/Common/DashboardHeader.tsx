@@ -25,7 +25,7 @@ export default function DashboardHeader({username}: any) {
               <div className='flex flex-1 items-center'>
                 <div className='flex w-full items-center justify-between md:w-auto'>
                   <Link
-                    to='/'
+                    to='/account'
                     className='flex items-center justify-center gap-4 -mt-[12px]'
                   >
                     <img className='w-auto h-9 mt-[8px]' src={logo} alt='' />

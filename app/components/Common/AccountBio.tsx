@@ -46,6 +46,7 @@ export default function DashboardBio({setshowBio}:any) {
                           </p>
                         </div>
                       </div>
+                     
                       <div className="flex flex-1 flex-col justify-between">
                         <div className="divide-y divide-gray-200 px-4 sm:px-6">
                           <div className="space-y-6 pt-6 pb-5">
@@ -139,8 +140,7 @@ export default function DashboardBio({setshowBio}:any) {
                         Update
                       </button>
                     </div>
-                  </div>
-                  </form>
+                  </div></form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

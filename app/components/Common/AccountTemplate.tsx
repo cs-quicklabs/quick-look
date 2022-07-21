@@ -1,8 +1,9 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import bgimage from '../../../assets/images/background-template.jpg'
 
-export default function AccountTemplate({setshowTemplate}:any) {
+export default function AccountTemplate({setshowTemplate,setshow}:any) {
   const [open, setOpen] = useState(true)
 
   return (
@@ -44,12 +45,11 @@ export default function AccountTemplate({setshowTemplate}:any) {
                         </p>
                       </div>
                     </div>
-                    <div className="relative flex-1 py-6 px-4 sm:px-6">
-                      {/* Replace with your content */}
-                      <div className="absolute inset-0 py-6 px-4 sm:px-6">
-                        <div className="h-full border-2 border-dashed border-gray-200" aria-hidden="true" />
-                      </div>
-                      {/* /End replace */}
+                    <div className='grid grid-cols-2 gap-1'>
+                      <div onClick={() => setshow(0)}>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
+                      <div onClick={() => setshow(1)}>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
                     </div>
                   </div>
                 </Dialog.Panel>

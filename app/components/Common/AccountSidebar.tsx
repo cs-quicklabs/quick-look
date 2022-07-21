@@ -26,7 +26,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({firstname, lastname}: any ) {
+export default function AccountSideBar({firstname, lastname, setshow}: any ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showBio, setshowBio] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
@@ -196,7 +196,7 @@ export default function AccountSideBar({firstname, lastname}: any ) {
               null
               }
               {showTemplate?
-              <AccountTemplate setshowTemplate={setshowTemplate} />:
+              <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow}/>:
                 null
               }
               
