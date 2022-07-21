@@ -134,7 +134,7 @@ console.log(loaderData);
           <ProfileSetting />
         </div>
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-xl bg-white">
-          {loaderData.message ?
+          {loaderData.updateProfileMessage ?
           <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem]">
       <div className="flex">
         <div className="flex-shrink-0">
@@ -259,14 +259,14 @@ console.log(loaderData);
           <div className='mr-9 ml-5 border-t border-gray-200'>
           </div>
           <div className=''>
-            {loaderData.message ?
+            {loaderData.updatePasswordMessage ?
           <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem]">
       <div className="flex">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{loaderData.message}</p>
+          <p className="text-sm font-medium text-green-800">{loaderData.updatePasswordMessage}</p>
         </div>
         <div className="ml-auto pl-3">
           <div className="-mx-1.5 -my-1.5">
@@ -275,7 +275,7 @@ console.log(loaderData);
               className="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
             >
               <span className="sr-only">Dismiss</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>{loaderData.message = null}}/>
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>{loaderData.updatePasswordMessage = null}}/>
             </button>
           </div>
         </div>
