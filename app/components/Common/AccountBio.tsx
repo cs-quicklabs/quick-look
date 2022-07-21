@@ -23,7 +23,8 @@ export default function DashboardBio({setshowBio}:any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form className="flex h-full flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
+                  <form  action="" method='POST'>
+                  <div className="flex h-full flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
@@ -85,8 +86,8 @@ export default function DashboardBio({setshowBio}:any) {
                               <div className="mt-1">
                                 <input
                                   type="text"
-                                  name="project-name"
-                                  id="project-name"
+                                  name="occupation"
+                                  id="occupation"
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                               </div>
@@ -138,6 +139,7 @@ export default function DashboardBio({setshowBio}:any) {
                         Update
                       </button>
                     </div>
+                  </div>
                   </form>
                 </Dialog.Panel>
               </Transition.Child>

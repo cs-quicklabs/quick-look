@@ -26,7 +26,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function AccountSideBar({firstname, lastname}: any ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showBio, setshowBio] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
@@ -144,7 +144,7 @@ export default function Example() {
                       />
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{firstname} {lastname}</p>
                       <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                     </div>
                   </div>

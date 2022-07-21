@@ -47,7 +47,7 @@ export const action: ActionFunction = async ({ request }) => {
 
       if(isUpdated){
         session.flash(
-          "updateMessage",
+          "updateProfileMessage",
           `Your profile has been updated successfully.`
       );
       return redirect('/account/profile', {
@@ -82,7 +82,7 @@ export const action: ActionFunction = async ({ request }) => {
       const isPasswordUpdated = await updateUsingOldPassword(user, newPassword)
       if(isPasswordUpdated){
         session.flash(
-          "updateMessage",
+          "updatePasswordMessage",
           `Your password has been updated successfully.`
       );
       return redirect('/account/profile', {
@@ -101,9 +101,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(
     request.headers.get("Cookie")
   );
-  const message = session.get("updateMessage") || null;
+  const updateProfileMessage = session.get("updateProfileMessage") || null;
+  const updatePasswordMessage = session.get("updatePasswordMessage") || null;
   return json(
-    { message, user },
+    { updateProfileMessage, updatePasswordMessage, user },
     {
       headers: {
         "Set-Cookie": await commitSession(session),
@@ -138,7 +139,7 @@ export default function Profile() {
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{loaderData.message}</p>
+          <p className="text-sm font-medium text-green-800">{loaderData.updateProfileMessage}</p>
         </div>
       </div>
             <div className="sm:rounded-md sm:overflow-hidden">
