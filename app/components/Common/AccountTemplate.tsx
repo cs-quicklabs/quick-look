@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import bgimage from '../../../assets/images/background-template.jpg'
 
-export default function AccountTemplate({setshowTemplate}:any) {
+export default function AccountTemplate({setshowTemplate,setshow}:any) {
   const [open, setOpen] = useState(true)
 
   return (
@@ -46,8 +46,10 @@ export default function AccountTemplate({setshowTemplate}:any) {
                       </div>
                     </div>
                     <div className='grid grid-cols-2 gap-1'>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer'/>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer'/>
+                      <div onClick={() => setshow(0)}>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
+                      <div onClick={() => setshow(1)}>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
                     </div>
                   </div>
                 </Dialog.Panel>
