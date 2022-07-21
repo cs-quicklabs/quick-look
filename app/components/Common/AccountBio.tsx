@@ -2,9 +2,12 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function DashboardBio({setshowBio}:any) {
+export default function DashboardBio({setshowBio,occupation,company,education,bio,location,input,setinput,}:any) {
   const [open, setOpen] = useState(true)
-
+const Onclose = ()=>{
+  setinput('')+
+  setshowBio(false)
+}
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -36,7 +39,7 @@ export default function DashboardBio({setshowBio}:any) {
                               onClick={() => setOpen(false)}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon onClick={() => setshowBio(false)} className="h-6 w-6" aria-hidden="true" />
+                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -60,8 +63,15 @@ export default function DashboardBio({setshowBio}:any) {
                                   id="description"
                                   name="description"
                                   rows={4}
+                                  // value={input.bio}
+                                  onChange={(event) => {
+                      setinput({
+                        ...input,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
                                   className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                  defaultValue={''}
+                                  defaultValue={bio}
                                 />
                               </div>
                             </div>
@@ -73,8 +83,15 @@ export default function DashboardBio({setshowBio}:any) {
                               <div className="mt-1">
                                 <input
                                   type="text"
+                                  value={location ? location :  input.location}
                                   name="location"
-                                  id="location"
+                                  id="project-name"
+                                  onChange={(event) => {
+                      setinput({
+                        ...input,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                               </div>
@@ -88,7 +105,14 @@ export default function DashboardBio({setshowBio}:any) {
                                 <input
                                   type="text"
                                   name="occupation"
+                                  value={occupation ? occupation :  input.occupation}
                                   id="occupation"
+                                   onChange={(event) => {
+                      setinput({
+                        ...input,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                               </div>
@@ -102,6 +126,14 @@ export default function DashboardBio({setshowBio}:any) {
                                 <input
                                   type="text"
                                   name="company"
+                                  value={company ? company : input.company}
+                                 onChange={(event) => {
+                      setinput({
+                        ...input,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+
                                   id="project-name"
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
@@ -116,7 +148,14 @@ export default function DashboardBio({setshowBio}:any) {
                                 <input
                                   type="text"
                                   name="education"
-                                  id="education"
+                                  value={education ? education : input.education}
+                                  onChange={(event) => {
+                      setinput({
+                        ...input,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                                  id="project-name"
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                               </div>
