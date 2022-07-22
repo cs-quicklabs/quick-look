@@ -6,22 +6,13 @@ import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import Unpublish from "~/components/Common/unpublishModal";
 import { getUser, requireUserId } from "~/services/auth.service.server";
-import { updateUserPreferences, updateUserProfileDetails } from "~/services/user.service.serevr";
 
-export const action: ActionFunction = async({request}) => {
-  const formData = await request.formData()
-  
-  // const user = await getUser(request)
-  let productUpdate = formData.get('test')
-  let marketingUpdate = formData.getAll('marketingUpdate')
-}
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
   const user = await getUser(request)
-  const sear = new URL(request.url)
-  const a  = sear.searchParams
-  console.log(a);
+  const url = new URL(request.url)
+  console.log('------', url.searchParams.get('test'));
   return user;
 }
 
@@ -37,16 +28,6 @@ export default function Profile() {
     
   }
   
-  const [check, setcheck] = useState(loaderData?.recieveMarketingUpdates)
-  const [check1, setcheck1] = useState(loaderData?.recieveProductUpdates)
-
-const recieveMarketingUpdates = (e:any)=>{
-  check ? setcheck(loaderData.recieveMarketingUpdates = false) : setcheck(loaderData.recieveMarketingUpdates = true)
-
-}
-const recieveProductUpdates =(e:any)=>{
-  check1 ? setcheck1(loaderData.recieveProductUpdates = false) : setcheck1(loaderData.recieveProductUpdates = true)
-}
   return (
     <>
       <div>
@@ -79,9 +60,6 @@ const recieveProductUpdates =(e:any)=>{
                         name="test"
                         type="checkbox"
                          value= 'productUpdate'
-                                              
-                        
-
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                       /></form>
                     </div>
@@ -94,7 +72,7 @@ const recieveProductUpdates =(e:any)=>{
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form action="" method="get">
+                      <form  onChange={handleChange} action="" method="get">
                       <input
                         id="marketingUpdates"
                         name="test"
