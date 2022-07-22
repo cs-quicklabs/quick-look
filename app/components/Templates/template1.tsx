@@ -21,9 +21,9 @@ export default function Template1({ input, loaderData }: any) {
           <h1 className='text-2xl font-semibold text-gray-900'>
             {loaderData.firstname} {loaderData.lastname}
           </h1>
-          {loaderData.occupation || input.occupation ?
+          {loaderData.occupation || input.occupation ||input.location ||loaderData.location ?
             <h3 className="text-gray-500 w-max">
-              {input.occupation}
+              {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
         <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
