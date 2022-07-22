@@ -2,11 +2,13 @@ import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function DashboardBio({setshowBio,input,setinput,showBio}:any) {
+export default function DashboardBio({setshowBio,input,setinput,showBio,loaderData}:any) {
   // const [open, setOpen] = useState(true)
-  const Onclose = useCallback(() => {
+  const Onclose = (e:any) => {
+    // const value = e.target.name
+    // setinput(...input,input.value = loaderData.value)
    setshowBio(false)
-  }, []);
+  };
 // const Onclose = ()=>{
 
 //   setshowBio(false)
@@ -36,6 +38,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio}:any) {
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> Update Your Bio </Dialog.Title>
                           <div className="ml-3 flex h-7 items-center">
+                            <form action="">
                             <button
                               type="button"
                               className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
@@ -43,7 +46,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio}:any) {
                             >
                               <span className="sr-only">Close panel</span>
                               <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
-                            </button>
+                            </button></form>
                           </div>
                         </div>
                         <div className="mt-1">
