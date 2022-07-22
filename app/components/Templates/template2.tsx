@@ -68,7 +68,7 @@ export default function Template2({ input, loaderData }: any) {
           <img src={twitter} alt="" className="w-9 h-9"/>
           </a>
           <a href="http://www.youtube.com">
-          <img src={youtube} alt="" className="w-11 h-9"/>
+          <img src={youtube} alt="" className="w-9 h-9"/>
 
           </a>
         </div>
