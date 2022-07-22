@@ -128,7 +128,7 @@ const recieveProductUpdates =(e:any)=>{
               </p>
               <div className="flex justify-start ml-1 items-center">
                 <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
-                  Unpublish my account
+                  {loaderData.isPublished ? 'Unpublish my account':'Publish my account'}
                 </button>
               </div>
             </div>
@@ -153,7 +153,7 @@ const recieveProductUpdates =(e:any)=>{
         </div>
       </div>
         <Delete open={open} onClose={() => setopen(false)} />
-<Unpublish open={openModal} onClose={() => setopenModal(false)}/>
+<Unpublish isPublished={loaderData.isPublished} open={openModal} onClose={() => setopenModal(false)}/>
     </>
   )
 }

@@ -5,7 +5,7 @@ import { XIcon } from '@heroicons/react/outline'
 export default function DashboardBio({setshowBio,occupation,company,education,bio,location,input,setinput,}:any) {
   const [open, setOpen] = useState(true)
 const Onclose = ()=>{
-  setinput('')+
+
   setshowBio(false)
 }
   return (
