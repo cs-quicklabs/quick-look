@@ -21,6 +21,7 @@ model User {
   updatedAt               DateTime          @updatedAt
   recieveProductUpdates   Boolean           @default(false)
   recieveMarketingUpdates Boolean           @default(false)
+  templateNumber          String?
   bio                     String?
   location                String?
   occupation              String?
