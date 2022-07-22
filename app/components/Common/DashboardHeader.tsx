@@ -16,7 +16,7 @@ export default function DashboardHeader({username}: any) {
   return (
     <>
       
-        <header className='h-[3rem] bg-gray-800'>
+        <header className='h-[3rem] bg-gray-800 sticky top-0 z-50'>
           {/* <div className=''> */}
             <nav
               className='flex items-center justify-between px-8'
