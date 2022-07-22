@@ -102,14 +102,23 @@ export async function deleteUser(user?: any){
     })
 }
 
-export async function unpublishUserAccount(user?: any){
-    if(user.isPublished){
+export async function publishToggle(user?: any){
+    if(user.isPublished === true){
         await db.user.update({
             where: {
                 id: user.id
             },
             data: {
                 isPublished: false
+            }
+        })
+    } else if (user.isPublished === false){
+        await db.user.update({
+            where: {
+                id: user.id
+            },
+            data: {
+                isPublished: true
             }
         })
     }

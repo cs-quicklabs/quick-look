@@ -4,7 +4,7 @@ import youtube from '../../../assets/images/logos/youtube_logo.png'
 import bgimage from '../../../assets/images/background-template.jpg'
 
 
-export default function Template1({  input,loaderData }: any) {
+export default function Template1({ input, loaderData }: any) {
   return (
     <div className='flex pl-0 md:pl-[129px]'>
 
@@ -22,33 +22,33 @@ export default function Template1({  input,loaderData }: any) {
             {loaderData.firstname} {loaderData.lastname}
           </h1>
           {loaderData.occupation || input.occupation ?
-          <h3 className="text-gray-500 w-max">
-            I am a {loaderData.occupation ? loaderData.occupation : input.occupation}
-          </h3> : <span></span>}
+            <h3 className="text-gray-500 w-max">
+              {loaderData.occupation ? loaderData.occupation : input.occupation}
+            </h3> : <span></span>}
         </div>
         <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
           <div className='m-auto  pt-16'>
             <p className="text-gray-500">
-              { loaderData.bio ? loaderData.bio : input.description}
+              {loaderData.bio ? loaderData.bio : input.description}
             </p>
           </div>
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16'>
               {loaderData.company || input.company ?
-              <div className='flex flex-col w-[50%]'>
-                <h2 className="text-gray-500 w-max">WORK</h2>
-                <h2 className="text-gray-900 w-max">
-                  { loaderData.company ? loaderData.company :input.company }
-                </h2>
-              </div>: <span></span>}
+                <div className='flex flex-col w-[50%]'>
+                  <h2 className="text-gray-500 w-max">WORK</h2>
+                  <h2 className="text-gray-900 w-max">
+                    {loaderData.company ? loaderData.company : input.company}
+                  </h2>
+                </div> : <span></span>}
               {loaderData.education || input.education ?
-              <div className='flex flex-col'>
-                <h2 className="text-gray-500 w-max">Education</h2>
-                <h2 className="text-gray-900 w-max">
-                  { loaderData.education ? loaderData.education : input.education}
-                </h2>
-              </div>: <span></span>}
-              </div>
+                <div className='flex flex-col'>
+                  <h2 className="text-gray-500 w-max">Education</h2>
+                  <h2 className="text-gray-900 w-max">
+                    {loaderData.education ? loaderData.education : input.education}
+                  </h2>
+                </div> : <span></span>}
+            </div>
           </div>
           <footer className='flex pt-[2rem] md:pt-[5rem] gap-4 md:gap-8 w-[40%] justify-center mx-[4.6rem]  md:mx-[5rem]'>
             <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a>
