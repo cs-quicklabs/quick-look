@@ -126,13 +126,27 @@ export async function publishToggle(user?: any){
 }
 
 export async function updateUserPreferences({recieveMarketingUpdates, recieveProductUpdates, user}: UserPreferences){
+    let marketingFlag ;
+    let productFlag ;
+    if(user.recieveMarketingUpdates === false){
+        marketingFlag = true
+    } else if(user.recieveMarketingUpdates === true){
+        marketingFlag = false
+    }
+
+    if(user.recieveProductUpdates === false){
+        productFlag = true
+    } else if(user.recieveProductUpdates === true){
+        marketingFlag = false
+    }
+
     await db.user.update({
         where: {
             id: user.id
         },
         data: {
-            recieveMarketingUpdates,
-            recieveProductUpdates,
+            recieveMarketingUpdates: marketingFlag,
+            recieveProductUpdates: productFlag,
         }
     })
 }

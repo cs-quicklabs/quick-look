@@ -6,13 +6,20 @@ import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import Unpublish from "~/components/Common/unpublishModal";
 import { getUser, requireUserId } from "~/services/auth.service.server";
+import { updateUserPreferences } from "~/services/user.service.serevr";
 
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
   const user = await getUser(request)
   const url = new URL(request.url)
-  console.log('------', url.searchParams.get('test'));
+  if(url.searchParams.get('checkedMarketingUpdate')){
+    console.log('HITS')
+    await updateUserPreferences({recieveMarketingUpdates: true, user})
+  }
+  if(url.searchParams.get('checkedProductUpdate')){
+    await updateUserPreferences({recieveProductUpdates: true, user})
+  }
   return user;
 }
 
@@ -51,17 +58,18 @@ export default function Profile() {
                 <div className="text-base font-medium text-gray-900" aria-hidden="true">
                   By Email
                 </div>
+                <form onChange={handleChange} method='get'>
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form onChange={handleChange} method='get'>
+                      
                       <input
                         id="productUpdate"
-                        name="test"
+                        name="checkedProductUpdate"
                         type="checkbox"
                          value= 'productUpdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      /></form>
+                      />
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="productUpdate" className="font-medium text-gray-700">
@@ -72,24 +80,24 @@ export default function Profile() {
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form  onChange={handleChange} action="" method="get">
+                      
                       <input
                         id="marketingUpdates"
-                        name="test"
+                        name="checkedMarketingUpdate"
                         type="checkbox"
                         value='marketingupdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         
-                      /></form>
-                    </div>
+                      />
                     <div className="ml-3 text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
                         Marketing Updates
                       </label>
                       <p className="text-gray-500">Get notified when we share our marketing content such as blogs, announcements</p>
                     </div>
-                  </div>
+                  </div></div>
                 </div>
+                  </form>
               </fieldset>
             </div>
             <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-6 rounded-lg ml-6">
