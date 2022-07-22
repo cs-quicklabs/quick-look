@@ -21,11 +21,14 @@ model User {
   updatedAt               DateTime          @updatedAt
   recieveProductUpdates   Boolean           @default(false)
   recieveMarketingUpdates Boolean           @default(false)
-  bio                     String?        
+  bio                     String?
   location                String?
   occupation              String?
   company                 String?
   education               String?
+  facebookLink            String?
+  twitterLink             String?
+  youtubeLink             String?
   userVerification        UserVerification?
   profile                 Profile?
 

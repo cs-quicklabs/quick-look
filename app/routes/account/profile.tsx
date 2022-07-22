@@ -116,7 +116,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
-console.log(loaderData);
 
   const [val, setVal] = useState({
     firstName: `${loaderData.user.firstname}`,
