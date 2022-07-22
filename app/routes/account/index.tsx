@@ -5,6 +5,7 @@ import { useLoaderData } from "@remix-run/react";
 import AccountSidebar from "~/components/Common/AccountSidebar";
 import Template1 from "~/components/Templates/template1";
 import { useState } from "react";
+import Template2 from "~/components/Templates/template2";
 
 
 
@@ -28,7 +29,7 @@ console.log('input',input);
       <div className='flex'>
       <AccountSidebar loaderData={loaderData}  setshow={setshow} input={input} setinput={setinput}/>
       {show === 0 ?
-      <Template1  input={input}  loaderData={loaderData}/> : null}
+      <Template1  input={input}  loaderData={loaderData}/> : show === 1 ? <Template2/> : null }
         </div>
 </>
   
