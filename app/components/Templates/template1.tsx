@@ -23,13 +23,13 @@ export default function Template1({ input, loaderData }: any) {
           </h1>
           {loaderData.occupation || input.occupation ?
             <h3 className="text-gray-500 w-max">
-              {loaderData.occupation ? loaderData.occupation : input.occupation}
+              {input.occupation}
             </h3> : <span></span>}
         </div>
         <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
           <div className='m-auto  pt-16'>
             <p className="text-gray-500">
-              {loaderData.bio ? loaderData.bio : input.description}
+              {input.description}
             </p>
           </div>
           <div className='flex flex-col gap-20'>
@@ -38,14 +38,14 @@ export default function Template1({ input, loaderData }: any) {
                 <div className='flex flex-col w-[50%]'>
                   <h2 className="text-gray-500 w-max">WORK</h2>
                   <h2 className="text-gray-900 w-max">
-                    {loaderData.company ? loaderData.company : input.company}
+                    {input.company}
                   </h2>
                 </div> : <span></span>}
               {loaderData.education || input.education ?
                 <div className='flex flex-col'>
                   <h2 className="text-gray-500 w-max">Education</h2>
                   <h2 className="text-gray-900 w-max">
-                    {loaderData.education ? loaderData.education : input.education}
+                    {input.education}
                   </h2>
                 </div> : <span></span>}
             </div>
