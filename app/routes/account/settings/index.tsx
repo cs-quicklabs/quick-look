@@ -12,20 +12,16 @@ export const action: ActionFunction = async({request}) => {
   const formData = await request.formData()
   
   // const user = await getUser(request)
-  let productUpdate = formData.getAll('productUpdate')
+  let productUpdate = formData.get('test')
   let marketingUpdate = formData.getAll('marketingUpdate')
-
-  
-
-  
-  
-  
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
   const user = await getUser(request)
-
+  const sear = new URL(request.url)
+  const a  = sear.searchParams
+  console.log(a);
   return user;
 }
 
@@ -77,14 +73,14 @@ const recieveProductUpdates =(e:any)=>{
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form onChange={handleChange} method='POST'>
+                      <form onChange={handleChange} method='get'>
                       <input
                         id="productUpdate"
-                        name="productUpdate"
+                        name="test"
                         type="checkbox"
-                        // value={check}
-                                              checked={loaderData.recieveProductUpdates ? true : false}
-                        onChange={recieveProductUpdates}
+                         value= 'productUpdate'
+                                              
+                        
 
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                       /></form>
@@ -98,14 +94,12 @@ const recieveProductUpdates =(e:any)=>{
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form action="">
+                      <form action="" method="get">
                       <input
                         id="marketingUpdates"
-                        name="marketingUpdate"
+                        name="test"
                         type="checkbox"
-                        checked={loaderData.recieveMarketingUpdates}
-                        onChange={recieveMarketingUpdates}
-                        value={loaderData.recieveProductUpdates ? 'true' : 'false'}
+                        value='marketingupdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         
                       /></form>
