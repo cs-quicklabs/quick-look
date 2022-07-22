@@ -247,7 +247,7 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="mt-1.5 text-right sm:px-10 max-w-xl">
+              <div className="mt-1.5 text-right sm:px-10 max-w-xl h-[3rem]">
                 <button
                   type="submit"
                   name='_action'

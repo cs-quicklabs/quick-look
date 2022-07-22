@@ -1,14 +1,16 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import bgimage from '../../../assets/images/background-template.jpg'
 
-export default function AccountTemplate({setshowTemplate,setshow}:any) {
-  const [open, setOpen] = useState(true)
-
+export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
+  // const [open, setOpen] = useState(true)
+const Onclose = useCallback(() => {
+   setshowTemplate(false)
+  }, []);
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={true} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setshowTemplate}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -32,7 +34,7 @@ export default function AccountTemplate({setshowTemplate,setshow}:any) {
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setshowTemplate(false)}
                           >
                             <span className="sr-only">Close panel</span>
                             <XIcon onClick={() => setshowTemplate(false)} className="h-6 w-6" aria-hidden="true" />

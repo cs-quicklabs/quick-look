@@ -1,16 +1,19 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function DashboardBio({setshowBio,occupation,company,education,bio,location,input,setinput,}:any) {
-  const [open, setOpen] = useState(true)
-const Onclose = ()=>{
+export default function DashboardBio({setshowBio,input,setinput,showBio}:any) {
+  // const [open, setOpen] = useState(true)
+  const Onclose = useCallback(() => {
+   setshowBio(false)
+  }, []);
+// const Onclose = ()=>{
 
-  setshowBio(false)
-}
+//   setshowBio(false)
+// }
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={true} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setshowBio}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -36,7 +39,7 @@ const Onclose = ()=>{
                             <button
                               type="button"
                               className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                              onClick={() => setOpen(false)}
+                              onClick={() => setshowBio(false)}
                             >
                               <span className="sr-only">Close panel</span>
                               <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
