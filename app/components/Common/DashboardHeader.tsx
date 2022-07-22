@@ -5,7 +5,7 @@ import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import { useLoaderData } from "@remix-run/react";
 
-export default function DashboardHeader({ username }: any) {
+export default function DashboardHeader({username}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [showUserSetting, setShowUserSetting] = useState(false);
 

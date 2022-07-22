@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Popover, Dialog, Transition } from '@headlessui/react'
+import { Popover,Dialog, Transition } from '@headlessui/react'
 import {
   MenuIcon,
   XIcon,
@@ -81,22 +81,22 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   </Transition.Child>
                   <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto mt-12">
                     <div className="flex-shrink-0 flex p-4">
-                      <a href="#" className="flex-shrink-0 group block">
-                        <div className="flex items-center">
-                          <div>
-                            <img
-                              className="inline-block h-10 w-10 rounded-full"
-                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                              alt=""
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
-                            <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                          </div>
+                    <a href="#" className="flex-shrink-0 group block">
+                      <div className="flex items-center">
+                        <div>
+                          <img
+                            className="inline-block h-10 w-10 rounded-full"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
+                          />
                         </div>
-                      </a>
-                    </div>
+                        <div className="ml-3">
+                          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
+                          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                     <nav className="mt-5 px-2 space-y-1 ">
                       {navigationFirst.map((item) => (
                         <a
@@ -112,9 +112,9 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                           <p className='group flex items-center px-2 py-2 text-sm font-medium rounded-md'>
                             {item.name}
                           </p>
-
+                          
                           <p className='px-2 py-2 text-xs font-medium text-gray-500 group-hover:text-gray-700'>
-                            {item.subheading}
+                          {item.subheading}
                           </p>
                         </a>
                       ))}
@@ -122,7 +122,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
-              <div className="flex-shrink-0 w-14"></div>
+              <div className="flex-shrink-0 w-14">{/* Force sidebar to shrink to fit close icon */}</div>
             </div>
           </Dialog>
         </Transition.Root>

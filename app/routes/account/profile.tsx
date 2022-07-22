@@ -134,9 +134,20 @@ export default function Profile() {
         <div>
           <ProfileSetting />
         </div>
+        
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-xl bg-white">
-          {profileMessage ?
-          <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem]">
+          
+          <form method="POST">
+          {/* <div className="flex ">
+        <div className="flex-shrink-0">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{loaderData.message}</p>
+        </div>
+      </div> */}
+      {profileMessage ?
+          <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem] mt-[1.5rem]">
       <div className="flex">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
@@ -157,7 +168,6 @@ export default function Profile() {
         </div>
       </div>
     </div>:''}
-          <form method="POST">
             <div className="sm:rounded-md sm:overflow-hidden">
               <div className="flex ">
       </div>
