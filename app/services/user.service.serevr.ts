@@ -102,8 +102,8 @@ export async function deleteUser(user?: any){
     })
 }
 
-export async function unpublishUserAccount(user?: any){
-    if(user.isPublished){
+export async function publishToggle(user?: any){
+    if(user.isPublished === true){
         await db.user.update({
             where: {
                 id: user.id
@@ -112,18 +112,41 @@ export async function unpublishUserAccount(user?: any){
                 isPublished: false
             }
         })
+    } else if (user.isPublished === false){
+        await db.user.update({
+            where: {
+                id: user.id
+            },
+            data: {
+                isPublished: true
+            }
+        })
     }
     return 'Account unpublished successfully.'
 }
 
 export async function updateUserPreferences({recieveMarketingUpdates, recieveProductUpdates, user}: UserPreferences){
+    let marketingFlag ;
+    let productFlag ;
+    if(user.recieveMarketingUpdates === false){
+        marketingFlag = true
+    } else if(user.recieveMarketingUpdates === true){
+        marketingFlag = false
+    }
+
+    if(user.recieveProductUpdates === false){
+        productFlag = true
+    } else if(user.recieveProductUpdates === true){
+        marketingFlag = false
+    }
+
     await db.user.update({
         where: {
             id: user.id
         },
         data: {
-            recieveMarketingUpdates,
-            recieveProductUpdates,
+            recieveMarketingUpdates: marketingFlag,
+            recieveProductUpdates: productFlag,
         }
     })
 }

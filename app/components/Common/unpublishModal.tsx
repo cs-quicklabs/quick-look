@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
-export default function Delete({open,onClose}:any) {
+export default function Delete({open,onClose,isPublished}:any) {
 
   const cancelButtonRef = useRef(null)
 
@@ -39,11 +39,12 @@ export default function Delete({open,onClose}:any) {
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                      Unpublish Account
+                      {isPublished ? 'Unpublish Account':'Publish Account'}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                      Are you sure you want to unpublish your account? Your profile will be hidden and will not be available to those who already have your profile link. Although you can publish your profile if you wish to anytime.
+                     {isPublished ? 'Are you sure you want to unpublish your account? Your profile will be hidden and will not be available to those who already have your profile link. Although you can publish your profile if you wish to anytime.' : 'Are you sure you want to publish your account? Your profile will be Shown and will be available to anyone who already have your profile link. Although you can unpublish your profile if you wish to anytime.'}
+                      
                       </p>
                     </div>
                   </div>
@@ -54,7 +55,7 @@ export default function Delete({open,onClose}:any) {
                     type="submit"
                     className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
                   >
-                    Unpublish
+                    {isPublished ? 'Unpublish' : 'Publish'}
                   </button></form>
                   <button
                     type="button"

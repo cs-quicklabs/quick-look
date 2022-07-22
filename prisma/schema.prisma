@@ -55,7 +55,7 @@ model Profile {
   isPublished             Boolean  @default(false)
   bio                     String
   location                String
-  occupation              String   
+  occupation              String
   company                 String
   education               String
   recieveProductUpdates   Boolean  @default(false)
