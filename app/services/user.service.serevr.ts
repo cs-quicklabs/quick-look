@@ -166,3 +166,14 @@ export async function updateUserBioDetails({about, location, occupation, educati
     })
     return true;
 }
+
+export async function updateUserTemplate(templateId: string, user: any){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data:{
+            templateNumber: templateId
+        }
+    })
+}
