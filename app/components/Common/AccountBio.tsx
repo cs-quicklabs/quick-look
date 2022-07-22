@@ -45,7 +45,8 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               onClick={() => setshowBio(false)}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                              <a href="/account">
+                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" /></a>
                             </button></form>
                           </div>
                         </div>
