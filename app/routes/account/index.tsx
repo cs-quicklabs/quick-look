@@ -20,8 +20,7 @@ export default function Profile() {
   const loaderData = useLoaderData();
   const [show, setshow] = useState(0)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
-  // console.log('state',show)
-console.log('input',input);
+
 
   return (
     <>

@@ -48,10 +48,25 @@ const Onclose = useCallback(() => {
                       </div>
                     </div>
                     <div className='grid grid-cols-2 gap-1'>
-                      <div onClick={() => setshow(0)}>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
+                      <form action="account/update/template" method='POST'>
+
+                      <div onClick={() => setshow(0)} >
+                      <input type="hidden" name='template' value='sadada' />
+                      <button type='submit'>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' />
+                      </button>
+                      </div>
+                      </form>
+
+                      <form action="account/update/template" method='POST'>
                       <div onClick={() => setshow(1)}>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
+                      <input type="hidden" name='template' value='222' />
+                      <button type='submit'>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' />
+                      </button>
+                      </div>
+
+                      </form>
                     </div>
                   </div>
                 </Dialog.Panel>
