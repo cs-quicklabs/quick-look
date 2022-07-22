@@ -26,7 +26,7 @@ const Onclose = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form  action="account/update/bio" method='POST'>
+                  <form  action="account/update/bio" method='POST' className='h-screen'>
                   <div className="flex h-full flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
@@ -71,7 +71,7 @@ const Onclose = ()=>{
                       })
                     }}
                                   className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                  defaultValue={bio}
+                                  value={input.description}
                                 />
                               </div>
                             </div>
@@ -83,9 +83,10 @@ const Onclose = ()=>{
                               <div className="mt-1">
                                 <input
                                   type="text"
-                                  value={location ? location :  input.location}
+                                  value={input.location}
                                   name="location"
                                   id="project-name"
+                                  // onChange={(e:any) => setVal(e.target.value)}
                                   onChange={(event) => {
                       setinput({
                         ...input,
@@ -105,7 +106,7 @@ const Onclose = ()=>{
                                 <input
                                   type="text"
                                   name="occupation"
-                                  value={occupation ? occupation :  input.occupation}
+                                  value={input.occupation}
                                   id="occupation"
                                    onChange={(event) => {
                       setinput({
@@ -126,7 +127,7 @@ const Onclose = ()=>{
                                 <input
                                   type="text"
                                   name="company"
-                                  value={company ? company : input.company}
+                                  value={input.company}
                                  onChange={(event) => {
                       setinput({
                         ...input,
@@ -148,7 +149,7 @@ const Onclose = ()=>{
                                 <input
                                   type="text"
                                   name="education"
-                                  value={education ? education : input.education}
+                                  value={input.education}
                                   onChange={(event) => {
                       setinput({
                         ...input,
