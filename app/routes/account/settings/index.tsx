@@ -51,17 +51,18 @@ export default function Profile() {
                 <div className="text-base font-medium text-gray-900" aria-hidden="true">
                   By Email
                 </div>
+                <form onChange={handleChange} method='get'>
                 <div className="mt-4 space-y-4">
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form onChange={handleChange} method='get'>
+                      
                       <input
                         id="productUpdate"
                         name="test"
                         type="checkbox"
                          value= 'productUpdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                      /></form>
+                      />
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="productUpdate" className="font-medium text-gray-700">
@@ -72,7 +73,7 @@ export default function Profile() {
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      <form  onChange={handleChange} action="" method="get">
+                      
                       <input
                         id="marketingUpdates"
                         name="test"
@@ -80,16 +81,16 @@ export default function Profile() {
                         value='marketingupdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         
-                      /></form>
-                    </div>
+                      />
                     <div className="ml-3 text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
                         Marketing Updates
                       </label>
                       <p className="text-gray-500">Get notified when we share our marketing content such as blogs, announcements</p>
                     </div>
-                  </div>
+                  </div></div>
                 </div>
+                  </form>
               </fieldset>
             </div>
             <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-6 rounded-lg ml-6">
