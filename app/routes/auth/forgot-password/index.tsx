@@ -1,4 +1,4 @@
-import { ActionFunction, redirect } from '@remix-run/node'
+import { ActionFunction, LoaderFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
@@ -8,18 +8,19 @@ import { findUserByEmail } from '~/services/user.service.serevr'
 import { sendAccountVerificationMail, sendResetPasswordMail } from '~/services/mail.service.server'
 import { v4 as uuidv4 } from 'uuid'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
- 
+import { requireUserId } from '~/services/auth.service.server'
+
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
   const email = formData.get('email') as string
 
   let url = request.url
-  
+
   const errors = {
     email: await validateEmail(email),
   }
 
-  if (Object.values(errors).some(Boolean)) { 
+  if (Object.values(errors).some(Boolean)) {
     return json({ errors, fields: { email }, form: action }, { status: 400 })
   }
 
@@ -28,15 +29,15 @@ export const action: ActionFunction = async ({ request }) => {
   const generatedToken = uuidv4() as string
   const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
 
-  if(!user){
+  if (!user) {
     return redirect('/confirm/password')
-  } else if(user['isVerified'] == true && createVerificationToken.success) {
+  } else if (user['isVerified'] == true && createVerificationToken.success) {
     await sendResetPasswordMail(email, url, generatedToken)
     return redirect('/confirm/password')
-  } else if(user['isVerified'] == false && createVerificationToken.success) {
+  } else if (user['isVerified'] == false && createVerificationToken.success) {
     await sendAccountVerificationMail(email, url, generatedToken)
     return redirect('/confirm/email')
-  } 
+  }
 }
 
 export default function Forgotpassword() {
@@ -62,23 +63,22 @@ export default function Forgotpassword() {
                 <Form className='space-y-4' method='post' noValidate>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email address
-                </label>
-                      <input
-                        value={val}
-                        onChange={(event) => setVal(event.target.value)}
-                        className={`${
-                          actionData?.errors['email']
-                            ? 'border border-red-400'
-                            : ''
+                      Email address
+                    </label>
+                    <input
+                      value={val}
+                      onChange={(event) => setVal(event.target.value)}
+                      className={`${actionData?.errors['email']
+                          ? 'border border-red-400'
+                          : ''
                         } appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-3`}
-                        name='email'
-                        type='email'
-                        style={{
-                          borderColor: actionData?.errors['email'] && 'red',
-                        }}
-                      />
-                    
+                      name='email'
+                      type='email'
+                      style={{
+                        borderColor: actionData?.errors['email'] && 'red',
+                      }}
+                    />
+
                     <div className='text-red-600'>
                       {actionData?.errors['email']}
                     </div>

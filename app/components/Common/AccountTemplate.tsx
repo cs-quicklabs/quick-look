@@ -1,14 +1,16 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import bgimage from '../../../assets/images/background-template.jpg'
 
-export default function AccountTemplate({setshowTemplate}:any) {
-  const [open, setOpen] = useState(true)
-
+export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
+  // const [open, setOpen] = useState(true)
+const Onclose = useCallback(() => {
+   setshowTemplate(false)
+  }, []);
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={true} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setshowTemplate}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -24,7 +26,7 @@ export default function AccountTemplate({setshowTemplate}:any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-96 max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex h-full flex-col bg-white shadow-xl">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Select Template </Dialog.Title>
@@ -32,22 +34,24 @@ export default function AccountTemplate({setshowTemplate}:any) {
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setshowTemplate(false)}
                           >
                             <span className="sr-only">Close panel</span>
                             <XIcon onClick={() => setshowTemplate(false)} className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
-                      <div className="mt-1">
+                      <div className="pt-1 pr-2">
                         <p className="text-sm leading-5 font-normal text-gray-500">
                         Select how you want your profile to look like. Click on Toggle button to view in mobile and Desktop mode
                         </p>
                       </div>
                     </div>
                     <div className='grid grid-cols-2 gap-1'>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer'/>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer'/>
+                      <div onClick={() => setshow(0)}>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
+                      <div onClick={() => setshow(1)}>
+                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' /></div>
                     </div>
                   </div>
                 </Dialog.Panel>

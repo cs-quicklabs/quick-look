@@ -65,12 +65,10 @@ export function Faqs() {
       <h2 id='faq-title' className='sr-only'>
         Frequently asked questions
       </h2>
-      {/* <div className='absolute top-0 left-1/2 -translate-x-[30%] -translate-y-[25%]'> */}
-        <img src={backgroundImage} alt='sad' width={1558} height={946} 
-         className="absolute top-0 left-1/2 max-w-none translate-x-[-30%] -translate-y-1/4"
-          />
-      {/* </div> */}
-     <Container className="relative">
+      <img src={backgroundImage} alt='sad' width={1558} height={946}
+        className="absolute top-0 left-1/2 max-w-none translate-x-[-30%] -translate-y-1/4"
+      />
+      <Container className="relative">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2
             id="faq-title"

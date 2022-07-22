@@ -29,7 +29,7 @@ export const validateSignupEmail = async (email: string) => {
     return 'Invalid email address.'
   } else if (user && user.email === lowerCasedEmail) {
     return 'Email already exists.'
-  } else if(!notContainsSymbols){
+  } else if (!notContainsSymbols) {
     return 'Invalid email address.'
   }
 }
@@ -46,9 +46,9 @@ export const validatePassword = async (
     return 'Password must not be more than 18 characters.'
   } else if (typeof password !== 'string' || password.length < 5) {
     return `Passwords must be at least 5 characters long.`
-  }else if (!notContainsWhitespace){
+  } else if (!notContainsWhitespace) {
     return 'Whitespaces are not allowed.'
-  } 
+  }
 }
 
 export const checkIncorrectCredentials = async (
@@ -79,15 +79,15 @@ export const validateComfirmPassword = async (
 }
 
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
-  let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
-  let whiteSpaceRegex =  /^\S*$/
+  let onlyAlphabetsRegex = /^[a-zA-Z]+$/
+  let whiteSpaceRegex = /^\S*$/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
-  
+
   if (!name) {
     return 'First Name is required.'
-  } else if (!notContainsWhitespace){
+  } else if (!notContainsWhitespace) {
     return 'Whitespaces are not allowed.'
   } else if (!isNaN(name)) {
     return `First Name must be in Alphabets.`
@@ -103,8 +103,8 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
 export const validateLastName = async (
   name: any
 ): Promise<string | undefined> => {
-  let onlyAlphabetsRegex = /^[a-zA-Z]+$/ 
-  let whiteSpaceRegex =  /^\S*$/
+  let onlyAlphabetsRegex = /^[a-zA-Z]+$/
+  let whiteSpaceRegex = /^\S*$/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let notContainsWhitespace = name.match(whiteSpaceRegex)
@@ -113,7 +113,7 @@ export const validateLastName = async (
     return 'Last Name is required.'
   } else if (!notContainsWhitespace) {
     return 'Whitespaces are not allowed.'
-  }else if (!isNaN(name)) {
+  } else if (!isNaN(name)) {
     return `Last Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `Last Name must be at least 3 characters long.`
@@ -124,9 +124,9 @@ export const validateLastName = async (
   }
 }
 export const validateUsername = async (
-  username: string, forUpdate?: Boolean 
+  username: string, forUpdate?: Boolean
 ): Promise<String | undefined> => {
-  let whiteSpaceRegex =  /^\S*$/
+  let whiteSpaceRegex = /^\S*$/
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
   let notOnlyNumberRegex = /(?!^\d+$)^.+$/
 
@@ -141,36 +141,39 @@ export const validateUsername = async (
     },
   })
 
-  if(forUpdate){
-    if(usernameExist > 1) {
-      return 'This Id has already been taken. Please choose another.'
-    } 
-  }
 
-  if ( !username ) {
+
+  if (!username) {
     return 'Profile Id is required.'
   } else if (username.length > 20) {
     return 'Profile Id can not be bigger than 20 characters.'
   } else if (!notcontainSymbol) {
     return 'Only alphabets, number and - sign is allowed.'
-  } else if (usernameExist) {
-    return 'This Id has already been taken. Please choose another.'
-  } else if (username.length < 6 ){
+  } if (forUpdate) {
+    if (usernameExist > 1) {
+      return 'This Id has already been taken. Please choose another.'
+    }
+  } else if (forUpdate === false) {
+    if (usernameExist) {
+      return 'This Id has already been taken. Please choose another.'
+    }
+  }
+  else if (username.length < 6) {
     return 'Profile Id should be atleast 6 charcaters long.'
-  }else if(!notContainsWhitespace){
-     return 'Whitespaces are not allowed.'
-  }else if( !notOnlyNumber){
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if (!notOnlyNumber) {
     return 'Only Numbers are not allowed. '
   }
 }
 
-export async function validateOldPassword(user: any, newPassword: string, oldpassword: string ){
+export async function validateOldPassword(user: any, newPassword: string, oldpassword: string) {
   const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.oldpassword as string)
   const isLastPasswordSame = await bcrypt.compare(newPassword, user?.oldpassword as string)
-  if(!isoldPasswordMatch){ 
+  if (!isoldPasswordMatch) {
     return 'Old password does not match.'
   }
-  if(isLastPasswordSame){ 
+  if (isLastPasswordSame) {
     return 'New password cannot be same as last password.'
   }
 }

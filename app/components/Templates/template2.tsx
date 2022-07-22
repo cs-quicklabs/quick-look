@@ -79,7 +79,3 @@ export default function Template2({ input, loaderData }: any) {
     </>
   )
 }
-
-function calc(arg0: number, rem: any) {
-  throw new Error('Function not implemented.');
-}
