@@ -6,13 +6,20 @@ import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import Unpublish from "~/components/Common/unpublishModal";
 import { getUser, requireUserId } from "~/services/auth.service.server";
+import { updateUserPreferences } from "~/services/user.service.serevr";
 
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
   const user = await getUser(request)
   const url = new URL(request.url)
-  console.log('------', url.searchParams.get('test'));
+  if(url.searchParams.get('checkedMarketingUpdate')){
+    console.log('HITS')
+    await updateUserPreferences({recieveMarketingUpdates: true, user})
+  }
+  if(url.searchParams.get('checkedProductUpdate')){
+    await updateUserPreferences({recieveProductUpdates: true, user})
+  }
   return user;
 }
 
@@ -58,7 +65,7 @@ export default function Profile() {
                       
                       <input
                         id="productUpdate"
-                        name="test"
+                        name="checkedProductUpdate"
                         type="checkbox"
                          value= 'productUpdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
@@ -76,7 +83,7 @@ export default function Profile() {
                       
                       <input
                         id="marketingUpdates"
-                        name="test"
+                        name="checkedMarketingUpdate"
                         type="checkbox"
                         value='marketingupdate'
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
