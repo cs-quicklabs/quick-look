@@ -32,7 +32,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form  action="account/update/bio" method='POST' className='h-screen'>
-                  <div className="flex h-full flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
+                  <div className="flex h-[95%] flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
@@ -172,7 +172,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-shrink-0 justify-end px-4 pt-4 pb-2 mt-36">
+                    <div className="flex flex-shrink-0 justify-end px-4 pt-4 pb-2">
                       <button
                         type="button"
                         className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

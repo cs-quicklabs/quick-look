@@ -20,13 +20,13 @@ export default function Template2({ input, loaderData }: any) {
           {loaderData.firstname} {loaderData.lastname}
           </h1>
           <p className="text-sm leading-5 font-medium">
-          {loaderData.occupation || input.occupation ?
+          {loaderData.occupation || input.occupation || loaderData.location || input.location  ?
             <h3 className="text-gray-500 w-max">
-              {input.occupation}
+              {input.occupation} {input.location && input.occupation ? `from` : ''} {input.location}
             </h3> : <span></span>}
           </p>
  
-          <div className='mt-4'>
+          {/* <div className='mt-4'>
             <button
                 type="button"
                 className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
@@ -34,7 +34,7 @@ export default function Template2({ input, loaderData }: any) {
                 <MenuAlt1Icon className="-ml-1 mr-2 h-4 w-4" aria-hidden="true" />
                 Read my blog
               </button>
-          </div>
+          </div> */}
         <div className='text-base mt-3 leading-6'>
           <p className='pt-2'>
             {input.description}
