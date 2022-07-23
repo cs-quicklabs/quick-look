@@ -22,7 +22,7 @@ export default function Template2({ input, loaderData }: any) {
           <p className="text-sm leading-5 font-medium">
           {loaderData.occupation || input.occupation || loaderData.location || input.location  ?
             <h3 className="text-gray-500 w-max">
-              {input.occupation} {input.location && input.occupation ? `from` : ''} {input.location}
+              {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
           </p>
  

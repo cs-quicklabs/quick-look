@@ -5,6 +5,7 @@ import bgimage from '../../../assets/images/background-template.jpg'
 
 export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
   // const [open, setOpen] = useState(true)
+  const templateHandle = 'account/update/choose-template'
 const Onclose = useCallback(() => {
    setshowTemplate(false)
   }, []);
@@ -48,7 +49,7 @@ const Onclose = useCallback(() => {
                       </div>
                     </div>
                     <div className='grid grid-cols-2 gap-1'>
-                      <form action="update/template" method='POST'>
+                      <form action= {templateHandle} method='POST'>
 
                       <div  >
                       <input type="hidden" name='template' value='0' />
@@ -58,7 +59,7 @@ const Onclose = useCallback(() => {
                       </div>
                       </form>
 
-                      <form action="update/template" method='POST'>
+                      <form action= {templateHandle} method='POST'>
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
