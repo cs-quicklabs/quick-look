@@ -16,6 +16,7 @@ export async function createUser(userRegister: RegisterForm) {
             lastname: nameCasing(userRegister.lastname),
             username: userRegister.username.toLocaleLowerCase(),
             email: userRegister.email.toLocaleLowerCase(),
+            isVerified: false,
             password,
             oldpassword: password
         }
