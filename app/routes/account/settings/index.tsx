@@ -14,7 +14,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   const user = await getUser(request)
   const url = new URL(request.url)
   if(url.searchParams.get('checkedMarketingUpdate')){
-    console.log('HITS')
     await updateUserPreferences({recieveMarketingUpdates: true, user})
   }
   if(url.searchParams.get('checkedProductUpdate')){

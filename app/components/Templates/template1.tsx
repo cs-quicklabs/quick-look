@@ -5,7 +5,6 @@ import bgimage from '../../../assets/images/background-template.jpg'
 
 
 export default function Template1({ input, loaderData }: any) {
-  console.log('HERE', loaderData)
   return (
     <div className='flex pl-0 md:pl-[129px]'>
 

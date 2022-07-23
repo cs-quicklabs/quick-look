@@ -15,7 +15,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Profile() {
   const loaderData = useLoaderData();
-  console.log(loaderData)
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
 
