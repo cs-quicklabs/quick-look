@@ -39,6 +39,7 @@ export async function register(user: RegisterForm): Promise<ServerResponse> {
     newUser = await createUser(user)
   }
   catch(error){
+    console.log(error)
     throw json(
       {
         error: `Something went wrong trying to create a new user.`,
