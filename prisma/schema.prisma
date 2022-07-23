@@ -16,12 +16,12 @@ model User {
   password                String
   oldpassword             String
   isVerified              Boolean           @default(false)
-  isPublished             Boolean           @default(false)
+  isPublished             Boolean?           @default(false)
   createdAt               DateTime          @default(now())
   updatedAt               DateTime          @updatedAt
-  recieveProductUpdates   Boolean           @default(false)
-  recieveMarketingUpdates Boolean           @default(false)
-  templateNumber          String?
+  recieveProductUpdates   Boolean?           @default(false)
+  recieveMarketingUpdates Boolean?          @default(false)
+  templateNumber          String?           @default("0")
   bio                     String?
   location                String?
   occupation              String?
