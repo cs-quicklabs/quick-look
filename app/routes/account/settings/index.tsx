@@ -40,11 +40,11 @@ export default function Profile() {
         <div>
           <DashboardHeader username={loaderData.username}/>
         </div>
-        <div className='grid grid-cols-12 gap-x-5'>
-          <div>
+        <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
+          <div className='md:w-2/5 '>
             <ProfileSetting />
           </div>
-          <div className="sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-3xl">
+          <div className="sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-56 mt-2 font-inter max-w-3xl">
             <div className="py-6 px-4 sm:p-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
               <p className="text-sm text-gray-500 max-w-lg">
@@ -88,7 +88,7 @@ export default function Profile() {
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         
                       />
-                    <div className="ml-3 text-sm">
+                    <div className="ml-3 mt-14 md:mt-10 text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
                         Marketing Updates
                       </label>
@@ -99,7 +99,7 @@ export default function Profile() {
                   </form>
               </fieldset>
             </div>
-            <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-6 rounded-lg ml-6">
+            <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-20 md:mt-16 rounded-lg ml-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">{loaderData.isPublished ? 'Unpublish your Account' : 'Publish your Account'}</h3>
               <p className="text-sm text-gray-500 max-w-lg">
                 {loaderData.isPublished ? 'Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link quicklook.me/. You can enable your profile anytime you want.' :'Publishing your account will show your account and anyone should be able to visit your profile from the link quicklook.me/. You can disable your profile anytime you want.'}

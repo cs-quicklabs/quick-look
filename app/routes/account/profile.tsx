@@ -130,12 +130,12 @@ export default function Profile() {
       <div>
         <DashboardHeader username={loaderData.user.username}/>
       </div>
-      <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
-        <div>
+      <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
+        <div className='md:w-2/5 '>
           <ProfileSetting />
         </div>
         
-        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-xl bg-white">
+        <div className="space-y-6 sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-56 mt-2 font-inter max-w-xl">
           
           <form method="POST">
           {/* <div className="flex ">
@@ -247,7 +247,7 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="mt-1.5 text-right sm:px-10 max-w-xl h-[3rem]">
+              <div className="px-4 py-0.5 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
                 <button
                   type="submit"
                   name='_action'
@@ -342,7 +342,7 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 text-right sm:px-10">
+                <div className="px-4 py-3 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
                   <button
                     type="submit"
                     name='_action'
