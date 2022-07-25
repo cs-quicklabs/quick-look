@@ -1,6 +1,6 @@
-import facebook from '../../../assets/images/logos/facebook_logo.png'
-import twitter from '../../../assets/images/logos/twitter_logo.png'
-import youtube from '../../../assets/images/logos/youtube_logo.png'
+import facebook from '../../../assets/images/fb1.png'
+import twitter from '../../../assets/images/twitter 1.png'
+import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/background-template.jpg'
 
 
