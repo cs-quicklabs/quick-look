@@ -100,10 +100,9 @@ export default function Profile() {
               </fieldset>
             </div>
             <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-6 rounded-lg ml-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Unpublish your Account</h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">{loaderData.isPublished ? 'Unpublish your Account' : 'Publish your Account'}</h3>
               <p className="text-sm text-gray-500 max-w-lg">
-              Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link quicklook.me/
-              . You can enable your profile anytime you want.
+                {loaderData.isPublished ? 'Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link quicklook.me/. You can enable your profile anytime you want.' :'Publishing your account will show your account and anyone should be able to visit your profile from the link quicklook.me/. You can disable your profile anytime you want.'}
               </p>
               <div className="flex justify-start ml-1 items-center">
                 <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 border border-gray-300">
