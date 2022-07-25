@@ -17,6 +17,7 @@ export default function Profile() {
   const loaderData = useLoaderData();
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
+console.log(loaderData);
 
   return (
     <>
