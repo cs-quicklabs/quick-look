@@ -1,7 +1,10 @@
 import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import bgimage from '../../../assets/images/background-template.jpg'
+import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
+import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
+
+
 
 export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
   // const [open, setOpen] = useState(true)
@@ -48,13 +51,13 @@ const Onclose = useCallback(() => {
                         </p>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2 gap-1'>
+                    <div className='grid grid-cols-2'>
                       <form action= {templateHandle} method='POST'>
 
                       <div  >
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' />
+                      <img src={thumbnail1} alt="" className='h-[10rem] w-auto cursor-pointer border-8 border-black border-r-4' />
                       </button>
                       </div>
                       </form>
@@ -63,7 +66,7 @@ const Onclose = useCallback(() => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={bgimage} alt="" className='h-[10rem] w-auto cursor-pointer' />
+                      <img src={thumbnail2} alt="" className='h-[10rem] w-auto cursor-pointer border-8 border-black border-l-4' />
                       </button>
                       </div>
 
