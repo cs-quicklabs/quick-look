@@ -2,6 +2,7 @@ import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
+import { commitSession, getSession } from '~/services/session.service.server'
 import { getUserById, upateUserPassword } from '~/services/user.service.serevr'
 import {
   validateComfirmPassword,
@@ -11,6 +12,10 @@ import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 
 export const action: ActionFunction = async ({ request, params }) => {
   const user = await getUserById(params.userId as string)
+
+  const session = await getSession(
+    request.headers.get("Cookie")
+  );
   
   const formData = await request.formData()
   const password = formData.get('password') as string
@@ -28,9 +33,21 @@ export const action: ActionFunction = async ({ request, params }) => {
     )
   }
 
-  await upateUserPassword(user?.id as string, password, user);
+  const isUpdated = await upateUserPassword(user?.id as string, password, user);
+
+  if(isUpdated){
+    session.flash(
+      "authMessage",
+      `Your password has been updated successfully.`
+    );
+  }
+
+  return redirect('/auth/login',  {
+    headers: {
+      "Set-Cookie": await commitSession(session),
+    },
+  })
   
-  return redirect('/auth/login')
 }
 
 export default function Password() {
