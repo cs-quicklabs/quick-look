@@ -28,7 +28,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     )
   }
 
-  await upateUserPassword(user?.id as string, password);
+  await upateUserPassword(user?.id as string, password, user);
   
   return redirect('/auth/login')
 }
