@@ -16,12 +16,12 @@ export default function Template2({ input, loaderData }: any) {
 
       <div className="w-screen md:w-2/5 md:h-full lg:w-4/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
         <div className='mt-20'>
-          <h1 className="text-lg font-semibold leading-6">
+          <h1 className="text-lg leading-6 font-bold text-gray-900">
           {loaderData.firstname} {loaderData.lastname}
           </h1>
           <p className="text-sm leading-5 font-medium">
           {loaderData.occupation || input.occupation || loaderData.location || input.location  ?
-            <h3 className="text-gray-500 w-max">
+            <h3 className="text-gray-500 w-max ">
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
           </p>
@@ -36,7 +36,7 @@ export default function Template2({ input, loaderData }: any) {
               </button>
           </div> */}
         <div className='text-base mt-3 leading-6'>
-          <p className='pt-2'>
+          <p className='pt-2 text-gray-500'>
             {input.description}
           </p>
         </div>
@@ -45,15 +45,15 @@ export default function Template2({ input, loaderData }: any) {
           <div className='flex'>
           {loaderData.company || input.company ?
             <div className='flex flex-col w-[50%]'>
-              <h2 className="text-gray-900 font-medium">WORK</h2>
-              <h2 className="text-gray-600">
+              <h2 className="text-gray-500 font-medium">WORK</h2>
+              <h2 className="text-gray-900">
               {input.company}
               </h2>
               </div> : <span></span>}
               {loaderData.education || input.education ?
             <div className='flex flex-col'>
-              <h2 className="text-gray-900 font-medium">EDUCATION</h2>
-              <h2 className="text-gray-600">
+              <h2 className="text-gray-500 font-medium">EDUCATION</h2>
+              <h2 className="text-gray-900">
               {input.education}
               </h2>
               </div> : <span></span>}

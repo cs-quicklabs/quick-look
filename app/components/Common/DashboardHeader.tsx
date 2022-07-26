@@ -18,7 +18,7 @@ export default function DashboardHeader({username}: any) {
 
       <header className='h-[3rem] bg-gray-800 sticky top-0 z-50'>
         <nav
-          className='flex items-center justify-between px-8'
+          className='flex items-center justify-between px-3 md:px-8'
           aria-label='Global'
         >
           <div className='flex flex-1 items-center'>
@@ -28,7 +28,7 @@ export default function DashboardHeader({username}: any) {
                 className='flex items-center justify-center gap-4'
               >
                 <img className='hidden sm:block sm:mt-2 pb-0 sm:w-auto sm:h-9 md:mt-0 sm:pt-0 sm:pb-0' src={logo} alt='' />
-                <span className='w-max block font-base sm:text-xl pt-2 sm:pt-2 sm:pb-1.5 sm:font-extrabold text-white'>
+                <span className='w-max block font-base sm:text-xl pt-2 pl-9 md:pl-0 sm:pt-2 sm:pb-1.5 sm:font-extrabold text-white'>
                   Quicklook.me/{username}
                 </span>
               </Link>
