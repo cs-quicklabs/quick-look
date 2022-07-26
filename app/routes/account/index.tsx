@@ -22,7 +22,7 @@ export default function Profile() {
     <div className='h-100vw'>
       <DashboardHeader username={ loaderData.username } />
       <div className='flex'>
-        <div className='w-[0%] md:w-[20.1%] z-20'>
+        <div className='w-[0%] md:w-0 lg:w-[20.1%] lg:z-20'>
       <AccountSidebar loaderData={loaderData}  setshow={setshow} input={input} setinput={setinput} /></div>
      <div className='flex-1 w-[70%] z-10'>
       { loaderData.templateNumber == '0' ?

@@ -14,7 +14,7 @@ const Onclose = useCallback(() => {
   }, []);
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setshowTemplate}>
+      <Dialog as="div" className="relative z-20" onClose={setshowTemplate}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
