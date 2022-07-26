@@ -14,7 +14,7 @@ const Onclose = useCallback(() => {
   }, []);
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setshowTemplate}>
+      <Dialog as="div" className="relative z-20" onClose={setshowTemplate}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -29,7 +29,7 @@ const Onclose = useCallback(() => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-96 max-w-md">
+                <Dialog.Panel className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
                   <div className="flex h-full flex-col bg-white shadow-xl">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
@@ -57,7 +57,7 @@ const Onclose = useCallback(() => {
                       <div  >
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={thumbnail1} alt="" className='h-[10rem] w-auto cursor-pointer border-8 border-black border-r-4' />
+                      <img src={thumbnail1} alt="" className='h-[14rem] w-[14rem] cursor-pointer border-8 border-black border-r-4' />
                       </button>
                       </div>
                       </form>
@@ -66,7 +66,7 @@ const Onclose = useCallback(() => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={thumbnail2} alt="" className='h-[10rem] w-auto cursor-pointer border-8 border-black border-l-4' />
+                      <img src={thumbnail2} alt="" className='h-[14rem] w-[14rem] cursor-pointer border-8 border-black border-l-4' />
                       </button>
                       </div>
 

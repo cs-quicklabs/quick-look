@@ -36,7 +36,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
     <>
       <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10 md:hidden" onClose={setSidebarOpen}>
+          <Dialog as="div" className="relative z-10 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -59,7 +59,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="absolute flex-1 flex flex-col w-full bg-white">
+                <Dialog.Panel className="absolute flex-1 flex flex-col bg-white w-full md:max-w-xs lg:max-w-md">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -72,11 +72,11 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                     <div className="absolute top-0 right-0 mt-20">
                       <button
                         type="button"
-                        className="flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900 mr-1"
+                        className="flex items-center justify-center h-10 w-10 mr-1 rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon className="h-6 w-6 text-gray-900" aria-hidden="true" />
+                        <XIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -109,12 +109,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                       // href={item.href}
                       onClick={() => {
                         if (item.name === 'Bio') {
-                          setshowBio(true)
-
+                          setshowBio(true);
+                          setSidebarOpen(false);
 
                         }
                         if (item.name === 'Design Templates') {
-                          setshowTemplate(true)
+                          setshowTemplate(true);
+                          setSidebarOpen(false);
 
                         }
                       }}
@@ -199,10 +200,11 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
         </Transition.Root>
           
           {/* static desktop  */}
-        <div className="hidden md:flex md:80 lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
+        
+        <div className="hidden lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
-              <div className="flex-shrink-0 flex py-1 px-4">
+              <div className="flex-shrink-0 flex pt-3 pb-2 px-6">
                 <a href="#" className="flex-shrink-0 w-full group block">
                   <div className="flex items-center">
                     <div>
@@ -214,13 +216,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                     </div>
                     <div className="ml-3">
                       <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
-                      <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                      <p className="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                     </div>
                   </div>
                 </a>
               </div>
               <div>
-                <div className='text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5'>
+                <div className='text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700 pl-7 border-t border-gray-200 bg-gray-50 w-full leading-5'>
                   Basic Profile
                 </div>
                 <nav className="flex-1 bg-white">
@@ -230,12 +232,14 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                       // href={item.href}
                       onClick={() => {
                         if (item.name === 'Bio') {
-                          setshowBio(true)
+                          setshowBio(true);
+                          setSidebarOpen(false);
 
 
                         }
                         if (item.name === 'Design Templates') {
-                          setshowTemplate(true)
+                          setshowTemplate(true);
+                          setSidebarOpen(false);
 
                         }
                       }}
@@ -244,13 +248,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         ''
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-6'>
                         <div className=''>
-                          <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md'>
+                          <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
                           </p>
 
-                          <p className='px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700'>
+                          <p className='px-2 text-sm leading-5 font-normal text-gray-500 group-hover:text-gray-700'>
                             {item.subheading}
                           </p>
                         </div>
@@ -275,7 +279,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
               </div>
 
               <div>
-                <div className='text-xs font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5 mt-0'>
+                <div className='text-xs font-medium text-gray-500 group-hover:text-gray-700 pl-7 border-t border-gray-200 bg-gray-50 w-full leading-5 mt-0'>
                   Advanced Features
                 </div>
 
@@ -289,13 +293,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         ''
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-6'>
                         <div className=''>
-                          <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md'>
+                          <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
                           </p>
 
-                          <p className='px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700'>
+                          <p className='px-2 text-sm font-normal text-gray-500 group-hover:text-gray-700'>
                             {item.subheading}
                           </p>
                         </div>
@@ -312,11 +316,12 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
             </div>
           </div>
         </div>
-        <div className="md:pl-64 flex flex-col flex-1">
-          <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
+        
+        <div className="flex flex-col flex-1">
+          <div className="absolute top-0 z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-white hover:white"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>

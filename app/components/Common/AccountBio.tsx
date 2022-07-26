@@ -15,7 +15,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
 // }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setshowBio}>
+      <Dialog as="div" className="relative z-20" onClose={setshowBio}>
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-lg">
@@ -30,7 +30,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form  action="account/update/bio" method='POST' className='h-screen'>
-                  <div className="flex h-[95%] flex-col mt-12 w-full md:w-96 divide-y divide-gray-200 bg-white shadow-xl">
+                  <div className="flex h-[95%] flex-col mt-12 w-full md:max-w-xs lg:max-w-md divide-y divide-gray-200 bg-white shadow-xl font-inter">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
@@ -59,7 +59,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                         <div className="divide-y divide-gray-200 px-4 sm:px-6">
                           <div className="space-y-6 pt-6 pb-5">
                             <div>
-                              <label htmlFor="description" className="block text-sm font-medium text-gray-900">
+                              <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 Tell us about yourself{' '}
                               </label>
@@ -81,7 +81,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               </div>
                             </div>
                             <div>
-                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-900">
+                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 Location{' '}
                               </label>
@@ -103,7 +103,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               </div>
                             </div>
                             <div>
-                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-900">
+                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 Occupation {' '}
                               </label>
@@ -124,7 +124,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               </div>
                             </div>
                             <div>
-                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-900">
+                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 Company{' '}
                               </label>
@@ -146,7 +146,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               </div>
                             </div>
                             <div>
-                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-900">
+                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 Education{' '}
                               </label>
@@ -173,14 +173,14 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                     <div className="flex flex-shrink-0 justify-end px-4 pt-4 pb-2">
                       <button
                         type="button"
-                        className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
                         onClick={() => setshowBio(false)}
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="ml-4 mr-2 mb-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700"
                       >
                         Update
                       </button>

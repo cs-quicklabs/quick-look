@@ -1,24 +1,24 @@
 import facebook from '../../../assets/images/fb1.png'
 import twitter from '../../../assets/images/twitter 1.png'
 import youtube from '../../../assets/images/yt1.png'
-import bgimage from '../../../assets/images/background-template.jpg'
+import bgimage from '../../../assets/images/bg.png'
 
 
 export default function Template1({ input, loaderData }: any) {
   return (
-    <div className='flex pl-0 md:pl-[129px]'>
+    <div className='flex  overflow-hidden'>
 
       <div >
         <div>
           <div className='relative '>
             <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
           </div>
-          <div className='absolute top-[9rem] left-[6rem] md:left-[29.5rem] lg:left-[36.5rem]'>
-            <img className='w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
+          <div className='absolute top-[9rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
+            <img className='w-[7rem] md:w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
           </div>
         </div>
-        <div className='m-auto  pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'>
-          <h1 className='text-2xl leading-8 font-bold text-gray-900'>
+        <div className='m-auto pt-1 px-[7rem] md:px-[19rem]  lg:px-[21rem]'>
+          <h1 className='text-2xl leading-8 font-bold text-gray-900 w-max'>
             {loaderData.firstname} {loaderData.lastname}
           </h1>
           {loaderData.occupation || input.occupation ||input.location ||loaderData.location ?
@@ -26,9 +26,10 @@ export default function Template1({ input, loaderData }: any) {
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
-        <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
-          <div className='m-auto  pt-[2.5rem]'>
-            <p className="text-gray-500 text-base leading-5 font-normal ">
+        <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
+          <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
+            <p className="text-gray-500 text-base leading-5 font-normal font-sans flex flex-wrap">
+         
               {input.description}
             </p>
           </div>
@@ -50,7 +51,7 @@ export default function Template1({ input, loaderData }: any) {
                 </div> : <span></span>}
             </div>
           </div>
-          <footer className='flex pt-[2rem] md:pt-[5rem] gap-4 md:gap-8 w-[40%] justify-center mx-[4.6rem]  md:mx-[5rem]'>
+          <footer className='flex pt-[2rem] md:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[2.6rem]  md:mx-[2.5rem]'>
             <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a>
             <a href="http://www.twitter.com">
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
