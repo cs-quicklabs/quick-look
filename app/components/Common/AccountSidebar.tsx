@@ -59,7 +59,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="absolute flex-1 flex flex-col w-full bg-white">
+                <Dialog.Panel className="absolute flex-1 flex flex-col bg-white w-full md:max-w-xs lg:max-w-md">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -109,12 +109,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                       // href={item.href}
                       onClick={() => {
                         if (item.name === 'Bio') {
-                          setshowBio(true)
-
+                          setshowBio(true);
+                          setSidebarOpen(false);
 
                         }
                         if (item.name === 'Design Templates') {
-                          setshowTemplate(true)
+                          setshowTemplate(true);
+                          setSidebarOpen(false);
 
                         }
                       }}
@@ -199,6 +200,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
         </Transition.Root>
           
           {/* static desktop  */}
+        
         <div className="hidden lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
@@ -230,12 +232,14 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                       // href={item.href}
                       onClick={() => {
                         if (item.name === 'Bio') {
-                          setshowBio(true)
+                          setshowBio(true);
+                          setSidebarOpen(false);
 
 
                         }
                         if (item.name === 'Design Templates') {
-                          setshowTemplate(true)
+                          setshowTemplate(true);
+                          setSidebarOpen(false);
 
                         }
                       }}
@@ -312,6 +316,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
             </div>
           </div>
         </div>
+        
         <div className="flex flex-col flex-1">
           <div className="absolute top-0 z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
             <button
