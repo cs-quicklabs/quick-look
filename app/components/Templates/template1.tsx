@@ -11,14 +11,14 @@ export default function Template1({ input, loaderData }: any) {
       <div >
         <div>
           <div className='relative '>
-            <img className='h-[16rem] w-screen object-cover' src={bgimage} alt="" />
+            <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
           </div>
-          <div className='absolute top-[15rem] left-[6rem] md:left-[29.5rem] lg:left-[36.5rem]'>
+          <div className='absolute top-[9rem] left-[6rem] md:left-[29.5rem] lg:left-[36.5rem]'>
             <img className='w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
           </div>
         </div>
         <div className='m-auto  pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'>
-          <h1 className='text-2xl font-semibold text-gray-900'>
+          <h1 className='text-2xl leading-8 font-bold text-gray-900'>
             {loaderData.firstname} {loaderData.lastname}
           </h1>
           {loaderData.occupation || input.occupation ||input.location ||loaderData.location ?
@@ -27,24 +27,24 @@ export default function Template1({ input, loaderData }: any) {
             </h3> : <span></span>}
         </div>
         <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
-          <div className='m-auto  pt-16'>
-            <p className="text-gray-500">
+          <div className='m-auto  pt-[2.5rem]'>
+            <p className="text-gray-500 text-base leading-5 font-normal ">
               {input.description}
             </p>
           </div>
           <div className='flex flex-col gap-20'>
-            <div className='flex  pt-16'>
+            <div className='flex  pt-16 '>
               {loaderData.company || input.company ?
                 <div className='flex flex-col w-[50%]'>
                   <h2 className="text-gray-500 w-max">WORK</h2>
-                  <h2 className="text-gray-900 w-max">
+                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
               {loaderData.education || input.education ?
                 <div className='flex flex-col'>
                   <h2 className="text-gray-500 w-max">Education</h2>
-                  <h2 className="text-gray-900 w-max">
+                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.education}
                   </h2>
                 </div> : <span></span>}

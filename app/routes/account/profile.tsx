@@ -7,7 +7,7 @@ import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
 import { commitSession, getSession } from '~/services/session.service.server';
 import { updateUserProfileDetails, updateUsingOldPassword } from '~/services/user.service.serevr';
-import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
+import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUpdateUsername, validateUsername } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {
   const user = await getUser(request)
@@ -27,7 +27,7 @@ export const action: ActionFunction = async ({ request }) => {
     const errors = {
       firstname: await validateFirstName(firstName),
       lastname: await validateLastName(lastName),
-      username: await validateUsername(profileId, true),
+      username: await validateUpdateUsername(profileId, user),
     }
 
     if (Object.values(errors).some(Boolean)) {
@@ -42,7 +42,8 @@ export const action: ActionFunction = async ({ request }) => {
       const isUpdated = await updateUserProfileDetails({
         firstname: firstName,
         lastname: lastName,
-        profileId, user
+        profileId,
+        user
       })
 
       if(isUpdated){
@@ -130,12 +131,12 @@ export default function Profile() {
       <div>
         <DashboardHeader username={loaderData.user.username}/>
       </div>
-      <div className='lg:grid lg:grid-cols-12 lg:gap-x-5'>
-        <div>
+      <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
+        <div className='md:w-2/5 '>
           <ProfileSetting />
         </div>
         
-        <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 ml-56 mt-2 font-inter max-w-xl bg-white">
+        <div className="space-y-6 sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-56 mt-2 font-inter max-w-xl">
           
           <form method="POST">
           {/* <div className="flex ">
@@ -247,7 +248,7 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="mt-1.5 text-right sm:px-10 max-w-xl h-[3rem]">
+              <div className="px-4 py-0.5 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
                 <button
                   type="submit"
                   name='_action'
@@ -342,7 +343,7 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 text-right sm:px-10">
+                <div className="px-4 py-3 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
                   <button
                     type="submit"
                     name='_action'
