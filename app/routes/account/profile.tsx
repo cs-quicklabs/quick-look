@@ -136,9 +136,9 @@ export default function Profile() {
           <ProfileSetting />
         </div>
         
-        <div className="space-y-6 sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-56 mt-2 font-inter max-w-xl">
+        <div className="space-y-6 sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
           
-          <form method="POST">
+          <form method="POST"> 
           {/* <div className="flex ">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
