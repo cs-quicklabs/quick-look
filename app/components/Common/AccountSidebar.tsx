@@ -36,7 +36,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
     <>
       <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10 md:hidden" onClose={setSidebarOpen}>
+          <Dialog as="div" className="relative z-10 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -72,11 +72,11 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                     <div className="absolute top-0 right-0 mt-20">
                       <button
                         type="button"
-                        className="flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900 mr-1"
+                        className="flex items-center justify-center h-10 w-10 mr-1 rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon className="h-6 w-6 text-gray-900" aria-hidden="true" />
+                        <XIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -199,7 +199,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
         </Transition.Root>
           
           {/* static desktop  */}
-        <div className="hidden md:flex md:w-80 lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
+        <div className="hidden lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex pt-3 pb-2 px-6">
@@ -312,11 +312,11 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
             </div>
           </div>
         </div>
-        <div className="md:pl-64 flex flex-col flex-1">
-          <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
+        <div className="flex flex-col flex-1">
+          <div className="absolute top-0 z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-white hover:white"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>

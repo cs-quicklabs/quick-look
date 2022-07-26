@@ -66,11 +66,11 @@ export default function ProfileSetting() {
                     <div className="absolute top-12 right-0 -mr-16 pt-2 mt-8">
                       <button
                         type="button"
-                        className="ml-1 flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-900"
+                        className="ml-1 flex items-center justify-center h-8 w-8 focus:ring-inset rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+                        <XIcon className="h-5 w-5" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
