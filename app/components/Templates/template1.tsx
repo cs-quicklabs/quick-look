@@ -6,18 +6,18 @@ import bgimage from '../../../assets/images/bg.png'
 
 export default function Template1({ input, loaderData }: any) {
   return (
-    <div className='flex pl-0 md:pl-14 lg:pl-[129px]'>
+    <div className='flex  overflow-hidden'>
 
       <div >
         <div>
           <div className='relative '>
             <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
           </div>
-          <div className='absolute top-[9rem] left-[6rem] md:left-[24.5rem] lg:left-[36.5rem]'>
+          <div className='absolute top-[9rem] pl-[2rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
             <img className='w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
           </div>
         </div>
-        <div className='m-auto pt-1 px-[11rem] md:px-[14rem] lg:px-[21rem]'>
+        <div className='m-auto pt-1 px-[11rem] md:px-[19rem]  lg:px-[21rem]'>
           <h1 className='text-2xl leading-8 font-bold text-gray-900 w-max'>
             {loaderData.firstname} {loaderData.lastname}
           </h1>
@@ -26,7 +26,7 @@ export default function Template1({ input, loaderData }: any) {
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
-        <div className='px-[5rem] md:px-[8rem] lg:px-[14rem]'>
+        <div className='px-[5rem] md:px-[13rem] lg:px-[14rem]'>
           <div className='m-auto  pt-[2.5rem]'>
             <p className="text-gray-500 text-base leading-5 font-normal ">
               {input.description}
