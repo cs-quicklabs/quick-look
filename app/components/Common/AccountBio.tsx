@@ -16,8 +16,6 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setshowBio}>
-        <div className="fixed inset-0" />
-
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-lg">
@@ -32,7 +30,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form  action="account/update/bio" method='POST' className='h-screen'>
-                  <div className="flex h-[95%] flex-col mt-12 w-96 divide-y divide-gray-200 bg-white shadow-xl">
+                  <div className="flex h-[95%] flex-col mt-12 w-full md:w-96 divide-y divide-gray-200 bg-white shadow-xl">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
@@ -175,14 +173,14 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                     <div className="flex flex-shrink-0 justify-end px-4 pt-4 pb-2">
                       <button
                         type="button"
-                        className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         onClick={() => setshowBio(false)}
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="ml-4 mr-2 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="ml-4 mr-2 mb-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         Update
                       </button>

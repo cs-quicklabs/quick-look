@@ -60,6 +60,7 @@ export async function upateUserPassword(userId: string, password: string, user?:
             oldpassword: user.password
         }
     })
+    return true
 }
 
 export async function getUserById(id: string) {

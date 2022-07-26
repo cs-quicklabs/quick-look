@@ -149,22 +149,21 @@ export const validateUsername = async (
     return 'Profile Id can not be bigger than 20 characters.'
   } else if (!notcontainSymbol) {
     return 'Only alphabets, number and - sign is allowed.'
-  } if (forUpdate) {
-    if (usernameExist > 1) {
-      return 'This Id has already been taken. Please choose another.'
-    }
-  } else if (forUpdate === false) {
-    if (usernameExist) {
-      return 'This Id has already been taken. Please choose another.'
-    }
-  }
-  else if (username.length < 6) {
+  } else if (username.length < 6) {
     return 'Profile Id should be atleast 6 charcaters long.'
   } else if (!notContainsWhitespace) {
     return 'Whitespaces are not allowed.'
   } else if (!notOnlyNumber) {
     return 'Only Numbers are not allowed. '
-  }
+  } if (forUpdate) {
+      if (usernameExist > 1) {
+      return 'This Id has already been taken. Please choose another.'
+      }
+    } else if (forUpdate === false) {
+      if (usernameExist) {
+        return 'This Id has already been taken. Please choose another.'
+      }
+    }
 }
 
 export async function validateOldPassword(user: any, newPassword: string, oldpassword: string) {
