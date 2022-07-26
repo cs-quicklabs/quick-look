@@ -44,7 +44,7 @@ export default function Profile() {
           <div className='md:w-2/5 '>
             <ProfileSetting />
           </div>
-          <div className="sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-56 mt-2 font-inter max-w-3xl">
+          <div className="sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl">
             <div className="py-6 px-4 sm:p-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
               <p className="text-sm text-gray-500 max-w-lg">

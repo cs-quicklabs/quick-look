@@ -134,7 +134,7 @@ export default function ProfileSetting() {
 
     {/* static sidebar */}
       <div className='hidden md:flex md:w-64 md:flex-col md:inset-y-0'>
-          <div className="w-56 flex flex-col flex-grow border-r font-inter border-white mt-8 bg-white overflow-y-auto ml-12">
+          <div className="w-64 flex flex-col flex-grow border-r font-inter border-white mt-8 bg-white overflow-y-auto ml-10">
             <div className="flex items-center flex-shrink-0 px-4">
               <h2 className="text-lg leading-6 font-medium text-gray-900">Account</h2>
             </div>
