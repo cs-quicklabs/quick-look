@@ -24,7 +24,7 @@ export default function Profile() {
       <div className='flex'>
         <div className='w-[0%] md:w-0 lg:w-[20.1%] lg:z-20'>
       <AccountSidebar loaderData={loaderData}  setshow={setshow} input={input} setinput={setinput} /></div>
-     <div className='flex-1 w-[70%] z-10'>
+     <div className='flex-1 w-[70%] z-10 flex-wrap'>
       { loaderData.templateNumber == '0' ?
       <Template1  input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 input={input}  loaderData = {loaderData}/> : null }</div>
         </div>

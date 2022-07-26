@@ -27,8 +27,9 @@ export default function Template1({ input, loaderData }: any) {
             </h3> : <span></span>}
         </div>
         <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
-          <div className='m-auto  pt-[2.5rem]'>
-            <p className="text-gray-500 text-base leading-5 font-normal ">
+          <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
+            <p className="text-gray-500 text-base leading-5 font-normal font-sans flex flex-wrap">
+         
               {input.description}
             </p>
           </div>

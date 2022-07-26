@@ -3,18 +3,14 @@ import { MenuAlt1Icon } from '@heroicons/react/solid';
 import facebook from '../../../assets/images/fb.png';
 import twitter from '../../../assets/images/twitter.png';
 import youtube from '../../../assets/images/youtube.png';
-
 export default function Template2({ input, loaderData }: any) {
-
-
   return (
     <>
-    <div className="-mt-12 flex flex-col md:flex-row lg:flex-row max-h-screen overflow-y-auto h-screen w-screen">
-      <div className="w-full md:w-3/5 md:h-full lg:w-8/12 text-center text-gray-200">
+    <div className="-mt-12 flex flex-col md:flex-row h-screen font-inter">
+      <div className="w-full md:w-3/5 md:h-full lg:w-7/12 text-center text-gray-200">
         <img src={pic} className="h-full w-full object-cover" alt="" />
       </div>
-
-      <div className="w-screen md:w-2/5 md:h-full lg:w-4/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
+      <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
         <div className='mt-20'>
           <h1 className="text-lg leading-6 font-bold text-gray-900">
           {loaderData.firstname} {loaderData.lastname}
@@ -25,7 +21,6 @@ export default function Template2({ input, loaderData }: any) {
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
           </p>
- 
           {/* <div className='mt-4'>
             <button
                 type="button"
@@ -40,7 +35,6 @@ export default function Template2({ input, loaderData }: any) {
             {input.description}
           </p>
         </div>
-
         <div className='flex flex-col mt-4 text-sm'>
           <div className='flex'>
           {loaderData.company || input.company ?
@@ -59,20 +53,17 @@ export default function Template2({ input, loaderData }: any) {
               </div> : <span></span>}
           </div>
         </div>
-        
         <div className='flex gap-4 justify-left mt-6'>
           <a href="http://www.facebook.com">
             <img src={facebook} alt="" className="w-9 h-9"/>
           </a>
-          <a href="http://www.twitter.com"> 
+          <a href="http://www.twitter.com">
           <img src={twitter} alt="" className="w-9 h-9"/>
           </a>
           <a href="http://www.youtube.com">
           <img src={youtube} alt="" className="w-9 h-9"/>
-
           </a>
         </div>
-            
         </div>
       </div>
     </div>
