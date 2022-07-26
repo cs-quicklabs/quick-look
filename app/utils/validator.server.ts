@@ -141,8 +141,6 @@ export const validateUsername = async (
     },
   })
 
-
-
   if (!username) {
     return 'Profile Id is required.'
   } else if (username.length > 20) {
@@ -155,15 +153,9 @@ export const validateUsername = async (
     return 'Whitespaces are not allowed.'
   } else if (!notOnlyNumber) {
     return 'Only Numbers are not allowed. '
-  } if (forUpdate) {
-      if (usernameExist > 1) {
-      return 'This Id has already been taken. Please choose another.'
-      }
-    } else if (forUpdate === false) {
-      if (usernameExist) {
-        return 'This Id has already been taken. Please choose another.'
-      }
-    }
+  } else if(usernameExist){
+    return 'This ID has already been taken. Please choose another one.'
+  }
 }
 
 export async function validateOldPassword(user: any, newPassword: string, oldpassword: string) {
@@ -177,3 +169,39 @@ export async function validateOldPassword(user: any, newPassword: string, oldpas
   }
 }
 
+export async function validateUpdateUsername(username: string, user: any ){
+  let whiteSpaceRegex = /^\S*$/
+  let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let notOnlyNumberRegex = /(?!^\d+$)^.+$/
+
+  let notOnlyNumber = username.match(notOnlyNumberRegex)
+  let notContainsWhitespace = username.match(whiteSpaceRegex)
+  let notcontainSymbol = username.match(notcontainSymbolsRegex)
+  let lowerCasedUserName = username.toLocaleLowerCase();
+
+  let usernameExist = await db.user.count({
+    where:{
+      username: lowerCasedUserName,
+      NOT: {
+        id: user.id 
+      }
+    }
+  })
+
+  if (!username) {
+    return 'Profile Id is required.'
+  } else if (username.length > 20) {
+    return 'Profile Id can not be bigger than 20 characters.'
+  } else if (!notcontainSymbol) {
+    return 'Only alphabets, number and - sign is allowed.'
+  } else if (username.length < 6) {
+    return 'Profile Id should be atleast 6 charcaters long.'
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if (!notOnlyNumber) {
+    return 'Only Numbers are not allowed. '
+  } else if(usernameExist){
+    return 'This ID has already been taken. Please choose another one.'
+  }
+
+} 

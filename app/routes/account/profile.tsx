@@ -7,7 +7,7 @@ import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
 import { commitSession, getSession } from '~/services/session.service.server';
 import { updateUserProfileDetails, updateUsingOldPassword } from '~/services/user.service.serevr';
-import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUsername } from '~/utils/validator.server';
+import { validateComfirmPassword, validateFirstName, validateLastName, validateOldPassword, validatePassword, validateUpdateUsername, validateUsername } from '~/utils/validator.server';
 
 export const action: ActionFunction = async ({ request }) => {
   const user = await getUser(request)
@@ -27,7 +27,7 @@ export const action: ActionFunction = async ({ request }) => {
     const errors = {
       firstname: await validateFirstName(firstName),
       lastname: await validateLastName(lastName),
-      username: await validateUsername(profileId, true),
+      username: await validateUpdateUsername(profileId, user),
     }
 
     if (Object.values(errors).some(Boolean)) {
@@ -42,7 +42,8 @@ export const action: ActionFunction = async ({ request }) => {
       const isUpdated = await updateUserProfileDetails({
         firstname: firstName,
         lastname: lastName,
-        profileId, user
+        profileId,
+        user
       })
 
       if(isUpdated){
