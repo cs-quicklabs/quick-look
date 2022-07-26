@@ -51,7 +51,7 @@ export default function Delete({open,onClose,isPublished}:any) {
                     </div>
                   </div>
                 </div>
-                <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
+                <div className={`mt-5 sm:mt-4 sm:flex ${isPublished ? "pl-[3.5rem]" :'pl-[1rem]'}`}>
                  <form action="/account/settings/unpublishAccount">
                   <button
                     type="submit"
