@@ -1,9 +1,23 @@
 import { Footer } from '../../../components/Footer'
 import { CallToAction } from '~/components/CallToAction'
+import HeaderSecondary from '~/components/Common/Header'
+import { LoaderFunction } from '@remix-run/node'
+import { getUser } from '~/services/auth.service.server'
+import { useLoaderData } from '@remix-run/react'
+import DashboardHeader from '~/components/Common/DashboardHeader'
+
+export const loader:LoaderFunction =async ({request})=>{
+const user = await getUser(request)
+return user
+}
+
 
 export default function Refund() {
+   const loaderData = useLoaderData()
   return (
     <>
+       {loaderData?.id ? <DashboardHeader username={loaderData.username}/> : <HeaderSecondary />}
+
       <div id='__next' data-reactroot=''>
         <div className='w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10'>
           <div className='flex-1 bg-white xl:flex max-content top-16'>
