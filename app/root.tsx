@@ -63,10 +63,10 @@ function Layout({ children }: any) {
     <>
       {Location.pathname.includes('/auth/login') ||
       Location.pathname.includes('/auth/signup') ||
-      Location.pathname.includes('/general/terms') ||
-      Location.pathname.includes('/general/privacy') ||
+      // Location.pathname.includes('/general/terms') ||
+      // Location.pathname.includes('/general/privacy') ||
       Location.pathname.includes('/auth/forgot-password') ||
-      Location.pathname.includes('/general/refund-policy') ||
+      // Location.pathname.includes('/general/refund-policy') ||
       Location.pathname.includes('successlogin') ||
       Location.pathname.includes('/auth/password') ||
       Location.pathname.includes('/confirm/password') ||
