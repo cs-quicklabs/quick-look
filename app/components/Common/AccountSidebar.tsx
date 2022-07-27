@@ -49,7 +49,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
               <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
             </Transition.Child>
 
-            <div className="fixed inset-0 flex z-10">
+            <div className="fixed inset-0 flex z-10 overflow-y-auto">
               <Transition.Child
                 as={Fragment}
                 enter="transition ease-in-out duration-300 transform"
