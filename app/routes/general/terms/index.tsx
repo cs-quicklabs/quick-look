@@ -1,11 +1,26 @@
 
 import { CallToAction } from '~/components/CallToAction'
+import HeaderSecondary from '~/components/Common/Header'
 
 import { Footer } from '~/components/Footer'
+import { LoaderFunction } from '@remix-run/node';
+import {getUser } from '~/services/auth.service.server';
+import { useLoaderData } from '@remix-run/react';
+import DashboardHeader from '~/components/Common/DashboardHeader';
+
+export const loader:LoaderFunction =async ({request})=>{
+const user = await getUser(request)
+return user
+}
 
 export default function terms() {
+  const loaderData = useLoaderData()
+  console.log(loaderData);
+  
   return (
     <>
+    {loaderData?.id ? <DashboardHeader username={loaderData.username}/> : <HeaderSecondary />}
+    
       <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-96'>
         <div className='flex-1 bg-white xl:flex '>
           <div className='b xl:flex-shrink-0 xl:w-64 bg-white h-full'>
