@@ -88,7 +88,7 @@ export default function Profile() {
                         className="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         
                       />
-                    <div className="ml-3 mt-14 md:mt-10 text-sm">
+                    <div className="ml-3 mt-[3.2rem] md:mt-[3.25rem] lg:mt-[3.2rem] xl:mt-[1.7rem] 2xl:mt-[1.5rem] text-sm">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
                         Marketing Updates
                       </label>
