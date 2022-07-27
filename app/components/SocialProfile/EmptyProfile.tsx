@@ -3,13 +3,18 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
+import CreateProfile from './CreateProfile'
 
 
 
-export default function SocialLinks({setshowSocialLinks}:any) {
-  // const [open, setOpen] = useState(true)
-  const templateHandle = 'account/update/choose-template'
-const Onclose = useCallback(() => {
+export default function EmptyProfile({setshowSocialLinks}:any) {
+  const [showCreateProfile, setshowCreateProfile] = useState(false);
+
+  const toggleSetting = () => {
+    setshowCreateProfile(!showCreateProfile);
+  };
+
+  const Onclose = useCallback(() => {
    setshowSocialLinks(false)
   }, []);
   return (
@@ -51,19 +56,23 @@ const Onclose = useCallback(() => {
                         </p>
                       </div>
                     </div>
-                    <div className='font-inter mt-7 pl-12 md:pl-0 lg:pl-14 bg-red-600'>
+                    <div className='font-inter mt-7 pl-12 md:pl-0 lg:pl-14'>
                       <p className='text-xs leading-4 font-semibold tracking-wide pl-20 md:pl-[6rem]'>
                         NO LINKS ADDED YET 
                       </p>
-                      <p className='text-sm leading-5 font-normal text-gray-500 bg-yellow-600'>
+                      <p className='text-sm leading-5 font-normal text-gray-500 md:pl-4 lg:pl-0'>
                         Please add social links by clicking on button below
                       </p>
                       <button
+                        onClick={() => toggleSetting()}
                         type="button"
                         className="inline-flex items-center px-4 py-2 ml-20 md:ml-[6rem] mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                       >
                         Add Social Profile
                       </button>
+                      {showCreateProfile && (
+                        <CreateProfile setShowUserSetting={setshowCreateProfile} />
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>
