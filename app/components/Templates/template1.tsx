@@ -51,7 +51,7 @@ export default function Template1({ input, loaderData }: any) {
                 </div> : <span></span>}
             </div>
           </div>
-          <footer className='flex pt-[2rem] md:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[2.6rem]  md:mx-[2.5rem]'>
+          <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
             <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a>
             <a href="http://www.twitter.com">
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
