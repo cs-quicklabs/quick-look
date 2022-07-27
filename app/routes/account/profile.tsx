@@ -1,4 +1,4 @@
-import { CheckCircleIcon, XIcon } from '@heroicons/react/outline';
+import { CheckCircleIcon, XIcon } from '@heroicons/react/solid';
 import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node';
 import { useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
