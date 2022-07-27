@@ -74,7 +74,7 @@ export default function DashboardHeader({username}: any) {
 
             {showUserSetting && (
               <div
-                className="flex flex-col flex-start origin-top-right absolute right-0 mt-0.5 h-20 top-12 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                className="flex flex-col flex-start origin-top-right absolute right-0 h-20 top-12 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="user-menu"
