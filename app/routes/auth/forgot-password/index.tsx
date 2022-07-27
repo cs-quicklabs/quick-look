@@ -27,14 +27,16 @@ export const action: ActionFunction = async ({ request }) => {
   let user = await findUserByEmail(email)
 
   const generatedToken = uuidv4() as string
-  const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
+  let createVerificationToken  
 
-  if (!user) {
+  if (!user) { 
     return redirect('/confirm/password')
-  } else if (user['isVerified'] == true && createVerificationToken.success) {
+  } else if (user['isVerified'] == true ) {
+    createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     await sendResetPasswordMail(email, url, generatedToken)
     return redirect('/confirm/password')
-  } else if (user['isVerified'] == false && createVerificationToken.success) {
+  } else if (user['isVerified'] == false ) {
+    createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     await sendAccountVerificationMail(email, url, generatedToken)
     return redirect('/confirm/email')
   }
