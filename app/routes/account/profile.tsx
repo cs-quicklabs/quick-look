@@ -248,7 +248,7 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="px-4 py-0.5 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
+              <div className="px-4 py-1 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
                 <button
                   type="submit"
                   name='_action'
