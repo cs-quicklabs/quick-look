@@ -1,6 +1,6 @@
 import { ExclamationCircleIcon, LockClosedIcon } from '@heroicons/react/solid'
-import { ActionFunction, json, redirect } from '@remix-run/node'
-import { register } from '~/services/auth.service.server'
+import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
+import { getUser, register } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
@@ -66,6 +66,13 @@ export const action: ActionFunction = async ({ request }) => {
     await sendAccountVerificationMail(email, url, generatedToken)
   }
   return redirect('/confirm/email')
+}
+
+export const loader: LoaderFunction = async ({request}) => {
+  const user = await getUser(request)
+  if(user){
+    return redirect('/account')
+  }
 }
 
 export default function SignUp() {

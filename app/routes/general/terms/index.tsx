@@ -15,7 +15,7 @@ return user
 
 export default function terms() {
   const loaderData = useLoaderData()
-  console.log(loaderData);
+
   
   return (
     <>
