@@ -105,7 +105,7 @@ export default function Profile() {
                 {loaderData.isPublished ? <span> <span>Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link </span> <span className='font-[800]'>quicklook.me/{loaderData?.username}</span>. <span>You can enable your profile anytime you want.</span></span> :<span> Publishing your account will show your account and anyone should be able to visit your profile from the link <span className='font-[800]'>quicklook.me/{loaderData?.username}</span> . You can disable your profile anytime you want.</span>}
               </p>
               <div className="flex justify-start ml-1 items-center">
-                <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium leading-5 py-2 px-4 border border-gray-300">
+                <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300">
                   {loaderData.isPublished ? 'Unpublish my account':'Publish my account'}
                 </button>
               </div>
