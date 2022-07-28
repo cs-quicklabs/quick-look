@@ -9,6 +9,7 @@ import { sendAccountVerificationMail, sendResetPasswordMail } from '~/services/m
 import { v4 as uuidv4 } from 'uuid'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import { requireUserId } from '~/services/auth.service.server'
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -63,7 +64,7 @@ export default function Forgotpassword() {
               </p>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
-                  <div>
+                  <div className='relative'>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       Email address
                     </label>
@@ -80,7 +81,10 @@ export default function Forgotpassword() {
                         borderColor: actionData?.errors['email'] && 'red',
                       }}
                     />
-
+                    {actionData?.errors['email'] ?
+                      <div className="absolute inset-y-0 right-0 pr-3 pt-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
                     <div className='text-red-600'>
                       {actionData?.errors['email']}
                     </div>

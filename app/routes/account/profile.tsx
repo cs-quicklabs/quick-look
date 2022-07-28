@@ -1,4 +1,4 @@
-import { CheckCircleIcon, XIcon } from '@heroicons/react/solid';
+import { CheckCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node';
 import { useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
@@ -181,7 +181,7 @@ export default function Profile() {
                 </div>
                 <div className="grid grid-cols-1 gap-6 max-w-lg">
                   <div className="col-span-3 sm:col-span-2">
-                    <div>
+                    <div className='relative'>
                       <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                         First Name
                       </label>
@@ -196,11 +196,15 @@ export default function Profile() {
                         value={val.firstName}
                         onChange={(e:any) => setVal(e.target.value)}
                       />
+                       {actionData?.errors['firstname'] ?
+                              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
                       <div className='text-red-600 text-sm w-max'>
                         {actionData?.errors?.['firstname']}
                       </div>
                     </div>
-                    <div className='mt-3.5'>
+                    <div className='mt-3.5 relative'>
                       <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                         Last Name
                       </label>
@@ -216,19 +220,23 @@ export default function Profile() {
                          onChange={(e:any) => setVal(e.target.value)}
 
                       />
+                      {actionData?.errors['lastname'] ?
+                              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
                       <div className='text-red-600 text-sm w-max'>
                         {actionData?.errors?.['lastname']}
                       </div>
                     </div>
-                    <div className='w-full mt-3.5 '>
+                    <div className='w-full mt-3.5 relative'>
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                         Profile ID
                       </label>
-                      <div className={`mt-1 rounded-md shadow-sm flex ${actionData?.errors?.['username']
-                            ? 'border border-red-400'
+                      <div className="mt-1 rounded-md shadow-sm flex">
+                        <span className={`bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm ${actionData?.errors?.['username']
+                            ? 'border-t border-b border-l border-r border-r-gray-300 border-red-400'
                             : 'first-line:'
                             }`}>
-                        <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
                           quicklook.me/
                         </span>
                         <input
@@ -237,9 +245,15 @@ export default function Profile() {
                           value={val.profileId}
                            onChange={(e:any) => setVal(e.target.value)}
                           id="profileId"
-                          className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 `}
+                          className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${actionData?.errors?.['username']
+                            ? 'border-t border-b border-r border-l-0 border-red-400'
+                            : 'first-line:'
+                            }`}
                         />
-                        
+                         {actionData?.errors['username'] ?
+                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                    </div>:''}
                       </div>
                       <div className='text-red-600 text-sm w-max'>
                         {actionData?.errors?.['username']}
@@ -267,7 +281,7 @@ export default function Profile() {
           <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem]">
       <div className="flex">
         <div className="flex-shrink-0">
-          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+          <CheckCircleIcon className="h-4 w-4 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
           <p className="text-sm font-medium text-green-800">{passwordMessasge}</p>
@@ -293,8 +307,8 @@ export default function Profile() {
                     <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
                   </div>
                   <div className="grid grid-cols-1 gap-6 max-w-lg">
-                    <div>
-                      <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
+                    <div className=''>
+                      <label className='text-gray-700 w-24 h-5 relative font-medium leading-5 text-sm'>
                         Old Password
                         <input
                           className={`w-full flex items-center box-border appearance-none h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors?.['isOldPasswordSame']
@@ -304,11 +318,15 @@ export default function Profile() {
                           name='oldpassword'
                           type='password'
                         />
+                        {actionData?.errors['isOldPasswordSame'] ?
+                              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
                         <div className='text-red-600 text-sm w-max'>
                           {actionData?.errors?.['isOldPasswordSame']}
                         </div>
                       </label>
-                      <div className='mt-3.5'>
+                      <div className='mt-3.5 relative'>
                         <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                           New Password
                           <input
@@ -319,12 +337,16 @@ export default function Profile() {
                             name='newpassword'
                             type="password"
                           />
+                          {actionData?.errors['password'] ?
+                              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
                           <div className='text-red-600 text-sm w-max'>
                             {actionData?.errors?.['password']}
                           </div>
                         </label>
                       </div>
-                      <div className='mt-3.5'>
+                      <div className='mt-3.5 relative'>
                         <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                           Confirm New Password
                           <input
@@ -335,6 +357,10 @@ export default function Profile() {
                             name='confirmnewpassword'
                             type="password"
                           />
+                          {actionData?.errors['isPasswordSame'] ?
+                              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
                           <div className='text-red-600 text-sm w-max'>
                             {actionData?.errors?.['isPasswordSame']}
                           </div>
