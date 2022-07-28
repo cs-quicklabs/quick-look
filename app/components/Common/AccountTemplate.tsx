@@ -51,13 +51,13 @@ const Onclose = useCallback(() => {
                         </p>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2'>
+                    <div className='grid grid-cols-1 gap-0'>
                       <form action= {templateHandle} method='POST'>
 
-                      <div  >
+                      <div  className='mb-[-1rem]'>
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={thumbnail1} alt="" className='h-[14rem] w-[14rem] cursor-pointer border-8 border-black border-r-4' />
+                      <img src={thumbnail1} alt="" className='h-[14rem] w-[28rem] cursor-pointer border-8 border-black border-r-4' />
                       </button>
                       </div>
                       </form>
@@ -66,7 +66,7 @@ const Onclose = useCallback(() => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={thumbnail2} alt="" className='h-[14rem] w-[14rem] cursor-pointer border-8 border-black border-l-4' />
+                      <img src={thumbnail2} alt="" className='h-auto w-[28rem] cursor-pointer border-8 border-black border-l-4' />
                       </button>
                       </div>
 

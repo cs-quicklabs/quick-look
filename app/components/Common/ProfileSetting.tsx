@@ -12,10 +12,10 @@ const navigation = [
   { name: 'Settings', icon: CogIcon, href: '/account/settings'},
 ]
 const secondaryNavigation = [
-  { name: 'Help Center', href: '#' },
-  { name: 'Terms of Use', href: '/general/terms' },
-  { name: 'Privacy Policy', href: '/general/privacy' },
-  { name: 'Refund Policy', href: '/general/refund-policy' },
+  { name: 'Help Center', href: '#' ,target:'_blank' },
+  { name: 'Terms of Use', href: '/general/terms' ,target:'_blank' },
+  { name: 'Privacy Policy', href: '/general/privacy' ,target:'_blank'},
+  { name: 'Refund Policy', href: '/general/refund-policy' ,target:'_blank'},
 ]
 
 function classNames(...classes: string[]) {
@@ -112,6 +112,7 @@ export default function ProfileSetting() {
                           <a
                             key={item.name}
                             href={item.href}
+                            target={item.target}
                             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
                           >
                             <span className="truncate">{item.name}</span>
@@ -167,6 +168,7 @@ export default function ProfileSetting() {
                       <a
                         key={item.name}
                         href={item.href}
+                        target={item.target}
                         className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
                       >
                         <span className="truncate">{item.name}</span>

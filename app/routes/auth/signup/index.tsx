@@ -128,14 +128,14 @@ export default function SignUp() {
                     
                   />
                   {actionData?.errors['firstname'] ?
-                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                <div className={`absolute  pr-3 right-0 pt-1.5 flex items-center pointer-events-none inset-y-0 `} >
                   <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
                 </div>:''}
                   
-
-                  <div className='text-red-600 text-sm w-44'>
+{actionData?.errors['firstname'] ?
+                  <div className='text-red-600 text-sm w-44 h-[1.8rem]'>
                     {actionData?.errors['firstname']}
-                  </div>
+                  </div> :null}
                 </div>
                 <div className='relative'>
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
@@ -158,12 +158,16 @@ export default function SignUp() {
                     }}
                   />
                   {actionData?.errors['lastname'] ?
-                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                <div className={`absolute  pr-3 right-0 pt-1.5 flex items-center pointer-events-none inset-y-0`} >
                   <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
                 </div>:''}
-                  <div className='text-red-600 text-sm w-44'>
+                  {/* <div className='text-red-600 text-sm w-44 h-[2rem]'>
                     {actionData?.errors['lastname']}
-                  </div>
+                  </div> */}
+                     {actionData?.errors['lastname'] ?
+                  <div className='text-red-600 text-sm w-44 h-[1.8rem]'>
+                      {actionData?.errors['lastname']}
+                  </div> :null}
                 </div>
               </div>
 
