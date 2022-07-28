@@ -51,7 +51,7 @@ const Onclose = useCallback(() => {
                         </p>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2'>
+                    <div className='grid grid-cols-1'>
                       <form action= {templateHandle} method='POST'>
 
                       <div  >
