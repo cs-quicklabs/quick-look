@@ -19,7 +19,7 @@ const Onclose = useCallback(() => {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full mt-12">
+            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -30,7 +30,7 @@ const Onclose = useCallback(() => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
-                  <div className="flex h-full flex-col bg-white shadow-xl">
+                  <div className="flex h-full flex-col bg-white border-r border-gray-200">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Select Template </Dialog.Title>
