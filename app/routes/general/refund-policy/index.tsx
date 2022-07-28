@@ -16,7 +16,7 @@ export default function Refund() {
    const loaderData = useLoaderData()
   return (
     <>
-       {loaderData?.id ? <DashboardHeader username={loaderData.username}/> : <HeaderSecondary />}
+     <HeaderSecondary />
 
       <div id='__next' data-reactroot=''>
         <div className='w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10'>
