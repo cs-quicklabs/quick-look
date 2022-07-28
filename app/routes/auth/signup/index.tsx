@@ -1,6 +1,6 @@
 import { ExclamationCircleIcon, LockClosedIcon } from '@heroicons/react/solid'
-import { ActionFunction, json, redirect } from '@remix-run/node'
-import { register } from '~/services/auth.service.server'
+import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
+import { getUser, register } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
@@ -68,6 +68,13 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect('/confirm/email')
 }
 
+export const loader: LoaderFunction = async ({request}) => {
+  const user = await getUser(request)
+  if(user){
+    return redirect('/account')
+  }
+}
+
 export default function SignUp() {
   const actionData = useActionData()
 
@@ -121,14 +128,14 @@ export default function SignUp() {
                     
                   />
                   {actionData?.errors['firstname'] ?
-                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                <div className={`absolute  pr-3 right-0 pt-1.5 flex items-center pointer-events-none inset-y-0 `} >
                   <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
                 </div>:''}
                   
-
-                  <div className='text-red-600 text-sm w-44'>
+{actionData?.errors['firstname'] ?
+                  <div className='text-red-600 text-sm w-44 h-[1.8rem]'>
                     {actionData?.errors['firstname']}
-                  </div>
+                  </div> :null}
                 </div>
                 <div className='relative'>
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
@@ -151,12 +158,16 @@ export default function SignUp() {
                     }}
                   />
                   {actionData?.errors['lastname'] ?
-                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                <div className={`absolute  pr-3 right-0 pt-1.5 flex items-center pointer-events-none inset-y-0`} >
                   <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
                 </div>:''}
-                  <div className='text-red-600 text-sm w-44'>
+                  {/* <div className='text-red-600 text-sm w-44 h-[2rem]'>
                     {actionData?.errors['lastname']}
-                  </div>
+                  </div> */}
+                     {actionData?.errors['lastname'] ?
+                  <div className='text-red-600 text-sm w-44 h-[1.8rem]'>
+                      {actionData?.errors['lastname']}
+                  </div> :null}
                 </div>
               </div>
 

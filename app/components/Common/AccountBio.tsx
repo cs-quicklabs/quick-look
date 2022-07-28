@@ -18,7 +18,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
       <Dialog as="div" className="relative z-20" onClose={setshowBio}>
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-lg">
+            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -30,7 +30,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form  action="account/update/bio" method='POST' className='h-screen'>
-                  <div className="flex h-[95%] flex-col mt-12 w-full md:max-w-xs lg:max-w-md divide-y divide-gray-200 bg-white shadow-xl font-inter">
+                  <div className="flex h-[95%] flex-col mt-12 w-full md:max-w-xs lg:max-w-md divide-y divide-gray-200 bg-white font-inter border-r border-gray-200">
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
