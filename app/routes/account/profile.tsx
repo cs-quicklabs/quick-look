@@ -136,17 +136,9 @@ export default function Profile() {
           <ProfileSetting />
         </div>
         
-        <div className="space-y-6  md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
+        <div className=" md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
           
           <form method="POST"> 
-          {/* <div className="flex ">
-        <div className="flex-shrink-0">
-          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-        </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{loaderData.message}</p>
-        </div>
-      </div> */}
       {profileMessage ?
           <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem] mt-[1.5rem]">
       <div className="flex">
@@ -169,7 +161,7 @@ export default function Profile() {
         </div>
       </div>
     </div>:''}
-            <div className="sm:rounded-md sm:overflow-hidden">
+            <div className="sm:rounded-md sm:overflow-hidde">
               <div className="flex ">
       </div>
               <div className="py-6 md:pl-[0.75rem] lg:px-4 space-y-6 sm:pt-6 max-w-3xl">
@@ -179,7 +171,7 @@ export default function Profile() {
                     This information will be displayed publicly so be careful what you share.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 gap-6 max-w-lg">
+                <div className="grid grid-cols-1 max-w-lg  border-b border-gray-200">
                   <div className="col-span-3 sm:col-span-2">
                     <div className='relative'>
                       <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
@@ -260,22 +252,22 @@ export default function Profile() {
                       </div>
                     </div>
                   </div>
+                  <div className="pt-6 mb-8 text-right">
+                    <button
+                      type="submit"
+                      name='_action'
+                      value='updateProfile'
+                      className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Save
+                    </button>
+              </div>
                 </div>
               </div>
-              <div className="px-4 py-1 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
-                <button
-                  type="submit"
-                  name='_action'
-                  value='updateProfile'
-                  className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Save
-                </button>
-              </div>
+              
             </div>
           </form>
-          <div className='mr-9 ml-5 border-t border-gray-200'>
-          </div>
+          
           <div className=''>
             {passwordMessasge ?
           <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem]">
@@ -283,7 +275,7 @@ export default function Profile() {
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-4 w-4 text-green-400" aria-hidden="true" />
         </div>
-        <div className="ml-3">
+        <div className="">
           <p className="text-sm font-medium text-green-800">{passwordMessasge}</p>
         </div>
         <div className="ml-auto pl-3">
@@ -306,7 +298,7 @@ export default function Profile() {
                     <h3 className="text-lg leading-6 font-medium text-gray-900">Change Password</h3>
                     <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
                   </div>
-                  <div className="grid grid-cols-1 gap-6 max-w-lg">
+                  <div className="grid grid-cols-1 gap-6 max-w-lg mt-6">
                     <div className=''>
                       <label className='text-gray-700 w-24 h-5 relative font-medium leading-5 text-sm'>
                         Old Password
@@ -366,10 +358,7 @@ export default function Profile() {
                           </div>
                         </label>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="px-4 py-3 text-right sm:px-10 md:px-6 lg:px-6 xl:px-9 2xl:px-9">
+                      <div className="py-9 text-right">
                   <button
                     type="submit"
                     name='_action'
@@ -379,6 +368,10 @@ export default function Profile() {
                     Save
                   </button>
                 </div>
+                    </div>
+                  </div>
+                </div>
+               
               </div>
             </form>
           </div>
