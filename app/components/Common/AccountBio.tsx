@@ -171,13 +171,15 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                       </div>
                     </div>
                     <div className="flex flex-shrink-0 justify-end px-4 pt-4 pb-2">
+                      <a href="/account">
                       <button
                         type="button"
                         className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
                         onClick={() => setshowBio(false)}
                       >
+                         
                         Cancel
-                      </button>
+                      </button></a>
                       <button
                         type="submit"
                         className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700"
