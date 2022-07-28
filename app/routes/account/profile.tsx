@@ -136,7 +136,7 @@ export default function Profile() {
           <ProfileSetting />
         </div>
         
-        <div className="space-y-6 sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
+        <div className="space-y-6  md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
           
           <form method="POST"> 
           {/* <div className="flex ">
@@ -172,7 +172,7 @@ export default function Profile() {
             <div className="sm:rounded-md sm:overflow-hidden">
               <div className="flex ">
       </div>
-              <div className="py-6 px-4 space-y-6 sm:p-6 max-w-3xl">
+              <div className="py-6 md:pl-[0.75rem] lg:px-4 space-y-6 sm:pt-6 max-w-3xl">
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Profile</h3>
                   <p className="mt-1 text-sm text-gray-500">
@@ -287,7 +287,7 @@ export default function Profile() {
     </div>:''}
             <form method="POST">
               <div className="sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 sm:p-6">
+                <div className="md:px-4 sm:pt-6">
                   <div className='max-w-3xl'>
                     <h3 className="text-lg leading-6 font-medium text-gray-900">Change Password</h3>
                     <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
