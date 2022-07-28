@@ -752,7 +752,8 @@ export default function terms() {
         </div>
       </div>
     
-      <CallToAction />
+      <div className='mt-[25rem]'>
+        <CallToAction /></div>
       <Footer />
     </>
   )
