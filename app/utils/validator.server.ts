@@ -179,8 +179,8 @@ export async function validateOldPassword(user: any, newPassword: string, oldpas
   if(!oldpassword){
     return 'Old password is required.'
   }
-  const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.oldpassword as string)
-  const isLastPasswordSame = await bcrypt.compare(newPassword, user?.oldpassword as string)
+  const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.password as string)
+  const isLastPasswordSame = await bcrypt.compare(newPassword, user?.password as string)
   if (!isoldPasswordMatch) {
     return 'Old password does not match.'
   }
