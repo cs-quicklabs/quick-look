@@ -194,7 +194,8 @@ export default function privacy() {
         </div>
       </div>
       <div>
-        <CallToAction />
+        <div className='mt-[25rem]'>
+        <CallToAction /></div>
         <Footer />
       </div>
     </>
