@@ -74,7 +74,7 @@ export default function DashboardHeader({username}: any) {
 
             {showUserSetting && (
               <div
-                className="flex flex-col flex-start origin-top-right absolute right-0 h-20 top-12 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                className="flex flex-col flex-start origin-top-right absolute right-0 h-20 top-12 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 mr-8"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="user-menu"
@@ -89,7 +89,7 @@ export default function DashboardHeader({username}: any) {
                 </a>
                 <a
                   onClick={() => setIsOpen(true)}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer w-full text-left"
+                  className="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:rounded-md cursor-pointer w-full text-left"
                   data-cy="sign-out"
                   role="menuitem"
                   href="# "
