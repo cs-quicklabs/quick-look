@@ -1,4 +1,4 @@
-import { LockClosedIcon } from '@heroicons/react/solid'
+import { ExclamationCircleIcon, LockClosedIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, redirect } from '@remix-run/node'
 import { register } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
@@ -99,7 +99,7 @@ export default function SignUp() {
           <div className='bg-gray-50 '>
             <Form className='space-y-4' method='post' noValidate>
               <div className='grid grid-cols-2 gap-2'>
-                <div>
+                <div className='relative'>
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                     First Name
                   </label>
@@ -119,11 +119,17 @@ export default function SignUp() {
                       })
                     }}
                   />
+                  
+                  {actionData?.errors['lastname'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
+
                   <div className='text-red-600 text-sm w-44'>
                     {actionData?.errors['firstname']}
                   </div>
                 </div>
-                <div>
+                <div className='relative'>
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                     Last Name
                   </label>
@@ -143,22 +149,30 @@ export default function SignUp() {
                       })
                     }}
                   />
+                  {actionData?.errors['lastname'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
                   <div className='text-red-600 text-sm w-44'>
                     {actionData?.errors['lastname']}
                   </div>
                 </div>
               </div>
-              <div>
-                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
-                  Choose your Profile ID
-                </label>
-               <div className="mt-2 sm:mt-0 sm:col-span-2 ">
-                <div className="max-w-lg flex rounded-md ">
-                  <span className={`inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm `}>
+
+            <div>
+              <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
+                Choose your Profile ID
+              </label>
+              <div className={`mt-2 sm:mt-0 sm:col-span-2 relative rounded-md shadow-sm`}>
+                <div className={`max-w-lg flex rounded-md`}>
+                  <span className={`inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm ${actionData?.errors['username']
+                        ? 'border-t border-b border-l border-r border-r-gray-300 border-red-400'
+                        : 'first-line:'
+                    }`}>
                     quicklook.me/
                   </span>
                   <input
-                   type='text'
+                  type='text'
                     name='profileId'
                     value={val.profileId}
                     onChange={(event) => {
@@ -168,22 +182,23 @@ export default function SignUp() {
                       })
                     }}
                     className={`flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 border  ${actionData?.errors['username']
-                        ? 'border border-red-400'
-                        : 'first-line:'
-                    }`}
+                    ? 'border-t border-b border-r border-l-0 border-red-400'
+                    : 'first-line:'
+                }`}
                   />
                 </div>
+                {actionData?.errors['username'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
               </div>
-                
-                  
-                
-                <div className='text-red-600 text-sm '>
-                  {actionData?.errors['username']}
-                </div>
+              <div className='text-red-600 text-sm '>
+                {actionData?.errors['username']}
               </div>
-           
+            </div>
+
             
-              <div>
+              <div className='relative'>
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Email address
                 </label>
@@ -201,11 +216,15 @@ export default function SignUp() {
                     })
                   }}
                 />
+                {actionData?.errors['lastname'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['email']}
                 </div>
               </div>
-              <div>
+              <div className='relative'>
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Password
                 </label>
@@ -225,11 +244,15 @@ export default function SignUp() {
                     })
                   }}
                 />
+                {actionData?.errors['lastname'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['password']}
                 </div>
               </div>
-              <div>
+              <div className='relative'>
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Confirm Password
                 </label>
@@ -249,6 +272,10 @@ export default function SignUp() {
                     })
                   }}
                 />
+                {actionData?.errors['lastname'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
                 <div className='text-red-600 text-sm '>
                   {actionData?.errors['isPasswordSame']}
                 </div>

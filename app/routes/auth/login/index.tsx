@@ -1,4 +1,4 @@
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 import { createUserSession, login } from '~/services/auth.service.server'
@@ -122,7 +122,7 @@ const loaderData = useLoaderData();
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md bg-gray-50">
           <div className=" py-8 px-4   sm:rounded-lg sm:px-10 bg-gray-50">
             <Form className="space-y-6 bg-gray-50" method="post">
-              <div>
+              <div className='relative'>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
@@ -141,13 +141,17 @@ const loaderData = useLoaderData();
                     actionData?.errors['email'] ? 'border border-red-400' : ''
                   }`}
                 />
+                {actionData?.errors['email'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
               </div>
               <div className={`text-red-600 text-sm`}>
                 {actionData?.errors['email']}
               </div>
               </div>
 
-              <div>
+              <div className='relative'>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
@@ -166,6 +170,10 @@ const loaderData = useLoaderData();
                     actionData?.errors['password'] ? 'border border-red-400' : ''
                   }`}
                 />
+                {actionData?.errors['password'] ?
+                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                </div>:''}
               </div>
               <div className={`text-red-600 text-sm`}>
                 {actionData?.errors['password']}

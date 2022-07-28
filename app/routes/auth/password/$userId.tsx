@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
 import { ActionFunction, redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
@@ -69,7 +70,8 @@ export default function Password() {
             <div className='mt-8 space-y-6'>
               <div className='rounded-md  -space-y-px'>
                 <Form className='space-y-4' method='post'>
-                  <div>
+                  <div className='relative'>
+                    <div className='relative'>
                     <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
                       Password
                       <input
@@ -92,11 +94,19 @@ export default function Password() {
                         }}
                       />
                     </label>
+
+                    {actionData?.errors['password'] ?
+                      <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
+
                     <div className='text-red-600'>
                       {actionData?.errors['password']}
                     </div>
-                    <div className='mt-2'>
-                      <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
+                    </div>
+                    
+                    <div className='mt-2 relative'>
+                      <label className='text-gray-700 w-24 h-5 relative font-medium leading-5 text-sm'>
                         Confirm Password
                         <input
                           value={val.confirmpassword}
@@ -106,7 +116,7 @@ export default function Password() {
                               [event.target.name]: event.target.value,
                             })
                           }}
-                          className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
+                          className={`relative box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
                             actionData?.errors['confirmpassword']
                               ? 'border border-red-400'
                               : ''
@@ -119,11 +129,17 @@ export default function Password() {
                           }}
                         />
                       </label>
-                    </div>
+                      {actionData?.errors['confirmpassword'] ?
+                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:''}
 
                     <div className='text-red-600'>
                       {actionData?.errors['confirmpassword']}
                     </div>
+                    </div>
+
+                   
                   </div>
                   <div className='mt-5'>
                     <button
