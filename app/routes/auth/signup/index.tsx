@@ -72,7 +72,9 @@ export const loader: LoaderFunction = async ({request}) => {
   const user = await getUser(request)
   if(user){
     return redirect('/account')
+    
   }
+  return null
 }
 
 export default function SignUp() {
