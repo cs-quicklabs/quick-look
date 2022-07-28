@@ -132,7 +132,7 @@ export default function Profile() {
         <DashboardHeader username={loaderData.user.username}/>
       </div>
       <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
-        <div className='md:w-2/5 '>
+        <div className='md:w-[25%] lg:w-2/5 '>
           <ProfileSetting />
         </div>
         

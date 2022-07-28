@@ -84,7 +84,7 @@ function Layout({ children }: any) {
       Location.pathname.includes('/auth/tokenerror') || 
       Location.pathname.includes('/confirm/password') ||
       Location.pathname.includes('/auth/receive-email') ||
-      Location.pathname.includes('/confirm/email')? 'overflow-hidden' : ''} `}>{children}</div>
+      Location.pathname.includes('/confirm/email')? 'overflow-hidden' : 'overflow-x-hidden'} `}>{children}</div>
     </>
   )
 }
