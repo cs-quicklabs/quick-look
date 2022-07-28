@@ -139,14 +139,19 @@ export default function Profile() {
         <div className=" md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
           
           <form method="POST"> 
-      {profileMessage ?
-          <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem] mt-[1.5rem]">
+     
+            <div className="sm:rounded-md sm:overflow-hidde">
+              <div className="flex ">
+      </div>
+              <div className="py-6 md:pl-[0.75rem] lg:px-4 space-y-6 sm:pt-6 max-w-3xl">
+                 {profileMessage ?
+          <div className="rounded-md bg-green-50 p-4  mt-[1.5rem] xl:mr-[1.5rem]">
       <div className="flex">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{profileMessage}</p>
+          <p className="text-sm w-max font-medium text-green-800">{profileMessage}</p>
         </div>
         <div className="ml-auto pl-3">
           <div className="-mx-1.5 -my-1.5">
@@ -161,10 +166,6 @@ export default function Profile() {
         </div>
       </div>
     </div>:''}
-            <div className="sm:rounded-md sm:overflow-hidde">
-              <div className="flex ">
-      </div>
-              <div className="py-6 md:pl-[0.75rem] lg:px-4 space-y-6 sm:pt-6 max-w-3xl">
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Profile</h3>
                   <p className="mt-1 text-sm text-gray-500">
@@ -269,9 +270,15 @@ export default function Profile() {
           </form>
           
           <div className=''>
-            {passwordMessasge ?
-          <div className="rounded-md bg-green-50 p-4 w-[32.5rem] ml-[1.5rem]">
-      <div className="flex">
+            
+            <form method="POST">
+              
+              <div className="sm:rounded-md sm:overflow-hidden">
+                <div className="md:px-4 sm:pt-6">
+                  <div className='max-w-3xl'>
+                    {passwordMessasge ?
+          <div className="rounded-md bg-green-50 p-4  xl:mr-[1.5rem] mb-[2rem] mt-[-1rem]">
+      <div className="flex justify-center items-center gap-4">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-4 w-4 text-green-400" aria-hidden="true" />
         </div>
@@ -291,11 +298,7 @@ export default function Profile() {
         </div>
       </div>
     </div>:''}
-            <form method="POST">
-              <div className="sm:rounded-md sm:overflow-hidden">
-                <div className="md:px-4 sm:pt-6">
-                  <div className='max-w-3xl'>
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">Change Password</h3>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900 mt-4">Change Password</h3>
                     <p className="mt-1 text-sm text-gray-500">Please fill in details if you wish to change your password</p>
                   </div>
                   <div className="grid grid-cols-1 gap-6 max-w-lg mt-6">

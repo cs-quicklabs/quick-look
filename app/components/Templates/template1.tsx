@@ -44,7 +44,7 @@ export default function Template1({ input, loaderData }: any) {
                 </div> : <span></span>}
               {loaderData.education || input.education ?
                 <div className='flex flex-col'>
-                  <h2 className="text-gray-500 w-max">Education</h2>
+                  <h2 className="text-gray-500 w-max">EDUCATION</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.education}
                   </h2>
