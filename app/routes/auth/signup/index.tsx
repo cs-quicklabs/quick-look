@@ -152,7 +152,10 @@ export default function SignUp() {
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Choose your Profile ID
                 </label>
-               <div className="mt-2 sm:mt-0 sm:col-span-2 ">
+               <div className={`mt-2 sm:mt-0 sm:col-span-2 ${actionData?.errors['username']
+                        ? 'border border-red-400 rounded-md'
+                        : 'first-line:'
+                    }`}> 
                 <div className="max-w-lg flex rounded-md ">
                   <span className={`inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm `}>
                     quicklook.me/
@@ -167,10 +170,7 @@ export default function SignUp() {
                         [event.target.name]: event.target.value,
                       })
                     }}
-                    className={`flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 border  ${actionData?.errors['username']
-                        ? 'border border-red-400'
-                        : 'first-line:'
-                    }`}
+                    className={`flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 border  `}
                   />
                 </div>
               </div>
