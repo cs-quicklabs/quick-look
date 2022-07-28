@@ -12,7 +12,7 @@ const navigation = [
   { name: 'Settings', icon: CogIcon, href: '/account/settings'},
 ]
 const secondaryNavigation = [
-  { name: 'Help Center', href: '#' ,target:'_blank' },
+  { name: 'Help Center', href: '#' },
   { name: 'Terms of Use', href: '/general/terms' ,target:'_blank' },
   { name: 'Privacy Policy', href: '/general/privacy' ,target:'_blank'},
   { name: 'Refund Policy', href: '/general/refund-policy' ,target:'_blank'},
