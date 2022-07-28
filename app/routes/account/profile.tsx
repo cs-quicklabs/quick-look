@@ -132,7 +132,7 @@ export default function Profile() {
         <DashboardHeader username={loaderData.user.username}/>
       </div>
       <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
-        <div className='md:w-2/5 '>
+        <div className='md:w-[25%] lg:w-2/5 '>
           <ProfileSetting />
         </div>
         
@@ -220,11 +220,14 @@ export default function Profile() {
                         {actionData?.errors?.['lastname']}
                       </div>
                     </div>
-                    <div className='w-full mt-3.5'>
+                    <div className='w-full mt-3.5 '>
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                         Profile ID
                       </label>
-                      <div className="mt-1 rounded-md shadow-sm flex">
+                      <div className={`mt-1 rounded-md shadow-sm flex ${actionData?.errors?.['username']
+                            ? 'border border-red-400'
+                            : 'first-line:'
+                            }`}>
                         <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
                           quicklook.me/
                         </span>
@@ -234,10 +237,7 @@ export default function Profile() {
                           value={val.profileId}
                            onChange={(e:any) => setVal(e.target.value)}
                           id="profileId"
-                          className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 ${actionData?.errors?.['username']
-                            ? 'border border-red-400'
-                            : 'first-line:'
-                            }`}
+                          className={`focus:ring-indigo-500 focus:border-indigo-500 flex-grow block min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 `}
                         />
                         
                       </div>
