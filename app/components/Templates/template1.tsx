@@ -37,14 +37,14 @@ export default function Template1({ input, loaderData }: any) {
             <div className='flex  pt-16 '>
               {loaderData.company || input.company ?
                 <div className='flex flex-col w-[50%]'>
-                  <h2 className="text-gray-500 w-max">WORK</h2>
+                  <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">WORK</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
               {loaderData.education || input.education ?
                 <div className='flex flex-col'>
-                  <h2 className="text-gray-500 w-max">EDUCATION</h2>
+                  <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">EDUCATION</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.education}
                   </h2>
