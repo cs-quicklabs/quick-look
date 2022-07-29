@@ -7,6 +7,7 @@ import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
 
 
 export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
+  // const Template 
   // const [open, setOpen] = useState(true)
   const templateHandle = 'account/update/choose-template'
 const Onclose = useCallback(() => {
@@ -57,7 +58,7 @@ const Onclose = useCallback(() => {
                       <div  className='mb-[-1rem]'>
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={thumbnail1} alt="" className='h-[14rem] w-[28rem] cursor-pointer border-8 border-black border-r-4' />
+                      <img src={thumbnail1} alt="" className='h-[14rem] w-[27.5rem] cursor-pointer border-8 border-black ' />
                       </button>
                       </div>
                       </form>
@@ -66,7 +67,7 @@ const Onclose = useCallback(() => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={thumbnail2} alt="" className='h-auto w-[28rem] cursor-pointer border-8 border-black border-l-4' />
+                      <img src={thumbnail2} alt="" className='h-auto w-[27.5rem] cursor-pointer border-8 border-black ' />
                       </button>
                       </div>
 
