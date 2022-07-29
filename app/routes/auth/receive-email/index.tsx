@@ -8,6 +8,7 @@ import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -60,7 +61,7 @@ export default function Forgotpassword() {
               </p>
               <div className='rounded-md -space-y-px'>
                 <Form className='space-y-4' method='post' noValidate>
-                  <div>
+                  <div className='relative'>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       Email address
                     </label>
@@ -73,10 +74,15 @@ export default function Forgotpassword() {
                         className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${actionData?.errors['email'] ? 'border border-red-400' : ''
                           }`}
                       />
-                    </div>
+                      {actionData?.errors['email'] ?
+                      <div className="absolute inset-y-0 right-0 pr-3 pt-1 flex items-center pointer-events-none">
+                        <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                      </div>:null}
                     <div className={`text-red-600 text-sm`}>
                       {actionData?.errors['email']}
                     </div>
+                    </div>
+                    
                   </div>
                   <div className='mt-5'>
                     <button

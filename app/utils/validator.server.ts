@@ -34,6 +34,23 @@ export const validateSignupEmail = async (email: string) => {
   }
 }
 
+export const updateValidatePassword = async (
+  password: string
+): Promise<string | undefined> => {
+  let whiteSpaceRegex = /^\S*$/
+  let notContainsWhitespace = password.match(whiteSpaceRegex)
+
+  if (!password) {
+    return 'New Password is required.'
+  } else if (password.length > 18) {
+    return 'Password must not be more than 18 characters.'
+  } else if (typeof password !== 'string' || password.length < 5) {
+    return `Passwords must be at least 5 characters long.`
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  }
+}
+
 export const validatePassword = async (
   password: string
 ): Promise<string | undefined> => {
@@ -162,8 +179,8 @@ export async function validateOldPassword(user: any, newPassword: string, oldpas
   if(!oldpassword){
     return 'Old password is required.'
   }
-  const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.oldpassword as string)
-  const isLastPasswordSame = await bcrypt.compare(newPassword, user?.oldpassword as string)
+  const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.password as string)
+  const isLastPasswordSame = await bcrypt.compare(newPassword, user?.password as string)
   if (!isoldPasswordMatch) {
     return 'Old password does not match.'
   }

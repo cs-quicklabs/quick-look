@@ -51,7 +51,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
               <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
             </Transition.Child>
 
-            <div className="fixed inset-0 flex z-10">
+            <div className="fixed inset-0 flex z-10 overflow-y-auto">
               <Transition.Child
                 as={Fragment}
                 enter="transition ease-in-out duration-300 transform"
@@ -140,7 +140,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400 flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -191,7 +191,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400 flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -262,7 +262,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         ''
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-6'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-4'>
                         <div className=''>
                           <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
@@ -272,7 +272,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400  flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -311,7 +311,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         ''
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-6'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-4'>
                         <div className=''>
                           <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
@@ -321,7 +321,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400 flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>

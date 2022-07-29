@@ -37,21 +37,21 @@ export default function Template1({ input, loaderData }: any) {
             <div className='flex  pt-16 '>
               {loaderData.company || input.company ?
                 <div className='flex flex-col w-[50%]'>
-                  <h2 className="text-gray-500 w-max">WORK</h2>
+                  <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">WORK</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
               {loaderData.education || input.education ?
                 <div className='flex flex-col'>
-                  <h2 className="text-gray-500 w-max">Education</h2>
+                  <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">EDUCATION</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
                     {input.education}
                   </h2>
                 </div> : <span></span>}
             </div>
           </div>
-          <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
+          {/* <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
             <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a>
             <a href="http://www.twitter.com">
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
@@ -60,7 +60,7 @@ export default function Template1({ input, loaderData }: any) {
               <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a>
-          </footer>
+          </footer> */}
         </div>
 
       </div>

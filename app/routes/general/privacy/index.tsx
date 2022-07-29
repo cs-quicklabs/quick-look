@@ -1,10 +1,24 @@
-import { Link } from '@remix-run/react'
+import { LoaderFunction } from '@remix-run/node'
+import { Link, useLoaderData } from '@remix-run/react'
 import { CallToAction } from '~/components/CallToAction'
+import DashboardHeader from '~/components/Common/DashboardHeader'
+import HeaderSecondary from '~/components/Common/Header'
 import { Footer } from '~/components/Footer'
+import { getUser } from '~/services/auth.service.server'
+
+
+export const loader:LoaderFunction =async ({request})=>{
+const user = await getUser(request)
+return user
+}
+
 
 export default function privacy() {
+  const loaderData = useLoaderData()
   return (
     <>
+         <HeaderSecondary />
+
       <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-96'>
         <div className='flex-1 bg-white xl:flex '>
           <div className='b xl:flex-shrink-0 xl:w-64 bg-white h-full'>
@@ -180,7 +194,8 @@ export default function privacy() {
         </div>
       </div>
       <div>
-        <CallToAction />
+        <div className='mt-[25rem]'>
+        <CallToAction /></div>
         <Footer />
       </div>
     </>

@@ -19,7 +19,7 @@ const Onclose = useCallback(() => {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full mt-12">
+            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -30,7 +30,7 @@ const Onclose = useCallback(() => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
-                  <div className="flex h-full flex-col bg-white shadow-xl">
+                  <div className="flex h-full flex-col bg-white border-r border-gray-200">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Select Template </Dialog.Title>
@@ -51,13 +51,13 @@ const Onclose = useCallback(() => {
                         </p>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2'>
+                    <div className='grid grid-cols-1 gap-0'>
                       <form action= {templateHandle} method='POST'>
 
-                      <div  >
+                      <div  className='mb-[-1rem]'>
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={thumbnail1} alt="" className='h-[14rem] w-[14rem] cursor-pointer border-8 border-black border-r-4' />
+                      <img src={thumbnail1} alt="" className='h-[14rem] w-[28rem] cursor-pointer border-8 border-black border-r-4' />
                       </button>
                       </div>
                       </form>
@@ -66,7 +66,7 @@ const Onclose = useCallback(() => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={thumbnail2} alt="" className='h-[14rem] w-[14rem] cursor-pointer border-8 border-black border-l-4' />
+                      <img src={thumbnail2} alt="" className='h-auto w-[28rem] cursor-pointer border-8 border-black border-l-4' />
                       </button>
                       </div>
 
