@@ -5,7 +5,7 @@ import SelectSocialProfile from '../Common/SelectSocialProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 import SelectEditProfile from '../Common/SelectEditProfile'
 
-export default function EditSocialProfile({setShowEditProfile, setshowSocialLinks}:any) {
+export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks}:any) {
   
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -66,12 +66,12 @@ export default function EditSocialProfile({setShowEditProfile, setshowSocialLink
                     </div>
 
                     <div className='mt-10'>
-                      <ExistingSocialLinks />
+                      <ExistingSocialLinks setshowSocialLinks={setshowSocialLinks} />
                     </div>
 
-                    <div className='pl-2.5 pr-5 mt-6'>
+                    <div className='pl-3 pr-3.5 mt-6'>
                       <div>
-                        <SelectEditProfile />
+                        <SelectEditProfile loaderData={loaderData} />
                       </div>
                       <div className='mt-5'>
                         <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -96,7 +96,7 @@ export default function EditSocialProfile({setShowEditProfile, setshowSocialLink
                           className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
                           onClick={() => {
                             setShowEditProfile(false);
-                            setshowSocialLinks(true);
+                            setshowSocialLinks(false);
                           }}
                         >
                           Cancel
