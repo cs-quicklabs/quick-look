@@ -53,17 +53,20 @@ export default function Template2({ input, loaderData }: any) {
               </div> : <span></span>}
           </div>
         </div>
-        {/* <div className='flex gap-4 justify-left mt-6'>
+        <div className='flex gap-4 justify-left mt-6'>
+           {loaderData?.facebookLink ?
           <a href="http://www.facebook.com">
             <img src={facebook} alt="" className="w-9 h-9"/>
-          </a>
+          </a>: null}
+          {loaderData?.twitterLink ?
           <a href="http://www.twitter.com">
           <img src={twitter} alt="" className="w-9 h-9"/>
-          </a>
+          </a>: null}
+           {loaderData?.youtubeLink ?
           <a href="http://www.youtube.com">
           <img src={youtube} alt="" className="w-9 h-9"/>
-          </a>
-        </div> */}
+          </a>: null}
+        </div>
         </div>
       </div>
     </div>

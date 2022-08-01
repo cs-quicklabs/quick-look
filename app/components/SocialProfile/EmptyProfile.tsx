@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
 import ExistingSocialLinks from './ExistingSocialLinks';
 
-export default function EmptyProfile({setshowSocialLinks}:any) {
+export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
   const [showCreateProfile, setshowCreateProfile] = useState(false);
 
   const toggleSetting = () => {
@@ -69,7 +69,7 @@ export default function EmptyProfile({setshowSocialLinks}:any) {
                       )}
                     </div>
                         <div className='mt-12'>
-                          <ExistingSocialLinks />
+                          <ExistingSocialLinks  loaderData={loaderData}/>
                         </div>
                   </div>                  
                 </Dialog.Panel>

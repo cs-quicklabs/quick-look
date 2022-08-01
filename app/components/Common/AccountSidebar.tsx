@@ -159,7 +159,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks} />:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData}/>:
                   null
                 }
                 </div>
@@ -290,7 +290,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks} />:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData}/>:
                   null
                 }
 

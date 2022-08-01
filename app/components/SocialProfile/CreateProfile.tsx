@@ -69,19 +69,20 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}
                     </div>
 
                     <div className="flex flex-shrink-0 justify-end px-4 pb-2 mt-7">
-                      <a href="/account">
+                      <div >
                         <button
                           type="button"
                           className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
                           onClick={() => {
                             setshowCreateProfile(false);
                             setshowSocialLinks(false);
+                            
                           }}
                         >
                           
                           Cancel
                         </button>
-                      </a>
+                      </div>
                       <button
                         type="submit"
                         className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700"
