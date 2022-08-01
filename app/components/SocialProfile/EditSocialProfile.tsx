@@ -2,7 +2,7 @@ import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import SelectSocialProfile from '../Common/SelectSocialProfile'
-import ExistingSocialLinks from './ExistingSocialLinks'
+import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 import SelectEditProfile from '../Common/SelectEditProfile'
 
 export default function EditSocialProfile({setShowEditProfile, setshowSocialLinks}:any) {
@@ -96,10 +96,9 @@ export default function EditSocialProfile({setShowEditProfile, setshowSocialLink
                           className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
                           onClick={() => {
                             setShowEditProfile(false);
-                            setshowSocialLinks(false);
+                            setshowSocialLinks(true);
                           }}
                         >
-                          
                           Cancel
                         </button>
                       </a>

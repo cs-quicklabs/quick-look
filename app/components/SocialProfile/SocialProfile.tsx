@@ -2,7 +2,7 @@ import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
-import ExistingSocialLinks from './ExistingSocialLinks';
+import ExistingSocialLinks from '../Common/ExistingSocialLinks';
 
 export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
   const [showCreateProfile, setshowCreateProfile] = useState(false);

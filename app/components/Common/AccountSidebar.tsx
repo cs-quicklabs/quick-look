@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
-import EmptyProfile from '../SocialProfile/EmptyProfile';
+import SocialProfile from '../SocialProfile/SocialProfile';
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template', href: '#' },
@@ -159,7 +159,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData}/>:
+                <SocialProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData}/>:
                   null
                 }
                 </div>
@@ -290,7 +290,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData}/>:
+                <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData}/>:
                   null
                 }
 
