@@ -69,7 +69,7 @@ export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
                       )}
                     </div>
                         <div className='mt-12'>
-                          <ExistingSocialLinks  loaderData={loaderData}/>
+                          <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}/>
                         </div>
                   </div>                  
                 </Dialog.Panel>

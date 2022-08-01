@@ -12,7 +12,7 @@ function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function SelectEditProfile() {
   const [query, setQuery] = useState('')
   const [selectedSocialLinks, setSelectedSocialLinks] = useState()
 
@@ -26,7 +26,7 @@ export default function Example() {
   return (
     <Combobox as="div" value={selectedSocialLinks} onChange={setSelectedSocialLinks}>
       <Combobox.Label className="block text-sm font-medium text-gray-700">
-        Select Social Profile
+        Edit Social Profile
       </Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input

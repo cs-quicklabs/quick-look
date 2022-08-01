@@ -1,3 +1,5 @@
+import { useState } from "react";
+import EditSocialProfile from "./EditSocialProfile";
 
 
 
@@ -24,6 +26,14 @@ export default function AddSocialLinks({ loaderData}:any) {
       'https://s3-alpha-sig.figma.com/img/52f4/cbf3/13e211511dc02494e8b8b67813879334?Expires=1659916800&Signature=LxM~cp-du4l60GFrOAAhtd2z9k1jc~UGZSPC3n0wOAeqnH7OPuZZjpbm-CKGYfkmNFfkkPpO2UPA39vN7MbrvcNFC5n~edmhIUgjzNYMntG1TfZNHNOnHLmxZ4hlfCCr3I9-RbgL~DnVFj92QB23i5UzPDqvNTQVYfTUHXMIdpTIIaZenrQqSfbT9wljOgBWYHYmg693GbN7Nmx7m0D21QvGjuc8TaXsDgngsjbCBE7yyjEiq-8UBFLGhnavDLCrEqV9lYghyK2Z~ljW6O7Xlkhvc1i3i3KR5Xqd0D2UE-xA9F7QfESCQ2sdJIgK96oDfvXOwaA~aVdOUJNmBdM5ew__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
 ]
+
+export default function AddSocialLinks(setshowSocialLinks: any) {
+  const [showEditProfile, setShowEditProfile] = useState(false);
+
+  const toggleEdit = () => {
+    setShowEditProfile(!showEditProfile);
+  };
+
   return (
     <div className="pl-5 pr-6">
       <ul role="list" className="divide-y divide-gray-200 border-b border-gray-200">
@@ -41,15 +51,20 @@ export default function AddSocialLinks({ loaderData}:any) {
             </div>
           
             <div className="flex flex-row ml-[3.2rem] lg:ml-0 lg:flex-col items-start py-0 lg:py-4 mb-2 lg:mb-0 text-gray-400">
-              <button>
+              <button
+              onClick={() => toggleEdit()}
+              >
                 Edit
               </button>
+              {showEditProfile && (
+                <EditSocialProfile setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} />
+              )}
               <button className="ml-3 lg:ml-0">
                 Delete
               </button>
             </div>
           </div>
- : <span></span>}
+          : <span></span>}
         </li> 
       ))} 
     </ul>
