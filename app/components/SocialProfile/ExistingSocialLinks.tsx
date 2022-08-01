@@ -1,3 +1,5 @@
+import { useState } from "react";
+import EditSocialProfile from "./EditSocialProfile";
 
 const people = [
   {
@@ -20,7 +22,13 @@ const people = [
   },
 ]
 
-export default function AddSocialLinks() {
+export default function AddSocialLinks(setshowSocialLinks: any) {
+  const [showEditProfile, setShowEditProfile] = useState(false);
+
+  const toggleEdit = () => {
+    setShowEditProfile(!showEditProfile);
+  };
+
   return (
     <div className="pl-5 pr-6">
       <ul role="list" className="divide-y divide-gray-200 border-b border-gray-200">
@@ -36,9 +44,14 @@ export default function AddSocialLinks() {
             </div>
           
             <div className="flex flex-row ml-[3.2rem] lg:ml-0 lg:flex-col items-start py-0 lg:py-4 mb-2 lg:mb-0 text-gray-400">
-              <button>
+              <button
+              onClick={() => toggleEdit()}
+              >
                 Edit
               </button>
+              {showEditProfile && (
+                <EditSocialProfile setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} />
+              )}
               <button className="ml-3 lg:ml-0">
                 Delete
               </button>

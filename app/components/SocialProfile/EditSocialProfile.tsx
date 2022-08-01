@@ -3,12 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import SelectSocialProfile from '../Common/SelectSocialProfile'
 import ExistingSocialLinks from './ExistingSocialLinks'
+import SelectEditProfile from '../Common/SelectEditProfile'
 
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}:any) {
+export default function EditSocialProfile({setShowEditProfile, setshowSocialLinks}:any) {
   
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setshowCreateProfile}>
+      <Dialog as="div" className="relative z-20" onClose={setShowEditProfile}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -34,10 +35,10 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setshowCreateProfile(false)}
+                            onClick={() => setShowEditProfile(false)}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon onClick={() => setshowCreateProfile(false)} className="h-6 w-6" aria-hidden="true" />
+                            <XIcon onClick={() => setShowEditProfile(false)} className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -48,9 +49,29 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}
                         </p>
                       </div>
                     </div>
+                    <div className='font-inter mt-7 flex flex-col items-center'>
+                      <p className='text-xs leading-4 font-semibold tracking-wide'>
+                        ADD MORE PROFILE LINKS
+                      </p>
+                      <p className='text-sm leading-5 font-normal text-gray-500 px-12 lg:px-0'>
+                        Please add social links by clicking on button below
+                      </p>
+                      <button
+                        // onClick={() => toggleSetting()}
+                        type="button"
+                        className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                      >
+                        Add Social Profile
+                      </button>
+                    </div>
+
+                    <div className='mt-10'>
+                      <ExistingSocialLinks />
+                    </div>
+
                     <div className='pl-2.5 pr-5 mt-6'>
                       <div>
-                        <SelectSocialProfile />
+                        <SelectEditProfile />
                       </div>
                       <div className='mt-5'>
                         <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -74,7 +95,7 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}
                           type="button"
                           className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
                           onClick={() => {
-                            setshowCreateProfile(false);
+                            setShowEditProfile(false);
                             setshowSocialLinks(false);
                           }}
                         >
@@ -86,13 +107,10 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}
                         type="submit"
                         className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700"
                       >
-                        Add Profile
+                        Update
                       </button>
                     </div>
 
-                    <div>
-                      <ExistingSocialLinks />
-                    </div>
 
                   </div>
                 </Dialog.Panel>
