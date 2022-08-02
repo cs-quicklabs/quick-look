@@ -1,12 +1,12 @@
 import pic from '../../../assets/images/pic.png';
-import { MenuAlt1Icon } from '@heroicons/react/solid';
+
 import facebook from '../../../assets/images/fb.png';
 import twitter from '../../../assets/images/twitter.png';
 import youtube from '../../../assets/images/youtube.png';
 export default function Template2({ input, loaderData }: any) {
   return (
     <>
-    <div className="-mt-12 flex flex-col md:flex-row h-screen font-inter">
+    <div className="-mt-12 flex flex-row h-screen font-inter">
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
         <img src={pic} className="h-full w-full object-cover" alt="" />
       </div>
@@ -21,15 +21,7 @@ export default function Template2({ input, loaderData }: any) {
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
           </p>
-          {/* <div className='mt-4'>
-            <button
-                type="button"
-                className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
-              >
-                <MenuAlt1Icon className="-ml-1 mr-2 h-4 w-4" aria-hidden="true" />
-                Read my blog
-              </button>
-          </div> */}
+         
         <div className='text-base mt-3 leading-6'>
           <pre className="text-gray-500 pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
@@ -38,7 +30,7 @@ export default function Template2({ input, loaderData }: any) {
          
         </div>
         <div className='flex flex-col mt-4 text-sm'>
-          <div className='flex'>
+          <div className='flex gap-4'>
           {loaderData.company || input.company ?
             <div className='flex flex-col w-[50%]'>
               <h2 className="text-gray-500 font-medium">WORK</h2>

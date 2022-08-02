@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Popover,Dialog, Transition } from '@headlessui/react';
+import {Dialog, Transition } from '@headlessui/react';
 import {
   MenuIcon,
   XIcon,
@@ -28,13 +28,13 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio }: any) {
+export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  // const [showBio, setshowBio] = useState(false);
+ 
   const [showTemplate, setshowTemplate] = useState(false);
   const [showSocialLinks, setshowSocialLinks] = useState(false);
   const Location = useLocation();
-  // console.log(mode);
+
   
   return (
     
@@ -116,16 +116,21 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
-
+                          setshowTemplate(false)
+                          setshowSocialLinks(false)
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
-
+                          setshowBio(false);
+                          setshowSocialLinks(false)
                         }
                         if(item.name === 'Social Links'){
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
+                                                    setshowTemplate(false)
+                          setshowBio(false);
+
                         }
                       }}
                       className={classNames(
@@ -154,15 +159,15 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                 </nav>
                 <div className='z-0'>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode}/> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode}/> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode}/>:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
                 </div>
@@ -214,7 +219,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
           
           {/* static desktop  */}
         
-        <div className="hidden lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
+        <div className={`hidden lg:flex ${mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'}  md:flex-col md:fixed md:inset-y-0 mt-12 font-inter`}>
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex pt-3 pb-2 px-6">
@@ -247,17 +252,21 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
-
-
+                          setshowTemplate(false)
+setshowSocialLinks(false)
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
-
+                          setshowBio(false);
+                          setshowSocialLinks(false)
                         }
                         if(item.name === 'Social Links'){
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
+                                                    setshowTemplate(false)
+                          setshowBio(false);
+
                         }
                       }}
                       className={classNames(
@@ -285,15 +294,15 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode}/> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode}/> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode}/>:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
 
