@@ -33,7 +33,7 @@ export default function Template2({ input, loaderData }: any) {
         <div className='text-base mt-3 leading-6'>
           <pre className="text-gray-500 pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
-              {input.description}
+              {input.description.trim()}
             </pre>
          
         </div>
