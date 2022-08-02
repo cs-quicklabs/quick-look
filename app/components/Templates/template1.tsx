@@ -9,11 +9,11 @@ export default function Template1({ input, loaderData }: any) {
     <div className='flex  overflow-hidden'>
 
       <div >
-        <div>
+        <div className='h-[10rem]'>
           <div className='relative '>
             <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
           </div>
-          <div className='absolute top-[6rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
+          <div className='relative top-[-4rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
             <img className='w-[7rem] md:w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
           </div>
         </div>
@@ -28,10 +28,10 @@ export default function Template1({ input, loaderData }: any) {
         </div>
         <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
-            <p className="text-gray-500 text-base leading-5 font-normal font-sans flex flex-wrap">
+            <pre className="text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
-              {input.description}
-            </p>
+              {input.description.trim()}
+            </pre>
           </div>
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16 '>

@@ -11,10 +11,10 @@ import DefaultProfileIcon from '../../../assets/images/profile.png';
 import EmptyProfile from '../SocialProfile/EmptyProfile';
 
 const navigationFirst = [
-  { name: 'Design Templates', subheading: 'Pick your design Template', href: '#' },
-  { name: 'Bio', subheading: 'Introduction, Work and Education Details', href: '#' },
-  { name: 'Social Links', subheading: 'Links to Social Profile', href: '#' },
-  { name: 'Images', subheading: 'Update Images in your templates', href: '#' },
+  { name: 'Design Templates', subheading: 'Pick your design Template' },
+  { name: 'Bio', subheading: 'Introduction, Work and Education Details' },
+  { name: 'Social Links', subheading: 'Links to Social Profile' },
+  { name: 'Images', subheading: 'Update Images in your templates' },
 ]
 
 const navigationSecond = [
@@ -126,7 +126,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         }
                       }}
                       className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600 ',
+                        
                         ''
                       )}
                     >
@@ -181,7 +181,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         ''
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4 '>
                         <div className=''>
                           <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md'>
                             {item.name}
@@ -258,13 +258,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         }
                       }}
                       className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600 ',
-                        ''
+                       
+                        'hover:bg-gray-50'
                       )}
                     >
                       <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-4'>
                         <div className=''>
-                          <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md text-gray-900'>
+                          <p className='group flex  items-center leading-5 px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
                           </p>
 
@@ -303,17 +303,16 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
 
                 <nav className="flex-1 bg-white ">
                   {navigationSecond.map((item) => (
-                    <a
+                    <div
                       key={item.name}
-                      href={item.href}
+                      
                       className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
-                        ''
+                        'hover:bg-gray-50'
                       )}
                     >
                       <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-4'>
                         <div className=''>
-                          <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md text-gray-900'>
+                          <p className='group flex  items-center px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
                           </p>
 
@@ -327,7 +326,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                           </svg>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   ))}
                 </nav>
               </div>
