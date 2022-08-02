@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
+import NoImages from '../UploadImages/NoImages';
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template', href: '#' },
@@ -31,6 +32,8 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showBio, setshowBio] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
+  const [showImages, setshowImages] = useState(false);
+
   const Location = useLocation();
   return (
     <>
@@ -118,6 +121,10 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                           setSidebarOpen(false);
 
                         }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                        }
                       }}
                       className={classNames(
                         Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600 ',
@@ -152,6 +159,10 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
                   null
                 }
+                {showImages?
+                <NoImages setshowImages={setshowImages} /> :
+                null
+              }
                 </div>
 
               </div>
@@ -234,13 +245,14 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
-
-
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
-
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
                         }
                       }}
                       className={classNames(
@@ -275,6 +287,10 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
                   null
                 }
+                {showImages?
+                <NoImages setshowImages={setshowImages} /> :
+                null
+              }
 
               </div>
 
