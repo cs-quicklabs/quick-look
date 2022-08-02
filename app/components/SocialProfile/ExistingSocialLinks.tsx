@@ -2,7 +2,7 @@
 
 
 export default function AddSocialLinks({ loaderData}:any) {
-  console.log( loaderData?.facebookLink);
+
   
   const people = [
   {

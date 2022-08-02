@@ -4,8 +4,9 @@ import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
 import ExistingSocialLinks from './ExistingSocialLinks';
 
-export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
+export default function EmptyProfile({setshowSocialLinks, loaderData,mode}:any) {
   const [showCreateProfile, setshowCreateProfile] = useState(false);
+console.log(mode);
 
   const toggleSetting = () => {
     setshowCreateProfile(!showCreateProfile);
@@ -16,9 +17,9 @@ export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
       <Dialog as="div" className="relative z-20" onClose={setshowSocialLinks}>
         <div className="fixed inset-0" />
 
-        <div className="fixed inset-0 overflow-hidden">
+        <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex w-96 -mt-12  ${mode === 'mobile' ? 'lg:ml-[24rem]' : ''}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -65,7 +66,7 @@ export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} />
+                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} />
                       )}
                     </div>
                         <div className='mt-12'>

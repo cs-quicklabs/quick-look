@@ -2,11 +2,12 @@ import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function DashboardBio({setshowBio,input,setinput,showBio,loaderData}:any) {
+export default function DashboardBio({setshowBio,input,setinput,showBio,loaderData,mode}:any) {
   // const [open, setOpen] = useState(true)
+//  console.log(mode)
   const Onclose = (e:any) => {
     // const value = e.target.name
-    setinput({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
+    // setinput({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
    setshowBio(false)
   };
 // const Onclose = ()=>{
@@ -30,7 +31,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form  action="account/update/bio" method='POST' className='h-screen'>
-                  <div className="flex h-[95%] flex-col mt-12 w-full md:max-w-xs lg:max-w-md divide-y divide-gray-200 bg-white font-inter border-r border-gray-200">
+                  <div className={`flex h-[95%] flex-col mt-12 w-[24rem] divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[24rem]' : ''} `}>
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
                         <div className="flex items-center justify-between">
@@ -43,8 +44,8 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               onClick={() => setshowBio(false)}
                             >
                               <span className="sr-only">Close panel</span>
-                              <span>
-                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" /></span>
+                              <a href='/account'>
+                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" /></a>
                             </button></form>
                           </div>
                         </div>

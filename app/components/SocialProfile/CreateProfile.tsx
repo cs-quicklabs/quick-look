@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import SelectSocialProfile from './SelectSocialProfile'
 import ExistingSocialLinks from './ExistingSocialLinks'
 
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}:any) {
+export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode}:any) {
   
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -13,7 +13,7 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex w-96 -mt-12  ${mode === 'mobile' ? 'lg:ml-[24rem]' : ''}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""

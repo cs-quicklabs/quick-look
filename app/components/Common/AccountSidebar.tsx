@@ -28,13 +28,16 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput }: any) {
+export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showBio, setshowBio] = useState(false);
+  // const [showBio, setshowBio] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const [showSocialLinks, setshowSocialLinks] = useState(false);
   const Location = useLocation();
+  // console.log(mode);
+  
   return (
+    
     <>
       <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -151,15 +154,15 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                 </nav>
                 <div className='z-0'>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode}/> :
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData}/>:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode}/>:
                   null
                 }
                 </div>
@@ -282,15 +285,15 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode}/> :
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData}/>:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode}/>:
                   null
                 }
 

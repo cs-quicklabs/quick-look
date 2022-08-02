@@ -6,7 +6,7 @@ import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
 
 
 
-export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
+export default function AccountTemplate({setshowTemplate,setshow,showTemplate,mode}:any) {
   // const Template 
   // const [open, setOpen] = useState(true)
   const templateHandle = 'account/update/choose-template'
@@ -20,7 +20,7 @@ const Onclose = useCallback(() => {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12 ${mode === 'mobile' ? 'lg:ml-[24rem]' : ''}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
