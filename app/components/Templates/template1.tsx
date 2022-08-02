@@ -13,7 +13,7 @@ export default function Template1({ input, loaderData }: any) {
           <div className='relative '>
             <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
           </div>
-          <div className='absolute top-[9rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
+          <div className='absolute top-[6rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
             <img className='w-[7rem] md:w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
           </div>
         </div>

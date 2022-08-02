@@ -6,7 +6,7 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
   // const [open, setOpen] = useState(true)
   const Onclose = (e:any) => {
     // const value = e.target.name
-    // setinput(...input,input.value = loaderData.value)
+    setinput({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
    setshowBio(false)
   };
 // const Onclose = ()=>{
@@ -43,8 +43,8 @@ export default function DashboardBio({setshowBio,input,setinput,showBio,loaderDa
                               onClick={() => setshowBio(false)}
                             >
                               <span className="sr-only">Close panel</span>
-                              <a href="/account">
-                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" /></a>
+                              <span>
+                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" /></span>
                             </button></form>
                           </div>
                         </div>

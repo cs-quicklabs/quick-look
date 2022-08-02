@@ -17,9 +17,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Profile() {
   const [mode, setmode] = useState('desktop')
+
   const loaderData = useLoaderData();
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
+console.log(input);
 
   return (
     <div className='h-100vw '>
