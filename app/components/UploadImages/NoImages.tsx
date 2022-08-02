@@ -1,8 +1,15 @@
 import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import UpdateImage from './UpdateImage';
 
-export default function NoImages({setshowImages,loaderData}:any) {
+export default function NoImages({setshowImages}:any) {
+  const [showupdateImage, setshowupdateImage] = useState(false);
+
+  const toggleComponent = () => {
+    setshowupdateImage(!showupdateImage);
+  };
+
   const Onclose = (e:any) => {
     setshowImages(false)
   };
@@ -53,8 +60,10 @@ export default function NoImages({setshowImages,loaderData}:any) {
                       </div>
 
                       <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
-                        <label className="block text-sm font-medium leading-5 text-gray-700"> Primary Image </label>
-                        <div className="mt-3.5 flex justify-center px-[1px] pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
+                        <label className="block text-sm font-medium leading-5 text-gray-700"> 
+                          Primary Image 
+                        </label>
+                        <div className="mt-3.5 flex justify-center px-auto pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
                           <div className="text-center">
                             <p className=' text-xs leading-4 font-semibold tracking-wide'>
                               NO IMAGE ADDED YET
@@ -77,7 +86,8 @@ export default function NoImages({setshowImages,loaderData}:any) {
                       </div>
       
                       <div className="sm:col-span-6 mt-16 px-4 sm:px-6">
-                        <label className="block text-sm font-medium leading-5 text-gray-700"> Secondary Image </label>
+                        <label className="block text-sm font-medium leading-5 text-gray-700">         Secondary Image 
+                        </label>
                         <div className="mt-3.5 flex justify-center px-[1px] pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
                           <div className="text-center">
                             <p className=' text-xs leading-4 font-semibold tracking-wide'>
@@ -89,17 +99,25 @@ export default function NoImages({setshowImages,loaderData}:any) {
                               </label>
                               <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
                             </div>
-                            <button
+                            <a
+                              onClick={() => toggleComponent()}
                               type="submit"
                               className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 sm:ml-3 sm:w-auto sm:text-sm"
                             >
                               Upload Image
-                            </button>
+                            </a>
                             <p className="text-sm leading-5 mt-2.5 font-normal text-gray-400">Restore Default Image</p>
                           </div>
+
+                          {showupdateImage && (
+                            <UpdateImage setshowupdateImage={setshowupdateImage} />
+                          )}
+
                         </div>
                       </div>
                       
+                     
+
                     </div>
 
                   </form>
