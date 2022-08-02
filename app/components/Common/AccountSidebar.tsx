@@ -160,7 +160,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showImages?
-                <NoImages setshowImages={setshowImages} /> :
+                <NoImages setshowImages={setshowImages} loaderData={loaderData} /> :
                 null
               }
                 </div>
