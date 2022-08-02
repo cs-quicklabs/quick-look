@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks';
 
-export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
+export default function SocialProfile({setshowSocialLinks, loaderData}:any) {
   const [showCreateProfile, setshowCreateProfile] = useState(false);
 
   const toggleSetting = () => {
