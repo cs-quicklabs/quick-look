@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
-import NoImages from '../UploadImages/NoImages';
+import UploadImages from '../UploadImages/UploadImages';
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template', href: '#' },
@@ -160,7 +160,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showImages?
-                <NoImages setshowImages={setshowImages} /> :
+                <UploadImages setshowImages={setshowImages} /> :
                 null
               }
                 </div>
@@ -288,7 +288,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   null
                 }
                 {showImages?
-                <NoImages setshowImages={setshowImages} /> :
+                <UploadImages setshowImages={setshowImages} /> :
                 null
               }
 
