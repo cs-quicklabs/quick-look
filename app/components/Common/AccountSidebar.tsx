@@ -9,6 +9,8 @@ import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import EmptyProfile from '../SocialProfile/EmptyProfile';
+import UploadImages from '../UploadImages/UploadImages';
+
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template' },
@@ -30,12 +32,14 @@ function classNames(...classes: string[]) {
 
 export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
- 
+ const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
+
   const [showSocialLinks, setshowSocialLinks] = useState(false);
+
+
   const Location = useLocation();
 
-  
   return (
     
     <>
@@ -118,19 +122,31 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                           setSidebarOpen(false);
                           setshowTemplate(false)
                           setshowSocialLinks(false)
+setshowImages(false);
+
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
                           setshowBio(false);
                           setshowSocialLinks(false)
+setshowImages(false);
+
                         }
                         if(item.name === 'Social Links'){
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
                                                     setshowTemplate(false)
                           setshowBio(false);
-
+setshowImages(false);
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                           setshowSocialLinks(false);
+                          
+                                                    setshowTemplate(false)
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
@@ -170,6 +186,10 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                 <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
+                {showImages?
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                null
+              }
                 </div>
 
               </div>
@@ -253,20 +273,32 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                           setshowBio(true);
                           setSidebarOpen(false);
                           setshowTemplate(false)
-setshowSocialLinks(false)
+                          setshowSocialLinks(false)
+setshowImages(false);
+
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
                           setshowBio(false);
                           setshowSocialLinks(false)
+setshowImages(false);
+
                         }
                         if(item.name === 'Social Links'){
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
                                                     setshowTemplate(false)
                           setshowBio(false);
-
+setshowImages(false);
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                           setshowSocialLinks(false);
+                          
+                                                    setshowTemplate(false)
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
@@ -305,6 +337,10 @@ setshowSocialLinks(false)
                 <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
+                {showImages?
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                null
+              }
 
               </div>
 

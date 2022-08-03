@@ -30,7 +30,7 @@ export default function Template1({ input, loaderData }: any) {
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
             <pre className="text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
-              {input.description.trim()}
+              { input?.description?.trim()}
             </pre>
           </div>
           <div className='flex flex-col gap-20'>
