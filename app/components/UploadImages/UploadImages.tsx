@@ -30,7 +30,7 @@ export default function NoImages({setshowImages}:any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form  action="account/update/bio" method='POST' className='h-screen'>
+                  <form method='POST' className='h-screen'>
 
                     <div className="flex flex-col mt-12 h-[95%] w-full md:max-w-xs lg:max-w-md bg-white font-inter border-r border-gray-200 overflow-y-auto">
                       <div className="">
