@@ -1,15 +1,21 @@
-import { Fragment, useCallback, useState } from 'react';
+import { createRef, Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({setshowImages}:any) {
+export default function UploadImages({setshowImages}:any) {
   const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
   const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
   const [open, setopen] = useState(false);
+  const [image, setimage] = useState(null);
 
+  const handleChange = (e:any) => {
+    console.log("image", e.target.files);
+    setimage(e.target.files[0])
+  }
+  
   const Onclose = (e:any) => {
     setshowImages(false)
   };
@@ -36,19 +42,21 @@ export default function NoImages({setshowImages}:any) {
                       <div className="">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> Update Profile Pictures </Dialog.Title>
+                            <Dialog.Title className="text-lg font-medium text-gray-900 leading-7">    Update Profile Pictures 
+                            </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <form action="">
-                              <button
-                                type="button"
-                                className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                                onClick={() => setshowImages(false)}
-                              >
-                                <span className="sr-only">Close panel</span>
-                                <button>
-                                  <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                                <button
+                                  type="button"
+                                  className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm "
+                                  onClick={() => setshowImages(false)}
+                                >
+                                  <span className="sr-only">Close panel</span>
+                                  <button>
+                                    <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                                  </button>
                                 </button>
-                              </button></form>
+                              </form>
                             </div>
                           </div>
                           <div className="mt-1">
@@ -74,9 +82,19 @@ export default function NoImages({setshowImages}:any) {
                             </div>
 
                             <div className='flex justify-center items-center mt-3'>
-                              <button className='cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                              <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
                                 Edit
-                              </button>
+                              <input
+                                type="file"
+                                // value="primary-photo"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
 
                               <span
                                 onClick={()=>{setopen(true)}}
@@ -110,11 +128,19 @@ export default function NoImages({setshowImages}:any) {
                             </div>
 
                             <div className='flex flex-col md:mx-12 lg:mx-20'>
-                              <span
-                                className="cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                              >
-                                Upload Image
-                              </span>
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+                              Upload Image
+                              <input
+                                type="file"
+                                // value="primary-photo-upload"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
                               <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                 Restore Default Image
                               </span>
@@ -140,9 +166,19 @@ export default function NoImages({setshowImages}:any) {
                           </div>
 
                           <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                            <button className='text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
-                              Edit
-                            </button>
+                            <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                                Edit
+                              <input
+                                type="file"
+                                // value="secondary-photo"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
 
                             <span
                               onClick={()=>{setopen(true)}}
@@ -173,12 +209,20 @@ export default function NoImages({setshowImages}:any) {
                             </div>
 
                             <div className='flex flex-col md:mx-12 lg:mx-20 '>
-                              <span
-                                onClick={() => {}}
-                                className="cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                              >
-                                Upload Image
-                              </span>
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+                              Upload Image
+                              <input
+                                type="file"
+                                // value="secondary-photo-upload"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
+
                               <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                 Restore Default Image
                               </span>
@@ -190,10 +234,7 @@ export default function NoImages({setshowImages}:any) {
                       </div>
                   
                   }
-
                     <DeleteImage open={open} onClose={() => setopen(false)} />    
-                      
-                     
 
                     </div>
 
