@@ -44,7 +44,7 @@ const OnCancel = ()=>{
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form  action="account/update/bio" method='POST' className='h-screen'>
 
-                    <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'} `}>
+                    <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'} `}>
                       <div className="">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
@@ -81,20 +81,20 @@ const OnCancel = ()=>{
                           </label>
 
                           <div>
-                            <div className="flex justify-center border border-gray-300 border-dashed rounded-md mt-3.5 h-44">
+                            <div className="flex justify-center  rounded-md mt-3.5 h-44">
                               <img src={bg} alt="" className='h-full w-full object-cover' />
                             </div>
 
                             <div className='flex justify-center items-center mt-3'>
-                              <button className='cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                              <button className='text-sm leading-5 font-normal text-gray-400 hover:text-gray-600' onClick={(e:any)=>{e.preventDefault()}}>
                                 Edit
                               </button>
 
-                              <span
-                                onClick={()=>{setopen(true)}}
+                              <button
+                                onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
                                 className='cursor-pointer ml-2 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                   Delete
-                              </span>
+                              </button>
                             </div>
 
                           </div>
@@ -140,22 +140,22 @@ const OnCancel = ()=>{
                               Secondary Image 
                             </label>
 
-                            <div className="flex justify-center h-[7rem] w-[7rem] border border-gray-300 border-dashed rounded-full mt-3.5">
+                            <div className="flex justify-center h-[7rem] w-[7rem]  rounded-full mt-3.5">
                               <img src={avatar6} alt="" className='rounded-full h-full w-full object-cover' />
                             </div>
   
                           </div>
 
                           <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                            <button className='text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                            <button className='text-sm leading-5 font-normal text-gray-400 hover:text-gray-600' onClick={(e:any)=>{e.preventDefault();}}>
                               Edit
                             </button>
 
-                            <span
-                              onClick={()=>{setopen(true)}}
+                            <button
+                              onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
                               className='cursor-pointer ml-3 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                               Delete
-                            </span>
+                            </button>
                           </div>
 
                         </div>:

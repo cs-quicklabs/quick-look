@@ -17,7 +17,7 @@ export default function Template2({ input, loaderData }: any) {
           </h1>
           <p className="text-sm leading-5 font-medium">
           {loaderData.occupation || input.occupation || loaderData.location || input.location  ?
-            <h3 className="text-gray-500 w-max ">
+            <h3 className="text-gray-500 w-max break-words">
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
           </p>
@@ -25,7 +25,7 @@ export default function Template2({ input, loaderData }: any) {
         <div className='text-base mt-3 leading-6'>
           <pre className="text-gray-500 pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
-              {input.description}
+              { input?.description?.trim()}
             </pre>
          
         </div>
@@ -34,14 +34,14 @@ export default function Template2({ input, loaderData }: any) {
           {loaderData.company || input.company ?
             <div className='flex flex-col w-[50%]'>
               <h2 className="text-gray-500 font-medium">WORK</h2>
-              <h2 className="text-gray-900">
+              <h2 className="text-gray-900 break-all">
               {input.company}
               </h2>
               </div> : <span></span>}
               {loaderData.education || input.education ?
             <div className='flex flex-col'>
               <h2 className="text-gray-500 font-medium">EDUCATION</h2>
-              <h2 className="text-gray-900">
+              <h2 className="text-gray-900 break-all">
               {input.education}
               </h2>
               </div> : <span></span>}

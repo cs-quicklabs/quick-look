@@ -18,11 +18,11 @@ export default function Template1({ input, loaderData }: any) {
           </div>
         </div>
         <div className='m-auto pt-1 px-[7rem] md:px-[19rem]  lg:px-[21rem]'>
-          <h1 className='text-2xl leading-8 font-bold text-gray-900 w-max'>
+          <h1 className='text-2xl leading-8 font-bold text-gray-900 w-max '>
             {loaderData.firstname} {loaderData.lastname}
           </h1>
           {loaderData.occupation || input.occupation ||input.location ||loaderData.location ?
-            <h3 className="text-gray-500 w-max">
+            <h3 className="text-gray-500 w-max break-all">
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
@@ -38,14 +38,14 @@ export default function Template1({ input, loaderData }: any) {
               {loaderData.company || input.company ?
                 <div className='flex flex-col w-[50%]'>
                   <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">WORK</h2>
-                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
+                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
               {loaderData.education || input.education ?
                 <div className='flex flex-col'>
                   <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">EDUCATION</h2>
-                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal">
+                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
                     {input.education}
                   </h2>
                 </div> : <span></span>}

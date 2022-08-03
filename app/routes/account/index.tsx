@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Profile() {
   const [mode, setmode] = useState('desktop')
-
+// const mode === loaderData.mode
   const [showBio, setshowBio] = useState(mode === 'mobile' ? true : false);
   const loaderData = useLoaderData();
   const [show, setshow] = useState(loaderData.templateNumber)
