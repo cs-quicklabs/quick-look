@@ -99,7 +99,12 @@ export default function NoImages({setshowImages}:any) {
                             </p>
                             <div className="flex text-sm">
                               <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                <input 
+                                // value="primary-file-upload"
+                                id="file-upload" 
+                                name="file-upload" 
+                                type="file" 
+                                className="sr-only" />
                               </label>
                               <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
                             </div>
@@ -157,7 +162,12 @@ export default function NoImages({setshowImages}:any) {
                             </p>
                             <div className="flex text-sm">
                               <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                <input 
+                                // value="secondary-file-upload"
+                                id="file-upload" 
+                                name="file-upload" 
+                                type="file" 
+                                className="sr-only" />
                               </label>
                               <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
                             </div>
