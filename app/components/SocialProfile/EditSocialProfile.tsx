@@ -80,6 +80,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         <div className="mt-1">
                           <input
                             type="text"
+                            value="addlink"
                             name="location"
                             id="project-name"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
