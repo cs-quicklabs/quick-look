@@ -36,7 +36,7 @@ export default function SocialProfile({setshowSocialLinks, loaderData}:any) {
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
                             onClick={() => setshowSocialLinks(false)}
                           >
                             <span className="sr-only">Close panel</span>
