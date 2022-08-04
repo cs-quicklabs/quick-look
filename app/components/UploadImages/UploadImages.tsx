@@ -6,8 +6,8 @@ import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
 export default function NoImages({setshowImages,mode,setmode}:any) {
-  const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(true);
-  const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(true);
+  const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
+  const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
 
@@ -49,7 +49,7 @@ const OnCancel = ()=>{
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form method='POST' className='h-screen'>
 
-                    <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'} `}>
+                    <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
                       <div className="">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
@@ -93,7 +93,7 @@ const OnCancel = ()=>{
                             </div>
 
                             <div className='flex justify-center items-center mt-3'>
-                              <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                              <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                 Edit
                               <input
                                 type="file"
@@ -135,11 +135,11 @@ const OnCancel = ()=>{
                                 type="file" 
                                 className="sr-only" />
                               </label>
-                              <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
+                              <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ?'px-16 xl:px-0' :''}`}>Drag and Drop an Image or click on button to upload</p>
                             </div>
 
-                            <div className='flex flex-col md:mx-12 lg:mx-20'>
-                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+                            <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                               Upload Image
                               <input
                                 type="file"
@@ -177,7 +177,7 @@ const OnCancel = ()=>{
                           </div>
 
                           <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                            <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                            <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                 Edit
                               <input
                                 type="file"
@@ -216,11 +216,11 @@ const OnCancel = ()=>{
                                 type="file" 
                                 className="sr-only" />
                               </label>
-                              <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
+                              <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ?'px-16 xl:px-0' :''}`}>Drag and Drop an Image or click on button to upload</p>
                             </div>
 
-                            <div className='flex flex-col md:mx-12 lg:mx-20 '>
-                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+                            <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20 '>
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                               Upload Image
                               <input
                                 type="file"
@@ -245,7 +245,7 @@ const OnCancel = ()=>{
                       </div>
                   
                   }
-                    <DeleteImage open={open} onClose={() => setopen(false)} />    
+                    <DeleteImage open={open} onClose={() => setopen(false)}  mode={mode}/>    
 
                     </div>
 

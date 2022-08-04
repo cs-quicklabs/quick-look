@@ -1,13 +1,21 @@
+import { useState } from "react";
+import EditSocialProfile from "../SocialProfile/EditSocialProfile";
+
+export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:any) {
+  
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
 
 
-export default function AddSocialLinks({ loaderData}:any) {
 
+  const toggleEdit = () => {
+    setShowEditProfile(!showEditProfile);
+  };
   
   const people = [
   {
     name: 'Facebook',
-    email: loaderData?.facebookLink ,
+    email: loaderData?.facebookLink,
     image:
       'https://s3-alpha-sig.figma.com/img/74b9/cfa7/478547b3261209138fbff9b36d4a5c9e?Expires=1659916800&Signature=FI7Shs4EXNcW303HInrQkdnt6o7TLBhq9i0xdXkLuMQWYeTJrqNPCJFBv3y~uR87fXFyDDYDmhWTXexavMmeSv9K0SuN85Tdxcc08NFClsN91M~aZxl8O9kkId3m6d10N7qtCaYmYHHDcHitP0nymp2q7nndm1Y4WzQHvyboiXTGJlI8t4PRzggHF6e03uy~w5om7deYW59GPlO-DVhbRd7eFOFe1mHafRaerMvyZC4rF~0P~3p5zpdzQOZPljlSALg5C44P6NAndycsv9kD65OayT5OYQl4ISSs-gmIfjaFv5noUZ0Klil3x7iQ35p87or~PE5shcja04rfIfWSoQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
@@ -25,13 +33,13 @@ export default function AddSocialLinks({ loaderData}:any) {
   },
 ]
   return (
-    <div className="pl-5 pr-6">
-      <ul role="list" className="divide-y divide-gray-200 border-b border-gray-200">
+    <div className="pl-3 pr-3.5">
+      <ul role="list" className="">
       {people.map((person) => (
         
         <li key={person.email} className="">
           {person.email ?
-          <div className="flex justify-between flex-col lg:flex-row">
+          <div className="flex justify-between flex-col lg:flex-row border-b border-gray-200">
             <div className="py-4 flex">
               <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
               <div className="ml-3">
@@ -41,15 +49,20 @@ export default function AddSocialLinks({ loaderData}:any) {
             </div>
           
             <div className="flex flex-row ml-[3.2rem] lg:ml-0 lg:flex-col items-start py-0 lg:py-4 mb-2 lg:mb-0 text-gray-400">
-              <button>
+              <button
+              onClick={() => toggleEdit()}
+              >
                 Edit
               </button>
+              {showEditProfile && (
+                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} />
+              )}
               <button className="ml-3 lg:ml-0">
                 Delete
               </button>
             </div>
           </div>
- : <span></span>}
+          : <span></span>}
         </li> 
       ))} 
     </ul>

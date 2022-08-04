@@ -68,7 +68,7 @@ const Onclose = () => {
                       <div  className='mb-[-1rem]'>
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={thumbnail1} alt="" className='h-[14rem] w-[27.5rem] cursor-pointer border-8 border-black ' />
+                      <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                       </button>
                       </div>
                       </form>
@@ -77,7 +77,7 @@ const Onclose = () => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={thumbnail2} alt="" className='h-auto w-[27.5rem] cursor-pointer border-8 border-black ' />
+                      <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                       </button>
                       </div>
 
