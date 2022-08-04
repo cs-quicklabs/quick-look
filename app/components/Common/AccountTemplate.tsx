@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
@@ -6,20 +6,31 @@ import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
 
 
 
-export default function AccountTemplate({setshowTemplate,setshow,showTemplate}:any) {
-  // const [open, setOpen] = useState(true)
+export default function AccountTemplate({setshowTemplate,setshow,showTemplate,mode,setmode}:any) {
+ 
   const templateHandle = 'account/update/choose-template'
-const Onclose = useCallback(() => {
+  const OnCancel = ()=>{
+ setshowTemplate(false);
+  setmode('desktop')
+}
+const Onclose = () => {
+   
+    if(mode === 'desktop'){
    setshowTemplate(false)
-  }, []);
+    }
+    if(mode === 'mobile'){
+     
+    }
+ 
+  }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setshowTemplate}>
+      <Dialog as="div" className="relative z-20" onClose={Onclose}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -37,11 +48,11 @@ const Onclose = useCallback(() => {
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setshowTemplate(false)}
+                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
+                            onClick={OnCancel}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon onClick={() => setshowTemplate(false)} className="h-6 w-6" aria-hidden="true" />
+                            <XIcon className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -57,7 +68,7 @@ const Onclose = useCallback(() => {
                       <div  className='mb-[-1rem]'>
                       <input type="hidden" name='template' value='0' />
                       <button type='submit'>
-                      <img src={thumbnail1} alt="" className='h-[14rem] w-[28rem] cursor-pointer border-8 border-black border-r-4' />
+                      <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                       </button>
                       </div>
                       </form>
@@ -66,7 +77,7 @@ const Onclose = useCallback(() => {
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
-                      <img src={thumbnail2} alt="" className='h-auto w-[28rem] cursor-pointer border-8 border-black border-l-4' />
+                      <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                       </button>
                       </div>
 
