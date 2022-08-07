@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Popover,Dialog, Transition } from '@headlessui/react';
+import {Dialog, Transition } from '@headlessui/react';
 import {
   MenuIcon,
   XIcon,
@@ -8,12 +8,16 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
+import EmptyProfile from '../SocialProfile/EmptyProfile';
+import UploadImages from '../UploadImages/UploadImages';
+import SocialProfile from '../SocialProfile/SocialProfile';
+
 
 const navigationFirst = [
-  { name: 'Design Templates', subheading: 'Pick your design Template', href: '#' },
-  { name: 'Bio', subheading: 'Introduction, Work and Education Details', href: '#' },
-  { name: 'Social Links', subheading: 'Links to Social Profile', href: '#' },
-  { name: 'Images', subheading: 'Update Images in your templates', href: '#' },
+  { name: 'Design Templates', subheading: 'Pick your design Template' },
+  { name: 'Bio', subheading: 'Introduction, Work and Education Details' },
+  { name: 'Social Links', subheading: 'Links to Social Profile' },
+  { name: 'Images', subheading: 'Update Images in your templates' },
 ]
 
 const navigationSecond = [
@@ -27,12 +31,18 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput }: any) {
+export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showBio, setshowBio] = useState(false);
+ const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
+
+  const [showSocialLinks, setshowSocialLinks] = useState(false);
+
+
   const Location = useLocation();
+
   return (
+    
     <>
       <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -111,16 +121,37 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
+                          setshowTemplate(false)
+                          setshowSocialLinks(false)
+setshowImages(false);
 
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
+                          setshowBio(false);
+                          setshowSocialLinks(false)
+setshowImages(false);
 
+                        }
+                        if(item.name === 'Social Links'){
+                          setshowSocialLinks(true);
+                          setSidebarOpen(false);
+                                                    setshowTemplate(false)
+                          setshowBio(false);
+setshowImages(false);
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                           setshowSocialLinks(false);
+                          
+                                                    setshowTemplate(false)
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600 ',
+                        
                         ''
                       )}
                     >
@@ -134,7 +165,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400 flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -145,13 +176,21 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                 </nav>
                 <div className='z-0'>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
                   null
                 }
+                {showSocialLinks?
+                <SocialProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
+                  null
+                }
+                {showImages?
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                null
+              }
                 </div>
 
               </div>
@@ -171,7 +210,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         ''
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4 '>
                         <div className=''>
                           <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md'>
                             {item.name}
@@ -181,7 +220,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400 flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -201,7 +240,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
           
           {/* static desktop  */}
         
-        <div className="hidden lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
+        <div className={`hidden lg:flex ${mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'}  md:flex-col md:fixed md:inset-y-0 mt-12 font-inter`}>
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex pt-3 pb-2 px-6">
@@ -234,23 +273,43 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
-
+                          setshowTemplate(false)
+                          setshowSocialLinks(false)
+setshowImages(false);
 
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
+                          setshowBio(false);
+                          setshowSocialLinks(false)
+setshowImages(false);
 
+                        }
+                        if(item.name === 'Social Links'){
+                          setshowSocialLinks(true);
+                          setSidebarOpen(false);
+                                                    setshowTemplate(false)
+                          setshowBio(false);
+setshowImages(false);
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                           setshowSocialLinks(false);
+                          
+                                                    setshowTemplate(false)
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600 ',
-                        ''
+                       
+                        'hover:bg-gray-50'
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-6'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-4'>
                         <div className=''>
-                          <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md text-gray-900'>
+                          <p className='group flex  items-center leading-5 px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
                           </p>
 
@@ -258,7 +317,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400  flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -268,13 +327,21 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
                   null
                 }
+                {showSocialLinks?
+                <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
+                  null
+                }
+                {showImages?
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                null
+              }
 
               </div>
 
@@ -285,17 +352,16 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
 
                 <nav className="flex-1 bg-white ">
                   {navigationSecond.map((item) => (
-                    <a
+                    <div
                       key={item.name}
-                      href={item.href}
+                      
                       className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
-                        ''
+                        'hover:bg-gray-50'
                       )}
                     >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-6'>
+                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-5 py-4'>
                         <div className=''>
-                          <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md text-gray-900'>
+                          <p className='group flex  items-center px-2 text-sm font-medium rounded-md text-gray-900'>
                             {item.name}
                           </p>
 
@@ -303,13 +369,13 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                             {item.subheading}
                           </p>
                         </div>
-                        <div className='text-gray-400'>
+                        <div className='text-gray-400 flex items-center'>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                           </svg>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   ))}
                 </nav>
               </div>

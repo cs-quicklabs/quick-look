@@ -15,11 +15,11 @@ return user
 
 export default function terms() {
   const loaderData = useLoaderData()
-  console.log(loaderData);
+
   
   return (
     <>
-    {loaderData?.id ? <DashboardHeader username={loaderData.username}/> : <HeaderSecondary />}
+   <HeaderSecondary />
     
       <div className='flex-grow w-full max-w-7xl mx-auto xl:px-8 xl:flex min-h-full py-10 -mb-96'>
         <div className='flex-1 bg-white xl:flex '>
@@ -752,7 +752,8 @@ export default function terms() {
         </div>
       </div>
     
-      <CallToAction />
+      <div className='mt-[25rem]'>
+        <CallToAction /></div>
       <Footer />
     </>
   )
