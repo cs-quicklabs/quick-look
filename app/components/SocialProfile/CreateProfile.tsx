@@ -152,9 +152,10 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                           <div className="mt-1">
                             <input
                               type="text"
-                              placeholder="addlink"
+                              // placeholder="facebook.com/username"
                               name="addlink"
                               id="addlink"
+                              
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
                             />
                           </div>
@@ -185,7 +186,7 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                       </div>
 
                       <div>
-                        <ExistingSocialLinks setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} />
+                        <ExistingSocialLinks setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode}/>
                       </div>
 
                     </div>

@@ -15,14 +15,25 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 3, name: 'Youtube' },
 ]
 
-export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, clickedLink}:any) {
-  const [query, setQuery] = useState('')
-  const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
+
+export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, clickedLink,mode}:any) {
+
+const [query, setQuery] = useState('')
+const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
     link.name === clickedLink.name  
     )[0]
   )
-
-  // console.log("selectedEditSocialLinks",selectedEditSocialLinks);
+  
+   const Onclose = () => {
+   
+    if(mode === 'desktop'){
+   setShowEditProfile(false)
+    }
+    if(mode === 'mobile'){
+   
+    }
+ 
+  }
 
   const filteredSelectedSocialLink =
     query === ''
@@ -30,15 +41,15 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
       : socialLinks.filter((links) => {
           return links.name.toLowerCase().includes(query.toLowerCase())
         })
-  
+
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setShowEditProfile}>
+      <Dialog as="div" className="relative z-20" onClose={Onclose}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+           <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -50,7 +61,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form method="post">
-                  <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
+                  <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' :'w-full md:max-w-xs lg:max-w-md'}`}>
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
@@ -68,8 +79,8 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         </div>
                       </div>
 
-                      <div className="pt-1 pr-2">
-                        <p className="text-sm leading-5 font-normal text-gray-500">
+                      <div className={`pt-1 pr-2 `}>
+                        <p className={`text-sm leading-5 font-normal text-gray-500 `}>
                         Select social profile links which you want to share on your profile
                         </p>
                       </div>
@@ -78,7 +89,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                       <p className='text-xs leading-4 font-semibold tracking-wide'>
                         ADD MORE PROFILE LINKS
                       </p>
-                      <p className='text-sm leading-5 font-normal text-gray-500 px-12 lg:px-0'>
+                      <p className={`text-sm leading-5 font-normal text-gray-500  ${mode==='mobile' ?"px-[1rem] xl:px-0" : 'px-12 lg:px-0'}`}>
                         Please add social links by clicking on button below
                       </p>
                       <button
@@ -104,21 +115,23 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                           <div className="relative mt-1">
                             <Combobox.Input
                               className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                              onChange={(event) => setQuery(event.target.value)}
-                              // value={(links:string) => links?.name}
+                              onChange={() => {} }
+                              value={clickedLink.name}
+                              disabled
                               name="edit_social_links"
-                              displayValue={(links:any) => links?.name}
+                              displayValue={() => clickedLink?.name}
                             />
                             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
                               <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Combobox.Button>
 
-                            {filteredSelectedSocialLink.length > 0 && (
+                            {/* {filteredSelectedSocialLink.length > 0 && (
                               <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {filteredSelectedSocialLink.map((links) => (
                                   <Combobox.Option
                                     key={links.id}
                                     value={links}
+                                    disabled
                                     className={({ active }) =>
                                       classNames(
                                         'relative cursor-default select-none py-2 pl-3 pr-9',
@@ -145,7 +158,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                                   </Combobox.Option>
                                 ))}
                               </Combobox.Options>
-                            )}
+                            )} */}
                           </div>
                           </form>
                         </Combobox>

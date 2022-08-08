@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditSocialProfile from "../SocialProfile/EditSocialProfile";
 import DeleteSocialProfile from "./DeleteSocialProfile";
 
-export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, selectedSocialLinks}:any) {
+export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, selectedSocialLinks,mode}:any) {
   
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
@@ -11,13 +11,13 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, se
   const people = [
   {
     name: 'Facebook',
-    email: "loaderData?.facebookLink",
+    email: loaderData?.facebookLink,
     image:
       'https://s3-alpha-sig.figma.com/img/74b9/cfa7/478547b3261209138fbff9b36d4a5c9e?Expires=1659916800&Signature=FI7Shs4EXNcW303HInrQkdnt6o7TLBhq9i0xdXkLuMQWYeTJrqNPCJFBv3y~uR87fXFyDDYDmhWTXexavMmeSv9K0SuN85Tdxcc08NFClsN91M~aZxl8O9kkId3m6d10N7qtCaYmYHHDcHitP0nymp2q7nndm1Y4WzQHvyboiXTGJlI8t4PRzggHF6e03uy~w5om7deYW59GPlO-DVhbRd7eFOFe1mHafRaerMvyZC4rF~0P~3p5zpdzQOZPljlSALg5C44P6NAndycsv9kD65OayT5OYQl4ISSs-gmIfjaFv5noUZ0Klil3x7iQ35p87or~PE5shcja04rfIfWSoQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
   {
     name: 'Twitter',
-    email: 'loaderData?.twitterLink',
+    email: "loaderData?.twitterLink",
     image:
       'https://s3-alpha-sig.figma.com/img/4632/8a79/365acf1c08e1b6f6f590603f01e05730?Expires=1659916800&Signature=C96HZjC8nMUVFeF2XO1wqmm9E1VHN3F-oKDBo-GdQAd5LF9F6o4rbWzBbGr6KFqH6FzIXq-BD~WeODB65kcxrt-rEMFWx-PjkfgRERlIKnMSmfTTW7S8u8DmbGRxU9W4~c~6kxw4VhQqRBHAWaE-fT0w5741ZYkZPa1QUZdIGmJg~p9hBIZns34CxDU0ugw2WjA0NP1ab9CRaNbIbu2rpqQqOrOTyJooekOdKGc~8Sy-zTSz3nP~-U6UeHprWEWpLEE3fm33eUZPIaifROBVSrxPqa1IffAdmxU7qJgVVX8OrL8rrAINe4iI5urVW1XffrFwIuvZKCwFiKA4k93Qmg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
@@ -36,7 +36,8 @@ const toggleEdit = (person: { name: string; email: string; image: string; }) => 
   //   selectedPeople.name === person.name
   // )
   setClickedLink(person)
-};
+}
+
   return (
     <div className="pl-3 pr-3.5">
       <ul role="list" className="">
@@ -44,7 +45,7 @@ const toggleEdit = (person: { name: string; email: string; image: string; }) => 
         
         <li key={person.email} className="">
           {person.email ?
-          <div className="flex justify-between flex-col lg:flex-row border-b border-gray-200">
+          <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
             <div className="py-4 flex">
               <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
               <div className="ml-3">
@@ -53,21 +54,24 @@ const toggleEdit = (person: { name: string; email: string; image: string; }) => 
               </div>
             </div>
           
-            <div className="flex flex-row ml-[3.2rem] lg:ml-0 lg:flex-col items-start py-0 lg:py-4 mb-2 lg:mb-0 text-gray-400">
+            <div className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'ml-[3.2rem] xl:ml-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
               <button
               onClick={() => toggleEdit(person)}
               >
                 Edit
               </button>
               {showEditProfile && (
-                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} />
+                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} mode={mode} />
+
+                // <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} editLink={person} mode={mode}/>
+
               )}
                 <button 
                 onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
-                className="ml-3 lg:ml-0">
+                className={`  ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                   Delete
                 </button>
-                <DeleteSocialProfile open={open} onClose={() => setopen(false)} />
+                <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink} />
             </div>
           </div>
           : <span></span>}

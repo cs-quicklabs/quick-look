@@ -11,7 +11,6 @@ export default function SelectedSocialLinks({ loaderData, setshowSocialLinks, se
 
   return (
     <div className="pl-3 pr-3.5">
-      <form action="" method="post">
           <ul role="list" className="">
           {people.map(() => (
             
@@ -45,7 +44,6 @@ export default function SelectedSocialLinks({ loaderData, setshowSocialLinks, se
             </li> 
           ))} 
         </ul>
-      </form>
       
     </div>
     
