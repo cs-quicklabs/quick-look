@@ -6,11 +6,12 @@ import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
 export default function NoImages({setshowImages,mode,setmode}:any) {
-  const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
-  const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
+  const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(true);
+  const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(true);
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
 
+ 
   const handleChange = (e:any) => {
     console.log("image", e.target.files);
     setimage(e.target.files[0])
