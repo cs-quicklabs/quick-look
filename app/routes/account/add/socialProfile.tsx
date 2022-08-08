@@ -1,7 +1,7 @@
 import { ActionFunction, redirect } from "@remix-run/node";
 import { getUser } from "~/services/auth.service.server";
 import { commitSession, getSession } from "~/services/session.service.server";
-import { addSocialLink, updateUserBioDetails } from "~/services/user.service.serevr";
+import { addUpdateSocialLink, updateUserBioDetails } from "~/services/user.service.serevr";
 
 export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData()
@@ -13,7 +13,7 @@ export const action: ActionFunction = async ({ request }) => {
       );
 
     const user = await getUser(request) || undefined
-    await addSocialLink(selectedSocial, selectedSocialLink, user)
+    await addUpdateSocialLink(selectedSocial, selectedSocialLink, user)
     session.flash(
         "updateProfileMessage",
         `Your profile has been updated successfully.`

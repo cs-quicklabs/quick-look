@@ -108,7 +108,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
                         <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
-                          <form action="" method="post">
+                          <form action="/account/update/socialProfile" method="post">
                           <Combobox.Label className="block text-sm font-medium text-gray-700">
                             Edit Social Profile
                           </Combobox.Label>

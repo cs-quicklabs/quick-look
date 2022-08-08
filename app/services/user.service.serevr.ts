@@ -181,7 +181,7 @@ export async function updateUserTemplate(templateId: string, user: any){
     })
 }
 
-export async function addSocialLink(socialProfile: string, link: string, user?: User){
+export async function addUpdateSocialLink(socialProfile: string, link: string, user?: User){
     const socialAccount = socialProfile.toLocaleLowerCase();
     if(socialAccount === 'facebook'){
         await db.user.update({
