@@ -1,24 +1,39 @@
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks';
 
-export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
+export default function EmptyProfile({setshowSocialLinks, loaderData,mode,setmode}:any) {
   const [showCreateProfile, setshowCreateProfile] = useState(false);
+
 
   const toggleSetting = () => {
     setshowCreateProfile(!showCreateProfile);
+    
   };
-
+const Onclose = () => {
+   
+    if(mode === 'desktop'){
+   setshowCreateProfile(false)
+    }
+    if(mode === 'mobile'){
+     
+    }
+ 
+  }
+  const OnCancel = ()=>{
+   setshowSocialLinks(false)
+  setmode('desktop')
+}
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setshowSocialLinks}>
+      <Dialog as="div" className="relative z-20" onClose={Onclose}>
         <div className="fixed inset-0" />
 
-        <div className="fixed inset-0 overflow-hidden">
+        <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -37,10 +52,10 @@ export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setshowSocialLinks(false)}
+                            onClick={OnCancel}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon onClick={() => setshowSocialLinks(false)} className="h-6 w-6" aria-hidden="true" />
+                            <XIcon className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -54,7 +69,7 @@ export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
                       <p className='text-xs leading-4 font-semibold tracking-wide'>
                         NO LINKS ADDED YET 
                       </p>
-                      <p className='text-sm leading-5 font-normal text-gray-500 px-12 lg:px-0'>
+                      <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below
                       </p>
                       <button
@@ -65,7 +80,7 @@ export default function EmptyProfile({setshowSocialLinks, loaderData}:any) {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} />
+                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} />
                       )}
                     </div>
                         <div className='mt-12'>

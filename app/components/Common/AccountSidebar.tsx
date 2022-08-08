@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Popover,Dialog, Transition } from '@headlessui/react';
+import {Dialog, Transition } from '@headlessui/react';
 import {
   MenuIcon,
   XIcon,
@@ -8,7 +8,9 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
-import SocialProfile from '../SocialProfile/SocialProfile';
+import EmptyProfile from '../SocialProfile/EmptyProfile';
+import UploadImages from '../UploadImages/UploadImages';
+
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template' },
@@ -28,13 +30,18 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput }: any) {
+export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showBio, setshowBio] = useState(false);
+ const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
+
   const [showSocialLinks, setshowSocialLinks] = useState(false);
+
+
   const Location = useLocation();
+
   return (
+    
     <>
       <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -113,16 +120,33 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
+                          setshowTemplate(false)
+                          setshowSocialLinks(false)
+setshowImages(false);
 
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
+                          setshowBio(false);
+                          setshowSocialLinks(false)
+setshowImages(false);
 
                         }
                         if(item.name === 'Social Links'){
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
+                                                    setshowTemplate(false)
+                          setshowBio(false);
+setshowImages(false);
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                           setshowSocialLinks(false);
+                          
+                                                    setshowTemplate(false)
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
@@ -151,17 +175,21 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                 </nav>
                 <div className='z-0'>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showSocialLinks?
-                <SocialProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData}/>:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
+                {showImages?
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                null
+              }
                 </div>
 
               </div>
@@ -211,7 +239,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
           
           {/* static desktop  */}
         
-        <div className="hidden lg:flex lg:w-96 md:flex-col md:fixed md:inset-y-0 mt-12 font-inter">
+        <div className={`hidden lg:flex ${mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'}  md:flex-col md:fixed md:inset-y-0 mt-12 font-inter`}>
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex pt-3 pb-2 px-6">
@@ -244,17 +272,33 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
-
+                          setshowTemplate(false)
+                          setshowSocialLinks(false)
+setshowImages(false);
 
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
                           setSidebarOpen(false);
+                          setshowBio(false);
+                          setshowSocialLinks(false)
+setshowImages(false);
 
                         }
                         if(item.name === 'Social Links'){
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
+                                                    setshowTemplate(false)
+                          setshowBio(false);
+setshowImages(false);
+                        }
+                        if (item.name === 'Images') {
+                          setshowImages(true);
+                          setSidebarOpen(false);
+                           setshowSocialLinks(false);
+                          
+                                                    setshowTemplate(false)
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
@@ -282,17 +326,21 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput }:
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} /> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
                   null
                 }
                 {showSocialLinks?
-                <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData}/>:
+                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
+                {showImages?
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                null
+              }
 
               </div>
 

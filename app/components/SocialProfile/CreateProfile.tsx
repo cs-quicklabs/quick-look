@@ -4,16 +4,25 @@ import { XIcon } from '@heroicons/react/outline'
 import SelectSocialProfile from '../Common/SelectSocialProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks}:any) {
-  
+export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode}:any) {
+  const Onclose = () => {
+   
+    if(mode === 'desktop'){
+   setshowCreateProfile(false)
+    }
+    if(mode === 'mobile'){
+     
+    }
+ 
+  }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setshowCreateProfile}>
+      <Dialog as="div" className="relative z-20" onClose={Onclose}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
