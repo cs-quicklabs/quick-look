@@ -4,16 +4,26 @@ import { XIcon } from '@heroicons/react/outline'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 import SelectEditProfile from '../Common/SelectEditProfile'
 
-export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, editLink}:any) {
+export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, editLink,mode}:any) {
   
+   const Onclose = () => {
+   
+    if(mode === 'desktop'){
+   setShowEditProfile(false)
+    }
+    if(mode === 'mobile'){
+   
+    }
+ 
+  }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setShowEditProfile}>
+      <Dialog as="div" className="relative z-20" onClose={Onclose}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96 mt-12">
+           <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -25,7 +35,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form method="post">
-                  <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
+                  <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' :'w-full md:max-w-xs lg:max-w-md'}`}>
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
@@ -43,8 +53,8 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         </div>
                       </div>
 
-                      <div className="pt-1 pr-2">
-                        <p className="text-sm leading-5 font-normal text-gray-500">
+                      <div className={`pt-1 pr-2 `}>
+                        <p className={`text-sm leading-5 font-normal text-gray-500 `}>
                         Select social profile links which you want to share on your profile
                         </p>
                       </div>
@@ -53,7 +63,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                       <p className='text-xs leading-4 font-semibold tracking-wide'>
                         ADD MORE PROFILE LINKS
                       </p>
-                      <p className='text-sm leading-5 font-normal text-gray-500 px-12 lg:px-0'>
+                      <p className={`text-sm leading-5 font-normal text-gray-500  ${mode==='mobile' ?"px-[1rem] xl:px-0" : 'px-12 lg:px-0'}`}>
                         Please add social links by clicking on button below
                       </p>
                       <button

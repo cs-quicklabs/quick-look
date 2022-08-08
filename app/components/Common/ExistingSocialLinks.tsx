@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditSocialProfile from "../SocialProfile/EditSocialProfile";
 import DeleteSocialProfile from "./DeleteSocialProfile";
 
-export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:any) {
+export default function ExistingSocialLinks({ loaderData, setshowSocialLinks,mode}:any) {
   
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
@@ -30,8 +30,11 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:an
 ]
 
 
-const toggleEdit = () => {
-  setShowEditProfile(!showEditProfile);
+const toggleEdit = (e:any) => {
+  e.preventDefault();
+  setShowEditProfile(!showEditProfile ? true : false);
+
+
 };
   return (
     <div className="pl-3 pr-3.5">
@@ -40,7 +43,7 @@ const toggleEdit = () => {
         
         <li key={person.email} className="">
           {person.email ?
-          <div className="flex justify-between flex-col lg:flex-row border-b border-gray-200">
+          <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row ' : 'flex-col lg:flex-row'}`}>
             <div className="py-4 flex">
               <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
               <div className="ml-3">
@@ -49,18 +52,18 @@ const toggleEdit = () => {
               </div>
             </div>
           
-            <div className="flex flex-row ml-[3.2rem] lg:ml-0 lg:flex-col items-start py-0 lg:py-4 mb-2 lg:mb-0 text-gray-400">
+            <div className={`flex    items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'ml-[3.2rem] xl:ml-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
               <button
-              onClick={() => toggleEdit()}
+              onClick={toggleEdit}
               >
                 Edit
               </button>
               {showEditProfile && (
-                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} editLink={person} />
+                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} editLink={person} mode={mode}/>
               )}
                 <button 
                 onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
-                className="ml-3 lg:ml-0">
+                className={`  ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                   Delete
                 </button>
                 <DeleteSocialProfile open={open} onClose={() => setopen(false)} />
