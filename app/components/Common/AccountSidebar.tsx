@@ -8,8 +8,8 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
-import EmptyProfile from '../SocialProfile/EmptyProfile';
 import UploadImages from '../UploadImages/UploadImages';
+import SocialProfile from '../SocialProfile/SocialProfile';
 
 
 const navigationFirst = [
@@ -183,7 +183,7 @@ setshowImages(false);
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
+                <SocialProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
                 {showImages?
@@ -334,7 +334,7 @@ setshowImages(false);
                   null
                 }
                 {showSocialLinks?
-                <EmptyProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
+                <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
                   null
                 }
                 {showImages?
