@@ -1,16 +1,12 @@
 import { useState } from "react";
 import EditSocialProfile from "../SocialProfile/EditSocialProfile";
+import DeleteSocialProfile from "./DeleteSocialProfile";
 
 export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:any) {
   
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const [open, setopen] = useState(false);
 
-
-
-
-  const toggleEdit = () => {
-    setShowEditProfile(!showEditProfile);
-  };
   
   const people = [
   {
@@ -32,6 +28,11 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:an
       'https://s3-alpha-sig.figma.com/img/52f4/cbf3/13e211511dc02494e8b8b67813879334?Expires=1659916800&Signature=LxM~cp-du4l60GFrOAAhtd2z9k1jc~UGZSPC3n0wOAeqnH7OPuZZjpbm-CKGYfkmNFfkkPpO2UPA39vN7MbrvcNFC5n~edmhIUgjzNYMntG1TfZNHNOnHLmxZ4hlfCCr3I9-RbgL~DnVFj92QB23i5UzPDqvNTQVYfTUHXMIdpTIIaZenrQqSfbT9wljOgBWYHYmg693GbN7Nmx7m0D21QvGjuc8TaXsDgngsjbCBE7yyjEiq-8UBFLGhnavDLCrEqV9lYghyK2Z~ljW6O7Xlkhvc1i3i3KR5Xqd0D2UE-xA9F7QfESCQ2sdJIgK96oDfvXOwaA~aVdOUJNmBdM5ew__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
 ]
+
+
+const toggleEdit = () => {
+  setShowEditProfile(!showEditProfile);
+};
   return (
     <div className="pl-3 pr-3.5">
       <ul role="list" className="">
@@ -55,11 +56,14 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:an
                 Edit
               </button>
               {showEditProfile && (
-                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} />
+                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} editLink={person} />
               )}
-              <button className="ml-3 lg:ml-0">
-                Delete
-              </button>
+                <button 
+                onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
+                className="ml-3 lg:ml-0">
+                  Delete
+                </button>
+                <DeleteSocialProfile open={open} onClose={() => setopen(false)} />
             </div>
           </div>
           : <span></span>}

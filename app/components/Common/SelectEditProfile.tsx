@@ -2,19 +2,21 @@ import { useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 
-const socialLinks = [
-  { id: 1, name: 'Facebook' },
-  { id: 2, name: 'Twitter' },
-  { id: 3, name: 'Youtube' },
-]
+
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function SelectEditProfile({loaderData}: any) {
+export default function SelectEditProfile({loaderData, editLink}: any) {
+  const socialLinks = [
+    { id: 1, name: 'Facebook' },
+    { id: 2, name: 'Twitter' },
+    { id: 3, name: 'Youtube' },
+  ]
+
   const [query, setQuery] = useState('')
-  const [selectedSocialLinks, setSelectedSocialLinks] = useState()
+  const [selectedSocialLinks, setSelectedSocialLinks] = useState(editLink?.name === "Facebook" ? socialLinks[0] : editLink?.name === "Twitter" ? socialLinks[1] : editLink?.name === "Youtube" ? socialLinks[2] : "" )
   console.log("selectedSocialLinks", selectedSocialLinks);
   console.log("loaderdata", loaderData);
 
@@ -25,8 +27,10 @@ export default function SelectEditProfile({loaderData}: any) {
           return links.name.toLowerCase().includes(query.toLowerCase())
         })
 
+
   return (
     <Combobox as="div" value={selectedSocialLinks} onChange={setSelectedSocialLinks}>
+      <form action="" method="post">
       <Combobox.Label className="block text-sm font-medium text-gray-700">
         Edit Social Profile
       </Combobox.Label>
@@ -34,6 +38,8 @@ export default function SelectEditProfile({loaderData}: any) {
         <Combobox.Input
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
+          // value={(links:string) => links?.name}
+          name="edit_social_links"
           displayValue={(links:any) => links?.name}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
@@ -74,6 +80,8 @@ export default function SelectEditProfile({loaderData}: any) {
           </Combobox.Options>
         )}
       </div>
+      </form>
+      
     </Combobox>
   )
 }

@@ -1,10 +1,10 @@
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 import SelectEditProfile from '../Common/SelectEditProfile'
 
-export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks}:any) {
+export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, editLink}:any) {
   
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -24,6 +24,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                  <form method="post">
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -70,7 +71,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
 
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
-                        <SelectEditProfile loaderData={loaderData} />
+                        <SelectEditProfile loaderData={loaderData} editLink={editLink} />
                       </div>
                       <div className='mt-5'>
                         <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -80,9 +81,9 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         <div className="mt-1">
                           <input
                             type="text"
-                            value="addlink"
-                            name="location"
-                            id="project-name"
+                            placeholder="editlink"
+                            name="editlink"
+                            id="editlink"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
                           />
                         </div>
@@ -112,6 +113,8 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
 
 
                   </div>
+                  </form>
+                  
                 </Dialog.Panel>
               </Transition.Child>
             </div>
