@@ -1,7 +1,6 @@
 import { Fragment, useCallback, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import SelectSocialProfile from '../Common/SelectSocialProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 import SelectEditProfile from '../Common/SelectEditProfile'
 
@@ -34,7 +33,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
                             onClick={() => setShowEditProfile(false)}
                           >
                             <span className="sr-only">Close panel</span>
@@ -81,6 +80,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         <div className="mt-1">
                           <input
                             type="text"
+                            value="addlink"
                             name="location"
                             id="project-name"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
