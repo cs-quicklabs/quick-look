@@ -96,22 +96,20 @@ export const validateComfirmPassword = async (
 }
 
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
-  let onlyAlphabetsRegex = /^[a-zA-Z]+$/
-  let whiteSpaceRegex = /^\S*$/
+  let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z]+)*$/
+  // let whiteSpaceRegex = /\s/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
-  let notContainsWhitespace = name.match(whiteSpaceRegex)
+  // let notContainsWhitespace = name.match(whiteSpaceRegex)
 
   if (!name) {
     return 'First Name is required.'
-  } else if (!notContainsWhitespace) {
-    return 'Whitespaces are not allowed.'
-  } else if (!isNaN(name)) {
+  }  else if (!isNaN(name)) {
     return `First Name must be in Alphabets.`
   } else if (name.length < 3) {
     return `First Name must be at least 3 characters long.`
-  } else if (name.length > 12) {
-    return `First Name must be less than 12 characters.`
+  } else if (name.length > 18) {
+    return `First Name must be less than 18 characters.`
   } else if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
   }

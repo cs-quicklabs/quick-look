@@ -31,9 +31,11 @@ export default function Template2({ input, loaderData }: any) {
               </button>
           </div> */}
         <div className='text-base mt-3 leading-6'>
-          <p className='pt-2 text-gray-500'>
-            {input.description}
-          </p>
+          <pre className="text-gray-500 pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
+         
+              {input.description.trim()}
+            </pre>
+         
         </div>
         <div className='flex flex-col mt-4 text-sm'>
           <div className='flex'>
