@@ -213,7 +213,7 @@ export async function addSocialLink(socialProfile: string, link: string, user?: 
     }
 }
 
-export async function deleteSocialLink(socialProfile: string, link: string, user?: User){
+export async function deleteSocialLink(socialProfile: string, user?: User){
     const socialAccount = socialProfile.toLocaleLowerCase();
     if(socialAccount === 'facebook'){
         await db.user.update({
@@ -221,7 +221,7 @@ export async function deleteSocialLink(socialProfile: string, link: string, user
                 id : user?.id
             },
             data: {
-                facebookLink: link
+                facebookLink: ''
             }
         })
     } else if(socialAccount === 'twitter'){
@@ -230,7 +230,7 @@ export async function deleteSocialLink(socialProfile: string, link: string, user
                 id : user?.id
             },
             data: {
-                twitterLink: link
+                twitterLink: ''
             }
         })  
     } else if(socialAccount === 'youtube'){
@@ -239,7 +239,7 @@ export async function deleteSocialLink(socialProfile: string, link: string, user
                 id : user?.id
             },
             data: {
-                youtubeLink: link
+                youtubeLink: ''
             }
         })  
     }
