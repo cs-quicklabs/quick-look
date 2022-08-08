@@ -17,7 +17,7 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:an
   },
   {
     name: 'Twitter',
-    email: loaderData?.twitterLink,
+    email: 'loaderData?.twitterLink',
     image:
       'https://s3-alpha-sig.figma.com/img/4632/8a79/365acf1c08e1b6f6f590603f01e05730?Expires=1659916800&Signature=C96HZjC8nMUVFeF2XO1wqmm9E1VHN3F-oKDBo-GdQAd5LF9F6o4rbWzBbGr6KFqH6FzIXq-BD~WeODB65kcxrt-rEMFWx-PjkfgRERlIKnMSmfTTW7S8u8DmbGRxU9W4~c~6kxw4VhQqRBHAWaE-fT0w5741ZYkZPa1QUZdIGmJg~p9hBIZns34CxDU0ugw2WjA0NP1ab9CRaNbIbu2rpqQqOrOTyJooekOdKGc~8Sy-zTSz3nP~-U6UeHprWEWpLEE3fm33eUZPIaifROBVSrxPqa1IffAdmxU7qJgVVX8OrL8rrAINe4iI5urVW1XffrFwIuvZKCwFiKA4k93Qmg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
