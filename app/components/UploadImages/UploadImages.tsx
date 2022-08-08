@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from 'react';
+import { createRef, Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
@@ -9,9 +9,15 @@ export default function NoImages({setshowImages,mode,setmode}:any) {
   const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(true);
   const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(true);
   const [open, setopen] = useState(false);
+  const [image, setimage] = useState(null);
 
  
-   const Onclose = (e:any) => {
+  const handleChange = (e:any) => {
+    console.log("image", e.target.files);
+    setimage(e.target.files[0])
+  }
+  
+  const Onclose = (e:any) => {
     
     if(mode === 'desktop'){
     setshowImages(false)
@@ -42,25 +48,27 @@ const OnCancel = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form  action="account/update/bio" method='POST' className='h-screen'>
+                  <form method='POST' className='h-screen'>
 
                     <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'} `}>
                       <div className="">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> Update Profile Pictures </Dialog.Title>
+                            <Dialog.Title className="text-lg font-medium text-gray-900 leading-7">    Update Profile Pictures 
+                            </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <form action="">
-                              <button
-                                type="button"
-                                className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                                onClick={OnCancel}
-                              >
-                                <span className="sr-only">Close panel</span>
-                                <button>
-                                  <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                                <button
+                                  type="button"
+                                  className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm "
+                                  onClick={OnCancel}
+                                >
+                                  <span className="sr-only">Close panel</span>
+                                  <button>
+                                    <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                                  </button>
                                 </button>
-                              </button></form>
+                              </form>
                             </div>
                           </div>
                           <div className="mt-1">
@@ -86,9 +94,19 @@ const OnCancel = ()=>{
                             </div>
 
                             <div className='flex justify-center items-center mt-3'>
-                              <button className='text-sm leading-5 font-normal text-gray-400 hover:text-gray-600' onClick={(e:any)=>{e.preventDefault()}}>
+                              <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
                                 Edit
-                              </button>
+                              <input
+                                type="file"
+                                // value="primary-photo"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
 
                               <button
                                 onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
@@ -111,17 +129,30 @@ const OnCancel = ()=>{
                             </p>
                             <div className="flex text-sm">
                               <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                <input 
+                                // value="primary-file-upload"
+                                id="file-upload" 
+                                name="file-upload" 
+                                type="file" 
+                                className="sr-only" />
                               </label>
                               <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
                             </div>
 
                             <div className='flex flex-col md:mx-12 lg:mx-20'>
-                              <span
-                                className="cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                              >
-                                Upload Image
-                              </span>
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+                              Upload Image
+                              <input
+                                type="file"
+                                // value="primary-photo-upload"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
                               <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                 Restore Default Image
                               </span>
@@ -147,9 +178,19 @@ const OnCancel = ()=>{
                           </div>
 
                           <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                            <button className='text-sm leading-5 font-normal text-gray-400 hover:text-gray-600' onClick={(e:any)=>{e.preventDefault();}}>
-                              Edit
-                            </button>
+                            <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-gray-600'>
+                                Edit
+                              <input
+                                type="file"
+                                // value="secondary-photo"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
 
                             <button
                               onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
@@ -169,18 +210,31 @@ const OnCancel = ()=>{
                             </p>
                             <div className="flex text-sm">
                               <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                <input 
+                                // value="secondary-file-upload"
+                                id="file-upload" 
+                                name="file-upload" 
+                                type="file" 
+                                className="sr-only" />
                               </label>
                               <p className="text-gray-500 text-sm leading-5 font-normal">Drag and Drop an Image or click on button to upload</p>
                             </div>
 
                             <div className='flex flex-col md:mx-12 lg:mx-20 '>
-                              <span
-                                onClick={() => {}}
-                                className="cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                              >
-                                Upload Image
-                              </span>
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+                              Upload Image
+                              <input
+                                type="file"
+                                // value="secondary-photo-upload"
+                                className="hidden"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                onChange={handleChange}                               
+                                />
+
+                              </label>
+
                               <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                 Restore Default Image
                               </span>
@@ -192,10 +246,7 @@ const OnCancel = ()=>{
                       </div>
                   
                   }
-
                     <DeleteImage open={open} onClose={() => setopen(false)} />    
-                      
-                     
 
                     </div>
 
