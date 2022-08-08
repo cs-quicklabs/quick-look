@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import SelectSocialProfile from '../Common/SelectSocialProfile'
@@ -24,10 +24,6 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
   const [query, setQuery] = useState('')
  
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
-console.log(mode);
-
-
-
 
   const Onclose = () => {
    
