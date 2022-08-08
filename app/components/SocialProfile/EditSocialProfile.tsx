@@ -1,10 +1,35 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import ExistingSocialLinks from '../Common/ExistingSocialLinks'
-import SelectEditProfile from '../Common/SelectEditProfile'
+import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { Combobox } from '@headlessui/react'
+import SelectedSocialLinks from '../Common/SelectedSocialLinks'
 
-export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, editLink}:any) {
+function classNames(...classes: (string | boolean)[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
+  var socialLinks = [
+  { id: 1, name: 'Facebook' },
+  { id: 2, name: 'Twitter' },
+  { id: 3, name: 'Youtube' },
+]
+
+export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, clickedLink}:any) {
+  const [query, setQuery] = useState('')
+  const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
+    link.name === clickedLink.name  
+    )[0]
+  )
+
+  // console.log("selectedEditSocialLinks",selectedEditSocialLinks);
+
+  const filteredSelectedSocialLink =
+    query === ''
+      ? socialLinks
+      : socialLinks.filter((links) => {
+          return links.name.toLowerCase().includes(query.toLowerCase())
+        })
   
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -66,12 +91,64 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                     </div>
 
                     <div className='mt-10'>
-                      <ExistingSocialLinks setshowSocialLinks={setshowSocialLinks} />
+                      <SelectedSocialLinks setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} />
                     </div>
 
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
-                        <SelectEditProfile loaderData={loaderData} editLink={editLink} />
+                        <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
+                          <form action="" method="post">
+                          <Combobox.Label className="block text-sm font-medium text-gray-700">
+                            Edit Social Profile
+                          </Combobox.Label>
+                          <div className="relative mt-1">
+                            <Combobox.Input
+                              className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                              onChange={(event) => setQuery(event.target.value)}
+                              // value={(links:string) => links?.name}
+                              name="edit_social_links"
+                              displayValue={(links:any) => links?.name}
+                            />
+                            <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                              <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                            </Combobox.Button>
+
+                            {filteredSelectedSocialLink.length > 0 && (
+                              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                {filteredSelectedSocialLink.map((links) => (
+                                  <Combobox.Option
+                                    key={links.id}
+                                    value={links}
+                                    className={({ active }) =>
+                                      classNames(
+                                        'relative cursor-default select-none py-2 pl-3 pr-9',
+                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900'
+                                      )
+                                    }
+                                  >
+                                    {({ active, selected }) => (
+                                      <>
+                                        <span className={classNames('block truncate', selected && 'font-semibold')}>{links.name}</span>
+
+                                        {selected && (
+                                          <span
+                                            className={classNames(
+                                              'absolute inset-y-0 right-0 flex items-center pr-4',
+                                              active ? 'text-white' : 'text-indigo-600'
+                                            )}
+                                          >
+                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                          </span>
+                                        )}
+                                      </>
+                                    )}
+                                  </Combobox.Option>
+                                ))}
+                              </Combobox.Options>
+                            )}
+                          </div>
+                          </form>
+                        </Combobox>
                       </div>
                       <div className='mt-5'>
                         <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -81,7 +158,7 @@ export default function EditSocialProfile({loaderData, setShowEditProfile, setsh
                         <div className="mt-1">
                           <input
                             type="text"
-                            placeholder="editlink"
+                            placeholder={clickedLink.email}
                             name="editlink"
                             id="editlink"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"

@@ -2,16 +2,16 @@ import { useState } from "react";
 import EditSocialProfile from "../SocialProfile/EditSocialProfile";
 import DeleteSocialProfile from "./DeleteSocialProfile";
 
-export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:any) {
+export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, selectedSocialLinks}:any) {
   
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
+  const [clickedLink, setClickedLink]= useState<{ name: string; email: string; image: string; } | null>(null);
 
-  
   const people = [
   {
     name: 'Facebook',
-    email: loaderData?.facebookLink,
+    email: "loaderData?.facebookLink",
     image:
       'https://s3-alpha-sig.figma.com/img/74b9/cfa7/478547b3261209138fbff9b36d4a5c9e?Expires=1659916800&Signature=FI7Shs4EXNcW303HInrQkdnt6o7TLBhq9i0xdXkLuMQWYeTJrqNPCJFBv3y~uR87fXFyDDYDmhWTXexavMmeSv9K0SuN85Tdxcc08NFClsN91M~aZxl8O9kkId3m6d10N7qtCaYmYHHDcHitP0nymp2q7nndm1Y4WzQHvyboiXTGJlI8t4PRzggHF6e03uy~w5om7deYW59GPlO-DVhbRd7eFOFe1mHafRaerMvyZC4rF~0P~3p5zpdzQOZPljlSALg5C44P6NAndycsv9kD65OayT5OYQl4ISSs-gmIfjaFv5noUZ0Klil3x7iQ35p87or~PE5shcja04rfIfWSoQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
@@ -23,15 +23,19 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks}:an
   },
   {
     name: 'Youtube',
-    email: loaderData?.youtubeLink,
+    email: 'loaderData?.youtubeLink',
     image:
       'https://s3-alpha-sig.figma.com/img/52f4/cbf3/13e211511dc02494e8b8b67813879334?Expires=1659916800&Signature=LxM~cp-du4l60GFrOAAhtd2z9k1jc~UGZSPC3n0wOAeqnH7OPuZZjpbm-CKGYfkmNFfkkPpO2UPA39vN7MbrvcNFC5n~edmhIUgjzNYMntG1TfZNHNOnHLmxZ4hlfCCr3I9-RbgL~DnVFj92QB23i5UzPDqvNTQVYfTUHXMIdpTIIaZenrQqSfbT9wljOgBWYHYmg693GbN7Nmx7m0D21QvGjuc8TaXsDgngsjbCBE7yyjEiq-8UBFLGhnavDLCrEqV9lYghyK2Z~ljW6O7Xlkhvc1i3i3KR5Xqd0D2UE-xA9F7QfESCQ2sdJIgK96oDfvXOwaA~aVdOUJNmBdM5ew__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
   },
 ]
 
 
-const toggleEdit = () => {
+const toggleEdit = (person: { name: string; email: string; image: string; }) => {
   setShowEditProfile(!showEditProfile);
+  // people.filter((selectedPeople) =>
+  //   selectedPeople.name === person.name
+  // )
+  setClickedLink(person)
 };
   return (
     <div className="pl-3 pr-3.5">
@@ -51,12 +55,12 @@ const toggleEdit = () => {
           
             <div className="flex flex-row ml-[3.2rem] lg:ml-0 lg:flex-col items-start py-0 lg:py-4 mb-2 lg:mb-0 text-gray-400">
               <button
-              onClick={() => toggleEdit()}
+              onClick={() => toggleEdit(person)}
               >
                 Edit
               </button>
               {showEditProfile && (
-                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} editLink={person} />
+                <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} />
               )}
                 <button 
                 onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
