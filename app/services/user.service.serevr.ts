@@ -6,6 +6,7 @@ import { json } from "stream/consumers";
 import { UpdateProfileDetails } from "~/types/updateProfile.server";
 import { UserPreferences } from "~/types/updateUserPreferences.server";
 import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
+import { User } from "@prisma/client";
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -178,4 +179,68 @@ export async function updateUserTemplate(templateId: string, user: any){
             templateNumber: templateId
         }
     })
+}
+
+export async function addUpdateSocialLink(socialProfile: string, link: string, user?: User){
+    const socialAccount = socialProfile.toLocaleLowerCase();
+    if(socialAccount === 'facebook'){
+        await db.user.update({
+            where:{
+                id : user?.id
+            },
+            data: {
+                facebookLink: link
+            }
+        })
+    } else if(socialAccount === 'twitter'){
+        await db.user.update({
+            where:{
+                id : user?.id
+            },
+            data: {
+                twitterLink: link
+            }
+        })  
+    } else if(socialAccount === 'youtube'){
+        await db.user.update({
+            where:{
+                id : user?.id
+            },
+            data: {
+                youtubeLink: link
+            }
+        })  
+    }
+}
+
+export async function deleteSocialLink(socialProfile: string, user?: User){
+    const socialAccount = socialProfile.toLocaleLowerCase();
+    if(socialAccount === 'facebook'){
+        await db.user.update({
+            where:{
+                id : user?.id
+            },
+            data: {
+                facebookLink: ''
+            }
+        })
+    } else if(socialAccount === 'twitter'){
+        await db.user.update({
+            where:{
+                id : user?.id
+            },
+            data: {
+                twitterLink: ''
+            }
+        })  
+    } else if(socialAccount === 'youtube'){
+        await db.user.update({
+            where:{
+                id : user?.id
+            },
+            data: {
+                youtubeLink: ''
+            }
+        })  
+    }
 }

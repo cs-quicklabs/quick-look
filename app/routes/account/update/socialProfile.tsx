@@ -4,16 +4,19 @@ import { commitSession, getSession } from "~/services/session.service.server";
 import { addUpdateSocialLink, updateUserBioDetails } from "~/services/user.service.serevr";
 
 export const action: ActionFunction = async ({ request }) => {
+    const user = await getUser(request) || undefined
     const formData = await request.formData()
-    const selectedSocial = formData.get('select_social') as string
-    const selectedSocialLink = formData.get('addlink') as string
-
+    
     const session = await getSession(
         request.headers.get("Cookie")
       );
+    const link = formData.get('editlink') as string
+    const fbProfile = formData.get('facebook') as string
+    const ytProfile = formData.get('youtube') as string
+    const twitterProfile = formData.get('twitter') as string
 
-    const user = await getUser(request) || undefined
-    await addUpdateSocialLink(selectedSocial, selectedSocialLink, user)
+    const socialProfile = fbProfile ?? ytProfile ?? twitterProfile
+    await addUpdateSocialLink(socialProfile, link, user)
     session.flash(
         "updateProfileMessage",
         `Your profile has been updated successfully.`
@@ -23,4 +26,6 @@ export const action: ActionFunction = async ({ request }) => {
         "Set-Cookie": await commitSession(session),
       },
     }) 
+    
+
 }   
