@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
-import EmptyProfile from '../SocialProfile/EmptyProfile';
 import UploadImages from '../UploadImages/UploadImages';
 import SocialProfile from '../SocialProfile/SocialProfile';
 
