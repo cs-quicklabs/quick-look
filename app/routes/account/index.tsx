@@ -41,6 +41,7 @@ setmode('mobile')
 setshowBio(true)
 
 }
+
   return (
     <div className='h-100vw '>
       <DashboardHeader username={ loaderData.username } />
