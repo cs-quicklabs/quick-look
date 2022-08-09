@@ -7,13 +7,18 @@ import { PrimaryFeatures } from '../components/PrimaryFeatures'
 import { SecondaryFeatures } from '../components/SecondaryFeatures'
 import { Testimonials } from '../components/Testimonials'
 import { Header } from '../components/Header'
-import { LoaderFunction } from '@remix-run/node'
+import { LoaderFunction, redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
 import { useLoaderData, useLocation } from '@remix-run/react'
 import HeaderSecondary from '~/components/Common/Header'
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await getUser(request)
+  if(user){
+    return redirect('/account')
+    
+  }
+  
   return user
 }
 

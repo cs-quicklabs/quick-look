@@ -17,7 +17,7 @@ function classNames(...classes: (string | boolean)[]) {
 
 
 export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, clickedLink,mode}:any) {
-
+const [val, setVal] = useState<string>(clickedLink?.email)
 const [query, setQuery] = useState('')
 const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
     link.name === clickedLink.name  
@@ -171,7 +171,9 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                         <div className="mt-1">
                           <input
                             type="text"
-                            placeholder={clickedLink.email}
+                            // placeholder={clickedLink.email}
+                            value={val}
+                            onChange={(e:any) => setVal(e.target.value)}
                             name="editlink"
                             id="editlink"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
