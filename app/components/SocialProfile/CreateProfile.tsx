@@ -17,7 +17,7 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 3, name: 'Youtube' },
 ]
    
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode}:any) {
+export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData}:any) {
 
 
   const [query, setQuery] = useState('')
@@ -62,7 +62,7 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action='/account/add/socialProfile' method="post">
+                  <form action='/account/add/socialProfile' method="post" className='h-screen'>
                     <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -91,7 +91,7 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                         <div>
                           {/* <SelectSocialProfile /> */}
                        <Combobox as="div" value={selectedSocialLinks} onChange={setSelectedSocialLinks}>
-                          <Combobox.Label className="block text-sm font-medium text-gray-700">Assigned to</Combobox.Label>
+                          <Combobox.Label className="block text-sm font-medium text-gray-700">Select Social Profile</Combobox.Label>
                           <div className="relative mt-1">
                             <Combobox.Input
                               className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
@@ -185,8 +185,8 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                         </button>
                       </div>
 
-                      <div>
-                        <ExistingSocialLinks setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode}/>
+                      <div className='mt-10'>
+                        <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
                       </div>
 
                     </div>

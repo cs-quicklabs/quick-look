@@ -11,8 +11,8 @@ export default function NoImages({ setshowImages, mode, setmode }: any) {
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
 
-  const handleChange = (e: any) => {
-    console.log("image", e.target.files);
+ 
+  const handleChange = (e:any) => {
     setimage(e.target.files[0])
   }
 
