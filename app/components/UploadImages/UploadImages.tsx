@@ -4,6 +4,8 @@ import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
+// import { type } from './../../types/updateUserPreferences.server';
+import { Form } from '@remix-run/react';
 
 export default function NoImages({setshowImages,mode,setmode}:any) {
   const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
@@ -11,7 +13,17 @@ export default function NoImages({setshowImages,mode,setmode}:any) {
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
 
+ console.log(image);
+
+//  const autosubimt = useEffect(() => {
+   
+//    image  && document?.getElementById("image_upload").click();
+//  }
+  
+//  }, [Image])
+
  
+
   const handleChange = (e:any) => {
     setimage(e.target.files[0])
   }
@@ -47,7 +59,7 @@ const OnCancel = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action="/account/add/profilePicture" method='POST' className='h-screen'>
+                  <Form action="/account/add/profilePicture"  encType="multipart/form-data" method='post' className='h-screen'>
                     <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
                       <div className="">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
@@ -137,19 +149,23 @@ const OnCancel = ()=>{
                             </div>
 
                             <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
-                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
-                              Upload Image
-                              <input
+                            {/* <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>  */}
+                              
+                              
+                              {/* <input
                                 type="file"
                                 // value="primary-photo-upload"
-                                className="hidden"
-                                id="photo"
+                                // className="hidden"
+                                // id="photo"
                                 name="photo"
                                 accept="image/*"
-                                onChange={handleChange}                               
+                                // onChange={handleChange}                               
                                 />
-
-                              </label>
+                               <button type='submit'>Upload Image
+</button> */}
+<input type="file" name="upload" />
+      <button type="submit">upload</button>
+                              {/* </label> */}
                               <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                 Restore Default Image
                               </span>
@@ -247,7 +263,7 @@ const OnCancel = ()=>{
 
                     </div>
 
-                  </form>
+                  </Form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
