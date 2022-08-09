@@ -66,8 +66,8 @@ const Onclose = () => {
                       </div>
                     </div>
                     <div className='font-inter mt-7 flex flex-col items-center'>
-                      <p className='text-xs leading-4 font-semibold tracking-wide'>
-                        NO LINKS ADDED YET 
+                    <p className='text-xs leading-4 font-semibold tracking-wide'>
+                        {loaderData?.facebookLink || loaderData?.twitterLink || loaderData?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
                       </p>
                       <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below
@@ -80,7 +80,7 @@ const Onclose = () => {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} />
+                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                       )}
                     </div>
                         <div className='mt-12'>
