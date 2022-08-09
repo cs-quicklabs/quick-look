@@ -6,6 +6,7 @@ import { json } from "stream/consumers";
 import { UpdateProfileDetails } from "~/types/updateProfile.server";
 import { UserPreferences } from "~/types/updateUserPreferences.server";
 import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
+import { User } from "@prisma/client";
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -73,16 +74,16 @@ export async function getUserById(id: string) {
 }
 
 export async function updateUsingOldPassword(user: any, newPassword: string) {
-    try{
+    try {
         await upateUserPassword(user.id, newPassword, user)
         return true
     }
-    catch(error){
+    catch (error) {
         throw 'Something unexpected happend.'
     }
 }
 
-export async function updateUserProfileDetails({firstname, lastname, profileId, user}: UpdateProfileDetails){
+export async function updateUserProfileDetails({ firstname, lastname, profileId, user }: UpdateProfileDetails) {
     await db.user.update({
         where: {
             id: user.id
@@ -96,7 +97,7 @@ export async function updateUserProfileDetails({firstname, lastname, profileId, 
     return true
 }
 
-export async function deleteUser(user?: any){
+export async function deleteUser(user?: any) {
     await db.user.delete({
         where: {
             id: user.id
@@ -104,8 +105,8 @@ export async function deleteUser(user?: any){
     })
 }
 
-export async function publishToggle(user?: any){
-    if(user.isPublished === true){
+export async function publishToggle(user?: any) {
+    if (user.isPublished === true) {
         await db.user.update({
             where: {
                 id: user.id
@@ -114,7 +115,7 @@ export async function publishToggle(user?: any){
                 isPublished: false
             }
         })
-    } else if (user.isPublished === false){
+    } else if (user.isPublished === false) {
         await db.user.update({
             where: {
                 id: user.id
@@ -127,18 +128,18 @@ export async function publishToggle(user?: any){
     return 'Account unpublished successfully.'
 }
 
-export async function updateUserPreferences({recieveMarketingUpdates, recieveProductUpdates, user}: UserPreferences){
-    let marketingFlag ;
-    let productFlag ;
-    if(user.recieveMarketingUpdates === false){
+export async function updateUserPreferences({ recieveMarketingUpdates, recieveProductUpdates, user }: UserPreferences) {
+    let marketingFlag;
+    let productFlag;
+    if (user.recieveMarketingUpdates === false) {
         marketingFlag = true
-    } else if(user.recieveMarketingUpdates === true){
+    } else if (user.recieveMarketingUpdates === true) {
         marketingFlag = false
     }
 
-    if(user.recieveProductUpdates === false){
+    if (user.recieveProductUpdates === false) {
         productFlag = true
-    } else if(user.recieveProductUpdates === true){
+    } else if (user.recieveProductUpdates === true) {
         marketingFlag = false
     }
 
@@ -153,7 +154,7 @@ export async function updateUserPreferences({recieveMarketingUpdates, recievePro
     })
 }
 
-export async function updateUserBioDetails({about, location, occupation, education, company, user}: UpdateUserBioDetails){
+export async function updateUserBioDetails({ about, location, occupation, education, company, user }: UpdateUserBioDetails) {
     await db.user.update({
         where: {
             id: user.id
@@ -169,13 +170,76 @@ export async function updateUserBioDetails({about, location, occupation, educati
     return true;
 }
 
-export async function updateUserTemplate(templateId: string, user: any){
+export async function updateUserTemplate(templateId: string, user: any) {
     await db.user.update({
         where: {
             id: user.id
         },
-        data:{
+        data: {
             templateNumber: templateId
         }
     })
+}
+
+export async function addUpdateSocialLink(socialProfile: string, link: string, user?: User) {
+    const socialAccount = socialProfile.toLocaleLowerCase();
+    if (socialAccount === 'facebook') {
+        await db.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                facebookLink: link
+            }
+        })
+    } else if (socialAccount === 'twitter') {
+        await db.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                twitterLink: link
+            }
+        })
+    } else if (socialAccount === 'youtube') {
+        await db.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                youtubeLink: link
+            }
+        })
+    }
+}
+
+export async function deleteSocialLink(socialProfile: string, user?: User) {
+    if (socialProfile === '1') {
+        await db.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                facebookLink: ''
+            }
+        })
+    } else if (socialProfile === '2') {
+        await db.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                twitterLink: ''
+            }
+        })
+    } else if (socialProfile === '3') {
+        await db.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                youtubeLink: ''
+            }
+        })
+    }
 }
