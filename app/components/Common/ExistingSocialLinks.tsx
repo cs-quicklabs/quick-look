@@ -54,7 +54,7 @@ const toggleDel = (person: { name: string; email: string; image: string; }) => {
           {person.email ?
           <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
             <div className="py-4 flex">
-              <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
+              <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-900">{person.name}</p>
                 <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{person.email}</p>
@@ -64,19 +64,17 @@ const toggleDel = (person: { name: string; email: string; image: string; }) => {
             <div className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
               <button
               className="hover:text-indigo-600"
-              onClick={() => toggleEdit(person)}
+              onClick={(e:any)=>{e.preventDefault(); toggleEdit(person)}}
               >
                 Edit
               </button>
               {showEditProfile && (
                 <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} mode={mode} />
 
-                // <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} editLink={person} mode={mode}/>
-
               )}
                 <button 
                 onClick={(e:any)=>{e.preventDefault(); setopen(true) ; toggleDel(person)}}
-                className={`hover:text-indigo-600 ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
+                className={`hover:text-red-600 ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                   Delete
                 </button>
                 <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink}/>

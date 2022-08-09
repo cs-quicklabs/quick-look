@@ -80,7 +80,7 @@ const Onclose = () => {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} />
+                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                       )}
                     </div>
                         <div className='mt-12'>

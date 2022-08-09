@@ -17,7 +17,7 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 3, name: 'Youtube' },
 ]
    
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode}:any) {
+export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData}:any) {
 
 
   const [query, setQuery] = useState('')
@@ -185,8 +185,8 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                         </button>
                       </div>
 
-                      <div>
-                        <ExistingSocialLinks setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode}/>
+                      <div className='mt-10'>
+                        <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
                       </div>
 
                     </div>

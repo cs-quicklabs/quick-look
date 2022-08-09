@@ -13,7 +13,6 @@ export default function NoImages({setshowImages,mode,setmode}:any) {
 
  
   const handleChange = (e:any) => {
-    console.log("image", e.target.files);
     setimage(e.target.files[0])
   }
   
