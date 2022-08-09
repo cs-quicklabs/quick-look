@@ -1,5 +1,5 @@
 import facebook from '../../../assets/images/fb1.png'
-import twitter from '../../../assets/images/twitter 1.png'
+import twitter from '../../../assets/images/twitter1.png'
 import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/bg.png'
 
