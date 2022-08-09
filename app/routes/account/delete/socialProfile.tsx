@@ -10,12 +10,13 @@ export const action: ActionFunction = async ({ request }) => {
     const session = await getSession(
         request.headers.get("Cookie")
       );
-    const fbProfile = formData.get('facebook') as string
-    const ytProfile = formData.get('youtube') as string
-    const twitterProfile = formData.get('twitter') as string
+    const fbProfile = formData.get('Facebook') as string
+    const ytProfile = formData.get('Youtube') as string
+    const twitterProfile = formData.get('Twitter') as string
 
     const socialProfile = fbProfile ?? ytProfile ?? twitterProfile
     await deleteSocialLink(socialProfile, user)
+    
     session.flash(
         "updateProfileMessage",
         `Your profile has been updated successfully.`
