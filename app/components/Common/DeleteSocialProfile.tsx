@@ -5,7 +5,8 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 export default function Delete({open,onClose, clickedLink}:any) {
 
   const cancelButtonRef = useRef(null)
-  console.log(clickedLink?.name)
+ console.log(typeof clickedLink?.name);
+ 
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={onClose}>
@@ -54,6 +55,7 @@ export default function Delete({open,onClose, clickedLink}:any) {
                       name={clickedLink?.name}
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
+
                     >
                       Delete 
                     </button>

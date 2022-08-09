@@ -60,7 +60,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form method="post">
+                  <form action="/account/update/socialProfile" method="post">
                   <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' :'w-full md:max-w-xs lg:max-w-md'}`}>
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -108,7 +108,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
                         <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
-                          <form action="/account/update/socialProfile" method="post">
+                          {/* <form action="/account/update/socialProfile" method="post"> */}
                           <Combobox.Label className="block text-sm font-medium text-gray-700">
                             Edit Social Profile
                           </Combobox.Label>
@@ -160,7 +160,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                               </Combobox.Options>
                             )} */}
                           </div>
-                          </form>
+                          {/* </form> */}
                         </Combobox>
                       </div>
                       <div className='mt-5'>
