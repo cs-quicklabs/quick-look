@@ -17,7 +17,7 @@ function classNames(...classes: (string | boolean)[]) {
 
 
 export default function EditSocialProfile({loaderData, setShowEditProfile, setshowSocialLinks, clickedLink,mode}:any) {
-
+const [val, setVal] = useState<string>(clickedLink?.email)
 const [query, setQuery] = useState('')
 const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
     link.name === clickedLink.name  
@@ -59,7 +59,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form method="post">
                   <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' :'w-full md:max-w-xs lg:max-w-md'}`}>
                     <div className="bg-gray-50 py-6 px-4">
@@ -108,7 +108,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
                         <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
-                          <form action="/account/update/socialProfile" method="post">
+                          {/* <form action="/account/update/socialProfile" method="post"> */}
                           <Combobox.Label className="block text-sm font-medium text-gray-700">
                             Edit Social Profile
                           </Combobox.Label>
@@ -160,7 +160,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                               </Combobox.Options>
                             )} */}
                           </div>
-                          </form>
+                          {/* </form> */}
                         </Combobox>
                       </div>
                       <div className='mt-5'>
@@ -171,7 +171,9 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                         <div className="mt-1">
                           <input
                             type="text"
-                            placeholder={clickedLink.email}
+                            // placeholder={clickedLink.email}
+                            value={val}
+                            onChange={(e:any) => setVal(e.target.value)}
                             name="editlink"
                             id="editlink"
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"

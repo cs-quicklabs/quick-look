@@ -37,6 +37,13 @@ const toggleEdit = (person: { name: string; email: string; image: string; }) => 
   // )
   setClickedLink(person)
 }
+const toggleDel = (person: { name: string; email: string; image: string; }) => {
+  
+  // people.filter((selectedPeople) =>
+  //   selectedPeople.name === person.name
+  // )
+  setClickedLink(person)
+}
 
   return (
     <div className="pl-3 pr-3.5">
@@ -68,11 +75,11 @@ const toggleEdit = (person: { name: string; email: string; image: string; }) => 
 
               )}
                 <button 
-                onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
-                className={` hover:text-indigo-600  ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
+                onClick={(e:any)=>{e.preventDefault(); setopen(true) ; toggleDel(person)}}
+                className={`  ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                   Delete
                 </button>
-                <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink} />
+                <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink}/>
             </div>
           </div>
           : <span></span>}
