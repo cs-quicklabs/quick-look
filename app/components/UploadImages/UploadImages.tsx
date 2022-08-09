@@ -59,7 +59,7 @@ const OnCancel = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <Form action="/account/add/profilePicture"  encType="multipart/form-data" method='post' className='h-screen'>
+                  <form action="/account/add/profilePicture"  encType="multipart/form-data" method='post' className='h-screen'>
                     <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
                       <div className="">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
@@ -163,7 +163,7 @@ const OnCancel = ()=>{
                                 />
                                <button type='submit'>Upload Image
 </button> */}
-<input type="file" name="upload" />
+<input type="file" name="photo" />
       <button type="submit">upload</button>
                               {/* </label> */}
                               <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
@@ -263,7 +263,7 @@ const OnCancel = ()=>{
 
                     </div>
 
-                  </Form>
+                  </form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

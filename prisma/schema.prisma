@@ -16,10 +16,10 @@ model User {
   password                String
   oldpassword             String
   isVerified              Boolean           @default(false)
-  isPublished             Boolean?           @default(false)
+  isPublished             Boolean?          @default(false)
   createdAt               DateTime          @default(now())
   updatedAt               DateTime          @updatedAt
-  recieveProductUpdates   Boolean?           @default(false)
+  recieveProductUpdates   Boolean?          @default(false)
   recieveMarketingUpdates Boolean?          @default(false)
   templateNumber          String?           @default("0")
   bio                     String?
@@ -30,6 +30,8 @@ model User {
   facebookLink            String?
   twitterLink             String?
   youtubeLink             String?
+  primaryImage            String?
+  SecondaryImage          String?
   userVerification        UserVerification?
   profile                 Profile?
 
