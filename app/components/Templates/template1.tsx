@@ -53,13 +53,13 @@ export default function Template1({ input, loaderData }: any) {
           </div>
           <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
             {loaderData?.facebookLink ?
-            <a href="http://www.facebook.com"><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
+            <a href={loaderData?.facebookLink} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.twitterLink ?
-            <a href="http://www.twitter.com">
+            <a href={loaderData?.twitterLink} target='_blank'>
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.youtubeLink ?
-            <a href="http://www.youtube.com">
+            <a href={loaderData?.youtubeLink} target='_blank'>
               <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}
