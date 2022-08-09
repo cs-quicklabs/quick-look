@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import SelectedSocialLinks from '../Common/SelectedSocialLinks'
 
@@ -35,12 +35,12 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
  
   }
 
-  const filteredSelectedSocialLink =
-    query === ''
-      ? socialLinks
-      : socialLinks.filter((links) => {
-          return links.name.toLowerCase().includes(query.toLowerCase())
-        })
+  // const filteredSelectedSocialLink =
+  //   query === ''
+  //     ? socialLinks
+  //     : socialLinks.filter((links) => {
+  //         return links.name.toLowerCase().includes(query.toLowerCase())
+  //       })
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -59,7 +59,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
                   <form method="post">
                   <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' :'w-full md:max-w-xs lg:max-w-md'}`}>
                     <div className="bg-gray-50 py-6 px-4">
@@ -107,7 +107,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
 
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
-                        <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
+                        <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks} disabled>
                           {/* <form action="/account/update/socialProfile" method="post"> */}
                           <Combobox.Label className="block text-sm font-medium text-gray-700">
                             Edit Social Profile
@@ -117,7 +117,6 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                               className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
                               onChange={() => {} }
                               value={clickedLink.name}
-                              disabled
                               name="edit_social_links"
                               displayValue={() => clickedLink?.name}
                             />
