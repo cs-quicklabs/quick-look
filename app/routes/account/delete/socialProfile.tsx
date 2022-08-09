@@ -13,10 +13,10 @@ export const action: ActionFunction = async ({ request }) => {
     const fbProfile = formData.get('Facebook') as string
     const ytProfile = formData.get('Youtube') as string
     const twitterProfile = formData.get('Twitter') as string
-console.log('fb',fbProfile,'yt',ytProfile,'twt',twitterProfile);
 
     const socialProfile = fbProfile ?? ytProfile ?? twitterProfile
     await deleteSocialLink(socialProfile, user)
+    
     session.flash(
         "updateProfileMessage",
         `Your profile has been updated successfully.`
