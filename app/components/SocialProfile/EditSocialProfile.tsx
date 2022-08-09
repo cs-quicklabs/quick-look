@@ -59,7 +59,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
                   <form method="post">
                   <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' :'w-full md:max-w-xs lg:max-w-md'}`}>
                     <div className="bg-gray-50 py-6 px-4">
@@ -102,7 +102,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                     </div>
 
                     <div className='mt-10'>
-                      <SelectedSocialLinks setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} />
+                      <SelectedSocialLinks setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} mode={mode} />
                     </div>
 
                     <div className='pl-3 pr-3.5 mt-6'>
