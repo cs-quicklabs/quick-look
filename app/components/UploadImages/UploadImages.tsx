@@ -170,7 +170,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                                   {/* <input type="file" name="photo" /> */}
                                   <button type="submit" ref={ref} className="hidden">upload</button>
                                 </label>
-                                <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => { ; e.preventDefault() }}>
+                                <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => e.preventDefault() }>
                                   Restore Default Image
                                 </button>
                               </div>
