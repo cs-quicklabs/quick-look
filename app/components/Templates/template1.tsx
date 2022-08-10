@@ -14,7 +14,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
             <img className={` w-screen object-cover ${loaderData.primaryimage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData.primaryimage} alt="" />
           </div>
           <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData.primaryimage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
-            <img className={`w-[7rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData.secondaryimage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={'http://localhost:3000/build/_assets/profile-HAI7W636.png'} alt="" />
+            <img className={`w-[7rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData.secondaryimage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.secondaryimage} alt="" />
             {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.secondaryimage}  */}
           </div>
         </div>
