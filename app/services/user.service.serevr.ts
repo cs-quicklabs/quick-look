@@ -243,3 +243,55 @@ export async function deleteSocialLink(socialProfile: string, user?: User) {
         })
     }
 }
+
+export async function addPrimaryImage(link: string, user: User){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            primaryImage: link,
+            isUsingPrimaryDefault: false
+        }
+    })
+    return true;
+} 
+
+export async function deletePrimaryImage(user: User){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            primaryImage: '',
+            isUsingPrimaryDefault: false
+        }
+    })
+    return true;
+} 
+
+export async function addSecondaryImage(link: string, user: User){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            SecondaryImage: link,
+            isUsingSecondaryDefault: false
+        }
+    })
+    return true;
+} 
+
+export async function deleteSecondaryImage(user: User){
+    await db.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            SecondaryImage: '',
+            isUsingSecondaryDefault: false
+        }
+    })
+    return true;
+} 
