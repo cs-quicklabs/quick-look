@@ -35,12 +35,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
  
   }
 
-  const filteredSelectedSocialLink =
-    query === ''
-      ? socialLinks
-      : socialLinks.filter((links) => {
-          return links.name.toLowerCase().includes(query.toLowerCase())
-        })
+  
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -93,7 +88,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                         Please add social links by clicking on button below
                       </p>
                       <button
-                        // onClick={() => toggleSetting()}
+                      
                         type="button"
                         className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                       >
@@ -108,7 +103,7 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                     <div className='pl-3 pr-3.5 mt-6'>
                       <div>
                         <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
-                          {/* <form action="/account/update/socialProfile" method="post"> */}
+                         
                           <Combobox.Label className="block text-sm font-medium text-gray-700 pointer-events-none">
                             Edit Social Profile
                           </Combobox.Label>
@@ -125,42 +120,8 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                               <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Combobox.Button>
 
-                            {/* {filteredSelectedSocialLink.length > 0 && (
-                              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {filteredSelectedSocialLink.map((links) => (
-                                  <Combobox.Option
-                                    key={links.id}
-                                    value={links}
-                                    disabled
-                                    className={({ active }) =>
-                                      classNames(
-                                        'relative cursor-default select-none py-2 pl-3 pr-9',
-                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900'
-                                      )
-                                    }
-                                  >
-                                    {({ active, selected }) => (
-                                      <>
-                                        <span className={classNames('block truncate', selected && 'font-semibold')}>{links.name}</span>
-
-                                        {selected && (
-                                          <span
-                                            className={classNames(
-                                              'absolute inset-y-0 right-0 flex items-center pr-4',
-                                              active ? 'text-white' : 'text-indigo-600'
-                                            )}
-                                          >
-                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                          </span>
-                                        )}
-                                      </>
-                                    )}
-                                  </Combobox.Option>
-                                ))}
-                              </Combobox.Options>
-                            )} */}
                           </div>
-                          {/* </form> */}
+                         
                         </Combobox>
                       </div>
                       <div className='mt-5'>
@@ -171,13 +132,19 @@ const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLin
                         <div className="mt-1">
                           <input
                             type="text"
-                            // placeholder={clickedLink.email}
+                            
                             value={val}
                             onChange={(e:any) => setVal(e.target.value)}
                             name="editlink"
                             id="editlink"
-                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
+                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500`}
+                  //           className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500 ${
+                  //   actionData?.errors['password'] ? 'border border-red-400' : ''
+                  // }`}
                           />
+                          {/* <div className={`text-red-600 text-sm`}>
+                {actionData?.errors['password']}
+              </div> */}
                         </div>
                       </div>
                     </div>
