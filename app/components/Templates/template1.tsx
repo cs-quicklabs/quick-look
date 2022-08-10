@@ -53,13 +53,13 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
           </div>
           <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
             {loaderData?.facebookLink ?
-            <a href={`https://www.facebook.com/${loaderData?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
+            <a href={`https://${loaderData?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.twitterLink ?
-            <a href={`https://www.twitter.com/${loaderData?.twitterLink}`} target='_blank'>
+            <a href={`https://${loaderData?.twitterLink}`} target='_blank'>
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.youtubeLink ?
-            <a href={`https://www.youtube.com/${loaderData?.youtubeLink}`} target='_blank'>
+            <a href={`https://${loaderData?.youtubeLink}`} target='_blank'>
               <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}

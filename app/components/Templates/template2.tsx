@@ -49,15 +49,15 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
         </div>
         <div className='flex gap-4 justify-left mt-6'>
            {loaderData?.facebookLink ?
-          <a href={`https://www.facebook.com/${loaderData?.facebookLink}`} target="_blank">
+          <a href={`https://${loaderData?.facebookLink}`} target="_blank">
             <img src={facebook} alt="" className="w-9 h-9"/>
           </a>: null}
           {loaderData?.twitterLink ?
-          <a href={`https://www.twitter.com/${loaderData?.twitterLink}`} target="_blank">
+          <a href={`https://${loaderData?.twitterLink}`} target="_blank">
           <img src={twitter} alt="" className="w-9 h-9"/>
           </a>: null}
            {loaderData?.youtubeLink ?
-          <a href={`https://www.youtube.com/${loaderData?.youtubeLink}`} target="_blank">
+          <a href={`https://${loaderData?.youtubeLink}`} target="_blank">
           <img src={youtube} alt="" className="w-9 h-9"/>
           </a>: null}
         </div>
