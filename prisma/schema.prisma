@@ -32,6 +32,8 @@ model User {
   youtubeLink             String?
   primaryImage            String?
   SecondaryImage          String?
+  isUsingPrimaryDefault   Boolean?          @default(true)
+  isUsingSecondaryDefault Boolean?          @default(true)
   userVerification        UserVerification?
   profile                 Profile?
 
