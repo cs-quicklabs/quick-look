@@ -5,11 +5,12 @@ import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({ setshowImages, mode, setmode }: any) {
+export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore }: any) {
   const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
   const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
+  const [image2, setimage2] = useState(null);
 
   console.log(image);
 
@@ -20,12 +21,18 @@ export default function NoImages({ setshowImages, mode, setmode }: any) {
       // @ts-ignore
       ref.current.click()
     }
-  }, [image]);
+    if (image2 !== null) {
+      // @ts-ignore
+      ref.current.click()
+    }
+  }, [image, image2]);
 
   const handleChange = (e: any) => {
     setimage(e.target.files[0])
   }
-
+  const handleChange2 = (e: any) => {
+    setimage2(e.target.files[0])
+  }
   const Onclose = (e: any) => {
 
     if (mode === 'desktop') {
@@ -163,9 +170,9 @@ export default function NoImages({ setshowImages, mode, setmode }: any) {
                                   {/* <input type="file" name="photo" /> */}
                                   <button type="submit" ref={ref} className="hidden">upload</button>
                                 </label>
-                                <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
+                                <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => { ; e.preventDefault() }}>
                                   Restore Default Image
-                                </span>
+                                </button>
                               </div>
 
                             </div>
@@ -197,7 +204,7 @@ export default function NoImages({ setshowImages, mode, setmode }: any) {
                                 id="photo"
                                 name="photo"
                                 accept="image/*"
-                                onChange={handleChange}
+                              // onChange={handleChange}                               
                               />
 
                             </label>
@@ -240,14 +247,14 @@ export default function NoImages({ setshowImages, mode, setmode }: any) {
                                     id="photo"
                                     name="photo"
                                     accept="image/*"
-                                    onChange={handleChange}
+                                    onChange={handleChange2}
                                   />
-
+                                  <button type="submit" ref={ref} className="hidden">upload</button>
                                 </label>
 
-                                <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
+                                <button name='secondaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => { e.preventDefault() }}>
                                   Restore Default Image
-                                </span>
+                                </button>
                               </div>
 
                             </div>

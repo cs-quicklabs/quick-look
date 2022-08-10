@@ -23,6 +23,9 @@ export default function Profile() {
   const loaderData = useLoaderData();
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
+const primaryRestore = loaderData.isUsingPrimaryDefault
+const secondaryRestore = loaderData.isUsingSecondaryDefault
+console.log(primaryRestore,secondaryRestore);
 
 useEffect(() => {
   return () => {
@@ -50,7 +53,7 @@ setshowBio(true)
       <AccountSidebar loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
-      <Template1  input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 input={input}  loaderData = {loaderData}/> : null }</div>
+      <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
         <div className='hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[30]'>

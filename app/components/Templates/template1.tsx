@@ -4,17 +4,17 @@ import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/bg.png'
 
 
-export default function Template1({ input, loaderData }: any) {
+export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
   return (
     <div className='flex  overflow-hidden'>
 
       <div >
         <div className='h-[10rem]'>
           <div className='relative '>
-            <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
+            <img className={` w-screen object-cover ${loaderData.primaryimage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData.primaryimage} alt="" />
           </div>
           <div className='relative top-[-4rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
-            <img className='w-[7rem] md:w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
+            <img className={`w-[7rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData.secondaryimage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.secondaryimage} alt="" />
           </div>
         </div>
         <div className='m-auto pt-1 px-[7rem] md:px-[19rem]  lg:px-[21rem]'>
