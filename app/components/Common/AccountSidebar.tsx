@@ -30,7 +30,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode }: any) {
+export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode,setPrimaryRestore,setSecondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
  const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
@@ -187,7 +187,7 @@ setshowImages(false);
                   null
                 }
                 {showImages?
-                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode} setPrimaryRestore={setPrimaryRestore} setSecondaryRestore={setSecondaryRestore}/> :
                 null
               }
                 </div>
@@ -338,7 +338,7 @@ setshowImages(false);
                   null
                 }
                 {showImages?
-                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
+                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode} setPrimaryRestore={setPrimaryRestore} setSecondaryRestore={setSecondaryRestore}/> :
                 null
               }
 

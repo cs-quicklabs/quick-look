@@ -7,25 +7,34 @@ import DeleteImage from '../Common/DeleteImage';
 // import { type } from './../../types/updateUserPreferences.server';
 import { Form } from '@remix-run/react';
 
-export default function NoImages({setshowImages,mode,setmode}:any) {
+export default function NoImages({setshowImages,mode,setmode,setPrimaryRestore,setSecondaryRestore}:any) {
   const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
   const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
+  const [image2, setimage2] = useState(null);
 
- console.log(image);
+const ref = useRef(null);
 
-//  const autosubimt = useEffect(() => {
-   
-//    image  && document?.getElementById("image_upload").click();
-//  }
-  
-//  }, [Image])
 
- 
+
+useEffect(() => {
+     if(image !== null){
+      //@ts-ignore
+    ref.current.click()
+   }
+   if(image2 !== null){
+      //@ts-ignore
+    ref.current.click()
+   }
+  }, [image,image2]);
+
 
   const handleChange = (e:any) => {
     setimage(e.target.files[0])
+  }
+   const handleChange2 = (e:any) => {
+    setimage2(e.target.files[0])
   }
   
   const Onclose = (e:any) => {
@@ -149,26 +158,25 @@ const OnCancel = ()=>{
                             </div>
 
                             <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
-                            {/* <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>  */}
+                            <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'> 
+                              Upload Image
                               
-                              
-                              {/* <input
+                               <input
                                 type="file"
                                 // value="primary-photo-upload"
-                                // className="hidden"
-                                // id="photo"
+                                className="hidden"
+                                id="photo"
                                 name="photo"
                                 accept="image/*"
-                                // onChange={handleChange}                               
+                                onChange={handleChange}                               
                                 />
-                               <button type='submit'>Upload Image
-</button> */}
-<input type="file" name="photo" />
-      <button type="submit">upload</button>
-                              {/* </label> */}
-                              <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
+                             
+{/* <input type="file" name="photo" /> */}
+      <button type="submit"  ref={ref} className="hidden">upload</button>
+                              </label>
+                              <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e)=>{ ; e.preventDefault()}}>
                                 Restore Default Image
-                              </span>
+                              </button>
                             </div>
                             
                           </div>
@@ -200,7 +208,7 @@ const OnCancel = ()=>{
                                 id="photo"
                                 name="photo"
                                 accept="image/*"
-                                onChange={handleChange}                               
+                                // onChange={handleChange}                               
                                 />
 
                               </label>
@@ -243,14 +251,14 @@ const OnCancel = ()=>{
                                 id="photo"
                                 name="photo"
                                 accept="image/*"
-                                onChange={handleChange}                               
+                                onChange={handleChange2}                               
                                 />
-
+<button type="submit"  ref={ref} className="hidden">upload</button>
                               </label>
 
-                              <span className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
+                              <button name='secondaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e)=>{ e.preventDefault()}}>
                                 Restore Default Image
-                              </span>
+                              </button>
                               </div>
                             
                           </div>

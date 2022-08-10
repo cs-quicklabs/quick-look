@@ -3,12 +3,12 @@ import pic from '../../../assets/images/pic.png';
 import facebook from '../../../assets/images/fb.png';
 import twitter from '../../../assets/images/twitter.png';
 import youtube from '../../../assets/images/youtube.png';
-export default function Template2({ input, loaderData }: any) {
+export default function Template2({ input, loaderData,secondaryRestore }: any) {
   return (
     <>
     <div className="-mt-12 flex flex-row h-screen font-inter">
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
-        <img src={pic} className="h-full w-full object-cover" alt="" />
+        <img src={secondaryRestore === true ? pic : loaderData.secondaryimage} className="h-full w-full object-cover" alt="" />
       </div>
       <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
         <div className='mt-20'>
