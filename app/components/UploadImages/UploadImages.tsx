@@ -5,9 +5,11 @@ import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore }: any) {
-  const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
-  const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
+export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore ,loaderData }: any) {
+  // const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
+  // const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
+  const bgimageAlreadyuploaded = loaderData.primaryimage
+  const profileimageAlreadyuploaded = loaderData.secondaryimage
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
