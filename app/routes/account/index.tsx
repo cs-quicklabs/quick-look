@@ -23,8 +23,11 @@ export default function Profile() {
   const loaderData = useLoaderData();
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
-const primaryRestore = loaderData.isUsingPrimaryDefault
-const secondaryRestore = loaderData.isUsingSecondaryDefault
+// const primaryRestore = loaderData.isUsingPrimaryDefault
+// const secondaryRestore = loaderData.isUsingSecondaryDefault
+const primaryRestore = true
+const secondaryRestore = true
+
 console.log(primaryRestore,secondaryRestore);
 
 useEffect(() => {
