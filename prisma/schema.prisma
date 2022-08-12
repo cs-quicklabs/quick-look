@@ -31,7 +31,7 @@ model User {
   twitterLink             String?
   youtubeLink             String?
   primaryImage            String?
-  SecondaryImage          String?
+  secondaryImage          String?
   isUsingPrimaryDefault   Boolean?          @default(true)
   isUsingSecondaryDefault Boolean?          @default(true)
   userVerification        UserVerification?

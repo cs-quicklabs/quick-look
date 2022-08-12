@@ -5,11 +5,11 @@ import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore ,loaderData }: any) {
+export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore, loaderData }: any) {
   // const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
   // const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
-  const bgimageAlreadyuploaded = loaderData.primaryimage
-  const profileimageAlreadyuploaded = loaderData.secondaryimage
+  const bgimageAlreadyuploaded = loaderData.primaryImage
+  const profileimageAlreadyuploaded = loaderData.secondaryImage
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
@@ -99,7 +99,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
 
 
                       {bgimageAlreadyuploaded ?
-                      
+
                         <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
                           <label className="block text-sm font-medium leading-5 text-gray-700">
                             Primary Image
@@ -125,7 +125,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
 
                               </label>
 
-                              <button 
+                              <button
                                 onClick={(e: any) => { e.preventDefault(); setopen(true) }}
                                 className='cursor-pointer ml-2 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                 Delete
@@ -135,54 +135,54 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                           </div>
 
                         </div> :
-                          <form action="/account/add/primaryImage" encType="multipart/form-data" method='post'>
+                        <form action="/account/add/primaryImage" encType="multipart/form-data" method='post'>
 
-                        <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
-                          <label className="block text-sm font-medium leading-5 text-gray-700">
-                            Primary Image
-                          </label>
-                          <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
-                            <div className="text-center">
-                              <p className='text-xs leading-4 font-semibold tracking-wide'>
-                                NO IMAGE ADDED YET
-                              </p>
-                              <div className="flex text-sm">
-                                <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                  <input
-                                    // value="primary-file-upload"
-                                    id="file-upload"
-                                    name="file-upload"
-                                    type="file"
-                                    className="sr-only" />
-                                </label>
-                                <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
+                          <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
+                            <label className="block text-sm font-medium leading-5 text-gray-700">
+                              Primary Image
+                            </label>
+                            <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
+                              <div className="text-center">
+                                <p className='text-xs leading-4 font-semibold tracking-wide'>
+                                  NO IMAGE ADDED YET
+                                </p>
+                                <div className="flex text-sm">
+                                  <label className="relative cursor-pointer bg-white rounded-md font-medium">
+                                    <input
+                                      // value="primary-file-upload"
+                                      id="file-upload"
+                                      name="file-upload"
+                                      type="file"
+                                      className="sr-only" />
+                                  </label>
+                                  <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
+                                </div>
+
+                                <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
+                                  <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                    Upload Image
+
+                                    <input
+                                      type="file"
+                                      // value="primary-photo-upload"
+                                      className="hidden"
+                                      id="photo"
+                                      name="photo"
+                                      accept="image/*"
+                                      onChange={handleChange}
+                                    />
+
+                                    {/* <input type="file" name="photo" /> */}
+                                    <button type="submit" ref={ref} className="hidden">upload</button>
+                                  </label>
+                                  <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => e.preventDefault()}>
+                                    Restore Default Image
+                                  </button>
+                                </div>
+
                               </div>
-
-                              <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
-                                <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
-                                  Upload Image
-
-                                  <input
-                                    type="file"
-                                    // value="primary-photo-upload"
-                                    className="hidden"
-                                    id="photo"
-                                    name="photo"
-                                    accept="image/*"
-                                    onChange={handleChange}
-                                  />
-
-                                  {/* <input type="file" name="photo" /> */}
-                                  <button type="submit" ref={ref} className="hidden">upload</button>
-                                </label>
-                                <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => e.preventDefault() }>
-                                  Restore Default Image
-                                </button>
-                              </div>
-
                             </div>
                           </div>
-                        </div>
                         </form>
                       }
 
@@ -223,53 +223,54 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                           </div>
 
                         </div> :
-<form action="/account/add/secondaryImage" encType="multipart/form-data" method='post'>
 
-                        <div className="sm:col-span-6 md:mt-6 lg:mt-16 px-4 sm:px-6 md:mb-7 lg:mb-0">
+                        <form action="/account/add/secondaryImage" encType="multipart/form-data" method='post'>
 
-                          <label className="block text-sm font-medium leading-5 text-gray-700">         Secondary Image
-                          </label>
-                          <div className="mt-3.5 flex justify-center px-[1px] md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
-                            <div className="text-center">
-                              <p className=' text-xs leading-4 font-semibold tracking-wide'>
-                                NO IMAGE ADDED YET
-                              </p>
-                              <div className="flex text-sm">
-                                <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                  <input
-                                    // value="secondary-file-upload"
-                                    id="file-upload"
-                                    name="file-upload"
-                                    type="file"
-                                    className="sr-only" />
-                                </label>
-                                <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
-                              </div>
-                              <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20 '>
-                                <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
-                                  Upload Image
-                                  <input
-                                    type="file"
-                                    // value="secondary-photo-upload"
-                                    className="hidden"
-                                    id="photo"
-                                    name="photo"
-                                    accept="image/*"
-                                    onChange={handleChange2}
-                                  />
-                                  <button type="submit" ref={ref} className="hidden">upload</button>
-                                </label>
+                          <div className="sm:col-span-6 md:mt-6 lg:mt-16 px-4 sm:px-6 md:mb-7 lg:mb-0">
 
-                                <button name='secondaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => { e.preventDefault() }}>
-                                  Restore Default Image
-                                </button>
+                            <label className="block text-sm font-medium leading-5 text-gray-700">         Secondary Image
+                            </label>
+                            <div className="mt-3.5 flex justify-center px-[1px] md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
+                              <div className="text-center">
+                                <p className=' text-xs leading-4 font-semibold tracking-wide'>
+                                  NO IMAGE ADDED YET
+                                </p>
+                                <div className="flex text-sm">
+                                  <label className="relative cursor-pointer bg-white rounded-md font-medium">
+                                    <input
+                                      // value="secondary-file-upload"
+                                      id="file-upload"
+                                      name="file-upload"
+                                      type="file"
+                                      className="sr-only" />
+                                  </label>
+                                  <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
+                                </div>
+                                <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20 '>
+                                  <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                    Upload Image
+                                    <input
+                                      type="file"
+                                      // value="secondary-photo-upload"
+                                      className="hidden"
+                                      id="photo"
+                                      name="photo"
+                                      accept="image/*"
+                                      onChange={handleChange2}
+                                    />
+                                    <button type="submit" ref={ref} className="hidden">upload</button>
+                                  </label>
+
+                                  <button name='secondaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => { e.preventDefault() }}>
+                                    Restore Default Image
+                                  </button>
+                                </div>
+
                               </div>
 
                             </div>
-
                           </div>
-                        </div>
-</form>
+                        </form>
                       }
                       <DeleteImage open={open} onClose={() => setopen(false)} mode={mode} />
 

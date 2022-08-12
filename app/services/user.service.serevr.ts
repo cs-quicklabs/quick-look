@@ -276,7 +276,7 @@ export async function addSecondaryImage(link: string, user: User){
             id: user.id
         },
         data: {
-            SecondaryImage: link,
+            secondaryImage: link,
             isUsingSecondaryDefault: false
         }
     })
@@ -289,7 +289,7 @@ export async function deleteSecondaryImage(user: User){
             id: user.id
         },
         data: {
-            SecondaryImage: '',
+            secondaryImage: '',
             isUsingSecondaryDefault: false
         }
     })

@@ -44,7 +44,7 @@ setmode('mobile')
 setshowBio(true)
 
 }
-const disabledIcon = loaderData.primaryimage || loaderData.isUsingPrimaryDefault ? 'text-white' : 'text-gray-700/40'
+const disabledIcon = loaderData.primaryImage || loaderData.isUsingPrimaryDefault ? 'text-white' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
       <DashboardHeader username={ loaderData.username } />
