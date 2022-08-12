@@ -44,7 +44,7 @@ setmode('mobile')
 setshowBio(true)
 
 }
-
+const disabledIcon = loaderData.primaryimage || loaderData.isUsingPrimaryDefault ? 'text-white' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
       <DashboardHeader username={ loaderData.username } />
@@ -56,15 +56,15 @@ setshowBio(true)
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className='hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[30]'>
+        <div className='hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[30] border border-gray-300 rounded-l-md rounded-r-md'>
           {/* <form action="" > */}
           <button className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
-            <DesktopComputerIcon className="h-[1.25rem] w-auto"/>
+            <DesktopComputerIcon className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon }`}/>
             </button>
             
-          <button className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md`}
-          onClick={togglemobile}><DeviceMobileIcon className="h-[1.25rem] w-auto"/></button>
+          <button className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md border-l`}
+          onClick={togglemobile}><DeviceMobileIcon className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon }`}/></button>
           {/* </form> */}
         </div>
 </div>

@@ -187,7 +187,7 @@ setshowImages(false);
                   null
                 }
                 {showImages?
-                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode} setPrimaryRestore={setPrimaryRestore} setSecondaryRestore={setSecondaryRestore}/> :
+                <UploadImages setshowImages={setshowImages} mode={mode} loaderData={ loaderData} setmode={setmode} setPrimaryRestore={setPrimaryRestore} setSecondaryRestore={setSecondaryRestore}/> :
                 null
               }
                 </div>
@@ -338,7 +338,7 @@ setshowImages(false);
                   null
                 }
                 {showImages?
-                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode} setPrimaryRestore={setPrimaryRestore} setSecondaryRestore={setSecondaryRestore}/> :
+                <UploadImages setshowImages={setshowImages} loaderData={ loaderData} mode={mode} setmode={setmode} setPrimaryRestore={setPrimaryRestore} setSecondaryRestore={setSecondaryRestore}/> :
                 null
               }
 
