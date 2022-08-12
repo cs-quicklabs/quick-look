@@ -5,7 +5,7 @@ import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore ,loaderData }: any) {
+export default function NoImages({ setshowImages, mode, setmode, PrimaryRestore, SecondaryRestore ,loaderData }: any) {
   // const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
   // const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
   const bgimageAlreadyuploaded = loaderData.primaryimage
@@ -107,7 +107,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
 
                           <div>
                             <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                              <img src={bg} alt="" className='h-full w-full object-cover' />
+                              <img src={PrimaryRestore === true ? bg : loaderData.primaryImage} alt="" className='h-full w-full object-cover' />
                             </div>
 
                             <div className='flex justify-center items-center mt-3'>
@@ -195,7 +195,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                             </label>
 
                             <div className="flex justify-center h-[7rem] w-[7rem]  rounded-full mt-3.5">
-                              <img src={avatar6} alt="" className='rounded-full h-full w-full object-cover' />
+                              <img src={SecondaryRestore === true ? avatar6 : loaderData.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
                             </div>
 
                           </div>
