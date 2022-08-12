@@ -2,18 +2,19 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
-import avatar6 from '../../../assets/images/avatars/avatar-6.png'
+import defaultProfileimage from '../../../assets/images/profile.png'
+
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore ,loaderData }: any) {
+export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore ,loaderData }: any) {
   // const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
   // const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
-  const bgimageAlreadyuploaded = loaderData.primaryimage
-  const profileimageAlreadyuploaded = loaderData.secondaryimage
+  const bgimageAlreadyuploaded = loaderData.primaryImage
+  const profileimageAlreadyuploaded = loaderData.secondaryImage
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
-
+const [deleteImage,setDeleteImage] = useState('')
   console.log(image);
 
   const ref = useRef(null);
@@ -98,8 +99,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                       </div>
 
 
-                      {bgimageAlreadyuploaded ?
-
+                      {bgimageAlreadyuploaded || primaryRestore ?
                         <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
                           <label className="block text-sm font-medium leading-5 text-gray-700">
                             Primary Image
@@ -107,7 +107,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
 
                           <div>
                             <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                              <img src={PrimaryRestore === true ? bg : loaderData.primaryImage} alt="" className='h-full w-full object-cover' />
+                              <img src={primaryRestore ? bg : loaderData.primaryImage} alt="" className='h-full w-full object-cover' />
                             </div>
 
                             <div className='flex justify-center items-center mt-3'>
@@ -126,7 +126,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                               </label>
 
                               <button
-                                onClick={(e: any) => { e.preventDefault(); setopen(true) }}
+                                onClick={(e: any) => { e.preventDefault(); setopen(true) ; setDeleteImage('primary') }}
                                 className='cursor-pointer ml-2 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                 Delete
                               </button>
@@ -186,7 +186,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                         </form>
                       }
 
-                      {profileimageAlreadyuploaded ?
+                      {profileimageAlreadyuploaded || secondaryRestore ?
                         <div className=''>
 
                           <div className="sm:col-span-6 mt-6 px-4 sm:px-6">
@@ -195,7 +195,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                             </label>
 
                             <div className="flex justify-center h-[7rem] w-[7rem]  rounded-full mt-3.5">
-                              <img src={SecondaryRestore === true ? avatar6 : loaderData.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
+                              <img src={secondaryRestore ? defaultProfileimage : loaderData.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
                             </div>
 
                           </div>
@@ -205,18 +205,18 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                               Edit
                               <input
                                 type="file"
-                                // value="secondary-photo"
+                                
                                 className="hidden"
                                 id="photo"
                                 name="photo"
                                 accept="image/*"
-                              // onChange={handleChange}                               
+                                                          
                               />
 
                             </label>
 
                             <button
-                              onClick={(e: any) => { e.preventDefault(); setopen(true) }}
+                              onClick={(e: any) => { e.preventDefault(); setopen(true) ; setDeleteImage('secondary') }}
                               className='cursor-pointer ml-3 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                               Delete
                             </button>
@@ -272,7 +272,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                           </div>
                         </form>
                       }
-                      <DeleteImage open={open} onClose={() => setopen(false)} mode={mode} />
+                      <DeleteImage open={open} onClose={() => setopen(false)} mode={mode} deleteImage={deleteImage}/>
 
                     </div>
 
