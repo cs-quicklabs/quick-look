@@ -155,9 +155,12 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
                               // placeholder="facebook.com/username"
                               name="addlink"
                               id="addlink"
-                              
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
+                              className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500`}
+                              // className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500  ${actionData?.errors['email'] ?  'border border-red-400' : ''}`}
                             />
+                            {/* <div className={`text-red-600 text-sm`}>
+                {actionData?.errors['email']}
+              </div> */}
                           </div>
                         </div>
                       </div>

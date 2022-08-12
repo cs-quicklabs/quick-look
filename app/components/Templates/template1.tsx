@@ -13,8 +13,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
           <div className='relative '>
             <img className={` w-screen object-cover ${loaderData.primaryimage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData.primaryimage} alt="" />
           </div>
-          <div className='relative top-[-4rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
+          <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData.primaryimage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
             <img className={`w-[7rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData.secondaryimage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.secondaryimage} alt="" />
+            {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.secondaryimage}  */}
           </div>
         </div>
         <div className='m-auto pt-1 px-[7rem] md:px-[19rem]  lg:px-[21rem]'>
@@ -53,13 +54,13 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
           </div>
           <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
             {loaderData?.facebookLink ?
-            <a href={loaderData?.facebookLink} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
+            <a href={`https://${loaderData?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.twitterLink ?
-            <a href={loaderData?.twitterLink} target='_blank'>
+            <a href={`https://${loaderData?.twitterLink}`} target='_blank'>
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.youtubeLink ?
-            <a href={loaderData?.youtubeLink} target='_blank'>
+            <a href={`https://${loaderData?.youtubeLink}`} target='_blank'>
               <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}

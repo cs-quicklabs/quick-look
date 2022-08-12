@@ -5,9 +5,11 @@ import bg from '../../../assets/images/bg.png';
 import avatar6 from '../../../assets/images/avatars/avatar-6.png'
 import DeleteImage from '../Common/DeleteImage';
 
-export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore }: any) {
-  const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
-  const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
+export default function NoImages({ setshowImages, mode, setmode, setPrimaryRestore, setSecondaryRestore ,loaderData }: any) {
+  // const [bgimageAlreadyuploaded, showbgimageAlreadyuploaded] = useState(false);
+  // const [profileimageAlreadyuploaded, showprofileimageAlreadyuploaded] = useState(false);
+  const bgimageAlreadyuploaded = loaderData.primaryimage
+  const profileimageAlreadyuploaded = loaderData.secondaryimage
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
@@ -173,7 +175,7 @@ export default function NoImages({ setshowImages, mode, setmode, setPrimaryResto
                                   {/* <input type="file" name="photo" /> */}
                                   <button type="submit" ref={ref} className="hidden">upload</button>
                                 </label>
-                                <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => { ; e.preventDefault() }}>
+                                <button name='primaryrestore' className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={(e) => e.preventDefault() }>
                                   Restore Default Image
                                 </button>
                               </div>
