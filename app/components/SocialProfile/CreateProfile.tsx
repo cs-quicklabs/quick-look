@@ -19,7 +19,6 @@ function classNames(...classes: (string | boolean)[]) {
    
 export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData}:any) {
 const load = loaderData
-console.log(load);
 
   useEffect(() => {
     loaderData

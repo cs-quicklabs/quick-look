@@ -25,7 +25,6 @@ export default function Profile() {
 const primaryRestore = loaderData.isUsingPrimaryDefault
 const secondaryRestore = loaderData.isUsingSecondaryDefault
 
-console.log(primaryRestore,secondaryRestore);
 
 useEffect(() => {
   return () => {

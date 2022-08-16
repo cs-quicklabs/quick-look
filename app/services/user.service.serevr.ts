@@ -244,7 +244,7 @@ export async function deleteSocialLink(socialProfile: string, user?: User) {
     }
 }
 
-export async function addPrimaryImage(link: string, user: User){ console.log('HITS')
+export async function addPrimaryImage(link: string, user: User){ 
     await db.user.update({
         where: {
             id: user.id

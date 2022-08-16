@@ -9,7 +9,6 @@ export const action: ActionFunction = async ({request}) => {
     const secondaryPhoto = formData.get('secondary')
 
     const toDelete = primaryPhoto ?? secondaryPhoto 
-    console.log(toDelete)
     await deleteImage(toDelete as string , user)
     return redirect('/account')
 }

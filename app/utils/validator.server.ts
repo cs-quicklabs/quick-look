@@ -97,10 +97,9 @@ export const validateComfirmPassword = async (
 
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z]+)*$/
-  // let whiteSpaceRegex = /\s/
 
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
-  // let notContainsWhitespace = name.match(whiteSpaceRegex)
+
 
   if (!name) {
     return 'First Name is required.'
@@ -223,3 +222,36 @@ export async function validateUpdateUsername(username: string, user: any ){
   }
 
 } 
+
+export async function validateFacebookUrl(url: string){
+  let whiteSpaceRegex = /^\S*$/
+  let fbRegEx = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+  let notContainsWhitespace = url.match(whiteSpaceRegex)
+
+
+  let matchesFbRegex = url.match(fbRegEx)
+  if(!url){
+    return 'Inavlid Facebook URL.'
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if(!matchesFbRegex){
+    return 'Inavlid Facebook URL.'
+  }
+}
+
+export async function validateTwitterUrl(url: string){
+  let whiteSpaceRegex = /^\S*$/
+
+  let notContainsWhitespace = url.match(whiteSpaceRegex)
+  if(!url){
+    return 'Inavlid Twitter URL.'
+  }
+}
+export async function validateYoutubeUrl(url: string){
+  let whiteSpaceRegex = /^\S*$/
+
+  let notContainsWhitespace = url.match(whiteSpaceRegex)
+  if(!url){
+    return 'Inavlid Youtube URL.'
+  }
+}
