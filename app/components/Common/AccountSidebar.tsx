@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import {Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import {
   MenuIcon,
   XIcon,
@@ -30,9 +30,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput,mode,setshowBio,showBio,setmode }: any) {
+export default function AccountSideBar({ loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
- const [showImages, setshowImages] = useState(false);
+  const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
 
   const [showSocialLinks, setshowSocialLinks] = useState(false);
@@ -41,7 +41,7 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
   const Location = useLocation();
 
   return (
-    
+
     <>
       <div className='' onClick={e => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -91,144 +91,143 @@ export default function AccountSideBar({ loaderData, setshow, input, setinput,mo
                   </Transition.Child>
                   <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto mt-12">
                     <div className="flex-shrink-0 flex p-4">
-                    <a href="#" className="flex-shrink-0 group block">
-                      <div className="flex items-center">
-                        <div>
-                          <img
-                            className="inline-block h-10 w-10 rounded-full"
-                            src={DefaultProfileIcon}
-                            alt=""
-                          />
+                      <a href="#" className="flex-shrink-0 group block">
+                        <div className="flex items-center">
+                          <div>
+                            <img
+                              className="inline-block h-10 w-10 rounded-full"
+                              src={DefaultProfileIcon}
+                              alt=""
+                            />
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
+                            <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                          </div>
                         </div>
-                        <div className="ml-3">
-                          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
-                          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div>
-                <div className='text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5'>
-                  Basic Profile
-                </div>
-                <nav className="flex-1 bg-white ">
-                  {navigationFirst.map((item) => (
-                    <div
-                      key={item.name}
-                      // href={item.href}
-                      onClick={() => {
-                        if (item.name === 'Bio') {
-                          setshowBio(true);
-                          setSidebarOpen(false);
-                          setshowTemplate(false)
-                          setshowSocialLinks(false)
-setshowImages(false);
-
-                        }
-                        if (item.name === 'Design Templates') {
-                          setshowTemplate(true);
-                          setSidebarOpen(false);
-                          setshowBio(false);
-                          setshowSocialLinks(false)
-setshowImages(false);
-
-                        }
-                        if(item.name === 'Social Links'){
-                          setshowSocialLinks(true);
-                          setSidebarOpen(false);
-                                                    setshowTemplate(false)
-                          setshowBio(false);
-setshowImages(false);
-                        }
-                        if (item.name === 'Images') {
-                          setshowImages(true);
-                          setSidebarOpen(false);
-                           setshowSocialLinks(false);
-                          
-                                                    setshowTemplate(false)
-                          setshowBio(false);
-                        }
-                      }}
-                      className={classNames(
-                        
-                        ''
-                      )}
-                    >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
-                        <div className=''>
-                          <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md'>
-                            {item.name}
-                          </p>
-
-                          <p className='px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700'>
-                            {item.subheading}
-                          </p>
-                        </div>
-                        <div className='text-gray-400 flex items-center'>
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
+                      </a>
                     </div>
-                  ))}
-                </nav>
-                <div className='z-0'>
-                {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
-                  null
-                }
-                {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
-                  null
-                }
-                {showSocialLinks?
-                <SocialProfile setshowSocialLinks={setshowSocialLinks}  loaderData={ loaderData} mode={mode} setmode={setmode}/>:
-                  null
-                }
-                {showImages?
-                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
-                null
-              }
-                </div>
-
-              </div>
-
-              <div>
-                <div className='text-xs font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5 mt-0'>
-                  Advanced Features
-                </div>
-
-                <nav className="flex-1 bg-white ">
-                  {navigationSecond.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
-                        ''
-                      )}
-                    >
-                      <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4 '>
-                        <div className=''>
-                          <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md'>
-                            {item.name}
-                          </p>
-
-                          <p className='px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700'>
-                            {item.subheading}
-                          </p>
-                        </div>
-                        <div className='text-gray-400 flex items-center'>
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                          </svg>
-                        </div>
+                    <div>
+                      <div className='text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5'>
+                        Basic Profile
                       </div>
-                    </a>
-                  ))}
-                </nav>
-              </div>
+                      <nav className="flex-1 bg-white ">
+                        {navigationFirst.map((item) => (
+                          <div
+                            key={item.name}
+                            onClick={() => {
+                              if (item.name === 'Bio') {
+                                setshowBio(true);
+                                setSidebarOpen(false);
+                                setshowTemplate(false)
+                                setshowSocialLinks(false)
+                                setshowImages(false);
+
+                              }
+                              if (item.name === 'Design Templates') {
+                                setshowTemplate(true);
+                                setSidebarOpen(false);
+                                setshowBio(false);
+                                setshowSocialLinks(false)
+                                setshowImages(false);
+
+                              }
+                              if (item.name === 'Social Links') {
+                                setshowSocialLinks(true);
+                                setSidebarOpen(false);
+                                setshowTemplate(false)
+                                setshowBio(false);
+                                setshowImages(false);
+                              }
+                              if (item.name === 'Images') {
+                                setshowImages(true);
+                                setSidebarOpen(false);
+                                setshowSocialLinks(false);
+
+                                setshowTemplate(false)
+                                setshowBio(false);
+                              }
+                            }}
+                            className={classNames(
+
+                              ''
+                            )}
+                          >
+                            <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4'>
+                              <div className=''>
+                                <p className='group flex bg-white items-center leading-5 px-2 text-sm font-medium rounded-md'>
+                                  {item.name}
+                                </p>
+
+                                <p className='px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700'>
+                                  {item.subheading}
+                                </p>
+                              </div>
+                              <div className='text-gray-400 flex items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </nav>
+                      <div className='z-0'>
+                        {showBio ?
+                          <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                          null
+                        }
+                        {showTemplate ?
+                          <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode} /> :
+                          null
+                        }
+                        {showSocialLinks ?
+                          <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          null
+                        }
+                        {showImages ?
+                          <UploadImages setshowImages={setshowImages} mode={mode} loaderData={loaderData} setmode={setmode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} /> :
+                          null
+                        }
+                      </div>
+
+                    </div>
+
+                    <div>
+                      <div className='text-xs font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5 mt-0'>
+                        Advanced Features
+                      </div>
+
+                      <nav className="flex-1 bg-white ">
+                        {navigationSecond.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className={classNames(
+                              Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
+                              ''
+                            )}
+                          >
+                            <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4 '>
+                              <div className=''>
+                                <p className='group flex bg-white items-center px-2 text-sm font-medium rounded-md'>
+                                  {item.name}
+                                </p>
+
+                                <p className='px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700'>
+                                  {item.subheading}
+                                </p>
+                              </div>
+                              <div className='text-gray-400 flex items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                              </div>
+                            </div>
+                          </a>
+                        ))}
+                      </nav>
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -236,9 +235,9 @@ setshowImages(false);
             </div>
           </Dialog>
         </Transition.Root>
-          
-          {/* static desktop  */}
-        
+
+        {/* static desktop  */}
+
         <div className={`hidden lg:flex ${mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'}  md:flex-col md:fixed md:inset-y-0 mt-12 font-inter`}>
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-3 pb-4 overflow-y-auto">
@@ -248,7 +247,7 @@ setshowImages(false);
                     <div>
                       <img
                         className="inline-block h-9 w-9 rounded-full"
-                        src={DefaultProfileIcon}
+                        src={loaderData?.secondaryImage ? loaderData?.secondaryImage : DefaultProfileIcon}
                         alt=""
                       />
                     </div>
@@ -267,14 +266,14 @@ setshowImages(false);
                   {navigationFirst.map((item) => (
                     <div
                       key={item.name}
-                      // href={item.href}
+
                       onClick={() => {
                         if (item.name === 'Bio') {
                           setshowBio(true);
                           setSidebarOpen(false);
                           setshowTemplate(false)
                           setshowSocialLinks(false)
-setshowImages(false);
+                          setshowImages(false);
 
                         }
                         if (item.name === 'Design Templates') {
@@ -282,27 +281,27 @@ setshowImages(false);
                           setSidebarOpen(false);
                           setshowBio(false);
                           setshowSocialLinks(false)
-setshowImages(false);
+                          setshowImages(false);
 
                         }
-                        if(item.name === 'Social Links'){
+                        if (item.name === 'Social Links') {
                           setshowSocialLinks(true);
                           setSidebarOpen(false);
-                                                    setshowTemplate(false)
+                          setshowTemplate(false)
                           setshowBio(false);
-setshowImages(false);
+                          setshowImages(false);
                         }
                         if (item.name === 'Images') {
                           setshowImages(true);
                           setSidebarOpen(false);
-                           setshowSocialLinks(false);
-                          
-                                                    setshowTemplate(false)
+                          setshowSocialLinks(false);
+
+                          setshowTemplate(false)
                           setshowBio(false);
                         }
                       }}
                       className={classNames(
-                       
+
                         'hover:bg-gray-50'
                       )}
                     >
@@ -326,21 +325,21 @@ setshowImages(false);
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode}/> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showTemplate ?
-                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode}/> :
+                  <AccountTemplate setshowTemplate={setshowTemplate} setshow={setshow} mode={mode} setmode={setmode} /> :
                   null
                 }
-                {showSocialLinks?
-                <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode}/>:
+                {showSocialLinks ?
+                  <SocialProfile setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                   null
                 }
-                {showImages?
-                <UploadImages setshowImages={setshowImages} mode={mode} setmode={setmode}/> :
-                null
-              }
+                {showImages ?
+                  <UploadImages setshowImages={setshowImages} loaderData={loaderData} mode={mode} setmode={setmode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} /> :
+                  null
+                }
 
               </div>
 
@@ -353,7 +352,7 @@ setshowImages(false);
                   {navigationSecond.map((item) => (
                     <div
                       key={item.name}
-                      
+
                       className={classNames(
                         'hover:bg-gray-50'
                       )}
@@ -381,7 +380,7 @@ setshowImages(false);
             </div>
           </div>
         </div>
-        
+
         <div className="flex flex-col flex-1">
           <div className="absolute top-0 z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
             <button

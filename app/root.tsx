@@ -41,7 +41,7 @@ function Document({ children }: any) {
           crossOrigin='anonymous'
         />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+        <link rel='preconnect' href='https://fonts.gstatic.com'  />
         <link
           rel='stylesheet'
           href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@400;500&display=swap'
@@ -63,10 +63,7 @@ function Layout({ children }: any) {
     <>
       {Location.pathname.includes('/auth/login') ||
       Location.pathname.includes('/auth/signup') ||
-      // Location.pathname.includes('/general/terms') ||
-      // Location.pathname.includes('/general/privacy') ||
       Location.pathname.includes('/auth/forgot-password') ||
-      // Location.pathname.includes('/general/refund-policy') ||
       Location.pathname.includes('successlogin') ||
       Location.pathname.includes('/auth/password') ||
       Location.pathname.includes('/confirm/password') ||

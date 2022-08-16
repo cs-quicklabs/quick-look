@@ -18,11 +18,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Profile() {
   const [mode, setmode] = useState('desktop')
-// const mode === loaderData.mode
   const [showBio, setshowBio] = useState(mode === 'mobile' ? true : false);
   const loaderData = useLoaderData();
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
+const primaryRestore = loaderData.isUsingPrimaryDefault
+const secondaryRestore = loaderData.isUsingSecondaryDefault
+
 
 useEffect(() => {
   return () => {
@@ -41,27 +43,27 @@ setmode('mobile')
 setshowBio(true)
 
 }
-
+const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
-      <DashboardHeader username={ loaderData.username } />
+      <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio}/></div>
+      <AccountSidebar loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
-      <Template1  input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 input={input}  loaderData = {loaderData}/> : null }</div>
+      <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className='hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[30]'>
+        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[30]  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'}`}>
           {/* <form action="" > */}
           <button className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
-            <DesktopComputerIcon className="h-[1.25rem] w-auto"/>
+            <DesktopComputerIcon className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon }`}/>
             </button>
             
-          <button className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md`}
-          onClick={togglemobile}><DeviceMobileIcon className="h-[1.25rem] w-auto"/></button>
+          <button className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md border-l`}
+          onClick={togglemobile}><DeviceMobileIcon className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon }`}/></button>
           {/* </form> */}
         </div>
 </div>

@@ -2,19 +2,20 @@ import facebook from '../../../assets/images/fb1.png'
 import twitter from '../../../assets/images/twitter1.png'
 import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/bg.png'
-
-
-export default function Template1({ input, loaderData }: any) {
+import defaultimg from '../../../assets/images/profile.png'
+export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
   return (
     <div className='flex  overflow-hidden'>
 
       <div >
         <div className='h-[10rem]'>
           <div className='relative '>
-            <img className='h-[10rem] w-screen object-cover' src={bgimage} alt="" />
+            <img className={` w-screen object-cover ${loaderData.primaryImage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData.primaryImage} alt="" />
           </div>
-          <div className='relative top-[-4rem]  md:pl-[11rem]   lg:pl-[12.5rem]'>
-            <img className='w-[7rem] md:w-32 border-4 border-white rounded-full shadow-lg shadow-white' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" />
+          <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData.primaryImage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
+            {secondaryRestore || loaderData.secondaryImage ?
+            <img className={`w-[7rem] h-[8rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData.secondaryImage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? defaultimg : loaderData.secondaryImage}  /> : null}
+            {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.secondaryImage}  */}
           </div>
         </div>
         <div className='m-auto pt-1 px-[7rem] md:px-[19rem]  lg:px-[21rem]'>
@@ -53,13 +54,13 @@ export default function Template1({ input, loaderData }: any) {
           </div>
           <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem]'>
             {loaderData?.facebookLink ?
-            <a href={loaderData?.facebookLink} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
+            <a href={`https://${loaderData?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.twitterLink ?
-            <a href={loaderData?.twitterLink} target='_blank'>
+            <a href={`https://${loaderData?.twitterLink}`} target='_blank'>
               <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.youtubeLink ?
-            <a href={loaderData?.youtubeLink} target='_blank'>
+            <a href={`https://${loaderData?.youtubeLink}`} target='_blank'>
               <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}
