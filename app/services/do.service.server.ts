@@ -20,7 +20,7 @@ if (!DEFAULT_DO_REGION) {
 
 const s3Client = new S3Client({
     endpoint: DO_ENDPOINT,
-    region: DEFAULT_DO_REGION,
+    region: 'us-east-1',
     credentials: {
       accessKeyId: DO_ACCESS_KEY_ID,
       secretAccessKey: DO_SECRET,
