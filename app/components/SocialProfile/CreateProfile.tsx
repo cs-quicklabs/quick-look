@@ -5,6 +5,8 @@ import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
+import { useActionData } from '@remix-run/react'
+import { Link } from 'react-router-dom'
 
 
 function classNames(...classes: (string | boolean)[]) {
@@ -19,7 +21,8 @@ function classNames(...classes: (string | boolean)[]) {
    
 export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData}:any) {
 const load = loaderData
-
+const actionData = useActionData()
+console.log('###################', actionData)
   useEffect(() => {
     loaderData
   }, [loaderData])
@@ -181,8 +184,9 @@ const load = loaderData
                             Cancel
                           </button>
                         </div>
+                        
                         <button
-                          type="submit"
+                          //type="submit"
                           className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
                         >
                           Add Profile
