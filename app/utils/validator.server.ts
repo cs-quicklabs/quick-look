@@ -231,7 +231,7 @@ export async function validateFacebookUrl(url: string){
 
   let matchesFbRegex = url.match(fbRegEx)
   if(!url){
-    return 'Inavlid Facebook URL.'
+    return 'Required.'
   } else if (!notContainsWhitespace) {
     return 'Whitespaces are not allowed.'
   } else if(!matchesFbRegex){
@@ -241,17 +241,27 @@ export async function validateFacebookUrl(url: string){
 
 export async function validateTwitterUrl(url: string){
   let whiteSpaceRegex = /^\S*$/
+  let twitterRegEx = /^(https?:\/\/)?((w{3}\.)?)twitter.com\/.*/i
 
   let notContainsWhitespace = url.match(whiteSpaceRegex)
   if(!url){
-    return 'Inavlid Twitter URL.'
+    return 'Required.'
+  }else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if(!twitterRegEx){
+    return 'Inavlid Facebook URL.'
   }
 }
 export async function validateYoutubeUrl(url: string){
   let whiteSpaceRegex = /^\S*$/
+  let ytRegEx = /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i
 
   let notContainsWhitespace = url.match(whiteSpaceRegex)
   if(!url){
-    return 'Inavlid Youtube URL.'
+    return 'Required.'
+  }else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if(!ytRegEx){
+    return 'Inavlid Facebook URL.'
   }
 }
