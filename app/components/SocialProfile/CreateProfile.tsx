@@ -7,6 +7,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import { Form, useActionData } from '@remix-run/react'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
 
 
 function classNames(...classes: (string | boolean)[]) {
@@ -24,23 +25,35 @@ export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,
 const [value, setValue] = useState('')
 
 const [error, setError] = useState('')
+const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
+  const sociallink = selectedSocialLinks?.name?.toLowerCase()
 
+let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
+let whiteSpaceRegex = /^\S*$/
+const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
+  if(value === ''){
+ return setError('')}
+if(!fbRegEx.test(value)){
+  return setError('Please enter a valid link.')
+ } if(!whiteSpaceRegex.test(value)){
+  return setError('White space not allowed.')
+ }
+ else {
+ return setError('')
+}}
 
 const handleChange = (e:any)=>{
-  let whiteSpaceRegex = /^\S*$/
-   let fbRegEx = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
-
  setValue(e.target.value)
- console.log(value);
+regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
 }
 
 
   useEffect(() => {
-    loaderData
-  }, [loaderData])
+    loaderData;
+    regexCheck(fbRegEx,value,whiteSpaceRegex)
+  }, [loaderData,selectedSocialLinks])
   const [query, setQuery] = useState('')
  
-  const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
 
   const Onclose = () => {
    
@@ -201,7 +214,7 @@ const handleChange = (e:any)=>{
                         
                         <button
                           //type="submit"
-                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" disabled={error === '' ? true : false}
+                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" disabled={!value  ? true : !error ? false : true }
                         >
                           Add Profile
                         </button>
