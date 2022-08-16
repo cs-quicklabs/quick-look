@@ -51,7 +51,7 @@ export default function Delete({open,onClose,deleteImage}:any) {
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <form action="account/delete/image" method='post'>
                     <button name={deleteImage} 
-                    value = {deleteImage === 'primary' ? 'deletePrimary' : deleteImage === 'secondary' ? 'deletesecondary' : ''} 
+                    value = {deleteImage === 'primary' ? 'deletePrimary' : deleteImage === 'secondary' ? 'deleteSecondary' : ''} 
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
                     >

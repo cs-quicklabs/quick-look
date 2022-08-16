@@ -11,6 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const url = form.get('photo') as string
     const restore = form.get('restoreImage')
+console.log(url);
 
     if(restore === 'restoreprimaryImage'){
         await restorePrimaryImage(user)
