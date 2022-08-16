@@ -5,14 +5,14 @@ import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import { useLoaderData } from "@remix-run/react";
 
-export default function DashboardHeader({username}: any) {
+export default function DashboardHeader({username,loaderData}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [showUserSetting, setShowUserSetting] = useState(false);
+console.log('LOADS',loaderData);
 
   const toggleSetting = () => {
     setShowUserSetting(!showUserSetting);
   };
-  const loaderData = useLoaderData();
   return (
     <>
 
@@ -62,11 +62,11 @@ export default function DashboardHeader({username}: any) {
                   height={32}
                   id="OpenProfile"
                   data-cy="profile-menu"
-                  alt="Profile Pic"
+                  
                   title="Open Profile"
                   loading="eager"
                   className="mt-2 pb-0 w-8 h-8 md:mt-0 sm:pt-0 sm:pb-0 rounded-full"
-                  src={DefaultProfileIcon}
+                  src={loaderData?.secondaryImage ? loaderData?.secondaryImage : DefaultProfileIcon}
                   onClick={() => toggleSetting()}
                 />
               </button>

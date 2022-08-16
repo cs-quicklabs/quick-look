@@ -47,7 +47,7 @@ setshowBio(true)
 const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
-      <DashboardHeader username={ loaderData.username } />
+      <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
       <AccountSidebar loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>

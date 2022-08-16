@@ -11,16 +11,17 @@ export const action: ActionFunction = async ({ request }) => {
 
     const primaryimageurl = form.get('primaryImageUpload') as string
     const secondaryImageurl = form.get('secondaryImageUpload') as string
+console.log('asfasfasfasfasfasfas',primaryimageurl,secondaryImageurl);
 
-    const restore = form.get('restoreImage')
+    // const restore = form.get('restoreImage')
 
 
-    if(restore === 'restoreprimaryImage'){
-        await restorePrimaryImage(user)
-    }
-    if(restore === 'restoresecondaryImage'){
-        await restoreSecondaryImage(user)
-    }
+    // if(restore === 'restoreprimaryImage'){
+    //     await restorePrimaryImage(user)
+    // }
+    // if(restore === 'restoresecondaryImage'){
+    //     await restoreSecondaryImage(user)
+    // }
 
     if(primaryimageurl){
         await addPrimaryImage(primaryimageurl, user);

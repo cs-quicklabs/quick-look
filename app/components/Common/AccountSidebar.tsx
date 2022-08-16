@@ -248,7 +248,7 @@ setshowImages(false);
                     <div>
                       <img
                         className="inline-block h-9 w-9 rounded-full"
-                        src={DefaultProfileIcon}
+                        src={loaderData?.secondaryImage ? loaderData?.secondaryImage : DefaultProfileIcon}
                         alt=""
                       />
                     </div>
