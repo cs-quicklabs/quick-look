@@ -117,6 +117,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
+console.log('sadasdasd',loaderData);
 
   const [val, setVal] = useState({
     firstName: `${loaderData.user.firstname}`,
@@ -129,7 +130,7 @@ export default function Profile() {
   return (
     <>
       <div>
-        <DashboardHeader username={loaderData.user.username}/>
+        <DashboardHeader username={loaderData.user.username} loaderData={loaderData.user}/>
       </div>
       <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
         <div className='md:w-[25%] lg:w-2/5 '>

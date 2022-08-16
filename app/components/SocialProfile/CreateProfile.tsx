@@ -5,7 +5,7 @@ import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
-import { useActionData } from '@remix-run/react'
+import { Form, useActionData } from '@remix-run/react'
 import { Link } from 'react-router-dom'
 
 
@@ -20,9 +20,21 @@ function classNames(...classes: (string | boolean)[]) {
 ]
    
 export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData}:any) {
-const load = loaderData
-const actionData = useActionData()
-console.log('###################', actionData)
+
+const [value, setValue] = useState('')
+
+const [error, setError] = useState('')
+
+
+const handleChange = (e:any)=>{
+  let whiteSpaceRegex = /^\S*$/
+   let fbRegEx = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+
+ setValue(e.target.value)
+ console.log(value);
+}
+
+
   useEffect(() => {
     loaderData
   }, [loaderData])
@@ -68,7 +80,7 @@ console.log('###################', actionData)
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action='/account/add/socialProfile' method="post" className='h-screen' >
+                  <form action='account/add/socialProfile' method="post" className='h-screen' >
                     <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -158,13 +170,15 @@ console.log('###################', actionData)
                           <div className="mt-1">
                             <input
                               type="text"
-                             
+                             placeholder={`${selectedSocialLinks.name}.com/username`}
                               name="addlink"
                               id="addlink"
+                              value={value}
+                              onChange={handleChange}
                               className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500`}
                               
                             />
-                           
+                           <div className={`text-red-600 text-sm`}>{error}</div>
                           </div>
                         </div>
                       </div>
@@ -187,7 +201,7 @@ console.log('###################', actionData)
                         
                         <button
                           //type="submit"
-                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
+                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" disabled={error === '' ? true : false}
                         >
                           Add Profile
                         </button>

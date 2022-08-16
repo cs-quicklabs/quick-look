@@ -1,7 +1,13 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import DashboardHeader from "~/components/Common/DashboardHeader";
-import { useLoaderData } from "@remix-run/react";
+import { useActionData, useLoaderData } from "@remix-run/react";
+import { ActionFunction, json, redirect } from "@remix-run/node";
+import { validate } from "uuid";
+
+import { commitSession, getSession } from "~/services/session.service.server";
+import { addUpdateSocialLink, updateUserBioDetails } from "~/services/user.service.serevr";
+import { validateFacebookUrl, validateTwitterUrl, validateYoutubeUrl } from "~/utils/validator.server";
 
 import Template1 from "~/components/Templates/template1";
 import { useEffect, useState } from "react";
@@ -24,7 +30,7 @@ export default function Profile() {
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
 const primaryRestore = loaderData.isUsingPrimaryDefault
 const secondaryRestore = loaderData.isUsingSecondaryDefault
-
+const actionData=useActionData()
 
 useEffect(() => {
   return () => {
@@ -49,7 +55,7 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
+      <AccountSidebar actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>

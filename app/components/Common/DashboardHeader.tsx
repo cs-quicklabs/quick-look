@@ -3,11 +3,13 @@ import Modal from "~/components/Common/ConfirmModal";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
-import { useLoaderData } from "@remix-run/react";
+
 
 export default function DashboardHeader({username,loaderData}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [showUserSetting, setShowUserSetting] = useState(false);
+
+  
   const toggleSetting = () => {
     setShowUserSetting(!showUserSetting);
   };
@@ -63,7 +65,7 @@ export default function DashboardHeader({username,loaderData}: any) {
                   title="Open Profile"
                   loading="eager"
                   className="mt-2 pb-0 w-8 h-8 md:mt-0 sm:pt-0 sm:pb-0 rounded-full"
-                  src={loaderData?.secondaryImage ? loaderData?.secondaryImage : DefaultProfileIcon}
+                  src={!loaderData?.secondaryImage ? DefaultProfileIcon : loaderData?.secondaryImage}
                   onClick={() => toggleSetting()}
                 />
               </button>
