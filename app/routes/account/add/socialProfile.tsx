@@ -23,7 +23,6 @@ export const action: ActionFunction = async ({ request }) => {
         twitterUrlError : await validateYoutubeUrl(selectedSocialLink)
       }
     }
-
     if (Object.values(errors).some(Boolean)) {
       return json(
         {
