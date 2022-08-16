@@ -67,7 +67,7 @@ const [deleteImage,setDeleteImage] = useState('')
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                        <form action="/account/add/primaryImage" encType="multipart/form-data" method='post'>
+                        <form action="/account/add/image" encType="multipart/form-data" method='post'>
 
                   <div className='h-screen'>
                     <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
@@ -120,7 +120,7 @@ const [deleteImage,setDeleteImage] = useState('')
                                   // value="primary-photo"
                                   className="hidden"
                                   id="photo"
-                                  name="photo"
+                                  name="primaryImageUpload"
                                   accept="image/*"
                                   onChange={handleChange}
                                 />
@@ -168,7 +168,7 @@ const [deleteImage,setDeleteImage] = useState('')
                                       // value="primary-photo-upload"
                                       className="hidden"
                                       id="photo"
-                                      name="photo"
+                                      name="primaryImageUpload"
                                       accept="image/*"
                                       onChange={handleChange}
                                     />
@@ -203,14 +203,14 @@ const [deleteImage,setDeleteImage] = useState('')
 
                           <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
                           {/* <form action="/account/add/secondaryImage" encType="multipart/form-data" method='post'> */}
-                            <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
+                            <label htmlFor="photo2" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                               Edit
                               <input
                                 type="file"
                                 
                                 className="hidden"
-                                id="photo"
-                                name="photo"
+                                id="photo2"
+                                name="secondaryImageUpload"
                                 accept="image/*"
                                                           
                               />
@@ -225,7 +225,6 @@ const [deleteImage,setDeleteImage] = useState('')
 
                         </div> :
 
-                        <form action="/account/add/secondaryImage" encType="multipart/form-data" method='post'>
 
                           <div className="sm:col-span-6 md:mt-6 lg:mt-16 px-4 sm:px-6 md:mb-7 lg:mb-0">
 
@@ -255,7 +254,7 @@ const [deleteImage,setDeleteImage] = useState('')
                                       // value="secondary-photo-upload"
                                       className="hidden"
                                       id="photo"
-                                      name="photo"
+                                      name="secondaryImageUpload"
                                       accept="image/*"
                                       onChange={handleChange2}
                                     />
@@ -271,7 +270,6 @@ const [deleteImage,setDeleteImage] = useState('')
 
                             </div>
                           </div>
-                        </form>
                       }
                       <DeleteImage open={open} onClose={() => setopen(false)} mode={mode} deleteImage={deleteImage}/>
 
