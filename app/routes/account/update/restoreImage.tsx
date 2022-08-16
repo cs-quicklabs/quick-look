@@ -6,12 +6,8 @@ import { ActionFunction, redirect } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
     const user = await getUser(request) as User
     
-     const formData = await request.formData()
-
-   
-
+    const formData = await request.formData()
     const restore = formData.get('restoreImage')
-
 
     if(restore === 'restoreprimaryImage'){
         await restorePrimaryImage(user)
