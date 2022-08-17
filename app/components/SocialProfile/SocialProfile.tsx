@@ -4,9 +4,9 @@ import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks';
 
-export default function SocialProfile({setshowSocialLinks, loaderData,mode,setmode}:any) {
-  const [showCreateProfile, setshowCreateProfile] = useState(false);
+export default function SocialProfile({setshowSocialLinks, loaderData,mode,setmode,message}:any) {
 
+  const [showCreateProfile, setshowCreateProfile] = useState(message ? true : false);
 
   const toggleSetting = () => {
     setshowCreateProfile(!showCreateProfile);
@@ -80,7 +80,7 @@ const Onclose = () => {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                        <CreateProfile message={message} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                       )}
                     </div>
                         <div className='mt-12'>

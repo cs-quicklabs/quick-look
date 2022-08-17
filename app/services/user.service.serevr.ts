@@ -182,6 +182,7 @@ export async function updateUserTemplate(templateId: string, user: any) {
 }
 
 export async function addUpdateSocialLink(socialProfile: string, link: string, user?: User) {
+try{
     const socialAccount = socialProfile.toLocaleLowerCase();
     if (socialAccount === 'facebook') {
         await db.user.update({
@@ -210,6 +211,11 @@ export async function addUpdateSocialLink(socialProfile: string, link: string, u
                 youtubeLink: link
             }
         })
+    }
+    return true
+    }
+    catch(err){
+        throw err
     }
 }
 

@@ -1,53 +1,48 @@
-import type { LoaderFunction } from "@remix-run/node";
+import { json, LoaderFunction } from "@remix-run/node";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import { useActionData, useLoaderData } from "@remix-run/react";
-import { ActionFunction, json, redirect } from "@remix-run/node";
-import { validate } from "uuid";
-
 import { commitSession, getSession } from "~/services/session.service.server";
-import { addUpdateSocialLink, updateUserBioDetails } from "~/services/user.service.serevr";
-import { validateFacebookUrl, validateTwitterUrl, validateYoutubeUrl } from "~/utils/validator.server";
 
 import Template1 from "~/components/Templates/template1";
 import { useEffect, useState } from "react";
 import Template2 from "~/components/Templates/template2";
-
 import  { DesktopComputerIcon, DeviceMobileIcon } from "@heroicons/react/outline";
 import AccountSidebar from "~/components/Common/AccountSidebar";
-import { useRouteData } from "~/hooks/useRouteData";
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
   const user = await getUser(request)
+
   const session = await getSession(
     request.headers.get("Cookie")
   );
-  const successUpdateSocialMedia = session.get("successUpdateSocialMedia") || null;
-  const failedUdateSocialMedia = session.get("failedUpdateSocialMedia") || null;
-  
 
-  const message = successUpdateSocialMedia ?? failedUdateSocialMedia
-  return user 
+  const message = session.get("successUpdateSocialMedia") || null;
+  return json(
+    { message, user },
+    {
+      headers: {
+        "Set-Cookie": await commitSession(session),
+      },
+    }
+  );
 }
 
 export default function Profile() {
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
-
-  const [showSocialLinks, setshowSocialLinks] = useState(false);
+  const Data = useLoaderData();
+  const loaderData = Data.user
+  const message = Data.message
+  const [showSocialLinks, setshowSocialLinks] = useState(message ? true : false);
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false);
-  const Data = useLoaderData();
-  const loaderData = Data
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
 const primaryRestore = loaderData.isUsingPrimaryDefault
 const secondaryRestore = loaderData.isUsingSecondaryDefault
 const actionData=useActionData()
-
-
-  console.log('IMAGE',showImages,"TEMPLATE",showTemplate,"LINKS",showSocialLinks,"BIO",showBio);
 
 useEffect(() => {
   return () => {
@@ -75,13 +70,13 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar setshowSocialLinks={setshowSocialLinks} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
+      <AccountSidebar setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-30  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'}`}>
+        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-40  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'}`}>
           {/* <form action="" > */}
           <button className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
