@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import {
   MenuIcon,
@@ -30,13 +30,14 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showImages, setshowImages] = useState(false);
-  const [showTemplate, setshowTemplate] = useState(false);
-
-  const [showSocialLinks, setshowSocialLinks] = useState(false);
-
+  // const [showImages, setshowImages] = useState(false);
+  // const [showTemplate, setshowTemplate] = useState(false);
+  // const [showSocialLinks, setshowSocialLinks] = useState(false);
+useEffect(() => {
+ if(showImages && mode ==='mobile') {setshowImages(true)}
+}, [mode,showImages])
 
   const Location = useLocation();
 

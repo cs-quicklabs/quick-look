@@ -59,7 +59,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
    setshowCreateProfile(false)
     }
     if(mode === 'mobile'){
-   
+   setshowCreateProfile(false)
     }
  
   }

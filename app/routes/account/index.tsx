@@ -32,8 +32,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Profile() {
+  const [showImages, setshowImages] = useState(false);
+  const [showTemplate, setshowTemplate] = useState(false);
+
+  const [showSocialLinks, setshowSocialLinks] = useState(false);
   const [mode, setmode] = useState('desktop')
-  const [showBio, setshowBio] = useState(mode === 'mobile' ? true : false);
+  const [showBio, setshowBio] = useState(false);
   const Data = useLoaderData();
   const loaderData = Data
   const [show, setshow] = useState(loaderData.templateNumber)
@@ -43,6 +47,7 @@ const secondaryRestore = loaderData.isUsingSecondaryDefault
 const actionData=useActionData()
 
 
+  console.log('IMAGE',showImages,"TEMPLATE",showTemplate,"LINKS",showSocialLinks,"BIO",showBio);
 
 useEffect(() => {
   return () => {
@@ -53,12 +58,15 @@ useEffect(() => {
 
 const toggledesktop = () =>{
 setmode('desktop')
-setshowBio(false)
+// setshowBio(showBio ? true :false)
 
 }
+
+
 const togglemobile = () =>{
 setmode('mobile')
-setshowBio(true)
+
+setshowTemplate(!showSocialLinks && !showImages && !showBio ? true : false)
 
 }
 const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 'text-gray-700/40'
@@ -67,13 +75,13 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
+      <AccountSidebar setshowSocialLinks={setshowSocialLinks} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[30]  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'}`}>
+        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-50  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'}`}>
           {/* <form action="" > */}
           <button className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
