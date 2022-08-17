@@ -206,7 +206,7 @@ export default function SignUp() {
                   <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
                 </div>:''}
               </div>
-              <div className='text-red-600 text-sm '>
+              <div className='text-red-600 text-sm w-[23rem]'>
                 {actionData?.errors['username']}
               </div>
             </div>
