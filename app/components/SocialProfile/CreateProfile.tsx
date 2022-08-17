@@ -181,7 +181,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                           <div className="mt-1">
                             <input
                               type="text"
-                             placeholder={`${selectedSocialLinks.name}.com/username`}
+                             placeholder={`${selectedSocialLinks.name.toLowerCase()}.com/username`}
                               name="addlink"
                               id="addlink"
                               value={value}
