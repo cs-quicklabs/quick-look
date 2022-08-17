@@ -26,9 +26,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   const successUpdateSocialMedia = session.get("successUpdateSocialMedia") || null;
   const failedUdateSocialMedia = session.get("failedUpdateSocialMedia") || null;
   
-  console.log(failedUdateSocialMedia)
+
   const message = successUpdateSocialMedia ?? failedUdateSocialMedia
-  console.log('MESSAGE', message)
   return { user, message } 
 }
 
@@ -42,7 +41,7 @@ const primaryRestore = loaderData.isUsingPrimaryDefault
 const secondaryRestore = loaderData.isUsingSecondaryDefault
 const actionData=useActionData()
 
-console.log('########33', loaderData.message)
+
 
 useEffect(() => {
   return () => {

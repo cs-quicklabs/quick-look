@@ -26,18 +26,10 @@ export const action: ActionFunction = async ({ request }) => {
         twitterUrlError : await validateYoutubeUrl(selectedSocialLink)
       }
     }
-    console.log(errors)
-    if(Object.keys(errors).length !== 0){
       session.flash(
         "failedUpdateSocialMedia",
         `${Object.values(errors)}`
       );
-      return redirect('/account', {
-        headers: {
-          "Set-Cookie": await commitSession(session),
-        },
-      })  
-    }
     
     const user = await getUser(request) || undefined
     await addUpdateSocialLink(selectedSocial, selectedSocialLink, user)
