@@ -19,8 +19,9 @@ export const loader: LoaderFunction = async ({ request }) => {
   );
 
   const message = session.get("successUpdateSocialMedia") || null;
+  const successMessage = session.get("successUpdateProfileMessage") || null;
   return json(
-    { message, user },
+    { message, successMessage, user },
     {
       headers: {
         "Set-Cookie": await commitSession(session),
@@ -35,6 +36,8 @@ export default function Profile() {
   const Data = useLoaderData();
   const loaderData = Data.user
   const message = Data.message
+  const successUpdateMessage = Data.successMessage; 
+  console.log(successUpdateMessage)
   const [showSocialLinks, setshowSocialLinks] = useState(message ? true : false);
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false);

@@ -17,7 +17,7 @@ export const action: ActionFunction = async ({ request }) => {
     await addUpdateSocialLink(socialProfile, link, user)
 
     session.flash(
-        "updateProfileMessage",
+        "successUpdateProfileMessage",
         `Your profile has been updated successfully.`
     );
 
@@ -27,5 +27,4 @@ export const action: ActionFunction = async ({ request }) => {
       },
     }) 
     
-
 }   

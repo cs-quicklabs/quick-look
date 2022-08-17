@@ -13,11 +13,8 @@ export const action: ActionFunction = async ({ request }) => {
       request.headers.get("Cookie")
     );
     
-  
-
   const user = await getUser(request) || undefined
   await addUpdateSocialLink(selectedSocial, selectedSocialLink, user) 
-
 
     session.flash(
       "successUpdateSocialMedia",
