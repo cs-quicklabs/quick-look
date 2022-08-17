@@ -189,7 +189,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                               className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                               
                             />
-                          {/* <div className={`text-red-600 text-sm`}>{error}</div> */}
+                          <div className={`text-red-600 text-sm`}>{error}</div>
                           </div>
                         </div>
                       </div>
@@ -211,9 +211,9 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                         </div>
                         
                         <button
-                          //type="submit"
+                          type="submit"
                           className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                          // disabled={!value  ? true : !error ? false : true }
+                          disabled={!value  ? true : !error ? false : true }
                         >
                           Add Profile
                         </button>

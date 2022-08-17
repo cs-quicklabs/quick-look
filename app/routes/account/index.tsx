@@ -28,7 +28,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   
 
   const message = successUpdateSocialMedia ?? failedUdateSocialMedia
-  return { user, message } 
+  return user 
 }
 
 export default function Profile() {

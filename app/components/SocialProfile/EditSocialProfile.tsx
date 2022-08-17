@@ -33,7 +33,7 @@ let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)faceboo
 let whiteSpaceRegex = /^\S*$/
 const regexCheck = (fbRegEx:any,val:any,whiteSpaceRegex:any)=>{
   if(val === ''){
- return setError('Required.')}
+ return setError('Link is Required.')}
 if(!fbRegEx.test(val)){
   return setError('Please enter a valid link.')
  } if(!whiteSpaceRegex.test(val)){
