@@ -66,7 +66,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const errors = {
       isOldPasswordSame: await validateOldPassword(user, newPassword, oldPassword),
-      password: await updateValidatePassword(newPassword),
+      password: await updateValidatePassword(newPassword, user),
       isPasswordSame: await validateComfirmPassword(newPassword, confirmNewPassword),
     }
 
