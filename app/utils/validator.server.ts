@@ -168,7 +168,7 @@ export const validateUsername = async (
   } else if (!notOnlyNumber) {
     return 'Only Numbers are not allowed. '
   } else if(usernameExist){
-    return 'This ID has already been taken. Please choose another one.'
+    return 'This ID has already been taken. Please choose another.'
   }
 }
 
@@ -218,7 +218,7 @@ export async function validateUpdateUsername(username: string, user: any ){
   } else if (!notOnlyNumber) {
     return 'Only Numbers are not allowed. '
   } else if(usernameExist){
-    return 'This ID has already been taken. Please choose another one.'
+    return 'This ID has already been taken. Please choose another.'
   }
 
 } 
