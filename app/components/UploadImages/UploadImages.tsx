@@ -51,7 +51,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={Onclose}>
+      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">

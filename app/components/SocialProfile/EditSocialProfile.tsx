@@ -60,6 +60,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
       setShowEditProfile(false)
     }
     if (mode === 'mobile') {
+      setShowEditProfile(false)
     }
   }
 
