@@ -186,7 +186,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                               id="addlink"
                               value={value}
                               onChange={handleChange}
-                              className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500`}
+                              className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                               
                             />
                           {/* <div className={`text-red-600 text-sm`}>{error}</div> */}

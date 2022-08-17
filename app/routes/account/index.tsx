@@ -34,7 +34,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(mode === 'mobile' ? true : false);
-  const loaderData = useLoaderData();
+  const Data = useLoaderData();
+  const loaderData = Data
   const [show, setshow] = useState(loaderData.templateNumber)
   const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
 const primaryRestore = loaderData.isUsingPrimaryDefault
