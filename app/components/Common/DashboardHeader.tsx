@@ -5,7 +5,7 @@ import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 
 
-export default function DashboardHeader({username,loaderData}: any) {
+export default function DashboardHeader({username, loaderData}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [showUserSetting, setShowUserSetting] = useState(false);
 

@@ -15,11 +15,21 @@ import Template2 from "~/components/Templates/template2";
 
 import  { DesktopComputerIcon, DeviceMobileIcon } from "@heroicons/react/outline";
 import AccountSidebar from "~/components/Common/AccountSidebar";
+import { useRouteData } from "~/hooks/useRouteData";
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
   const user = await getUser(request)
-  return user
+  const session = await getSession(
+    request.headers.get("Cookie")
+  );
+  const successUpdateSocialMedia = session.get("successUpdateSocialMedia") || null;
+  const failedUdateSocialMedia = session.get("failedUpdateSocialMedia") || null;
+  
+  console.log(failedUdateSocialMedia)
+  const message = successUpdateSocialMedia ?? failedUdateSocialMedia
+  console.log('MESSAGE', message)
+  return { user, message } 
 }
 
 export default function Profile() {
@@ -31,6 +41,8 @@ export default function Profile() {
 const primaryRestore = loaderData.isUsingPrimaryDefault
 const secondaryRestore = loaderData.isUsingSecondaryDefault
 const actionData=useActionData()
+
+console.log('########33', loaderData.message)
 
 useEffect(() => {
   return () => {

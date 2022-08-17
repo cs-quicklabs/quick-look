@@ -9,6 +9,9 @@ export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData()
     const selectedSocial = formData.get('select_social') as string
     const selectedSocialLink = formData.get('addlink') as string
+    const session = await getSession(
+      request.headers.get("Cookie")
+  );
     let errors = {};
     if(selectedSocial === 'Facebook'){
         errors= {
@@ -23,25 +26,24 @@ export const action: ActionFunction = async ({ request }) => {
         twitterUrlError : await validateYoutubeUrl(selectedSocialLink)
       }
     }
-    if (Object.values(errors).some(Boolean)) {
-      return json(
-        {
-          errors,
-          form: action,
+    console.log(errors)
+    if(Object.keys(errors).length !== 0){
+      session.flash(
+        "failedUpdateSocialMedia",
+        `${Object.values(errors)}`
+      );
+      return redirect('/account', {
+        headers: {
+          "Set-Cookie": await commitSession(session),
         },
-        { status: 400 }
-      )
+      })  
     }
-
-    const session = await getSession(
-        request.headers.get("Cookie")
-    );
-
+    
     const user = await getUser(request) || undefined
     await addUpdateSocialLink(selectedSocial, selectedSocialLink, user)
     session.flash(
-        "updateProfileMessage",
-        `Your profile has been updated successfully.`
+        "successUpdateSocialMedia",
+        `Your Profile has been updated successfully.`
     );
     return redirect('/account', {
       headers: {
