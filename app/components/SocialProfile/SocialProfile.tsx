@@ -84,7 +84,7 @@ const Onclose = () => {
                       )}
                     </div>
                         <div className='mt-12'>
-                          <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
+                          <ExistingSocialLinks message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
                         </div>
                   </div>                  
                 </Dialog.Panel>

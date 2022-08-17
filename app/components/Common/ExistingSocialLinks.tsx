@@ -5,7 +5,7 @@ import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
 
-export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
+export default function ExistingSocialLinks({ message, loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
 
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
@@ -64,7 +64,7 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, se
                     Edit
                   </button>
                   {showEditProfile && (
-                    <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} mode={mode} />
+                    <EditSocialProfile message={message} loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} mode={mode} />
 
                   )}
                   <button
