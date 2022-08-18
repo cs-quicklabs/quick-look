@@ -11,8 +11,6 @@ export default function SelectedSocialLinks({ clickedLink, mode}:any) {
   {}
 ]
   const linkName = localStorage.getItem("LinkName")?.toLocaleLowerCase()
-console.log("dasdasdas",linkName);
-
 const imageSelect = linkName === 'facebook' ? fbIcon : linkName === 'twitter' ? twitterIcon : linkName === 'youtube' ? ytIcon : clickedLink?.image
 
   return (
@@ -31,7 +29,7 @@ const imageSelect = linkName === 'facebook' ? fbIcon : linkName === 'twitter' ? 
                   </div>
                 </div>
               
-                <div className={`flex items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
+                <div className={`flex items-start text-[14px]  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
                   <button
                   disabled
                   >
@@ -40,7 +38,7 @@ const imageSelect = linkName === 'facebook' ? fbIcon : linkName === 'twitter' ? 
     
                     <button 
                     onClick={(e:any)=>{e.preventDefault(); setopen(true)}}
-                    className={`hover:text-red-600 ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
+                    className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                       Delete
                     </button>
                     <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink} />

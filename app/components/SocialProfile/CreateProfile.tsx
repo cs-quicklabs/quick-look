@@ -141,7 +141,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
       </div>
     </div>}
                        <Combobox as="div" value={selectedSocialLinks} onChange={setSelectedSocialLinks}>
-                          <Combobox.Label className="block text-[14px] leading-5 font-medium text-gray-700">Select Social Profile</Combobox.Label>
+                          <Combobox.Label className="block text-sm leading-5 font-medium text-gray-700">Select Social Profile</Combobox.Label>
                           <div className="relative mt-1">
                             <Combobox.Input
                               className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm leading-5"
@@ -154,7 +154,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                             </Combobox.Button>
 
                             {filteredSelectedSocialLink.length > 0 && (
-                              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-[14px]">
+                              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {filteredSelectedSocialLink.map((links) => (
                                   <Combobox.Option
                                     key={links.id}
@@ -195,7 +195,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                         </Combobox>
                         </div>
                         <div className='mt-5'>
-                          <label htmlFor="project-name" className="block text-[14px] font-medium leading-5 text-gray-700">
+                          <label htmlFor="project-name" className="block text-sm font-medium leading-5 text-gray-700">
                             {' '}
                             Add Link{' '}
                           </label>
@@ -207,7 +207,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                               id="addlink"
                               value={value}
                               onChange={handleChange}
-                              className={` leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-[14px] text-gray-500 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                              className={` leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                               
                             />
                           <div className={`text-red-600 text-sm`}>{error}</div>
