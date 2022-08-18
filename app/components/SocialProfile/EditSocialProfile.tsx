@@ -16,7 +16,10 @@ var socialLinks = [
 ]
 
 
+
 export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
+
+
 
 
 const linkName = localStorage.getItem("LinkName")
@@ -33,7 +36,11 @@ useEffect(() => {
 const [error, setError] = useState('')
 
 
-  const [val, setVal] = useState<string>(clickedLink?.email || linkEmail)
+
+
+  const [val, setVal] = useState<string>(clickedLink?.email)
+  const [text, setText] = useState(successUpdateMessage)
+
   // const [query, setQuery] = useState('')
   const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
     link?.name === (clickedLink?.name !== null ? clickedLink?.name : linkName)
@@ -156,7 +163,28 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       <div className='mt-10'>
                         <SelectedSocialLinks setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} />
                       </div>
-
+                      {text &&
+                          <div className="rounded-md bg-green-50 p-4 mb-4">
+      <div className="flex  items-start justify-start">
+        <div className="flex-shrink-0 pt-1">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{text}</p>
+        </div>
+        <div className="ml-auto pl-3">
+          <div className="-mx-1.5 -my-1.5 pt-1">
+            <button
+              type="button"
+              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+            >
+              <span className="sr-only">Dismiss</span>
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>}
                       <div className='pl-3 pr-3.5 mt-6'>
                         <div>
                           <Combobox as="div" value={selectedEditSocialLinks} onChange={()=>setSelectedEditSocialLinks}>
