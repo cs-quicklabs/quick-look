@@ -9,17 +9,19 @@ export default function ExistingSocialLinks({successUpdateMessage,message, loade
 const linkName = localStorage.getItem("LinkName")
   const linkEmail = localStorage.getItem("LinkEmail")
   // const linkImage = localStorage.getItem("LinkImage")
+  // console.log("SADASDSA",linkName,linkEmail);
   
   const [showEditProfile, setShowEditProfile] = useState(successUpdateMessage ? true : false);
   const [open, setopen] = useState(false);
-  const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: ('' || linkName), email: (''||linkEmail), image: ('') });
+  const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
   
-console.log("dasdasdas",linkName);
+console.log("SADASDSA",linkName,"sds",clickedLink);
 
   useEffect(() => {
    
     localStorage.setItem("LinkName",clickedLink?.name)
     localStorage.setItem("LinkEmail",clickedLink?.email)
+    console.log("useEffect")
 // localStorage.setItem("LinkImage",clickedLink?.image)
   }, [selectedSocialLinks])
   const people = [

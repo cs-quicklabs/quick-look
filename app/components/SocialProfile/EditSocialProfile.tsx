@@ -37,7 +37,7 @@ const [error, setError] = useState('')
   
 const [selectedSocialLinks] = useState(selectedEditSocialLinks)
   const sociallink = selectedSocialLinks?.name?.toLowerCase()
-console.log(sociallink);
+// console.log(sociallink);
 
 
 
@@ -97,7 +97,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
                   <form action="/account/update/socialProfile" method="post">
-                    <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' : 'w-full md:max-w-xs lg:max-w-md'}`}>
+                    <div className={`flex h-[50rem] flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' : 'w-full md:max-w-xs lg:max-w-md'}`}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
