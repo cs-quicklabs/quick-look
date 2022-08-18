@@ -29,7 +29,7 @@ const [error, setError] = useState('')
 const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
   const sociallink = selectedSocialLinks?.name?.toLowerCase()
 
-let fbRegEx:any = sociallink === 'facebook' ? /^facebook.com\/./gm : sociallink === 'twitter' ? /^twitter.com\/./gm :  sociallink === 'youtube' ? /^youtube.com\/./gm :''
+let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
 let whiteSpaceRegex = /^\S*$/
 const regexCheck = (fbRegEx:any,val:any,whiteSpaceRegex:any)=>{
   if(val === ''){
