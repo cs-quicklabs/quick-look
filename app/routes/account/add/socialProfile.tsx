@@ -1,23 +1,34 @@
-import { ActionFunction, json, redirect } from "@remix-run/node";
+import { ActionFunction, redirect } from "@remix-run/node";
 import { getUser } from "~/services/auth.service.server";
 import { commitSession, getSession } from "~/services/session.service.server";
-import { addUpdateSocialLink, updateUserBioDetails } from "~/services/user.service.serevr";
-import { validateFacebookUrl, validateTwitterUrl, validateYoutubeUrl } from "~/utils/validator.server";
+import { addUpdateSocialLink } from "~/services/user.service.serevr";
+
 
 export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData()
     const selectedSocial = formData.get('select_social') as string
-    const selectedSocialLink = formData.get('addlink') as string
-    
+    let selectedSocialLink = formData.get('addlink') as string
+    let index = -1;
+
     const session = await getSession(
       request.headers.get("Cookie")
     );
-    
-  
+
+    if(selectedSocial == 'Facebook'){
+      index = selectedSocialLink.search('facebook')
+      selectedSocialLink = selectedSocialLink.slice(index)
+    }
+    if(selectedSocial == 'Twitter'){
+      index = selectedSocialLink.search('twitter')
+      selectedSocialLink = selectedSocialLink.slice(index)
+    }
+    if(selectedSocial == 'Youtube'){
+      index = selectedSocialLink.search('youtube')
+      selectedSocialLink = selectedSocialLink.slice(index)
+    }
 
   const user = await getUser(request) || undefined
   await addUpdateSocialLink(selectedSocial, selectedSocialLink, user) 
-
 
     session.flash(
       "successUpdateSocialMedia",
@@ -29,18 +40,4 @@ export const action: ActionFunction = async ({ request }) => {
     },
   }) 
   }
-/*     let errors = {};
-    
-    if(selectedSocial === 'Facebook'){
-        errors= {
-          facebookUrlError : await validateFacebookUrl(selectedSocialLink)
-        }
-    } else if(selectedSocial === 'Twitter'){
-      errors= {
-        twitterUrlError : await validateTwitterUrl(selectedSocialLink)
-      }
-    } else if(selectedSocial === 'Youtube'){
-      errors= {
-        youtubeUrlError : await validateYoutubeUrl(selectedSocialLink)
-      }
-    } */
+

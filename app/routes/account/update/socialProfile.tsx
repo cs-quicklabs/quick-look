@@ -10,14 +10,28 @@ export const action: ActionFunction = async ({ request }) => {
     const session = await getSession(
         request.headers.get("Cookie")
     );
-
-    const link = formData.get('editlink') as string
+    let index = -1;
+    
+    let link = formData.get('editlink') as string
     const socialProfile = formData.get('edit_social_links') as string
+
+    if(socialProfile == 'Facebook'){
+      index = link.search('facebook')
+      link = link.slice(index)
+    }
+    if(socialProfile == 'Twitter'){
+      index = link.search('twitter')
+      link = link.slice(index)
+    }
+    if(socialProfile == 'Youtube'){
+      index = link.search('youtube')
+      link = link.slice(index)
+    }
 
     await addUpdateSocialLink(socialProfile, link, user)
 
     session.flash(
-        "updateProfileMessage",
+        "successUpdateProfileMessage",
         `Your profile has been updated successfully.`
     );
 
@@ -27,5 +41,4 @@ export const action: ActionFunction = async ({ request }) => {
       },
     }) 
     
-
 }   

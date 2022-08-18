@@ -30,7 +30,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -183,7 +183,7 @@ useEffect(() => {
                           null
                         }
                         {showSocialLinks ?
-                          <SocialProfile message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          <SocialProfile successUpdateMessage={successUpdateMessage} message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showImages ?
@@ -334,7 +334,7 @@ useEffect(() => {
                   null
                 }
                 {showSocialLinks ?
-                  <SocialProfile message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                  <SocialProfile successUpdateMessage={successUpdateMessage} message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showImages ?

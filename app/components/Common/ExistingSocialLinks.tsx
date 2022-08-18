@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditSocialProfile from "../SocialProfile/EditSocialProfile";
 import DeleteSocialProfile from "./DeleteSocialProfile";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
 
-export default function ExistingSocialLinks({ message, loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
-
+export default function ExistingSocialLinks({successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
+const linkName = localStorage.getItem("LinkName")
+  const linkEmail = localStorage.getItem("LinkEmail")
+  // const linkImage = localStorage.getItem("LinkImage")
+  // console.log("SADASDSA",linkName,linkEmail);
+  
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
-  const [clickedLink, setClickedLink] = useState<{ name: string; email: string; image: string; } | null>(null);
+  const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
+  
+// console.log("SADASDSA",linkName,"sds",clickedLink);
 
+  
   const people = [
     {
       name: 'Facebook',
@@ -64,7 +71,7 @@ export default function ExistingSocialLinks({ message, loaderData, setshowSocial
                     Edit
                   </button>
                   {showEditProfile && (
-                    <EditSocialProfile message={message} loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} mode={mode} />
+                    <EditSocialProfile clickedLink={clickedLink} successUpdateMessage={successUpdateMessage} loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} message={message}/>
 
                   )}
                   <button

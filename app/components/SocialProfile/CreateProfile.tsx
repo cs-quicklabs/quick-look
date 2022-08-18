@@ -17,7 +17,7 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 3, name: 'Youtube' },
 ]
    
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData,message}:any) {
+export default function CreateProfile({successUpdateMessage,setshowCreateProfile, setshowSocialLinks,mode, loaderData,message}:any) {
 
 
 const [value, setValue] = useState('')
@@ -26,7 +26,7 @@ const [error, setError] = useState('')
 const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
   const sociallink = selectedSocialLinks?.name?.toLowerCase()
 
-let fbRegEx:any = sociallink === 'facebook' ? /^facebook.com\/./gm : sociallink === 'twitter' ? /^twitter.com\/./gm :  sociallink === 'youtube' ? /^youtube.com\/./gm :''
+let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
 let whiteSpaceRegex = /^\S*$/
 const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
   if(value === ''){
@@ -241,7 +241,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       </div>
 
                       <div className='mt-10'>
-                        <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
+                        <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message}  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
                       </div>
 
                     </div>
