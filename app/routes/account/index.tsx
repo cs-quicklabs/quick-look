@@ -17,10 +17,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(
     request.headers.get("Cookie")
   );
-
+const successMessage = session.get("successUpdateProfileMessage") || null;
   const message = session.get("successUpdateSocialMedia") || null;
   return json(
-    { message, user },
+    { message,successMessage, user },
     {
       headers: {
         "Set-Cookie": await commitSession(session),
@@ -33,9 +33,26 @@ export default function Profile() {
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
-  const loaderData = Data.user
-  const message = Data.message
-  const [showSocialLinks, setshowSocialLinks] = useState(message ? true : false);
+  const loaderData = Data?.user
+  const [message,setMessage] = useState(Data?.message)
+const [successUpdateMessage,setSuccessUpdateMessage] =useState(Data?.successMessage)
+
+useEffect(() => {
+  if(message){
+setTimeout(() => {
+  setMessage('')
+}, 2000);
+}
+if(successUpdateMessage){
+setTimeout(() => {
+  setSuccessUpdateMessage('')
+ 
+
+}, 2000);
+}
+}, [message,successUpdateMessage])
+
+  const [showSocialLinks, setshowSocialLinks] = useState(message || successUpdateMessage ? true : false);
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false);
   const [show, setshow] = useState(loaderData.templateNumber)
@@ -70,7 +87,7 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
+      <AccountSidebar successUpdateMessage={successUpdateMessage} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>

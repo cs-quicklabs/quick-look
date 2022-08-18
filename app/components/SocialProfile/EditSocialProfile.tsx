@@ -16,34 +16,67 @@ var socialLinks = [
 ]
 
 
-export default function EditSocialProfile({ message, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
 
+export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
+
+
+
+
+const linkName = localStorage.getItem("LinkName")
+  const linkEmail = localStorage.getItem("LinkEmail")
+
+useEffect(() => {
+   
+    localStorage.setItem("LinkName",clickedLink?.name)
+    localStorage.setItem("LinkEmail",clickedLink?.email)
+    
+
+  }, [])
 
 const [error, setError] = useState('')
+
+
+
+
   const [val, setVal] = useState<string>(clickedLink?.email)
-  const [text, setText] = useState(message)
+  const [text, setText] = useState(successUpdateMessage)
+
   // const [query, setQuery] = useState('')
   const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
-    link.name === clickedLink.name
-  )[0]
+    link?.name === (clickedLink?.name !== null ? clickedLink?.name : linkName)
+  )[0] 
   )
-const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
+  
+const [selectedSocialLinks] = useState(selectedEditSocialLinks)
   const sociallink = selectedSocialLinks?.name?.toLowerCase()
 
-let fbRegEx:any = sociallink === 'facebook' ? /^facebook.com\/./gm : sociallink === 'twitter' ? /^twitter.com\/./gm :  sociallink === 'youtube' ? /^youtube.com\/./gm :''
+
+let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
 let whiteSpaceRegex = /^\S*$/
+
 const regexCheck = (fbRegEx:any,val:any,whiteSpaceRegex:any)=>{
+  if(!fbRegEx.test(val)){
+  return setError('Please enter a valid link.')
+ }
+   if(!whiteSpaceRegex.test(val)){
   if(val === ''){
  return setError('Link is Required.')}
-if(!fbRegEx.test(val)){
-  return setError('Please enter a valid link.')
- } if(!whiteSpaceRegex.test(val)){
   return setError('White space not allowed.')
  }
  else {
  return setError('')
 }}
-
+// const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
+//   if(value === ''){
+//  return setError('')}
+// if(!fbRegEx.test(value)){
+//   return setError('Please enter a valid link.')
+//  } if(!whiteSpaceRegex.test(value)){
+//   return setError('White space not allowed.')
+//  }
+//  else {
+//  return setError('')
+// }}
 const handleChange = (e:any)=>{
  setVal(e.target.value)
 regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
@@ -53,6 +86,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   useEffect(() => {
     loaderData;
     regexCheck(fbRegEx,val,whiteSpaceRegex)
+    
   }, [loaderData,selectedSocialLinks])
 
   // const [query, setQuery] = useState('')
@@ -86,7 +120,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
                   <form action="/account/update/socialProfile" method="post">
-                    <div className={`flex h-full flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' : 'w-full md:max-w-xs lg:max-w-md'}`}>
+                    <div className={`flex h-[50rem] flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' : 'w-full md:max-w-xs lg:max-w-md'}`}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
@@ -153,7 +187,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
     </div>}
                       <div className='pl-3 pr-3.5 mt-6'>
                         <div>
-                          <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
+                          <Combobox as="div" value={selectedEditSocialLinks} onChange={()=>setSelectedEditSocialLinks}>
 
                             <Combobox.Label className="block text-sm font-medium text-gray-700 pointer-events-none">
                               Edit Social Profile
