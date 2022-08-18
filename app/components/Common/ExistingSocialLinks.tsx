@@ -11,19 +11,13 @@ const linkName = localStorage.getItem("LinkName")
   // const linkImage = localStorage.getItem("LinkImage")
   // console.log("SADASDSA",linkName,linkEmail);
   
-  const [showEditProfile, setShowEditProfile] = useState(successUpdateMessage ? true : false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
   const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
   
-console.log("SADASDSA",linkName,"sds",clickedLink);
+// console.log("SADASDSA",linkName,"sds",clickedLink);
 
-  useEffect(() => {
-   
-    localStorage.setItem("LinkName",clickedLink?.name)
-    localStorage.setItem("LinkEmail",clickedLink?.email)
-    console.log("useEffect")
-// localStorage.setItem("LinkImage",clickedLink?.image)
-  }, [selectedSocialLinks])
+  
   const people = [
     {
       name: 'Facebook',

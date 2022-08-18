@@ -34,11 +34,24 @@ export default function Profile() {
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
   const loaderData = Data?.user
-  const message = Data?.message
-const successUpdateMessage = Data?.successMessage; 
-console.log(successUpdateMessage);
+  const [message,setMessage] = useState(Data?.message)
+const [successUpdateMessage,setSuccessUpdateMessage] =useState(Data?.successMessage)
 
-  
+useEffect(() => {
+  if(message){
+setTimeout(() => {
+  setMessage('')
+}, 2000);
+}
+if(successUpdateMessage){
+setTimeout(() => {
+  setSuccessUpdateMessage('')
+ 
+
+}, 2000);
+}
+}, [message,successUpdateMessage])
+
   const [showSocialLinks, setshowSocialLinks] = useState(message || successUpdateMessage ? true : false);
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false);
