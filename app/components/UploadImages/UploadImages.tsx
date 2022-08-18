@@ -201,7 +201,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                 Secondary Image
                               </label>
 
-                              <div className="flex justify-center h-[7rem] w-[7rem]  rounded-full mt-3.5">
+                              <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
                                 <img src={secondaryRestore ? defaultProfileimage : loaderData.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
                               </div>
 

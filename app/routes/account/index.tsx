@@ -64,7 +64,7 @@ setmode('mobile')
 setshowTemplate(!showSocialLinks && !showImages && !showBio ? true : false)
 
 }
-const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 'text-gray-700/40'
+const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
@@ -76,11 +76,11 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-white' : 
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-40  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'}`}>
+        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-40  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData.templateNumber == '1' ? 'border border-gray-300' : ""} `}>
           {/* <form action="" > */}
           <button className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
-            <DesktopComputerIcon className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon }`}/>
+            <DesktopComputerIcon className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon } `}/>
             </button>
             
           <button className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md border-l`}
