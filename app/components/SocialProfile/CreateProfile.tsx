@@ -17,7 +17,7 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 3, name: 'Youtube' },
 ]
    
-export default function CreateProfile({setshowCreateProfile, setshowSocialLinks,mode, loaderData,message}:any) {
+export default function CreateProfile({successUpdateMessage,setshowCreateProfile, setshowSocialLinks,mode, loaderData,message}:any) {
 
 
 const [value, setValue] = useState('')
@@ -241,7 +241,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       </div>
 
                       <div className='mt-10'>
-                        <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
+                        <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message}  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
                       </div>
 
                     </div>

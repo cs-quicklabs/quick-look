@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import CreateProfile from './CreateProfile'
 import ExistingSocialLinks from '../Common/ExistingSocialLinks';
 
-export default function SocialProfile({setshowSocialLinks, loaderData,mode,setmode,message}:any) {
+export default function SocialProfile({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
 
   const [showCreateProfile, setshowCreateProfile] = useState(message ? true : false);
 
@@ -80,11 +80,11 @@ const Onclose = () => {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile message={message} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                        <CreateProfile message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                       )}
                     </div>
                         <div className='mt-12'>
-                          <ExistingSocialLinks  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
+                          <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
                         </div>
                   </div>                  
                 </Dialog.Panel>
