@@ -1,7 +1,7 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import SelectedSocialLinks from '../Common/SelectedSocialLinks'
 
@@ -16,27 +16,38 @@ var socialLinks = [
 ]
 
 
-export default function EditSocialProfile({ loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
+export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
+
+const [text, setText] = useState(successUpdateMessage)
+
+const linkName = localStorage.getItem("LinkName")
+  const linkEmail = localStorage.getItem("LinkEmail")
+// console.log("LOCAL" ,linkEmail,linkName);
+
 
 
 const [error, setError] = useState('')
-  const [val, setVal] = useState<string>(clickedLink?.email)
+  const [val, setVal] = useState<string>(clickedLink?.email || linkEmail)
   // const [query, setQuery] = useState('')
   const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
-    link.name === clickedLink.name
-  )[0]
+    link?.name === (clickedLink?.name !== null ? clickedLink?.name : linkName)
+  )[0] 
   )
-const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
+  // console.log("asdas",linkName);
+  
+const [selectedSocialLinks] = useState(selectedEditSocialLinks)
   const sociallink = selectedSocialLinks?.name?.toLowerCase()
+console.log(sociallink);
+
+
 
 let fbRegEx:any = sociallink === 'facebook' ? /^facebook.com\/./gm : sociallink === 'twitter' ? /^twitter.com\/./gm :  sociallink === 'youtube' ? /^youtube.com\/./gm :''
 let whiteSpaceRegex = /^\S*$/
+
 const regexCheck = (fbRegEx:any,val:any,whiteSpaceRegex:any)=>{
+   if(!whiteSpaceRegex.test(val)){
   if(val === ''){
  return setError('Link is Required.')}
-if(!fbRegEx.test(val)){
-  return setError('Please enter a valid link.')
- } if(!whiteSpaceRegex.test(val)){
   return setError('White space not allowed.')
  }
  else {
@@ -52,6 +63,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   useEffect(() => {
     loaderData;
     regexCheck(fbRegEx,val,whiteSpaceRegex)
+    
   }, [loaderData,selectedSocialLinks])
 
   // const [query, setQuery] = useState('')
@@ -128,10 +140,31 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       <div className='mt-10'>
                         <SelectedSocialLinks setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} />
                       </div>
-
+{text &&
+                          <div className="rounded-md bg-green-50 p-4 mt-4">
+      <div className="flex  items-start justify-start">
+        <div className="flex-shrink-0 pt-1">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{text}</p>
+        </div>
+        <div className="ml-auto pl-3">
+          <div className="-mx-1.5 -my-1.5 pt-1">
+            <button
+              type="button"
+              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+            >
+              <span className="sr-only">Dismiss</span>
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>}
                       <div className='pl-3 pr-3.5 mt-6'>
                         <div>
-                          <Combobox as="div" value={selectedEditSocialLinks} onChange={setSelectedEditSocialLinks}>
+                          <Combobox as="div" value={selectedEditSocialLinks} onChange={()=>setSelectedEditSocialLinks}>
 
                             <Combobox.Label className="block text-sm font-medium text-gray-700 pointer-events-none">
                               Edit Social Profile

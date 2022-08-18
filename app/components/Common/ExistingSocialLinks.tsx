@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditSocialProfile from "../SocialProfile/EditSocialProfile";
 import DeleteSocialProfile from "./DeleteSocialProfile";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
 
-export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
-
-  const [showEditProfile, setShowEditProfile] = useState(false);
+export default function ExistingSocialLinks({successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
+const linkName = localStorage.getItem("LinkName")
+  const linkEmail = localStorage.getItem("LinkEmail")
+  // const linkImage = localStorage.getItem("LinkImage")
+  
+  const [showEditProfile, setShowEditProfile] = useState(successUpdateMessage ? true : false);
   const [open, setopen] = useState(false);
-  const [clickedLink, setClickedLink] = useState<{ name: string; email: string; image: string; } | null>(null);
+  const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: ('' || linkName), email: (''||linkEmail), image: ('') });
+  
+console.log("dasdasdas",linkName);
 
+  useEffect(() => {
+   
+    localStorage.setItem("LinkName",clickedLink?.name)
+    localStorage.setItem("LinkEmail",clickedLink?.email)
+// localStorage.setItem("LinkImage",clickedLink?.image)
+  }, [selectedSocialLinks])
   const people = [
     {
       name: 'Facebook',
@@ -64,7 +75,7 @@ export default function ExistingSocialLinks({ loaderData, setshowSocialLinks, se
                     Edit
                   </button>
                   {showEditProfile && (
-                    <EditSocialProfile loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} clickedLink={clickedLink} mode={mode} />
+                    <EditSocialProfile clickedLink={clickedLink} successUpdateMessage={successUpdateMessage} loaderData={loaderData} setShowEditProfile={setShowEditProfile} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} message={message}/>
 
                   )}
                   <button
