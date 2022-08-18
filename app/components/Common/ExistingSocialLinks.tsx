@@ -65,7 +65,7 @@ const linkName = localStorage.getItem("LinkName")
 
                 <div className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
                   <button
-                    className="hover:text-indigo-600"
+                    className="hover:text-indigo-600 text-[14px]"
                     onClick={(e: any) => { e.preventDefault(); toggleEdit(person) }}
                   >
                     Edit
@@ -76,7 +76,7 @@ const linkName = localStorage.getItem("LinkName")
                   )}
                   <button
                     onClick={(e: any) => { e.preventDefault(); setopen(true); toggleDel(person) }}
-                    className={`hover:text-red-600 ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
+                    className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
                   <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink} />
