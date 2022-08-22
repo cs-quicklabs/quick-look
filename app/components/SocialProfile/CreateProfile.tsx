@@ -118,7 +118,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       </div>
                       <div className='pl-2.5 pr-5 mt-6'>
                         <div>
-                          {text &&
+                          {message &&
                           <div className="rounded-md bg-green-50 p-4 mb-4">
       <div className="flex  items-start justify-start">
         <div className="flex-shrink-0 pt-1">
