@@ -37,7 +37,7 @@ export default function Profile() {
   const [message,setMessage] = useState(Data?.message)
 const [successUpdateMessage,setSuccessUpdateMessage] =useState(Data?.successMessage)
 
-useEffect(() => {
+// useEffect(() => {
   if(message){
 setTimeout(() => {
   setMessage('')
@@ -50,7 +50,7 @@ setTimeout(() => {
 
 }, 2000);
 }
-}, [message,successUpdateMessage])
+// }, [message,successUpdateMessage])
 
   const [showSocialLinks, setshowSocialLinks] = useState(message || successUpdateMessage ? true : false);
   const [mode, setmode] = useState('desktop')
