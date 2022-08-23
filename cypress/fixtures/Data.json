@@ -1,0 +1,13 @@
+{
+  "content": {
+    "quicklook": "QUICKLOOK",
+    "forgotPassword": "Forgot your password?"
+  },
+  "invalid_credentials": {
+    "password": "check12",
+    "email": "pqr@abc.com"
+  },
+  "password": "12345678",
+  "email": "thedikshagrover@gmail.com",
+  "baseUrl": "http://localhost:3000"
+}

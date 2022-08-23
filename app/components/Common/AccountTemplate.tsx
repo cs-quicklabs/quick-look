@@ -40,7 +40,7 @@ const Onclose = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
+                <Dialog.Panel data-cy="accountTemplate" className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
                   <div className="flex h-full flex-col bg-white border-r border-gray-200">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">

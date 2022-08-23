@@ -9,7 +9,9 @@
     "start": "remix-serve build",
     "css": "tailwindcss -w -i app/styles/input.css -o app/styles/tailwind.css --watch",
     "migrate": "npx prisma migrate dev --name",
-    "format": "npx prisma format"
+    "format": "npx prisma format",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.145.0",
@@ -29,6 +31,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^1.1.1",
     "cuid": "^2.1.8",
+    "cypress": "^9.6.1",
     "dotenv": "^16.0.1",
     "focus-visible": "^5.2.0",
     "formik": "^2.2.9",

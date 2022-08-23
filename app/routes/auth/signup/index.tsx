@@ -113,6 +113,7 @@ export default function SignUp() {
                     First Name
                   </label>
                   <input
+                    data-cy="firstName"
                     className={`flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
                       actionData?.errors['firstname']
                         ? 'border border-red-400'
@@ -144,6 +145,7 @@ export default function SignUp() {
                     Last Name
                   </label>
                   <input
+                    data-cy="lastName"
                     className={`flex items-center box-border appearance-none w-44 h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
                       actionData?.errors['lastname']
                         ? 'border border-red-400'
@@ -186,7 +188,8 @@ export default function SignUp() {
                     quicklook.me/
                   </span>
                   <input
-                  type='text'
+                    data-cy="profileId"
+                    type='text'
                     name='profileId'
                     value={val.profileId}
                     onChange={(event) => {
@@ -217,6 +220,7 @@ export default function SignUp() {
                   Email address
                 </label>
                 <input
+                  data-cy="email"
                   className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
                     actionData?.errors['email'] ? 'border border-red-400' : ''
                   }`}
@@ -243,6 +247,7 @@ export default function SignUp() {
                   Password
                 </label>
                 <input
+                  data-cy="password"
                   className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
                     actionData?.errors['password']
                       ? 'border border-red-400'
@@ -271,6 +276,7 @@ export default function SignUp() {
                   Confirm Password
                 </label>
                 <input
+                  data-cy="confirmPassword"
                   className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${
                     actionData?.errors['isPasswordSame']
                       ? 'border border-red-400'
@@ -296,6 +302,8 @@ export default function SignUp() {
               </div>
               <div className=''>
                 <button
+                  data-cy="createNewAccountButton"
+                  type="submit"
                   className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white leading-5 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-8`}
                 >
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>

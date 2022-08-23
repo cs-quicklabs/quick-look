@@ -111,7 +111,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
-                                <label htmlFor="photo" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
+                                <label htmlFor="photo" id="primaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                   Edit
                                   <input
                                     type="file"
@@ -125,6 +125,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                 </label>
 
                                 <button
+                                  id='primaryDeleteButton'
                                   onClick={(e: any) => { e.preventDefault(); setopen(true); setDeleteImage('primary') }}
                                   className='cursor-pointer ml-2 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                   Delete
@@ -163,7 +164,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
 
-                                  <label htmlFor="photo" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                                     Upload Image
 
                                     <input
@@ -182,7 +183,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                   {/* </form> */}
                                   <form action="account/update/restoreImage" method='post'>
 
-                                    <button name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" >
+                                    <button data-cy="restorePrimaryImage"  name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" >
                                       Restore Default Image
                                     </button></form>
                                 </div>
@@ -209,7 +210,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
                               {/* <form action="/account/add/image" encType="multipart/form-data" method='post'> */}
-                              <label htmlFor="photo2" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
+                              <label htmlFor="photo2" id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                 Edit
                                 <input
                                   type="file"
@@ -223,6 +224,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                 <button type="submit" ref={ref} className="hidden">upload</button>
                               </label>
                               <button
+                                id='secondaryDeleteButton'
                                 onClick={(e: any) => { e.preventDefault(); setopen(true); setDeleteImage('secondary') }}
                                 className='cursor-pointer ml-3 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                 Delete
@@ -255,7 +257,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                   <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
                                 </div>
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20 '>
-                                  <label htmlFor="photo2" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                  <label htmlFor="photo2" id="secondaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                                     Upload Image
                                     <input
                                       type="file"
@@ -268,7 +270,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
                                   <form action="account/update/restoreImage" method='post'>
-                                    <button name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
+                                    <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                       Restore Default Image
                                     </button></form>
                                 </div>

@@ -150,7 +150,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                               name='select_social'
                             />
                             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-                              <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                              <SelectorIcon id="socialProfileBox" className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Combobox.Button>
 
                             {filteredSelectedSocialLink.length > 0 && (
@@ -158,6 +158,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                                 {filteredSelectedSocialLink.map((links) => (
                                   <Combobox.Option
                                     key={links.id}
+                                    data-cy={`socialProfile-${links.name}`}
                                     value={links}
                                     className={({ active }) =>
                                       classNames(
@@ -232,6 +233,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                         </div>
                         
                         <button
+                          data-cy="addProfileButton"
                           type="submit"
                           className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
                           disabled={!value  ? true : !error ? false : true }
