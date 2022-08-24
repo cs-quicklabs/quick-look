@@ -1,14 +1,11 @@
 describe("Signup test", function () {
 
-  beforeEach(() => {
-    cy.visit('/auth/signup');
-  });
-
-  after(() => {
-    cy.visit('/');
-  });
+  // after(() => {
+  //   cy.visit('/');
+  // });
 
   it("verifies all the elements in the sign up page", () => {
+    cy.visit('/auth/signup');
     cy.contains("Create new Account");
     cy.contains("No credit card required. Starting with free plan.");
     cy.contains('First Name');
@@ -30,6 +27,7 @@ describe("Signup test", function () {
   });
 
   it("should not signup with invalid credentials ", () => {
+    cy.visit('/auth/signup');
     cy.fixture("invalid-signup.json").then((user) => {
       cy.signup(
         user.firstName,
@@ -53,6 +51,7 @@ describe("Signup test", function () {
   });
 
   it("should signup with valid credentials ", () => {
+    cy.visit('/auth/signup');
     cy.fixture("valid-signup.json").then((user) => {
       cy.signup(
         user.firstName,
@@ -63,34 +62,56 @@ describe("Signup test", function () {
         user.confirmPassword
       );
     });
+    cy.wait(4000);
+
   });
 
-  it("should not sign up with already taken profile id", () => {
+  it('validate verify account', () => {
     cy.fixture("valid-signup.json").then((user) => {
-      cy.signup(
-        user.firstName,
-        user.lastName,
-        user.profileId,
-        user.email,
-        user.password,
-        user.confirmPassword
-      );
+      //visiting yopmail to verify account.
+      cy.visit('www.yopmail.com');
+      // search for email 
+      cy.xpath('//input[@class="ycptinput"]').should('be.visible').type(user.email);
+      cy.xpath('//i[contains(text(),"")]').click();
+      //clicking on confirmation link
+      cy.xpath('//iframe[@id="ifmail"]').then(($iframe) => {
+        const doc = $iframe.contents()
+        cy.wrap(doc.find('#mail > div > a')).click();
+      });
     });
-    cy.contains("This ID has already been taken. Please choose another.");
-  });
 
-  // it("should not sign up with already taken email address", () => {
-  //   cy.fixture("valid-signup.json").then((user) => {
-  //     cy.signup(
-  //       user.firstName,
-  //       user.lastName,
-  //       user.profileId,
-  //       user.email,
-  //       user.password,
-  //       user.confirmPassword
-  //     );
-  //   });
-  //   cy.contains("Email already exists.");
-  // });
+
+
+    // it("should not sign up with already taken profile id", () => {
+    //   cy.visit('/auth/signup');
+    //   cy.fixture("valid-signup.json").then((user) => {
+    //     cy.signup(
+    //       user.firstName,
+    //       user.lastName,
+    //       user.profileId,
+    //       user.email,
+    //       user.password,
+    //       user.confirmPassword
+    //     );
+    //   });
+    //   cy.contains("This ID has already been taken. Please choose another.");
+    // });
+
+
+    // it("should not sign up with already taken email address", () => {
+    //   cy.fixture("valid-signup.json").then((user) => {
+    //     cy.signup(
+    //       user.firstName,
+    //       user.lastName,
+    //       user.profileId,
+    //       user.email,
+    //       user.password,
+    //       user.confirmPassword
+    //     );
+    //   });
+    //   cy.contains("Email already exists.");
+    // });
+
+  });
 
 });

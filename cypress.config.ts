@@ -9,7 +9,15 @@ export default defineConfig({
     env: {
       commandDelay: 1000,
     },
-    // "chromeWebSecurity": false,
+    testFiles: [
+      "signup.spec.ts",
+      "login.spec.ts",
+      "mobileDesktopView.spec.ts",
+      "socialLinks.spec.ts",
+      "uploadImage.spec.ts"
+      //...
+    ],
+    "chromeWebSecurity": false,
     // setupNodeEvents(on, config) {
     //   // implement node event listeners here
     // },

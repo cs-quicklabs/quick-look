@@ -6,11 +6,13 @@
       "dom"
     ],
     "types": [
-      "cypress"
+      "cypress",
+      "cypress-xpath"
     ]
   },
   "include": [
     "**/*.ts",
-    "support/commands.js"
-, "integration/uploadImage.spec.js"  ]
+    "support/commands.js",
+    "integration/uploadImage.spec.js"
+  ]
 }

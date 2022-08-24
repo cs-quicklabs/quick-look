@@ -19,12 +19,13 @@ describe('Login Test Cases', () => {
     cy.url().should('include', `${userDetails.baseUrl}/account`);
   });
 
-  it('Logout', () => {
-    cy.get('[data-cy="profile-menu"]').click();
-    cy.get('[data-cy="sign-out"]').click();
-    cy.get('[data-cy="signOutModal"]').should('be.visible');
-    cy.get('[data-cy="signOut"]').click();
-    cy.url().should('include', `${userDetails.baseUrl}/`);
-  });
+  // it('Logout', () => {
+  //   cy.get('[data-cy="profile-menu"]').click();
+  //   cy.get('[data-cy="sign-out"]').click();
+  //   cy.wait(2000);
+  //   cy.get('[data-cy="signOutModal"]').should('be.visible');
+  //   cy.get('[data-cy="signOut"]').click();
+  //   cy.url().should('include', `${userDetails.baseUrl}/`);
+  // });
 
 });

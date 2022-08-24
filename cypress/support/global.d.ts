@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+/// <reference types="cypress-xpath" />
+
 declare namespace Cypress {
   interface Chainable {
     login(email: string, password: string): void;
