@@ -69,7 +69,6 @@ export const action: ActionFunction = async ({ request }) => {
       password: await updateValidatePassword(newPassword, user),
       isPasswordSame: await validateComfirmPassword(newPassword, confirmNewPassword),
     }
-
     if (Object.values(errors).some(Boolean)) {
       return json(
         {
