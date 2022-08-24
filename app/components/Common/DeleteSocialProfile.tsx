@@ -52,7 +52,7 @@ export default function Delete({open,onClose, clickedLink}:any) {
                   <form action="/account/delete/socialProfile" method='post'>
                   <input type="text" name={clickedLink?.name} value={clickedLink?.name  === 'Facebook' ? '1' : clickedLink?.name  === 'Twitter' ? '2' : clickedLink?.name  === 'Youtube' ? '3' :''} hidden />
                     <button
-
+                      data-cy="deleteSocialLink"
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
 
