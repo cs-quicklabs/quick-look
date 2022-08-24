@@ -99,10 +99,10 @@ export const validateComfirmPassword = async (
 }
 
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
-  let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z]+)*$/
-
+  let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
-
+  let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+  let validName = name.match(firstAndMiddleNameRegex)
 
   if (!name) {
     return 'First Name is required.'
@@ -114,6 +114,8 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
     return `First Name must be less than 18 characters.`
   } else if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
+  } else if(!validName){
+    return 'Firstname and middlename can have only single space.'
   }
 }
 
