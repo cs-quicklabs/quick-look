@@ -96,6 +96,7 @@ useEffect(() => {
                         <div className="flex items-center">
                           <div>
                             <img
+                              data-cy="profileImage"
                               className="inline-block h-10 w-10 rounded-full"
                               src={DefaultProfileIcon}
                               alt=""
@@ -247,6 +248,7 @@ useEffect(() => {
                   <div className="flex items-center">
                     <div>
                       <img
+                        data-cy="profileImage"
                         className="inline-block h-9 w-9 rounded-full"
                         src={loaderData?.secondaryImage ? loaderData?.secondaryImage : DefaultProfileIcon}
                         alt=""
@@ -267,7 +269,7 @@ useEffect(() => {
                   {navigationFirst.map((item) => (
                     <div
                       key={item.name}
-
+                      data-cy={`${item.name}`}
                       onClick={() => {
                         if (item.name === 'Bio') {
                           setshowBio(true);

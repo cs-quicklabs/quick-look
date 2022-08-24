@@ -86,15 +86,15 @@ export default function DashboardHeader({username, loaderData}: any) {
                 >
                   Profile Settings
                 </a>
-                <a
+                <button
                   onClick={() => setIsOpen(true)}
                   className="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:rounded-md cursor-pointer w-full text-left"
                   data-cy="sign-out"
                   role="menuitem"
-                  href="# "
+                  // href="# "
                 >
                   Sign out
-                </a>
+                </button>
                 <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
               </div>
             )}

@@ -95,12 +95,12 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/
         
         <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-40  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData.templateNumber == '1' ? 'border border-gray-300' : ""} `}>
           {/* <form action="" > */}
-          <button className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
+          <button id="desktopButton"  className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
             <DesktopComputerIcon className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon } `}/>
             </button>
             
-          <button className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md border-l`}
+          <button id="mobileButton"  className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-r-md border-l`}
           onClick={togglemobile}><DeviceMobileIcon className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon }`}/></button>
           {/* </form> */}
         </div>

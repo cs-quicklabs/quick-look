@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "es5",
+      "dom"
+    ],
+    "types": [
+      "cypress",
+      "cypress-xpath"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "support/commands.js",
+    "integration/uploadImage.spec.js"
+  ]
+}
