@@ -115,7 +115,7 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
   } else if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
   } else if(!validName){
-    return 'Firstname and lastname can have a single space. '
+    return 'Firstname and middlename can have only single space.'
   }
 }
 
