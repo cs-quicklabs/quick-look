@@ -101,7 +101,7 @@ export const validateComfirmPassword = async (
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
-  let firstAndMiddleNameRegex = /^(?!.{4,})(\w+\s+\w+ ?)$/
+  let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
   let validName = name.match(firstAndMiddleNameRegex)
 
   if (!name) {
