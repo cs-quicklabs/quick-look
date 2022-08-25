@@ -1,6 +1,6 @@
 import { ActionFunction, redirect } from "@remix-run/node";
 import { getUser, requireUserId } from "~/services/auth.service.server";
-import { updateUserBioDetails, updateUserTemplate } from "~/services/user.service.serevr";
+import { updateUserTemplate } from "~/services/user.service.serevr";
 
 export const action: ActionFunction = async ({ request }) => {
     await requireUserId(request)

@@ -111,7 +111,13 @@ export async function getUser(request: Request) {
     return null
   }
     const user = await db.user.findFirst({
-      where: { id: userId as string}
+      where: { 
+        id: userId as string
+      },
+      include: {
+        profile : true,
+        profileInfo : true
+      }
     })
     return user
   } 

@@ -25,6 +25,26 @@ export async function createUser(userRegister: RegisterForm) {
             userId : user.id,
         }
     })
+    const profileInfo = await db.profileInformation.create({
+        data: {
+            userId: user.id
+        }
+    })
+    const profileImage = await db.profileImage.create({
+        data: {
+            userId: user.id
+        }
+    })
+    const socialMedia = await db.socialMedia.create({
+        data: {
+            userId: user.id
+        }
+    })
+    const marketingUpdate = await db.marketingUpdates.create({
+        data: {
+            userId: user.id
+        }
+    })
     return {
         id: user.id,
         email: user.email
@@ -184,12 +204,12 @@ export async function updateUserBioDetails({ about, location, occupation, educat
 }
 
 export async function updateUserTemplate(templateId: string, user: any) {
-    await db.user.update({
+    await db.profileInformation.update({
         where: {
-            id: user.id
+            userId: user.id
         },
         data: {
-            templateNumber: templateId
+            templateNumber : templateId
         }
     })
 }
