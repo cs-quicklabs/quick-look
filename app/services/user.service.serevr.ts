@@ -218,27 +218,27 @@ export async function addUpdateSocialLink(socialProfile: string, link: string, u
 try{
     const socialAccount = socialProfile.toLocaleLowerCase();
     if (socialAccount === 'facebook') {
-        await db.user.update({
+        await db.socialMedia.update({
             where: {
-                id: user?.id
+                userId: user?.id
             },
             data: {
                 facebookLink: link
             }
         })
     } else if (socialAccount === 'twitter') {
-        await db.user.update({
+        await db.socialMedia.update({
             where: {
-                id: user?.id
+                userId: user?.id
             },
             data: {
                 twitterLink: link
             }
         })
     } else if (socialAccount === 'youtube') {
-        await db.user.update({
+        await db.socialMedia.update({
             where: {
-                id: user?.id
+                userId: user?.id
             },
             data: {
                 youtubeLink: link
@@ -254,7 +254,7 @@ try{
 
 export async function deleteSocialLink(socialProfile: string, user?: User) {
     if (socialProfile === '1') {
-        await db.user.update({
+        await db.socialMedia.update({
             where: {
                 id: user?.id
             },
@@ -263,7 +263,7 @@ export async function deleteSocialLink(socialProfile: string, user?: User) {
             }
         })
     } else if (socialProfile === '2') {
-        await db.user.update({
+        await db.socialMedia.update({
             where: {
                 id: user?.id
             },
@@ -272,7 +272,7 @@ export async function deleteSocialLink(socialProfile: string, user?: User) {
             }
         })
     } else if (socialProfile === '3') {
-        await db.user.update({
+        await db.socialMedia.update({
             where: {
                 id: user?.id
             },
@@ -284,9 +284,9 @@ export async function deleteSocialLink(socialProfile: string, user?: User) {
 }
 
 export async function addPrimaryImage(link: string, user: User){ 
-    await db.user.update({
+    await db.profileImage.update({
         where: {
-            id: user.id
+            userId: user.id
         },
         data: {
             primaryImage: link,
@@ -297,9 +297,9 @@ export async function addPrimaryImage(link: string, user: User){
 } 
 
 export async function addSecondaryImage(link: string, user: User){
-    await db.user.update({
+    await db.profileImage.update({
         where: {
-            id: user.id
+            userId: user.id
         },
         data: {
             secondaryImage: link,
@@ -309,10 +309,9 @@ export async function addSecondaryImage(link: string, user: User){
     return true;
 } 
 
-
 export async function deleteImage(imageKey: string, user?: User) {
     if (imageKey === 'deletePrimary') {
-        await db.user.update({
+        await db.profileImage.update({
             where: {
                 id: user?.id
             },
@@ -322,7 +321,7 @@ export async function deleteImage(imageKey: string, user?: User) {
             }
         })
     } else if (imageKey === 'deleteSecondary') {
-        await db.user.update({
+        await db.profileImage.update({
             where: {
                 id: user?.id
             },
@@ -335,7 +334,7 @@ export async function deleteImage(imageKey: string, user?: User) {
 }
 
 export async function restorePrimaryImage(user: User){
-    await db.user.update({
+    await db.profileImage.update({
         where:{
             id: user.id
         },
@@ -346,7 +345,7 @@ export async function restorePrimaryImage(user: User){
 }
 
 export async function restoreSecondaryImage(user: User){
-    await db.user.update({
+    await db.profileImage.update({
         where:{
             id: user.id
         },

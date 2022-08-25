@@ -116,7 +116,10 @@ export async function getUser(request: Request) {
       },
       include: {
         profile : true,
-        profileInfo : true
+        profileInfo : true,
+        profileImage: true,
+        socialMedia: true,
+        marketingUpdates: true,
       }
     })
     return user
