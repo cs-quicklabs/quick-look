@@ -36,6 +36,9 @@ export async function findUserByEmail(email: string): Promise<any> {
     const user = await db.user.findFirst({
         where: {
             email: lowercasedEmail
+        },
+        include:{
+            profile: true
         }
     })
     return user ? user : false
@@ -66,7 +69,6 @@ export async function upateUserPassword(userId: string, password: string, user?:
         },
         data: {
             password: await bcrypt.hash(password, 10),
-            oldpassword: user.password
         }
     })
     return true
@@ -76,6 +78,9 @@ export async function getUserById(id: string) {
     const user = await db.user.findFirst({
         where: {
             id
+        },
+        include:{
+            profile: true
         }
     })
     return user

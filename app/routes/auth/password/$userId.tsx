@@ -29,7 +29,8 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   if (Object.values(errors).some(Boolean)) {
     return json(
-      { errors, fields: { password, confirmpassword }, form: action },
+      { errors, fields: { password, confirmpassword },
+       form: action },
       { status: 400 }
     )
   }

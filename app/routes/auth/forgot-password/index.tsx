@@ -32,11 +32,11 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (!user) { 
     return redirect('/confirm/password')
-  } else if (user['isVerified'] == true ) {
+  } else if (user.profile['isVerified'] == true ) {
     createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     await sendResetPasswordMail(email, url, generatedToken)
     return redirect('/confirm/password')
-  } else if (user['isVerified'] == false ) {
+  } else if (user.profile['isVerified'] == false ) {
     createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     await sendAccountVerificationMail(email, url, generatedToken)
     return redirect('/confirm/email')
