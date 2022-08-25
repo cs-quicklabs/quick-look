@@ -16,6 +16,7 @@ model User {
   password         String
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
+  portfolioImage   PortfolioImage[]
   video            Video?
   profileInfo      ProfileInformation?
   profileImage     ProfileImage?
@@ -99,10 +100,19 @@ model ProfileInformation {
 }
 
 model Video {
-  id     String @id @default(uuid())
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique
+  id        String  @id @default(uuid())
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String  @unique
   videoLink String?
 
   @@map("video")
+}
+
+model PortfolioImage {
+  id       String @id @default(uuid())
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+  imageUrl String
+
+  @@map("portfolioImage")
 }
