@@ -59,6 +59,9 @@ export async function login(loginForm: LoginForm) {
     where: {
       email: loginForm.email,
     },
+    include: {
+      profile: true
+    }
   })
 
   if (!user || !(await bcrypt.compare(loginForm.password, user.password))) {
@@ -70,7 +73,7 @@ export async function login(loginForm: LoginForm) {
     )
   }
 
-  if (!user?.isVerified) {
+  if (user.profile?.isVerified == false) {
     throw json({ error: 'Account Not verified' }, { status: 401 })
   }
 

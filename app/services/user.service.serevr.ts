@@ -48,7 +48,12 @@ export async function checkUserVerificationStatus(email: string) {
             email: lowerCasedEmail
         }
     })
-    if (user?.isVerified == true) {
+    const profile = await db.profile.findFirst({
+        where: {
+            userId: user?.id
+        }
+    })
+    if (profile?.isVerified == true) {
         return true
     }
     return false
