@@ -1,4 +1,4 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
+import { LoaderFunction } from "@remix-run/node";
 import { getUser, logout } from "~/services/auth.service.server";
 import { deleteUser } from "~/services/user.service.serevr";
 
