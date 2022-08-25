@@ -32,9 +32,9 @@ export async function sendMail({ to, from, subject, text, html }: SendMail) {
 export async function verifyEmail(token: string, userId: string) {
   const isTokenValid = await checkTokenValidation(userId, token)
   if (isTokenValid) {
-    await db.user.update({
+    await db.profile.update({
       where: {
-        id: userId,
+        userId: userId,
       },
       data: {
         isVerified: true,

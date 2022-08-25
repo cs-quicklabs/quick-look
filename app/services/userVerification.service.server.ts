@@ -19,7 +19,7 @@ export async function createUserVerificationToken(userId: string, token: string)
             expiresAt: await addHoursToDate(new Date(Date.now()), 6)
         }
     })
-    return {success: true, message: 'Verification token generated.'}
+    return { success: true, message: 'Verification token generated.' }
 }
 
 export async function deleteUserVerificationToken(userId: string) {
