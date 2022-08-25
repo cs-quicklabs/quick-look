@@ -16,6 +16,7 @@ model User {
   password         String
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
+  video            Video?
   profileInfo      ProfileInformation?
   profileImage     ProfileImage?
   socialMedia      SocialMedia?
@@ -95,4 +96,13 @@ model ProfileInformation {
   templateNumber String? @default("0")
 
   @@map("profileinformation")
+}
+
+model Video {
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+  videoLink String?
+
+  @@map("video")
 }
