@@ -1,4 +1,4 @@
-import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
+import { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useSubmit } from "@remix-run/react";
 import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
@@ -13,6 +13,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
   const user = await getUser(request)
   const url = new URL(request.url)
+  
   if(url.searchParams.get('checkedMarketingUpdate')){
     await updateUserPreferences({recieveMarketingUpdates: true, user})
   }
