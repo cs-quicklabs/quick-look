@@ -8,34 +8,20 @@ datasource db {
 }
 
 model User {
-  id                      String            @id @unique @default(uuid())
-  firstname               String
-  lastname                String
-  email                   String
-  username                String            @unique
-  password                String
-  oldpassword             String
-  isVerified              Boolean           @default(false)
-  isPublished             Boolean?          @default(false)
-  createdAt               DateTime          @default(now())
-  updatedAt               DateTime          @updatedAt
-  recieveProductUpdates   Boolean?          @default(false)
-  recieveMarketingUpdates Boolean?          @default(false)
-  templateNumber          String?           @default("0")
-  bio                     String?
-  location                String?
-  occupation              String?
-  company                 String?
-  education               String?
-  facebookLink            String?
-  twitterLink             String?
-  youtubeLink             String?
-  primaryImage            String?
-  secondaryImage          String?
-  isUsingPrimaryDefault   Boolean?          @default(true)
-  isUsingSecondaryDefault Boolean?          @default(true)
-  userVerification        UserVerification?
-  profile                 Profile?
+  id               String              @id @unique @default(uuid())
+  firstname        String
+  lastname         String
+  email            String
+  username         String              @unique
+  password         String
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  profileInfo      ProfileInformation?
+  profileImage     ProfileImage?
+  socialMedia      SocialMedia?
+  marketingUpdates MarketingUpdates?
+  userVerification UserVerification?
+  profile          Profile?
 
   @@map("user")
 }
@@ -53,18 +39,60 @@ model UserVerification {
 }
 
 model Profile {
-  id                      String   @id @unique @default(uuid())
+  id          String   @id @unique @default(uuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String   @unique
+  isVerified  Boolean? @default(false)
+  isPublished Boolean? @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("profile")
+}
+
+model MarketingUpdates {
+  id                      String  @id @unique @default(uuid())
+  user                    User    @relation(fields: [userId], references: [id])
+  userId                  String  @unique
+  recieveProductUpdates   Boolean @default(false)
+  recieveMarketingUpdates Boolean @default(false)
+
+  @@map("marketingupdates")
+}
+
+model SocialMedia {
+  id           String  @id @unique @default(uuid())
+  user         User    @relation(fields: [userId], references: [id])
+  userId       String  @unique
+  facebookLink String?
+  twitterLink  String?
+  youtubeLink  String?
+
+  @@map("socialmedia")
+}
+
+model ProfileImage {
+  id                      String   @id @default(uuid())
   user                    User     @relation(fields: [userId], references: [id])
   userId                  String   @unique
-  isVerified              Boolean  @default(false)
-  isPublished             Boolean  @default(false)
-  bio                     String
-  location                String
-  occupation              String
-  company                 String
-  education               String
-  recieveProductUpdates   Boolean  @default(false)
-  recieveMarketingUpdates Boolean  @default(false)
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
+  isUsingPrimaryDefault   Boolean? @default(true)
+  isUsingSecondaryDefault Boolean? @default(true)
+  primaryImage            String?
+  secondaryImage          String?
+
+  @@map("profileimage")
+}
+
+model ProfileInformation {
+  id             String  @id @default(uuid())
+  user           User    @relation(fields: [userId], references: [id])
+  userId         String  @unique
+  bio            String?
+  location       String?
+  occupation     String?
+  company        String?
+  education      String?
+  templateNumber String? @default("0")
+
+  @@map("profileinformation")
 }
