@@ -100,7 +100,9 @@ export async function getUserById(id: string) {
             id
         },
         include:{
-            profile: true
+            profile: true,
+            profileImage: true,
+            profileInfo: true
         }
     })
     return user
@@ -131,27 +133,56 @@ export async function updateUserProfileDetails({ firstname, lastname, profileId,
 }
 
 export async function deleteUser(user?: any) {
-    await db.user.delete({
-        where: {
-            id: user.id
-        }
+    await db.profile.delete({
+        where:{
+            userId:user.id
+        }}).then(async () => {
+        await db.profileImage.delete({
+            where: {
+                userId: user.id
+            }
+        }).then(async () => {
+            await db.profileInformation.delete({
+                where: {
+                    userId: user.id
+                }
+            }).then(async () => {
+                await db.socialMedia.delete({
+                    where: {
+                        userId: user.id
+                    }
+                }).then(async () => {
+                    await db.marketingUpdates.delete({
+                        where: {
+                            userId: user.id
+                        }
+                    }).then(async () => {
+                        await db.user.delete({
+                            where: {
+                                id: user.id
+                            }
+                        })
+                    })
+                })
+            })
+        })
     })
 }
 
 export async function publishToggle(user?: any) {
-    if (user.isPublished === true) {
-        await db.user.update({
+    if (user.profile.isPublished === true) {
+        await db.profile.update({
             where: {
-                id: user.id
+                userId: user.id
             },
             data: {
                 isPublished: false
             }
         })
     } else if (user.isPublished === false) {
-        await db.user.update({
+        await db.profile.update({
             where: {
-                id: user.id
+                userId: user.id
             },
             data: {
                 isPublished: true
@@ -176,9 +207,9 @@ export async function updateUserPreferences({ recieveMarketingUpdates, recievePr
         marketingFlag = false
     }
 
-    await db.user.update({
+    await db.marketingUpdates.update({
         where: {
-            id: user.id
+            userId: user.id
         },
         data: {
             recieveMarketingUpdates: marketingFlag,
@@ -188,16 +219,16 @@ export async function updateUserPreferences({ recieveMarketingUpdates, recievePr
 }
 
 export async function updateUserBioDetails({ about, location, occupation, education, company, user }: UpdateUserBioDetails) {
-    await db.user.update({
+    await db.profileInformation.update({
         where: {
-            id: user.id
+            userId: user.id
         },
         data: {
-            bio: about ?? user.bio,
-            location: location ?? user.location,
-            company: company ?? user.company,
-            education: education ?? user.education,
-            occupation: occupation ?? user.occupation
+            bio: about ?? user.profileInfo.bio,
+            location: location ?? user.profileInfo.location,
+            company: company ?? user.profileInfo.company,
+            education: education ?? user.profileInfo.education,
+            occupation: occupation ?? user.profileInfo.occupation
         }
     })
     return true;
