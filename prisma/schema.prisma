@@ -46,6 +46,7 @@ model Profile {
   userId      String   @unique
   isVerified  Boolean? @default(false)
   isPublished Boolean? @default(false)
+  testimonial String?  
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
