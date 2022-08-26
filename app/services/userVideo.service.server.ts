@@ -12,7 +12,7 @@ export async function addUpdateVideo(videoLink: string, user: any){
 }
 
 export async function deleteVideo(user:any){
-    await db.video.delete({
+    await db.video.update({
         where: {
             userId: user.id
         },
