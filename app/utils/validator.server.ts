@@ -276,3 +276,32 @@ export async function validateYoutubeUrl(url: string) {
     return 'Inavlid Facebook URL.'
   }
 }
+
+export async function spotlightButtonTextValidation(text:  string){
+  if(!text){
+    return 'Button text is required.'
+  }
+  if(text.length > 32){
+    return 'Button text should not exceed 32 characters.'
+  }
+}
+
+export async function validateHexCode(hexCode: string){
+  const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+
+  const isValid = hexCode.match(validRegex)
+  if(!hexCode){
+    'Hexcode is required.'
+  } else if(!isValid){
+    return 'Not valid Hex code.'
+  }
+}
+
+export async function validateFaIcon(faIcon: string){
+  const validFaIcon = /$([a-z])\w-([a-z])\w\w-([^\s]+)/
+
+  const isValidFaIcon = faIcon.match(validFaIcon);
+  if(!isValidFaIcon){
+    `Not valid ${faIcon}`
+  }
+}

@@ -16,6 +16,7 @@ model User {
   password         String
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
+  spotlightButton  SpotlightButton?
   portfolioImage   PortfolioImage[]
   video            Video?
   profileInfo      ProfileInformation?
@@ -46,7 +47,7 @@ model Profile {
   userId      String   @unique
   isVerified  Boolean? @default(false)
   isPublished Boolean? @default(false)
-  testimonial String?  
+  testimonial String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -115,5 +116,19 @@ model PortfolioImage {
   userId   String
   imageUrl String
 
-  @@map("portfolioImage")
+  @@map("portfolioimage")
+}
+
+model SpotlightButton {
+  id               String   @id @default(uuid())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           String   @unique
+  buttonText       String?
+  buttonColor      String?
+  spotlightIcon    String?
+  buttonAction     String?
+  buttonActionlink String?
+  toggleSpotlight  Boolean? @default(false)
+
+  @@map("spotlightbutton")
 }
