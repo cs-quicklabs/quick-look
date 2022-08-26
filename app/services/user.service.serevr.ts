@@ -20,31 +20,36 @@ export async function createUser(userRegister: RegisterForm) {
             password,
         }
     })
-    const profile = await db.profile.create({
+    await db.profile.create({
         data: {
             userId : user.id,
         }
+    }).then(async () => {
+        await db.profileInformation.create({
+            data: {
+                userId: user.id
+            }
+        }).then(async () => {
+            await db.profileImage.create({
+                data: {
+                    userId: user.id
+                }
+            }).then(async () => {
+                await db.marketingUpdates.create({
+                    data: {
+                        userId: user.id
+                    }
+                }).then(async () => {
+                    await db.testimonial.create({
+                        data: {
+                            userId: user.id
+                        }
+                    })
+                })
+            })
+        })
     })
-    const profileInfo = await db.profileInformation.create({
-        data: {
-            userId: user.id
-        }
-    })
-    const profileImage = await db.profileImage.create({
-        data: {
-            userId: user.id
-        }
-    })
-    const socialMedia = await db.socialMedia.create({
-        data: {
-            userId: user.id
-        }
-    })
-    const marketingUpdate = await db.marketingUpdates.create({
-        data: {
-            userId: user.id
-        }
-    })
+
     return {
         id: user.id,
         email: user.email
