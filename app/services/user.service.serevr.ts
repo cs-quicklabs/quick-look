@@ -18,8 +18,7 @@ export async function createUser(userRegister: RegisterForm) {
             username: userRegister.username.toLocaleLowerCase(),
             email: userRegister.email.toLocaleLowerCase(),
             isVerified: false,
-            password,
-            oldpassword: password
+            password
         }
     })
     return {
@@ -58,7 +57,6 @@ export async function upateUserPassword(userId: string, password: string, user?:
         },
         data: {
             password: await bcrypt.hash(password, 10),
-            oldpassword: user.password
         }
     })
     return true
