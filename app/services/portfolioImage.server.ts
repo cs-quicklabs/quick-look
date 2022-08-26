@@ -6,20 +6,17 @@ export async function addPortfolioImage(imageLink: string, user: any){
         return 'Maximum portfolio Images added.'
     }
     await db.portfolioImage.create({
-        where: {
-            userId: user.id
-        },
         data: {
+            userId: user.id,
             imageUrl: imageLink
-        }
+        },
     })
 }
 
-export async function deletePortfolioImage(imageLink: string, user: any){
+export async function deletePortfolioImage(id: string){
     await db.portfolioImage.delete({
         where: {
-            userId: user.id, 
-            imageLink 
+            id
         }
     })
 }
