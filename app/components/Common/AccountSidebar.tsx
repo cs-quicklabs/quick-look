@@ -10,6 +10,7 @@ import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import UploadImages from '../UploadImages/UploadImages';
 import SocialProfile from '../SocialProfile/SocialProfile';
+import AccountTestimonial from '../Testimonial';
 
 
 const navigationFirst = [
@@ -22,7 +23,7 @@ const navigationFirst = [
 const navigationSecond = [
   { name: 'Spotlight Button', subheading: 'Add a call to action button on profile', href: '#' },
   { name: 'Add Video', subheading: 'Add a video link to your profile', href: '#' },
-  { name: 'Add Testimonials ', subheading: 'Add testimonials to your profile', href: '#' },
+  { name: 'Add Testimonials', subheading: 'Add testimonials to your profile', href: '#' },
   { name: 'Add Portfolio ', subheading: 'Add Portfolio to your Profile ', href: '#' },
 ]
 
@@ -30,7 +31,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -298,7 +299,6 @@ useEffect(() => {
                           setshowImages(true);
                           setSidebarOpen(false);
                           setshowSocialLinks(false);
-
                           setshowTemplate(false)
                           setshowBio(false);
                         }
@@ -355,7 +355,13 @@ useEffect(() => {
                   {navigationSecond.map((item) => (
                     <div
                       key={item.name}
-
+                      data-cy={`${item.name}`}
+                      onClick={() => {
+                        if (item.name === 'Add Testimonials') {
+                          setShowTestimonial(true);
+                          setSidebarOpen(false);
+                        }
+                      }}
                       className={classNames(
                         'hover:bg-gray-50'
                       )}
@@ -378,6 +384,10 @@ useEffect(() => {
                       </div>
                     </div>
                   ))}
+                  {showTestimonial ?
+                  <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  null
+                }
                 </nav>
               </div>
             </div>
