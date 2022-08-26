@@ -4,5 +4,6 @@ export type SpotlightFormType = {
     spotlightIcon?: string,   
     buttonAction: string,     
     buttonActionlink: string, 
+    buttonHex: string,
     toggleSpotlight: Boolean 
 }
