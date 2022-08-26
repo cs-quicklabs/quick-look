@@ -305,3 +305,11 @@ export async function validateFaIcon(faIcon: string){
     `Not valid ${faIcon}`
   }
 }
+
+export async function validateVideo(url: string){
+  let isValidYoutubeUrl = validateYoutubeUrl(url)
+  let isValidFacebookUrl = validateFacebookUrl(url)
+  if(!isValidFacebookUrl && !isValidYoutubeUrl){
+    return 'Url is not correct.'
+  }
+}
