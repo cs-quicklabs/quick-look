@@ -7,7 +7,7 @@ export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user:
         buttonActionlink,
         buttonColor, 
         buttonText,
-        buttonHex,
+        buttonhex,
         spotlightIcon, 
         toggleSpotlight 
     } = spotlightForm
@@ -22,7 +22,7 @@ export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user:
             buttonColor, 
             buttonText, 
             spotlightIcon, 
-            buttonHex,
+            buttonhex,
             toggleSpotlight : toggleSpotlight as boolean,
             userId: user.id
         },
@@ -30,7 +30,7 @@ export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user:
             buttonAction: buttonAction ?? user.spotlightButton.buttonAction,
             buttonActionlink: buttonActionlink ?? user.spotlightButton.buttonActionlink,
             buttonColor: buttonColor ?? user.spotlightButton.buttonColor, 
-            buttonHex: buttonHex ?? user.spotlightButton.buttonHex,
+            buttonhex: buttonhex ?? user.spotlightButton.buttonHex,
             buttonText: buttonText ?? user.spotlightButton.buttonText, 
             spotlightIcon: spotlightIcon ?? user.spotlightButton.spotlightIcon, 
             toggleSpotlight : toggleSpotlight as boolean ?? user.spotlightButton.toggleSpotlight,

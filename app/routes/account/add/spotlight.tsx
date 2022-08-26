@@ -12,7 +12,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const buttonText = form.get('buttonText') as string
     const buttonColor = form.get('buttonColor') as string
-    const buttonHex = form.get('hexcode') as string
+    const buttonhex = form.get('hexcode') as string
     const spotlightIcon = form.get('spotlightIcon') as string
     const buttonAction = form.get('buttonAction') as string
     const buttonActionlink = form.get('buttonActionlink') as string
@@ -36,7 +36,7 @@ export const action: ActionFunction = async ({ request }) => {
     await addUpdateSpotlight({
         buttonText,
         buttonColor,
-        buttonHex,
+        buttonhex,
         spotlightIcon,
         buttonAction,
         buttonActionlink,
