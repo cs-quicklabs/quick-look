@@ -1,38 +1,45 @@
 import { db } from "~/database/connection.server";
 
-export async function addUpdateTestimonial(testimonial: string, user: any){
-    await db.profile.upsert({
+export async function addUpdateTestimonial(testimonial: any, user: any){
+    const {testimonialText, testimonialBy} = testimonial
+
+    await db.testimonial.upsert({
         where: {
             userId: user.id
         },
         update: {
-            testimonial: testimonial
+            testimonialText: testimonialText,
+            testimonialBy: testimonialBy
         },
         create: {
             userId: user.id,
-            testimonial
+            testimonialText: testimonialText,
+            testimonialBy: testimonialBy
         }
     })
 }
 
 export async function deleteTestimonial(user: any){
-    await db.profile.update({
+    await db.testimonial.update({
         where: {
             userId: user.id
         },
         data: {
-            testimonial: ''
+            testimonialText: '',
+            testimonialBy: ''
         }
     })
 }
 
-export async function editTestimonial(testimonial: string, user: any){
-    await db.profile.update({
+export async function editTestimonial(testimonial: any, user: any){
+    const {testimonialText, testimonialBy} = testimonial
+    await db.testimonial.update({
         where: {
             userId: user.id
         },
         data: {
-            testimonial: testimonial
+            testimonialText: testimonialText,
+            testimonialBy: testimonialBy
         }
     })
 }

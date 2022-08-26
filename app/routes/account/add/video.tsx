@@ -1,9 +1,7 @@
 import { User } from "@prisma/client";
-import { ActionFunction, json, redirect, unstable_parseMultipartFormData } from "@remix-run/node";
+import { ActionFunction, json, redirect } from "@remix-run/node";
 import { getUser } from "~/services/auth.service.server";
-import { addPrimaryImage, addSecondaryImage, restorePrimaryImage, restoreSecondaryImage } from "~/services/user.service.serevr";
 import { addUpdateVideo } from "~/services/userVideo.service.server";
-import { digitalOceanUploadHandler } from "~/utils/uploadHandler.server";
 import { validateVideo } from "~/utils/validator.server";
 
 export const action: ActionFunction = async ({ request }) => {

@@ -22,7 +22,6 @@ ALTER TABLE "Profile" DROP CONSTRAINT "Profile_userId_fkey";
 ALTER TABLE "user" DROP COLUMN "facebookLink",
 DROP COLUMN "isUsingPrimaryDefault",
 DROP COLUMN "isUsingSecondaryDefault",
-DROP COLUMN "oldpassword",
 DROP COLUMN "primaryImage",
 DROP COLUMN "recieveMarketingUpdates",
 DROP COLUMN "recieveProductUpdates",

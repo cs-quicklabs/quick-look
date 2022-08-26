@@ -313,3 +313,24 @@ export async function validateVideo(url: string){
     return 'Url is not correct.'
   }
 }
+
+export async function validateTestimonial(text: string){
+  if(!text){
+    return 'Testimonial is required.'
+  }
+  if(text.length > 120){
+    return 'Testimonial length should not exceed 120 characters.'
+  }
+  if(text.length < 12){
+    return 'Testimonial should be atleast 12 characters long.'
+  }
+}
+
+export async function validateTestimonialBy(name: string){
+  if(!name){
+    return 'Name is required'
+  }
+  if(name.length < 3){
+    return 'Name should be atleast 3 characters long.'
+  }
+}
