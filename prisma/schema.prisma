@@ -125,6 +125,7 @@ model SpotlightButton {
   userId           String   @unique
   buttonText       String?
   buttonColor      String?
+  buttonhex String?
   spotlightIcon    String?
   buttonAction     String?
   buttonActionlink String?

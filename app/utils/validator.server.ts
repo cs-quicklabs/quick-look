@@ -290,9 +290,7 @@ export async function validateHexCode(hexCode: string){
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   const isValid = hexCode.match(validRegex)
-  if(!hexCode){
-    'Hexcode is required.'
-  } else if(!isValid){
+  if(!isValid){
     return 'Not valid Hex code.'
   }
 }

@@ -121,7 +121,9 @@ export async function getUser(request: Request) {
         socialMedia: true,
         marketingUpdates: true,
         spotlightButton: true,
-        video: true
+        video: true,
+        testimonial: true,
+        portfolioImage: true,
       }
     })
     return user

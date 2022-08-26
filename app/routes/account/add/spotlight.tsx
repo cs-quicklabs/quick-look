@@ -12,6 +12,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const buttonText = form.get('buttonText') as string
     const buttonColor = form.get('buttonColor') as string
+    const buttonHex = form.get('hexcode') as string
     const spotlightIcon = form.get('spotlightIcon') as string
     const buttonAction = form.get('buttonAction') as string
     const buttonActionlink = form.get('buttonActionlink') as string
@@ -35,6 +36,7 @@ export const action: ActionFunction = async ({ request }) => {
     await addUpdateSpotlight({
         buttonText,
         buttonColor,
+        buttonHex,
         spotlightIcon,
         buttonAction,
         buttonActionlink,
@@ -44,6 +46,4 @@ export const action: ActionFunction = async ({ request }) => {
     return redirect('/account') 
 };
 
-function SpotLightFormType(arg0: { buttonText: string; buttonColor: string; spotlightIcon: string; buttonAction: string; buttonActionlink: string; toggleSpotlight: boolean; }, SpotLightFormType: any) {
-    throw new Error("Function not implemented.");
-}
+
