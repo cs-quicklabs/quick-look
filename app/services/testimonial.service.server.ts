@@ -1,6 +1,6 @@
 import { db } from "~/database/connection.server";
 
-export async function addUpdateTestimonial(testimonial: string, user){
+export async function addUpdateTestimonial(testimonial: string, user: any){
     await db.profile.upsert({
         where: {
             userId: user.id
