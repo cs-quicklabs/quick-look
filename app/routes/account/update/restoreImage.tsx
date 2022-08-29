@@ -1,5 +1,5 @@
 import { getUser } from "~/services/auth.service.server";
-import { restorePrimaryImage, restoreSecondaryImage } from "~/services/user.service.serevr";
+import { restorePrimaryImage, restoreSecondaryImage } from "~/services/profileImage.service.server";
 import { User } from "@prisma/client";
 import { ActionFunction, redirect } from "@remix-run/node";
 
