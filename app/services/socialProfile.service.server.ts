@@ -43,7 +43,7 @@ export async function addUpdateSocialLink(socialProfile: string, link: string, u
         if (socialProfile === '1') {
             await db.socialMedia.update({
                 where: {
-                    id: user?.id
+                    userId: user?.id
                 },
                 data: {
                     facebookLink: ''
@@ -52,7 +52,7 @@ export async function addUpdateSocialLink(socialProfile: string, link: string, u
         } else if (socialProfile === '2') {
             await db.socialMedia.update({
                 where: {
-                    id: user?.id
+                    userId: user?.id
                 },
                 data: {
                     twitterLink: ''
@@ -61,7 +61,7 @@ export async function addUpdateSocialLink(socialProfile: string, link: string, u
         } else if (socialProfile === '3') {
             await db.socialMedia.update({
                 where: {
-                    id: user?.id
+                    userId: user?.id
                 },
                 data: {
                     youtubeLink: ''
