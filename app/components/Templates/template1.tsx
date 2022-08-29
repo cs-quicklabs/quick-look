@@ -5,7 +5,7 @@ import bgimage from '../../../assets/images/bg.png'
 import defaultimg from '../../../assets/images/profile.png'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
   return (
-    <div className='flex  overflow-hidden'>
+    <div className='flex  overflow-hidden font-inter'>
 
       <div >
         <div className='h-[10rem]'>
@@ -34,6 +34,42 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
               { input?.description?.trim()}
             </pre>
           </div>
+
+          <section className="mt-24 overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+
+              <div className="">
+
+                <blockquote className="">
+                  <div className="text-base leading-5 font-normal text-gray-500">
+                    
+                      <div className='text-7xl flex justify-start mb-[-3rem] text-black'>
+                        &ldquo;
+                      </div> 
+                      <p className='text-center pt-2'>
+                      I am an art director, software engineer, and web developer at Crownstack currently living in India. My interests range from photography to technology. I am also interested in shopping, painting, and yoga.
+                      <br />
+                      <br />
+                      If you’d like to get in touch, feel free to say hello through any of the social links below.
+                      </p>
+                      
+                      <br />
+
+                      <div className='flex justify-end'>
+                      -- Aashish Dhawan
+                      </div>
+                    
+                      <div className='text-7xl flex justify-end mb-[-3rem] text-black pt-3'>
+                        &ldquo;
+                      </div>
+                  
+                  </div>
+                
+                </blockquote>
+              </div>
+            </div>
+          </section>
+
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16 '>
               {loaderData.company || input.company ?
@@ -44,14 +80,22 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
                   </h2>
                 </div> : <span></span>}
               {loaderData.education || input.education ?
-                <div className='flex flex-col'>
+              <>
+              <div className='flex flex-col'>
                   <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">EDUCATION</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
                     {input.education}
                   </h2>
-                </div> : <span></span>}
+                </div> 
+              </>
+                
+                : <span></span>}
+
             </div>
           </div>
+
+          
+
           <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem] '>
             {loaderData?.facebookLink ?
             <a href={`https://${loaderData?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}

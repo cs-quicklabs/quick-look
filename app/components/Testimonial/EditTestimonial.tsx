@@ -1,34 +1,19 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
-import { Combobox } from '@headlessui/react'
-import SelectedSocialLinks from '../Common/SelectedSocialLinks'
-
-function classNames(...classes: (string | boolean)[]) {
-  return classes.filter(Boolean).join(' ')
-}
-
-var socialLinks = [
-  { id: 1, name: 'Facebook' },
-  { id: 2, name: 'Twitter' },
-  { id: 3, name: 'Youtube' },
-]
-
-
 
 export default function EditSocialProfile({setShowEditTestimonial, loaderData, mode, setmode }: any) {
 
 
 
-  // const Onclose = () => {
-  //   if (mode === 'desktop') {
-  //     setShowEditTestimonial(false)
-  //   }
-  //   if (mode === 'mobile') {
-  //     setShowEditTestimonial(false)
-  //   }
-  // }
+  const Onclose = () => {
+    if (mode === 'desktop') {
+      setShowEditTestimonial(false)
+    }
+    if (mode === 'mobile') {
+      setShowEditTestimonial(false)
+    }
+  }
 
   const OnCancel = ()=>{
     setShowEditTestimonial(false);
@@ -65,7 +50,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
-                            onClick={() => setShowEditTestimonial(false)}
+                            onClick={Onclose}
                           >
                             <span className="sr-only">Close panel</span>
                             <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
@@ -143,7 +128,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                           className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
                           // disabled={!value  ? true : !error ? false : true }
                         >
-                          Add Testimonial
+                          Edit Testimonial
                         </button>
                       </div>
                     </div>

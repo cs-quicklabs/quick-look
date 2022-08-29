@@ -30,6 +30,8 @@ const successMessage = session.get("successUpdateProfileMessage") || null;
 }
 
 export default function Profile() {
+  const [showPortfolio, setShowPortfolio] = useState(false);
+  const [showAddVideo, setShowAddVideo] = useState(false);
   const [showTestimonial, setShowTestimonial] = useState(false);
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
@@ -79,7 +81,7 @@ setmode('desktop')
 const togglemobile = () =>{
 setmode('mobile')
 
-setshowTemplate(!showSocialLinks && !showImages && !showBio ? true : false)
+setshowTemplate(!showSocialLinks && !showImages && !showBio && !showTestimonial && !showAddVideo && !showPortfolio ? true : false)
 
 }
 const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
@@ -88,7 +90,7 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={successUpdateMessage} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
+      <AccountSidebar showPortfolio={showPortfolio} setShowPortfolio={setShowPortfolio} showAddVideo={showAddVideo} setShowAddVideo={setShowAddVideo} showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={successUpdateMessage} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
