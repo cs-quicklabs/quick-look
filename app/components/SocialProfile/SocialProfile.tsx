@@ -81,7 +81,7 @@ const Onclose = () => {
                     </div>
                     <div className='font-inter mt-7 flex flex-col items-center'>
                     <p className='text-xs leading-4 font-semibold tracking-wide'>
-                        {loaderData?.facebookLink || loaderData?.twitterLink || loaderData?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
+                        {loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
                       </p>
                       <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below

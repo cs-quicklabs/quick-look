@@ -7,8 +7,8 @@ import defaultProfileimage from '../../../assets/images/profile.png'
 import DeleteImage from '../Common/DeleteImage';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
-  const bgimageAlreadyuploaded = loaderData.primaryImage
-  const profileimageAlreadyuploaded = loaderData.secondaryImage
+  const bgimageAlreadyuploaded = loaderData.profileImage.primaryImage
+  const profileimageAlreadyuploaded = loaderData.profileImage.secondaryImage
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
@@ -107,7 +107,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                             <div>
                               <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                                <img src={primaryRestore ? bg : loaderData.primaryImage} alt="" className='h-full w-full object-cover' />
+                                <img src={primaryRestore ? bg : loaderData.profileImage.primaryImage} alt="" className='h-full w-full object-cover' />
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
@@ -203,7 +203,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                               </label>
 
                               <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
-                                <img src={secondaryRestore ? defaultProfileimage : loaderData.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
+                                <img src={secondaryRestore ? defaultProfileimage : loaderData.profileImage.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
                               </div>
 
                             </div>

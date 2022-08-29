@@ -8,7 +8,7 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
     <>
     <div className="-mt-12 flex flex-row h-screen font-inter">
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
-        <img src={secondaryRestore ? pic : loaderData.secondaryImage} className="h-full w-full object-cover" alt="" />
+        <img src={secondaryRestore ? pic : loaderData.profileImage.secondaryImage} className="h-full w-full object-cover" alt="" />
       </div>
       <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
         <div className='mt-20'>
@@ -16,7 +16,7 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
           {loaderData.firstname} {loaderData.lastname}
           </h1>
           <p className="text-sm leading-5 font-medium">
-          {loaderData.occupation || input.occupation || loaderData.location || input.location  ?
+          {loaderData.profileInfo.occupation || input.occupation || loaderData.profileInfo.location || input.location  ?
             <h3 className="text-gray-500 w-max break-words">
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
@@ -31,14 +31,14 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
         </div>
         <div className='flex flex-col mt-4 text-sm'>
           <div className='flex gap-4'>
-          {loaderData.company || input.company ?
+          {loaderData.profileInfo.company || input.company ?
             <div className='flex flex-col w-[50%]'>
               <h2 className="text-gray-500 font-medium">WORK</h2>
               <h2 className="text-gray-900 break-all">
               {input.company}
               </h2>
               </div> : <span></span>}
-              {loaderData.education || input.education ?
+              {loaderData.profileInfo.education || input.education ?
             <div className='flex flex-col'>
               <h2 className="text-gray-500 font-medium">EDUCATION</h2>
               <h2 className="text-gray-900 break-all">
@@ -48,16 +48,16 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
           </div>
         </div>
         <div className='flex gap-4 justify-left mt-6'>
-           {loaderData?.facebookLink ?
-          <a href={`https://${loaderData?.facebookLink}`} target="_blank">
+           {loaderData?.socialMedia?.facebookLink ?
+          <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target="_blank">
             <img src={facebook} alt="" className="w-9 h-9"/>
           </a>: null}
-          {loaderData?.twitterLink ?
-          <a href={`https://${loaderData?.twitterLink}`} target="_blank">
+          {loaderData?.socialMedia?.twitterLink ?
+          <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target="_blank">
           <img src={twitter} alt="" className="w-9 h-9"/>
           </a>: null}
-           {loaderData?.youtubeLink ?
-          <a href={`https://${loaderData?.youtubeLink}`} target="_blank">
+           {loaderData?.socialMedia?.youtubeLink ?
+          <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target="_blank">
           <img src={youtube} alt="" className="w-9 h-9"/>
           </a>: null}
         </div>

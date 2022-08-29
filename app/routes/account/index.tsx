@@ -34,6 +34,7 @@ export default function Profile() {
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
+  console.log(Data)
   const loaderData = Data?.user
   const [message,setMessage] = useState(Data?.message)
 const [successUpdateMessage,setSuccessUpdateMessage] =useState(Data?.successMessage)
@@ -56,15 +57,15 @@ setTimeout(() => {
   const [showSocialLinks, setshowSocialLinks] = useState(message || successUpdateMessage ? true : false);
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false);
-  const [show, setshow] = useState(loaderData.templateNumber)
-  const [input, setinput] = useState({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
-const primaryRestore = loaderData.isUsingPrimaryDefault
-const secondaryRestore = loaderData.isUsingSecondaryDefault
+  const [show, setshow] = useState(loaderData.profileInfo.templateNumber)
+  const [input, setinput] = useState({description:loaderData.profileInfo.bio ,location:loaderData.profileInfo.location,occupation:loaderData.profileInfo.occupation,company:loaderData.profileInfo.company,education:loaderData.profileInfo.education})
+const primaryRestore = loaderData.profileImage.isUsingPrimaryDefault
+const secondaryRestore = loaderData.profileImage.isUsingSecondaryDefault
 const actionData=useActionData()
 
 useEffect(() => {
   return () => {
-    setinput({description:loaderData.bio ,location:loaderData.location,occupation:loaderData.occupation,company:loaderData.company,education:loaderData.education})
+    setinput({description:loaderData.profileInfo.bio ,location:loaderData.profileInfo.location,occupation:loaderData.profileInfo.occupation,company:loaderData.profileInfo.company,education:loaderData.profileInfo.education})
   };
 }, [loaderData,showBio])
 
@@ -82,7 +83,7 @@ setmode('mobile')
 setshowTemplate(!showSocialLinks && !showImages && !showBio ? true : false)
 
 }
-const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
+const disabledIcon = loaderData.profileImage.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
       <DashboardHeader username={ loaderData.username } loaderData={loaderData}/>
@@ -90,11 +91,11 @@ const disabledIcon = loaderData.primaryImage || primaryRestore ? 'text-gray-700/
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
       <AccountSidebar showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={successUpdateMessage} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
-      { loaderData.templateNumber == '0' ?
-      <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
+      { loaderData.profileInfo.templateNumber == '0' ?
+      <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData.profileInfo.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-40  rounded-l-md rounded-r-md ${loaderData.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData.templateNumber == '1' ? 'border border-gray-300' : ""} `}>
+        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-40  rounded-l-md rounded-r-md ${loaderData.profileImage.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData.profileInfo.templateNumber == '1' ? 'border border-gray-300' : ""} `}>
           {/* <form action="" > */}
           <button id="desktopButton"  className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >

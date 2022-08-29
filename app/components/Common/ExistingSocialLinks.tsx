@@ -21,17 +21,17 @@ const linkName = localStorage.getItem("LinkName")
   const people = [
     {
       name: 'Facebook',
-      email: loaderData?.facebookLink,
+      email: loaderData?.socialMedia?.facebookLink,
       image: fbIcon,
     },
     {
       name: 'Twitter',
-      email: loaderData?.twitterLink,
+      email: loaderData?.socialMedia?.twitterLink,
       image: twitterIcon,
     },
     {
       name: 'Youtube',
-      email: loaderData?.youtubeLink,
+      email: loaderData?.socialMedia?.youtubeLink,
       image: ytIcon,
     },
   ]

@@ -177,7 +177,7 @@ useEffect(() => {
                       </nav>
                       <div className='z-0'>
                         {showBio ?
-                          <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                          <AccountBio setshowBio={setshowBio} occupation={loaderData.profileInfo.occupation} company={loaderData.profileInfo.company} education={loaderData.profileInfo.education} bio={loaderData.profileInfo.bio} location={loaderData.profileInfo.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showTemplate ?
@@ -328,7 +328,7 @@ useEffect(() => {
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.occupation} company={loaderData.company} education={loaderData.education} bio={loaderData.bio} location={loaderData.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData.profileInfo.occupation} company={loaderData.profileInfo.company} education={loaderData.profileInfo.education} bio={loaderData.profileInfo.bio} location={loaderData.profileInfo.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showTemplate ?
