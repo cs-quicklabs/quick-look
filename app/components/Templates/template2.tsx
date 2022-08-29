@@ -10,7 +10,7 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
         <img src={secondaryRestore ? pic : loaderData.secondaryImage} className="h-full w-full object-cover" alt="" />
       </div>
-      <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
+      <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200 overflow-y-auto">
         <div className='mt-20'>
           <h1 className="text-lg leading-6 font-bold text-gray-900">
           {loaderData.firstname} {loaderData.lastname}
@@ -29,6 +29,42 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
             </pre>
          
         </div>
+
+        <section className="mt-24 overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+
+              <div className="">
+
+                <blockquote className="">
+                  <div className="text-base leading-5 font-normal text-gray-500">
+                    
+                      <div className='text-7xl flex justify-start mb-[-3rem] text-black'>
+                        &ldquo;
+                      </div> 
+                      <p className='text-center pt-2'>
+                      I am an art director, software engineer, and web developer at Crownstack currently living in India. My interests range from photography to technology. I am also interested in shopping, painting, and yoga.
+                      <br />
+                      <br />
+                      If you’d like to get in touch, feel free to say hello through any of the social links below.
+                      </p>
+                      
+                      <br />
+
+                      <div className='flex justify-end'>
+                      -- Aashish Dhawan
+                      </div>
+                    
+                      <div className='text-7xl flex justify-end mb-[-3rem] text-black pt-3'>
+                        &ldquo;
+                      </div>
+                  
+                  </div>
+                
+                </blockquote>
+              </div>
+            </div>
+          </section>
+
         <div className='flex flex-col mt-4 text-sm'>
           <div className='flex gap-4'>
           {loaderData.company || input.company ?

@@ -10,6 +10,9 @@ import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import UploadImages from '../UploadImages/UploadImages';
 import SocialProfile from '../SocialProfile/SocialProfile';
+import AccountTestimonial from '../Testimonial';
+import AddVideo from '../Video';
+import Portfolio from '../Portfolio';
 
 
 const navigationFirst = [
@@ -22,15 +25,15 @@ const navigationFirst = [
 const navigationSecond = [
   { name: 'Spotlight Button', subheading: 'Add a call to action button on profile', href: '#' },
   { name: 'Add Video', subheading: 'Add a video link to your profile', href: '#' },
-  { name: 'Add Testimonials ', subheading: 'Add testimonials to your profile', href: '#' },
-  { name: 'Add Portfolio ', subheading: 'Add Portfolio to your Profile ', href: '#' },
+  { name: 'Add Testimonials', subheading: 'Add testimonials to your profile', href: '#' },
+  { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile ', href: '#' },
 ]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({ showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -124,7 +127,7 @@ useEffect(() => {
                                 setshowTemplate(false)
                                 setshowSocialLinks(false)
                                 setshowImages(false);
-
+                                setShowTestimonial(false);
                               }
                               if (item.name === 'Design Templates') {
                                 setshowTemplate(true);
@@ -132,7 +135,7 @@ useEffect(() => {
                                 setshowBio(false);
                                 setshowSocialLinks(false)
                                 setshowImages(false);
-
+                                setShowTestimonial(false);
                               }
                               if (item.name === 'Social Links') {
                                 setshowSocialLinks(true);
@@ -140,14 +143,15 @@ useEffect(() => {
                                 setshowTemplate(false)
                                 setshowBio(false);
                                 setshowImages(false);
+                                setShowTestimonial(false);
                               }
                               if (item.name === 'Images') {
                                 setshowImages(true);
                                 setSidebarOpen(false);
                                 setshowSocialLinks(false);
-
                                 setshowTemplate(false)
                                 setshowBio(false);
+                                setShowTestimonial(false);
                               }
                             }}
                             className={classNames(
@@ -204,6 +208,35 @@ useEffect(() => {
                         {navigationSecond.map((item) => (
                           <a
                             key={item.name}
+                            onClick={() => {
+                              if (item.name === 'Add Testimonials') {
+                                setShowTestimonial(true);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                              }
+                              if (item.name === 'Add Video') {
+                                setShowAddVideo(true);
+                                setShowTestimonial(false);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                              }
+                              if (item.name === 'Add Portfolio') {
+                                setShowPortfolio(true);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                              }
+                            }}
                             href={item.href}
                             className={classNames(
                               Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
@@ -228,6 +261,18 @@ useEffect(() => {
                             </div>
                           </a>
                         ))}
+                        {showTestimonial ?
+                          <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} secondaryRestore={secondaryRestore} mode={mode} setmode={setmode} /> :
+                          null
+                        }
+                         {showAddVideo ?
+                            <AddVideo setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                            null
+                          }
+                          {showPortfolio ?
+                            <Portfolio setShowPortfolio={setShowPortfolio} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                            null
+                          }
                       </nav>
                     </div>
                   </div>
@@ -277,7 +322,7 @@ useEffect(() => {
                           setshowTemplate(false)
                           setshowSocialLinks(false)
                           setshowImages(false);
-
+                          setShowTestimonial(false);
                         }
                         if (item.name === 'Design Templates') {
                           setshowTemplate(true);
@@ -285,7 +330,7 @@ useEffect(() => {
                           setshowBio(false);
                           setshowSocialLinks(false)
                           setshowImages(false);
-
+                          setShowTestimonial(false);
                         }
                         if (item.name === 'Social Links') {
                           setshowSocialLinks(true);
@@ -293,14 +338,15 @@ useEffect(() => {
                           setshowTemplate(false)
                           setshowBio(false);
                           setshowImages(false);
+                          setShowTestimonial(false);
                         }
                         if (item.name === 'Images') {
                           setshowImages(true);
                           setSidebarOpen(false);
                           setshowSocialLinks(false);
-
                           setshowTemplate(false)
                           setshowBio(false);
+                          setShowTestimonial(false);
                         }
                       }}
                       className={classNames(
@@ -355,7 +401,36 @@ useEffect(() => {
                   {navigationSecond.map((item) => (
                     <div
                       key={item.name}
-
+                      data-cy={`${item.name}`}
+                      onClick={() => {
+                        if (item.name === 'Add Testimonials') {
+                          setShowTestimonial(true);
+                          setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                        }
+                        if (item.name === 'Add Video') {
+                          setShowAddVideo(true);
+                          setShowTestimonial(false);
+                          setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                        }
+                        if (item.name === 'Add Portfolio') {
+                          setShowPortfolio(true);
+                          setShowAddVideo(false);
+                          setShowTestimonial(false);
+                          setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                        }
+                      }}
                       className={classNames(
                         'hover:bg-gray-50'
                       )}
@@ -378,6 +453,18 @@ useEffect(() => {
                       </div>
                     </div>
                   ))}
+                  {showTestimonial ?
+                  <AccountTestimonial setShowTestimonial={setShowTestimonial} setshowTemplate={setshowTemplate} loaderData={loaderData} secondaryRestore={secondaryRestore} mode={mode} setmode={setmode} /> :
+                  null
+                }
+                {showAddVideo ?
+                  <AddVideo setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                  null
+                }
+                {showPortfolio ?
+                  <Portfolio setShowPortfolio={setShowPortfolio} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                  null
+                }
                 </nav>
               </div>
             </div>
