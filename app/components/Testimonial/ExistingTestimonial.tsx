@@ -31,10 +31,10 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
             {person.description ?
               <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
-                  <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
+                  
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{person.description}</p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description.slice(0,30)}....`}</p>
                   </div>
                 </div>
 

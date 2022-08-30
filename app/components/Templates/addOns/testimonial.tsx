@@ -13,9 +13,9 @@ export default function TestimonialAddOn({testimonialText, testimonialBy}:any) {
                       <div className='text-7xl flex justify-start mb-[-3rem] text-black'>
                         &ldquo;
                       </div> 
-                      <p className='text-center pt-2'>
+                      <pre className="text-gray-500 text-center pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
                         {testimonialText}
-                      </p>
+                      </pre>
                       <br />
                       <div className='flex justify-end'>
                       -- {testimonialBy}
