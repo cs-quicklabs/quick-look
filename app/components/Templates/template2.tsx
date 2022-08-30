@@ -4,6 +4,7 @@ import facebook from '../../../assets/images/fb.png';
 import twitter from '../../../assets/images/twitter.png';
 import youtube from '../../../assets/images/youtube.png';
 import TestimonialAddOn from './addOns/testimonial';
+import VideoAddOn from './addOns/video';
 export default function Template2({ input, loaderData,secondaryRestore }: any) {
   return (
     <>
@@ -34,6 +35,8 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
         {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
+            {loaderData?.video?.videoLink && 
+            <VideoAddOn />}
         <div className='flex flex-col mt-4 text-sm'>
           <div className='flex gap-4'>
           {loaderData.profileInfo.company || input.company ?

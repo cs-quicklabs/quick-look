@@ -10,13 +10,12 @@ const testimonial = [
   {
     name: loaderData.testimonial?.testimonialBy,
     description: loaderData.testimonial?.testimonialText,
-    image: fbIcon,
   },
 ]
 
 const [showEditTestimonial, setShowEditTestimonial] = useState(false); 
 
-const toggleEditTestimonial = (person: { name: string; description: string; image: string; }) => {
+const toggleEditTestimonial = (person: { name: string; description: string; }) => {
   setShowEditTestimonial(!showEditTestimonial);
 }
 

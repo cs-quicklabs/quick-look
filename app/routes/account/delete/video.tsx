@@ -1,7 +1,6 @@
 import { ActionFunction, redirect } from "@remix-run/node";
 import { getUser } from "~/services/auth.service.server";
 import { commitSession, getSession } from "~/services/session.service.server";
-import { deleteSocialLink } from "~/services/user.service.serevr";
 import { deleteVideo } from "~/services/userVideo.service.server";
 
 export const action: ActionFunction = async ({ request }) => {

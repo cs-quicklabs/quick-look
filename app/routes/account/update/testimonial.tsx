@@ -12,16 +12,14 @@ export const action: ActionFunction = async ({ request }) => {
     );
     
     const formData = await request.formData()
-    const editTestimonial = formData.get('editTestimonial') as string
+    // const editTestimonial = formData.get('editTestimonial') as string
 
-    if(editTestimonial){
-        await addUpdateTestimonial(editTestimonial, user)
+    const testimonialText = formData.get('testimonialText') as string
+    const testimonialBy = formData.get('testimonialBy') as string
+
+    if(testimonialText){
+      await addUpdateTestimonial({testimonialText, testimonialBy}, user);
     }
-
-    session.flash(
-        "successUpdateProfileMessage",
-        `Your profile has been updated successfully.`
-    );
 
     return redirect('/account', {
       headers: {

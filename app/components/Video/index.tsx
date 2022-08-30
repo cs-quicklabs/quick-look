@@ -5,7 +5,8 @@ import { XIcon } from '@heroicons/react/solid'
 import ExistingVideo from './ExistingVideo'
 
    
-export default function AddVideo({setShowAddVideo, mode, loaderData, setmode}:any) {
+export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, mode, loaderData, setmode}:any) {
+  console.log("video index",loaderData)
 
   const OnCancel = ()=>{
     setShowAddVideo(false);
@@ -38,7 +39,7 @@ export default function AddVideo({setShowAddVideo, mode, loaderData, setmode}:an
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action='' method="post" className='h-screen' >
+                  <form action='/account/add/video' method="post" className='h-screen' >
                     <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -63,53 +64,63 @@ export default function AddVideo({setShowAddVideo, mode, loaderData, setmode}:an
                           </p>
                         </div>
                       </div>
+                      {loaderData?.video?.videoLink ?
+                        <div className=''>
+                        <ExistingVideo inputVideo={inputVideo} setInputVideo={setInputVideo} loaderData={loaderData} mode={mode}/>
+                        </div>:
+                      <>
                       <div className='pl-2.5 pr-5 mt-6'>
   
-                        <div className='mt-[0.875rem]'>
-                          <label htmlFor="project-name" className="block text-sm font-medium leading-5 text-gray-700">
-                            {' '}
-                            Add Link{' '}
-                          </label>
-                          <div className="mt-1">
-                            <input
-                              type="text"
-                            //  placeholder={`${selectedSocialLinks.name.toLowerCase()}.com/username`}
-                              name="addlink"
-                              id="addlink"
-                              // value={value}
-                              // onChange={handleChange}
-                              className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
-                              
-                            />
+                          <div className='mt-[0.875rem]'>
+                            <label htmlFor="project-name" className="block text-sm font-medium leading-5 text-gray-700">
+                              {' '}
+                              Add Link{' '}
+                            </label>
+                            <div className="mt-1">
+                              <input
+                                type="text"
+                                placeholder='Please enter your video link'
+                                name="videoLink"
+                                id="videoLink"
+                                value={inputVideo.videoLink}
+                                onChange={(event) => {
+                                  setInputVideo({
+                                    ...inputVideo,
+                                    [event.target.name]: event.target.value,
+                                  })
+                                }}
+                                className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
+                                
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div className="flex flex-shrink-0 justify-end px-4 pb-2 mt-7">
-                        <div >
+                        <div className="flex flex-shrink-0 justify-end px-4 pb-2 mt-7">
+                          <div >
+                            <button
+                              type="button"
+                              className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
+                              onClick={OnCancel}
+                            >
+                              
+                              Cancel
+                            </button>
+                          </div>
+                          
                           <button
-                            type="button"
-                            className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
-                            onClick={OnCancel}
+                            data-cy="addProfileButton"
+                            type="submit"
+                            className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
+                            // disabled={!value  ? true : !error ? false : true }
                           >
-                            
-                            Cancel
+                            Add Video
                           </button>
                         </div>
-                        
-                        <button
-                          data-cy="addProfileButton"
-                          type="submit"
-                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                          // disabled={!value  ? true : !error ? false : true }
-                        >
-                          Add Video
-                        </button>
-                      </div>
+                      </>}
+                      
 
-                      <div className='mt-10'>
-                        <ExistingVideo  loaderData={loaderData} mode={mode}/>
-                      </div>
+                      
 
                     </div>
                   </form>

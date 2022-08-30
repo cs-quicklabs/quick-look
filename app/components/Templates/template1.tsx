@@ -4,6 +4,7 @@ import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/bg.png'
 import defaultimg from '../../../assets/images/profile.png'
 import TestimonialAddOn from './addOns/testimonial';
+import VideoAddOn from './addOns/video'
 
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
   return (
@@ -39,6 +40,8 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
             {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
+            {loaderData?.video?.videoLink && 
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16 '>
               {loaderData.profileInfo.company || input.company ?

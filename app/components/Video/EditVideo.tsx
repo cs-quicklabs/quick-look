@@ -2,9 +2,8 @@ import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function EditSocialProfile({setShowEditVideo, loaderData, mode, setmode }: any) {
-
-
+export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
+  console.log("inside edit", loaderData);
 
   const Onclose = () => {
     if (mode === 'desktop') {
@@ -39,7 +38,7 @@ export default function EditSocialProfile({setShowEditVideo, loaderData, mode, s
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <form action='' method="post" className='h-screen' >
+                <form action='/account/update/video' method="post" className='h-screen' >
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -73,11 +72,15 @@ export default function EditSocialProfile({setShowEditVideo, loaderData, mode, s
                         <div className="mt-1">
                           <input
                             type="text"
-                          //  placeholder={`${selectedSocialLinks.name.toLowerCase()}.com/username`}
-                            name="addlink"
-                            id="addlink"
-                            // value={value}
-                            // onChange={handleChange}
+                            name="videoUrl"
+                            id="videoUrl"
+                            value={inputVideo.videoLink}
+                                onChange={(event) => {
+                                  setInputVideo({
+                                    ...inputVideo,
+                                    videoLink: event.target.value,
+                                  })
+                                }}
                             className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
                             
                           />
