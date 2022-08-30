@@ -1,8 +1,7 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import ExistingSocialLinks from '../Common/ExistingSocialLinks'
-import { XIcon } from '@heroicons/react/solid'
 import ExistingVideo from './ExistingVideo'
+import { XIcon } from '@heroicons/react/outline';
 
    
 export default function AddVideo({setShowAddVideo, mode, loaderData, setmode}:any) {
@@ -38,7 +37,7 @@ export default function AddVideo({setShowAddVideo, mode, loaderData, setmode}:an
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action='' method="post" className='h-screen' >
+                  <form action='/account/add/video' method="post" className='h-screen' >
                     <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -74,7 +73,7 @@ export default function AddVideo({setShowAddVideo, mode, loaderData, setmode}:an
                             <input
                               type="text"
                             //  placeholder={`${selectedSocialLinks.name.toLowerCase()}.com/username`}
-                              name="addlink"
+                              name="videoLink"
                               id="addlink"
                               // value={value}
                               // onChange={handleChange}
