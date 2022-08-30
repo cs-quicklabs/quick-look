@@ -2,11 +2,10 @@ import { RegisterForm } from "~/types/regirsterForm.server";
 import bcrypt from 'bcryptjs'
 import { db } from "~/database/connection.server";
 import { nameCasing } from "~/utils/string.server";
-import { json } from "stream/consumers";
 import { UpdateProfileDetails } from "~/types/updateProfile.server";
 import { UserPreferences } from "~/types/updateUserPreferences.server";
 import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
-import { User } from "@prisma/client";
+
 
 
 export async function createUser(userRegister: RegisterForm) {
@@ -44,6 +43,31 @@ export async function createUser(userRegister: RegisterForm) {
                         data: {
                             userId: user.id
                         }
+                    }).then(async () => {
+                        await db.socialMedia.create({
+                            data: {
+                                userId: user.id
+                            }
+                        }).then(async() => {
+                            await db.portfolioImage.create({
+                                data: {
+                                    userId : user.id,
+                                    imageUrl: ''
+                                } 
+                            })
+                        }).then(async () => {
+                            await db.video.create({
+                                data: {
+                                    userId : user.id
+                                }
+                            }).then(async () => {
+                                await db.spotlightButton.create({
+                                    data: {
+                                        userId: user.id
+                                    }
+                                })
+                            })
+                        })
                     })
                 })
             })
@@ -250,143 +274,5 @@ export async function updateUserTemplate(templateId: string, user: any) {
     })
 }
 
-export async function addUpdateSocialLink(socialProfile: string, link: string, user?: User) {
-try{
-    const socialAccount = socialProfile.toLocaleLowerCase();
-    if (socialAccount === 'facebook') {
-        await db.socialMedia.update({
-            where: {
-                userId: user?.id
-            },
-            data: {
-                facebookLink: link
-            }
-        })
-    } else if (socialAccount === 'twitter') {
-        await db.socialMedia.update({
-            where: {
-                userId: user?.id
-            },
-            data: {
-                twitterLink: link
-            }
-        })
-    } else if (socialAccount === 'youtube') {
-        await db.socialMedia.update({
-            where: {
-                userId: user?.id
-            },
-            data: {
-                youtubeLink: link
-            }
-        })
-    }
-    return true
-    }
-    catch(err){
-        throw err
-    }
-}
 
-export async function deleteSocialLink(socialProfile: string, user?: User) {
-    if (socialProfile === '1') {
-        await db.socialMedia.update({
-            where: {
-                id: user?.id
-            },
-            data: {
-                facebookLink: ''
-            }
-        })
-    } else if (socialProfile === '2') {
-        await db.socialMedia.update({
-            where: {
-                id: user?.id
-            },
-            data: {
-                twitterLink: ''
-            }
-        })
-    } else if (socialProfile === '3') {
-        await db.socialMedia.update({
-            where: {
-                id: user?.id
-            },
-            data: {
-                youtubeLink: ''
-            }
-        })
-    }
-}
 
-export async function addPrimaryImage(link: string, user: User){ 
-    await db.profileImage.update({
-        where: {
-            userId: user.id
-        },
-        data: {
-            primaryImage: link,
-            isUsingPrimaryDefault: false
-        }
-    })
-    return true;
-} 
-
-export async function addSecondaryImage(link: string, user: User){
-    await db.profileImage.update({
-        where: {
-            userId: user.id
-        },
-        data: {
-            secondaryImage: link,
-            isUsingSecondaryDefault: false
-        }
-    })
-    return true;
-} 
-
-export async function deleteImage(imageKey: string, user?: User) {
-    if (imageKey === 'deletePrimary') {
-        await db.profileImage.update({
-            where: {
-                id: user?.id
-            },
-            data: {
-                primaryImage: '',
-                isUsingPrimaryDefault: false
-            }
-        })
-    } else if (imageKey === 'deleteSecondary') {
-        await db.profileImage.update({
-            where: {
-                id: user?.id
-            },
-            data: {
-                secondaryImage: '',
-                isUsingSecondaryDefault: false
-            }
-        })
-    } 
-}
-
-export async function restorePrimaryImage(user: User){
-    await db.profileImage.update({
-        where:{
-            id: user.id
-        },
-        data: {
-            isUsingPrimaryDefault: true
-        }
-    })
-}
-
-export async function restoreSecondaryImage(user: User){
-    await db.profileImage.update({
-        where:{
-            id: user.id
-        },
-        data: {
-            isUsingSecondaryDefault: true
-        }
-    })
-}
