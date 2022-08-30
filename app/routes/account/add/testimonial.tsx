@@ -2,7 +2,6 @@ import { User } from "@prisma/client";
 import { ActionFunction, json, redirect } from "@remix-run/node";
 import { getUser } from "~/services/auth.service.server";
 import { addUpdateTestimonial } from "~/services/testimonial.service.server";
-import { validateTestimonial, validateTestimonialBy } from "~/utils/validator.server";
 
 
 export const action: ActionFunction = async ({ request }) => {

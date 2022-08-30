@@ -3,11 +3,11 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 export default function EditSocialProfile({inputTestimonial, setInputTestimonial, setShowEditTestimonial, loaderData, mode, setmode }: any) {
-  console.log(inputTestimonial)
+
 
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');
-  // console.log("inputTestimonial",inputTestimonial);
+
   useEffect(() => {
     if(inputTestimonial.testimonialBy === ''){
       setError1('');

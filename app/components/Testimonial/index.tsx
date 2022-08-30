@@ -7,7 +7,7 @@ export default function AccountTestimonial({inputTestimonial, setInputTestimonia
 
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');
-  console.log("inputTestimonial",inputTestimonial);
+
   useEffect(() => {
     if(inputTestimonial.testimonialBy === ''){
       setError1('');

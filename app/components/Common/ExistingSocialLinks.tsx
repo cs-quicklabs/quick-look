@@ -8,14 +8,13 @@ import ytIcon from '../../../assets/images/yt1.png'
 export default function ExistingSocialLinks({successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode }: any) {
 const linkName = localStorage.getItem("LinkName")
   const linkEmail = localStorage.getItem("LinkEmail")
-  // const linkImage = localStorage.getItem("LinkImage")
-  // console.log("SADASDSA",linkName,linkEmail);
+
   
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
   const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
   
-// console.log("SADASDSA",linkName,"sds",clickedLink);
+
 
   
   const people = [
