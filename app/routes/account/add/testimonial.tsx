@@ -13,20 +13,6 @@ export const action: ActionFunction = async ({ request }) => {
     const testimonialText = form.get('testimonialText') as string
     const testimonialBy = form.get('testimonialBy') as string
 
-    const errors = {
-        testimonialText : await validateTestimonial(testimonialText),
-        testimonialBy: await validateTestimonialBy(testimonialBy)
-    }
-
-    if (Object.values(errors).some(Boolean)) {
-        return json(
-          {
-            errors,
-            form: action,
-          },
-          { status: 400 }
-        )
-      }
     if(testimonialText){
         await addUpdateTestimonial({testimonialText, testimonialBy}, user);
     }

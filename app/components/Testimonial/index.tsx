@@ -12,8 +12,10 @@ export default function AccountTestimonial({inputTestimonial, setInputTestimonia
     if(inputTestimonial.testimonialBy === ''){
       setError1('');
     }
-    else if(inputTestimonial.testimonialBy.length < 8){
-      setError1('Name must be 8 characters long');
+    else if(inputTestimonial.testimonialBy.length < 6){
+      setError1('Name must be 6 characters long');
+    } else if(inputTestimonial.testimonialBy.length >24 ){
+      setError1('Name must not be more than 24 characters long');
     }
     else if(inputTestimonial.testimonialBy === ''){
       setError1('required');
@@ -21,8 +23,11 @@ export default function AccountTestimonial({inputTestimonial, setInputTestimonia
     if(inputTestimonial.testimonialText === ''){
       setError('');
     }
-    else if(inputTestimonial.testimonialText.length < 12){
-      setError('Name must be 12 characters long');
+    else if(inputTestimonial.testimonialText.length < 6){
+      setError('Testimonial must be 6 characters long');
+    }
+    else if(inputTestimonial.testimonialText.length > 472 ){
+      setError('Testimonial must be not more than 472 characters long');
     }
     else if(inputTestimonial.testimonialText === ''){
       setError('required');
@@ -132,7 +137,7 @@ return (
                               [event.target.name]: event.target.value,
                             })
                           }}
-                          className={`block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                          className={`text-ellipsis w-44 block rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                           value={inputTestimonial.testimonialText}
                         />
                         <div className='text-red-600 text-sm'>
