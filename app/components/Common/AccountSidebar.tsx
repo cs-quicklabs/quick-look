@@ -26,7 +26,7 @@ const navigationSecond = [
   { name: 'Spotlight Button', subheading: 'Add a call to action button on profile', href: '#' },
   { name: 'Add Video', subheading: 'Add a video link to your profile', href: '#' },
   { name: 'Add Testimonials', subheading: 'Add testimonials to your profile', href: '#' },
-  { name: 'Add Portfolio ', subheading: 'Add Portfolio to your Profile ', href: '#' },
+  { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile ', href: '#' },
 ]
 
 function classNames(...classes: string[]) {

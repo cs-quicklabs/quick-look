@@ -65,6 +65,29 @@ return (
                 <form action='/account/add/testimonial' method="post" className='h-screen font-inter' >
                   {loaderData.testimonial.testimonialBy ?
                   <div className='flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto'>
+                    <div className="bg-gray-50 py-6 px-4">
+                    <div className="flex items-center justify-between">
+                      <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
+                        Add Testimonial to your profile
+                      </Dialog.Title>
+                      <div className="ml-3 flex h-7 items-center">
+                        <button
+                          type="button"
+                          className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
+                          onClick={Onclose}
+                        >
+                          <span className="sr-only">Close panel</span>
+                          <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="pt-1 pr-2">
+                      <p className="text-sm leading-5 font-normal text-gray-500">
+                        Add, edit or delete testimonial from your profile
+                      </p>
+                    </div>
+                  </div>
                   <ExistingTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} mode={mode} setmode={setmode} />
                 </div>:
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
