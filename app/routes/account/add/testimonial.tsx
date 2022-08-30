@@ -14,7 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
     const testimonialBy = form.get('testimonialBy') as string
 
     const errors = {
-        videoUrl : await validateTestimonial(testimonialText),
+        testimonialText : await validateTestimonial(testimonialText),
         testimonialBy: await validateTestimonialBy(testimonialBy)
     }
 

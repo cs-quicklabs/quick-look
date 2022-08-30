@@ -11,6 +11,8 @@ import DefaultProfileIcon from '../../../assets/images/profile.png';
 import UploadImages from '../UploadImages/UploadImages';
 import SocialProfile from '../SocialProfile/SocialProfile';
 import AccountTestimonial from '../Testimonial';
+import AddVideo from '../Video';
+import Portfolio from '../Portfolio';
 
 
 const navigationFirst = [
@@ -31,7 +33,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({ inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -206,6 +208,36 @@ useEffect(() => {
                           <a
                             key={item.name}
                             href={item.href}
+                            data-cy={`${item.name}`}
+                            onClick={() => {
+                              if (item.name === 'Add Testimonials') {
+                                setShowTestimonial(true);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                              }
+                              if (item.name === 'Add Video') {
+                                setShowAddVideo(true);
+                                setShowTestimonial(false);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                              }
+                              if (item.name === 'Add Portfolio') {
+                                setShowPortfolio(true);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                              }
+                            }}
                             className={classNames(
                               Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
                               ''
@@ -229,6 +261,18 @@ useEffect(() => {
                             </div>
                           </a>
                         ))}
+                        {showTestimonial ?
+                        <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                        null
+                      }
+                      {showAddVideo ?
+                          <AddVideo setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          null
+                        }
+                        {showPortfolio ?
+                          <Portfolio setShowPortfolio={setShowPortfolio} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          null
+                        }
                       </nav>
                     </div>
                   </div>
@@ -360,6 +404,29 @@ useEffect(() => {
                         if (item.name === 'Add Testimonials') {
                           setShowTestimonial(true);
                           setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                        }
+                        if (item.name === 'Add Video') {
+                          setShowAddVideo(true);
+                          setShowTestimonial(false);
+                          setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                        }
+                        if (item.name === 'Add Portfolio') {
+                          setShowPortfolio(true);
+                          setShowAddVideo(false);
+                          setShowTestimonial(false);
+                          setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
                         }
                       }}
                       className={classNames(
@@ -385,9 +452,17 @@ useEffect(() => {
                     </div>
                   ))}
                   {showTestimonial ?
-                  <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <AccountTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
+                {showAddVideo ?
+                    <AddVideo setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                    null
+                  }
+                  {showPortfolio ?
+                    <Portfolio setShowPortfolio={setShowPortfolio} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                    null
+                  }
                 </nav>
               </div>
             </div>

@@ -1,29 +1,15 @@
 import { useState } from 'react';
 import fbIcon from '../../../assets/images/fb1.png';
+import { Testimonials } from '../Testimonials';
 import DeleteTestimonial from './DeleteTestimonial';
 import EditTestimonial from './EditTestimonial';
 
-export default function ExistingTestimonial({setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
-
-  const Onclose = (e:any) => {
-    
-    if(mode === 'desktop'){
-    setshowBio(false)
-    }
-    if(mode === 'mobile'){
-     
-    }
-  };
-
-const OnCancel = ()=>{
-setshowBio(false);
-  setmode('desktop')
-}
+export default function ExistingTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode}:any) {
 
 const testimonial = [
   {
-    name: 'Diksha Grover',
-    description: 'I am Diksha Grover. I am a software engineer.',
+    name: loaderData.testimonial?.testimonialBy,
+    description: loaderData.testimonial?.testimonialText,
     image: fbIcon,
   },
 ]
@@ -48,7 +34,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                   <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{person.name}</p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{person.description}</p>
                   </div>
                 </div>
 
@@ -61,7 +47,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                     Edit
                   </button>
                   {showEditTestimonial && (
-                    <EditTestimonial loaderData={loaderData} setShowEditTestimonial={setShowEditTestimonial} mode={mode} setmode={setmode} />
+                    <EditTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} setShowEditTestimonial={setShowEditTestimonial} mode={mode} setmode={setmode} />
 
                   )}
                   <button

@@ -3,6 +3,8 @@ import twitter from '../../../assets/images/twitter1.png'
 import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/bg.png'
 import defaultimg from '../../../assets/images/profile.png'
+import TestimonialAddOn from './addOns/testimonial';
+
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
   return (
     <div className='flex  overflow-hidden'>
@@ -34,6 +36,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
               { input?.description?.trim()}
             </pre>
           </div>
+            {loaderData?.testimonial?.testimonialText && 
+           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
+            }
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16 '>
               {loaderData.profileInfo.company || input.company ?

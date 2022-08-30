@@ -1,36 +1,45 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
-import { Combobox } from '@headlessui/react'
-import SelectedSocialLinks from '../Common/SelectedSocialLinks'
 
-function classNames(...classes: (string | boolean)[]) {
-  return classes.filter(Boolean).join(' ')
-}
+export default function EditSocialProfile({inputTestimonial, setInputTestimonial, setShowEditTestimonial, loaderData, mode, setmode }: any) {
+  console.log(inputTestimonial)
 
-var socialLinks = [
-  { id: 1, name: 'Facebook' },
-  { id: 2, name: 'Twitter' },
-  { id: 3, name: 'Youtube' },
-]
+  const [error, setError] = useState('');
+  const [error1, setError1] = useState('');
+  // console.log("inputTestimonial",inputTestimonial);
+  useEffect(() => {
+    if(inputTestimonial.testimonialBy === ''){
+      setError1('');
+    }
+    else if(inputTestimonial.testimonialBy.length < 8){
+      setError1('Name must be 8 characters long');
+    }
+    else if(inputTestimonial.testimonialBy === ''){
+      setError1('required');
+    }else{setError1('')}
+    if(inputTestimonial.testimonialText === ''){
+      setError('');
+    }
+    else if(inputTestimonial.testimonialText.length < 12){
+      setError('Name must be 12 characters long');
+    }
+    else if(inputTestimonial.testimonialText === ''){
+      setError('required');
+    }else{setError('')}
+  }, [inputTestimonial.testimonialBy, inputTestimonial.testimonialText])
 
-
-
-export default function EditSocialProfile({setShowEditTestimonial, loaderData, mode, setmode }: any) {
-
-
-
-  // const Onclose = () => {
-  //   if (mode === 'desktop') {
-  //     setShowEditTestimonial(false)
-  //   }
-  //   if (mode === 'mobile') {
-  //     setShowEditTestimonial(false)
-  //   }
-  // }
+  const Onclose = () => {
+    if (mode === 'desktop') {
+      // setShowTestimonial(true);
+      setShowEditTestimonial(false)
+    }
+    if (mode === 'mobile') {
+    }
+  }
 
   const OnCancel = ()=>{
+    // setShowTestimonial(true);
     setShowEditTestimonial(false);
     setmode('desktop');
   }
@@ -54,7 +63,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <form action='' method="post" className='h-screen' >
+                <form action='/account/add/testimonial' method="post" className='h-screen' >
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -65,7 +74,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
-                            onClick={() => setShowEditTestimonial(false)}
+                            onClick={Onclose}
                           >
                             <span className="sr-only">Close panel</span>
                             <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
@@ -81,48 +90,52 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                     </div>
                     <div className='pl-2.5 pr-5 mt-6'>
                       <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="testimonialText" className="block text-sm font-medium text-gray-700">
                           {' '}
                           Edit Testimonial{' '}
                         </label>
                         <div className="mt-1">
                           <textarea
-                            id="description"
-                            name="description"
+                            id="testimonialText"
+                            name="testimonialText"
+                            value={inputTestimonial.testimonialText}
                             rows={4}
-                            
-              //               onChange={(event) => {
-              //   setinput({
-              //     ...input,
-              //     [event.target.name]: event.target.value,
-              //   })
-              // }}
+                            onChange={(event) => {
+                            setInputTestimonial({
+                              ...inputTestimonial,
+                              [event.target.name]: event.target.value,
+                            })
+                          }}
                             className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            // value={input.description}
                           />
+                          <div className='text-red-600 text-sm'>
+                            {error}
+                          </div>
                         </div>
                       </div>
 
                       <div className='mt-6'>
-                        <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="testimonialBy" className="block text-sm font-medium text-gray-700">
                           {' '}
                           Name of the person who gave this testimonial{' '}
                         </label>
                         <div className="mt-1">
                           <input
                             type="text"
-                            // value={input.location}
-                            name="location"
-                            id="project-name"
-                            
-              //               onChange={(event) => {
-              //   setinput({
-              //     ...input,
-              //     [event.target.name]: event.target.value,
-              //   })
-              // }}
+                            value={inputTestimonial.testimonialBy}
+                            name="testimonialBy"
+                            id="testimonialBy" 
+                            onChange={(event) => {
+                              setInputTestimonial({
+                                ...inputTestimonial,
+                                [event.target.name]: event.target.value,
+                              })
+                            }}
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           />
+                          <div className='text-red-600 text-sm'>
+                            {error1}
+                          </div>
                         </div>
                       </div>
 
@@ -141,9 +154,9 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                           data-cy="addTestimonialButton"
                           type="submit"
                           className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                          // disabled={!value  ? true : !error ? false : true }
+                          disabled={error || !inputTestimonial.testimonialText || error1 || !inputTestimonial.testimonialBy ? true : false}
                         >
-                          Add Testimonial
+                          Edit Testimonial
                         </button>
                       </div>
                     </div>
