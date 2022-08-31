@@ -13,10 +13,11 @@ export const action: ActionFunction = async ({ request }) => {
     let sourceKey;
     const videoUrl = await form.get('videoLink') as string
     const videoSource = await getVideoSource(videoUrl);
+    console.log("videoSource",videoSource)
     if(videoSource){
-      sourceKey = 'facebook'
-    } else {
       sourceKey = 'youtube'
+    } else {
+      sourceKey = 'facebook'
     }
     const errors = {
         videoUrl : await validateVideo(videoUrl)

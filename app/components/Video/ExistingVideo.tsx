@@ -22,7 +22,7 @@ export default function ExistingVideo({inputVideo, setInputVideo, loaderData, mo
 
 const videoLink = [
   {
-    name: 'yt or fb',
+    name: loaderData?.video?.videoSourceKey,
     link: loaderData?.video?.videoLink ,
   },
 ]

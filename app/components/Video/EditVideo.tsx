@@ -3,7 +3,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
-  console.log("inside edit", loaderData);
 
   const Onclose = () => {
     if (mode === 'desktop') {
@@ -17,6 +16,14 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
   const OnCancel = ()=>{
     setShowEditVideo(false);
     setmode('desktop');
+  }
+
+  const handleURL = (event:any) => {
+    const value = event.target.value;
+    setInputVideo({
+      ...inputVideo,
+      videoLink: value.includes('https://www.') ? value.substring(12) : value ,
+    })
   }
 
 
@@ -75,12 +82,7 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
                             name="videoUrl"
                             id="videoUrl"
                             value={inputVideo.videoLink}
-                                onChange={(event) => {
-                                  setInputVideo({
-                                    ...inputVideo,
-                                    videoLink: event.target.value,
-                                  })
-                                }}
+                                onChange={handleURL}
                             className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
                             
                           />

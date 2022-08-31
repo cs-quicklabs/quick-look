@@ -5,7 +5,6 @@ import { XIcon } from '@heroicons/react/outline';
 
    
 export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, mode, loaderData, setmode}:any) {
-  console.log("video index",loaderData)
 
   const OnCancel = ()=>{
     setShowAddVideo(false);
@@ -19,7 +18,44 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
     if(mode === 'mobile'){
     }
   }
+
+  const handleURL = (event:any) => {
+    const value = event.target.value;
+    setInputVideo({
+      ...inputVideo,
+      [event.target.name]: value.includes('https://www.') ? value.substring(12) : value ,
+    })
+  }
+
+  // let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
+
+  // let whiteSpaceRegex = /^\S*$/
+  // let ytRegEx = /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i
+
+  // let notContainsWhitespace = url.match(whiteSpaceRegex)
+  // if (!url) {
+  //   return 'Required.'
+  // } else if (!notContainsWhitespace) {
+  //   return 'Whitespaces are not allowed.'
+  // } else if (!ytRegEx) {
+  //   return 'Inavlid Facebook URL.'
+  // }
   
+
+  // let whiteSpaceRegex = /^\S*$/
+  // let fbRegEx = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+  // let notContainsWhitespace = url.match(whiteSpaceRegex)
+
+
+  // let matchesFbRegex = url.match(fbRegEx)
+  // if (!url) {
+  //   return 'Required.'
+  // } else if (!notContainsWhitespace) {
+  //   return 'Whitespaces are not allowed.'
+  // } else if (!matchesFbRegex) {
+  //   return 'Inavlid Facebook URL.'
+  // }
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={()=>{}}>
@@ -82,12 +118,7 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
                                 name="videoLink"
                                 id="videoLink"
                                 value={inputVideo.videoLink}
-                                onChange={(event) => {
-                                  setInputVideo({
-                                    ...inputVideo,
-                                    [event.target.name]: event.target.value,
-                                  })
-                                }}
+                                onChange={handleURL}
                                 className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
                                 
                               />
