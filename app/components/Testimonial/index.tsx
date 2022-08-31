@@ -127,7 +127,7 @@ return (
                       </label>
                       <div className="mt-1">
                         <textarea
-                          placeholder='Please enter your testimonial'
+                          placeholder='Please enter testimonial'
                           id="description"
                           name="testimonialText"
                           rows={4}
@@ -153,7 +153,7 @@ return (
                       </label>
                       <div className="mt-1">
                         <input
-                          placeholder='Please enter your name'
+                          placeholder='Please enter a name'
                           type="text"
                           value={inputTestimonial.testimonialBy}
                           name="testimonialBy"

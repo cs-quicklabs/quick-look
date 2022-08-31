@@ -3,7 +3,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
-  console.log("inside edit", loaderData);
 
   const Onclose = () => {
     if (mode === 'desktop') {
@@ -17,6 +16,35 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
   const OnCancel = ()=>{
     setShowEditVideo(false);
     setmode('desktop');
+  }
+
+const [error,SetError] = useState('')
+ 
+  let whiteSpaceRegex = /^\S*$/
+  let RegEx = inputVideo?.videoLink.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+
+ const RegexCheck =()=>{ 
+  if(inputVideo?.videoLink === ''){
+ return SetError('Required')}
+if(!RegEx.test(inputVideo?.videoLink)){
+  return SetError('Please enter a valid link.')
+ } if(!whiteSpaceRegex.test(inputVideo?.videoLink)){
+  return SetError('White space not allowed.')
+ }
+ else {
+ return SetError('')
+}}
+
+  useEffect(() => {
+ RegexCheck()
+},[inputVideo])
+
+  const handleURL = (event:any) => {
+    const value = event.target.value;
+    setInputVideo({
+      ...inputVideo,
+      videoLink: value.includes('https://www.') ? value.substring(12) : value ,
+    })
   }
 
 
@@ -74,16 +102,13 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
                             type="text"
                             name="videoUrl"
                             id="videoUrl"
+                            placeholder='Please enter your video link'
                             value={inputVideo.videoLink}
-                                onChange={(event) => {
-                                  setInputVideo({
-                                    ...inputVideo,
-                                    videoLink: event.target.value,
-                                  })
-                                }}
-                            className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
+                                onChange={handleURL}
+                            className={`leading-5 block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-500 ${error ? 'focus:border-red-500 focus:ring-red-500 border-red-500' :'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'}`}
                             
                           />
+                          <div className='text-red-500 text-sm'>{error}</div>
                         </div>
                       </div>
 
@@ -102,7 +127,7 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
                           data-cy="addTestimonialButton"
                           type="submit"
                           className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                          // disabled={!value  ? true : !error ? false : true }
+                          disabled={!inputVideo.videoLink  ? true : !error ? false : true }
                         >
                           Edit Video
                         </button>
