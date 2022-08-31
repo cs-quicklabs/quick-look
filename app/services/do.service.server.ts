@@ -1,4 +1,4 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { randomName } from "~/utils/randomName.server";
 require('dotenv').config();
@@ -61,5 +61,15 @@ export async function uploadStreamToSpaces(
     const response: any = Object.assign({}, uploadedResponse)
     return response['Location']
 }
+
+export async function removeFileFromSpace(key: string){
+  const bucketParams = { Bucket: "quicklook", Key: key };
+  try {
+    const data = await s3Client.send(new DeleteObjectCommand(bucketParams));
+    return data;
+  } catch (err) {
+    console.log("Error", err);
+  }
+};
 
 export {s3Client};
