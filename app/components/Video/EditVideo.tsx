@@ -21,7 +21,7 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
 const [error,SetError] = useState('')
  
   let whiteSpaceRegex = /^\S*$/
-  let RegEx = inputVideo?.videoLink.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+  let RegEx = inputVideo?.videoLink?.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
 
  const RegexCheck =()=>{ 
   if(inputVideo?.videoLink === ''){
