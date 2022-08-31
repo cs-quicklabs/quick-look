@@ -22,7 +22,7 @@ export default function ExistingVideo({inputVideo, setInputVideo, loaderData, mo
 
 const videoLink = [
   {
-    name: loaderData?.video?.videoSourceKey,
+    name: loaderData?.video?.videoSourceKey.charAt(0).toUpperCase()+ loaderData?.video?.videoSourceKey.slice(1) , 
     link: loaderData?.video?.videoLink ,
   },
 ]

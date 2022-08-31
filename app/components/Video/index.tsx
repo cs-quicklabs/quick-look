@@ -1,4 +1,4 @@
-import { Fragment, } from 'react'
+import { Fragment, useEffect, useState, } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ExistingVideo from './ExistingVideo'
 import { XIcon } from '@heroicons/react/outline';
@@ -10,6 +10,7 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
     setShowAddVideo(false);
     setmode('desktop');
   }
+console.log(inputVideo.videoLink);
 
   const Onclose = () => {
     if(mode === 'desktop'){
@@ -26,11 +27,27 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
       [event.target.name]: value.includes('https://www.') ? value.substring(12) : value ,
     })
   }
+const [error,SetError] = useState('')
+ 
+  let whiteSpaceRegex = /^\S*$/
+  let RegEx = inputVideo?.videoLink.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
 
-  // let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
+ const RegexCheck =()=>{ 
+  if(inputVideo?.videoLink === ''){
+ return SetError('')}
+if(!RegEx.test(inputVideo?.videoLink)){
+  return SetError('Please enter a valid link.')
+ } if(!whiteSpaceRegex.test(inputVideo?.videoLink)){
+  return SetError('White space not allowed.')
+ }
+ else {
+ return SetError('')
+}}
 
-  // let whiteSpaceRegex = /^\S*$/
-  // let ytRegEx = /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i
+  useEffect(() => {
+ RegexCheck()
+},[inputVideo])
+
 
   // let notContainsWhitespace = url.match(whiteSpaceRegex)
   // if (!url) {
@@ -43,7 +60,6 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
   
 
   // let whiteSpaceRegex = /^\S*$/
-  // let fbRegEx = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
   // let notContainsWhitespace = url.match(whiteSpaceRegex)
 
 
@@ -119,9 +135,10 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
                                 id="videoLink"
                                 value={inputVideo.videoLink}
                                 onChange={handleURL}
-                                className="leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500"
+                                className={`leading-5 block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-500 ${error ? 'focus:border-red-500 focus:ring-red-500 border-red-500' :'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 
                               />
+                              <div className='text-red-500 text-sm'>{error}</div>
                             </div>
                           </div>
                         </div>
@@ -142,7 +159,8 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
                             data-cy="addProfileButton"
                             type="submit"
                             className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                            // disabled={!value  ? true : !error ? false : true }
+                           disabled={!inputVideo.videoLink  ? true : !error ? false : true }
+
                           >
                             Add Video
                           </button>
