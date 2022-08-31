@@ -1,12 +1,13 @@
 import { db } from "~/database/connection.server";
 
-export async function addUpdateVideo(videoLink: string, user: any){
+export async function addUpdateVideo(videoLink: string, sourceKey: string, user: any){
     await db.video.update({
         where: {
             userId: user.id
         },
         data: {
-            videoLink: videoLink
+            videoLink: videoLink,
+            videoSourceKey: sourceKey
         }
     })
 }
@@ -17,7 +18,8 @@ export async function deleteVideo(user:any){
             userId: user.id
         },
         data: {
-            videoLink: ''
+            videoLink: '',
+            videoSourceKey: ''
         }
     })
 }

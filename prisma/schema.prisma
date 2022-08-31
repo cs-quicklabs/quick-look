@@ -109,7 +109,7 @@ model Video {
   user      User    @relation(fields: [userId], references: [id])
   userId    String  @unique
   videoLink String?
-
+  videoSourceKey String? 
   @@map("video")
 }
 
