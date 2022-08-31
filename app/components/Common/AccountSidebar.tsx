@@ -13,6 +13,7 @@ import SocialProfile from '../SocialProfile/SocialProfile';
 import AccountTestimonial from '../Testimonial';
 import AddVideo from '../Video';
 import Portfolio from '../Portfolio';
+import SpotlightButton from '../Spotlight';
 
 
 const navigationFirst = [
@@ -23,17 +24,17 @@ const navigationFirst = [
 ]
 
 const navigationSecond = [
-  { name: 'Spotlight Button', subheading: 'Add a call to action button on profile', href: '#' },
-  { name: 'Add Video', subheading: 'Add a video link to your profile', href: '#' },
-  { name: 'Add Testimonials', subheading: 'Add testimonials to your profile', href: '#' },
-  { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile ', href: '#' },
+  { name: 'Spotlight Button', subheading: 'Add a call to action button on profile' },
+  { name: 'Add Video', subheading: 'Add a video link to your profile' },
+  { name: 'Add Testimonials', subheading: 'Add testimonials to your profile' },
+  { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile ' },
 ]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({ showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -207,7 +208,7 @@ useEffect(() => {
                         {navigationSecond.map((item) => (
                           <a
                             key={item.name}
-                            href={item.href}
+                            // href={item.href}
                             data-cy={`${item.name}`}
                             onClick={() => {
                               if (item.name === 'Add Testimonials') {
@@ -238,9 +239,12 @@ useEffect(() => {
                                 setshowBio(false);
                               }
                             }}
+                            // className={classNames(
+                            //   Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
+                            //   ''
+                            // )}
                             className={classNames(
-                              Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
-                              ''
+                             'hover:bg-gray-50'
                             )}
                           >
                             <div className='flex justify-between cursor-pointer border-t border-gray-200 px-2 py-4 '>
@@ -401,6 +405,17 @@ useEffect(() => {
                       key={item.name}
                       data-cy={`${item.name}`}
                       onClick={() => {
+                        if (item.name === 'Spotlight Button') {
+                          setShowSpotlight(true);
+                          // setShowPortfolio(false);
+                          // setShowAddVideo(false);
+                          // setShowTestimonial(false);
+                          setSidebarOpen(false);
+                          setshowImages(false);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                        }
                         if (item.name === 'Add Testimonials') {
                           setShowTestimonial(true);
                           setSidebarOpen(false);
@@ -451,6 +466,10 @@ useEffect(() => {
                       </div>
                     </div>
                   ))}
+                  {showSpotlight ?
+                  <SpotlightButton showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  null
+                }
                   {showTestimonial ?
                   <AccountTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
