@@ -2,7 +2,7 @@ import { db } from "~/database/connection.server";
 import { SpotlightFormType } from "~/types/spotlightForm.server";
 
 export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user: any){
-    const {
+    let {
         buttonAction,
         buttonActionlink,
         buttonColor, 
@@ -11,6 +11,8 @@ export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user:
         spotlightIcon, 
         toggleSpotlight 
     } = spotlightForm
+
+    toggleSpotlight = Boolean(toggleSpotlight)
 
     await db.spotlightButton.upsert({
         where: {

@@ -307,6 +307,7 @@ const OnCancel = ()=>{
                                 </p>
                                 <Switch name='toggleSpotlight'
                                   checked={enabled}
+                                  value={enabled ? 'true' : 'false'}
                                   onChange={setEnabled}
                                   className={classNames(
                                     enabled ? 'bg-indigo-600' : 'bg-gray-200',
