@@ -11,7 +11,10 @@ const spotlight = [
     name: loaderData?.spotlightButton?.buttonText,
     description: loaderData?.spotlightButton?.buttonActionlink,
   },
-  
+  // {
+  //   name: 'loaderData?.spotlightButton?.buttonText',
+  //   description: 'loaderData?.spotlightButton?.buttonActionlink',
+  // },
   
 ]
 
