@@ -4,20 +4,14 @@ import DeleteSpotlight from './DeleteSpotlight';
 import EditSpotlight from './EditSpotlight';
 
 export default function ExistingSpotlightLink({ loaderData, mode, setmode}:any) {
+console.log('@@#@#@#@#@',loaderData);
 
 const spotlight = [
   {
-    name: 'My Portfolio',
-    description: 'www.portfolio.com',
+    name: loaderData?.spotlightButton?.buttonText,
+    description: loaderData?.spotlightButton?.buttonActionlink,
   },
-  {
-    name: 'My Portfolio',
-    description: 'www.portfolio.com',
-  },
-  {
-    name: 'My Portfolio',
-    description: 'www.portfolio.com',
-  },
+  
   
 ]
 
@@ -26,6 +20,7 @@ const [showEditSpotlight, setShowEditSpotlight] = useState(false);
 const toggleEditSpotlight = (person: { name: string; description: string; }) => {
   setShowEditSpotlight(!showEditSpotlight);
 }
+console.log(toggleEditSpotlight);
 
 const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
 

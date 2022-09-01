@@ -70,7 +70,7 @@ const OnCancel = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form  action="" method='POST' className='h-screen'>
+                  <form  action="account/add/spotlight" method='POST' className='h-screen'>
                     
                     <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                     
@@ -114,7 +114,7 @@ const OnCancel = ()=>{
                                 <input
                                   type="text"
                                   // value={input.location}
-                                  name="location"
+                                  name="buttonText"
                                   id="project-name"
                                   
                     //               onChange={(event) => {
@@ -130,7 +130,7 @@ const OnCancel = ()=>{
                             
                             <div className='flex justify-between'>
                               <div className="">
-                              <RadioGroup value={selectedColor} onChange={setSelectedColor}>
+                              <RadioGroup value={selectedColor} onChange={setSelectedColor} name='buttonColor'>
                                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                                   Select Color For Button
                                 </RadioGroup.Label>
@@ -139,6 +139,7 @@ const OnCancel = ()=>{
                                     <RadioGroup.Option
                                       key={color.name}
                                       value={color}
+                                      
                                       className={({ active, checked }) =>
                                         classNames(
                                           color.selectedColor,
@@ -170,7 +171,7 @@ const OnCancel = ()=>{
                                 <input
                                   type="text"
                                   // value={input.location}
-                                  name="location"
+                                  name='buttonColor'
                                   id="project-name"
                     //               onChange={(event) => {
                     //   setinput({
@@ -193,7 +194,7 @@ const OnCancel = ()=>{
                                 <input
                                   type="text"
                                   // value={input.location}
-                                  name="location"
+                                  name="spotlightIcon"
                                   id="project-name"
                                   
                     //               onChange={(event) => {
@@ -209,7 +210,7 @@ const OnCancel = ()=>{
                             </div>
 
                             <div>
-                            <Listbox value={selected} onChange={setSelected}>
+                            <Listbox value={selected} onChange={setSelected} name='buttonAction'>
                               {({ open }) => (
                                 <>
                                   <Listbox.Label className="block text-sm font-medium text-gray-700">
@@ -279,7 +280,7 @@ const OnCancel = ()=>{
                                 <input
                                   type="text"
                                   // value={input.location}
-                                  name="location"
+                                  name="buttonActionlink"
                                   id="project-name"
                                   
                     //               onChange={(event) => {
@@ -304,7 +305,7 @@ const OnCancel = ()=>{
                                 Switching it off will not show spotlight button to visitor.
                                 Although all settings of button will be saved.
                                 </p>
-                                <Switch
+                                <Switch name='toggleSpotlight'
                                   checked={enabled}
                                   onChange={setEnabled}
                                   className={classNames(
