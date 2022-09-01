@@ -3,7 +3,7 @@ import DeleteSpotlight from './DeleteSpotlight';
 
 export default function ExistingSpotlightLink({ loaderData, mode, setmode}:any) {
 
-const testimonial = [
+const spotlight = [
   {
     name: 'My Portfolio',
     description: 'www.portfolio.com',
@@ -21,7 +21,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
   return (
     <div className="pl-3 pr-3.5">
       <ul>
-        {testimonial.map((person) => (
+        {spotlight.map((person) => (
 
           <li key={person.name} className="">
             {person.description ?
