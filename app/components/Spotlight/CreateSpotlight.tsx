@@ -39,7 +39,6 @@ export default function CreateSpotlight({showSpotlight, setShowSpotlight, loader
   
   const [enabled, setEnabled] = useState(false)
   const [selected, setSelected] = useState(people[3])
-console.log(selected);
 
   const Onclose = (e:any) => {
     
@@ -178,7 +177,7 @@ const OnCancel = ()=>{
                                 <input
                                   type="text"
                                   // value={input.location}
-                                  name='buttonColor'
+                                  name='hexcode'
                                   id="project-name"
                     //               onChange={(event) => {
                     //   setinput({
