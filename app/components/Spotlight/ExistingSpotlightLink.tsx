@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import EditTestimonial from '../Testimonial/EditTestimonial';
 import DeleteSpotlight from './DeleteSpotlight';
+import EditSpotlight from './EditSpotlight';
 
 export default function ExistingSpotlightLink({ loaderData, mode, setmode}:any) {
 
@@ -42,10 +44,10 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   >
                     Edit
                   </button>
-                  {/* {showEditTestimonial && (
-                    <EditTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} setShowEditTestimonial={setShowEditTestimonial} mode={mode} setmode={setmode} />
+                  {showEditSpotlight && (
+                    <EditSpotlight mode={mode} setmode={setmode} />
 
-                  )} */}
+                  )}
                   <button
                     data-cy="deleteTestimonialButton"
                     onClick={(e: any) => { e.preventDefault(); setOpenDeleteSpotlight(true); }}
