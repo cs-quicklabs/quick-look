@@ -18,21 +18,7 @@ export const action: ActionFunction = async ({ request }) => {
     const buttonActionlink = form.get('buttonActionlink') as string
     const toggleSpotlight = form.get('toggleSpotlight') as unknown as boolean
 
-    const errors = {
-        buttontext: await spotlightButtonTextValidation(buttonText),
-        hexcode: await validateHexCode(buttonColor),
-        faIcon: await validateFaIcon(spotlightIcon)
-      }
-    
-      if (Object.values(errors).some(Boolean)) {
-        return json(
-          {
-            errors,
-            form: action,
-          },
-          { status: 400 }
-        )
-      }
+   
     await addUpdateSpotlight({
         buttonText,
         buttonColor,

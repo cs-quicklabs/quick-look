@@ -203,7 +203,7 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
           </div>
         </div> 
         <div className='inset-0'>
-        <ExistingSpotlightLink />
+        <ExistingSpotlightLink loaderData={loaderData} />
         </div>
       
       

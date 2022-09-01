@@ -34,9 +34,12 @@ const people = [
 // }
 
 export default function CreateSpotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
-  const [selectedColor, setSelectedColor] = useState(colors[1])
+  const [selectedColor, setSelectedColor] = useState(colors[1].name)
+
+  
   const [enabled, setEnabled] = useState(false)
   const [selected, setSelected] = useState(people[3])
+console.log(selected);
 
   const Onclose = (e:any) => {
     
@@ -47,6 +50,10 @@ export default function CreateSpotlight({showSpotlight, setShowSpotlight, loader
      
     }
   };
+
+const handleChange = ()=>{
+  setSelected
+}
 
 const OnCancel = ()=>{
   setShowSpotlight(false);
@@ -138,7 +145,7 @@ const OnCancel = ()=>{
                                   {colors.map((color) => (
                                     <RadioGroup.Option
                                       key={color.name}
-                                      value={color}
+                                      value={color.bgColor}
                                       
                                       className={({ active, checked }) =>
                                         classNames(
@@ -210,7 +217,10 @@ const OnCancel = ()=>{
                             </div>
 
                             <div>
-                            <Listbox value={selected} onChange={setSelected} name='buttonAction'>
+                            <Listbox value={selected.name}
+                               //ts-ignore 
+                             onChange={setSelected}
+                              name='buttonAction'>
                               {({ open }) => (
                                 <>
                                   <Listbox.Label className="block text-sm font-medium text-gray-700">
@@ -305,8 +315,10 @@ const OnCancel = ()=>{
                                 Switching it off will not show spotlight button to visitor.
                                 Although all settings of button will be saved.
                                 </p>
+                                
                                 <Switch name='toggleSpotlight'
                                   checked={enabled}
+                                  value={enabled ? 'true' : 'false'}
                                   onChange={setEnabled}
                                   className={classNames(
                                     enabled ? 'bg-indigo-600' : 'bg-gray-200',
