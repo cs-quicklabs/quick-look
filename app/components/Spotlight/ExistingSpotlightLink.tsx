@@ -18,6 +18,7 @@ const spotlight = [
     name: 'My Portfolio',
     description: 'www.portfolio.com',
   },
+  
 ]
 
 const [showEditSpotlight, setShowEditSpotlight] = useState(false); 
@@ -35,6 +36,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
 
           <li key={person.name} className="">
             {person.description ?
+              <>
               <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
                   
@@ -52,10 +54,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   >
                     Edit
                   </button>
-                  {showEditSpotlight && (
-                    <EditSpotlight mode={mode} setmode={setmode} />
-
-                  )}
+                  
                   <button
                     data-cy="deleteTestimonialButton"
                     onClick={(e: any) => { e.preventDefault(); setOpenDeleteSpotlight(true); }}
@@ -64,7 +63,13 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   </button>
                   <DeleteSpotlight openDeleteSpotlight={openDeleteSpotlight} onClose={() => setOpenDeleteSpotlight(false)}  />
                 </div>
+                
               </div>
+              {showEditSpotlight && (
+                <EditSpotlight mode={mode} setmode={setmode} />
+              )}
+              </>
+              
               : <span></span>}
           </li>
         ))}

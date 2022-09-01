@@ -20,22 +20,14 @@ export default function EditSpotlight({mode, setmode}:any) {
 
   return (
     <form action="" method='POST'>
-      <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1 overflow-y-auto">
-        <div className="py-6 px-4 sm:px-6 bg-gray-50">
-          
-          <div className="mt-1">
-            <p className="text-sm text-gray-500 leading-5 font-normal">
-              You can add more than one link to your profile
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-1 flex-col justify-between">
+        
+        <div className="flex flex-1 flex-col justify-between border-b border-gray-200">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
-            <div className="space-y-6 pt-6 pb-5">
+            <div className="space-y-6 pt-2 pb-5">
 
-            <div>
+              <div className=''>
               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                 {' '}
                 Edit Link Text{' '}
@@ -93,6 +85,32 @@ export default function EditSpotlight({mode, setmode}:any) {
                 Edit  Link
               </button>
             </div>
+
+            
+
+            </div>
+          </div>
+        </div> 
+        
+      
+      
+        
+      </div>
+            
+      </div>
+
+
+
+
+      <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className="h-0 flex-1 overflow-y-auto">
+        
+
+        <div className="flex flex-1 flex-col justify-between">
+          <div className="divide-y divide-gray-200 px-4 sm:px-6">
+            <div className="space-y-6 pt-6 pb-5">
+
+            
 
             </div>
           </div>
