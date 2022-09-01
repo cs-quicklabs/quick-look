@@ -39,3 +39,12 @@ export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user:
         }
     })
 }
+
+export async function deleteSpotlightButton(user: any){
+    await db.spotlightButton.delete({
+        where:{
+            userId: user.id
+        }
+    })
+    return true
+}

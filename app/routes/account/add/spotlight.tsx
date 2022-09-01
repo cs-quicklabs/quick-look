@@ -15,7 +15,7 @@ export const action: ActionFunction = async ({ request }) => {
     const spotlightIcon = form.get('spotlightIcon') as string
     const buttonAction = form.get('buttonAction') as string
     const buttonActionlink = form.get('buttonActionlink') as string
-    let toggleSpotlight = form.get('toggleSpotlight') as unknown as Boolean
+    const toggleSpotlight = form.get('toggleSpotlight') as unknown as Boolean
  
     await addUpdateSpotlight({
         buttonText,
