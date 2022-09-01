@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
-export default function DeleteSpotlight({openDeleteSpotlight, onClose}:any) {
+export default function DeleteSpotlight({ clickedSpotlight, openDeleteSpotlight, onClose}:any) {
 
   const cancelButtonRef = useRef(null)
 
@@ -50,6 +50,12 @@ export default function DeleteSpotlight({openDeleteSpotlight, onClose}:any) {
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <form action="" method='post'>
+                    <input 
+                    type="text" 
+                    name={clickedSpotlight?.name} 
+                    value={clickedSpotlight?.name} 
+                    hidden />
+
                     <button
                     id="deleteSpotlightModalButton" 
                     name="deleteSpotlight" 

@@ -10,7 +10,6 @@ export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, m
     setShowAddVideo(false);
     setmode('desktop');
   }
-console.log(inputVideo.videoLink);
 
   const Onclose = () => {
     if(mode === 'desktop'){
