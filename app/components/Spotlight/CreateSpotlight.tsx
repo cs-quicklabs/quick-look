@@ -34,7 +34,7 @@ const people = [
 // }
 
 export default function CreateSpotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
-  const [selectedColor, setSelectedColor] = useState(colors[1].name)
+  const [selectedColor, setSelectedColor] = useState('')
 
   
   const [enabled, setEnabled] = useState(false)

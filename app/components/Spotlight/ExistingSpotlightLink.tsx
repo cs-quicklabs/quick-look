@@ -32,7 +32,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
         {spotlight.map((person) => (
 
           <li key={person.name} className="">
-            {person.description ?
+            {loaderData?.spotlightButton?.toggleSpotlight ?
               <>
               <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
