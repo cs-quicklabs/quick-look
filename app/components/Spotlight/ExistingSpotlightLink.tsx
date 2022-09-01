@@ -10,6 +10,14 @@ const spotlight = [
     name: 'My Portfolio',
     description: 'www.portfolio.com',
   },
+  {
+    name: 'My Portfolio',
+    description: 'www.portfolio.com',
+  },
+  {
+    name: 'My Portfolio',
+    description: 'www.portfolio.com',
+  },
 ]
 
 const [showEditSpotlight, setShowEditSpotlight] = useState(false); 
