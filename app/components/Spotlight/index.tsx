@@ -9,11 +9,11 @@ export default function Spotlight({showSpotlight, setShowSpotlight, loaderData, 
   
   return (
     <>
-    {/* {loaderData?.spotlightButton?.buttonText ?
+    {/* {loaderData?.spotlightButton?.buttonText ? */}
       <AddMoreSpotlightLink showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} 
-    loaderData={loaderData} mode={mode} setmode={setmode} /> : */}
-    <CreateSpotlight showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} 
-    loaderData={loaderData} mode={mode} setmode={setmode} />
+    loaderData={loaderData} mode={mode} setmode={setmode} /> :
+    {/* <CreateSpotlight showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} 
+    loaderData={loaderData} mode={mode} setmode={setmode} /> */}
       {/* }  */}
     </>
     

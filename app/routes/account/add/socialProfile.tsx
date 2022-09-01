@@ -16,15 +16,15 @@ export const action: ActionFunction = async ({ request }) => {
 
     if(selectedSocial == 'Facebook'){
       index = selectedSocialLink.search('facebook')
-      selectedSocialLink = selectedSocialLink.slice(index)
+      selectedSocialLink = selectedSocialLink?.slice(index)
     }
     if(selectedSocial == 'Twitter'){
       index = selectedSocialLink.search('twitter')
-      selectedSocialLink = selectedSocialLink.slice(index)
+      selectedSocialLink = selectedSocialLink?.slice(index)
     }
     if(selectedSocial == 'Youtube'){
       index = selectedSocialLink.search('youtube')
-      selectedSocialLink = selectedSocialLink.slice(index)
+      selectedSocialLink = selectedSocialLink?.slice(index)
     }
 
   const user = await getUser(request) || undefined

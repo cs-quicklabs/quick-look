@@ -39,7 +39,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description.slice(0,30)}....`}</p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description?.slice(0,30)}....`}</p>
                   </div>
                 </div>
 
