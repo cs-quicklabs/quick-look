@@ -13,6 +13,8 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
   const [deleteImage, setDeleteImage] = useState('')
+  const [primaryImageError,setPrimaryImageError]=useState('')
+  const [secondaryImageError,setSecondaryImageError]=useState('')
 
 
   const ref = useRef(null);
@@ -29,10 +31,21 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   }, [image, image2]);
 
   const handleChange = (e: any) => {
-    setimage(e.target.files[0])
+     if (e.target.files[0].type.includes("image/")) {
+      setimage(e.target.files[0])
+    }
+    else {
+    setPrimaryImageError("Please upload image only")
+  }
   }
   const handleChange2 = (e: any) => {
-    setimage2(e.target.files[0])
+    if (e.target.files[0].type.includes("image/")) {
+          setimage2(e.target.files[0])
+
+    }
+    else {
+    setSecondaryImageError("Please upload image only")
+  }
   }
   const Onclose = (e: any) => {
 
@@ -187,7 +200,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                       Restore Default Image
                                     </button></form>
                                 </div>
-
+<div className='text-sm mt-2 text-red-500'>{primaryImageError}</div>
                               </div>
                             </div>
                           </div>
@@ -274,6 +287,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                       Restore Default Image
                                     </button></form>
                                 </div>
+<div className='text-sm mt-2 text-red-500'>{secondaryImageError}</div>
 
                               </div>
 
