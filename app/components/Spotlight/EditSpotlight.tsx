@@ -1,9 +1,9 @@
 import { Dialog } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import {  useState } from 'react'
+import {  useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 
-export default function EditSpotlight({mode, setmode}:any) {
+export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
   const Onclose = (e:any) => {
     if(mode === 'desktop'){
       // setShowSpotlight(false)
@@ -18,14 +18,21 @@ export default function EditSpotlight({mode, setmode}:any) {
     setmode('desktop')
   }
 
+  // useEffect(() => {
+  //   localStorage.setItem("LinkName",clickedSpotlight?.name)
+  //   localStorage.setItem("LinkEmail",clickedSpotlight?.description)
+  // }, [])
+
+  // const [spotlightVal, setSpotlightVal] = useState<string>(clickedSpotlight?.email)
+
   return (
     <form action="" method='POST'>
-      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-      <div className="h-0 flex-1 overflow-y-auto">
+      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className="h-0 flex-1">
         
-        <div className="flex flex-1 flex-col justify-between border-b border-gray-200">
+        <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
-            <div className="space-y-6 pt-2 pb-5">
+            <div className="space-y-6 pt-2 pb-1 border-b border-gray-200">
 
               <div className=''>
               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -35,7 +42,8 @@ export default function EditSpotlight({mode, setmode}:any) {
               <div className="mt-1">
                 <input
                   type="text"
-                  // value={input.location}
+                  value={clickedSpotlight?.name}
+                  // displayValue={() => clickedLink?.name}
                   name=""
                   id="project-name"
                   
@@ -58,7 +66,8 @@ export default function EditSpotlight({mode, setmode}:any) {
               <div className="mt-1">
                 <input
                   type="text"
-                  // value={input.location}
+                  value={clickedSpotlight?.description}
+                  // displayValue={() => clickedLink?.name}
                   name=""
                   id="project-name"
                   
@@ -103,22 +112,6 @@ export default function EditSpotlight({mode, setmode}:any) {
 
 
       <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-      <div className="h-0 flex-1 overflow-y-auto">
-        
-
-        <div className="flex flex-1 flex-col justify-between">
-          <div className="divide-y divide-gray-200 px-4 sm:px-6">
-            <div className="space-y-6 pt-6 pb-5">
-
-            
-
-            </div>
-          </div>
-        </div> 
-      
-    
-        
-      </div>
             
       </div>
     </form>

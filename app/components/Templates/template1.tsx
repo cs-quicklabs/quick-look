@@ -5,7 +5,7 @@ import bgimage from '../../../assets/images/bg.png'
 import defaultimg from '../../../assets/images/profile.png'
 import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video'
-
+import Spotlightbtn from './addOns/Spotlightbtn'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
   return (
     <div className='flex  overflow-hidden'>
@@ -30,6 +30,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
+        {loaderData?.spotlightButton?.toggleSpotlight &&
+          <Spotlightbtn loaderData={loaderData}/>}
+        
         <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
             <pre className="text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">

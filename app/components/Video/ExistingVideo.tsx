@@ -22,7 +22,7 @@ export default function ExistingVideo({inputVideo, setInputVideo, loaderData, mo
 
 const videoLink = [
   {
-    name: loaderData?.video?.videoSourceKey.charAt(0).toUpperCase()+ loaderData?.video?.videoSourceKey.slice(1) , 
+    name: loaderData?.video?.videoSourceKey.charAt(0).toUpperCase()+ loaderData?.video?.videoSourceKey?.slice(1) , 
     link: loaderData?.video?.videoLink ,
   },
 ]
@@ -50,7 +50,7 @@ const [openDeleteVideoModal, setOpenDeleteVideoModal] = useState(false);
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
                     <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">
-                    {`${person.link.slice(0,30)}....`}
+                    {`${person.link?.slice(0,30)}....`}
                     </p>
                   </div>
                 </div>

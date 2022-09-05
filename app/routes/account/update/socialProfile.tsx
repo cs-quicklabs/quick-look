@@ -17,15 +17,15 @@ export const action: ActionFunction = async ({ request }) => {
 
     if(socialProfile == 'Facebook'){
       index = link.search('facebook')
-      link = link.slice(index)
+      link = link?.slice(index)
     }
     if(socialProfile == 'Twitter'){
       index = link.search('twitter')
-      link = link.slice(index)
+      link = link?.slice(index)
     }
     if(socialProfile == 'Youtube'){
       index = link.search('youtube')
-      link = link.slice(index)
+      link = link?.slice(index)
     }
 
     await addUpdateSocialLink(socialProfile, link, user)
