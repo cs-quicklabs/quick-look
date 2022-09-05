@@ -67,7 +67,7 @@ setTimeout(() => {
   const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
   const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
   const actionData=useActionData()
-  console.log("loaderData",loaderData)
+
 
 useEffect(() => {
   return () => {

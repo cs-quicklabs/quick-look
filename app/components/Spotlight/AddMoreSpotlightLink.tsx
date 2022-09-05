@@ -52,7 +52,7 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
               <form action="" method='POST'>
-      <div className={`flex h-[50rem] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className={`flex h-screen flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1 overflow-y-auto">
         <div className="py-6 px-4 sm:px-6 bg-gray-50">
           <div className="flex items-center justify-between">
@@ -203,7 +203,7 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
           </div>
         </div> 
         <div className='inset-0'>
-        <ExistingSpotlightLink />
+        <ExistingSpotlightLink loaderData={loaderData} />
         </div>
       
       

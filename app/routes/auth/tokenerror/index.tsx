@@ -28,11 +28,11 @@ import logo from '../../../../assets/images/logos/quicklook-icon.svg'
                 Invalid token.
               </h1>
               <p className='mt-2 text-base text-gray-500'>
-                Please try sending the verfication link again.
+                The verfication links seems invalid or it has expired.please check the email for latest link and try again.
               </p>
               <div className='mt-6'>
                 <a
-                  href='/'
+                  href='/auth/login'
                   className='text-base font-medium text-indigo-600 hover:text-indigo-500'
                 >
                   Try Again

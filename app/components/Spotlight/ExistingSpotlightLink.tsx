@@ -4,14 +4,17 @@ import DeleteSpotlight from './DeleteSpotlight';
 import EditSpotlight from './EditSpotlight';
 
 export default function ExistingSpotlightLink({ loaderData, mode, setmode}:any) {
-console.log('@@#@#@#@#@',loaderData);
+
 
 const spotlight = [
   {
     name: loaderData?.spotlightButton?.buttonText,
     description: loaderData?.spotlightButton?.buttonActionlink,
   },
-  
+  // {
+  //   name: 'loaderData?.spotlightButton?.buttonText',
+  //   description: 'loaderData?.spotlightButton?.buttonActionlink',
+  // },
   
 ]
 
@@ -20,7 +23,6 @@ const [showEditSpotlight, setShowEditSpotlight] = useState(false);
 const toggleEditSpotlight = (person: { name: string; description: string; }) => {
   setShowEditSpotlight(!showEditSpotlight);
 }
-console.log(toggleEditSpotlight);
 
 const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
 
@@ -30,14 +32,14 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
         {spotlight.map((person) => (
 
           <li key={person.name} className="">
-            {person.description ?
+            {person.name ?
               <>
               <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
                   
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description.slice(0,30)}....`}</p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description?.slice(0,30)}....`}</p>
                   </div>
                 </div>
 

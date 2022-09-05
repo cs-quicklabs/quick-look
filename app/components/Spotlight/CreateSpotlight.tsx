@@ -34,7 +34,9 @@ const people = [
 // }
 
 export default function CreateSpotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
-  const [selectedColor, setSelectedColor] = useState(colors[1])
+  const [selectedColor, setSelectedColor] = useState('')
+
+  
   const [enabled, setEnabled] = useState(false)
   const [selected, setSelected] = useState(people[3])
 
@@ -47,6 +49,10 @@ export default function CreateSpotlight({showSpotlight, setShowSpotlight, loader
      
     }
   };
+
+const handleChange = ()=>{
+  setSelected
+}
 
 const OnCancel = ()=>{
   setShowSpotlight(false);
@@ -138,7 +144,7 @@ const OnCancel = ()=>{
                                   {colors.map((color) => (
                                     <RadioGroup.Option
                                       key={color.name}
-                                      value={color}
+                                      value={color.bgColor}
                                       
                                       className={({ active, checked }) =>
                                         classNames(
@@ -171,7 +177,7 @@ const OnCancel = ()=>{
                                 <input
                                   type="text"
                                   // value={input.location}
-                                  name='buttonColor'
+                                  name='hexcode'
                                   id="project-name"
                     //               onChange={(event) => {
                     //   setinput({
@@ -205,12 +211,15 @@ const OnCancel = ()=>{
                     // }}
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
-                                <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any font awesome icon to add to your button.  Please go here to find name of icon</p>
+                                <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
                             </div>
 
                             <div>
-                            <Listbox value={selected} onChange={setSelected} name='buttonAction'>
+                            <Listbox value={selected.name}
+                               //ts-ignore 
+                             onChange={setSelected}
+                              name='buttonAction'>
                               {({ open }) => (
                                 <>
                                   <Listbox.Label className="block text-sm font-medium text-gray-700">
@@ -305,8 +314,10 @@ const OnCancel = ()=>{
                                 Switching it off will not show spotlight button to visitor.
                                 Although all settings of button will be saved.
                                 </p>
+                                
                                 <Switch name='toggleSpotlight'
                                   checked={enabled}
+                                  value={enabled ? 'true' : 'false'}
                                   onChange={setEnabled}
                                   className={classNames(
                                     enabled ? 'bg-indigo-600' : 'bg-gray-200',

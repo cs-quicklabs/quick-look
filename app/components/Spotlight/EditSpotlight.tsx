@@ -20,8 +20,8 @@ export default function EditSpotlight({mode, setmode}:any) {
 
   return (
     <form action="" method='POST'>
-      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-      <div className="h-0 flex-1 overflow-y-auto">
+      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className="h-0 flex-1">
         
         <div className="flex flex-1 flex-col justify-between border-b border-gray-200">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
@@ -103,22 +103,6 @@ export default function EditSpotlight({mode, setmode}:any) {
 
 
       <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-      <div className="h-0 flex-1 overflow-y-auto">
-        
-
-        <div className="flex flex-1 flex-col justify-between">
-          <div className="divide-y divide-gray-200 px-4 sm:px-6">
-            <div className="space-y-6 pt-6 pb-5">
-
-            
-
-            </div>
-          </div>
-        </div> 
-      
-    
-        
-      </div>
             
       </div>
     </form>
