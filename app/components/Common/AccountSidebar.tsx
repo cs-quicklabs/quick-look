@@ -107,7 +107,7 @@ useEffect(() => {
                             />
                           </div>
                           <div className="ml-3">
-                            <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
+                            <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">{loaderData?.firstname} {loaderData?.lastname}</p>
                             <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                           </div>
                         </div>
@@ -180,7 +180,7 @@ useEffect(() => {
                       </nav>
                       <div className='z-0'>
                         {showBio ?
-                          <AccountBio setshowBio={setshowBio} occupation={loaderData.profileInfo.occupation} company={loaderData.profileInfo.company} education={loaderData.profileInfo.education} bio={loaderData.profileInfo.bio} location={loaderData.profileInfo.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                          <AccountBio setshowBio={setshowBio} occupation={loaderData?.profileInfo?.occupation} company={loaderData?.profileInfo?.company} education={loaderData?.profileInfo?.education} bio={loaderData?.profileInfo?.bio} location={loaderData?.profileInfo?.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showTemplate ?
@@ -304,7 +304,7 @@ useEffect(() => {
                       />
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{loaderData.firstname} {loaderData.lastname}</p>
+                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{loaderData?.firstname} {loaderData?.lastname}</p>
                       <p className="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                     </div>
                   </div>
@@ -376,7 +376,7 @@ useEffect(() => {
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData.profileInfo.occupation} company={loaderData.profileInfo.company} education={loaderData.profileInfo.education} bio={loaderData.profileInfo.bio} location={loaderData.profileInfo.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <AccountBio setshowBio={setshowBio} occupation={loaderData?.profileInfo?.occupation} company={loaderData?.profileInfo?.company} education={loaderData?.profileInfo?.education} bio={loaderData?.profileInfo?.bio} location={loaderData?.profileInfo?.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showTemplate ?

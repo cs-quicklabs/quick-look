@@ -68,7 +68,7 @@ return (
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <form action='/account/add/testimonial' method="post" className='h-screen font-inter' >
-                  {loaderData.testimonial.testimonialBy ?
+                  {loaderData?.testimonial?.testimonialBy ?
                   <div className='flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto'>
                     <div className="bg-gray-50 py-6 px-4">
                     <div className="flex items-center justify-between">
