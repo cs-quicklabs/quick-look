@@ -8,8 +8,8 @@ export default function ExistingTestimonial({inputTestimonial, setInputTestimoni
 
 const testimonial = [
   {
-    name: loaderData.testimonial?.testimonialBy,
-    description: loaderData.testimonial?.testimonialText,
+    name: loaderData?.testimonial?.testimonialBy,
+    description: loaderData?.testimonial?.testimonialText,
   },
 ]
 
