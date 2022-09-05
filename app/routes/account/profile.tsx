@@ -119,13 +119,13 @@ export default function Profile() {
 
 
   const [val, setVal] = useState({
-    firstName: `${loaderData.user.firstname}`,
-    lastName:  `${loaderData.user.lastname}`,
-    profileId: `${loaderData.user.username}`,
+    firstName: `${loaderData?.user?.firstname}`,
+    lastName:  `${loaderData?.user?.lastname}`,
+    profileId: `${loaderData?.user?.username}`,
   })
 
-  const [profileMessage, setProfileMessage] = useState(loaderData.updateProfileMessage)
-  const [passwordMessasge, setPasswordMessage] = useState(loaderData.updatePasswordMessage)
+  const [profileMessage, setProfileMessage] = useState(loaderData?.updateProfileMessage)
+  const [passwordMessasge, setPasswordMessage] = useState(loaderData?.updatePasswordMessage)
   return (
     <>
       <div>
