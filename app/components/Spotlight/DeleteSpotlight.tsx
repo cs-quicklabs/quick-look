@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
-export default function DeleteSpotlight({openDeleteSpotlight, onClose}:any) {
+export default function DeleteSpotlight({ clickedSpotlight, openDeleteSpotlight, onClose}:any) {
 
   const cancelButtonRef = useRef(null)
 
