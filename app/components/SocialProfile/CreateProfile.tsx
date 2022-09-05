@@ -162,7 +162,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                                     value={links}
                                     className={({ active }) =>
                                       classNames(
-                                        'relative cursor-default select-none py-2 pl-3 pr-9',
+                                        'relative cursor-pointer select-none py-2 pl-3 pr-9',
                                         active ? 'bg-indigo-600 text-white' : 'text-gray-900'
                                       )
                                     }
@@ -208,7 +208,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                               id="addlink"
                               value={value}
                               onChange={handleChange}
-                              className={` leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-500 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                              className={` leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                               
                             />
                           <div className={`text-red-600 text-sm`}>{error}</div>
@@ -235,7 +235,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                         <button
                           data-cy="addProfileButton"
                           type="submit"
-                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
+                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:opacity-75" 
                           disabled={!value  ? true : !error ? false : true }
                         >
                           Add Profile
