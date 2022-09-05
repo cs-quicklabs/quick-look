@@ -42,7 +42,7 @@ const linkName = localStorage.getItem("LinkName")
     setClickedLink(person)
   }
   const toggleDel = (person: { name: string; email: string; image: string; }) => {
-
+    setopen(!open);
     setClickedLink(person)
   }
 
@@ -76,11 +76,14 @@ const linkName = localStorage.getItem("LinkName")
                   )}
                   <button
                     data-cy="deleteSocialButton"
-                    onClick={(e: any) => { e.preventDefault(); setopen(true); toggleDel(person) }}
+                    onClick={(e: any) => { 
+                      e.preventDefault();  
+                        toggleDel(person)
+                    }}
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  <DeleteSocialProfile open={open} onClose={() => setopen(false)} clickedLink={clickedLink} />
+                  <DeleteSocialProfile open={open} person={person.name} onClose={() => setopen(false)} clickedLink={clickedLink} />
                 </div>
               </div>
               : <span></span>}

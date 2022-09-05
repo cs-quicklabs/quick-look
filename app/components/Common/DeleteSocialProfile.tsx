@@ -2,12 +2,12 @@ import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
-export default function Delete({open,onClose, clickedLink}:any) {
+export default function Delete({open,onClose, clickedLink, person}:any) {
 
   const cancelButtonRef = useRef(null)
   
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={person === clickedLink.name && open} as={Fragment}>
       <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={onClose}>
         <Transition.Child
           as={Fragment}
