@@ -13,19 +13,19 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
       <div >
         <div className='h-[10rem]'>
           <div className='relative '>
-            <img className={` w-screen object-cover ${loaderData.profileImage.primaryImage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData.profileImage.primaryImage} alt="" />
+            <img className={` w-screen object-cover ${loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData?.profileImage?.primaryImage} alt="" />
           </div>
-          <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData.profileImage.primaryImage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
-            {secondaryRestore || loaderData.profileImage.secondaryImage ?
-            <img className={`w-[7rem] h-[8rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData.profileImage.secondaryImage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? defaultimg : loaderData.profileImage.secondaryImage}  /> : null}
+          <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
+            {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
+            <img className={`w-[7rem] h-[8rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage}  /> : null}
             {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
           </div>
         </div>
         <div className='m-auto pt-1 px-[7rem] md:px-[19rem]  lg:px-[21rem]'>
           <h1 className='text-2xl leading-8 font-bold text-gray-900 w-max '>
-            {loaderData.firstname} {loaderData.lastname}
+            {loaderData?.firstname} {loaderData?.lastname}
           </h1>
-          {loaderData.profileInfo.occupation || input.occupation ||input.location ||loaderData.profileInfo.location ?
+          {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
             <h3 className="text-gray-500 w-max break-all">
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
@@ -44,14 +44,14 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
           <div className='flex flex-col gap-20'>
             <div className='flex  pt-16 '>
-              {loaderData.profileInfo.company || input.company ?
+              {loaderData?.profileInfo?.company || input.company ?
                 <div className='flex flex-col w-[50%]'>
                   <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">WORK</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
-              {loaderData.profileInfo.education || input.education ?
+              {loaderData?.profileInfo?.education || input.education ?
                 <div className='flex flex-col'>
                   <h2 className="text-gray-500 font-medium text-sm leading-5 w-max">EDUCATION</h2>
                   <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
