@@ -12,6 +12,8 @@ export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
      
     }
   };
+const [name,SetName]= useState(clickedSpotlight?.name)
+const [val,SetVal]= useState(clickedSpotlight?.description)
 
   const OnCancel = ()=>{
     // setShowSpotlight(false);
@@ -26,7 +28,7 @@ export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
   // const [spotlightVal, setSpotlightVal] = useState<string>(clickedSpotlight?.email)
 
   return (
-    <form action="" method='POST'>
+    <form action="account/add/spotlight" method='POST'>
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1">
         
@@ -42,17 +44,14 @@ export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
               <div className="mt-1">
                 <input
                   type="text"
-                  value={clickedSpotlight?.name}
+                  value={name}
                   // displayValue={() => clickedLink?.name}
-                  name=""
+                  name="buttonText"
                   id="project-name"
                   
-    //               onChange={(event) => {
-    //   setinput({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // }}
+                  onChange={(event) => {
+      SetName(event.target.value)
+    }}
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
@@ -66,17 +65,12 @@ export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
               <div className="mt-1">
                 <input
                   type="text"
-                  value={clickedSpotlight?.description}
+                  value={val}
                   // displayValue={() => clickedLink?.name}
-                  name=""
+                  name="buttonActionlink"
                   id="project-name"
-                  
-    //               onChange={(event) => {
-    //   setinput({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // }}
+                  onChange={(event) => SetVal(event.target.value)}
+
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
