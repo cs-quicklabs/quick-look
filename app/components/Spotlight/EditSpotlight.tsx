@@ -29,7 +29,7 @@ const [val,SetVal]= useState(clickedSpotlight?.description)
   // const [spotlightVal, setSpotlightVal] = useState<string>(clickedSpotlight?.email)
 
   return (
-    <form action="account/add/spotlight" method='POST'>
+    <Form action="account/add/spotlight" method='post'>
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1">
         
