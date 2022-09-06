@@ -5,6 +5,8 @@ import bg from '../../../assets/images/bg.png';
 import defaultProfileimage from '../../../assets/images/profile.png'
 import * as cropro from "cropro";
 import DeleteImage from '../Common/DeleteImage';
+import { Form } from '@remix-run/react';
+import { useSubmit } from '@remix-run/react';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
   
@@ -16,18 +18,9 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const [deleteImage, setDeleteImage] = useState('')
   const [primaryImageError,setPrimaryImageError]=useState('')
   const [secondaryImageError,setSecondaryImageError]=useState('')
-  const [imgURL,setImgURL]=useState('')
+const submit = useSubmit()
 
-function showCropArea(event:any) {
-  let target = event.target
-  let image = target.src
-
-  const cropArea = new cropro.CropArea(target);
-
-  cropArea.displayMode = "popup";
-  cropArea.addRenderEventListener((imgURL)=>setImgURL(image));
-  cropArea.show();
-}
+ 
   const ref = useRef(null);
 
   useEffect(() => {
@@ -40,7 +33,9 @@ function showCropArea(event:any) {
       ref.current.click()
     }
   }, [image, image2]);
-
+const onSubmit = (event:any) =>{
+submit(event.currentTarget, { replace: true });
+}
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/")) {
       setimage(e.target.files[0])
@@ -89,7 +84,7 @@ function showCropArea(event:any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action="/account/add/image" encType="multipart/form-data" method='post'>
+                  <Form replace={true} action="add/image" encType="multipart/form-data" method='post'>
 
                     <div className='h-screen'>
                       <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
@@ -131,9 +126,8 @@ function showCropArea(event:any) {
 
                             <div>
                               <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                                <img  onClick={(event:any)=>{showCropArea(event)}} src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' />
+                                <img  src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' />
                               </div>
-                          <img src={imgURL}  />
                               <div className='flex justify-center items-center mt-3'>
                                 <label htmlFor="photo" id="primaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                   Edit
@@ -205,11 +199,11 @@ function showCropArea(event:any) {
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
                                   {/* </form> */}
-                                  <form action="account/update/restoreImage" method='post'>
+                                  <Form onSubmit={onSubmit} action="update/restoreImage" method='post'>
 
                                     <button data-cy="restorePrimaryImage"  name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" >
                                       Restore Default Image
-                                    </button></form>
+                                    </button></Form>
                                 </div>
 <div className='text-sm mt-2 text-red-500'>{primaryImageError}</div>
                               </div>
@@ -293,10 +287,10 @@ function showCropArea(event:any) {
                                     />
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
-                                  <form action="account/update/restoreImage" method='post'>
+                                  <Form replace action="update/restoreImage" method='post'>
                                     <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                       Restore Default Image
-                                    </button></form>
+                                    </button></Form>
                                 </div>
 <div className='text-sm mt-2 text-red-500'>{secondaryImageError}</div>
 
@@ -311,7 +305,7 @@ function showCropArea(event:any) {
 
                     </div>
 
-                  </form>
+                  </Form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

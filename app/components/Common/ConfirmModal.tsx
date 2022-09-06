@@ -1,9 +1,10 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon, XIcon } from '@heroicons/react/outline'
+import { Form } from '@remix-run/react'
 
-export default function Modal({ open, children, onClose }: any) {
+export default function Modal({ open, onClose }: any) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -11,7 +12,7 @@ export default function Modal({ open, children, onClose }: any) {
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
-          enterFrom="opacity-0"
+          enterFrom="opacity-0" 
           enterTo="opacity-100"
           leave="ease-in duration-200"
           leaveFrom="opacity-100"
@@ -56,7 +57,7 @@ export default function Modal({ open, children, onClose }: any) {
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                  <form method='POST' action='/auth/logout'>
+                  <Form replace={true} method='post' action='auth/logout'>
                   <button
                     data-cy="signOut"
                     type="submit"
@@ -64,7 +65,7 @@ export default function Modal({ open, children, onClose }: any) {
                     onClick={ open}
                   >
                     Sign out
-                  </button></form>
+                  </button></Form>
                   <button
                     type="button"
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"

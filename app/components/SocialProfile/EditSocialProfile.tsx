@@ -4,6 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import SelectedSocialLinks from '../Common/SelectedSocialLinks'
+import { Form, useSubmit } from '@remix-run/react'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
@@ -19,9 +20,6 @@ var socialLinks = [
 
 export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
 
-
-
-
 const linkName = localStorage.getItem("LinkName")
   const linkEmail = localStorage.getItem("LinkEmail")
 
@@ -29,17 +27,19 @@ useEffect(() => {
    
     localStorage.setItem("LinkName",clickedLink?.name)
     localStorage.setItem("LinkEmail",clickedLink?.email)
-    
+    clickedLink?.email
 
-  }, [])
+  }, [clickedLink?.email])
 
 const [error, setError] = useState('')
 
 
 
 
-  const [val, setVal] = useState<string>(clickedLink?.email)
-  const [text, setText] = useState(successUpdateMessage)
+  const [val, setVal] = useState<string>(clickedLink?.name === 'Facebook' ? loaderData?.socialMedia?.facebookLink :clickedLink?.name === 'Twitter' ? loaderData?.socialMedia?.twitterLink :  clickedLink?.name === 'Youtube' ? loaderData?.socialMedia?.youtubeLink : '')
+  // console.log(val);
+  
+  // const [text, setText] = useState(successUpdateMessage)
 
   // const [query, setQuery] = useState('')
   const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
@@ -55,13 +55,14 @@ let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)faceboo
 let whiteSpaceRegex = /^\S*$/
 
 const regexCheck = (fbRegEx:any,val:any,whiteSpaceRegex:any)=>{
-  if(!fbRegEx.test(val)){
-  return setError('Please enter a valid link.')
- }
-   if(!whiteSpaceRegex.test(val)){
+  
+  
+ if(!whiteSpaceRegex.test(val)){
   if(val === ''){
  return setError('Link is Required.')}
   return setError('White space not allowed.')
+ }else if(!fbRegEx.test(val)){
+  return setError('Please enter a valid link.')
  }
  else {
  return setError('')
@@ -119,7 +120,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
-                  <form action="/account/update/socialProfile" method="post">
+                  <Form replace={true} action="update/socialProfile" method="post">
                     <div className={`flex h-[50rem] flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' : 'w-full md:max-w-xs lg:max-w-md'}`}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -161,16 +162,16 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       </div>
 
                       <div className='mt-10'>
-                        <SelectedSocialLinks setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} />
+                        <SelectedSocialLinks loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} clickedLink={clickedLink} />
                       </div>
-                      {text &&
+                      {successUpdateMessage &&
                           <div className="rounded-md bg-green-50 p-4 mb-4">
       <div className="flex  items-start justify-start">
         <div className="flex-shrink-0 pt-1">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{text}</p>
+          <p className="text-sm font-medium text-green-800">{successUpdateMessage}</p>
         </div>
         <div className="ml-auto pl-3">
           <div className="-mx-1.5 -my-1.5 pt-1">
@@ -179,7 +180,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
               className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
             >
               <span className="sr-only">Dismiss</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
+              <XIcon className="h-5 w-5" aria-hidden="true"  />
             </button>
           </div>
         </div>
@@ -187,27 +188,19 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
     </div>}
                       <div className='pl-3 pr-3.5 mt-6'>
                         <div>
-                          <Combobox as="div" value={selectedEditSocialLinks} onChange={()=>setSelectedEditSocialLinks}>
-
-                            <Combobox.Label className="block text-sm font-medium text-gray-700 pointer-events-none">
-                              Edit Social Profile
-                            </Combobox.Label>
-                            <div className="relative mt-1 pointer-events-none">
-                              <Combobox.Input
-                                className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                                onChange={() => { }}
-                                value={clickedLink.name}
-                                disabled
-                                name="edit_social_links"
-                                displayValue={() => clickedLink?.name}
-                              />
-                              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-                                <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                              </Combobox.Button>
-
-                            </div>
-
-                          </Combobox>
+                         <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+                            Edit Social Profile
+                          </label>
+                          <div className="mt-1">
+                            <input disabled
+                              type="text"
+                              data-cy={selectedEditSocialLinks.name+'-link'}
+                              value={clickedLink.name}
+                              name="edit_social_links"
+                              
+                              className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900  `}
+                            />
+                        </div>
                         </div>
                         <div className='mt-5'>
                           <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -255,7 +248,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
 
 
                     </div>
-                  </form>
+                  </Form>
 
                 </Dialog.Panel>
               </Transition.Child>

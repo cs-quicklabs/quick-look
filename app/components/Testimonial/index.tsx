@@ -2,37 +2,41 @@ import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import ExistingTestimonial from './ExistingTestimonial';
+import { Form } from '@remix-run/react';
 
 export default function AccountTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode}:any) {
+
+  const [testimonialBy,setTestimonialBy]= useState('');
+  const [testimonialText,setTestimonialText]= useState('');
 
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');
 
   useEffect(() => {
-    if(inputTestimonial.testimonialBy === ''){
+    if(testimonialBy === ''){
       setError1('');
     }
-    else if(inputTestimonial?.testimonialBy?.length < 6){
+    else if(testimonialBy?.length < 6){
       setError1('Name must be 6 characters long');
-    } else if(inputTestimonial?.testimonialBy?.length >24 ){
+    } else if(testimonialBy?.length >24 ){
       setError1('Name must not be more than 24 characters long');
     }
-    else if(inputTestimonial.testimonialBy === ''){
+    else if(testimonialBy === ''){
       setError1('required');
     }else{setError1('')}
-    if(inputTestimonial.testimonialText === ''){
+    if(testimonialText === ''){
       setError('');
     }
-    else if(inputTestimonial?.testimonialText?.length < 6){
+    else if(testimonialText?.length < 6){
       setError('Testimonial must be 6 characters long');
     }
-    else if(inputTestimonial?.testimonialText?.length > 472 ){
+    else if(testimonialText?.length > 472 ){
       setError('Testimonial must be not more than 472 characters long');
     }
-    else if(inputTestimonial.testimonialText === ''){
+    else if(testimonialText === ''){
       setError('required');
     }else{setError('')}
-  }, [inputTestimonial.testimonialBy, inputTestimonial.testimonialText])
+  }, [testimonialBy,testimonialText])
   
 
   const OnCancel = ()=>{
@@ -67,7 +71,7 @@ return (
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <form action='/account/add/testimonial' method="post" className='h-screen font-inter' >
+                <Form replace={true} action='add/testimonial' method="post" className='h-screen font-inter' >
                   {loaderData?.testimonial?.testimonialBy ?
                   <div className='flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto'>
                     <div className="bg-gray-50 py-6 px-4">
@@ -132,13 +136,12 @@ return (
                           name="testimonialText"
                           rows={4}
                           onChange={(event) => {
-                            setInputTestimonial({
-                              ...inputTestimonial,
-                              [event.target.name]: event.target.value,
-                            })
+                            setTestimonialText(
+                               event.target.value
+                            )
                           }}
                           className={`text-ellipsis w-[22rem] block rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
-                          value={inputTestimonial.testimonialText}
+                          value={testimonialText}
                         />
                         <div className='text-red-600 text-sm'>
                           {error}
@@ -155,14 +158,11 @@ return (
                         <input
                           placeholder='Please enter a name'
                           type="text"
-                          value={inputTestimonial.testimonialBy}
+                          value={testimonialBy}
                           name="testimonialBy"
                           id="project-name"
                           onChange={(event) => {
-                            setInputTestimonial({
-                              ...inputTestimonial,
-                              [event.target.name]: event.target.value,
-                            })
+                            setTestimonialBy(event.target.value)
                           }}
                           className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm ${error1 ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                         />
@@ -187,7 +187,7 @@ return (
                         data-cy="addTestimonialButton"
                         type="submit"
                         className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                        disabled={error || !inputTestimonial.testimonialText || error1 || !inputTestimonial.testimonialBy ? true : false}
+                        disabled={error || !testimonialText || error1 || !testimonialBy ? true : false}
                       >
                         Add Testimonial
                       </button>
@@ -199,7 +199,7 @@ return (
                 </div>
                   }
                   
-                </form>
+                </Form>
                 
               </Dialog.Panel>
             </Transition.Child>

@@ -1,9 +1,11 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import { Form } from '@remix-run/react';
 
 export default function EditSocialProfile({inputTestimonial, setInputTestimonial, setShowEditTestimonial, loaderData, mode, setmode }: any) {
 
+console.log(inputTestimonial);
 
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');
@@ -68,7 +70,7 @@ export default function EditSocialProfile({inputTestimonial, setInputTestimonial
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <form action='/account/update/testimonial' method="post" className='h-screen' >
+                <Form replace={true} action='update/testimonial' method="post" className='h-screen' >
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -169,7 +171,7 @@ export default function EditSocialProfile({inputTestimonial, setInputTestimonial
                     
 
                   </div>
-                </form>
+                </Form>
                 
               </Dialog.Panel>
             </Transition.Child>

@@ -37,10 +37,15 @@ export default function Profile() {
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
+  
 
   const loaderData = Data?.user
-  const [message,setMessage] = useState(Data?.message)
+  const [message,setMessage] = useState('')
 const [successUpdateMessage,setSuccessUpdateMessage] =useState(Data?.successMessage)
+
+useEffect(() => {
+  setMessage(Data?.message);
+},[Data])
 
 // useEffect(() => {
   if(message){
@@ -69,11 +74,11 @@ setTimeout(() => {
   const actionData=useActionData()
 
 
-useEffect(() => {
-  return () => {
-    setinput({description:loaderData?.profileInfo?.bio ,location:loaderData?.profileInfo?.location,occupation:loaderData?.profileInfo?.occupation,company:loaderData?.profileInfo?.company,education:loaderData?.profileInfo?.education})
-  };
-}, [loaderData,showBio])
+// useEffect(() => {
+//   return () => {
+//     setinput({description:loaderData?.profileInfo?.bio ,location:loaderData?.profileInfo?.location,occupation:loaderData?.profileInfo?.occupation,company:loaderData?.profileInfo?.company,education:loaderData?.profileInfo?.education})
+//   };
+// }, [loaderData,showBio])
 
 
 const toggledesktop = () =>{

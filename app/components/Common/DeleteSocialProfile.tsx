@@ -1,6 +1,7 @@
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
+import { Form } from '@remix-run/react'
 
 export default function Delete({open,onClose, clickedLink, person}:any) {
 
@@ -49,7 +50,7 @@ export default function Delete({open,onClose, clickedLink, person}:any) {
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
-                  <form action="/account/delete/socialProfile" method='post'>
+                  <Form replace={true} action="delete/socialProfile" method='post'>
                   <input type="text" name={clickedLink?.name} value={clickedLink?.name  === 'Facebook' ? '1' : clickedLink?.name  === 'Twitter' ? '2' : clickedLink?.name  === 'Youtube' ? '3' :''} hidden />
                     <button
                       data-cy="deleteSocialLink"
@@ -59,7 +60,7 @@ export default function Delete({open,onClose, clickedLink, person}:any) {
                     >
                       Delete 
                     </button>
-                  </form>
+                  </Form>
                   <button
                     type="button"
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"

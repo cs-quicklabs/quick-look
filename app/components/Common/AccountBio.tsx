@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import { Form } from '@remix-run/react';
 
 export default function DashboardBio({setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
 
@@ -34,7 +35,7 @@ setshowBio(false);
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form  action="account/update/bio" method='POST' className='h-screen'>
+                  <Form replace={true}  action="update/bio" method='post' className='h-screen'>
                   <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="py-6 px-4 sm:px-6 bg-gray-50">
@@ -194,7 +195,7 @@ setshowBio(false);
                         Update
                       </button>
                     </div>
-                  </div></form>
+                  </div></Form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
