@@ -35,8 +35,9 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
         {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
+            <div >
             {loaderData?.video?.videoLink && 
-            <VideoAddOn />}
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}</div>
         <div className='flex flex-col mt-4 text-sm'>
           <div className='flex gap-4'>
           {loaderData?.profileInfo?.company || input.company ?

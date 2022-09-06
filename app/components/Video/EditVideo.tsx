@@ -1,12 +1,14 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 
 export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
 const [val,setVal] = useState(loaderData?.video?.videoLink)
-console.log(val);
 
+ const transition = useTransition();
+ console.log(transition);
+ 
   const Onclose = () => {
     if (mode === 'desktop') {
       setShowEditVideo(false)
@@ -20,12 +22,16 @@ console.log(val);
     setShowEditVideo(false);
     setmode('desktop');
   }
-
+const onSubmitClose = ()=>{
+       transition.type === "actionRedirect"
+      ? OnCancel
+      : '';
+}
 const [error,SetError] = useState('')
  console.log('@@@@',error);
  
   let whiteSpaceRegex = /^\S*$/
-  let RegEx = loaderData?.video?.videoSourceKey === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+  let RegEx = val.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
 console.log(RegEx);
 
  const RegexCheck =()=>{ 
@@ -44,6 +50,12 @@ console.log(RegEx);
   useEffect(() => {
  RegexCheck()
 },[val])
+
+useEffect(() => {
+  if(transition.state === 'loading'){
+    setShowEditVideo(false);
+  }
+}, [transition])
 
   const handleURL = (event:any) => {
     const value = event.target.value;
@@ -130,7 +142,8 @@ console.log(RegEx);
                           data-cy="addTestimonialButton"
                           type="submit"
                           className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                         onClick={OnCancel}
+                          // @ts-ignore
+                        //  onClick={transition.state === 'loading' ? OnCancel : null}
                           disabled={!val  ? true : !error ? false : true }
                         >
                           Edit Video
