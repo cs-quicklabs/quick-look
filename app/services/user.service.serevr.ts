@@ -162,40 +162,69 @@ export async function updateUserProfileDetails({ firstname, lastname, profileId,
 }
 
 export async function deleteUser(user?: any) {
-    await db.profile.delete({
-        where:{
-            userId:user.id
-        }}).then(async () => {
-        await db.profileImage.delete({
+        const deleteUserProfile =  db.profile.delete({
+            where:{
+                userId:user.id
+            }
+        })
+        const deleteProfileImage =  db.profileImage.delete({
             where: {
                 userId: user.id
             }
-        }).then(async () => {
-            await db.profileInformation.delete({
-                where: {
-                    userId: user.id
-                }
-            }).then(async () => {
-                await db.socialMedia.delete({
-                    where: {
-                        userId: user.id
-                    }
-                }).then(async () => {
-                    await db.marketingUpdates.delete({
-                        where: {
-                            userId: user.id
-                        }
-                    }).then(async () => {
-                        await db.user.delete({
-                            where: {
-                                id: user.id
-                            }
-                        })
-                    })
-                })
-            })
         })
-    })
+        const deletePortfolioImage =  db.portfolioImage.deleteMany({
+            where: {
+               userId: user.id 
+            }
+        })
+        const deletespotlightButton =  db.spotlightButton.delete({
+            where: {
+               userId: user.id 
+            }
+        })
+        const deletetestimonial =  db.testimonial.delete({
+            where: {
+               userId: user.id 
+            }
+        })
+        const deleteProfileInformation =  db.profileInformation.delete({
+            where: {
+                userId: user.id
+            }
+        })
+        const deleteSocialMedia =  db.socialMedia.delete({
+            where: {
+                userId: user.id
+            }
+        })
+        const deletemarketingUpdates =  db.marketingUpdates.delete({
+            where: {
+                userId: user.id
+            }
+        })
+        const deleteVideo = db.video.delete({
+            where: {
+                userId: user.id
+            }
+        })
+        const deleteuser =  db.user.delete({
+            where: {
+                id: user.id
+            }
+        })
+
+        const transaction = await db.$transaction([
+            deleteUserProfile,
+            deleteProfileImage,
+            deletePortfolioImage,
+            deleteProfileInformation,
+            deleteSocialMedia,
+            deletemarketingUpdates,
+            deletespotlightButton,
+            deletetestimonial,
+            deleteVideo,
+            deleteuser
+        ])
 }
 
 export async function publishToggle(user?: any) {
