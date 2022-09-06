@@ -9,7 +9,7 @@ var _ = require('lodash');
 const iconName = _.startCase(_.camelCase(loaderData?.spotlightButton?.spotlightIcon)) + 'Icon'
 const Name = _.replace(iconName, ' ','');
 const Final = Name.split(" ").join('')
-console.log(Final);
+
 
 
 

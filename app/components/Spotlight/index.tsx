@@ -4,7 +4,6 @@ import CreateSpotlight from './CreateSpotlight'
 
 export default function Spotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
   
-  console.log(loaderData);
   
   
   return (

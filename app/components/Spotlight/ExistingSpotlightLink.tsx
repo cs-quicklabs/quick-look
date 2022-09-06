@@ -25,7 +25,6 @@ const [showEditSpotlight, setShowEditSpotlight] = useState(false);
 const toggleEditSpotlight = (person: { name: string; description: string; }) => {
   setShowEditSpotlight(!showEditSpotlight);
   setClickedSpotlight(person);
-  console.log("setClickedSpotlight(person)",clickedSpotlight)
 }
 
 const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);

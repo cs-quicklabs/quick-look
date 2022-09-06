@@ -7,7 +7,6 @@ import * as cropro from "cropro";
 import DeleteImage from '../Common/DeleteImage';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
-  console.log(loaderData);
   
   const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
@@ -22,10 +21,9 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 function showCropArea(event:any) {
   let target = event.target
   let image = target.src
-  // let imgURL
+
   const cropArea = new cropro.CropArea(target);
-  // setImgURL(cropArea?.target?.src)
-  console.log(cropArea);
+
   cropArea.displayMode = "popup";
   cropArea.addRenderEventListener((imgURL)=>setImgURL(image));
   cropArea.show();

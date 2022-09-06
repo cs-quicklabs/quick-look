@@ -10,12 +10,11 @@ const DynamicHeroIcon: FC<{icon?: string,Final?:any}> = ({icon,Final}:any) => {
   const TheIcon: any = icons[icon]
   let isValid = false
  Object.keys(icons).forEach(function(key) {
- // console.log(icons[key]?.render?.name);
+
  
   //@ts-ignore
   icons[key]?.render?.name == Final ? isValid =true : null
 });
-console.log("@#@#@@",isValid,Final);
 
   return (
     <>
