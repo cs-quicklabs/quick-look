@@ -21,7 +21,7 @@ export async function createUser(userRegister: RegisterForm) {
     })
     await db.profile.create({
         data: {
-            userId : user.id,
+            userId: user.id,
         }
     }).then(async () => {
         await db.profileInformation.create({
@@ -48,17 +48,17 @@ export async function createUser(userRegister: RegisterForm) {
                             data: {
                                 userId: user.id
                             }
-                        }).then(async() => {
+                        }).then(async () => {
                             await db.portfolioImage.create({
                                 data: {
-                                    userId : user.id,
+                                    userId: user.id,
                                     imageUrl: ''
-                                } 
+                                }
                             })
                         }).then(async () => {
                             await db.video.create({
                                 data: {
-                                    userId : user.id
+                                    userId: user.id
                                 }
                             }).then(async () => {
                                 await db.spotlightButton.create({
@@ -86,7 +86,7 @@ export async function findUserByEmail(email: string): Promise<any> {
         where: {
             email: lowercasedEmail
         },
-        include:{
+        include: {
             profile: true
         }
     })
@@ -128,7 +128,7 @@ export async function getUserById(id: string) {
         where: {
             id
         },
-        include:{
+        include: {
             profile: true,
             profileImage: true,
             profileInfo: true
@@ -162,40 +162,69 @@ export async function updateUserProfileDetails({ firstname, lastname, profileId,
 }
 
 export async function deleteUser(user?: any) {
-    await db.profile.delete({
-        where:{
-            userId:user.id
-        }}).then(async () => {
-        await db.profileImage.delete({
-            where: {
-                userId: user.id
-            }
-        }).then(async () => {
-            await db.profileInformation.delete({
-                where: {
-                    userId: user.id
-                }
-            }).then(async () => {
-                await db.socialMedia.delete({
-                    where: {
-                        userId: user.id
-                    }
-                }).then(async () => {
-                    await db.marketingUpdates.delete({
-                        where: {
-                            userId: user.id
-                        }
-                    }).then(async () => {
-                        await db.user.delete({
-                            where: {
-                                id: user.id
-                            }
-                        })
-                    })
-                })
-            })
-        })
+    const deleteUserProfile = db.profile.delete({
+        where: {
+            userId: user.id
+        }
     })
+    const deleteProfileImage = db.profileImage.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deletePortfolioImage = db.portfolioImage.deleteMany({
+        where: {
+            userId: user.id
+        }
+    })
+    const deletespotlightButton = db.spotlightButton.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deletetestimonial = db.testimonial.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deleteProfileInformation = db.profileInformation.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deleteSocialMedia = db.socialMedia.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deletemarketingUpdates = db.marketingUpdates.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deleteVideo = db.video.delete({
+        where: {
+            userId: user.id
+        }
+    })
+    const deleteuser = db.user.delete({
+        where: {
+            id: user.id
+        }
+    })
+
+    const transaction = await db.$transaction([
+        deleteUserProfile,
+        deleteProfileImage,
+        deletePortfolioImage,
+        deleteProfileInformation,
+        deleteSocialMedia,
+        deletemarketingUpdates,
+        deletespotlightButton,
+        deletetestimonial,
+        deleteVideo,
+        deleteuser
+    ])
 }
 
 export async function publishToggle(user?: any) {
@@ -269,7 +298,7 @@ export async function updateUserTemplate(templateId: string, user: any) {
             userId: user.id
         },
         data: {
-            templateNumber : templateId
+            templateNumber: templateId
         }
     })
 }
