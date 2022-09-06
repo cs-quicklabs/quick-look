@@ -19,18 +19,6 @@ export const action: ActionFunction = async ({ request }) => {
     } else {
       sourceKey = 'facebook'
     }
-    const errors = {
-        videoUrl : await validateVideo(videoUrl)
-    }
-    if (Object.values(errors).some(Boolean)) {
-        return json(
-          {
-            errors,
-            form: action,
-          },
-          { status: 400 }
-        )
-      }
     if(videoUrl){
         await addUpdateVideo(videoUrl, sourceKey , user);
     }
