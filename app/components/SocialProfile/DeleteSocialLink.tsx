@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form } from '@remix-run/react'
 
-export default function Delete({open,onClose, clickedLink, person}:any) {
+export default function DeleteSocialLink({open,onClose, clickedLink, person}:any) {
 
   const cancelButtonRef = useRef(null)
   

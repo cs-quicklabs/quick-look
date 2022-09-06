@@ -1,13 +1,13 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import CreateProfile from './CreateProfile'
-import ExistingSocialLinks from '../Common/ExistingSocialLinks';
+import CreateSocialLinks from './CreateSocialLinks'
 import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ExistingSocialLinks from './ExistingSocialLinks'
 
-export default function SocialProfile({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
+export default function AddMoreSocialLinks({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
 
    
 
@@ -47,7 +47,7 @@ const Onclose = () => {
 
         <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
-            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-80' : 'lg:w-80'}`}>
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -81,7 +81,7 @@ const Onclose = () => {
                     </div>
                     <div className='font-inter mt-7 flex flex-col items-center'>
                     <p className='text-xs leading-4 font-semibold tracking-wide'>
-                        {loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
+                      ADD MORE PROFILE LINKS
                       </p>
                       <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below
@@ -94,9 +94,12 @@ const Onclose = () => {
                       >
                         Add Social Profile
                       </button>
-                      {showCreateProfile && (
-                        <CreateProfile message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
-                      )}
+                      <div className=''>
+                        {showCreateProfile && (
+                          <CreateSocialLinks message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                        )} 
+                      </div>
+                      
                     </div>
                     {text &&
                           <div className="rounded-md bg-green-50 p-4 mt-4">
@@ -121,7 +124,7 @@ const Onclose = () => {
       </div>
     </div>}
                         <div className='mt-12'>
-                          <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
+                        <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
                         </div>
                   </div>                  
                 </Dialog.Panel>

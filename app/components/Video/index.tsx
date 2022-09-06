@@ -141,7 +141,7 @@ if(!RegEx.test(val)){
                           <button
                             data-cy="addProfileButton"
                             type="submit"
-                            className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
+                            className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-400" 
                            disabled={!val  ? true : !error ? false : true }
 
                           >

@@ -1,12 +1,9 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import ExistingSocialLinks from '../Common/ExistingSocialLinks'
-import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon, XIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import { Form } from '@remix-run/react'
-
-
+import ExistingSocialLinks from './ExistingSocialLinks'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
@@ -17,69 +14,70 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 2, name: 'Twitter' },
   { id: 3, name: 'Youtube' },
 ]
+
+export default function CreateSocialLinks({successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
+
    
-export default function CreateProfile({successUpdateMessage,setshowCreateProfile, setshowSocialLinks,mode, loaderData,message}:any) {
 
-const [value, setValue] = useState('')
-const [text, setText] = useState(message)
-const [error, setError] = useState('')
-const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
-  const sociallink = selectedSocialLinks?.name?.toLowerCase()
-
-let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
-let whiteSpaceRegex = /^\S*$/
-const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
-  if(value === ''){
- return setError('')}
-if(!fbRegEx.test(value)){
-  return setError('Please enter a valid link.')
- } if(!whiteSpaceRegex.test(value)){
-  return setError('White space not allowed.')
- }
- else {
- return setError('')
-}}
-
-const handleChange = (e:any)=>{
- setValue(e.target.value)
-regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
-}
-
-
-  useEffect(() => {
-    loaderData;
-    regexCheck(fbRegEx,value,whiteSpaceRegex)
-  }, [loaderData,selectedSocialLinks])
-  const [query, setQuery] = useState('')
- 
-
-  const Onclose = () => {
-   
-    if(mode === 'desktop'){
-   setshowCreateProfile(false)
-    }
-    if(mode === 'mobile'){
-   setshowCreateProfile(false)
-    }
- 
+  const [value, setValue] = useState('')
+  const [text, setText] = useState(message)
+  const [error, setError] = useState('')
+  const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
+    const sociallink = selectedSocialLinks?.name?.toLowerCase()
+  
+  let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
+  let whiteSpaceRegex = /^\S*$/
+  const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
+    if(value === ''){
+   return setError('')}
+  if(!fbRegEx.test(value)){
+    return setError('Please enter a valid link.')
+   } if(!whiteSpaceRegex.test(value)){
+    return setError('White space not allowed.')
+   }
+   else {
+   return setError('')
+  }}
+  
+  const handleChange = (e:any)=>{
+   setValue(e.target.value)
+  regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   }
-
-  const filteredSelectedSocialLink =
-    query === ''
-      ? socialLinks
-      : socialLinks.filter(links => {
-          return links?.name.toLowerCase().includes(query.toLowerCase())
-        })
-
+  
+  
+    useEffect(() => {
+      loaderData;
+      regexCheck(fbRegEx,value,whiteSpaceRegex)
+    }, [loaderData,selectedSocialLinks])
+    const [query, setQuery] = useState('')
+   
+  
+    const Onclose = () => {
+     
+      if(mode === 'desktop'){
+     setshowCreateProfile(false)
+      }
+      if(mode === 'mobile'){
+     setshowCreateProfile(false)
+      }
+   
+    }
+  
+    const filteredSelectedSocialLink =
+      query === ''
+        ? socialLinks
+        : socialLinks.filter(links => {
+            return links?.name.toLowerCase().includes(query.toLowerCase())
+          })
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={()=>{}}>
         <div className="fixed inset-0" />
 
-        <div className="fixed inset-0 overflow-hidden">
+        <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
-            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
-              <Transition.Child
+            <div className={`pointer-events-none fixed inset-y-0 left-0 flex `}>
+            <Transition.Child
                 as={Fragment}
                 enter=""
                 enterFrom="translate-x-full"
@@ -90,7 +88,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <Form replace={true} action='add/socialProfile' method="post" className='h-screen' >
-                    <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
+                    <div className={`flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
@@ -233,15 +231,15 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                         <button
                           data-cy="addProfileButton"
                           type="submit"
-                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:opacity-75" 
+                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-400" 
                           disabled={!value  ? true : !error ? false : true }
                         >
                           Add Profile
                         </button>
                       </div>
 
-                      <div className='mt-10'>
-                        <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message}  loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
+                      <div className='mt-12'>
+                       <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
                       </div>
 
                     </div>
