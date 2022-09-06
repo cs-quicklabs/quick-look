@@ -42,7 +42,7 @@ const Onclose = () => {
 }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={Onclose}>
+      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
         <div className="fixed inset-0" />
 
         <div className={`fixed inset-0 overflow-hidden`}>

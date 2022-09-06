@@ -32,7 +32,7 @@ const [error,SetError] = useState('')
   let RegEx = inputVideo?.videoLink?.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
 
  const RegexCheck =()=>{ 
-  if(inputVideo?.videoLink === ''){
+  if(!inputVideo?.videoLink){
  return SetError('')}
 if(!RegEx.test(inputVideo?.videoLink)){
   return SetError('Please enter a valid link.')
