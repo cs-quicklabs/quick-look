@@ -5,6 +5,7 @@ import { Form } from '@remix-run/react';
 
 export default function EditSocialProfile({inputTestimonial, setInputTestimonial, setShowEditTestimonial, loaderData, mode, setmode }: any) {
 
+console.log(inputTestimonial);
 
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');

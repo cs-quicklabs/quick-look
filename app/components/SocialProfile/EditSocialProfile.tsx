@@ -27,9 +27,9 @@ useEffect(() => {
    
     localStorage.setItem("LinkName",clickedLink?.name)
     localStorage.setItem("LinkEmail",clickedLink?.email)
-    
+    clickedLink?.email
 
-  }, [])
+  }, [clickedLink?.email])
 
 const [error, setError] = useState('')
 
@@ -37,6 +37,8 @@ const [error, setError] = useState('')
 
 
   const [val, setVal] = useState<string>(clickedLink?.email)
+  console.log(val);
+  
   const [text, setText] = useState(successUpdateMessage)
 
   // const [query, setQuery] = useState('')

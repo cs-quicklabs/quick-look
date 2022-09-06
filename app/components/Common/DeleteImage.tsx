@@ -55,6 +55,7 @@ export default function Delete({open,onClose,deleteImage}:any) {
                     id="deleteModalButton" name={deleteImage} 
                     value = {deleteImage === 'primary' ? 'deletePrimary' : deleteImage === 'secondary' ? 'deleteSecondary' : ''} 
                       type="submit"
+                      onClick={onClose}
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
                     >
                       Delete 

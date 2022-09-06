@@ -74,11 +74,11 @@ setTimeout(() => {
   const actionData=useActionData()
 
 
-useEffect(() => {
-  return () => {
-    setinput({description:loaderData?.profileInfo?.bio ,location:loaderData?.profileInfo?.location,occupation:loaderData?.profileInfo?.occupation,company:loaderData?.profileInfo?.company,education:loaderData?.profileInfo?.education})
-  };
-}, [loaderData,showBio])
+// useEffect(() => {
+//   return () => {
+//     setinput({description:loaderData?.profileInfo?.bio ,location:loaderData?.profileInfo?.location,occupation:loaderData?.profileInfo?.occupation,company:loaderData?.profileInfo?.company,education:loaderData?.profileInfo?.education})
+//   };
+// }, [loaderData,showBio])
 
 
 const toggledesktop = () =>{
