@@ -6,6 +6,7 @@ import defaultProfileimage from '../../../assets/images/profile.png'
 
 import DeleteImage from '../Common/DeleteImage';
 import { Form } from '@remix-run/react';
+import { useSubmit } from '@remix-run/react';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
   const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
@@ -16,7 +17,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const [deleteImage, setDeleteImage] = useState('')
   const [primaryImageError,setPrimaryImageError]=useState('')
   const [secondaryImageError,setSecondaryImageError]=useState('')
-
+const submit = useSubmit()
 
   const ref = useRef(null);
 
@@ -30,7 +31,9 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
       ref.current.click()
     }
   }, [image, image2]);
-
+const onSubmit = (event:any) =>{
+submit(event.currentTarget, { replace: true });
+}
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/")) {
       setimage(e.target.files[0])
@@ -195,7 +198,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
                                   {/* </form> */}
-                                  <Form replace={true} action="update/restoreImage" method='post'>
+                                  <Form onSubmit={onSubmit} action="update/restoreImage" method='post'>
 
                                     <button data-cy="restorePrimaryImage"  name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" >
                                       Restore Default Image
@@ -283,7 +286,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                     />
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
-                                  <Form replace={true} action="update/restoreImage" method='post'>
+                                  <Form replace action="update/restoreImage" method='post'>
                                     <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                       Restore Default Image
                                     </button></Form>

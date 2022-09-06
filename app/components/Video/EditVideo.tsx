@@ -4,6 +4,8 @@ import { XIcon } from '@heroicons/react/outline'
 import { Form } from '@remix-run/react'
 
 export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
+const [val,setVal] = useState(loaderData?.video?.videoLink)
+console.log(val);
 
   const Onclose = () => {
     if (mode === 'desktop') {
@@ -20,17 +22,20 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
   }
 
 const [error,SetError] = useState('')
+ console.log('@@@@',error);
  
   let whiteSpaceRegex = /^\S*$/
-  let RegEx = inputVideo?.videoLink?.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+  let RegEx = loaderData?.video?.videoSourceKey === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
+console.log(RegEx);
 
  const RegexCheck =()=>{ 
-  if(inputVideo?.videoLink === ''){
- return SetError('Required')}
-if(!RegEx.test(inputVideo?.videoLink)){
-  return SetError('Please enter a valid link.')
- } if(!whiteSpaceRegex.test(inputVideo?.videoLink)){
-  return SetError('White space not allowed.')
+  if(val == ''){
+  SetError('Required')}
+  else if(!RegEx.test(val)){
+   SetError('Please enter a valid link.')
+ }
+ else if(!whiteSpaceRegex.test(val)){
+   SetError('White space not allowed.')
  }
  else {
  return SetError('')
@@ -38,14 +43,11 @@ if(!RegEx.test(inputVideo?.videoLink)){
 
   useEffect(() => {
  RegexCheck()
-},[inputVideo])
+},[val])
 
   const handleURL = (event:any) => {
     const value = event.target.value;
-    setInputVideo({
-      ...inputVideo,
-      videoLink: value.includes('https://www.') ? value.substring(12) : value ,
-    })
+    setVal(value.includes('https://www.') ? value.substring(12) : value)
   }
 
 
@@ -104,7 +106,7 @@ if(!RegEx.test(inputVideo?.videoLink)){
                             name="videoUrl"
                             id="videoUrl"
                             placeholder='Please enter your video link'
-                            value={inputVideo.videoLink}
+                            value={val}
                                 onChange={handleURL}
                             className={`leading-5 block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-500 ${error ? 'focus:border-red-500 focus:ring-red-500 border-red-500' :'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'}`}
                             
@@ -128,7 +130,8 @@ if(!RegEx.test(inputVideo?.videoLink)){
                           data-cy="addTestimonialButton"
                           type="submit"
                           className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" 
-                          disabled={!inputVideo.videoLink  ? true : !error ? false : true }
+                         onClick={OnCancel}
+                          disabled={!val  ? true : !error ? false : true }
                         >
                           Edit Video
                         </button>

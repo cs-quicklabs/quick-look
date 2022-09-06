@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteSocialProfile from "./DeleteSocialProfile";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
 
-export default function SelectedSocialLinks({ clickedLink, mode}:any) {
+export default function SelectedSocialLinks({ clickedLink, mode,loaderData}:any) {
   const [open, setopen] = useState(false);
 
   const people = [
   {}
 ]
+console.log('@@@@@@@@@@',clickedLink?.name);
+
   const linkName = localStorage.getItem("LinkName")?.toLocaleLowerCase()
-const imageSelect = linkName === 'facebook' ? fbIcon : linkName === 'twitter' ? twitterIcon : linkName === 'youtube' ? ytIcon : clickedLink?.image
+// const [imageSelect,setImageSelect] = useState('')
+ 
+// useEffect(() => {
+//  clickedLink?.name === 'facebook' ? setImageSelect(fbIcon) : linkName === 'twitter' ? setImageSelect(twitterIcon) : linkName === 'youtube' ? setImageSelect(ytIcon) : clickedLink?.image
+// }, [clickedLink?.name])
 
   return (
     <div className="pl-3 pr-3.5">
@@ -22,10 +28,10 @@ const imageSelect = linkName === 'facebook' ? fbIcon : linkName === 'twitter' ? 
               {clickedLink.email ?
               <div className={`flex justify-between border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
-                  <img className="h-10 w-10 rounded-full" src={imageSelect} alt="" />
+                  <img className="h-10 w-10 rounded-full" src={clickedLink?.name === 'Facebook' ? fbIcon :clickedLink?.name === 'Twitter' ? twitterIcon :  clickedLink?.name === 'Youtube' ? ytIcon : ''} alt="" />
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{clickedLink.name}</p>
-                    <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile' ? "w-52" : "w-52 md:w-36 lg:w-28 xl:w-52"}`}>{clickedLink.email}</p>
+                    <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile' ? "w-52" : "w-52 md:w-36 lg:w-28 xl:w-52"}`}>{clickedLink?.name === 'Facebook' ? loaderData?.socialMedia?.facebookLink :clickedLink?.name === 'Twitter' ? loaderData?.socialMedia?.twitterLink :  clickedLink?.name === 'Youtube' ? loaderData?.socialMedia?.youtubeLink : ''}</p>
                   </div>
                 </div>
               

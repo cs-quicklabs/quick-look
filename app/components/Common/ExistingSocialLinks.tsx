@@ -14,9 +14,7 @@ const linkName = localStorage.getItem("LinkName")
   const [open, setopen] = useState(false);
   const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
   
-  useEffect(() => {
-   clickedLink
-  }, [clickedLink])
+
 
 
   
