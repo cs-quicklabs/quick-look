@@ -3,10 +3,12 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
 import defaultProfileimage from '../../../assets/images/profile.png'
-
+import * as cropro from "cropro";
 import DeleteImage from '../Common/DeleteImage';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
+  console.log(loaderData);
+  
   const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false);
@@ -15,8 +17,19 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const [deleteImage, setDeleteImage] = useState('')
   const [primaryImageError,setPrimaryImageError]=useState('')
   const [secondaryImageError,setSecondaryImageError]=useState('')
+  const [imgURL,setImgURL]=useState('')
 
-
+function showCropArea(event:any) {
+  let target = event.target
+  let image = target.src
+  // let imgURL
+  const cropArea = new cropro.CropArea(target);
+  // setImgURL(cropArea?.target?.src)
+  console.log(cropArea);
+  cropArea.displayMode = "popup";
+  cropArea.addRenderEventListener((imgURL)=>setImgURL(image));
+  cropArea.show();
+}
   const ref = useRef(null);
 
   useEffect(() => {
@@ -120,9 +133,9 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                             <div>
                               <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                                <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' />
+                                <img  onClick={(event:any)=>{showCropArea(event)}} src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' />
                               </div>
-
+                          <img src={imgURL}  />
                               <div className='flex justify-center items-center mt-3'>
                                 <label htmlFor="photo" id="primaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                   Edit

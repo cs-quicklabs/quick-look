@@ -30,6 +30,7 @@
     "aws-sdk": "^2.1190.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^1.1.1",
+    "cropro": "^1.2.0",
     "cuid": "^2.1.8",
     "cypress": "^9.6.1",
     "cypress-xpath": "^2.0.1",
