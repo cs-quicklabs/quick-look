@@ -5,6 +5,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
 import AddMoreSpotlightLink from './AddMoreSpotlightLink'
+import { Form } from '@remix-run/react'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -76,7 +77,7 @@ const OnCancel = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form  action="account/add/spotlight" method='POST' className='h-screen'>
+                  <Form replace={true}  action="add/spotlight" method='post' className='h-screen'>
                     
                     <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                     
@@ -87,7 +88,7 @@ const OnCancel = ()=>{
                               Add Spotlight Button to your profile
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
-                              <form action="">
+                              <Form replace={true} action="">
                               <button
                                 type="button"
                                 className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
@@ -97,7 +98,7 @@ const OnCancel = ()=>{
                               
                                 <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                                 
-                              </button></form>
+                              </button></Form>
                             </div>
                           </div>
                           <div className="mt-1">
@@ -217,7 +218,7 @@ const OnCancel = ()=>{
 
                             <div>
                             <Listbox value={selected.name}
-                               //ts-ignore 
+                              //ts-ignore 
                              onChange={setSelected}
                               name='buttonAction'>
                               {({ open }) => (
@@ -361,7 +362,7 @@ const OnCancel = ()=>{
                     
                     
                     
-                  </form>
+                  </Form>
                   
                 </Dialog.Panel>
               </Transition.Child>

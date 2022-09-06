@@ -4,6 +4,7 @@ import ExistingSocialLinks from '../Common/ExistingSocialLinks'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
+import { Form } from '@remix-run/react'
 
 
 
@@ -18,7 +19,6 @@ function classNames(...classes: (string | boolean)[]) {
 ]
    
 export default function CreateProfile({successUpdateMessage,setshowCreateProfile, setshowSocialLinks,mode, loaderData,message}:any) {
-
 
 const [value, setValue] = useState('')
 const [text, setText] = useState(message)
@@ -63,8 +63,6 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
     }
  
   }
-  
-
 
   const filteredSelectedSocialLink =
     query === ''
@@ -91,7 +89,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action='account/add/socialProfile' method="post" className='h-screen' >
+                  <Form replace={true} action='add/socialProfile' method="post" className='h-screen' >
                     <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -118,14 +116,14 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       </div>
                       <div className='pl-2.5 pr-5 mt-6'>
                         <div>
-                          {message && text &&
+                          {message &&
                           <div className="rounded-md bg-green-50 p-4 mb-4">
       <div className="flex  items-start justify-start">
         <div className="flex-shrink-0 pt-1">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{text}</p>
+          <p className="text-sm font-medium text-green-800">{message}</p>
         </div>
         <div className="ml-auto pl-3">
           <div className="-mx-1.5 -my-1.5 pt-1">
@@ -247,7 +245,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       </div>
 
                     </div>
-                  </form>
+                  </Form>
                   
                 </Dialog.Panel>
               </Transition.Child>

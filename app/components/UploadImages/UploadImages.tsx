@@ -5,6 +5,7 @@ import bg from '../../../assets/images/bg.png';
 import defaultProfileimage from '../../../assets/images/profile.png'
 
 import DeleteImage from '../Common/DeleteImage';
+import { Form } from '@remix-run/react';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
   const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
@@ -78,7 +79,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action="/account/add/image" encType="multipart/form-data" method='post'>
+                  <Form replace={true} action="add/image" encType="multipart/form-data" method='post'>
 
                     <div className='h-screen'>
                       <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
@@ -194,11 +195,11 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
                                   {/* </form> */}
-                                  <form action="account/update/restoreImage" method='post'>
+                                  <Form replace={true} action="update/restoreImage" method='post'>
 
                                     <button data-cy="restorePrimaryImage"  name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" >
                                       Restore Default Image
-                                    </button></form>
+                                    </button></Form>
                                 </div>
 <div className='text-sm mt-2 text-red-500'>{primaryImageError}</div>
                               </div>
@@ -282,10 +283,10 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                     />
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
-                                  <form action="account/update/restoreImage" method='post'>
+                                  <Form replace={true} action="update/restoreImage" method='post'>
                                     <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                       Restore Default Image
-                                    </button></form>
+                                    </button></Form>
                                 </div>
 <div className='text-sm mt-2 text-red-500'>{secondaryImageError}</div>
 
@@ -300,7 +301,7 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                     </div>
 
-                  </form>
+                  </Form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

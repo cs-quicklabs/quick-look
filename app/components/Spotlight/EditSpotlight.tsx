@@ -2,6 +2,7 @@ import { Dialog } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import {  useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
+import { Form } from '@remix-run/react';
 
 export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
   const Onclose = (e:any) => {
@@ -26,7 +27,7 @@ export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
   // const [spotlightVal, setSpotlightVal] = useState<string>(clickedSpotlight?.email)
 
   return (
-    <form action="" method='POST'>
+    <Form replace={true} action="" method='post'>
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1">
         
@@ -114,6 +115,6 @@ export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
       <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
             
       </div>
-    </form>
+    </Form>
   )
 }

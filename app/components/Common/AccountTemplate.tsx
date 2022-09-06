@@ -3,12 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
+import { Form } from '@remix-run/react'
 
 
 
 export default function AccountTemplate({setshowTemplate,setshow,showTemplate,mode,setmode}:any) {
  
-  const templateHandle = 'account/update/choose-template'
+  const templateHandle = 'update/choose-template'
   const OnCancel = ()=>{
  setshowTemplate(false);
   setmode('desktop')
@@ -63,7 +64,7 @@ const Onclose = () => {
                       </div>
                     </div>
                     <div className='grid grid-cols-1 gap-0'>
-                      <form action= {templateHandle} method='POST'>
+                      <Form replace={true} action= {templateHandle} method='post'>
 
                       <div  className='mb-[-1rem]'>
                       <input type="hidden" name='template' value='0' />
@@ -71,9 +72,9 @@ const Onclose = () => {
                       <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                       </button>
                       </div>
-                      </form>
+                      </Form>
 
-                      <form action= {templateHandle} method='POST'>
+                      <Form replace={true} action= {templateHandle} method='post'>
                       <div >
                       <input type="hidden" name='template' value='1' />
                       <button type='submit'>
@@ -81,7 +82,7 @@ const Onclose = () => {
                       </button>
                       </div>
 
-                      </form>
+                      </Form>
                     </div>
                   </div>
                 </Dialog.Panel>

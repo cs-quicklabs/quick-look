@@ -1,6 +1,7 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import { Form } from '@remix-run/react'
 
 export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
 
@@ -66,7 +67,7 @@ if(!RegEx.test(inputVideo?.videoLink)){
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <form action='/account/update/video' method="post" className='h-screen' >
+                <Form replace={true} action='update/video' method="post" className='h-screen' >
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -137,7 +138,7 @@ if(!RegEx.test(inputVideo?.videoLink)){
                     
 
                   </div>
-                </form>
+                </Form>
                 
               </Dialog.Panel>
             </Transition.Child>

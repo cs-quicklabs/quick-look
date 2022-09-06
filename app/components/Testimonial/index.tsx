@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import ExistingTestimonial from './ExistingTestimonial';
+import { Form } from '@remix-run/react';
 
 export default function AccountTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode}:any) {
 
@@ -67,7 +68,7 @@ return (
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <form action='/account/add/testimonial' method="post" className='h-screen font-inter' >
+                <Form replace={true} action='add/testimonial' method="post" className='h-screen font-inter' >
                   {loaderData?.testimonial?.testimonialBy ?
                   <div className='flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto'>
                     <div className="bg-gray-50 py-6 px-4">
@@ -199,7 +200,7 @@ return (
                 </div>
                   }
                   
-                </form>
+                </Form>
                 
               </Dialog.Panel>
             </Transition.Child>

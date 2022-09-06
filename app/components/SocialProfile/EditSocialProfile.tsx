@@ -4,6 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import SelectedSocialLinks from '../Common/SelectedSocialLinks'
+import { Form, useSubmit } from '@remix-run/react'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
@@ -18,9 +19,6 @@ var socialLinks = [
 
 
 export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
-
-
-
 
 const linkName = localStorage.getItem("LinkName")
   const linkEmail = localStorage.getItem("LinkEmail")
@@ -119,7 +117,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md overflow-y-auto">
-                  <form action="/account/update/socialProfile" method="post">
+                  <Form replace={true} action="update/socialProfile" method="post">
                     <div className={`flex h-[50rem] flex-col bg-white border-r  border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'w-[16rem] xl:w-full' : 'w-full md:max-w-xs lg:max-w-md'}`}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -255,7 +253,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
 
 
                     </div>
-                  </form>
+                  </Form>
 
                 </Dialog.Panel>
               </Transition.Child>
