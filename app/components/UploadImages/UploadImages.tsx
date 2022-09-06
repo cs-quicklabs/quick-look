@@ -34,7 +34,7 @@ const submit = useSubmit()
     }
   }, [image, image2]);
 const onSubmit = (event:any) =>{
-submit(event.currentTarget, { replace: true });
+submit(event.target.value, { replace: true });
 }
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/")) {
@@ -287,7 +287,7 @@ submit(event.currentTarget, { replace: true });
                                     />
                                     <button type="submit" ref={ref} className="hidden">upload</button>
                                   </label>
-                                  <Form replace action="update/restoreImage" method='post'>
+                                  <Form replace={true} action="update/restoreImage" method='post'>
                                     <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
                                       Restore Default Image
                                     </button></Form>
