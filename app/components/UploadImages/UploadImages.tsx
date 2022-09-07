@@ -124,8 +124,9 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                             </label>
 
                             <div>
-                              <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                                <img src={primaryRestore ? bg : loaderData.profileImage.primaryImage} alt="" className='h-full w-full object-cover' />
+                              <div className={`flex justify-center  rounded-md mt-3.5 ${transition.state === 'submitting' || transition.state === 'loading' ? 'h-max' : 'h-44'} `}>
+                                {transition.state === 'idle' ?
+                                <img src={primaryRestore ? bg : loaderData.profileImage.primaryImage} alt="" className='h-full w-full object-cover' /> : transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader size={75} color="#000" />:null }
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
@@ -220,10 +221,14 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                 Secondary Image
                               </label>
 
-                              <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
+                              {/* <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
                                 <img src={secondaryRestore ? defaultProfileimage : loaderData.profileImage.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
+                              </div> */}
+  <div className={`flex justify-center ${transition.state === 'idle'? 'h-[8rem]':'h-max' }  w-[8rem]  rounded-full mt-3.5`}>
+                                
+                                {transition.state === 'idle' ?
+                                <img src={secondaryRestore ? defaultProfileimage : loaderData.profileImage.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' /> : transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader size={75} color="#000" />:null }
                               </div>
-
                             </div>
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
