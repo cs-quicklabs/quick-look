@@ -27,7 +27,7 @@ const [val,setVal] = useState('')
 const [error,SetError] = useState('')
  
   let whiteSpaceRegex = /^\S*$/
-  let RegEx = val?.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm
+  let RegEx = val?.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm
 
  const RegexCheck =()=>{ 
   if(val === ''){
