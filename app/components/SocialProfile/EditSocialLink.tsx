@@ -84,7 +84,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
 
   return (
     <Form replace={true} action="update/socialProfile" method="post">
-      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
 
         
         {successUpdateMessage &&

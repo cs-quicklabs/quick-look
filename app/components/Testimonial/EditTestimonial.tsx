@@ -5,8 +5,6 @@ import { Form, useTransition } from '@remix-run/react';
 
 export default function EditSocialProfile({setShowEditTestimonial, loaderData, mode, setmode }: any) {
 
-// console.log(inputTestimonial);
-
 
   const [testimonialBy, setTestimonialBy] = useState(loaderData?.testimonial?.testimonialBy)
   const [testimonialText, setTestimonialText] = useState(loaderData?.testimonial?.testimonialText)

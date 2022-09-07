@@ -7,7 +7,6 @@ export default function EditSocialProfile({inputVideo, setInputVideo, setShowEdi
 const [val,setVal] = useState(loaderData?.video?.videoLink)
 
  const transition = useTransition();
- console.log(transition);
  
   const Onclose = () => {
     if (mode === 'desktop') {
@@ -28,11 +27,9 @@ const onSubmitClose = ()=>{
       : '';
 }
 const [error,SetError] = useState('')
- console.log('@@@@',error);
  
   let whiteSpaceRegex = /^\S*$/
   let RegEx = val.includes('youtube') ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/.*/i : /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
-console.log(RegEx);
 
  const RegexCheck =()=>{ 
   if(val == ''){

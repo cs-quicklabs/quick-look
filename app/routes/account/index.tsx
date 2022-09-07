@@ -87,8 +87,6 @@ setmode('desktop')
 
 }
 
-console.log("loaderData",loaderData)
-
 
 const togglemobile = () =>{
 setmode('mobile')

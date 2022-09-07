@@ -7,6 +7,10 @@ import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
+
+  
+
+console.log("loaderData",loaderData)
 const [text, setText] = useState('')
 useEffect(() => {
   setText(successUpdateMessage)
@@ -56,6 +60,9 @@ useEffect(() => {
                         </p>
                       </div>
                     </div>
+
+                    {loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? null :
+                    <> 
                     <div className='font-inter mt-7 flex flex-col items-center'>
                     <p className='text-xs leading-4 font-semibold tracking-wide'>
                       ADD MORE PROFILE LINKS
@@ -100,9 +107,17 @@ useEffect(() => {
         </div>
       </div>
     </div>}
-                        <div className='mt-12'>
-                        <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
-                        </div>
+                        
+                    </> }
+
+                   
+                    
+                    <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-12'}`}>
+                    <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
+                    </div>
+                    
+
+
                   </div>                  
                 </Dialog.Panel>
               </Transition.Child>
