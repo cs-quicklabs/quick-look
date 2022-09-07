@@ -88,7 +88,7 @@ export default function CreateSocialLinks({successUpdateMessage,setshowSocialLin
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <Form replace={true} action='add/socialProfile' method="post" className='h-screen' >
-                    <div className={`flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+                    <div className={`flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
@@ -231,7 +231,7 @@ export default function CreateSocialLinks({successUpdateMessage,setshowSocialLin
                         <button
                           data-cy="addProfileButton"
                           type="submit"
-                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-400" 
+                          className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                           disabled={!value  ? true : !error ? false : true }
                         >
                           Add Profile

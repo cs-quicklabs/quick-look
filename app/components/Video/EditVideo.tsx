@@ -141,7 +141,7 @@ useEffect(() => {
                         <button
                           data-cy="addTestimonialButton"
                           type="submit"
-                          className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-400" 
+                          className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                           // @ts-ignore
                         //  onClick={transition.state === 'loading' ? OnCancel : null}
                           disabled={!val  ? true : !error ? false : true }

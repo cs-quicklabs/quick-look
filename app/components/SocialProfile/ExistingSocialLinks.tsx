@@ -39,11 +39,12 @@ const linkName = localStorage.getItem("LinkName")
 
   const toggleEdit = (person: { name: string; email: string; image: string; }) => {
     setShowEditProfile(!showEditProfile);
-
+    setopen(false);
     setClickedLink(person)
   }
   const toggleDel = (person: { name: string; email: string; image: string; }) => {
     setopen(!open);
+    setShowEditProfile(false);
     setClickedLink(person)
   }
 
@@ -66,7 +67,7 @@ const linkName = localStorage.getItem("LinkName")
                     </div>
                   </div>
 
-                  <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'}`}>
+                  <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}>
                     <button
                       data-cy="editSocialButton"
                       className="hover:text-indigo-600 text-[14px]"
@@ -84,7 +85,9 @@ const linkName = localStorage.getItem("LinkName")
                       className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                       Delete
                     </button>
+
                     <DeleteSocialLink open={open} person={person.name} onClose={() => setopen(false)} clickedLink={clickedLink} />
+                    
                   </div>
 
                     </div>

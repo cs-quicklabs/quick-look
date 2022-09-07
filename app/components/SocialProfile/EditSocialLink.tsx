@@ -133,41 +133,22 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
             <div className="flex flex-1 flex-col justify-between">
               <div className="divide-y divide-gray-200 px-4 sm:px-6">
                   <div className="space-y-6 pt-2 pb-1 border-b border-gray-200">
-                  <div>
-                    <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
-                    Edit Social Profile
-                    </label>
-                    <div className="mt-1">
-                      <input disabled
-                      type="text"
-                      data-cy={selectedEditSocialLinks.name+'-link'}
-                      value={clickedLink.name}
-                      name="edit_social_links"
-
-                      className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900  `}
-                      />
-                    </div>
-
-
-
-
-                  </div>
 
                   <div className='mt-5'>
                     <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                     {' '}
-                    Add Link{' '}
+                    Edit Link{' '}
                     </label>
-                    <div className="mt-1">
-                      <input
-                      type="text"
-                      data-cy={selectedEditSocialLinks.name+'-link'}
-                      value={val}
-                      onChange={handleChange}
-                      name="editlink"
-                      id="editlink"
-                      className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
-                      />
+                    <div className="">
+                    <input
+                              type="text"
+                              data-cy={selectedEditSocialLinks.name+'-link'}
+                              value={val}
+                              onChange={handleChange}
+                              name="editlink"
+                              id="editlink"
+                              className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                            />
                     <div className={`text-red-600 text-sm`}>{error}</div>
 
                     </div>
@@ -189,7 +170,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                     <button
                     id="updateSocialLink"
                     type="submit"
-                    className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-400"
+                    className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                     disabled={!val  ? true : !error ? false : true }
                     >
                     Update
