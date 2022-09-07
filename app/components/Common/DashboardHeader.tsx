@@ -65,7 +65,7 @@ export default function DashboardHeader({username, loaderData}: any) {
                   title="Open Profile"
                   loading="eager"
                   className="mt-2 pb-0 w-8 h-8 md:mt-0 sm:pt-0 sm:pb-0 rounded-full"
-                  src={!loaderData?.secondaryImage ? DefaultProfileIcon : loaderData?.secondaryImage}
+                  src={!loaderData?.profileImage?.secondaryImage ? DefaultProfileIcon : loaderData?.profileImage?.secondaryImage}
                   onClick={() => toggleSetting()}
                 />
               </button>

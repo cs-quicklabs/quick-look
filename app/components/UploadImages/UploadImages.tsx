@@ -227,7 +227,7 @@ submit(event.target.value, { replace: true });
                             </div>
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                              {/* <form action="/account/add/image" encType="multipart/form-data" method='post'> */}
+                              <Form replace={true} action="/account/add/image" encType="multipart/form-data" method='post'>
                               <label htmlFor="photo2" id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                 Edit
                                 <input
@@ -247,7 +247,7 @@ submit(event.target.value, { replace: true });
                                 className='cursor-pointer ml-3 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                 Delete
                               </button>
-                              {/* </form> */}
+                              </Form>
                             </div>
 
                           </div> :

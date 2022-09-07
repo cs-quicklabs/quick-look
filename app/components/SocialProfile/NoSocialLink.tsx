@@ -1,11 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import CreateProfile from './CreateProfile'
-import ExistingSocialLinks from '../Common/ExistingSocialLinks';
-import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import CreateSocialLinks from './CreateSocialLinks';
 
 export default function SocialProfile({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
 
@@ -48,7 +45,7 @@ const Onclose = () => {
         <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
-              <Transition.Child
+            <Transition.Child
                 as={Fragment}
                 enter=""
                 enterFrom="translate-x-full"
@@ -66,10 +63,10 @@ const Onclose = () => {
                           <button
                             type="button"
                             className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
-                            onClick={OnCancel}
+                            onClick={Onclose}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon className="h-6 w-6" aria-hidden="true" />
+                            <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -80,8 +77,8 @@ const Onclose = () => {
                       </div>
                     </div>
                     <div className='font-inter mt-7 flex flex-col items-center'>
-                    <p className='text-xs leading-4 font-semibold tracking-wide'>
-                        {loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
+                      <p className='text-xs leading-4 font-semibold tracking-wide'>
+                        NO LINKS ADDED YET
                       </p>
                       <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below
@@ -95,34 +92,10 @@ const Onclose = () => {
                         Add Social Profile
                       </button>
                       {showCreateProfile && (
-                        <CreateProfile message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                        <CreateSocialLinks message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} setmode={setmode} loaderData={loaderData} />
                       )}
                     </div>
-                    {text &&
-                          <div className="rounded-md bg-green-50 p-4 mt-4">
-      <div className="flex  items-start justify-start">
-        <div className="flex-shrink-0 pt-1">
-          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-        </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{text}</p>
-        </div>
-        <div className="ml-auto pl-3">
-          <div className="-mx-1.5 -my-1.5 pt-1">
-            <button
-              type="button"
-              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
-            >
-              <span className="sr-only">Dismiss</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>}
-                        <div className='mt-12'>
-                          <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} mode={mode}/>
-                        </div>
+                    
                   </div>                  
                 </Dialog.Panel>
               </Transition.Child>

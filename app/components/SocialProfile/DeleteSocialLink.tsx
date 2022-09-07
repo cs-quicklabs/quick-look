@@ -1,14 +1,18 @@
-import { Fragment, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 
-export default function Delete({open,onClose, clickedLink, person}:any) {
-
+export default function DeleteSocialLink({open,onClose, deleteLink, person}:any) {
+  const transition = useTransition()
+useEffect(() => {
+  transition.state === 'loading' && onClose()
+}, [transition])
   const cancelButtonRef = useRef(null)
-  
+
+
   return (
-    <Transition.Root show={person === clickedLink.name && open} as={Fragment}>
+    <Transition.Root show={person === deleteLink.name} as={Fragment}>
       <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={onClose}>
         <Transition.Child
           as={Fragment}
@@ -51,12 +55,12 @@ export default function Delete({open,onClose, clickedLink, person}:any) {
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <Form replace={true} action="delete/socialProfile" method='post'>
-                  <input type="text" name={clickedLink?.name} value={clickedLink?.name  === 'Facebook' ? '1' : clickedLink?.name  === 'Twitter' ? '2' : clickedLink?.name  === 'Youtube' ? '3' :''} hidden />
+                  <input type="text" name={deleteLink?.name} value={deleteLink?.name  === 'Facebook' ? '1' : deleteLink?.name  === 'Twitter' ? '2' : deleteLink?.name  === 'Youtube' ? '3' :''} hidden />
                     <button
                       data-cy="deleteSocialLink"
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
-
+                    //  onClick={onClose}
                     >
                       Delete 
                     </button>
