@@ -17,8 +17,6 @@ function classNames(...classes: (string | boolean)[]) {
 
 export default function CreateSocialLinks({successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
 
-   
-
   const [value, setValue] = useState('')
   const [text, setText] = useState(message)
   const [error, setError] = useState('')
@@ -43,26 +41,13 @@ export default function CreateSocialLinks({successUpdateMessage,setshowSocialLin
    setValue(e.target.value)
   regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   }
-  
-  
     useEffect(() => {
       loaderData;
       regexCheck(fbRegEx,value,whiteSpaceRegex)
     }, [loaderData,selectedSocialLinks])
     const [query, setQuery] = useState('')
-   
-  
-    const Onclose = () => {
-     
-      if(mode === 'desktop'){
-     setshowCreateProfile(false)
-      }
-      if(mode === 'mobile'){
-     setshowCreateProfile(false)
-      }
-   
-    }
-  
+ 
+
     const filteredSelectedSocialLink =
       query === ''
         ? socialLinks

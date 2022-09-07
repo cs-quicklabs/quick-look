@@ -4,6 +4,7 @@ import DeleteSocialLink from "./DeleteSocialLink";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
+import { useTransition } from "@remix-run/react";
 
 export default function ExistingSocialLinks({successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode, setmode }: any) {
 const linkName = localStorage.getItem("LinkName")
@@ -13,10 +14,7 @@ const linkName = localStorage.getItem("LinkName")
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
   const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
-  
-
-
-
+  const [deleteLink, setDeleteLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
   
   const people = [
     {
@@ -43,9 +41,9 @@ const linkName = localStorage.getItem("LinkName")
     setClickedLink(person)
   }
   const toggleDel = (person: { name: string; email: string; image: string; }) => {
-    setopen(!open);
+    setopen(true);
     setShowEditProfile(false);
-    setClickedLink(person)
+    setDeleteLink(person)
   }
 
   return (
@@ -86,7 +84,7 @@ const linkName = localStorage.getItem("LinkName")
                       Delete
                     </button>
 
-                    <DeleteSocialLink open={open} person={person.name} onClose={() => setopen(false)} clickedLink={clickedLink} />
+                    <DeleteSocialLink open={open} person={person.name} onClose={()=>setDeleteLink({ name: '', email: '', image: '' })} deleteLink={deleteLink} />
                     
                   </div>
 

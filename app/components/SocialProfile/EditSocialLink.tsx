@@ -1,9 +1,8 @@
-import { Fragment, useState,useEffect } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import {  useState,useEffect } from 'react'
 import { XIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
-import { Combobox } from '@headlessui/react'
-import { Form, useSubmit } from '@remix-run/react'
+import { CheckCircleIcon } from '@heroicons/react/solid'
+
+import { Form, useSubmit, useTransition } from '@remix-run/react'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
@@ -20,27 +19,20 @@ var socialLinks = [
 export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
 
 const linkName = localStorage.getItem("LinkName")
-  const linkEmail = localStorage.getItem("LinkEmail")
+const transition = useTransition()
 
 useEffect(() => {
-   
-    localStorage.setItem("LinkName",clickedLink?.name)
-    localStorage.setItem("LinkEmail",clickedLink?.email)
-    clickedLink?.email
+  transition.state === "loading" && setShowEditProfile(false)
+}, [transition])
 
-  }, [clickedLink?.email])
+useEffect(() => {
+localStorage.setItem("LinkName",clickedLink?.name)
+}, [clickedLink?.email])
 
 const [error, setError] = useState('')
 
-
-
-
   const [val, setVal] = useState<string>(clickedLink?.name === 'Facebook' ? loaderData?.socialMedia?.facebookLink :clickedLink?.name === 'Twitter' ? loaderData?.socialMedia?.twitterLink :  clickedLink?.name === 'Youtube' ? loaderData?.socialMedia?.youtubeLink : '')
-  // console.log(val);
   
-  // const [text, setText] = useState(successUpdateMessage)
-
-  // const [query, setQuery] = useState('')
   const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(socialLinks?.filter((link) =>
     link?.name === (clickedLink?.name !== null ? clickedLink?.name : linkName)
   )[0] 
@@ -66,17 +58,7 @@ const regexCheck = (fbRegEx:any,val:any,whiteSpaceRegex:any)=>{
  else {
  return setError('')
 }}
-// const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
-//   if(value === ''){
-//  return setError('')}
-// if(!fbRegEx.test(value)){
-//   return setError('Please enter a valid link.')
-//  } if(!whiteSpaceRegex.test(value)){
-//   return setError('White space not allowed.')
-//  }
-//  else {
-//  return setError('')
-// }}
+
 const handleChange = (e:any)=>{
  setVal(e.target.value)
 regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
@@ -89,7 +71,6 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
     
   }, [loaderData,selectedSocialLinks])
 
-  // const [query, setQuery] = useState('')
   const Onclose = () => {
     if (mode === 'desktop') {
       setShowEditProfile(false)
@@ -140,6 +121,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                     Edit Link{' '}
                     </label>
                     <div className="">
+                      <input value={clickedLink.name} name="edit_social_links" hidden/>
                     <input
                               type="text"
                               data-cy={selectedEditSocialLinks.name+'-link'}
@@ -179,15 +161,9 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                 </div>
 
               </div>
-
-
-
-
             </div>
       </div>
     </Form>
-
-
-                            
+                       
   )
 }

@@ -2,40 +2,17 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateSocialLinks from './CreateSocialLinks'
-import { CheckCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
-
-   
-
 const [text, setText] = useState('')
 useEffect(() => {
   setText(successUpdateMessage)
-  // if(successUpdateMessage){
-  //   setTimeout(() => {
-      
-  //     window.location.reload()
-  //   }, 2000);
-  // }
 }, [successUpdateMessage])
-  const [showCreateProfile, setshowCreateProfile] = useState(message ? true : false);
+  const [showCreateProfile, setshowCreateProfile] = useState(false);
 
-  const toggleSetting = () => {
-    setshowCreateProfile(!showCreateProfile);
-  };
-const Onclose = () => {
-   
-    if(mode === 'desktop'){
-   setshowCreateProfile(false)
-    }
-    if(mode === 'mobile'){
-     
-    }
- 
-  }
   const OnCancel = ()=>{
    setshowSocialLinks(false)
   setmode('desktop')
@@ -88,7 +65,7 @@ const Onclose = () => {
                       </p>
                       <button
                         data-cy="addSocialProfileButton"
-                        onClick={() => toggleSetting()}
+                        onClick={ ()=> setshowCreateProfile(true)}
                         type="button"
                         className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                       >

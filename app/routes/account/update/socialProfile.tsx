@@ -14,6 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
     
     let link = formData.get('editlink') as string
     const socialProfile = formData.get('edit_social_links') as string
+console.log('23123123123',socialProfile);
 
     if(socialProfile == 'Facebook'){
       index = link.search('facebook')
