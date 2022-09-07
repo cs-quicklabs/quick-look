@@ -6,7 +6,7 @@ import { Form } from '@remix-run/react';
 
    
 export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, mode, loaderData, setmode}:any) {
-const [val,setVal] = useState(loaderData?.video?.videoLink)
+const [val,setVal] = useState('')
 
   const OnCancel = ()=>{
     setShowAddVideo(false);
@@ -100,7 +100,7 @@ if(!RegEx.test(val)){
                       </div>
                       {loaderData?.video?.videoLink ?
                         <div className=''>
-                        <ExistingVideo inputVideo={inputVideo} setInputVideo={setInputVideo} loaderData={loaderData} mode={mode}/>
+                        <ExistingVideo setVal={setVal} inputVideo={inputVideo} setInputVideo={setInputVideo} loaderData={loaderData} mode={mode}/>
                         </div>:
                       <>
                       <div className='pl-2.5 pr-5 mt-6'>

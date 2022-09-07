@@ -1,9 +1,14 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 
-export default function Delete({openDeleteTestimonial,onClose}:any) {
+export default function Delete({setShowTestimonial, setTestimonialBy , setTestimonialText, openDeleteTestimonial,onClose}:any) {
+
+//   const transition = useTransition()
+// useEffect(() => {
+//   transition.state === "loading" && setShowTestimonial(false)
+// }, [transition])
 
   const cancelButtonRef = useRef(null)
 
@@ -57,6 +62,10 @@ export default function Delete({openDeleteTestimonial,onClose}:any) {
                     value =  "delete testimonial"
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
+                      onClick={() => {
+                        setTestimonialBy('')
+                        setTestimonialText('')
+                      }}
                     >
                       Delete 
                     </button>

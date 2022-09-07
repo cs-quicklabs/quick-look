@@ -97,7 +97,7 @@ return (
                       </p>
                     </div>
                   </div>
-                  <ExistingTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} mode={mode} setmode={setmode} />
+                  <ExistingTestimonial testimonialBy={testimonialBy} testimonialText={testimonialText} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} setShowTestimonial={setShowTestimonial} loaderData={loaderData} mode={mode} setmode={setmode} />
                 </div>:
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                   <div className="bg-gray-50 py-6 px-4">

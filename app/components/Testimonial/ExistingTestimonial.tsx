@@ -4,7 +4,7 @@ import { Testimonials } from '../Testimonials';
 import DeleteTestimonial from './DeleteTestimonial';
 import EditTestimonial from './EditTestimonial';
 
-export default function ExistingTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode}:any) {
+export default function ExistingTestimonial({testimonialText, testimonialBy, setTestimonialBy, setTestimonialText, setShowTestimonial, loaderData, mode, setmode}:any) {
 
 const testimonial = [
   {
@@ -46,7 +46,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                     Edit
                   </button>
                   {showEditTestimonial && (
-                    <EditTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} setShowEditTestimonial={setShowEditTestimonial} mode={mode} setmode={setmode} />
+                    <EditTestimonial testimonialBy={testimonialBy} testimonialText={testimonialText} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} setShowTestimonial={setShowTestimonial} loaderData={loaderData} setShowEditTestimonial={setShowEditTestimonial} mode={mode} setmode={setmode} />
 
                   )}
                   <button
@@ -55,7 +55,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  <DeleteTestimonial openDeleteTestimonial={openDeleteTestimonial} onClose={() => setOpenDeleteTestimonial(false)}  />
+                  <DeleteTestimonial setShowTestimonial={setShowTestimonial} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} openDeleteTestimonial={openDeleteTestimonial} onClose={() => setOpenDeleteTestimonial(false)}  />
                 </div>
               </div>
               : <span></span>}

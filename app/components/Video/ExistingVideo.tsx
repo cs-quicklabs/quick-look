@@ -3,7 +3,7 @@ import fbIcon from '../../../assets/images/fb1.png';
 import DeleteVideo from './DeleteVideo';
 import EditVideo from './EditVideo';
 
-export default function ExistingVideo({inputVideo, setInputVideo, loaderData, mode, setmode}:any) {
+export default function ExistingVideo({setVal, inputVideo, setInputVideo, loaderData, mode, setmode}:any) {
 
 //   const Onclose = (e:any) => {
     
@@ -73,7 +73,7 @@ const [openDeleteVideoModal, setOpenDeleteVideoModal] = useState(false);
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  <DeleteVideo openDeleteVideoModal={openDeleteVideoModal} onClose={() => setOpenDeleteVideoModal(false)}  />
+                  <DeleteVideo setVal={setVal} openDeleteVideoModal={openDeleteVideoModal} onClose={() => setOpenDeleteVideoModal(false)}  />
                 </div>
               </div>
               : <span></span>}
