@@ -12,8 +12,6 @@ const Final = Name.split(" ").join('')
 
 
 
-
-
   const btnText = loaderData?.spotlightButton?.buttonText?.length > 30 ? `${loaderData?.spotlightButton?.buttonText.substring(0,30)}...` : loaderData?.spotlightButton?.buttonText
 
 

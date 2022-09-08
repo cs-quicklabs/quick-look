@@ -1,6 +1,6 @@
 import { Listbox,Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
@@ -34,11 +34,35 @@ const people = [
 // }
 
 export default function CreateSpotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
-  const [selectedColor, setSelectedColor] = useState('')
+  const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
 
   
-  const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(loaderData?.spotlightButton?.toggleSpotlight)
   const [selected, setSelected] = useState(people[3])
+  const [val,setVal]=useState({buttonText: loaderData?.spotlightButton?.buttonText || '',buttonActionlink: loaderData?.spotlightButton?.buttonActionlink || '', hexcode: loaderData?.spotlightButton?.buttonhex || '', spotlightIcon: loaderData?.spotlightButton?.spotlightIcon || '', buttonAction: loaderData?.spotlightButton?.buttonAction || '', toggleSpotlight: loaderData?.spotlightButton?.toggleSpotlight || '' })
+
+  // console.log(loaderData?.spotlightButton?.buttonHex )
+  console.log(loaderData)
+   const [error,setError]=useState('')
+   const [errorLink,setErrorLink]=useState('')
+const [click,setClicked]=useState(false)
+ 
+useEffect(() => {
+ if(val.buttonText.length === 0){
+  setError('Required')
+ }else{
+  setError('')
+ }
+}, [val])
+
+useEffect(() => {
+ if( val.buttonActionlink.length ===0){
+  setErrorLink('Required')
+ }else{
+  setErrorLink('')
+ }
+}, [val])
+
 
   const Onclose = (e:any) => {
     
@@ -111,7 +135,7 @@ const OnCancel = ()=>{
                           <div className="divide-y divide-gray-200 px-4 sm:px-6">
                             <div className="space-y-6 pt-6 pb-5">
 
-                            <div>
+                            <div >
                               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 What do you want your spotlight button to say?{' '}
@@ -119,18 +143,18 @@ const OnCancel = ()=>{
                               <div className="mt-1">
                                 <input
                                   type="text"
-                                  value={loaderData?.spotlightButton?.buttonText}
+                                  value={val.buttonText}
                                   name="buttonText"
                                   id="project-name"
-                                  
-                    //               onChange={(event) => {
-                    //   setinput({
-                    //     ...input,
-                    //     [event.target.name]: event.target.value,
-                    //   })
-                    // }}
-                                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                  onChange={(event) => {
+                                    setVal({
+                                      ...val,
+                                      [event.target.name]: event.target.value,
+                                    })
+                                  }}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm ${click && error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 />
+                                {click && <div className='text-sm text-red-500'>{error}</div>}
                               </div>
                             </div>
                             
@@ -150,7 +174,7 @@ const OnCancel = ()=>{
                                         classNames(
                                           color.selectedColor,
                                           active && checked ? 'ring ring-offset-1' : '',
-                                          !active && checked ? 'ring-2' : '',
+                                          !active && checked ? 'ring ring-offset-1' : '',
                                           '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
                                         )
                                       }
@@ -176,15 +200,15 @@ const OnCancel = ()=>{
                               <div className="mt-1 p-1">
                                 <input
                                   type="text"
-                                  // value={input.location}
+                                  value={val.hexcode}
                                   name='hexcode'
                                   id="project-name"
-                    //               onChange={(event) => {
-                    //   setinput({
-                    //     ...input,
-                    //     [event.target.name]: event.target.value,
-                    //   })
-                    // }}
+                                  onChange={(event) => {
+                                    setVal({
+                                      ...val,
+                                      [event.target.name]: event.target.value,
+                                    })
+                                  }}
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                               </div>
@@ -199,16 +223,15 @@ const OnCancel = ()=>{
                               <div className="mt-1">
                                 <input
                                   type="text"
-                                  // value={input.location}
+                                  value={val.spotlightIcon}
                                   name="spotlightIcon"
                                   id="project-name"
-                                  
-                    //               onChange={(event) => {
-                    //   setinput({
-                    //     ...input,
-                    //     [event.target.name]: event.target.value,
-                    //   })
-                    // }}
+                                  onChange={(event) => {
+                                    setVal({
+                                      ...val,
+                                      [event.target.name]: event.target.value,
+                                    })
+                                  }}
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
@@ -216,7 +239,7 @@ const OnCancel = ()=>{
                             </div>
 
                             <div>
-                            <Listbox value={selected.name}
+                            <Listbox value={loaderData?.spotlightButton?.buttonAction || selected.name}
                               //ts-ignore 
                              onChange={setSelected}
                               name='buttonAction'>
@@ -251,7 +274,10 @@ const OnCancel = ()=>{
                                               )
                                             }
                                             value={person}
+                                            // onChange={(event:any) => {setAction(event.target.value)}}
                                           >
+                                            
+
                                             {({ selected, active }) => (
                                               <>
                                                 <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
@@ -283,23 +309,23 @@ const OnCancel = ()=>{
                             <div>
                               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
-                                Please provide download path of file which you want visiter to download{' '}
+                                {selected.name === 'Download a File' ?'Please provide download path of file which you want visiter to download': selected.name === 'Accept Payments' ?'Please enter your Payment Gateway link' :selected.name === 'Let people email me'?'Please Enter your Email Id' :selected.name === 'Redirect to another URL'? 'Enter the link you want visitors to visit':selected.name === 'Let People call me'?'Enter your Phone number / Telephone number':selected.name === 'Capture lead in google sheet'?'Enter link of your Google sheet':selected.name === 'Allow people to book an appointment' ? ' Enter link for your Appointment':null}
                               </label>
                               <div className="mt-1">
                                 <input
                                   type="text"
-                                  // value={input.location}
+                                  value={val.buttonActionlink}
                                   name="buttonActionlink"
                                   id="project-name"
                                   
-                    //               onChange={(event) => {
-                    //   setinput({
-                    //     ...input,
-                    //     [event.target.name]: event.target.value,
-                    //   })
-                    // }}
-                                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                />
+                                  onChange={(event) => {
+                      setVal({
+                        ...val,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm ${click && errorLink ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                                />{click &&<div className='text-sm text-red-500'>{errorLink}</div>}
                               </div>
                             </div>
 
@@ -337,13 +363,14 @@ const OnCancel = ()=>{
                               
                             </div>
 
-                            <div className="flex flex-shrink-0 justify-end mt-7">
+                            <div className="flex flex-shrink-0 justify-end mt-7" >
                     
                               <button
-                                data-cy="addTestimonialButton"
+                                data-cy="addSpotlightButton"
                                 type="submit"
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                                // disabled={error || !inputTestimonial.testimonialText || error1 || !inputTestimonial.testimonialBy ? true : false}
+                                onClick={()=>setClicked(true)}
+                                // disabled={error || errorLink ? true : false}
                               >
                                 Add Spotlight Button
                               </button>
