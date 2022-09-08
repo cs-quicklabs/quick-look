@@ -4,7 +4,7 @@ import { Testimonials } from '../Testimonials';
 import DeleteTestimonial from './DeleteTestimonial';
 import EditTestimonial from './EditTestimonial';
 
-export default function ExistingTestimonial({testimonialText, testimonialBy, setTestimonialBy, setTestimonialText, setShowTestimonial, loaderData, mode, setmode}:any) {
+export default function ExistingTestimonial({ setShowCreateTestimonial, testimonialText, testimonialBy, setTestimonialBy, setTestimonialText, setShowTestimonial, loaderData, mode, setmode}:any) {
 
 const testimonial = [
   {
@@ -55,7 +55,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  <DeleteTestimonial setShowTestimonial={setShowTestimonial} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} openDeleteTestimonial={openDeleteTestimonial} onClose={() => setOpenDeleteTestimonial(false)}  />
+                  <DeleteTestimonial setShowCreateTestimonial={setShowCreateTestimonial} setShowTestimonial={setShowTestimonial} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} openDeleteTestimonial={openDeleteTestimonial} onClose={() => setOpenDeleteTestimonial(false)}  />
                 </div>
               </div>
               : <span></span>}

@@ -10,8 +10,8 @@ import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import UploadImages from '../UploadImages/UploadImages';
 import SocialProfile from '../SocialProfile';
-import AccountTestimonial from '../Testimonial';
-import AddVideo from '../Video';
+import NoTestimonial from '../Testimonial/NoTestimonial';
+import NoVideo from '../Video/NoVideo';
 import Portfolio from '../Portfolio';
 import SpotlightButton from '../Spotlight';
 
@@ -266,11 +266,11 @@ useEffect(() => {
                           </a>
                         ))}
                         {showTestimonial ?
-                        <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                        <NoTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                         null
                       }
                       {showAddVideo ?
-                          <AddVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          <NoVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showPortfolio ?
@@ -471,11 +471,11 @@ useEffect(() => {
                   null
                 }
                   {showTestimonial ?
-                  <AccountTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <NoTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showAddVideo ?
-                    <AddVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                    <NoVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                     null
                   }
                   {showPortfolio ?

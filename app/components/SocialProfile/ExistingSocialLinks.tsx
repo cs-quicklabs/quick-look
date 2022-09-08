@@ -4,7 +4,6 @@ import DeleteSocialLink from "./DeleteSocialLink";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
-import { useTransition } from "@remix-run/react";
 
 export default function ExistingSocialLinks({setshowCreateProfile, successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode, setmode }: any) {
 const linkName = localStorage.getItem("LinkName")
@@ -69,7 +68,7 @@ const linkName = localStorage.getItem("LinkName")
                     </div>
                   </div>
 
-                  <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] ml-[2rem] mt-6 xl:mr-0 flex-row xl:flex-col lg:ml-[-13rem] xl:ml-auto lg:mt-[4.5rem] xl:mt-[1.5rem] lg:mb-3 xl:mb-0' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}>
+                  <div className={`flex items-start  xl:justify-center mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] ml-[2rem] mt-6 xl:mr-0 flex-row xl:flex-col lg:ml-[-13rem] xl:ml-auto lg:mt-[4.5rem] xl:mt-0 lg:mb-3 xl:mb-0' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}>
                     <button
                       data-cy="editSocialButton"
                       className="hover:text-indigo-600 text-[14px]"

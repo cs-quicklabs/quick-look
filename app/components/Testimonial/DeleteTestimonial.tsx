@@ -3,12 +3,12 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 
-export default function Delete({setShowTestimonial, setTestimonialBy , setTestimonialText, openDeleteTestimonial,onClose}:any) {
+export default function Delete({ setShowCreateTestimonial, setShowTestimonial, setTestimonialBy , setTestimonialText, openDeleteTestimonial,onClose}:any) {
 
-//   const transition = useTransition()
-// useEffect(() => {
-//   transition.state === "loading" && setShowTestimonial(false)
-// }, [transition])
+  const transition = useTransition()
+useEffect(() => {
+  transition.state === "submitting" || transition.state === "loading" && setShowCreateTestimonial(false) && setShowTestimonial(true)
+}, [transition])
 
   const cancelButtonRef = useRef(null)
 
@@ -56,6 +56,7 @@ export default function Delete({setShowTestimonial, setTestimonialBy , setTestim
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <Form replace={true} action="delete/testimonial" method='post'>
+                    {/* <input type="text" value="delete testimonial" hidden /> */}
                     <button
                     id="deleteTestimonialModalButton" 
                     name="deleteTestimonial" 

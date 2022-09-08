@@ -8,9 +8,6 @@ import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
 
-  
-
-console.log("loaderData",loaderData)
 const [text, setText] = useState('')
 useEffect(() => {
   setText(successUpdateMessage)
@@ -65,7 +62,7 @@ useEffect(() => {
                     <> 
                     <div className='font-inter mt-7 flex flex-col items-center'>
                     <p className='text-xs leading-4 font-semibold tracking-wide'>
-                      ADD MORE PROFILE LINKS
+                    {loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
                       </p>
                       <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below
