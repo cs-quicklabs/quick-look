@@ -21,11 +21,7 @@ const [val,setVal] = useState(loaderData?.video?.videoLink)
     setShowEditVideo(false);
     setmode('desktop');
   }
-const onSubmitClose = ()=>{
-       transition.type === "actionRedirect"
-      ? OnCancel
-      : '';
-}
+
 const [error,SetError] = useState('')
  
   let whiteSpaceRegex = /^\S*$/

@@ -1,6 +1,6 @@
 describe('Upload Image Test Cases', () => {
 
-  beforeEach(() => {
+  before(() => {
     cy.commonLogin();
     cy.get('[data-cy="Images"]').click();
   });

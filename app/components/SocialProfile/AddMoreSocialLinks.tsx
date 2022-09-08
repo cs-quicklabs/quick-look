@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
+
 const [text, setText] = useState('')
 useEffect(() => {
   setText(successUpdateMessage)
@@ -38,7 +39,9 @@ useEffect(() => {
                   <div className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${mode === 'mobile' ? ' w-[16rem] xl:w-96' : ' w-[20rem] lg:w-96'}`}>
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
-                        <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Add Social Profile Links</Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
+                          {`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? '': 'Add'} Social Profile Links`}
+                          </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -50,15 +53,20 @@ useEffect(() => {
                           </button>
                         </div>
                       </div>
+                      {loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? null :
                       <div className="pt-1 pr-2">
                         <p className="text-sm leading-5 font-normal text-gray-500">
+                          
                         Select social profile links which you want to share on your profile
                         </p>
-                      </div>
+                      </div>}
                     </div>
+
+                    {loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? null :
+                    <> 
                     <div className='font-inter mt-7 flex flex-col items-center'>
                     <p className='text-xs leading-4 font-semibold tracking-wide'>
-                      ADD MORE PROFILE LINKS
+                    {loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink ? "ADD MORE PROFILE LINKS" : "NO LINKS ADDED YET " }
                       </p>
                       <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add social links by clicking on button below
@@ -100,9 +108,17 @@ useEffect(() => {
         </div>
       </div>
     </div>}
-                        <div className='mt-12'>
-                        <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
-                        </div>
+                        
+                    </> }
+
+                   
+                    
+                    <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-12'}`}>
+                    <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
+                    </div>
+                    
+
+
                   </div>                  
                 </Dialog.Panel>
               </Transition.Child>

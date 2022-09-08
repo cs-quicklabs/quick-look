@@ -119,7 +119,7 @@ const OnCancel = ()=>{
                               <div className="mt-1">
                                 <input
                                   type="text"
-                                  // value={input.location}
+                                  value={loaderData?.spotlightButton?.buttonText}
                                   name="buttonText"
                                   id="project-name"
                                   

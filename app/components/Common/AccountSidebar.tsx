@@ -10,8 +10,8 @@ import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import UploadImages from '../UploadImages/UploadImages';
 import SocialProfile from '../SocialProfile';
-import AccountTestimonial from '../Testimonial';
-import AddVideo from '../Video';
+import NoTestimonial from '../Testimonial/NoTestimonial';
+import NoVideo from '../Video/NoVideo';
 import Portfolio from '../Portfolio';
 import SpotlightButton from '../Spotlight';
 
@@ -42,7 +42,7 @@ export default function AccountSideBar({ showSpotlight, setShowSpotlight, inputV
 useEffect(() => {
  if(showImages && mode ==='mobile') {setshowImages(true)}
 }, [mode,showImages])
-
+let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVideo && !showTestimonial && !showSocialLinks &&!showTemplate && !showImages && !showBio;
   const Location = useLocation();
 
   return (
@@ -281,11 +281,11 @@ useEffect(() => {
                           null
                         }
                         {showTestimonial ?
-                        <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                        <NoTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                         null
                       }
                       {showAddVideo ?
-                          <AddVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          <NoVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showPortfolio ?
@@ -486,11 +486,11 @@ useEffect(() => {
                   null
                 }
                   {showTestimonial ?
-                  <AccountTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <NoTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showAddVideo ?
-                    <AddVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                    <NoVideo inputVideo={inputVideo} setInputVideo={setInputVideo} setShowAddVideo={setShowAddVideo} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                     null
                   }
                   {showPortfolio ?
@@ -504,14 +504,15 @@ useEffect(() => {
         </div>
 
         <div className="flex flex-col flex-1">
-          <div className="absolute top-0 z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
+          <div className="fixed top-[0] z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
+            
             <button
               type="button"
               className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-white hover:white"
-              onClick={() => setSidebarOpen(true)}
+              onClick={() => setSidebarOpen((prev)=>prev = sidebarOpen ? false : true)}
             >
               <span className="sr-only">Open sidebar</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+           {hamburger ?    <MenuIcon className="h-6 w-6 " aria-hidden="true" />: null} 
             </button>
           </div>
         </div>
