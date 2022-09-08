@@ -42,7 +42,6 @@ setshowBio(false);
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> Update Your Bio </Dialog.Title>
                           <div className="ml-3 flex h-7 items-center">
-                            <form action="">
                             <button
                               type="button"
                               className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
@@ -52,7 +51,7 @@ setshowBio(false);
                              
                               <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                               
-                            </button></form>
+                            </button>
                           </div>
                         </div>
                         <div className="mt-1">

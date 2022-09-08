@@ -4,7 +4,7 @@ import { Testimonials } from '../Testimonials';
 import DeleteTestimonial from './DeleteTestimonial';
 import EditTestimonial from './EditTestimonial';
 
-export default function ExistingTestimonial({testimonialText, testimonialBy, setTestimonialBy, setTestimonialText, setShowTestimonial, loaderData, mode, setmode}:any) {
+export default function ExistingTestimonial({ setShowCreateTestimonial, testimonialText, testimonialBy, setTestimonialBy, setTestimonialText, setShowTestimonial, loaderData, mode, setmode}:any) {
 
 const testimonial = [
   {
@@ -37,7 +37,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                   </div>
                 </div>
 
-                <div className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-0 py-0 lg:py-4'}`}>
+                <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[6.5rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col lg:ml-[3.2rem] ml-[0.8rem] py-0 lg:py-4'}`}>
                   <button
                     data-cy="editTestimonialButton"
                     className="hover:text-indigo-600 text-[14px]"
@@ -55,7 +55,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  <DeleteTestimonial setShowTestimonial={setShowTestimonial} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} openDeleteTestimonial={openDeleteTestimonial} onClose={() => setOpenDeleteTestimonial(false)}  />
+                  <DeleteTestimonial setShowCreateTestimonial={setShowCreateTestimonial} setShowTestimonial={setShowTestimonial} setTestimonialBy={setTestimonialBy} setTestimonialText={setTestimonialText} openDeleteTestimonial={openDeleteTestimonial} onClose={() => setOpenDeleteTestimonial(false)}  />
                 </div>
               </div>
               : <span></span>}

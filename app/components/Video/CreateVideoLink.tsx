@@ -2,20 +2,26 @@ import { Fragment, useEffect, useState, } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ExistingVideo from './ExistingVideo'
 import { XIcon } from '@heroicons/react/outline';
-import { Form } from '@remix-run/react';
+import { Form, useTransition } from '@remix-run/react';
 
    
-export default function AddVideo({ inputVideo, setInputVideo, setShowAddVideo, mode, loaderData, setmode}:any) {
+export default function CreateVideoLink({ inputVideo, setInputVideo, setShowCreateVideoLink, setShowAddVideo, mode, loaderData, setmode}:any) {
 const [val,setVal] = useState('')
+const transition = useTransition()
+useEffect(() => {
+  if(transition.state === 'loading'){
+    setShowCreateVideoLink(false);
+  }
+}, [transition])
 
   const OnCancel = ()=>{
-    setShowAddVideo(false);
+    setShowCreateVideoLink(false);
     setmode('desktop');
   }
 
   const Onclose = () => {
     if(mode === 'desktop'){
-      setShowAddVideo(false)
+      setShowCreateVideoLink(false)
     }
     if(mode === 'mobile'){
     }

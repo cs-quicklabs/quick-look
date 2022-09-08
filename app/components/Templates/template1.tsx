@@ -12,8 +12,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
 
       <div >
         <div className='h-[10rem]'>
-          <div className='relative '>
-            <img className={` w-screen object-cover ${loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData?.profileImage?.primaryImage} alt="" />
+          <div className='relative'>
+          {loaderData?.profileImage?.primaryImage || primaryRestore ?
+            <img className={` w-screen object-cover ${loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData?.profileImage?.primaryImage} alt="" />: null}
           </div>
           <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
@@ -30,8 +31,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
+        <div className='relative'>
         {loaderData?.spotlightButton?.toggleSpotlight &&
-          <Spotlightbtn loaderData={loaderData}/>}
+          <Spotlightbtn loaderData={loaderData}/>}</div>
         
         <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
