@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import EditTestimonial from '../Testimonial/EditTestimonial';
+import CreateSpotlight from './CreateSpotlight';
 import DeleteSpotlight from './DeleteSpotlight';
 import EditSpotlight from './EditSpotlight';
 
-export default function ExistingSpotlightLink({ loaderData, mode, setmode}:any) {
+export default function ExistingSpotlightLink({ setShowSpotlight,loaderData, mode, setmode}:any) {
 
 
 const spotlight = [
@@ -37,7 +38,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
           <li key={person.name} className="">
             {person.name ?
               <>
-              <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
                 <div className='flex flex-col w-screen'>
                   <div className='flex border-b border-gray-200'>
                   <div className="py-4 flex">
@@ -48,7 +49,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   </div>
                 </div>
 
-                <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'}`}>
+                <div className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile' ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0' : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[3.2rem] lg:mt-0'}`}>
                   <button
                     data-cy="editTestimonialButton"
                     className="hover:text-indigo-600 text-[14px]"
@@ -71,8 +72,12 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
 
                   <div>
                   {showEditSpotlight && clickedSpotlight.name === person.name && (
-                <EditSpotlight clickedSpotlight={clickedSpotlight} mode={mode} setmode={setmode} />
+                <CreateSpotlight setShowSpotlight={setShowSpotlight} clickedSpotlight={clickedSpotlight} loaderData={loaderData} mode={mode} setmode={setmode} />
               )}
+
+              {/* {showEditSpotlight && clickedSpotlight.name === person.name && (
+                  <EditSpotlight clickedSpotlight={clickedSpotlight} mode={mode} setmode={setmode} />
+              )} */}
                   </div>
                 
                 

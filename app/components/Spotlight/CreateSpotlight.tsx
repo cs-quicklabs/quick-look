@@ -4,7 +4,6 @@ import { Fragment, useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
-import AddMoreSpotlightLink from './AddMoreSpotlightLink'
 import { Form } from '@remix-run/react'
 
 const colors = [
@@ -135,7 +134,7 @@ const OnCancel = ()=>{
                               </div>
                             </div>
                             
-                            <div className='flex justify-between'>
+                            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`} >
                               <div className="">
                               <RadioGroup value={selectedColor} onChange={setSelectedColor} name='buttonColor'>
                                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
@@ -169,7 +168,7 @@ const OnCancel = ()=>{
                               </RadioGroup>
                               </div>
 
-                              <div className='w-[7.813rem]'>
+                              <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
                               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                                 {' '}
                                 Or enter Hex Code{' '}

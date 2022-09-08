@@ -210,7 +210,18 @@ useEffect(() => {
                             key={item.name}
                             // href={item.href}
                             data-cy={`${item.name}`}
-                            onClick={() => {
+                            onClick={() => { 
+                              if (item.name === 'Spotlight Button') {
+                              setShowSpotlight(true);
+                              // setShowPortfolio(false);
+                              // setShowAddVideo(false);
+                              // setShowTestimonial(false);
+                              setSidebarOpen(false);
+                              setshowImages(false);
+                              setshowSocialLinks(false);
+                              setshowTemplate(false);
+                              setshowBio(false);
+                            }
                               if (item.name === 'Add Testimonials') {
                                 setShowTestimonial(true);
                                 setSidebarOpen(false);
@@ -265,6 +276,10 @@ useEffect(() => {
                             </div>
                           </a>
                         ))}
+                        {showSpotlight ?
+                          <SpotlightButton showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                          null
+                        }
                         {showTestimonial ?
                         <AccountTestimonial setShowTestimonial={setShowTestimonial} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                         null

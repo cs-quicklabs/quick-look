@@ -84,7 +84,7 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
             <div className="space-y-6 pt-6 pb-5">
 
-            <div className='flex justify-between'>
+            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
               <div className="">
               <RadioGroup value={selectedColor} onChange={setSelectedColor}>
                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
@@ -117,7 +117,7 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
               </RadioGroup>
               </div>
 
-              <div className='w-[7.813rem]'>
+              <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                 {' '}
                 Or enter Hex Code{' '}
@@ -203,7 +203,7 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
           </div>
         </div> 
         <div className='inset-0'>
-        <ExistingSpotlightLink loaderData={loaderData} />
+        <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
         </div>
       
       
