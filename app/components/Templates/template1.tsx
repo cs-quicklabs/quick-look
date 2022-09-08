@@ -7,9 +7,10 @@ import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
+  console.log(loaderData);
+  
   return (
     <div className='flex  overflow-hidden'>
-
       <div >
         <div className='h-[10rem]'>
           <div className='relative'>
@@ -32,7 +33,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
             </h3> : <span></span>}
         </div>
         <div className='relative'>
-        {loaderData?.spotlightButton?.toggleSpotlight &&
+        {loaderData?.spotlightButton?.toggleSpotlight && loaderData?.spotlightButton?.spotlightText && loaderData?.spotlightButton?.buttonActionlink &&
           <Spotlightbtn loaderData={loaderData}/>}</div>
         
         <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
