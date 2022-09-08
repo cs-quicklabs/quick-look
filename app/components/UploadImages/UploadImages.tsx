@@ -8,6 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import DeleteImage from '../Common/DeleteImage';
 import { Form } from '@remix-run/react';
 import { useTransition } from '@remix-run/react';
+import * as cropro from "cropro";
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
   const bgimageAlreadyuploaded = loaderData.profileImage.primaryImage
@@ -18,23 +19,46 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const [deleteImage, setDeleteImage] = useState('')
   const [primaryImageError,setPrimaryImageError]=useState('')
   const [secondaryImageError,setSecondaryImageError]=useState('')
+console.log(image);
 
  const transition = useTransition()
 
   const ref = useRef(null);
   const ref2 = useRef(null);
+  const ref3:any = useRef('');
+  const ref4 = useRef(null);
+
+
+  let url:any
+  function showCropArea(e:any) {
+  const cropArea = new cropro.CropArea(e.target);
+  cropArea.displayMode = "popup";
+  cropArea.addRenderEventListener((imgURL) => (e.target.src = imgURL));
+  cropArea.show();
+  url = e.target.src
+    // const blob = await base64Response.blob();
+    // // const blob = new Blob([dataURL], { type: 'image/png' });
+    // url = window.URL.createObjectURL(blob);
+    // console.log('asdsadas',url)
+    // console.log(url);
+  }
 
 
   useEffect(() => {
+console.log('@@#@#@',ref3.current.src);
+
     if (image !== null) {
       // @ts-ignore
       ref?.current?.click()
+      // ref4?.current?.click()
+  
+
     }
     if (image2 !== null) {
       // @ts-ignore
       ref2?.current?.click()
     }
-  }, [image, image2]);
+  }, [image, image2,ref3]);
 
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/png") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/jpeg")) {
@@ -52,6 +76,11 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
     setSecondaryImageError("Please upload image only")
   }
   }
+  const handleChange3 = (e: any) => {
+   setimage(e.target.files[0])
+
+  }
+  
   const Onclose = (e: any) => {
 
     if (mode === 'desktop') {
@@ -126,7 +155,15 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                             <div>
                               <div className={`flex justify-center  rounded-md mt-3.5 ${transition.state === 'submitting' || transition.state === 'loading' ? 'h-max' : 'h-44'} `}>
                                 {transition.state === 'idle' ?
-                                <img src={primaryRestore ? bg : loaderData.profileImage.primaryImage} alt="" className='h-full w-full object-cover' /> : transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader size={75} color="#000" />:null }
+                                <img id='img' ref={ref3} onClick={(e:any)=>{
+                                  showCropArea(e)}
+                                } crossOrigin="anonymous" src={primaryRestore ? bg : loaderData.profileImage.primaryImage} alt="" className='h-full w-full object-cover' /> : transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader size={75} color="#000" />:null }
+                                <input type="file"
+                                      id="photo"
+                                      name="primaryImageUpload"
+                                      accept="image/*"
+                                      onChange={handleChange3} hidden/>
+                                      <button type="submit" ref={ref4} className="hidden">upload</button>
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
