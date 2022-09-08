@@ -42,7 +42,7 @@ export default function AccountSideBar({ showSpotlight, setShowSpotlight, inputV
 useEffect(() => {
  if(showImages && mode ==='mobile') {setshowImages(true)}
 }, [mode,showImages])
-
+let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVideo && !showTestimonial && !showSocialLinks &&!showTemplate && !showImages && !showBio;
   const Location = useLocation();
 
   return (
@@ -489,14 +489,15 @@ useEffect(() => {
         </div>
 
         <div className="flex flex-col flex-1">
-          <div className="absolute top-0 z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
+          <div className="fixed top-[0] z-50 lg:hidden pl-1 pt-0.5 lg:pl-3 lg:pt-3">
+            
             <button
               type="button"
               className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-white hover:white"
-              onClick={() => setSidebarOpen(true)}
+              onClick={() => setSidebarOpen((prev)=>prev = sidebarOpen ? false : true)}
             >
               <span className="sr-only">Open sidebar</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+           {hamburger ?    <MenuIcon className="h-6 w-6 " aria-hidden="true" />: null} 
             </button>
           </div>
         </div>
