@@ -2,9 +2,16 @@ import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import ExistingTestimonial from './ExistingTestimonial';
-import { Form } from '@remix-run/react';
+import { Form, useTransition } from '@remix-run/react';
 
 export default function AccountTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode, setShowCreateTestimonial }:any) {
+
+const transition = useTransition()
+useEffect(() => {
+  if(transition.state === 'loading'){
+    setShowCreateTestimonial(false);
+  }
+}, [transition])
 
   const [testimonialBy,setTestimonialBy]= useState('');
   const [testimonialText,setTestimonialText]= useState('');

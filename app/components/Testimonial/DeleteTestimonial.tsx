@@ -5,10 +5,7 @@ import { Form, useTransition } from '@remix-run/react'
 
 export default function Delete({ setShowCreateTestimonial, setShowTestimonial, setTestimonialBy , setTestimonialText, openDeleteTestimonial,onClose}:any) {
 
-  const transition = useTransition()
-useEffect(() => {
-  transition.state === "submitting" || transition.state === "loading" && setShowCreateTestimonial(false) && setShowTestimonial(true)
-}, [transition])
+
 
   const cancelButtonRef = useRef(null)
 
