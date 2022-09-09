@@ -80,6 +80,18 @@ console.log(Data);
   const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
   const actionData=useActionData()
 
+useEffect(() => {
+  localStorage.setItem("viewMode", mode)
+}, [mode])
+
+const viewMode1 = typeof window !== 'undefined' && localStorage?.getItem("viewMode");
+
+useEffect(() => {
+  viewMode1 && setmode(viewMode1);
+  viewMode1 === "mobile" && togglemobile();
+}, [])
+console.log("mode", mode)
+
 
 // useEffect(() => {
 //   return () => {
