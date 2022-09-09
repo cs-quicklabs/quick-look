@@ -34,7 +34,7 @@ const people = [
 //   return classes.filter(Boolean).join(' ')
 // }
 
-export default function CreateSpotlight({setShowEditSpotlight,showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
+export default function CreateSpotlight({showEditSpotlight,setShowEditSpotlight,showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
   const transition = useTransition()
   
   const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
@@ -78,7 +78,7 @@ useEffect(() => {
 
 useEffect(() => {
   if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
-    setShowEditSpotlight(false);
+   showEditSpotlight && setShowEditSpotlight(false);
   }
 }, [transition])
 

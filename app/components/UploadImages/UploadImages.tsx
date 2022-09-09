@@ -1,29 +1,33 @@
-
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
 import defaultProfileimage from '../../../assets/images/profile.png'
-import ClipLoader from "react-spinners/ClipLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import DeleteImage from '../Common/DeleteImage';
-import { Form } from '@remix-run/react';
-import { useTransition } from '@remix-run/react';
+import { Form, useTransition } from '@remix-run/react';
+import { useSubmit } from '@remix-run/react';
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
-  const bgimageAlreadyuploaded = loaderData.profileImage.primaryImage
-  const profileimageAlreadyuploaded = loaderData.profileImage.secondaryImage
+  const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
+  const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false);
   const [image, setimage] = useState(null);
   const [image2, setimage2] = useState(null);
   const [deleteImage, setDeleteImage] = useState('')
   const [primaryImageError,setPrimaryImageError]=useState('')
   const [secondaryImageError,setSecondaryImageError]=useState('')
+  const[upload,setUpload] = useState('')
+  const[upload2,setUpload2] = useState('')
 
- const transition = useTransition()
+const submit = useSubmit()
+console.log(upload,upload2);
+
+const transition = useTransition()
+  const[restore,setRestore] = useState(false)
 
   const ref = useRef(null);
   const ref2 = useRef(null);
-
 
   useEffect(() => {
     if (image !== null) {
@@ -35,19 +39,30 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
       ref2?.current?.click()
     }
   }, [image, image2]);
+const onSubmit = (event:any) =>{
+submit(event.currentTarget, { replace: true });
+}
+
+// useEffect(() => {
+
+//   upload === 'sec' && image !== null && image2 !== null ? setUpload('sec') : upload === 'sec' && image !== null && image2 == null  ? setUpload('primary'): setUpload('primary')
+
+
+// }, [upload])
 
   const handleChange = (e: any) => {
-     if (e.target.files[0].type.includes("image/png") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/jpeg")) {
-       setimage(e.target.files[0])
-     }
+     if (e.target.files[0].type.includes("image/")) {
+      setimage(e.target.files[0])
+    }
     else {
     setPrimaryImageError("Please upload image only")
   }
   }
   const handleChange2 = (e: any) => {
-   if (e.target.files[0].type.includes("image/png") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/jpeg")) {
-       setimage2(e.target.files[0])
-     }
+    if (e.target.files[0].type.includes("image/")) {
+          setimage2(e.target.files[0])
+
+    }
     else {
     setSecondaryImageError("Please upload image only")
   }
@@ -83,8 +98,9 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <Form replace={true} action="add/image" encType="multipart/form-data" method='post'>
-
+                  
+                   <Form replace={true}  action= "add/image" encType="multipart/form-data" method='post'>
+            
                     <div className='h-screen'>
                       <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
                         <div className="">
@@ -124,9 +140,8 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                             </label>
 
                             <div>
-                              <div className={`flex justify-center  rounded-md mt-3.5 ${transition.state === 'submitting' || transition.state === 'loading' ? 'h-max' : 'h-44'} `}>
-                                {transition.state === 'idle' ?
-                                <img src={primaryRestore ? bg : loaderData.profileImage.primaryImage} alt="" className='h-full w-full object-cover' /> : transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader size={75} color="#000" />:null }
+                              <div className="flex justify-center  rounded-md mt-3.5 h-44">
+                                <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' />
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
@@ -147,7 +162,10 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                   id='primaryDeleteButton'
                                   onClick={(e: any) => { e.preventDefault(); setopen(true); setDeleteImage('primary') }}
                                   className='cursor-pointer ml-2 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
-                                  Delete
+                                  {deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ?<BeatLoader
+  color="#184fad"
+  size={6}
+/> : 'Delete'}
                                 </button>
                               </div>
                               {/* </form> */}
@@ -182,14 +200,16 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
 
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
-{transition.state === 'idle' ?  
-                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
-                                    Upload Image
+{upload === 'primary' && transition?.submission?.action == 
+"/account/add/image" ?<BeatLoader color="#184fad" /> :
+                                  <label onClick={()=>{setUpload((prev)=> prev='primary');setUpload2('')}} id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                   Upload Image
+                                    
 
                                     <input
                                       type="file"
-
                                       className="hidden"
+                                      disabled={upload==='primary' && transition.state !== "idle"}
                                       id="photo"
                                       name="primaryImageUpload"
                                       accept="image/*"
@@ -198,13 +218,14 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                                     {/* <input type="file" name="photo" /> */}
                                     <button type="submit" ref={ref} className="hidden">upload</button>
-                                  </label>: transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader color="#000" /> : 'Uploaded'   }
+                                  </label>}
                                   {/* </form> */}
-                                  <form action="account/update/restoreImage" method='post'>
+                                  <Form replace action="update/restoreImage" method='post'>
 
-                                    <button data-cy="restorePrimaryImage"  name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" >
+                                    <button data-cy="restorePrimaryImage"  name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" onClick={()=>{setRestore(true)}} disabled={upload==='primary' && transition.state !== "idle"}>
                                       Restore Default Image
-                                    </button></form>
+                                    </button>
+                                    </Form>
                                 </div>
 <div className='text-sm mt-2 text-red-500'>{primaryImageError}</div>
                               </div>
@@ -221,18 +242,14 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                 Secondary Image
                               </label>
 
-                              {/* <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
-                                <img src={secondaryRestore ? defaultProfileimage : loaderData.profileImage.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
-                              </div> */}
-  <div className={`flex justify-center ${transition.state === 'idle'? 'h-[8rem]':'h-max' }  w-[8rem]  rounded-full mt-3.5`}>
-                                
-                                {transition.state === 'idle' ?
-                                <img src={secondaryRestore ? defaultProfileimage : loaderData.profileImage.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' /> : transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader size={75} color="#000" />:null }
+                              <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
+                                <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />
                               </div>
+
                             </div>
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                              <Form replace={true} action="/account/add/image" encType="multipart/form-data" method='post'>
+                              {/* <form action="/account/add/image" encType="multipart/form-data" method='post'> */}
                               <label htmlFor="photo2" id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                 Edit
                                 <input
@@ -244,15 +261,15 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                   accept="image/*"
                                   onChange={handleChange2}
                                 />
-                                <button type="submit" ref={ref2} className="hidden">upload</button>
+                                <button type="submit" ref={ref} className="hidden">upload</button>
                               </label>
                               <button
                                 id='secondaryDeleteButton'
                                 onClick={(e: any) => { e.preventDefault(); setopen(true); setDeleteImage('secondary') }}
                                 className='cursor-pointer ml-3 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
-                                Delete
+                                {deleteImage === 'secondary' && transition?.submission?.action == "/account/delete/image" ?<BeatLoader color="#184fad" size={6}/> : 'Delete'}
                               </button>
-                              </Form>
+                              {/* </form> */}
                             </div>
 
                           </div> :
@@ -280,11 +297,13 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                   <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
                                 </div>
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20 '>
-                                   {transition.state === 'idle' ?  
-                                  <label htmlFor="photo2" id="secondaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
-                                   Upload Image
+                                  {transition?.submission?.action == 
+"/account/add/image"  && upload2 ==='sec'? <BeatLoader color="#184fad" /> :
+                                  <label onClick={()=>{setUpload2((prev)=> prev='sec');setUpload('')}}  id="secondaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                      Upload Image
                                     <input
                                       type="file"
+                                      disabled={upload ==='sec' && transition?.submission?.action == "/account/add/image"}
                                       className="hidden"
                                       id="photo2"
                                       name="secondaryImageUpload"
@@ -292,11 +311,11 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
                                       onChange={handleChange2}
                                     />
                                     <button type="submit" ref={ref2} className="hidden">upload</button>
-                                  </label>: transition.state === 'submitting' || transition.state === 'loading' ? <ClipLoader color="#000" /> : 'Uploaded'   }
-                                  <form action="account/update/restoreImage" method='post'>
-                                    <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600">
+                                  </label>}
+                                  <Form replace action="update/restoreImage" method='post'>
+                                    <button data-cy="restoreSecondaryImage" name='restoreImage' value="restoresecondaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" disabled={upload ==='sec' && transition?.submission?.action == "/account/add/image"}>
                                       Restore Default Image
-                                    </button></form>
+                                    </button></Form>
                                 </div>
 <div className='text-sm mt-2 text-red-500'>{secondaryImageError}</div>
 
@@ -311,7 +330,8 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
 
                     </div>
 
-                  </Form>
+                  </Form> 
+                  
                 </Dialog.Panel>
               </Transition.Child>
             </div>
