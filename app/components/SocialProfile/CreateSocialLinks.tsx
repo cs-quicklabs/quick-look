@@ -9,16 +9,14 @@ function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-  var socialLinks = [
-  { id: 1, name: 'Facebook' },
-  { id: 2, name: 'Twitter' },
-  { id: 3, name: 'Youtube' },
-]
-
 export default function CreateSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
+  let socialLinks = [
+    { id: 1, name: 'Facebook', link: loaderData?.socialMedia?.facebookLink },
+    { id: 2, name: 'Twitter', link: loaderData?.socialMedia?.twitterLink },
+    { id: 3, name: 'Youtube', link: loaderData?.socialMedia?.youtubeLink },
+  ].filter(socialLink => socialLink.link === "")
 
   const [value, setValue] = useState('')
-  const [text, setText] = useState(successUpdateMessage)
   const [error, setError] = useState('')
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
     const sociallink = selectedSocialLinks?.name?.toLowerCase()
@@ -36,6 +34,11 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
    else {
    return setError('')
   }}
+
+  useEffect(() => {
+    setSelectedSocialLinks(socialLinks[0]);
+    setValue("");
+  }, [loaderData])
   
   const handleChange = (e:any)=>{
    setValue(e.target.value)
