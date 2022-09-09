@@ -90,28 +90,15 @@ useEffect(() => {
   viewMode1 && setmode(viewMode1);
   viewMode1 === "mobile" && togglemobile();
 }, [])
-console.log("mode", mode)
-
-
-// useEffect(() => {
-//   return () => {
-//     setinput({description:loaderData?.profileInfo?.bio ,location:loaderData?.profileInfo?.location,occupation:loaderData?.profileInfo?.occupation,company:loaderData?.profileInfo?.company,education:loaderData?.profileInfo?.education})
-//   };
-// }, [loaderData,showBio])
-
 
 const toggledesktop = () =>{
-setmode('desktop')
-// setshowBio(showBio ? true :false)
-
+  setmode('desktop')
 }
 
 
 const togglemobile = () =>{
 setmode('mobile')
-
 setshowTemplate(!showSocialLinks && !showImages && !showBio && !showTestimonial && !showAddVideo && !showPortfolio && !showSpotlight ? true : false)
-
 }
 const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
   return (

@@ -62,7 +62,7 @@ export default function Modal({ open, onClose }: any) {
                     data-cy="signOut"
                     type="submit"
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={ open}
+                    onClick={() => {typeof window !== 'undefined' && localStorage.setItem("viewMode", "desktop")}} 
                   >
                     Sign out
                   </button></form>
