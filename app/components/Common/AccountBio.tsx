@@ -1,9 +1,9 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
 import { Form } from '@remix-run/react';
 
-export default function DashboardBio({setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
+export default function DashboardBio({bioMessage, setBioMessage ,setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
 
   const Onclose = (e:any) => {
     
@@ -60,7 +60,29 @@ setshowBio(false);
                           </p>
                         </div>
                       </div>
-                     
+                     {/* <div>{bioMessage}</div> */}
+                     {bioMessage &&
+                          <div className="rounded-md bg-green-50 p-4 mb-4">
+      <div className="flex  items-start justify-start">
+        <div className="flex-shrink-0 pt-1">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{bioMessage}</p>
+        </div>
+        <div className="ml-auto pl-3">
+          <div className="-mx-1.5 -my-1.5 pt-1">
+            <button
+              type="button"
+              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+            >
+              <span className="sr-only">Dismiss</span>
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setBioMessage('')} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>}
                       <div className="flex flex-1 flex-col justify-between">
                         <div className="divide-y divide-gray-200 px-4 sm:px-6">
                           <div className="space-y-6 pt-6 pb-5">

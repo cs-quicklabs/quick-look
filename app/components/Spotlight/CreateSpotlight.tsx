@@ -4,7 +4,8 @@ import { Fragment, useEffect, useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
+import * as HIcons from '@heroicons/react/outline'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -33,19 +34,59 @@ const people = [
 //   return classes.filter(Boolean).join(' ')
 // }
 
-export default function CreateSpotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
-  const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
-
+export default function CreateSpotlight({setShowEditSpotlight,showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
+  const transition = useTransition()
   
+  const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
+  
+  let isValid = false
+  var _ = require('lodash');
+let selectedAction: { id: number; name: string }[] = []
+
+const getSelectedAction = ()=>{
+ selectedAction = people.filter(action => action.name === loaderData?.spotlightButton?.buttonAction)}
+
   const [enabled, setEnabled] = useState(loaderData?.spotlightButton?.toggleSpotlight)
   const [selected, setSelected] = useState(people[3])
   const [val,setVal]=useState({buttonText: loaderData?.spotlightButton?.buttonText || '',buttonActionlink: loaderData?.spotlightButton?.buttonActionlink || '', hexcode: loaderData?.spotlightButton?.buttonhex || '', spotlightIcon: loaderData?.spotlightButton?.spotlightIcon || '', buttonAction: loaderData?.spotlightButton?.buttonAction || '', toggleSpotlight: loaderData?.spotlightButton?.toggleSpotlight || '' })
 
-  // console.log(loaderData?.spotlightButton?.buttonHex )
+  const iconName = _.startCase(_.camelCase(val.spotlightIcon)) + 'Icon'
+  const Name = _.replace(iconName, ' ', '');
+  const Final = Name.split(" ").join('')
+  const {...icons} = HIcons
+  //@ts-ignore
+  const TheIcon: any = icons[Final]
+  
+ Object.keys(icons).forEach(function(key){
+  //@ts-ignore
+  icons[key]?.render?.name == Final ? isValid = true : null
+});
+
+useEffect(() => {
+    getSelectedAction();
+   selectedAction.length ? setSelected(selectedAction[0]) : null
+  }, [loaderData?.spotlightButton?.buttonAction])
+
+
+
+
   console.log(loaderData)
    const [error,setError]=useState('')
    const [errorLink,setErrorLink]=useState('')
+   const [errorIcon,setErrorIcon]=useState('')
+   const [errorcolor,setErrorColor]=useState('')
+
+useEffect(() => {
+  if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
+    setShowEditSpotlight(false);
+  }
+}, [transition])
+
+   console.log(errorcolor);
+   
+
 const [click,setClicked]=useState(false)
+ console.log(errorIcon);
  
 useEffect(() => {
  if(val.buttonText.length === 0){
@@ -63,6 +104,25 @@ useEffect(() => {
  }
 }, [val])
 
+useEffect(() => {
+ if(isValid){
+  setErrorIcon('')
+ }else if(val.spotlightIcon === ''){
+  setErrorIcon('')
+ }
+ else if(!isValid){
+  setErrorIcon('Icon not available')
+ }
+}, [val])
+
+ useEffect(() => {
+  if(selectedColor && val.hexcode){
+  setErrorColor('Hexcode will be given priority')
+ }else {
+  setErrorColor('')
+ }
+ 
+}, [val,selectedColor])
 
   const Onclose = (e:any) => {
     
@@ -107,8 +167,8 @@ const OnCancel = ()=>{
                       <div className="h-0 flex-1 overflow-y-auto">
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> 
-                              Add Spotlight Button to your profile
+                            <Dialog.Title className="text-lg font-medium text-gray-900 leading-7">
+                            {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button to your profile`} 
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <Form replace={true} action="">
@@ -160,7 +220,7 @@ const OnCancel = ()=>{
                             
                             <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`} >
                               <div className="">
-                              <RadioGroup value={selectedColor} onChange={setSelectedColor} name='buttonColor'>
+                              <RadioGroup value={selectedColor} onChange={setSelectedColor}  name='buttonColor'>
                                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                                   Select Color For Button
                                 </RadioGroup.Label>
@@ -210,7 +270,7 @@ const OnCancel = ()=>{
                                     })
                                   }}
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                />
+                                />{<div className='text-[12px]'>{errorcolor}</div>}
                               </div>
                             </div>
                             </div>
@@ -232,14 +292,14 @@ const OnCancel = ()=>{
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                />
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm ${click && errorIcon ?'border-red-500 focus:border-red-500 focus:ring-red-500':'focus:border-indigo-500 focus:ring-indigo-500' }`}
+                                />{click && <div className='text-sm text-red-500'>{errorIcon}</div>}
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
                             </div>
 
                             <div>
-                            <Listbox value={loaderData?.spotlightButton?.buttonAction || selected.name}
+                            <Listbox value={selected.name}
                               //ts-ignore 
                              onChange={setSelected}
                               name='buttonAction'>
@@ -369,10 +429,11 @@ const OnCancel = ()=>{
                                 data-cy="addSpotlightButton"
                                 type="submit"
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                                onClick={()=>setClicked(true)}
+                                onClick={()=>{setClicked(true);
+                                !isValid ? setVal({...val,spotlightIcon:''}):null}}
                                 // disabled={error || errorLink ? true : false}
                               >
-                                Add Spotlight Button
+                               {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button`} 
                               </button>
                             </div>
     
