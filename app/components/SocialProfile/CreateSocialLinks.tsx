@@ -15,10 +15,10 @@ function classNames(...classes: (string | boolean)[]) {
   { id: 3, name: 'Youtube' },
 ]
 
-export default function CreateSocialLinks({successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
+export default function CreateSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
 
   const [value, setValue] = useState('')
-  const [text, setText] = useState(message)
+  const [text, setText] = useState(successUpdateMessage)
   const [error, setError] = useState('')
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
     const sociallink = selectedSocialLinks?.name?.toLowerCase()
@@ -115,7 +115,7 @@ export default function CreateSocialLinks({successUpdateMessage,setshowSocialLin
               className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
             >
               <span className="sr-only">Dismiss</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setMessage('')} />
             </button>
           </div>
         </div>

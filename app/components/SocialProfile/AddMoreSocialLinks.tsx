@@ -6,7 +6,7 @@ import { CheckCircleIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
-export default function AddMoreSocialLinks({successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
+export default function AddMoreSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
 
 const [text, setText] = useState('')
 useEffect(() => {
@@ -81,12 +81,12 @@ useEffect(() => {
                       </button>
                       <div className=''>
                         {showCreateProfile && (
-                          <CreateSocialLinks message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                          <CreateSocialLinks setMessage={setMessage} message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                         )} 
                       </div>
                       
                     </div>
-                    {text &&
+                    {/* {text &&
                           <div className="rounded-md bg-green-50 p-4 mt-4">
       <div className="flex  items-start justify-start">
         <div className="flex-shrink-0 pt-1">
@@ -107,7 +107,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
-    </div>}
+    </div>} */}
                         
                     </> }
 

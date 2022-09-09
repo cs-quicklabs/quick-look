@@ -34,7 +34,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({setMessage,bioMessage,setBioMessage, showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -180,7 +180,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                       </nav>
                       <div className='z-0'>
                         {showBio ?
-                          <AccountBio setshowBio={setshowBio} occupation={loaderData?.profileInfo?.occupation} company={loaderData?.profileInfo?.company} education={loaderData?.profileInfo?.education} bio={loaderData?.profileInfo?.bio} location={loaderData?.profileInfo?.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                          <AccountBio bioMessage={bioMessage} setBioMessage={setBioMessage} setshowBio={setshowBio} occupation={loaderData?.profileInfo?.occupation} company={loaderData?.profileInfo?.company} education={loaderData?.profileInfo?.education} bio={loaderData?.profileInfo?.bio} location={loaderData?.profileInfo?.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showTemplate ?
@@ -188,7 +188,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           null
                         }
                         {showSocialLinks ?
-                          <SocialProfile successUpdateMessage={successUpdateMessage} message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                          <SocialProfile setMessage={setMessage} successUpdateMessage={successUpdateMessage} message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showImages ?
@@ -314,7 +314,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                       <img
                         data-cy="profileImage"
                         className="inline-block h-9 w-9 rounded-full"
-                        src={loaderData?.secondaryImage ? loaderData?.secondaryImage : DefaultProfileIcon}
+                        src={loaderData?.profileImage?.secondaryImage ? loaderData?.profileImage?.secondaryImage : DefaultProfileIcon}
                         alt=""
                       />
                     </div>
@@ -391,7 +391,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                   ))}
                 </nav>
                 {showBio ?
-                  <AccountBio setshowBio={setshowBio} occupation={loaderData?.profileInfo?.occupation} company={loaderData?.profileInfo?.company} education={loaderData?.profileInfo?.education} bio={loaderData?.profileInfo?.bio} location={loaderData?.profileInfo?.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <AccountBio bioMessage={bioMessage} setBioMessage={setBioMessage} setshowBio={setshowBio} occupation={loaderData?.profileInfo?.occupation} company={loaderData?.profileInfo?.company} education={loaderData?.profileInfo?.education} bio={loaderData?.profileInfo?.bio} location={loaderData?.profileInfo?.location} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showTemplate ?
@@ -399,7 +399,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                   null
                 }
                 {showSocialLinks ?
-                  <SocialProfile successUpdateMessage={successUpdateMessage} message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                  <SocialProfile setMessage={setMessage} successUpdateMessage={successUpdateMessage} message={message} setshowSocialLinks={setshowSocialLinks} loaderData={loaderData} mode={mode} setmode={setmode} /> :
                   null
                 }
                 {showImages ?
