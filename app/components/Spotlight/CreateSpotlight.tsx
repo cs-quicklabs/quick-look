@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 import * as HIcons from '@heroicons/react/outline'
 
 const colors = [
@@ -34,7 +34,9 @@ const people = [
 //   return classes.filter(Boolean).join(' ')
 // }
 
-export default function CreateSpotlight({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
+export default function CreateSpotlight({setShowEditSpotlight,showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
+  const transition = useTransition()
+  
   const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
   
   let isValid = false
@@ -73,6 +75,12 @@ useEffect(() => {
    const [errorLink,setErrorLink]=useState('')
    const [errorIcon,setErrorIcon]=useState('')
    const [errorcolor,setErrorColor]=useState('')
+
+useEffect(() => {
+  if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
+    setShowEditSpotlight(false);
+  }
+}, [transition])
 
    console.log(errorcolor);
    
