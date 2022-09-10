@@ -21,7 +21,6 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const[upload2,setUpload2] = useState('')
 
 const submit = useSubmit()
-console.log(upload,upload2);
 
 const transition = useTransition()
   const[restore,setRestore] = useState(false)

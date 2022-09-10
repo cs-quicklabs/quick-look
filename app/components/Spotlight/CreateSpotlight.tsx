@@ -70,7 +70,7 @@ useEffect(() => {
 
 
 
-  console.log(loaderData)
+
    const [error,setError]=useState('')
    const [errorLink,setErrorLink]=useState('')
    const [errorIcon,setErrorIcon]=useState('')
@@ -82,11 +82,9 @@ useEffect(() => {
   }
 }, [transition])
 
-   console.log(errorcolor);
    
 
 const [click,setClicked]=useState(false)
- console.log(errorIcon);
  
 useEffect(() => {
  if(val.buttonText.length === 0){

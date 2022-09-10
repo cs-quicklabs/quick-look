@@ -67,7 +67,6 @@ if(bioMessage){
   setTimeout(() => {
     setBioMessage('')
   }, 2000)}
-console.log(Data);
 
   const [showSocialLinks, setshowSocialLinks] = useState(message || successUpdateMessage ? true : false);
   const [mode, setmode] = useState('desktop')

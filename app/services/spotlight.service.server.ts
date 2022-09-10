@@ -14,8 +14,8 @@ export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user:
 
     toggleSpotlight = Boolean(toggleSpotlight)
     if(buttonText.length == 0 || buttonActionlink.length == 0){ 
-
-    } else {
+        return ;
+    } else if(buttonhex?.length! > 0 || buttonColor.length > 0 ) {
         await db.spotlightButton.upsert({
             where: {
                 userId: user.id
