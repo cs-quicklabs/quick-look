@@ -83,7 +83,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute top-0 right-0 mt-20">
+                    <div className="absolute top-0 right-0 mt-[1.3rem]">
                       <button
                         type="button"
                         className="flex items-center justify-center h-10 w-10 mr-1 rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
@@ -94,7 +94,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto mt-12">
+                  <div className="flex-1 h-0 pb-4 overflow-y-auto mt-[1rem]">
                     <div className="flex-shrink-0 flex p-4">
                       <a href="#" className="flex-shrink-0 group block">
                         <div className="flex items-center">

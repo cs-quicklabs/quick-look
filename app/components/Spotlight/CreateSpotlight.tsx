@@ -327,7 +327,7 @@ const OnCancel = ()=>{
                                   <div className="relative mt-1">
                                     <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                       <span className="block truncate">{selected.name}</span>
-                                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                      <span className="cursor-pointer  absolute inset-y-0 right-0 flex items-center pr-2">
                                         <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                       </span>
                                     </Listbox.Button>
@@ -345,8 +345,8 @@ const OnCancel = ()=>{
                                             key={person.id}
                                             className={({ active }) =>
                                               classNames(
-                                                active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                                                'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                active ? 'text-white bg-indigo-600 cursor-pointer' : 'text-gray-900',
+                                                'relative select-none py-2 pl-3 pr-9'
                                               )
                                             }
                                             value={person}

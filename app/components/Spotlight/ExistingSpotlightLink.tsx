@@ -49,7 +49,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   </div>
                 </div>
 
-                <div className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile' ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0' : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[3.2rem] lg:mt-0'}`}>
+                <div className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile' ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0' : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'}`}>
                   <button
                     data-cy="editTestimonialButton"
                     className="hover:text-indigo-600 text-[14px]"

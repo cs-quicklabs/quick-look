@@ -76,7 +76,7 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
                         <p className='text-xs leading-4 font-semibold tracking-wide'>
                           NO TESTIMONIAL ADDED YET
                         </p>
-                        <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
+                        <p className={`text-sm leading-5 font-normal text-gray-500 px-12 text-center  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                           Please add testimonial by clicking on button below
                         </p>
                         <button
