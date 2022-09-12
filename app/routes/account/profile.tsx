@@ -1,7 +1,7 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node';
-import { useActionData, useLoaderData } from '@remix-run/react';
-import { useState } from 'react';
+import { Form, useActionData, useLoaderData } from '@remix-run/react';
+import { useEffect, useState } from 'react';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
@@ -116,6 +116,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
+  console.log("loaderData", loaderData)
 
 
   const [val, setVal] = useState({
@@ -126,6 +127,24 @@ export default function Profile() {
 
   const [profileMessage, setProfileMessage] = useState(loaderData?.updateProfileMessage)
   const [passwordMessasge, setPasswordMessage] = useState(loaderData?.updatePasswordMessage)
+
+  useEffect(() => {
+    setProfileMessage(loaderData?.updateProfileMessage);
+    setPasswordMessage(loaderData?.updatePasswordMessage)
+  },[loaderData])
+
+  if(profileMessage){
+    setTimeout(() => {
+      setProfileMessage('')
+    }, 2000);
+    }
+
+    if(passwordMessasge){
+      setTimeout(() => {
+        setPasswordMessage('')
+      }, 2000);
+      }
+
   return (
     <>
       <div>
@@ -138,7 +157,7 @@ export default function Profile() {
         
         <div className=" md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-xl">
           
-          <form method="POST"> 
+          <Form method="post"> 
      
             <div className="sm:rounded-md sm:overflow-hidde">
               <div className="flex ">
@@ -267,11 +286,11 @@ export default function Profile() {
               </div>
               
             </div>
-          </form>
+          </Form>
           
           <div className=''>
             
-            <form method="POST">
+            <Form method="post">
               
               <div className="sm:rounded-md sm:overflow-hidden">
                 <div className="md:px-4 sm:pt-6">
@@ -376,7 +395,7 @@ export default function Profile() {
                 </div>
                
               </div>
-            </form>
+            </Form>
           </div>
         </div>
       </div>
