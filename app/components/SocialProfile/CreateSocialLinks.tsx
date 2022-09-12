@@ -4,11 +4,9 @@ import { CheckCircleIcon, XIcon, CheckIcon, SelectorIcon } from '@heroicons/reac
 import { Combobox } from '@headlessui/react'
 import { Form } from '@remix-run/react'
 import ExistingSocialLinks from './ExistingSocialLinks'
-
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
-
 export default function CreateSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
   console.log(loaderData);
   
@@ -16,8 +14,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
     { id: 1, name: 'Facebook', link: loaderData?.socialMedia?.facebookLink },
     { id: 2, name: 'Twitter', link: loaderData?.socialMedia?.twitterLink },
     { id: 3, name: 'Youtube', link: loaderData?.socialMedia?.youtubeLink },
-  ].filter(socialLink => socialLink.link === "")
-
+  ].filter(socialLink => !socialLink.link)
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
@@ -36,7 +33,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
    else {
    return setError('')
   }}
-
   useEffect(() => {
     setSelectedSocialLinks(socialLinks[0]);
     setValue("");
@@ -52,7 +48,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
     }, [loaderData,selectedSocialLinks])
     const [query, setQuery] = useState('')
  
-
     const filteredSelectedSocialLink =
       query === ''
         ? socialLinks
@@ -63,7 +58,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={()=>{}}>
         <div className="fixed inset-0" />
-
         <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex `}>
@@ -95,7 +89,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                             </button>
                           </div>
                         </div>
-
                         <div className="pt-1 pr-2">
                           <p className="text-sm leading-5 font-normal text-gray-500">
                           Select social profile links which you want to share on your profile
@@ -138,7 +131,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
                               <SelectorIcon id="socialProfileBox" className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Combobox.Button>
-
                             {filteredSelectedSocialLink.length > 0 && (
                               <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {filteredSelectedSocialLink.map((links) => (
@@ -158,7 +150,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                                         <span className={classNames('block truncate', selected && 'font-semibold')}>{links?.name}</span>
                                         
                                         
-
                                         {selected && (
                                           <span
                                             className={classNames(
@@ -201,7 +192,6 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                           </div>
                         </div>
                       </div>
-
                       <div className="flex flex-shrink-0 justify-end px-4 pb-2 mt-7">
                         <div >
                           <button
@@ -227,11 +217,9 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                           Add Profile
                         </button>
                       </div>
-
                       <div className='mt-12'>
                        <ExistingSocialLinks setshowCreateProfile={setshowCreateProfile} successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
                       </div>
-
                     </div>
                   </Form>
                   
@@ -244,3 +232,4 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
     </Transition.Root>
   )
 }
+
