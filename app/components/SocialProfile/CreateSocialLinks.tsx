@@ -10,6 +10,8 @@ function classNames(...classes: (string | boolean)[]) {
 }
 
 export default function CreateSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
+  console.log(loaderData);
+  
   let socialLinks = [
     { id: 1, name: 'Facebook', link: loaderData?.socialMedia?.facebookLink },
     { id: 2, name: 'Twitter', link: loaderData?.socialMedia?.twitterLink },
@@ -55,7 +57,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
       query === ''
         ? socialLinks
         : socialLinks.filter(links => {
-            return links?.name.toLowerCase().includes(query.toLowerCase())
+            return links?.name?.toLowerCase().includes(query.toLowerCase())
           })
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -142,7 +144,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                                 {filteredSelectedSocialLink.map((links) => (
                                   <Combobox.Option
                                     key={links.id}
-                                    data-cy={`socialProfile-${links.name}`}
+                                    data-cy={`socialProfile-${links?.name}`}
                                     value={links}
                                     className={({ active }) =>
                                       classNames(
@@ -153,7 +155,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                                   >
                                     {({ active, selected }) => (
                                       <>
-                                        <span className={classNames('block truncate', selected && 'font-semibold')}>{links.name}</span>
+                                        <span className={classNames('block truncate', selected && 'font-semibold')}>{links?.name}</span>
                                         
                                         
 
@@ -187,7 +189,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                           <div className="mt-1">
                             <input
                               type="text"
-                             placeholder={`${selectedSocialLinks.name.toLowerCase()}.com/username`}
+                             placeholder={`${selectedSocialLinks?.name?.toLowerCase()}.com/username`}
                               name="addlink"
                               id="addlink"
                               value={value}

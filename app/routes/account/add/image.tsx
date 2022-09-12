@@ -14,7 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     if(primaryimageurl){
         await addPrimaryImage(primaryimageurl, user);
-    } else if(secondaryImageurl){
+    } else{
         await addSecondaryImage(secondaryImageurl, user)
     }
 
