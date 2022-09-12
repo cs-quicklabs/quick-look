@@ -228,7 +228,7 @@ export async function deleteUser(user?: any) {
 }
 
 export async function publishToggle(user?: any) {
-    if (user.profile.isPublished === true) {
+    if (user?.profile?.isPublished === true) {
         await db.profile.update({
             where: {
                 userId: user.id
@@ -237,7 +237,7 @@ export async function publishToggle(user?: any) {
                 isPublished: false
             }
         })
-    } else if (user.isPublished === false) {
+    } else if (user?.profile?.isPublished === false) {
         await db.profile.update({
             where: {
                 userId: user.id

@@ -53,9 +53,10 @@ export default function Delete({open,onClose,isPublished}:any) {
                   </div>
                 </div>
                 <div className={`mt-5 sm:mt-4 sm:flex ${isPublished ? "pl-[3.5rem]" :'pl-[1rem]'}`}>
-                 <Form action="settings/unpublishAccount">
+                 <Form action="/account/settings/unpublishAccount">
                   <button
                     type="submit"
+                    onClick={onClose}
                     className={`inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 ${isPublished ? 'bg-red-600 hover:bg-red-700' :'bg-indigo-600 hover:bg-indigo-700'}  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
                   >
                     {isPublished ? 'Unpublish' : 'Publish'}
