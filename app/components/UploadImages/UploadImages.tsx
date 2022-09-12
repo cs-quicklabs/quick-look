@@ -6,6 +6,8 @@ import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from "react-spinners/BeatLoader";
 import DeleteImage from '../Common/DeleteImage';
 import { Form, useTransition,useSubmit } from '@remix-run/react';
+import * as cropro from "cropro";
+import { URLSearchParams } from 'url';
 
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
@@ -29,12 +31,35 @@ const submit = useSubmit()
 const transition = useTransition()
   const ref = useRef(null);
   const ref2 = useRef(null);
+  const ref3:any = useRef('');
+  const ref4 = useRef(null);
+
+
+  let url:any
+  function showCropArea(e:any) {
+  const cropArea = new cropro.CropArea(e.target);
+  cropArea.displayMode = "popup";
+  cropArea.addRenderEventListener((imgURL) => (e.target.src = imgURL));
+  cropArea.show();
+  url = e.target.src
+  console.log(url)
+  
+    // const blob = await base64Response.blob();
+    // // const blob = new Blob([dataURL], { type: 'image/png' });
+    // url = window.URL.createObjectURL(blob);
+    // console.log('asdsadas',url)
+    // console.log(url);
+  }
+
 
   useEffect(() => {
     
     if (image) {
       // @ts-ignore
       ref?.current?.click()
+      // ref4?.current?.click()
+  
+
     }
     if (image2 !== null) {
       // @ts-ignore
@@ -63,6 +88,11 @@ submit(event.currentTarget);
     setSecondaryImageError("Please upload image only")
   }
   }
+  const handleChange3 = (e: any) => {
+   setimage(e.target.files[0])
+
+  }
+  
   const Onclose = (e: any) => {
 
     if (mode === 'desktop') {
@@ -140,7 +170,9 @@ submit(event.currentTarget);
                                <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
                                className='relative top-[6.5rem] left-[9rem]'/>
                                 <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className={`h-full w-[31.5rem] object-cover ${deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ? 'opacity-30' : ''}`} /></div>:
-                                <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' /> } 
+                                <img onClick={(e:any)=>{
+                                  showCropArea(e)}
+                                } crossOrigin="anonymous" src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' /> } 
                                 
                               </div>
 
