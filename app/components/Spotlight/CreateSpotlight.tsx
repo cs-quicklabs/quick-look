@@ -75,6 +75,7 @@ useEffect(() => {
    const [errorLink,setErrorLink]=useState('')
    const [errorIcon,setErrorIcon]=useState('')
    const [errorcolor,setErrorColor]=useState('')
+   const [errorNoColor, setErrorNoColor] = useState('')
 
 useEffect(() => {
   if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
@@ -112,6 +113,15 @@ useEffect(() => {
   setErrorIcon('Icon not available')
  }
 }, [val])
+
+useEffect(() => {
+  if(!selectedColor && !val.hexcode){
+    setErrorNoColor('Please select color or hexcode.')
+ }else {
+  setErrorNoColor('')
+ }
+ 
+}, [val, selectedColor])
 
  useEffect(() => {
   if(selectedColor && val.hexcode){
@@ -215,62 +225,70 @@ const OnCancel = ()=>{
                                 {click && <div className='text-sm text-red-500'>{error}</div>}
                               </div>
                             </div>
-                            
-                            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`} >
-                              <div className="">
-                              <RadioGroup value={selectedColor} onChange={setSelectedColor}  name='buttonColor'>
-                                <RadioGroup.Label className="block text-sm font-medium text-gray-700">
-                                  Select Color For Button
-                                </RadioGroup.Label>
-                                <div className="mt-4 flex items-center space-x-2">
-                                  {colors.map((color) => (
-                                    <RadioGroup.Option
-                                      key={color.name}
-                                      value={color.bgColor}
-                                      
-                                      className={({ active, checked }) =>
-                                        classNames(
-                                          color.selectedColor,
-                                          active && checked ? 'ring ring-offset-1' : '',
-                                          !active && checked ? 'ring ring-offset-1' : '',
-                                          '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
-                                        )
-                                      }
-                                    >
-                                      <RadioGroup.Label as="span" className="sr-only">
-                                        {color.name}
-                                      </RadioGroup.Label>
-                                      <span
-                                        aria-hidden="true"
-                                        className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
-                                      />
-                                    </RadioGroup.Option>
-                                  ))}
+
+                            <div className='flex flex-col'>
+                              <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`} >
+                                <div className="">
+                                <RadioGroup value={selectedColor} onChange={setSelectedColor}  name='buttonColor'>
+                                  <RadioGroup.Label className="block text-sm font-medium text-gray-700">
+                                    Select Color For Button
+                                  </RadioGroup.Label>
+                                  <div className="mt-4 flex items-center space-x-2">
+                                    {colors.map((color) => (
+                                      <RadioGroup.Option
+                                        key={color.name}
+                                        value={color.bgColor}
+                                        
+                                        className={({ active, checked }) =>
+                                          classNames(
+                                            color.selectedColor,
+                                            active && checked ? 'ring ring-offset-1' : '',
+                                            !active && checked ? 'ring ring-offset-1' : '',
+                                            '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                                          )
+                                        }
+                                      >
+                                        <RadioGroup.Label as="span" className="sr-only">
+                                          {color.name}
+                                        </RadioGroup.Label>
+                                        <span
+                                          aria-hidden="true"
+                                          className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
+                                        />
+                                      </RadioGroup.Option>
+                                    ))}
+                                  </div>
+                                </RadioGroup>
                                 </div>
-                              </RadioGroup>
+
+                                <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
+                                <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+                                  {' '}
+                                  Or enter Hex Code{' '}
+                                </label>
+                                <div className="mt-1 p-1">
+                                  <input
+                                    type="text"
+                                    value={val.hexcode}
+                                    name='hexcode'
+                                    id="project-name"
+                                    onChange={(event) => {
+                                      setVal({
+                                        ...val,
+                                        [event.target.name]: event.target.value,
+                                      })
+                                    }}
+                                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                  />
+                                  {click && <div className='text-[12px]'>{errorcolor}</div>}
+                                  
+                                </div>
+                              </div>
                               </div>
 
-                              <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
-                              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
-                                {' '}
-                                Or enter Hex Code{' '}
-                              </label>
-                              <div className="mt-1 p-1">
-                                <input
-                                  type="text"
-                                  value={val.hexcode}
-                                  name='hexcode'
-                                  id="project-name"
-                                  onChange={(event) => {
-                                    setVal({
-                                      ...val,
-                                      [event.target.name]: event.target.value,
-                                    })
-                                  }}
-                                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                />{<div className='text-[12px]'>{errorcolor}</div>}
+                              <div>
+                              {click && <div className='text-sm text-red-500'>{errorNoColor}</div>}
                               </div>
-                            </div>
                             </div>
 
                             <div>
