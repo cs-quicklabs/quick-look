@@ -21,22 +21,16 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const[upload2,setUpload2] = useState('')
   const[restore,setRestore] = useState(false)
   const[restore2,setRestore2] = useState(false)
-  console.log(restore2)
+ 
 const submit = useSubmit()
  function handleChangeform(event:any) {
     submit(event.currentTarget, {method: "post", action: "account/add/image"}); 
   }
-  function handleChangeform2(event:any) {
-    submit(event.currentTarget, {method: "post", action: "account/add/image"}); 
-  }
 const transition = useTransition()
-
-
   const ref = useRef(null);
   const ref2 = useRef(null);
 
   useEffect(() => {
-    console.log('image',image);
     
     if (image) {
       // @ts-ignore
@@ -50,16 +44,8 @@ const transition = useTransition()
 const onSubmit = (event:any) =>{
 submit(event.currentTarget);
 }
-
-// useEffect(() => {
-
-//   upload === 'sec' && image !== null && image2 !== null ? setUpload('sec') : upload === 'sec' && image !== null && image2 == null  ? setUpload('primary'): setUpload('primary')
-
-
-// }, [upload])
-
   const handleChange = (e: any) => {
-    console.log(e.target.files[0]);
+  
     
      if (e.target.files[0].type.includes("image/")) {
       setimage(e.target.files[0])
@@ -180,7 +166,7 @@ submit(event.currentTarget);
                                   Delete
                                 </button>
                               </div>
-                              {/* </form> */}
+                              
 
                             </div>
 
@@ -233,7 +219,7 @@ submit(event.currentTarget);
                                       </label>
                                     </Form>
 
-                                    {/* </form> */}
+                                    
                                     <Form replace action="update/restoreImage" method='post'>
 
                                       <button data-cy="restorePrimaryImage" name='restoreImage' value="restoreprimaryImage" className="cursor-pointer text-sm leading-5 mt-2.5 font-normal text-gray-400 hover:text-gray-600" disabled={upload === 'primary' && transition.state !== "idle"} onClick={()=>{setRestore((prev)=> prev = true) ; setRestore2(false)}}>
@@ -265,7 +251,7 @@ submit(event.currentTarget);
                             </div>
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
-                              {/* <form action="/account/add/image" encType="multipart/form-data" method='post'> */}
+                              
                               <label htmlFor="photo2" id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                 Edit
                                 <input
@@ -285,7 +271,7 @@ submit(event.currentTarget);
                                 className='cursor-pointer ml-3 text-sm leading-5 font-normal text-gray-400 hover:text-red-600'>
                                 Delete
                               </button>
-                              {/* </form> */}
+                            
                             </div>
 
                           </div> :
@@ -318,7 +304,7 @@ submit(event.currentTarget);
                                   </div>
                              :
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20 '>
-                                    {console.log("CONDITION",upload2 === 'sec' || restore2)}
+                                    
 
                    <Form replace={true}  action= "add/image" encType="multipart/form-data" method='post'>
 
