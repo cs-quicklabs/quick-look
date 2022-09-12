@@ -27,8 +27,41 @@ const s3Client = new S3Client({
     },
 });
 
+export async function uploadBlob(
+  data: any
+){
+  const chunks = []
+  for await (const chunk of data) {
+    chunks.push(chunk)
+  }
+  const randKey = await randomName();
+
+  const buffer = Buffer.concat(chunks)
+  const blob1 = new Blob(chunks, { type: 'image/png' });
+  const file = new File([blob1], randKey as string, { type: 'image/png' });
+
+  if (file.size < 1 || file.size === 0) {
+    return ;
+  }
+
+  const uploadedResponse = await new Upload({
+      client: s3Client,
+      leavePartsOnError: true,
+      params: {
+        Bucket: 'quicklook', 
+        Key: `${randKey}`,   
+        Body: buffer,
+        ACL: 'public-read',
+        ContentType: 'image/png',
+      },
+  })
+    .done()
+    const response: any = Object.assign({}, uploadedResponse)
+    return response['Location']
+}
+
 export async function uploadStreamToSpaces(
-  data: AsyncIterable<any>,
+  data: any,
   filename: string,
 ) {
   const chunks = []
