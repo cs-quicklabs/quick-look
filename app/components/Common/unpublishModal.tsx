@@ -1,15 +1,21 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
+import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function Delete({open,onClose,isPublished}:any) {
-
+export default function Delete({open,onClose,isPublished, setopenModal}:any) {
+  const transition = useTransition()
   const cancelButtonRef = useRef(null)
+
+  useEffect(() => {
+    transition?.state === 'loading' && setopenModal(false)
+  }, [transition])
+  
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={onClose}>
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -53,19 +59,21 @@ export default function Delete({open,onClose,isPublished}:any) {
                   </div>
                 </div>
                 <div className={`mt-5 sm:mt-4 sm:flex ${isPublished ? "pl-[3.5rem]" :'pl-[1rem]'}`}>
-                 <Form action="/account/settings/unpublishAccount">
+                 <Form replace={true} action="/account/settings/unpublishAccount">
                   <button
                     type="submit"
-                    onClick={onClose}
-                    className={`inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 ${isPublished ? 'bg-red-600 hover:bg-red-700' :'bg-indigo-600 hover:bg-indigo-700'}  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
-                  >
-                    {isPublished ? 'Unpublish' : 'Publish'}
+                    // onClick={onClose}
+                    className={`inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 disabled:cursor-pointer ${isPublished ? 'bg-red-600 hover:bg-red-700' :'bg-indigo-600 hover:bg-indigo-700'}  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
+                    disabled={transition?.state != "idle" ? true : false}
+                    >
+                      {transition?.state != "idle"  ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> :
+                      isPublished ? 'Unpublish' : 'Publish'}
                   </button></Form>
                   <button
                     type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
                     onClick={onClose}
-
+                    disabled={transition?.state != "idle"}
                   >
                     Cancel
                   </button>

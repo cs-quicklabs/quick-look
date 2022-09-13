@@ -1,5 +1,5 @@
 import { LoaderFunction } from "@remix-run/node";
-import { useLoaderData, useSubmit } from "@remix-run/react";
+import { useLoaderData, useSubmit, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import Delete from "~/components/Common/deleteaccountModal";
@@ -28,6 +28,7 @@ export default function Profile() {
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
 
+  const transition = useTransition();
   const submit = useSubmit();
 
   function handleChange(event: any) {
@@ -106,7 +107,11 @@ export default function Profile() {
                 {loaderData?.profile?.isPublished ? <span> <span>Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link </span> <span className='font-[800]'>quicklook.me/{loaderData?.username}</span>. <span>You can enable your profile anytime you want.</span></span> :<span> Publishing your account will show your account and anyone should be able to visit your profile from the link <span className='font-[800]'>quicklook.me/{loaderData?.username}</span> . You can disable your profile anytime you want.</span>}
               </p>
               <div className="flex justify-start ml-1 items-center">
-                <button onClick={()=>{setopenModal(true)}} className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300">
+                <button 
+                onClick={()=>{setopenModal(true)}} 
+                className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300"
+                disabled={transition?.state != "idle" ? true : false}
+                >
                   {loaderData?.profile?.isPublished ? 'Unpublish my account':'Publish my account'}
                 </button>
               </div>
@@ -132,7 +137,7 @@ export default function Profile() {
         </div>
       </div>
         <Delete open={open} onClose={() => setopen(false)} />
-        <Unpublish isPublished={loaderData?.profile?.isPublished} open={openModal} onClose={() => setopenModal(false)}/>
+        <Unpublish isPublished={loaderData?.profile?.isPublished} open={openModal} setopenModal={setopenModal} onClose={() => setopenModal(false)}/>
     </>
   )
 }

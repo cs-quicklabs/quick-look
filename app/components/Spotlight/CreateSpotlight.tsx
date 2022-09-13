@@ -6,6 +6,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
 import { Form, useTransition } from '@remix-run/react'
 import * as HIcons from '@heroicons/react/outline'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -447,9 +448,11 @@ const OnCancel = ()=>{
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                                 onClick={()=>{setClicked(true);
                                 !isValid ? setVal({...val,spotlightIcon:''}):null}}
-                                // disabled={error || errorLink ? true : false}
+                                disabled={transition?.state != "idle" ? true : false}
                               >
-                               {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button`} 
+                                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                                loaderData?.spotlightButton?.buttonText  ? 'Edit Spotlight Button': 'Add Spotlight Button' }
+                                
                               </button>
                             </div>
     

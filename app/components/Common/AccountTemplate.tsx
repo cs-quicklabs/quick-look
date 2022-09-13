@@ -71,12 +71,13 @@ const Onclose = () => {
                           <input type="hidden" name='template' value='0' />
                           <button 
                           type='submit'
+                          className='disabled:cursor-pointer'
                           onClick={(e: any) => { setSelectTemplate('template1') }}
                           disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === 'template1' && transition?.submission?.action == "/account/update/choose-template" ?
                               <div className='relative top-[-1rem] '>
-                                <BeatLoader color="#184fad" className='relative top-[8.5rem] items-center'/>
+                                <BeatLoader color="#184fad" className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                                 <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                                 </div>
                                 :
@@ -90,12 +91,13 @@ const Onclose = () => {
                         <input type="hidden" name='template' value='1' />
                         <button 
                         type='submit'
+                        className='disabled:cursor-pointer'
                         onClick={(e: any) => { setSelectTemplate('template2') }}
                         disabled={transition?.state != 'idle'}
                         >
                           {selectTemplate === 'template2' && transition?.submission?.action == "/account/update/choose-template" ?
                             <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
-                            className='relative top-[8.5rem] items-center'/>
+                            className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                               :

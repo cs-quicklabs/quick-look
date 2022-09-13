@@ -1,7 +1,8 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node';
-import { Form, useActionData, useLoaderData } from '@remix-run/react';
+import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
 import { useEffect, useState } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import DashboardHeader from '~/components/Common/DashboardHeader';
 import ProfileSetting from '~/components/Common/ProfileSetting';
 import { getUser, requireUserId } from '~/services/auth.service.server';
@@ -116,6 +117,9 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
+  const transition = useTransition()
+
+  const [selectSave, setSelectSave] = useState('')
 
 
   const [val, setVal] = useState({
@@ -276,9 +280,12 @@ export default function Profile() {
                       type="submit"
                       name='_action'
                       value='updateProfile'
-                      className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      Save
+                      className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-pointer"
+                      onClick={(e: any) => { setSelectSave('profileSaveButton') }}
+                      disabled={transition?.state != 'idle'}
+                  >
+                    {selectSave === 'profileSaveButton' && transition?.submission?.action == "/account/profile" ? <BeatLoader color="#ffffff" />
+                    : "Save"} 
                     </button>
               </div>
                 </div>
@@ -384,9 +391,12 @@ export default function Profile() {
                     type="submit"
                     name='_action'
                     value='updatePassword'
-                    className='bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                    className='bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-pointer'
+                    onClick={(e: any) => { setSelectSave('passwordSaveButton') }}
+                    disabled={transition?.state != 'idle'}
                   >
-                    Save
+                    {selectSave === 'passwordSaveButton' && transition?.submission?.action == "/account/profile" ? <BeatLoader color="#ffffff" />
+                    : "Save"} 
                   </button>
                 </div>
                     </div>
