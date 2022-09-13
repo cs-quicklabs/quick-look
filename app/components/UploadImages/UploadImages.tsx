@@ -32,8 +32,11 @@ const transition = useTransition()
   const ref2 = useRef(null);
   const ref3 = useRef(null);
   const ref4 = useRef(null);
+  const ref5 = useRef(null);
+  const ref6 = useRef(null);
 
   const [url,setUrl]=useState('')
+  const [urlSec,setUrlSec]=useState('')
 
   function showCropArea() {
     if (ref4.current !== null) {
@@ -43,8 +46,29 @@ const transition = useTransition()
       // attach an event handler to assign cropped image back to our image element
       cropArea.addRenderEventListener(dataUrl => {
         if (ref4.current) {
+      // @ts-ignore
           ref4.current.src = dataUrl;
+      // @ts-ignore
           setUrl(ref4.current.src)
+        }
+      });     
+      // launch CROPRO
+      cropArea.show();
+    }
+  }
+
+function showCropAreaSecondary() {
+    if (ref5.current !== null) {
+      // create a CropArea
+      const cropArea = new cropro.CropArea(ref5.current);
+      cropArea.displayMode = "popup";
+      // attach an event handler to assign cropped image back to our image element
+      cropArea.addRenderEventListener(dataUrl => {
+        if (ref5.current) {
+      // @ts-ignore
+          ref5.current.src = dataUrl;
+      // @ts-ignore
+          setUrlSec(ref5.current.src)
         }
       });     
       // launch CROPRO
@@ -61,10 +85,14 @@ const transition = useTransition()
       // @ts-ignore
       ref2?.current?.click()
     }
-    if (url && url.includes('data:'))
+    if (url && url.includes('data:')){
       // @ts-ignore
-    ref3?.current?.click()
-  }, [image, image2, url]);
+    ref3?.current?.click()}
+    if(urlSec && urlSec.includes('data:')){
+      // @ts-ignore
+      ref6?.current?.click()
+    }
+  }, [image, image2, url,urlSec]);
 
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/")) {
@@ -259,27 +287,21 @@ const transition = useTransition()
                                 {deleteImage === 'secondary' && transition?.submission?.action == "/account/delete/image" ?
                                 <div className='relative top-[-1.8rem]'><BeatLoader color="#184fad" className='relative top-20 left-[2.2rem]'/>
                                 <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover opacity-30' /></div>:
-                                <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />}
-                                
+                                <img ref={ref5} crossOrigin={`${secondaryRestore ? "" : "anonymous"}`} src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />}
+                                <Form replace action='update/crop-image' method='post'>
+                                <input name='editSecondaryImage' type="text" value={urlSec} hidden/>
+                                <button type='submit' ref={ref6} hidden>Edit</button>
+                                </Form>
                               </div>
 
                             </div>
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
                               
-                              <label htmlFor="photo2" id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
+                              <button  id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600' onClick={showCropAreaSecondary}>
                                 Edit
-                                <input
-                                  type="file"
-
-                                  className="hidden"
-                                  id="photo2"
-                                  name="secondaryImageUpload"
-                                  accept="image/*"
-                                  onChange={handleChange2}
-                                />
-                                <button type="submit" ref={ref} className="hidden">upload</button>
-                              </label>
+                                
+                              </button>
                               <button
                                 id='secondaryDeleteButton'
                                 onClick={(e: any) => { e.preventDefault(); setopen(true); setDeleteImage('secondary') }}
