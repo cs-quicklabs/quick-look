@@ -422,9 +422,9 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                       onClick={() => {
                         if (item.name === 'Spotlight Button') {
                           setShowSpotlight(true);
-                          // setShowPortfolio(false);
-                          // setShowAddVideo(false);
-                          // setShowTestimonial(false);
+                          setShowPortfolio(false);
+                          setShowAddVideo(false);
+                          setShowTestimonial(false);
                           setSidebarOpen(false);
                           setshowImages(false);
                           setshowSocialLinks(false);
