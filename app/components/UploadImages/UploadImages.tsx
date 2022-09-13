@@ -97,7 +97,7 @@ submit(event.currentTarget);
                   
             
                     <div className='h-screen'>
-                      <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
+                      <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
                         <div className="">
                           <div className="py-6 px-4 sm:px-6 bg-gray-50">
                             <div className="flex items-center justify-between">
@@ -138,7 +138,7 @@ submit(event.currentTarget);
                               <div className="flex justify-center  rounded-md mt-3.5 h-44">
                                  {deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ?
                                <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
-                               className='relative top-[6.5rem] left-[9rem]'/>
+                               className={`relative ${mode === 'mobile' ? "top-[6.5rem] left-[5rem] lg:left-[5rem] xl:left-[9rem]" : "top-[6.5rem] left-[7rem] lg:left-[9rem]"}`}/>
                                 <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className={`h-full w-[31.5rem] object-cover ${deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ? 'opacity-30' : ''}`} /></div>:
                                 <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' /> } 
                                 
@@ -242,7 +242,7 @@ submit(event.currentTarget);
 
                               <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
                                 {deleteImage === 'secondary' && transition?.submission?.action == "/account/delete/image" ?
-                                <div className='relative top-[-1.8rem]'><BeatLoader color="#184fad" className='relative top-20 left-[2.2rem]'/>
+                                <div className='relative top-[-1.8rem]'><BeatLoader color="#184fad" className='relative top-[5rem] left-[2.2rem]' />
                                 <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover opacity-30' /></div>:
                                 <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />}
                                 

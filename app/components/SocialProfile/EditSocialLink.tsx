@@ -20,10 +20,6 @@ var socialLinks = [
 export default function EditSocialProfile({successUpdateMessage, loaderData, setShowEditProfile, setshowSocialLinks, clickedLink, mode }: any) {
 
 const linkName = localStorage.getItem("LinkName")
-const formSubmit = useSubmit()
-const onFormSubmit = (event:any) => {
-  formSubmit(event?.currentTarget, {replace:true, action:"account/update/socialProfile", method:"post"})
-}
 const transition = useTransition()
 
 useEffect(() => {
@@ -86,9 +82,8 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   }
 
 
-
   return (
-    <Form onSubmit={onFormSubmit}>
+    <Form replace={true} action="/account/update/socialProfile" method= "post">
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
 
         
