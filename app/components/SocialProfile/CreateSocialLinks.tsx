@@ -8,8 +8,7 @@ function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
 export default function CreateSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
-  console.log(loaderData);
-  
+
   let socialLinks = [
     { id: 1, name: 'Facebook', link: loaderData?.socialMedia?.facebookLink },
     { id: 2, name: 'Twitter', link: loaderData?.socialMedia?.twitterLink },

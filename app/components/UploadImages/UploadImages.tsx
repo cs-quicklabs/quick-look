@@ -33,7 +33,7 @@ const transition = useTransition()
   
   const ref4 = useRef(null);
     //@ts-ignore
-//  console.log('##@@#',ref4?.current?.currentSrc);
+
 
  
 
@@ -169,10 +169,10 @@ submit(event.currentTarget);
                                 <img ref={ref4} onClick={(e:any)=>{
                                   showCropArea(e)}
                                 } crossOrigin="anonymous" src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' /> } 
-                                <Form replace={true}  action='update/crop-image' method='post'>
+                                <form  action='/account/update/crop-image' method='POST'>
                                 <input name='editPrimaryImage' type="text" value={url}/>
                                 <button type='submit'>Edit</button>
-                                </Form>
+                                </form>
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
