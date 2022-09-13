@@ -11,6 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const primaryImageEdit =  form.get('editPrimaryImage') as string
     const secondaryImageEdit = form.get('editSecondaryImage') as string
+console.log(primaryImageEdit);
 
     //blob
 
