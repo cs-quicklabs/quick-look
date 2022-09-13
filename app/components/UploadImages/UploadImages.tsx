@@ -198,7 +198,7 @@ function showCropAreaSecondary() {
                               </div>
 
                               <div className='flex justify-center items-center mt-3'>
-                                <button onClick={showCropArea} id="primaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
+                                <button onClick={()=>{showCropArea(); setUrlSec('')}} id="primaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600'>
                                   Edit
                                 </button>
 
@@ -298,7 +298,7 @@ function showCropAreaSecondary() {
 
                             <div className='flex justify-center items-center w-[7rem] ml-6 mt-3'>
                               
-                              <button  id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600' onClick={showCropAreaSecondary}>
+                              <button  id="secondaryEditImage" className=' cursor-pointer text-sm leading-5 font-normal text-gray-400 hover:text-indigo-600' onClick={()=>{showCropAreaSecondary() ; setUrl('')}}>
                                 Edit
                                 
                               </button>
