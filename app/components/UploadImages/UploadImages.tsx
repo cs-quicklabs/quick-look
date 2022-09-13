@@ -185,10 +185,10 @@ function showCropAreaSecondary() {
 
                             <div>
                               <div className="flex justify-center  rounded-md mt-3.5 h-44">
-                                 {deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ?
+                                 {deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ||  url.includes('data') && transition?.submission?.action == "/account/update/crop-image"?
                                <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
                                className='relative top-[6.5rem] left-[9rem]'/>
-                                <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className={`h-full w-[31.5rem] object-cover ${deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ? 'opacity-30' : ''}`} /></div>:
+                                <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className={`h-full w-[31.5rem] object-cover ${deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ||  url.includes('data') && transition?.submission?.action == "/account/update/crop-image" ? 'opacity-30' : ''}`} /></div>:
                                 <img ref={ref4}
                                  crossOrigin={`${primaryRestore ? "" : "anonymous"}`}src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' /> } 
                                 <Form replace action='update/crop-image' method='post'>
@@ -284,7 +284,7 @@ function showCropAreaSecondary() {
                               </label>
 
                               <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
-                                {deleteImage === 'secondary' && transition?.submission?.action == "/account/delete/image" ?
+                                {deleteImage === 'secondary' && transition?.submission?.action == "/account/delete/image" || urlSec.includes('data') &&  transition?.submission?.action == "/account/update/crop-image"?
                                 <div className='relative top-[-1.8rem]'><BeatLoader color="#184fad" className='relative top-20 left-[2.2rem]'/>
                                 <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover opacity-30' /></div>:
                                 <img ref={ref5} crossOrigin={`${secondaryRestore ? "" : "anonymous"}`} src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />}
