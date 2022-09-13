@@ -1,9 +1,11 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
-import { Form } from '@remix-run/react';
+import { Form, useTransition } from '@remix-run/react';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 export default function DashboardBio({bioMessage, setBioMessage ,setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
+  const transition = useTransition()
 
   const Onclose = (e:any) => {
     
@@ -202,18 +204,20 @@ setshowBio(false);
                      
                       <button
                         type="button"
-                        className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
-                        onClick={OnCancel
-                        }
+                        className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
+                        onClick={OnCancel}
+                        disabled={transition?.state != "idle"}
                       >
                          
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700"
+                        className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
+                        disabled={transition?.state != "idle" ? true : false}
                       >
-                        Update
+                        {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                        "Update"}
                       </button>
                     </div>
                   </div></Form>

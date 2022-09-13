@@ -1,14 +1,16 @@
-import { Fragment} from 'react'
+import { Fragment, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 
+export default function AccountTemplate({setshowTemplate , mode, setmode}:any) {
+  const transition = useTransition();
 
-export default function AccountTemplate({setshowTemplate,setshow,showTemplate,mode,setmode}:any) {
- 
+  const [selectTemplate, setSelectTemplate] = useState('')
   const templateHandle = 'update/choose-template'
   const OnCancel = ()=>{
  setshowTemplate(false);
@@ -65,21 +67,41 @@ const Onclose = () => {
                     </div>
                     <div className='grid grid-cols-1 gap-0'>
                       <Form replace={true} action= {templateHandle} method='post'>
-
-                      <div  className='mb-[-1rem]'>
-                      <input type="hidden" name='template' value='0' />
-                      <button type='submit'>
-                      <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
-                      </button>
-                      </div>
+                        <div  className='mb-[-1rem]'>
+                          <input type="hidden" name='template' value='0' />
+                          <button 
+                          type='submit'
+                          onClick={(e: any) => { setSelectTemplate('template1') }}
+                          disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template1' && transition?.submission?.action == "/account/update/choose-template" ?
+                              <div className='relative top-[-1rem] '>
+                                <BeatLoader color="#184fad" className='relative top-[8.5rem] items-center'/>
+                                <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                                </div>
+                                :
+                                <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
+                          </button>
+                        </div>
                       </Form>
 
                       <Form replace={true} action= {templateHandle} method='post'>
                       <div >
-                      <input type="hidden" name='template' value='1' />
-                      <button type='submit'>
-                      <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
-                      </button>
+                        <input type="hidden" name='template' value='1' />
+                        <button 
+                        type='submit'
+                        onClick={(e: any) => { setSelectTemplate('template2') }}
+                        disabled={transition?.state != 'idle'}
+                        >
+                          {selectTemplate === 'template2' && transition?.submission?.action == "/account/update/choose-template" ?
+                            <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
+                            className='relative top-[8.5rem] items-center'/>
+                            <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                              </div>
+                              :
+                              <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
+
+                        </button>
                       </div>
 
                       </Form>
