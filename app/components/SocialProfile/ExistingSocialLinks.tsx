@@ -4,9 +4,8 @@ import DeleteSocialLink from "./DeleteSocialLink";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
-import { useTransition } from "@remix-run/react";
 
-export default function ExistingSocialLinks({setshowCreateProfile, successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode, setmode }: any) {
+export default function ExistingSocialLinks({clickedAdd, successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode, setmode }: any) {
 const linkName = localStorage.getItem("LinkName")
   const linkEmail = localStorage.getItem("LinkEmail")
 
@@ -63,7 +62,9 @@ const linkName = localStorage.getItem("LinkName")
                     <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                     <div className="ml-3">
                       <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                      <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile'?'w-[8rem]':'w-52'}`}>{person.email}</p>
+                      <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile'?'w-[8rem]':'w-52'}`}>
+                        {person.email.length > 18 ? person.email.slice(0,18) + '...' : person.email}
+                        </p>
                     </div>
                   </div>
 
@@ -86,7 +87,7 @@ const linkName = localStorage.getItem("LinkName")
                       Delete
                     </button>
 
-                    <DeleteSocialLink open={open} person={person.name} onClose={()=>setDeleteLink({ name: '', email: '', image: '' })} deleteLink={deleteLink} />
+                    <DeleteSocialLink clickedAdd={clickedAdd} open={open} person={person.name} onClose={()=>setDeleteLink({ name: '', email: '', image: '' })} deleteLink={deleteLink} />
                     
                   </div>
 

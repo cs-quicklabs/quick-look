@@ -1,14 +1,15 @@
-
 import { Fragment} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon, XIcon } from '@heroicons/react/outline'
 import { Form } from '@remix-run/react'
+import { useState } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function Modal({ open, onClose }: any) {
-
+const[signout,setSignout]=useState(false)
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-[100] font-inter" onClose={onClose}>
+      <Dialog as="div" className="relative z-[100] font-inter" onClose={()=>{}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -38,6 +39,7 @@ export default function Modal({ open, onClose }: any) {
                     type="button"
                     className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none "
                     onClick={onClose}
+                    disabled={signout}
                   >
                     <span className="sr-only">Close</span>
                     <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -61,15 +63,16 @@ export default function Modal({ open, onClose }: any) {
                   <button
                     data-cy="signOut"
                     type="submit"
+                    // disabled={signout}
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => {typeof window !== 'undefined' && localStorage.setItem("viewMode", "desktop")}} 
-                  >
-                    Sign out
+                    onClick={() => {typeof window !== 'undefined' && localStorage.setItem("viewMode", "desktop");setSignout(true) }} 
+                  > {signout ?  <BeatLoader color="#FFFFFF" className="px-0 py-0.5" /> : 'Sign out'}
                   </button></form>
                   <button
                     type="button"
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                     onClick={onClose}
+                    disabled={signout}
                   >
                     Cancel
                   </button>

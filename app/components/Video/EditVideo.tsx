@@ -2,6 +2,7 @@ import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function EditSocialProfile({inputVideo, setInputVideo, setShowEditVideo, loaderData, mode, setmode }: any) {
 const [val,setVal] = useState(loaderData?.video?.videoLink)
@@ -124,8 +125,9 @@ useEffect(() => {
                         <div >
                           <button
                             type="button"
-                            className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
+                            className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                             onClick={OnCancel}
+                            disabled={transition?.state != "idle"}
                           >
                             Cancel
                           </button>
@@ -134,12 +136,13 @@ useEffect(() => {
                         <button
                           data-cy="addTestimonialButton"
                           type="submit"
-                          className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
+                          className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer disabled:cursor-pointer" 
                           // @ts-ignore
                         //  onClick={transition.state === 'loading' ? OnCancel : null}
-                          disabled={!val  ? true : !error ? false : true }
+                          disabled={!val || transition?.state != "idle"  ? true : !error ? false : true }
                         >
-                          Edit Video
+                          {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                        "Edit Video"}
                         </button>
                       </div>
                     </div>

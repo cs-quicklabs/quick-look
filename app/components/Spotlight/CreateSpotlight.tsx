@@ -6,6 +6,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
 import { Form, useTransition } from '@remix-run/react'
 import * as HIcons from '@heroicons/react/outline'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -327,7 +328,7 @@ const OnCancel = ()=>{
                                   <div className="relative mt-1">
                                     <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                       <span className="block truncate">{selected.name}</span>
-                                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                      <span className="cursor-pointer  absolute inset-y-0 right-0 flex items-center pr-2">
                                         <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                       </span>
                                     </Listbox.Button>
@@ -345,8 +346,8 @@ const OnCancel = ()=>{
                                             key={person.id}
                                             className={({ active }) =>
                                               classNames(
-                                                active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                                                'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                active ? 'text-white bg-indigo-600 cursor-pointer' : 'text-gray-900',
+                                                'relative select-none py-2 pl-3 pr-9'
                                               )
                                             }
                                             value={person}
@@ -447,9 +448,11 @@ const OnCancel = ()=>{
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                                 onClick={()=>{setClicked(true);
                                 !isValid ? setVal({...val,spotlightIcon:''}):null}}
-                                // disabled={error || errorLink ? true : false}
+                                disabled={transition?.state != "idle" ? true : false}
                               >
-                               {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button`} 
+                                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                                loaderData?.spotlightButton?.buttonText  ? 'Edit Spotlight Button': 'Add Spotlight Button' }
+                                
                               </button>
                             </div>
     

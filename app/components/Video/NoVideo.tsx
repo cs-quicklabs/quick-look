@@ -1,9 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { useEffect } from 'react';
 import CreateVideoLink from './CreateVideoLink';
-import { divide } from 'lodash';
 import ExistingVideo from './ExistingVideo';
 
 export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mode, loaderData, setmode}:any) {
@@ -76,7 +74,7 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
                       <p className='text-xs leading-4 font-semibold tracking-wide'>
                         NO LINK ADDED YET
                       </p>
-                      <p className={`text-sm leading-5 font-normal text-gray-500 px-12  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
+                      <p className={`text-sm leading-5 font-normal text-gray-500 px-12  text-center  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
                         Please add video link by clicking on button below
                       </p>
                       <button

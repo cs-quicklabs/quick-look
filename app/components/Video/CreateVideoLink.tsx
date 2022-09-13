@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import ExistingVideo from './ExistingVideo'
 import { XIcon } from '@heroicons/react/outline';
 import { Form, useTransition } from '@remix-run/react';
+import BeatLoader from "react-spinners/BeatLoader";
 
    
 export default function CreateVideoLink({ inputVideo, setInputVideo, setShowCreateVideoLink, setShowAddVideo, mode, loaderData, setmode}:any) {
@@ -136,10 +137,10 @@ const [error,SetError] = useState('')
                           <div >
                             <button
                               type="button"
-                              className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
+                              className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                               onClick={OnCancel}
+                              disabled={transition?.state != "idle"}
                             >
-                              
                               Cancel
                             </button>
                           </div>
@@ -148,10 +149,10 @@ const [error,SetError] = useState('')
                             data-cy="addProfileButton"
                             type="submit"
                             className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                           disabled={!val  ? true : !error ? false : true }
-
+                            disabled={!val || transition?.state != "idle"  ? true : !error ? false : true }
                           >
-                            Add Video
+                            {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                        "Add Video"}
                           </button>
                         </div>
                       </>}

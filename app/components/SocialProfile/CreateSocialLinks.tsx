@@ -2,8 +2,10 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckCircleIcon, XIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 import ExistingSocialLinks from './ExistingSocialLinks'
+import BeatLoader from "react-spinners/BeatLoader";
+
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -14,6 +16,9 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
     { id: 2, name: 'Twitter', link: loaderData?.socialMedia?.twitterLink },
     { id: 3, name: 'Youtube', link: loaderData?.socialMedia?.youtubeLink },
   ].filter(socialLink => !socialLink.link)
+
+  const transition = useTransition()
+  const [clickedAdd, setClickedAdd] = useState(false);
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
@@ -37,6 +42,12 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
     setValue("");
   }, [loaderData])
   
+  useEffect(() => {
+    if(transition?.state === "idle") {
+      setClickedAdd(false);
+    }
+  },[transition?.state])
+
   const handleChange = (e:any)=>{
    setValue(e.target.value)
   regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
@@ -195,14 +206,13 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                         <div >
                           <button
                             type="button"
-                            className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
+                            className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                             onClick={() => {
                               setshowCreateProfile(false);
                               setshowSocialLinks(true);
-                              
                             }}
+                            disabled={transition?.state != "idle"}
                           >
-                            
                             Cancel
                           </button>
                         </div>
@@ -211,13 +221,17 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                           data-cy="addProfileButton"
                           type="submit"
                           className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                          disabled={!value  ? true : !error ? false : true }
+                          disabled={!value || transition?.state != "idle"  ? true : !error ? false : true }
+                          onClick={() => {
+                            setClickedAdd(true)
+                          }}
                         >
-                          Add Profile
+                          {transition?.state != "idle" && clickedAdd  ? <BeatLoader color="#ffffff" /> :
+                        "Add Profile"}
                         </button>
                       </div>
                       <div className='mt-12'>
-                       <ExistingSocialLinks setshowCreateProfile={setshowCreateProfile} successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
+                       <ExistingSocialLinks clickedAdd={clickedAdd} setshowCreateProfile={setshowCreateProfile} successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
                       </div>
                     </div>
                   </Form>

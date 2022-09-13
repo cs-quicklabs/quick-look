@@ -1,10 +1,11 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function DeleteSpotlight({ clickedSpotlight, openDeleteSpotlight, onClose}:any) {
-
+  const transition = useTransition()
   const cancelButtonRef = useRef(null)
 
   return (
@@ -56,16 +57,18 @@ export default function DeleteSpotlight({ clickedSpotlight, openDeleteSpotlight,
                     name="deleteSpotlight" 
                     value = "delete Spotlight"
                       type="submit"
-                      className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm"
+                      className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
+                    disabled={transition?.state != "idle" ? true : false}
                     >
-                      Delete 
+                      {transition?.state != "idle"  ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> :
+                        "Delete"}
                     </button>
                   </Form>
                   <button
                     type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
                     onClick={onClose}
-
+                    disabled={transition?.state != "idle"}
                   >
                     Cancel
                   </button>

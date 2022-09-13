@@ -3,6 +3,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 
 import { Form, useSubmit, useTransition } from '@remix-run/react'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
@@ -81,9 +82,8 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   }
 
 
-
   return (
-    <Form replace={true} action="update/socialProfile" method="post">
+    <Form replace={true} action="/account/update/socialProfile" method= "post">
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
 
         
@@ -140,11 +140,12 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                     <span>
                       <button
                       type="button"
-                      className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5"
+                      className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                       onClick={() => {
                       setShowEditProfile(false);
                       setshowSocialLinks(true);
                       }}
+                      disabled={transition?.state != "idle"}
                       >
                       Cancel
                       </button>
@@ -153,9 +154,10 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                     id="updateSocialLink"
                     type="submit"
                     className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
-                    disabled={!val  ? true : !error ? false : true }
+                    disabled={!val || transition?.state != "idle"  ? true : !error ? false : true }
                     >
-                    Update
+                      {transition?.state != "idle"  ? <BeatLoader color="#ffffff" className='px-0 py-0' /> :
+                        "Update"}
                     </button>
                   </div>
                 </div>
