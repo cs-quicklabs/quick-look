@@ -107,28 +107,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                       </div>
                       <div className='pl-2.5 pr-5 mt-6'>
                         <div>
-                          {message &&
-                          <div className="rounded-md bg-green-50 p-4 mb-4">
-      <div className="flex  items-start justify-start">
-        <div className="flex-shrink-0 pt-1">
-          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-        </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{message}</p>
-        </div>
-        <div className="ml-auto pl-3">
-          <div className="-mx-1.5 -my-1.5 pt-1">
-            <button
-              type="button"
-              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
-            >
-              <span className="sr-only">Dismiss</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setMessage('')} />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>}
+                          
                        <Combobox as="div" value={selectedSocialLinks} onChange={setSelectedSocialLinks}>
                           <Combobox.Label className="block text-sm leading-5 font-medium text-gray-700">Select Social Profile</Combobox.Label>
                           <div className="relative mt-1">
