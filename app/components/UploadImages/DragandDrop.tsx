@@ -1,6 +1,6 @@
 import { Form } from "@remix-run/react";
 import React, { useEffect, useRef, useState } from "react";
-import { useDropzone } from "React-dropzone";
+import { useDropzone } from "react-dropzone";
 function Dropzone({setImages, onDrop, accept,images }:any) {
   const { getRootProps, getInputProps, acceptedFiles } =
     useDropzone({
@@ -30,7 +30,7 @@ function Dropzone({setImages, onDrop, accept,images }:any) {
   }, [images]);
   return (
   <div>
-   <Form replace action="update/crop-image" encType="multipart/form-data" method='post'>
+   <Form replace action="update/crop-image"  method='post'>
       <div {...getRootProps({ className: "dropzone" })}>
     
      

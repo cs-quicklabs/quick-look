@@ -95,7 +95,7 @@ const toggledesktop = () =>{
   setmode('desktop')
 }
 
-
+const [showUserSetting, setShowUserSetting] = useState(false);
 const togglemobile = () =>{
 setmode('mobile')
 setshowTemplate(!showSocialLinks && !showImages && !showBio && !showTestimonial && !showAddVideo && !showPortfolio && !showSpotlight ? true : false)
@@ -103,7 +103,7 @@ setshowTemplate(!showSocialLinks && !showImages && !showBio && !showTestimonial 
 const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
   return (
     <div className='h-100vw '>
-      <DashboardHeader username={ loaderData?.username } loaderData={loaderData}/>
+      <DashboardHeader showUserSetting setShowUserSetting username={ loaderData?.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
       <AccountSidebar initialInput={initialInput} setMessage={setMessage} bioMessage={bioMessage} setBioMessage={setBioMessage} showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} inputVideo={inputVideo} setInputVideo={setInputVideo} inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} showPortfolio={showPortfolio} setShowPortfolio={setShowPortfolio} showAddVideo={showAddVideo} setShowAddVideo={setShowAddVideo} showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={message} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
@@ -112,7 +112,7 @@ const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
-        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] z-[60]  rounded-l-md rounded-r-md ${loaderData?.profileImage?.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ""} `}>
+        <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] ${!showUserSetting ? 'z-40':'z-[60]'}  rounded-l-md rounded-r-md ${loaderData?.profileImage?.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ""} `}>
           {/* <form action="" > */}
           <button id="desktopButton"  className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'} w-[3rem] h-[2.5rem] items-center justify-center flex rounded-l-md`} 
           onClick={toggledesktop} >
