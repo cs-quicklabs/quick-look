@@ -5,11 +5,15 @@ import twitter from '../../../assets/images/twitter.png';
 import youtube from '../../../assets/images/youtube.png';
 import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video';
+import Spotlightbtn from './addOns/Spotlightbtn';
 export default function Template2({ input, loaderData,secondaryRestore }: any) {
+  console.log(loaderData);
+  
   return (
     <>
     <div className="-mt-12 flex flex-row h-screen font-inter">
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
+
         <img src={secondaryRestore ? pic : loaderData?.profileImage?.secondaryImage} className="h-full w-full object-cover" alt="" />
       </div>
       <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
@@ -23,7 +27,11 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
           </p>
-         
+
+         {loaderData?.spotlightButton?.toggleSpotlight && 
+         <div className='mb-8'>
+          <Spotlightbtn loaderData={loaderData}/></div>}
+
         <div className='text-base mt-3 leading-6'>
           <pre className="text-gray-500 pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
