@@ -60,7 +60,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <div className="fixed inset-0 bg-gray-600 bg-opacity-0"  />
             </Transition.Child>
 
             <div className="fixed inset-0 flex z-10 overflow-y-auto">
@@ -73,7 +73,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="absolute flex-1 flex flex-col bg-white w-full md:max-w-xs lg:max-w-md">
+                <Dialog.Panel className="absolute flex-1 flex flex-col bg-white w-full md:max-w-xs lg:max-w-md h-screen">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"

@@ -55,9 +55,10 @@ const linkName = localStorage.getItem("LinkName")
           <li key={person.email} className="">
             {person.email ?
             <>
-              <div className={`flex justify-between xl:justify-center ${mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'}`}>
-                  <div className='flex flex-col '>
-                    <div className={`flex justify-between gap-[3.2rem] ${showEditProfile && clickedLink.name === person.name  ? 'border-transparent' : 'border-b border-gray-200'} `}>
+              <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'}`}>
+                  <div className={` ${mode === 'mobile' ? '' : ''}`}>
+                    {/* <div className={`flex justify-between ${mode === 'mobile' ? 'gap-[1.8rem] lg:gap-[3.2rem] xl:gap-[5.2rem]' : 'gap-[3.2rem]'} ${showEditProfile && clickedLink.name === person.name  ? 'border-transparent' : 'border-b border-gray-200'} `}> */}
+                    <div className={`${mode === 'mobile' ? 'lg:flex lg:justify-between lg:items-center' : 'lg:flex lg:justify-between'} ${showEditProfile && clickedLink.name === person.name  ? 'border-transparent' : 'border-b border-gray-200'} `}>
                     <div className="py-4 flex">
                     <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                     <div className="ml-3">
@@ -68,7 +69,8 @@ const linkName = localStorage.getItem("LinkName")
                     </div>
                   </div>
 
-                  <div className={`flex items-start justify-center mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-col' : 'flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}>
+                  {/* <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-col lg:justify-center' : 'lg:justify-center flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}> */}
+                  <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] xl:ml-[8.2rem]' : 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}>
                     <button
                       data-cy="editSocialButton"
                       className="hover:text-indigo-600 text-[14px]"
@@ -83,7 +85,7 @@ const linkName = localStorage.getItem("LinkName")
                         e.preventDefault();  
                           toggleDel(person)
                       }}
-                      className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'xl:ml-0' : 'lg:ml-0 ml-3'}`}>
+                      className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-3 lg:ml-0' : 'lg:ml-0 ml-3'}`}>
                       Delete
                     </button>
 
