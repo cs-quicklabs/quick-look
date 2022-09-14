@@ -171,6 +171,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                               type="text"
                              placeholder={`${selectedSocialLinks?.name?.toLowerCase()}.com/username`}
                               name="addlink"
+                              autoComplete='New password'
                               id="addlink"
                               value={value}
                               onChange={handleChange}
