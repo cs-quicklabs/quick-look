@@ -9,7 +9,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
-export default function CreateSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
+export default function CreateSocialLinks({showCreateProfile,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
 
   let socialLinks = [
     { id: 1, name: 'Facebook', link: loaderData?.socialMedia?.facebookLink },
@@ -65,9 +65,9 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
             return links?.name?.toLowerCase().includes(query.toLowerCase())
           })
   return (
-    <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
-        <div className="fixed inset-0" />
+    <Transition.Root show={showCreateProfile} as={Fragment}>
+      <div className="relative z-20" >
+        
         <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex `}>
@@ -221,7 +221,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
             </div>
           </div>
         </div>
-      </Dialog>
+      </div>
     </Transition.Root>
   )
 }

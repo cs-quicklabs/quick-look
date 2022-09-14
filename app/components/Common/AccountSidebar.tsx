@@ -9,7 +9,7 @@ import AccountBio from './AccountBio';
 import AccountTemplate from './AccountTemplate';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import UploadImages from '../UploadImages/UploadImages';
-import SocialProfile from '../SocialProfile';
+import SocialProfile from '../SocialProfile/AddMoreSocialLinks';
 import NoTestimonial from '../Testimonial/NoTestimonial';
 import NoVideo from '../Video/NoVideo';
 import Portfolio from '../Portfolio';
