@@ -1,4 +1,4 @@
-import { unstable_parseMultipartFormData, UploadHandler } from '@remix-run/node';
+import { unstable_createMemoryUploadHandler, UploadHandler } from '@remix-run/node';
 import { uploadStreamToSpaces } from '~/services/do.service.server';
 
 type props ={

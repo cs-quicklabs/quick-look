@@ -2,7 +2,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:css && remix build && npx prisma migrate deploy && npx prisma generate",
+    "build": "npm run build:css && npm install && remix build && npx prisma migrate deploy && npx prisma generate",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "build:css": "tailwindcss -o ./app/styles/tailwind.css",
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css --watch",
