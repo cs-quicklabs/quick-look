@@ -35,7 +35,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
         {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}</div>
         
-        <div className='pl-[5rem] pr-[8rem] lg:px-[14rem]  '>
+        <div className='pl-[5rem] pr-[8rem] md:px-[12rem] lg:px-[14rem]  '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
             <pre className="text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
