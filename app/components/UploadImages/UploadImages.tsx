@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import bg from '../../../assets/images/bg.png';
@@ -7,6 +7,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 import DeleteImage from '../Common/DeleteImage';
 import { Form, useTransition,useSubmit } from '@remix-run/react';
 import * as cropro from "cropro";
+import Dropzone from './DragandDrop';
+import DropzonePrimary from './DragandDropPrimary';
 
 
 export default function NoImages({ setshowImages, mode, setmode, primaryRestore, secondaryRestore, loaderData }: any) {
@@ -22,7 +24,41 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const[upload2,setUpload2] = useState('')
   const[restore,setRestore] = useState(false)
   const[restore2,setRestore2] = useState(false)
- 
+ const [images, setImages] = useState('');
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file:any) => {
+      const reader = new FileReader();
+      // console.log('2',reader);
+      
+      reader.onload = function (e:any) {
+        // @ts-ignore
+        setImages(
+          e.target.result
+        );
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
+
+
+const [images1, setImages1] = useState('');
+  const onDrop1 = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file:any) => {
+      const reader = new FileReader();
+      // console.log('2',reader);
+      
+      reader.onload = function (e:any) {
+        // @ts-ignore
+        setImages1(
+          e.target.result
+        );
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
+
 const submit = useSubmit()
  function handleChangeform(event:any) {
     submit(event.currentTarget, {method: "post", action: "account/add/image"}); 
@@ -191,7 +227,7 @@ function showCropAreaSecondary() {
                                 <img src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className={`h-full w-[31.5rem] object-cover ${deleteImage === 'primary' && transition?.submission?.action == "/account/delete/image" ||  url.includes('data') && transition?.submission?.action == "/account/update/crop-image" ? 'opacity-30' : ''}`} /></div>:
                                 <img ref={ref4}
                                  crossOrigin={`${primaryRestore ? "" : "anonymous"}`}src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage} alt="" className='h-full w-full object-cover' /> } 
-                                <Form replace action='update/crop-image' method='post'>
+                                <Form replace action='update/crop-image' method='post' >
                                 <input name='editPrimaryImage' type="text" value={url} hidden/>
                                 <button type='submit' ref={ref3} hidden>Edit</button>
                                 </Form>
@@ -226,17 +262,7 @@ function showCropAreaSecondary() {
                                 <><p className='text-xs leading-4 font-semibold tracking-wide'>
                                   NO IMAGE ADDED YET
                                 </p><div className="flex text-sm">
-                                    <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                      <input
-                                        type="file"
-
-                                        className="hidden"
-                                        id="photo"
-                                        name="primaryImageUpload"
-                                        accept="image/*"
-                                        onChange={handleChange} />
-                                    </label>
-                                    <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
+                                    <DropzonePrimary images1={images1} setImages1={setImages1} accept={"image/*"} onDrop={onDrop1} />
                                   </div>
                                   {upload === 'primary' && transition?.submission?.action === "/account/add/image" || restore  && transition?.submission?.action === "/account/update/restoreImage" ?
                                   <div className='h-[5.8rem] flex items-center justify-center'>
@@ -324,7 +350,7 @@ function showCropAreaSecondary() {
                                   NO IMAGE ADDED YET
                                 </p>
                                 <div className="flex text-sm">
-                                  <label className="relative cursor-pointer bg-white rounded-md font-medium">
+                                  {/* <label className="relative cursor-pointer bg-white rounded-md font-medium">
                                     <input
                                       type="file"
                                       className="hidden"
@@ -333,7 +359,8 @@ function showCropAreaSecondary() {
                                       accept="image/*"
                                       onChange={handleChange2} />
                                   </label>
-                                  <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
+                                  <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p> */}
+                                  <Dropzone  setImages={setImages} accept={"image/*"} onDrop={onDrop} images={images}/>
                                 </div>
                                 {upload2 === 'sec'  && transition?.submission?.action === "/account/add/image" || restore2  && transition?.submission?.action === "/account/update/restoreImage" ?
                                   <div className='h-[6rem] flex items-center justify-center'>
