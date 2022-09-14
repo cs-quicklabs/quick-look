@@ -31,7 +31,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
-        <div className='relative'>
+        <div className={`relative ${loaderData?.profileImage?.primaryImage || primaryRestore ? '' : 'left-[18rem]'} `}>
         {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}</div>
         
