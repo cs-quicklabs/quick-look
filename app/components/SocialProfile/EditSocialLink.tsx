@@ -68,7 +68,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
 
   useEffect(() => {
     loaderData;
-    regexCheck(fbRegEx,val,whiteSpaceRegex)
+    // regexCheck(fbRegEx,val,whiteSpaceRegex)
     
   }, [loaderData,selectedSocialLinks])
 
