@@ -7,15 +7,28 @@ import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
-console.log(message);
+console.log(successUpdateMessage);
+
 
 const [text, setText] = useState('')
+const [text1, setText1] = useState('')
+
 const [showCreateProfile, setshowCreateProfile] = useState(false);
 useEffect(() => {
   if(message){
   setText(message)}
+  if(successUpdateMessage){
+    setText1(successUpdateMessage)
+  }
   setshowCreateProfile(false)
-}, [message])
+
+  setTimeout(() => {
+    if(message || successUpdateMessage)
+   { setText('')
+    setText1('')}
+  }, 2000);
+  
+}, [message,successUpdateMessage])
 
   const OnCancel = ()=>{
    setshowSocialLinks(false)
@@ -79,6 +92,7 @@ useEffect(() => {
                         onClick={ ()=> setshowCreateProfile(true)}
                         type="button"
                         className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                        disabled={text || text1 ? true : false}
                       >
                         Add Social Profile
                       </button>
@@ -93,14 +107,14 @@ useEffect(() => {
                         
                     </> }
 
-                   { text &&
+                   { (text || text1) &&
                           <div className="rounded-md bg-green-50 p-4 mt-4">
       <div className="flex  items-start justify-start">
         <div className="flex-shrink-0 pt-1">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{text}</p>
+          <p className="text-sm font-medium text-green-800">{text || text1}</p>
         </div>
         <div className="ml-auto pl-3">
           <div className="-mx-1.5 -my-1.5 pt-1">
@@ -109,14 +123,14 @@ useEffect(() => {
               className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
             >
               <span className="sr-only">Dismiss</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>{setText('') ; setText1('')}} />
             </button>
           </div>
         </div>
       </div>
     </div>}
                     
-                    <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-12'}`}>
+                    <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-6'}`}>
                     <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
                     </div>
                     

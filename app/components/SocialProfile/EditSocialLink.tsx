@@ -82,12 +82,13 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   }
 
 
+
   return (
     <Form replace={true} action="/account/update/socialProfile" method= "post">
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
 
         
-        {successUpdateMessage &&
+        {/* {successUpdateMessage &&
             <div className="rounded-md bg-green-50 p-4 mb-4">
               <div className="flex  items-start justify-start">
                 <div className="flex-shrink-0 pt-1">
@@ -108,7 +109,7 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                 </div>
                 </div>
               </div>
-            </div>}
+            </div>} */}
 
 
             <div className="flex flex-1 flex-col justify-between">

@@ -39,13 +39,14 @@ export default function Profile() {
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
   
-
+  
   const loaderData = Data?.user
   const [message,setMessage] = useState('')
-const [successUpdateMessage,setSuccessUpdateMessage] =useState(Data?.successMessage)
+  const [successUpdateMessage,setSuccessUpdateMessage] =useState('')
 
 useEffect(() => {
   setMessage(Data?.message);
+  setSuccessUpdateMessage(Data?.successMessage)
 },[Data])
 
 // useEffect(() => {
@@ -59,6 +60,7 @@ setTimeout(() => {
   setSuccessUpdateMessage('')
 }, 2000);
 }
+
 const [bioMessage, setBioMessage] = useState('')
 useEffect(() => {
  setBioMessage(Data?.bioMessage)
@@ -105,7 +107,7 @@ const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 
       <DashboardHeader username={ loaderData?.username } loaderData={loaderData}/>
       <div className='flex relative'>
         <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
-      <AccountSidebar setMessage={setMessage} bioMessage={bioMessage} setBioMessage={setBioMessage} showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} inputVideo={inputVideo} setInputVideo={setInputVideo} inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} showPortfolio={showPortfolio} setShowPortfolio={setShowPortfolio} showAddVideo={showAddVideo} setShowAddVideo={setShowAddVideo} showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={message} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
+      <AccountSidebar setMessage={setMessage} bioMessage={bioMessage} setBioMessage={setBioMessage} showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} inputVideo={inputVideo} setInputVideo={setInputVideo} inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} showPortfolio={showPortfolio} setShowPortfolio={setShowPortfolio} showAddVideo={showAddVideo} setShowAddVideo={setShowAddVideo} showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={successUpdateMessage} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
      <div className={`flex-1 w-[70%] z-10 flex-wrap ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
       { loaderData?.profileInfo?.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
