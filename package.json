@@ -2,10 +2,11 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm install && npm run build:css && remix build && npx prisma migrate deploy && npx prisma generate",
+    "build": "npm run build:css && remix build && npx prisma migrate deploy && npx prisma generate",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "build:css": "tailwindcss -o ./app/styles/tailwind.css",
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css --watch",
+    "install": "npm install",
     "start": "remix-serve build",
     "css": "tailwindcss -w -i app/styles/input.css -o app/styles/tailwind.css --watch",
     "migrate": "npx prisma migrate dev --name",
