@@ -30,7 +30,7 @@ function Dropzone({setImages, onDrop, accept,images }:any) {
   }, [images]);
   return (
   <div>
-   <Form replace action="update/crop-image" encType="multipart/form-data" method='post'>
+   <Form replace action="update/crop-image"  method='post'>
       <div {...getRootProps({ className: "dropzone" })}>
     
      
