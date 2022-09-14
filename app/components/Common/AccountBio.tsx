@@ -4,11 +4,11 @@ import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
 import { Form, useTransition } from '@remix-run/react';
 import BeatLoader from 'react-spinners/BeatLoader';
 
-export default function DashboardBio({bioMessage, setBioMessage ,setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
+export default function DashboardBio({initialInput,bioMessage, setBioMessage ,setshowBio,input,setinput,showBio,loaderData,mode,setmode}:any) {
   const transition = useTransition()
 
   const Onclose = (e:any) => {
-    
+      setinput(initialInput)
     if(mode === 'desktop'){
     setshowBio(false)
     }
@@ -18,6 +18,7 @@ export default function DashboardBio({bioMessage, setBioMessage ,setshowBio,inpu
   };
 
 const OnCancel = ()=>{
+   setinput(initialInput)
 setshowBio(false);
   setmode('desktop')
 }
@@ -47,7 +48,7 @@ setshowBio(false);
                             <button
                               type="button"
                               className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
-                              onClick={() => setshowBio(false)}
+                              onClick={() => {setshowBio(false) ; setinput(initialInput)}}
                             >
                               <span className="sr-only">Close panel</span>
                              

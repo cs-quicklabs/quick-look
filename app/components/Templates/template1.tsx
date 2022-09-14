@@ -10,7 +10,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
 
   return (
     <div className='flex  overflow-hidden'>
-      <div >
+      <div className='flex-grow' >
         <div className='h-[10rem]'>
           <div className='relative'>
           {loaderData?.profileImage?.primaryImage || primaryRestore ?
@@ -31,11 +31,11 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
-        <div className={`relative ${loaderData?.profileImage?.primaryImage || primaryRestore ? '' : 'left-[18rem]'} `}>
+        <div >
         {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}</div>
         
-        <div className='pl-[5rem] pr-[8rem] md:pl-[13rem] lg:px-[14rem] md:pr-[22rem] '>
+        <div className='pl-[5rem] pr-[8rem] lg:px-[14rem]  '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
             <pre className="text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
          
