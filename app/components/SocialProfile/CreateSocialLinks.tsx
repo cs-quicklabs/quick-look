@@ -231,7 +231,7 @@ export default function CreateSocialLinks({setMessage,successUpdateMessage,setsh
                         </button>
                       </div>
                       <div className='mt-12'>
-                       <ExistingSocialLinks clickedAdd={clickedAdd} setshowCreateProfile={setshowCreateProfile} successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
+                       <ExistingSocialLinks  clickedAdd={clickedAdd} setshowCreateProfile={setshowCreateProfile} successUpdateMessage={message} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
                       </div>
                     </div>
                   </Form>

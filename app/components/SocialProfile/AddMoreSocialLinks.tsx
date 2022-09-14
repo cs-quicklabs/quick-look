@@ -7,11 +7,13 @@ import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
+console.log(message);
 
 const [text, setText] = useState('')
 useEffect(() => {
-  setText(successUpdateMessage)
-}, [successUpdateMessage])
+  if(message){
+  setText(message)}
+}, [message])
   const [showCreateProfile, setshowCreateProfile] = useState(false);
 
   const OnCancel = ()=>{
@@ -111,7 +113,28 @@ useEffect(() => {
                         
                     </> }
 
-                   
+                   {loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink && text &&
+                          <div className="rounded-md bg-green-50 p-4 mt-4">
+      <div className="flex  items-start justify-start">
+        <div className="flex-shrink-0 pt-1">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{text}</p>
+        </div>
+        <div className="ml-auto pl-3">
+          <div className="-mx-1.5 -my-1.5 pt-1">
+            <button
+              type="button"
+              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+            >
+              <span className="sr-only">Dismiss</span>
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>setText('')} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>}
                     
                     <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-12'}`}>
                     <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
