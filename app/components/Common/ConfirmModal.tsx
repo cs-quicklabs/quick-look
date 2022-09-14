@@ -59,7 +59,7 @@ const[signout,setSignout]=useState(false)
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                  <form method='POST' action='auth/logout'>
+                  <form method='POST' action='/auth/logout'>
                   <button
                     data-cy="signOut"
                     type="submit"

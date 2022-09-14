@@ -25,10 +25,10 @@ export default function NoImages({ setshowImages, mode, setmode, primaryRestore,
   const[restore,setRestore] = useState(false)
   const[restore2,setRestore2] = useState(false)
  const [images, setImages] = useState('');
+
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file:any) => {
       const reader = new FileReader();
-      // console.log('2',reader);
       
       reader.onload = function (e:any) {
         // @ts-ignore
@@ -59,10 +59,7 @@ const [images1, setImages1] = useState('');
     });
   }, []);
 
-const submit = useSubmit()
- function handleChangeform(event:any) {
-    submit(event.currentTarget, {method: "post", action: "account/add/image"}); 
-  }
+
 const transition = useTransition()
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -131,8 +128,9 @@ function showCropAreaSecondary() {
   }, [image, image2, url,urlSec]);
 
   const handleChange = (e: any) => {
-     if (e.target.files[0].type.includes("image/")) {
+     if (e.target.files[0].type.includes("image/jpeg") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/png")) {
       setimage(e.target.files[0])
+      console.log("working");
     }
     else {
     setPrimaryImageError("Please upload image only")
@@ -141,7 +139,6 @@ function showCropAreaSecondary() {
   const handleChange2 = (e: any) => {
     if (e.target.files[0].type.includes("image/")) {
           setimage2(e.target.files[0])
-
     }
     else {
     setSecondaryImageError("Please upload image only")
@@ -262,7 +259,7 @@ function showCropAreaSecondary() {
                                 <><p className='text-xs leading-4 font-semibold tracking-wide'>
                                   NO IMAGE ADDED YET
                                 </p><div className="flex text-sm">
-                                    <DropzonePrimary images1={images1} setImages1={setImages1} accept={"image/*"} onDrop={onDrop1} />
+                                    <DropzonePrimary setPrimaryImageError={setPrimaryImageError} images1={images1} setImages1={setImages1} accept={"image/*"} onDrop={onDrop1} />
                                   </div>
                                   {upload === 'primary' && transition?.submission?.action === "/account/add/image" || restore  && transition?.submission?.action === "/account/update/restoreImage" ?
                                   <div className='h-[5.8rem] flex items-center justify-center'>
@@ -270,7 +267,7 @@ function showCropAreaSecondary() {
                                   </div>
                              :
                                   <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
-                                    <Form replace={true} onChange={(event: any) => handleChangeform(event)} encType="multipart/form-data">
+                                    <Form replace={true} method='post' action='add/image' encType="multipart/form-data">
 
                                       <label onClick={() => { setUpload((prev) => prev = 'primary'); setUpload2(''); } } id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                                         Upload Image
@@ -360,7 +357,7 @@ function showCropAreaSecondary() {
                                       onChange={handleChange2} />
                                   </label>
                                   <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p> */}
-                                  <Dropzone  setImages={setImages} accept={"image/*"} onDrop={onDrop} images={images}/>
+                                  <Dropzone setSecondaryImageError={setSecondaryImageError} setImages={setImages} accept={"image/*"} onDrop={onDrop} images={images}/>
                                 </div>
                                 {upload2 === 'sec'  && transition?.submission?.action === "/account/add/image" || restore2  && transition?.submission?.action === "/account/update/restoreImage" ?
                                   <div className='h-[6rem] flex items-center justify-center'>

@@ -1,7 +1,7 @@
 import { Form } from "@remix-run/react";
 import React, { useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
-function Dropzone({setImages, onDrop, accept,images }:any) {
+function Dropzone({setSecondaryImageError,setImages, onDrop, accept,images }:any) {
   const { getRootProps, getInputProps, acceptedFiles } =
     useDropzone({
       accept,
@@ -22,11 +22,13 @@ function Dropzone({setImages, onDrop, accept,images }:any) {
 
   
   useEffect(() => {
-    if (images) {
+    if (images.includes('data:image/')) {
       // @ts-ignore
       ref.current.click()
       setImages('')
-    }  
+    } else if(!images.includes('data:image/') && images)
+    {setSecondaryImageError('please Upload image only')}
+    else{setSecondaryImageError('')}
   }, [images]);
   return (
   <div>

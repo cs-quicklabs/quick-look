@@ -107,6 +107,9 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+ let singlewhitespace =/^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+  let validsinglewhitespace = name.match(singlewhitespace)
+
   let validName = name.match(firstAndMiddleNameRegex)
   let whiteSpaceRegex = /^\S*$/
   let notContainsWhitespace = name.match(whiteSpaceRegex)
@@ -121,7 +124,10 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
     return `First Name must be less than 18 characters.`
   } else if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
-  } else if (!notContainsWhitespace) {
+  }else if(!validsinglewhitespace){
+  return 'Single whitespace allowed.'
+  } 
+  else if (!notContainsWhitespace) {
     if (!validName) {
       return 'Single whitespace allowed.'
     }
