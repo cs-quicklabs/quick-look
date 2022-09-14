@@ -1,6 +1,6 @@
 import { Form } from "@remix-run/react";
-import React, { useEffect, useRef, useState } from "react";
-import { useDropzone } from "React-dropzone";
+import React, { useEffect, useRef } from "react";
+import { useDropzone } from "react-dropzone";
 function Dropzone({setImages, onDrop, accept,images }:any) {
   const { getRootProps, getInputProps, acceptedFiles } =
     useDropzone({
