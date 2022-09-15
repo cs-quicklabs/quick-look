@@ -101,6 +101,20 @@ useEffect(() => {
   }
 }, [transition])
 
+<<<<<<< HEAD
+=======
+    const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+useEffect(() => {
+ 
+  if(val.hexcode.length && !validRegex.test(val.hexcode)){
+    setErrorHex("Invalid Hexcode")
+  }
+  
+  else if(!val.hexcode && selectedColor){
+setErrorHex("")
+  } else{
+setErrorHex("")
+>>>>>>> 8bae9ef21df8bd0294aa136c3bda4567c43f0575
 
 
 
