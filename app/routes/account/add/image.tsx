@@ -11,7 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
     
     const primaryimageurl = form.get('primaryImageUpload') as string
     const secondaryImageurl = form.get('secondaryImageUpload') as string
-console.log(secondaryImageurl);
+
 
     if(primaryimageurl){
         await addPrimaryImage(primaryimageurl, user);

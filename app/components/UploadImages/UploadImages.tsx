@@ -46,7 +46,7 @@ const [images1, setImages1] = useState('');
   const onDrop1 = useCallback((acceptedFiles) => {
     acceptedFiles.map((file:any) => {
       const reader = new FileReader();
-      // console.log('2',reader);
+
       
       reader.onload = function (e:any) {
         // @ts-ignore
@@ -70,7 +70,6 @@ const transition = useTransition()
 
   const [url,setUrl]=useState('')
   const [urlSec,setUrlSec]=useState('')
-console.log(url);
 
   function showCropArea() {
     if (ref4.current !== null) {
@@ -133,7 +132,7 @@ function showCropAreaSecondary() {
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/jpeg") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/png")) {
       setimage(e.target.files[0])
-      console.log("working");
+
     }
     else {
     setPrimaryImageError("Please upload image only")
