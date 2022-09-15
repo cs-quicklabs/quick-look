@@ -89,7 +89,7 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
                           Add Testimonial
                         </button>
                         {showCreateTestimonial && (
-                          <CreateTestimonial  inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowCreateTestimonial={setShowCreateTestimonial} setShowTestimonial={setShowTestimonial} mode={mode} setmode={setmode} loaderData={loaderData} />
+                          <CreateTestimonial OnCloseTestimonial={OnCancel}  inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} setShowCreateTestimonial={setShowCreateTestimonial} setShowTestimonial={setShowTestimonial} mode={mode} setmode={setmode} loaderData={loaderData} />
                         )}
                       </div>:
                       

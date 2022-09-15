@@ -5,7 +5,7 @@ import ExistingTestimonial from './ExistingTestimonial';
 import { Form, useTransition } from '@remix-run/react';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function AccountTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode, setShowCreateTestimonial }:any) {
+export default function AccountTestimonial({OnCloseTestimonial,inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode, setShowCreateTestimonial }:any) {
 
 const transition = useTransition()
 useEffect(() => {
@@ -20,18 +20,43 @@ useEffect(() => {
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');
 
+
   useEffect(() => {
-    if(testimonialBy === ''){
-      setError1('');
-    }
-    else if(testimonialBy?.length < 6){
-      setError1('Name must be 6 characters long');
-    } else if(testimonialBy?.length >24 ){
-      setError1('Name must not be more than 24 characters long');
-    }
-    else if(testimonialBy === ''){
-      setError1('required');
-    }else{setError1('')}
+     let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
+  let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
+  let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+ let singlewhitespace =/^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+  let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
+
+  let validName = !firstAndMiddleNameRegex.test(testimonialBy)
+  let whiteSpaceRegex = /^\S*$/
+  let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
+
+   if(testimonialBy.length === 0){
+   setError1('')
+   }
+  else if (testimonialBy.length < 3) {
+  return setError1(`First Name must be at least 3 characters long.`)
+  } else if (testimonialBy.length > 18) {
+  return setError1(`First Name must be less than 18 characters.`)
+  } else if (!onlyAlphabetsRegex.test(testimonialBy)) {
+    return setError1('Only alphabets allowed.')
+  }
+  else{
+    setError1('')
+  }
+    // if(testimonialBy === ''){
+    //   setError1('');
+    // }
+    
+    // else if(testimonialBy?.length < 6){
+    //   setError1('Name must be 6 characters long');
+    // } else if(testimonialBy?.length >24 ){
+    //   setError1('Name must not be more than 24 characters long');
+    // }
+    // else if(testimonialBy === ''){
+    //   setError1('required');
+    // }else{setError1('')}
     if(testimonialText === ''){
       setError('');
     }
@@ -49,7 +74,7 @@ useEffect(() => {
 
   const OnCancel = ()=>{
     setShowCreateTestimonial(false);
-    setmode('desktop');
+    
   }
   
   const Onclose = (e: any) => {
@@ -59,6 +84,7 @@ useEffect(() => {
     }
     if (mode === 'mobile') {
     }
+    OnCloseTestimonial()
   };
 
 return (
@@ -95,7 +121,7 @@ return (
                           onClick={Onclose}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                          <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>

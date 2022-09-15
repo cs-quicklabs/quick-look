@@ -98,7 +98,7 @@ useEffect(() => {
                       </button>
                       <div className=''>
                         {showCreateProfile && (
-                          <CreateSocialLinks setMessage={setMessage} message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                          <CreateSocialLinks OnCloseSocial={OnCancel} setMessage={setMessage} message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                         )} 
                       </div>
                       
