@@ -13,10 +13,11 @@ import {
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData } from '@remix-run/react'
+import { Form, useActionData, useTransition } from '@remix-run/react'
 import { useState } from 'react'
 import { ServerResponse } from '~/types/response.server'
 import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
+import { BeatLoader } from 'react-spinners'
 
 export const action: ActionFunction = async ({ request }) => {
   const {
@@ -77,6 +78,7 @@ export const loader: LoaderFunction = async ({request}) => {
 }
 
 export default function SignUp() {
+  const transition = useTransition()
   const actionData = useActionData()
 
   const [val, setVal] = useState({
@@ -304,14 +306,18 @@ export default function SignUp() {
                   data-cy="createNewAccountButton"
                   type="submit"
                   className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white leading-5 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-8`}
-                >
+                  disabled={transition?.state != "idle" ? true : false}
+                  >
+                    
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon
                       className={`h-5 w-5 text-indigo-500 group-hover:text-indigo-400 `}
                       aria-hidden='true'
                     />
                   </span>
-                  Create New Account
+                  {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                    "Create New Account"}
+                  
                 </button>
               </div>
             </Form>

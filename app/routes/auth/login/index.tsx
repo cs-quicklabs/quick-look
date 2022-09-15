@@ -8,7 +8,7 @@ import {
   validatePassword,
 } from '~/utils/validator.server'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData, useLoaderData } from '@remix-run/react'
+import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react'
 import { useState } from 'react'
 import {
   checkUserVerificationStatus,
@@ -20,6 +20,7 @@ import {
   createUserVerificationToken,
 } from '~/services/userVerification.service.server'
 import { commitSession, getSession } from '~/services/session.service.server'
+import { BeatLoader } from 'react-spinners'
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
@@ -80,6 +81,7 @@ export const loader: LoaderFunction = async ({request}) => {
 }
 
 export default function Login() {
+  const transition = useTransition()
 const actionData = useActionData()
   
 const loaderData = useLoaderData();
@@ -204,8 +206,11 @@ const loaderData = useLoaderData();
                   data-cy="loginButton"
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md  -sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Sign in
+                  disabled={transition?.state != "idle" ? true : false}
+                  >
+                    {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                    "Sign in"}
+                  
                 </button>
               </div>
               <p className='mt-2 text-center text-sm'>

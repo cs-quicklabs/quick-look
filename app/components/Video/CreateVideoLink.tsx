@@ -126,7 +126,7 @@ const [error,SetError] = useState('')
                                 id="videoLink"
                                 value={val}
                                 onChange={handleURL}
-                                className={`leading-5 block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-500 ${error ? 'focus:border-red-500 focus:ring-red-500 border-red-500' :'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'}`}
+                                className={`leading-5 block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-900 ${error ? 'focus:border-red-500 focus:ring-red-500 border-red-500' :'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 
                               />
                               <div className='text-red-500 text-sm'>{error}</div>
