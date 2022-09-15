@@ -6,7 +6,7 @@ import { Form, useTransition } from '@remix-run/react';
 import BeatLoader from "react-spinners/BeatLoader";
 
    
-export default function CreateVideoLink({ inputVideo, setInputVideo, setShowCreateVideoLink, setShowAddVideo, mode, loaderData, setmode}:any) {
+export default function CreateVideoLink({OncloseVideo, inputVideo, setInputVideo, setShowCreateVideoLink, setShowAddVideo, mode, loaderData, setmode}:any) {
 const [val,setVal] = useState('')
 const transition = useTransition()
 useEffect(() => {
@@ -17,7 +17,7 @@ useEffect(() => {
 
   const OnCancel = ()=>{
     setShowCreateVideoLink(false);
-    setmode('desktop');
+    
   }
 
   const Onclose = () => {
@@ -26,6 +26,7 @@ useEffect(() => {
     }
     if(mode === 'mobile'){
     }
+    OncloseVideo()
   }
   const handleURL = (event:any) => {
     const value = event.target.value;

@@ -9,7 +9,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ')
 }
-export default function CreateSocialLinks({showCreateProfile,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
+export default function CreateSocialLinks({OnCloseSocial,showCreateProfile,setshowSocialLinks, setshowCreateProfile, loaderData,mode,setmode,message}:any) {
 
   let socialLinks = [
     { id: 1, name: 'Facebook', link: loaderData?.socialMedia?.facebookLink },
@@ -98,10 +98,10 @@ useEffect(() => {
                             <button
                               type="button"
                               className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
-                              onClick={() => setshowCreateProfile(false)}
+                              onClick={() => {setshowCreateProfile(false);OnCloseSocial()}}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon onClick={() => setshowCreateProfile(false)} className="h-6 w-6" aria-hidden="true" />
+                              <XIcon onClick={() => {setshowCreateProfile(false);OnCloseSocial()}} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>

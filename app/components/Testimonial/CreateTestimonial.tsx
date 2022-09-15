@@ -5,7 +5,7 @@ import ExistingTestimonial from './ExistingTestimonial';
 import { Form, useTransition } from '@remix-run/react';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function AccountTestimonial({inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode, setShowCreateTestimonial }:any) {
+export default function AccountTestimonial({OnCloseTestimonial,inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode, setShowCreateTestimonial }:any) {
 
 const transition = useTransition()
 useEffect(() => {
@@ -49,7 +49,7 @@ useEffect(() => {
 
   const OnCancel = ()=>{
     setShowCreateTestimonial(false);
-    setmode('desktop');
+    
   }
   
   const Onclose = (e: any) => {
@@ -59,6 +59,7 @@ useEffect(() => {
     }
     if (mode === 'mobile') {
     }
+    OnCloseTestimonial()
   };
 
 return (
@@ -95,7 +96,7 @@ return (
                           onClick={Onclose}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                          <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>

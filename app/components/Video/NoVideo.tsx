@@ -86,7 +86,7 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
                         Add Video
                       </button>
                       {showCreateVideoLink && (
-                        <CreateVideoLink inputVideo={inputVideo} setInputVideo={setInputVideo} setShowCreateVideoLink={setShowCreateVideoLink} setShowAddVideo={setShowAddVideo} mode={mode} setmode={setmode} loaderData={loaderData} />
+                        <CreateVideoLink OncloseVideo={OnCancel} inputVideo={inputVideo} setInputVideo={setInputVideo} setShowCreateVideoLink={setShowCreateVideoLink} setShowAddVideo={setShowAddVideo} mode={mode} setmode={setmode} loaderData={loaderData} />
                       )}
                     </div>:
                     <div className=''>
