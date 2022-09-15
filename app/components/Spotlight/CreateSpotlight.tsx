@@ -40,8 +40,8 @@ export default function CreateSpotlight({showEditSpotlight,setShowEditSpotlight,
   
   const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
   
-  // let isValid = false
-  // var _ = require('lodash');
+  let isValid = false
+  var _ = require('lodash');
 let selectedAction: { id: number; name: string }[] = []
 
 const getSelectedAction = ()=>{
@@ -51,17 +51,17 @@ const getSelectedAction = ()=>{
   const [selected, setSelected] = useState(people[3])
   const [val,setVal]=useState({buttonText: loaderData?.spotlightButton?.buttonText || '',buttonActionlink: loaderData?.spotlightButton?.buttonActionlink || '', hexcode: loaderData?.spotlightButton?.buttonhex || '', spotlightIcon: loaderData?.spotlightButton?.spotlightIcon || '', buttonAction: loaderData?.spotlightButton?.buttonAction || '', toggleSpotlight: loaderData?.spotlightButton?.toggleSpotlight || '' })
 
-//   const iconName = _.startCase(_.camelCase(val.spotlightIcon)) + 'Icon'
-//   const Name = _.replace(iconName, ' ', '');
-//   const Final = Name.split(" ").join('')
-//   const {...icons} = HIcons
-//   //@ts-ignore
-//   const TheIcon: any = icons[Final]
+  const iconName = _.startCase(_.camelCase(val.spotlightIcon)) + 'Icon'
+  const Name = _.replace(iconName, ' ', '');
+  const Final = Name.split(" ").join('')
+  const {...icons} = HIcons
+  //@ts-ignore
+  const TheIcon: any = icons[Final]
   
-//  Object.keys(icons).forEach(function(key){
-//   //@ts-ignore
-//   icons[key]?.render?.name == Final ? isValid = true : null
-// });
+ Object.keys(icons).forEach(function(key){
+  //@ts-ignore
+  icons[key]?.render?.name == Final ? isValid = true : null
+});
 
 useEffect(() => {
     getSelectedAction();
@@ -77,6 +77,23 @@ useEffect(() => {
    const [errorHex,setErrorHex]=useState('')
    const [errorColor,setErrorColor]=useState('')
    const [errorNoColor, setErrorNoColor] = useState('')
+const[errorIcon,setErrorIcon]= useState('')
+
+  const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+useEffect(() => {
+
+  if(val.hexcode.length && !validRegex.test(val.hexcode)){
+    setErrorHex("Invalid Hexcode")
+  }
+
+  else if(!val.hexcode && selectedColor){
+setErrorHex("")
+  } else{
+setErrorHex("")
+
+  }
+
+}, [val.hexcode,selectedColor])
 
 useEffect(() => {
   if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
@@ -84,6 +101,8 @@ useEffect(() => {
   }
 }, [transition])
 
+<<<<<<< HEAD
+=======
     const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 useEffect(() => {
  
@@ -95,10 +114,8 @@ useEffect(() => {
 setErrorHex("")
   } else{
 setErrorHex("")
+>>>>>>> 8bae9ef21df8bd0294aa136c3bda4567c43f0575
 
-  }
-  
-}, [val.hexcode,selectedColor])
 
 
 const [click,setClicked]=useState(false)
@@ -120,16 +137,16 @@ useEffect(() => {
 }, [val])
 console.log(val.spotlightIcon);
 
-// useEffect(() => {
-//  if(isValid){
-//   setErrorIcon('')
-//  }else if(val.spotlightIcon === ''){
-//   setErrorIcon('')
-//  }
-//  else if(!isValid){
-//   setErrorIcon('Icon not available')
-//  }
-// }, [val])
+useEffect(() => {
+ if(isValid){
+  setErrorIcon('')
+ }else if(val.spotlightIcon === ''){
+  setErrorIcon('')
+ }
+ else if(!isValid){
+  setErrorIcon('Icon not available')
+ }
+}, [val])
 
 useEffect(() => {
   if(!selectedColor && !val.hexcode){
@@ -297,9 +314,8 @@ const OnCancel = ()=>{
                                     }}
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                   />
-                                  {click && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
-                                  {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
-                                  
+                                  { <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+                                  {!selectedColor && <div className='text-[12px] text-red-500'>{errorHex}</div>}
                                 </div>
                               </div>
                               </div>
@@ -326,8 +342,8 @@ const OnCancel = ()=>{
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm`}
-                                />
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500 }`}
+                                />{<div className='text-sm text-indigo-500'>{errorIcon}</div>}
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
                             </div>
