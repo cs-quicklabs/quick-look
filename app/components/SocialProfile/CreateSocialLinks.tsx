@@ -24,6 +24,12 @@ export default function CreateSocialLinks({showCreateProfile,setshowSocialLinks,
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
     const sociallink = selectedSocialLinks?.name?.toLowerCase()
   
+useEffect(() => {
+  setTimeout(() => {
+    setValue('')
+  }, 200);
+}, [])
+
   let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
   let whiteSpaceRegex = /^\S*$/
   const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
@@ -171,9 +177,9 @@ export default function CreateSocialLinks({showCreateProfile,setshowSocialLinks,
                             <input
                             data-cy="addLink"
                               type="text"
-                             placeholder={`${selectedSocialLinks?.name?.toLowerCase()}.com/username`}
+                              placeholder={`${selectedSocialLinks?.name?.toLowerCase()}.com/username`}
                               name="addlink"
-                              autoComplete='New password'
+                              
                               id="addlink"
                               value={value}
                               onChange={handleChange}

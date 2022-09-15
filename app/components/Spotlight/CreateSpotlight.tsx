@@ -40,8 +40,8 @@ export default function CreateSpotlight({showEditSpotlight,setShowEditSpotlight,
   
   const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
   
-  let isValid = false
-  var _ = require('lodash');
+  // let isValid = false
+  // var _ = require('lodash');
 let selectedAction: { id: number; name: string }[] = []
 
 const getSelectedAction = ()=>{
@@ -51,17 +51,17 @@ const getSelectedAction = ()=>{
   const [selected, setSelected] = useState(people[3])
   const [val,setVal]=useState({buttonText: loaderData?.spotlightButton?.buttonText || '',buttonActionlink: loaderData?.spotlightButton?.buttonActionlink || '', hexcode: loaderData?.spotlightButton?.buttonhex || '', spotlightIcon: loaderData?.spotlightButton?.spotlightIcon || '', buttonAction: loaderData?.spotlightButton?.buttonAction || '', toggleSpotlight: loaderData?.spotlightButton?.toggleSpotlight || '' })
 
-  const iconName = _.startCase(_.camelCase(val.spotlightIcon)) + 'Icon'
-  const Name = _.replace(iconName, ' ', '');
-  const Final = Name.split(" ").join('')
-  const {...icons} = HIcons
-  //@ts-ignore
-  const TheIcon: any = icons[Final]
+//   const iconName = _.startCase(_.camelCase(val.spotlightIcon)) + 'Icon'
+//   const Name = _.replace(iconName, ' ', '');
+//   const Final = Name.split(" ").join('')
+//   const {...icons} = HIcons
+//   //@ts-ignore
+//   const TheIcon: any = icons[Final]
   
- Object.keys(icons).forEach(function(key){
-  //@ts-ignore
-  icons[key]?.render?.name == Final ? isValid = true : null
-});
+//  Object.keys(icons).forEach(function(key){
+//   //@ts-ignore
+//   icons[key]?.render?.name == Final ? isValid = true : null
+// });
 
 useEffect(() => {
     getSelectedAction();
@@ -74,17 +74,32 @@ useEffect(() => {
 
    const [error,setError]=useState('')
    const [errorLink,setErrorLink]=useState('')
-   const [errorIcon,setErrorIcon]=useState('')
-   const [errorcolor,setErrorColor]=useState('')
+   const [errorHex,setErrorHex]=useState('')
+   const [errorColor,setErrorColor]=useState('')
    const [errorNoColor, setErrorNoColor] = useState('')
 
 useEffect(() => {
-  if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
+  if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
    showEditSpotlight && setShowEditSpotlight(false);
   }
 }, [transition])
 
-   
+    const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+useEffect(() => {
+ 
+  if(val.hexcode.length && !validRegex.test(val.hexcode)){
+    setErrorHex("Invalid Regex")
+  }
+  
+  else if(!val.hexcode && selectedColor){
+setErrorHex("")
+  } else{
+setErrorHex("")
+
+  }
+  
+}, [val.hexcode,selectedColor])
+
 
 const [click,setClicked]=useState(false)
  
@@ -103,17 +118,18 @@ useEffect(() => {
   setErrorLink('')
  }
 }, [val])
+console.log(val.spotlightIcon);
 
-useEffect(() => {
- if(isValid){
-  setErrorIcon('')
- }else if(val.spotlightIcon === ''){
-  setErrorIcon('')
- }
- else if(!isValid){
-  setErrorIcon('Icon not available')
- }
-}, [val])
+// useEffect(() => {
+//  if(isValid){
+//   setErrorIcon('')
+//  }else if(val.spotlightIcon === ''){
+//   setErrorIcon('')
+//  }
+//  else if(!isValid){
+//   setErrorIcon('Icon not available')
+//  }
+// }, [val])
 
 useEffect(() => {
   if(!selectedColor && !val.hexcode){
@@ -284,14 +300,15 @@ const OnCancel = ()=>{
                                     }}
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                   />
-                                  {click && <div className='text-[12px]'>{errorcolor}</div>}
+                                  {click && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+                                  {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
                                   
                                 </div>
                               </div>
                               </div>
 
                               <div>
-                              {click && <div className='text-sm text-red-500'>{errorNoColor}</div>}
+                              {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
                               </div>
                             </div>
 
@@ -313,8 +330,8 @@ const OnCancel = ()=>{
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm ${click && errorIcon ?'border-red-500 focus:border-red-500 focus:ring-red-500':'focus:border-indigo-500 focus:ring-indigo-500' }`}
-                                />{click && <div className='text-sm text-red-500'>{errorIcon}</div>}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm`}
+                                />
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
                             </div>
@@ -455,7 +472,7 @@ const OnCancel = ()=>{
                                 type="submit"
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                                 onClick={()=>{setClicked(true);
-                                !isValid ? setVal({...val,spotlightIcon:''}):null}}
+                                }}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
                                 {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :

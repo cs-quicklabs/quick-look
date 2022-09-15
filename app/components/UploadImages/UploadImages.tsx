@@ -70,6 +70,7 @@ const transition = useTransition()
 
   const [url,setUrl]=useState('')
   const [urlSec,setUrlSec]=useState('')
+console.log(url);
 
   function showCropArea() {
     if (ref4.current !== null) {
@@ -121,9 +122,11 @@ function showCropAreaSecondary() {
     if (url && url.includes('data:')){
       // @ts-ignore
     ref3?.current?.click()}
+    setUrl('')
     if(urlSec && urlSec.includes('data:')){
       // @ts-ignore
       ref6?.current?.click()
+      setUrlSec('')
     }
   }, [image, image2, url,urlSec]);
 
@@ -347,16 +350,7 @@ function showCropAreaSecondary() {
                                   NO IMAGE ADDED YET
                                 </p>
                                 <div className="flex text-sm">
-                                  {/* <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                    <input
-                                      type="file"
-                                      className="hidden"
-                                      id="photo2"
-                                      name="secondaryImageUpload"
-                                      accept="image/*"
-                                      onChange={handleChange2} />
-                                  </label>
-                                  <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p> */}
+                                 
                                   <Dropzone setSecondaryImageError={setSecondaryImageError} setImages={setImages} accept={"image/*"} onDrop={onDrop} images={images}/>
                                 </div>
                                 {upload2 === 'sec'  && transition?.submission?.action === "/account/add/image" || restore2  && transition?.submission?.action === "/account/update/restoreImage" ?
