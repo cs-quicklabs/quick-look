@@ -88,7 +88,7 @@ useEffect(() => {
 useEffect(() => {
  
   if(val.hexcode.length && !validRegex.test(val.hexcode)){
-    setErrorHex("Invalid Regex")
+    setErrorHex("Invalid Hexcode")
   }
   
   else if(!val.hexcode && selectedColor){
