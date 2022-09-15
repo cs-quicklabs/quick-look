@@ -102,7 +102,7 @@ return (
 
                     <div className="pt-1 pr-2">
                       <p className="text-sm leading-5 font-normal text-gray-500">
-                        Add, edit or delete testimonial from your profile
+                      {loaderData?.testimonial?.testimonialBy ? "Edit or delete testimonial from your profile" : "Add testimonial to your profile" }
                       </p>
                     </div>
                   </div>
