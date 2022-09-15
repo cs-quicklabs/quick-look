@@ -101,23 +101,6 @@ useEffect(() => {
   }
 }, [transition])
 
-<<<<<<< HEAD
-=======
-    const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
-useEffect(() => {
- 
-  if(val.hexcode.length && !validRegex.test(val.hexcode)){
-    setErrorHex("Invalid Hexcode")
-  }
-  
-  else if(!val.hexcode && selectedColor){
-setErrorHex("")
-  } else{
-setErrorHex("")
->>>>>>> 8bae9ef21df8bd0294aa136c3bda4567c43f0575
-
-
-
 const [click,setClicked]=useState(false)
  
 useEffect(() => {
@@ -312,10 +295,10 @@ const OnCancel = ()=>{
                                         [event.target.name]: event.target.value,
                                       })
                                     }}
-                                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    className={`block w-full rounded-md shadow-sm sm:text-sm ${click && errorHex ? "border-red-300 focus:ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"} `}
                                   />
-                                  { <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
-                                  {!selectedColor && <div className='text-[12px] text-red-500'>{errorHex}</div>}
+                                  {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+                                  {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
                                 </div>
                               </div>
                               </div>
