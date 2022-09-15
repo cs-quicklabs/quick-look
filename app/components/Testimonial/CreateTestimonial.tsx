@@ -20,18 +20,43 @@ useEffect(() => {
   const [error, setError] = useState('');
   const [error1, setError1] = useState('');
 
+
   useEffect(() => {
-    if(testimonialBy === ''){
-      setError1('');
-    }
-    else if(testimonialBy?.length < 6){
-      setError1('Name must be 6 characters long');
-    } else if(testimonialBy?.length >24 ){
-      setError1('Name must not be more than 24 characters long');
-    }
-    else if(testimonialBy === ''){
-      setError1('required');
-    }else{setError1('')}
+     let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
+  let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
+  let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+ let singlewhitespace =/^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+  let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
+
+  let validName = !firstAndMiddleNameRegex.test(testimonialBy)
+  let whiteSpaceRegex = /^\S*$/
+  let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
+
+   if(testimonialBy.length === 0){
+   setError1('')
+   }
+  else if (testimonialBy.length < 3) {
+  return setError1(`First Name must be at least 3 characters long.`)
+  } else if (testimonialBy.length > 18) {
+  return setError1(`First Name must be less than 18 characters.`)
+  } else if (!onlyAlphabetsRegex.test(testimonialBy)) {
+    return setError1('Only alphabets allowed.')
+  }
+  else{
+    setError1('')
+  }
+    // if(testimonialBy === ''){
+    //   setError1('');
+    // }
+    
+    // else if(testimonialBy?.length < 6){
+    //   setError1('Name must be 6 characters long');
+    // } else if(testimonialBy?.length >24 ){
+    //   setError1('Name must not be more than 24 characters long');
+    // }
+    // else if(testimonialBy === ''){
+    //   setError1('required');
+    // }else{setError1('')}
     if(testimonialText === ''){
       setError('');
     }
