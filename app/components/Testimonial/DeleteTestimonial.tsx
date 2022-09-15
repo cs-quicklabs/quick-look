@@ -55,6 +55,7 @@ export default function Delete({ setShowCreateTestimonial, setShowTestimonial, s
                   <Form replace={true} action="delete/testimonial" method='post'>
                     {/* <input type="text" value="delete testimonial" hidden /> */}
                     <button
+                    data-cy="deleteTestimonial"
                     id="deleteTestimonialModalButton" 
                     name="deleteTestimonial" 
                     value =  "delete testimonial"

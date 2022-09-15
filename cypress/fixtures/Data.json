@@ -6,8 +6,5 @@
   "invalid_credentials": {
     "password": "check12",
     "email": "pqr@abc.com"
-  },
-  "password": "check1234",
-  "email": "shahrukhkhan123456789@yopmail.com",
-  "baseUrl": "http://localhost:3000"
+  }
 }

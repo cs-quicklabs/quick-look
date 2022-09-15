@@ -53,7 +53,7 @@ export default function DeleteVideo({setVal, openDeleteVideoModal,onClose}:any) 
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <Form replace={true} action="delete/video" method='post'>
                     <button
-                      data-cy="deleteTestimonialModalButton" 
+                      data-cy="deleteVideoModalButton"  
                       name="videoUrl"
                       value ="delete Video"
                       type="submit"

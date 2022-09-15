@@ -78,7 +78,7 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
                         Please add video link by clicking on button below
                       </p>
                       <button
-                        data-cy="addSocialProfileButton"
+                        data-cy="addVideoLinkButton"
                         onClick={() => toggleCreateVideo()}
                         type="button"
                         className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"

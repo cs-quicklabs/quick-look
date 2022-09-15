@@ -39,7 +39,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
 
                 <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[6.5rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col lg:ml-[3.2rem] ml-[0.8rem] py-0 lg:py-4'}`}>
                   <button
-                    data-cy="editTestimonialButton"
+                   data-cy="editTestimonialButton"
                     className="hover:text-indigo-600 text-[14px]"
                     onClick={(e: any) => { e.preventDefault(); toggleEditTestimonial(person) }}
                   >
