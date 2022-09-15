@@ -74,11 +74,10 @@ useEffect(() => {
 
    const [error,setError]=useState('')
    const [errorLink,setErrorLink]=useState('')
-   const [errorIcon,setErrorIcon]=useState('')
-   const [errorcolor,setErrorColor]=useState('')
+   const [errorHex,setErrorHex]=useState('')
+   const [errorColor,setErrorColor]=useState('')
    const [errorNoColor, setErrorNoColor] = useState('')
-  const [errorHex,setErrorHex]=useState('')
-
+const[errorIcon,setErrorIcon]= useState('')
 
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 useEffect(() => {
@@ -97,12 +96,13 @@ setErrorHex("")
 }, [val.hexcode,selectedColor])
 
 useEffect(() => {
-  if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
+  if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
    showEditSpotlight && setShowEditSpotlight(false);
   }
 }, [transition])
 
-   
+
+
 
 const [click,setClicked]=useState(false)
  
@@ -121,6 +121,7 @@ useEffect(() => {
   setErrorLink('')
  }
 }, [val])
+console.log(val.spotlightIcon);
 
 useEffect(() => {
  if(isValid){
@@ -299,14 +300,14 @@ const OnCancel = ()=>{
                                     }}
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                   />
-                                  {!errorHex && <div className='text-[12px] text-indigo-500'>{errorcolor}</div>}
-                                  {<div className='text-[12px] text-red-500'>{errorHex}</div>}
+                                  { <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+                                  {!selectedColor && <div className='text-[12px] text-red-500'>{errorHex}</div>}
                                 </div>
                               </div>
                               </div>
 
                               <div>
-                              {click && <div className='text-sm text-red-500'>{errorNoColor}</div>}
+                              {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
                               </div>
                             </div>
 
@@ -327,7 +328,7 @@ const OnCancel = ()=>{
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm ${click && errorIcon ?'border-red-500 focus:border-red-500 focus:ring-red-500':'focus:border-indigo-500 focus:ring-indigo-500' }`}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500 }`}
                                 />{<div className='text-sm text-indigo-500'>{errorIcon}</div>}
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
@@ -465,7 +466,7 @@ const OnCancel = ()=>{
                                 type="submit"
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                                 onClick={()=>{setClicked(true);
-                                !isValid ? setVal({...val,spotlightIcon:''}):null}}
+                                }}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
                                 {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :

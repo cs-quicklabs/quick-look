@@ -1,8 +1,10 @@
+import { Menu } from '@headlessui/react'
 import { useState } from "react";
 import Modal from "~/components/Common/ConfirmModal";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
+import DropDown from "../DropDown/DropDown";
 
 
 export default function DashboardHeader({username, loaderData}: any) {
@@ -21,6 +23,7 @@ export default function DashboardHeader({username, loaderData}: any) {
           className='flex items-center justify-between px-3 md:px-8'
           aria-label='Global'
         >
+           
           <div className='flex flex-1 items-center'>
             <div className='flex w-full items-center justify-between md:w-auto'>
               <Link
@@ -56,48 +59,16 @@ export default function DashboardHeader({username, loaderData}: any) {
               >
                 <span className="sr-only">Open user menu</span>
                 {/* mt-2 pb-1 w-auto h-9 md:mt-0 sm:pt-0 sm:pb-0 */}
-                <img
-                  width={32}
-                  height={32}
-                  id="OpenProfile"
-                  data-cy="profile-menu"
-                  
-                  title="Open Profile"
-                  loading="eager"
-                  className="mt-2 pb-0 w-8 h-8 md:mt-0 sm:pt-0 sm:pb-0 rounded-full"
-                  src={!loaderData?.profileImage?.secondaryImage ? DefaultProfileIcon : loaderData?.profileImage?.secondaryImage}
-                  onClick={() => toggleSetting()}
-                />
+                
+               <DropDown setIsOpen={setIsOpen} loaderData={loaderData} DefaultProfileIcon={DefaultProfileIcon}/>
+               <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
               </button>
             </div>
 
-            {showUserSetting && (
-              <div
-                className="flex flex-col flex-start origin-top-right absolute right-0 h-20 top-12 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 mr-8"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu"
-              >
-                <a
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer w-full text-left"
-                  data-cy="profile"
-                  role="menuitem"
-                  href="/account/profile"
-                >
-                  Profile Settings
-                </a>
-                <button
-                  onClick={() => setIsOpen(true)}
-                  className="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:rounded-md cursor-pointer w-full text-left"
-                  data-cy="sign-out"
-                  role="menuitem"
-                  // href="# "
-                >
-                  Sign out
-                </button>
-                <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
-              </div>
-            )}
+           
+             
+              
+            
 
           </div>
         </nav>
@@ -106,3 +77,4 @@ export default function DashboardHeader({username, loaderData}: any) {
     </>
   )
 }
+
