@@ -77,6 +77,24 @@ useEffect(() => {
    const [errorIcon,setErrorIcon]=useState('')
    const [errorcolor,setErrorColor]=useState('')
    const [errorNoColor, setErrorNoColor] = useState('')
+  const [errorHex,setErrorHex]=useState('')
+
+
+  const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+useEffect(() => {
+
+  if(val.hexcode.length && !validRegex.test(val.hexcode)){
+    setErrorHex("Invalid Hexcode")
+  }
+
+  else if(!val.hexcode && selectedColor){
+setErrorHex("")
+  } else{
+setErrorHex("")
+
+  }
+
+}, [val.hexcode,selectedColor])
 
 useEffect(() => {
   if(transition.state === 'loading' && !error && !errorLink && !errorIcon && !errorcolor ){
@@ -281,8 +299,8 @@ const OnCancel = ()=>{
                                     }}
                                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                   />
-                                  {click && <div className='text-[12px]'>{errorcolor}</div>}
-                                  
+                                  {!errorHex && <div className='text-[12px] text-indigo-500'>{errorcolor}</div>}
+                                  {<div className='text-[12px] text-red-500'>{errorHex}</div>}
                                 </div>
                               </div>
                               </div>
@@ -310,7 +328,7 @@ const OnCancel = ()=>{
                                     })
                                   }}
                                   className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm ${click && errorIcon ?'border-red-500 focus:border-red-500 focus:ring-red-500':'focus:border-indigo-500 focus:ring-indigo-500' }`}
-                                />{click && <div className='text-sm text-red-500'>{errorIcon}</div>}
+                                />{<div className='text-sm text-indigo-500'>{errorIcon}</div>}
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
                             </div>
