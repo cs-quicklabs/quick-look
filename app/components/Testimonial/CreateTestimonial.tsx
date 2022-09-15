@@ -63,7 +63,7 @@ useEffect(() => {
 
 return (
   <Transition.Root show={true} as={Fragment}>
-    <Dialog as="div" className="relative z-20" onClose={()=>{}}>
+    <div className="relative z-20" >
       <div className="fixed inset-0" />
 
       <div className="fixed inset-0 overflow-hidden">
@@ -217,7 +217,7 @@ return (
           </div>
         </div>
       </div>
-    </Dialog>
+    </div>
   </Transition.Root>
 )
 

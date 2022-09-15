@@ -19,7 +19,8 @@ const DynamicHeroIcon: FC<{icon?: string,Final?:any}> = ({icon,Final}:any) => {
   return (
     <>
     {isValid ?
-      <TheIcon  className="h-6 w-6 text-white mr-3 box-s" aria-hidden="true" /> : null}
+      <TheIcon  className="h-6 w-6 text-white mr-3 box-s" aria-hidden="true" /> : null
+      }
     </>
   )
 }
