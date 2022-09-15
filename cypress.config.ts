@@ -14,7 +14,10 @@ export default defineConfig({
       "login.spec.ts",
       "mobileDesktopView.spec.ts",
       "socialLinks.spec.ts",
-      "uploadImage.spec.ts"
+      "uploadImage.spec.ts",
+      "addTestimonial.spec.ts",
+      "addVideo.spec.ts",
+      "addSpotlight.spec.ts"
       //...
     ],
     "chromeWebSecurity": false,

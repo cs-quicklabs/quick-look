@@ -140,6 +140,7 @@ return (
                       </label>
                       <div className="mt-1">
                         <textarea
+                        data-cy="testimonialText"
                           placeholder='Please enter testimonial'
                           id="description"
                           name="testimonialText"
@@ -165,6 +166,7 @@ return (
                       </label>
                       <div className="mt-1">
                         <input
+                          data-cy="testimonialBy"
                           placeholder='Please enter a name'
                           type="text"
                           value={testimonialBy}
@@ -184,6 +186,7 @@ return (
                     <div className="flex flex-shrink-0 justify-end mt-7">
                       <div >
                         <button
+                        data-cy="cancelCreateTestimonial"
                           type="button"
                           className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                           onClick={OnCancel}
@@ -194,7 +197,7 @@ return (
                       </div>
                     
                       <button
-                        data-cy="addTestimonialButton"
+                        data-cy="createTestimonial"
                         type="submit"
                         className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                         disabled={error || !testimonialText || error1 || !testimonialBy || transition?.state != "idle" ? true : false}

@@ -227,6 +227,7 @@ const OnCancel = ()=>{
                               </label>
                               <div className="mt-1">
                                 <input
+                                  data-cy="addSpotlightText"
                                   type="text"
                                   value={val.buttonText}
                                   name="buttonText"
@@ -269,6 +270,7 @@ const OnCancel = ()=>{
                                           {color.name}
                                         </RadioGroup.Label>
                                         <span
+                                          data-cy={color.bgColor}
                                           aria-hidden="true"
                                           className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
                                         />
@@ -285,6 +287,7 @@ const OnCancel = ()=>{
                                 </label>
                                 <div className="mt-1 p-1">
                                   <input
+                                    data-cy="addSpotlightHex"
                                     type="text"
                                     value={val.hexcode}
                                     name='hexcode'
@@ -315,6 +318,7 @@ const OnCancel = ()=>{
                               </label>
                               <div className="mt-1">
                                 <input
+                                  data-cy="addSpotlightIcon"
                                   type="text"
                                   value={val.spotlightIcon}
                                   name="spotlightIcon"
@@ -342,7 +346,8 @@ const OnCancel = ()=>{
                                     What do you want button to do?
                                   </Listbox.Label>
                                   <div className="relative mt-1">
-                                    <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                                    <Listbox.Button 
+                                    data-cy="SelectAction" className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                       <span className="block truncate">{selected.name}</span>
                                       <span className="cursor-pointer  absolute inset-y-0 right-0 flex items-center pr-2">
                                         <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -359,6 +364,7 @@ const OnCancel = ()=>{
                                       <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                         {people.map((person) => (
                                           <Listbox.Option
+                                          data-cy={person.name}
                                             key={person.id}
                                             className={({ active }) =>
                                               classNames(
@@ -406,6 +412,7 @@ const OnCancel = ()=>{
                               </label>
                               <div className="mt-1">
                                 <input
+                                  data-cy="addSpotlightLink"
                                   type="text"
                                   value={val.buttonActionlink}
                                   name="buttonActionlink"
@@ -434,7 +441,8 @@ const OnCancel = ()=>{
                                 Although all settings of button will be saved.
                                 </p>
                                 
-                                <Switch name='toggleSpotlight'
+                                <Switch 
+                                data-cy="ToggleSpotlight" name='toggleSpotlight'
                                   checked={enabled}
                                   value={enabled ? 'true' : 'false'}
                                   onChange={setEnabled}

@@ -51,7 +51,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
 
                 <div className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile' ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0' : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'}`}>
                   <button
-                    data-cy="editTestimonialButton"
+                    data-cy="editExistingSpotlight"
                     className="hover:text-indigo-600 text-[14px]"
                     onClick={(e: any) => { e.preventDefault(); toggleEditSpotlight(person) }}
                   >
@@ -59,7 +59,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   </button>
                   
                   <button
-                    data-cy="deleteTestimonialButton"
+                    data-cy="deleteSpotlightButton"
                     onClick={(e: any) => { e.preventDefault(); setOpenDeleteSpotlight(true); setClickedSpotlight(person); }}
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete

@@ -119,6 +119,7 @@ const [error,SetError] = useState('')
                             </label>
                             <div className="mt-1">
                               <input
+                                data-cy="addVideoLink"
                                 type="text"
                                 placeholder='Please enter your video link'
                                 name="videoLink"
@@ -136,6 +137,7 @@ const [error,SetError] = useState('')
                         <div className="flex flex-shrink-0 justify-end px-4 pb-2 mt-7">
                           <div >
                             <button
+                              data-cy="cancelButton"
                               type="button"
                               className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                               onClick={OnCancel}
@@ -146,7 +148,7 @@ const [error,SetError] = useState('')
                           </div>
                           
                           <button
-                            data-cy="addProfileButton"
+                            data-cy="addVideoURL"
                             type="submit"
                             className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                             disabled={!val || transition?.state != "idle"  ? true : !error ? false : true }

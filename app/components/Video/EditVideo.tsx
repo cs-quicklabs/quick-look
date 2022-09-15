@@ -108,6 +108,7 @@ useEffect(() => {
                         </label>
                         <div className="mt-1">
                           <input
+                            data-cy="editVideoLink"
                             type="text"
                             name="videoUrl"
                             id="videoUrl"
@@ -134,7 +135,7 @@ useEffect(() => {
                         </div>
                       
                         <button
-                          data-cy="addTestimonialButton"
+                          data-cy="editVideoLinkButton"
                           type="submit"
                           className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer disabled:cursor-pointer" 
                           // @ts-ignore

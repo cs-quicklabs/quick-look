@@ -81,7 +81,7 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
                           Please add testimonial by clicking on button below
                         </p>
                         <button
-                          data-cy="addSocialProfileButton"
+                          data-cy="addTestimonialButton"
                           onClick={() => toggleCreatetestimonial()}
                           type="button"
                           className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
