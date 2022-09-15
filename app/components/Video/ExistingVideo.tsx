@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import fbIcon from '../../../assets/images/fb1.png';
+import ytIcon from '../../../assets/images/yt1.png';
 import DeleteVideo from './DeleteVideo';
 import EditVideo from './EditVideo';
 
@@ -24,6 +25,7 @@ const videoLink = [
   {
     name: loaderData?.video?.videoSourceKey.charAt(0).toUpperCase()+ loaderData?.video?.videoSourceKey?.slice(1) , 
     link: loaderData?.video?.videoLink ,
+    image: loaderData?.video?.videoSourceKey === 'youtube' ? ytIcon : fbIcon
   },
 ]
 
@@ -44,13 +46,11 @@ const [openDeleteVideoModal, setOpenDeleteVideoModal] = useState(false);
             {person.link ?
               <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
-                {/* <iframe  className="h-11 w-11 rounded-full" src="https://www.youtube.com/embed/tgbNymZ7vqY" /> */}
-
-                  {/* <img className="h-11 w-11 rounded-full" src={person.image} alt="" /> */}
+                <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">
-                    {`${person.link?.slice(0,25)}....`}
+                    <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile'?'w-[9rem]':'w-52'}`}>
+                    {person.link.length > 18 ? person.link.slice(0,18) + '...' : person.link}
                     </p>
                   </div>
                 </div>
