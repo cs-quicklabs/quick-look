@@ -23,12 +23,12 @@ export default function CreateSocialLinks({showCreateProfile,setshowSocialLinks,
   const [error, setError] = useState('')
   const [selectedSocialLinks, setSelectedSocialLinks] = useState(socialLinks[0])
     const sociallink = selectedSocialLinks?.name?.toLowerCase()
+  const [click, setClick] = useState(false)
   
 useEffect(() => {
-  setTimeout(() => {
+  // To Prevent auto filling of input field from extensions
     setValue('')
-  }, 200);
-}, [])
+},[])
 
   let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
   let whiteSpaceRegex = /^\S*$/
@@ -101,7 +101,7 @@ useEffect(() => {
                               onClick={() => setshowCreateProfile(false)}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon data-cy="crossAddSocialLink" onClick={() => setshowCreateProfile(false)} className="h-6 w-6" aria-hidden="true" />
+                              <XIcon onClick={() => setshowCreateProfile(false)} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -124,13 +124,12 @@ useEffect(() => {
                               name='select_social'
                             />
                             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-                              <SelectorIcon data-cy="socialProfileBox" id="socialProfileBox" className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                              <SelectorIcon id="socialProfileBox" className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Combobox.Button>
                             {filteredSelectedSocialLink.length > 0 && (
                               <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {filteredSelectedSocialLink.map((links) => (
                                   <Combobox.Option
-                                  data-cy={`socialProfile-${links?.name}`}
                                     key={links.id}
                                     data-cy={`socialProfile-${links?.name}`}
                                     value={links}
@@ -175,18 +174,17 @@ useEffect(() => {
                           </label>
                           <div className="mt-1">
                             <input
-                            data-cy="addLink"
                               type="text"
                               placeholder={`${selectedSocialLinks?.name?.toLowerCase()}.com/username`}
                               name="addlink"
-                              
+                              onClick={()=>setClick(true)}
                               id="addlink"
                               value={value}
                               onChange={handleChange}
                               className={` leading-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900 ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                               
                             />
-                          <div className={`text-red-600 text-sm`}>{error}</div>
+                          {click && <div className={`text-red-600 text-sm`}>{error}</div>}
                           </div>
                         </div>
                       </div>
