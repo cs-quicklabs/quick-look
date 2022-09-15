@@ -65,7 +65,8 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
                         </div>
                         <div className="pt-1 pr-2">
                           <p className="text-sm leading-5 font-normal text-gray-500">
-                            Please provide link of video you would like to show on profile
+                            {loaderData?.testimonial?.testimonialBy ? "Edit or delete testimonial from your profile" : "Add testimonial to your profile" }
+                            
                           </p>
                         </div>
                     </div>

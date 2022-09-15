@@ -99,7 +99,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
 
                       <div className="pt-1 pr-2">
                         <p className="text-sm leading-5 font-normal text-gray-500">
-                          Add, edit or delete testimonial from your profile
+                        Edit testimonial from your profile
                         </p>
                       </div>
                     </div>
