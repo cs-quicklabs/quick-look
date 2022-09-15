@@ -16,11 +16,21 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
   useEffect(() => {
   transition.state === "loading" && setShowEditTestimonial(false)
 }, [transition, testimonialText, testimonialText])
+let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
+let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
+let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+let singlewhitespace =/^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
 
+let validName = !firstAndMiddleNameRegex.test(testimonialBy)
+let whiteSpaceRegex = /^\S*$/
+let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
 
   useEffect(() => {
     if(testimonialBy === ''){
       setError1('');
+    }else if (!onlyAlphabetsRegex.test(testimonialBy)) {
+      return setError1('Only alphabets allowed.')
     }
     else if(testimonialBy?.length < 6){
       setError1('Name must be 6 characters long');
