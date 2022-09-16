@@ -56,12 +56,12 @@ const getSelectedAction = ()=>{
   const Final = Name.split(" ").join('')
   const {...icons} = HIcons
   //@ts-ignore
-  const TheIcon: any = icons[Final]
+  const TheIcon: any = React.useMemo(() => icons[Final] || null,[Final])
   
- Object.keys(icons).forEach(function(key){
-  //@ts-ignore
-  icons[key]?.render?.name == Final ? isValid = true : null
-});
+//  Object.keys(icons).forEach(function(key){
+//   //@ts-ignore
+//   icons[key]?.render?.name == Final ? isValid = true : null
+// });
 
 useEffect(() => {
     getSelectedAction();
@@ -121,12 +121,12 @@ useEffect(() => {
 console.log(val.spotlightIcon);
 
 useEffect(() => {
- if(isValid){
+ if(TheIcon){
   setErrorIcon('')
  }else if(val.spotlightIcon === ''){
   setErrorIcon('')
  }
- else if(!isValid){
+ else if(!TheIcon){
   setErrorIcon('Icon not available')
  }
 }, [val])
