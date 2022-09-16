@@ -2,8 +2,7 @@ import { Form } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 function DropzonePrimary({setImages1, onDrop, accept,images1,setPrimaryImageError }:any) {
-  console.log(images1);
-  
+
   const { getRootProps, getInputProps, acceptedFiles } =
     useDropzone({
       accept,

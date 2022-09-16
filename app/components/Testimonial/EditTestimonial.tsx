@@ -16,11 +16,21 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
   useEffect(() => {
   transition.state === "loading" && setShowEditTestimonial(false)
 }, [transition, testimonialText, testimonialText])
+let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
+let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
+let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+let singlewhitespace =/^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
 
+let validName = !firstAndMiddleNameRegex.test(testimonialBy)
+let whiteSpaceRegex = /^\S*$/
+let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
 
   useEffect(() => {
     if(testimonialBy === ''){
       setError1('');
+    }else if (!onlyAlphabetsRegex.test(testimonialBy)) {
+      return setError1('Only alphabets allowed.')
     }
     else if(testimonialBy?.length < 6){
       setError1('Name must be 6 characters long');
@@ -121,7 +131,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                                  event.target.value
                               )
                             }}
-                           className={`text-ellipsis w-[18rem] lg:w-[22rem] block rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                           className={`text-ellipsis text-gray-900 w-[18rem] lg:w-[22rem] block rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                           />
                           <div className='text-red-600 text-sm'>
                             {error}
@@ -146,7 +156,7 @@ export default function EditSocialProfile({setShowEditTestimonial, loaderData, m
                                  event.target.value
                               )
                             }}
-                           className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm ${error1 ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                           className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm text-gray-900 ${error1 ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                           />
                           <div className='text-red-600 text-sm'>
                             {error1}

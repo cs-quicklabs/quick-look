@@ -118,7 +118,7 @@ useEffect(() => {
   setErrorLink('')
  }
 }, [val])
-console.log(val.spotlightIcon);
+
 
 useEffect(() => {
  if(TheIcon){

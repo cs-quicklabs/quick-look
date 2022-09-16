@@ -12,8 +12,7 @@ describe("Signup test", function () {
     const password = faker.random.alpha(8);
     const confirmPassword = password;
     const verifyEmail = fname + lname;
-    console.log("signupDetails.verifyEmail", verifyEmail)
-    console.log("email", email)
+
 
     signupDetails = {fname, lname , email , profileId, password, confirmPassword, verifyEmail};
   });

@@ -35,14 +35,14 @@ useEffect(() => {
    if(testimonialBy.length === 0){
    setError1('')
    }
+   else if (!onlyAlphabetsRegex.test(testimonialBy)) {
+    return setError1('Only alphabets allowed.')
+  }
   else if (testimonialBy.length < 3) {
   return setError1(`First Name must be at least 3 characters long.`)
   } else if (testimonialBy.length > 18) {
   return setError1(`First Name must be less than 18 characters.`)
-  } else if (!onlyAlphabetsRegex.test(testimonialBy)) {
-    return setError1('Only alphabets allowed.')
-  }
-  else{
+  } else{
     setError1('')
   }
     // if(testimonialBy === ''){

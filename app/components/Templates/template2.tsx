@@ -7,7 +7,7 @@ import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video';
 import Spotlightbtn from './addOns/Spotlightbtn';
 export default function Template2({ input, loaderData,secondaryRestore }: any) {
-  console.log(loaderData);
+
   
   return (
     <>

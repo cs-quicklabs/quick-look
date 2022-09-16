@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
 
 export default function AddMoreSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
-console.log(successUpdateMessage);
+
 
 
 const [text, setText] = useState('')

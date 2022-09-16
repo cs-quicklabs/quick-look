@@ -6,7 +6,7 @@ import DefaultProfileIcon from '../../../assets/images/profile.png';
 
 
 export default function DropDown({loaderData,setIsOpen}:any) {
- console.log(loaderData);
+
  
   return (
     <div >
