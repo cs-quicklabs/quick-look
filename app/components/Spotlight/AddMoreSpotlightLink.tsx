@@ -4,6 +4,7 @@ import {  Fragment, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import ExistingSpotlightLink from './ExistingSpotlightLink';
 import { Form } from '@remix-run/react'
+import ExistingAdditionalSpotlightLink from './ExistingAdditionalLinks';
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -18,7 +19,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, loaderData, mode, setmode}:any) {
+export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
   const [selectedColor, setSelectedColor] = useState(colors[1])
 
   const Onclose = (e:any) => {
@@ -174,7 +175,6 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
                   // value={input.location}
                   name="location"
                   id="project-name"
-                  
     //               onChange={(event) => {
     //   setinput({
     //     ...input,
@@ -205,6 +205,10 @@ export default function AddMoreSpotlightLink({showSpotlight, setShowSpotlight, l
         </div> 
         <div className='inset-0'>
         <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+        </div>
+
+        <div className='inset-0'>
+        <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
         </div>
       
       

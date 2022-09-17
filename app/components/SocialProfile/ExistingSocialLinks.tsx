@@ -69,7 +69,6 @@ const linkName = localStorage.getItem("LinkName")
                     </div>
                   </div>
 
-                  {/* <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[1.7rem] xl:mr-0 flex-col lg:justify-center' : 'lg:justify-center flex-row lg:flex-col ml-[3.2rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}> */}
                   <div className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] xl:ml-[8.2rem]' : 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] py-0 lg:py-4'} ${clickedLink.name === person.name && showEditProfile  ? 'hidden' : 'block'}`}>
                     <button
                       data-cy="editSocialButton"
