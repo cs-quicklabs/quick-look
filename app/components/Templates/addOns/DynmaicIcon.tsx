@@ -1,28 +1,64 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import * as HIcons from '@heroicons/react/outline'
 import React from 'react'
-import { useState } from 'react';
+import { useState,useMemo } from 'react';
 
 const DynamicHeroIcon: FC<{icon?: string,Final?:any}> = ({icon,Final}:any) => {
   const {...icons} = HIcons
-  
+  const[isValid,setIsValid]=useState(false)
   // @ts-ignore
-  const TheIcon: any = icons[icon]
-  let isValid = false
- Object.keys(icons).forEach(function(key) {
 
- 
-  //@ts-ignore
-  icons[key]?.render?.name == Final ? isValid =true : null
-});
+  const TheIcon: any = useMemo(() => icons[icon] || null,[icon])
+
+  useEffect(() => {
+    console.log('TheIcon',TheIcon)
+  }, [icon])
+
+//  if(Final){
+//  Object.keys(icons).forEach(function(key) {
+//   //@ts-ignore
+//   icons[key]?.render?.name == Final ? setIsValid(true) : setIsValid(false)
+// });
+//  }
+
+
 
   return (
     <>
-    {isValid ?
-      <TheIcon  className="h-6 w-6 text-white mr-3 box-s" aria-hidden="true" /> : null
-      }
+    {TheIcon &&
+      <TheIcon  className="h-6 w-6 text-white mr-3 box-s" aria-hidden="true" />
+       }
     </>
   )
 }
 
 export default DynamicHeroIcon
+
+
+// import { FC } from 'react'
+// import * as HIcons from '@heroicons/react/outline'
+// import React from 'react'
+// import { useMemo } from 'react';
+
+
+// const DynamicHeroIcon: FC<{icon?: string,Final?:any}> = ({icon,Final}:any) => {
+//   const {...icons} = HIcons
+  
+//   // @ts-ignore
+//   const TheIcon: any = useMemo(() => icons[icon])
+//   let isValid = false
+//   Object.keys(icons).forEach(function(key) {
+//   //@ts-ignore
+//   icons[key]?.render?.name == Final ? isValid =true : null
+// });
+
+//   return (
+//     <>
+//     {isValid ?
+//       <TheIcon  className="h-6 w-6 text-white mr-3 box-s" aria-hidden="true" /> : null
+//       }
+//     </>
+//   )
+// }
+
+// export default DynamicHeroIcon

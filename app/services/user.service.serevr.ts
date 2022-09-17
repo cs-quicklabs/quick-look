@@ -6,8 +6,6 @@ import { UpdateProfileDetails } from "~/types/updateProfile.server";
 import { UserPreferences } from "~/types/updateUserPreferences.server";
 import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
 
-
-
 export async function createUser(userRegister: RegisterForm) {
     const password = await bcrypt.hash(userRegister.password, 10)
     const user = await db.user.create({
@@ -303,5 +301,27 @@ export async function updateUserTemplate(templateId: string, user: any) {
     })
 }
 
-
+export async function getUserByUsername(username: string){
+    const user = await db.user.findFirst({
+        where:{
+            username: username
+        },
+        include:{
+            profile: {},
+            profileImage:{},
+            portfolioImage:{},
+            additionalLinks: {},
+            testimonial: {},
+            spotlightButton: {},
+            video: {},
+            profileInfo: {},
+            socialMedia: {},
+            marketingUpdates: {},
+        }
+    })
+    if(!user){
+        return 'User Does not exist.'
+    }
+    return user;
+}
 
