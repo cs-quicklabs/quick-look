@@ -8,10 +8,11 @@ import VideoAddOn from './addOns/video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
+  console.log(loaderData)
 
   return (
     <>
-    <BannerAddOn loaderData={loaderData} />
+    {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className='flex overflow-hidden'>
       <div className='flex-grow' >
         <div className='h-[10rem]'>

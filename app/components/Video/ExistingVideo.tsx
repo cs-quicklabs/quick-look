@@ -6,21 +6,6 @@ import EditVideo from './EditVideo';
 
 export default function ExistingVideo({setVal, inputVideo, setInputVideo, loaderData, mode, setmode}:any) {
 
-//   const Onclose = (e:any) => {
-    
-//     if(mode === 'desktop'){
-//     setshowBio(false)
-//     }p
-//     if(mode === 'mobile'){
-     
-//     }
-//   };
-
-// const OnCancel = ()=>{
-// setshowBio(false);
-//   setmode('desktop')
-// }
-
 const videoLink = [
   {
     name: loaderData?.video?.videoSourceKey.charAt(0).toUpperCase()+ loaderData?.video?.videoSourceKey?.slice(1) , 
