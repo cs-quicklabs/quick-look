@@ -14,12 +14,16 @@ import {
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData, useTransition } from '@remix-run/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ServerResponse } from '~/types/response.server'
 import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
 import { BeatLoader } from 'react-spinners'
+import ReCAPTCHA from "react-google-recaptcha"
+import { useRef } from 'react';
+import axios from 'axios'
 
 export const action: ActionFunction = async ({ request }) => {
+  
   const {
     firstname,
     lastname,
@@ -27,8 +31,10 @@ export const action: ActionFunction = async ({ request }) => {
     password,
     username,
     confirmPassword,
-    url,
+    url,captcha
   } = await SignUpFormGenerator(request)
+
+console.log(captcha);
 
   const errors = {
     email: await validateSignupEmail(email),
@@ -55,7 +61,7 @@ export const action: ActionFunction = async ({ request }) => {
     username,
     email,
     password,
-    confirmPassword,
+    confirmPassword
   })
 
   const generatedToken = uuidv4() as string
@@ -78,8 +84,24 @@ export const loader: LoaderFunction = async ({request}) => {
 }
 
 export default function SignUp() {
+  const captchaRef = useRef(null)
   const transition = useTransition()
   const actionData = useActionData()
+  const[token,setToken]=useState('')
+  
+  console.log(captchaRef);
+  
+
+  const handleSubmit = async (e:any) =>{
+     //@ts-ignore
+        setToken(captchaRef.current.getValue())
+        console.log(token)
+        //@ts-ignore
+        captchaRef.current.execute();
+    }
+    
+
+
 
   const [val, setVal] = useState({
     firstName: '',
@@ -92,7 +114,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className=' h-screen flex flex-col  text-sm font-inter bg-gray-50 my-0 py-0 overflow-y-auto'>
+      <div className=' h-screen flex flex-col  text-sm font-inter bg-gray-50 my-0 py-0'>
         <div className='mx-auto flex flex-col items-center justify-center mt-20'>
           <img src={logo} alt='' className='h-20 w-20' />
           <div className='flex flex-col items-center justify-center'>
@@ -301,14 +323,16 @@ export default function SignUp() {
                   {actionData?.errors['isPasswordSame']}
                 </div>
               </div>
-              <div className=''>
+              <div className='flex flex-col justify-end'>
+              <ReCAPTCHA ref={captchaRef} sitekey='6LdMrsQhAAAAALgzO0zsjuRPDxFQDFs-alzf35m0'  onChange={handleSubmit}/>
+              <input type="text" hidden name='captcha' value={token}/>
                 <button
                   data-cy="createNewAccountButton"
                   type="submit"
                   className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white leading-5 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-8`}
                   disabled={transition?.state != "idle" ? true : false}
                   >
-                    
+                
                   <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                     <LockClosedIcon
                       className={`h-5 w-5 text-indigo-500 group-hover:text-indigo-400 `}
@@ -321,6 +345,7 @@ export default function SignUp() {
                 </button>
               </div>
             </Form>
+            
           </div>
         </div>
       </div>
