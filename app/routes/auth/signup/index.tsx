@@ -31,10 +31,13 @@ export const action: ActionFunction = async ({ request }) => {
     password,
     username,
     confirmPassword,
-    url,captcha
+    url,
+    captchaToken
   } = await SignUpFormGenerator(request)
 
-console.log(captcha);
+  const res = await axios.post(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${captchaToken}`
+  )
 
   const errors = {
     email: await validateSignupEmail(email),
@@ -43,6 +46,8 @@ console.log(captcha);
     lastname: await validateLastName(lastname),
     username: await validateUsername(username, false),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),
+    captchaTokenError: captchaToken ? undefined : 'Incorrect Captcha',  
+    captchaError: res.status == 200 ? undefined : 'Incorrect Captcha'
   }
 
   if (Object.values(errors).some(Boolean)) {
@@ -325,6 +330,12 @@ export default function SignUp() {
               </div>
               <div className='flex flex-col justify-end'>
               <ReCAPTCHA ref={captchaRef} sitekey='6LdMrsQhAAAAALgzO0zsjuRPDxFQDFs-alzf35m0'  onChange={handleSubmit}/>
+              <div className='text-red-600 text-sm'>
+                {actionData?.errors['captchaError']} 
+              </div>
+              <div className='text-red-600 text-sm'>
+              {actionData?.errors['captchaTokenError']}
+              </div>
               <input type="text" hidden name='captcha' value={token}/>
                 <button
                   data-cy="createNewAccountButton"
