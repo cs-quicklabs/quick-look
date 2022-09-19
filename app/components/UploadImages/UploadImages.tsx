@@ -131,15 +131,14 @@ function showCropAreaSecondary() {
 
   const handleChange = (e: any) => {
      if (e.target.files[0].type.includes("image/jpeg") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/png")) {
-      setimage(e.target.files[0])
-
+      setimage(e.target.files[0]) 
     }
     else {
     setPrimaryImageError("Please upload image only")
   }
   }
   const handleChange2 = (e: any) => {
-    if (e.target.files[0].type.includes("image/")) {
+    if (e.target.files[0].type.includes("image/jpeg") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/png")) {
           setimage2(e.target.files[0])
     }
     else {
