@@ -47,6 +47,12 @@ export async function createUser(userRegister: RegisterForm) {
                                 userId: user.id
                             }
                         }).then(async () => {
+                            await db.supportBanner.create({
+                                data: {
+                                    userId: user.id,
+                                }
+                            })
+                        }).then(async () => {
                             await db.portfolioImage.create({
                                 data: {
                                     userId: user.id,
