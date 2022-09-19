@@ -6,10 +6,13 @@ import defaultimg from '../../../assets/images/profile.png'
 import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video'
 import Spotlightbtn from './addOns/Spotlightbtn'
+import BannerAddOn from './addOns/Banner'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
 
   return (
-    <div className='flex  overflow-hidden'>
+    <>
+    <BannerAddOn loaderData={loaderData} />
+    <div className='flex overflow-hidden'>
       <div className='flex-grow' >
         <div className='h-[10rem]'>
           <div className='relative'>
@@ -82,6 +85,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
         </div>
 
       </div>
-    </div>
+    </div></>
+    
   )
 }
