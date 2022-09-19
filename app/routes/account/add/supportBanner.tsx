@@ -15,7 +15,7 @@ export const action: ActionFunction = async ({ request }) => {
     const bannerIcon = form.get('bannerIcon') as string
     const bannerLink = form.get('bannerLink') as string
     const toggleBanner = form.get('toggleBanner') as unknown as Boolean
- 
+
     await addUpdateSupportBanner({
         bannerText,
         bannerColor,

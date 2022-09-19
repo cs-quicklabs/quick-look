@@ -52,8 +52,7 @@ const OnCancel = ()=>{
   setShowBanner(false);
   setmode('desktop')
 }
-
-
+console.log(loaderData)
   return (
     <Transition.Root show={true} as={Fragment}>
       <div className="relative z-20">
@@ -70,7 +69,7 @@ const OnCancel = ()=>{
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <Form replace={true}  action="" method='post' className='h-screen'>
+                  <Form replace={true}  action="add/supportBanner" method='post' className='h-screen'>
                     
                     <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                     
@@ -81,7 +80,6 @@ const OnCancel = ()=>{
                              Add support banner on your profile
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
-                              <Form replace={true} action="">
                               <button
                                 type="button"
                                 className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
@@ -91,7 +89,7 @@ const OnCancel = ()=>{
                               
                                 <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                                 
-                              </button></Form>
+                              </button>
                             </div>
                           </div>
                           <div className="mt-1">

@@ -15,13 +15,11 @@ export async function addUpdateSupportBanner(supportBannerForm: SupportBannerFor
     toggleBanner = Boolean(toggleBanner)
     if(bannerText.length == 0 || bannerLink.length == 0){ 
         return ;
-    } else if(bannerHex?.length! > 0 || bannerColor.length > 0 ) {
+    } else if(bannerHex?.length || bannerColor.length > 0 ) { 
         if(bannerHex!.length > 0 ){
             bannerColor = ''
         }
-        if(!(bannerColor.length > 0) && !bannerColor?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)){
-            return false
-        }
+
         await db.supportBanner.upsert({
             where: {
                 userId: user.id
