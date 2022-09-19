@@ -27,6 +27,7 @@ model User {
   marketingUpdates MarketingUpdates?
   userVerification UserVerification?
   profile          Profile?
+  supportBanner    SupportBanner?
 
   @@map("user")
 }
@@ -105,11 +106,12 @@ model ProfileInformation {
 }
 
 model Video {
-  id        String  @id @default(uuid())
-  user      User    @relation(fields: [userId], references: [id])
-  userId    String  @unique
-  videoLink String?
-  videoSourceKey String? 
+  id             String  @id @default(uuid())
+  user           User    @relation(fields: [userId], references: [id])
+  userId         String  @unique
+  videoLink      String?
+  videoSourceKey String?
+
   @@map("video")
 }
 
@@ -157,4 +159,16 @@ model AdditionalLink {
   linkUrl   String?
 
   @@map("additionalLinks")
+}
+
+model SupportBanner {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @unique
+  bannerText   String?
+  bannerColor  String?
+  bannerHex    String?
+  bannerIcon   String?
+  bannerlink   String?
+  toggleBanner Boolean? @default(false)
 }
