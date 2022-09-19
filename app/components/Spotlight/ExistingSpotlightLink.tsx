@@ -75,9 +75,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                 <CreateSpotlight showEditSpotlight={showEditSpotlight} setShowEditSpotlight={setShowEditSpotlight} setShowSpotlight={setShowSpotlight} clickedSpotlight={clickedSpotlight} loaderData={loaderData} mode={mode} setmode={setmode} />
               )}
 
-              {/* {showEditSpotlight && clickedSpotlight.name === person.name && (
-                  <EditSpotlight clickedSpotlight={clickedSpotlight} mode={mode} setmode={setmode} />
-              )} */}
+              
                   </div>
                 
                 

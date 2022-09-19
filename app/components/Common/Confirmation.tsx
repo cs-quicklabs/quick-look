@@ -4,7 +4,7 @@ import logo from '../../../assets/images/quicklook-icon.png'
 export default function Confirmation() {
  const Location = useLocation()
   return (
-    <div className='bg-gray-50 h-screen antialiased flex flex-col justify-center'>
+    <div className='bg-gray-50 h-[calc(100vh-3rem)] antialiased flex flex-col justify-center'>
 
       <div className='flex flex-col items-center justify-center '>
         <div className='flex flex-col'>

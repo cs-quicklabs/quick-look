@@ -2,10 +2,9 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateBanner from './CreateBanner';
-import EditBanner from './CreateBanner';
 import DeleteBanner from './Deletebanner';
 
-export default function Banner({showBanner, setShowBanner, loaderData, mode, setmode}:any) {
+export default function Banner({setShowBanner, loaderData, mode, setmode}:any) {
 
   const [showCreatebanner, setShowCreatebanner] = useState(false);
   const [openDeleteBanner, setOpenDeleteBanner] = useState(false);
@@ -94,9 +93,10 @@ export default function Banner({showBanner, setShowBanner, loaderData, mode, set
                         <li className="">
                             <div className={`flex justify-between  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                               <div className="py-4 flex">
-                              {/* <img className="h-11 w-11 rounded-full" src={person.image} alt="" /> */}
                                 <div className="ml-3">
-                                  <p className="text-sm font-medium text-gray-900">{loaderData?.supportBanner?.bannerText}</p>
+                                  <p className="text-sm font-medium text-gray-900">
+                                    {loaderData?.supportBanner?.bannerText?.slice(0,18) + '...'}
+                                  </p>
                                   <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile'?'w-[9rem]':'w-52'}`}>
                                   {loaderData?.supportBanner?.bannerlink?.length > 18 ? loaderData?.supportBanner?.bannerlink.slice(0,18) + '...' : loaderData?.supportBanner?.bannerlink}
                                   </p>
@@ -112,7 +112,7 @@ export default function Banner({showBanner, setShowBanner, loaderData, mode, set
                                   Edit
                                 </button>
                                 {showCreatebanner && (
-                                  <CreateBanner loaderData={loaderData} showCreatebanner={showCreatebanner} setShowCreatebanner={setShowCreatebanner} mode={mode} setmode={setmode} />
+                                  <CreateBanner setOpenDeleteBanner={setOpenDeleteBanner} loaderData={loaderData} showCreatebanner={showCreatebanner} setShowCreatebanner={setShowCreatebanner} mode={mode} setmode={setmode} />
               
                                 )}
                                 <button
@@ -121,7 +121,8 @@ export default function Banner({showBanner, setShowBanner, loaderData, mode, set
                                   className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                                   Delete
                                 </button>
-                                <DeleteBanner setShowBanner={setShowBanner} openDeleteBanner={openDeleteBanner} onClose={() => setOpenDeleteBanner(false)}  />
+                                {openDeleteBanner && <DeleteBanner openDeleteBanner={openDeleteBanner} setOpenDeleteBanner={setOpenDeleteBanner}  onClose={() => setOpenDeleteBanner(false)} /> }
+                                
                               </div>
                             </div>
                         </li>

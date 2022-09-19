@@ -1,16 +1,22 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function DeleteBanner({ setShowBanner, openDeleteBanner, onClose}:any) {
+export default function DeleteBanner({ openDeleteBanner, setOpenDeleteBanner, onClose}:any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
+  
+useEffect(() => {
+  if(transition.state === 'loading' ){
+   setOpenDeleteBanner(false)
+  }
+}, [transition])
 
   return (
     <Transition.Root show={openDeleteBanner} as={Fragment}>
-      <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={onClose}>
+      <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -59,6 +65,9 @@ export default function DeleteBanner({ setShowBanner, openDeleteBanner, onClose}
                     value = "delete Spotlight"
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
+                      // onClick={() => {
+                      //   setOpenDeleteBanner(false)
+                      // }}
                     disabled={transition?.state != "idle" ? true : false}
                     >
                       {transition?.state != "idle"  ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> :

@@ -30,7 +30,7 @@ const people = [
   { id: 7, name: 'Allow people to book an appointment' },
 ]
 
-export default function CreateBanner({ OncloseBanner, setShowBanner, setShowCreatebanner, loaderData, mode, setmode}:any) {
+export default function CreateBanner({ setOpenDeleteBanner, OncloseBanner, setShowBanner, setShowCreatebanner, loaderData, mode, setmode}:any) {
   const transition = useTransition()
   
   const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
@@ -39,18 +39,18 @@ export default function CreateBanner({ OncloseBanner, setShowBanner, setShowCrea
 
   const [value, setValue] = useState({bannerText:loaderData?.supportBanner?.bannerText, bannerColor:loaderData?.supportBanner?.bannerColor, bannerHex:loaderData?.supportBanner?.bannerHex , bannerIcon:loaderData?.supportBanner?.bannerIcon , bannerLink:loaderData?.supportBanner?.bannerlink, toggleBanner:loaderData?.supportBanner?.toggleBanner })
 
-  // const iconName = _.startCase(_.camelCase(value.bannerIcon)) + 'Icon'
-  // const Name = _.replace(iconName, ' ', '');
-  // const Final = Name.split(" ").join('')
-  // const {...icons} = HIcons
-  // //@ts-ignore
-  // const TheIcon: any = React.useMemo(() => icons[Final] || null,[Final])
+  var _ = require('lodash');
+  const iconName = _.startCase(_.camelCase(value.bannerIcon)) + 'Icon'
+  const Name = _.replace(iconName, ' ', '');
+  const Final = Name.split(" ").join('')
+  const {...icons} = HIcons
+  //@ts-ignore
+  const TheIcon: any = React.useMemo(() => icons[Final] || null,[Final])
 
 
   const Onclose = (e:any) => {
     
     if(mode === 'desktop'){
-      // setShowBanner(false)
       setShowCreatebanner(false)
     }
     if(mode === 'mobile'){
@@ -63,12 +63,6 @@ const OnCancel = ()=>{
   setmode('desktop')
 }
 
-useEffect(() => {
-  if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
-   setShowCreatebanner(false);
-  }
-}, [transition])
-
   const [error,setError]=useState('')
   const [errorHex,setErrorHex]=useState('')
   const [errorColor,setErrorColor]=useState('')
@@ -77,6 +71,12 @@ useEffect(() => {
   const [errorLink,setErrorLink]=useState('')
 
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+
+  useEffect(() => {
+    if(transition.state != 'idle' && !error && !errorLink && !errorHex && !errorColor ){
+     setShowCreatebanner(false);
+    }
+  }, [transition, error, errorLink, errorHex, errorColor])
 
 useEffect(() => {
   if(value?.bannerHex?.length && !validRegex.test(value.bannerHex)){
@@ -91,23 +91,26 @@ setErrorHex("")
 }, [value?.bannerHex,selectedColor])
 
 useEffect(() => {
-  if(value?.bannerText?.length === 0){
-   setError('Required')
-  }else{
+  if(value?.bannerText){
    setError('')
+  }else{
+   setError('Required')
   }
  }, [value])
 
-//  useEffect(() => {
-//   if(TheIcon){
-//    setErrorIcon('')
-//   }else if(value.bannerIcon === ''){
-//    setErrorIcon('')
-//   }
-//   else if(!TheIcon){
-//    setErrorIcon('Icon not available')
-//   }
-//  }, [value])
+ useEffect(() => {
+  if(TheIcon){
+   setErrorIcon('')
+  }else if(value.bannerIcon === ''){
+   setErrorIcon('')
+  }
+  else if(!TheIcon && value.bannerIcon){
+   setErrorIcon('Icon not available')
+  }
+  else {
+    setErrorIcon('')
+  }
+ }, [value, TheIcon])
  
  useEffect(() => {
    if(!selectedColor && !value.bannerHex){
@@ -128,10 +131,10 @@ useEffect(() => {
  }, [value,selectedColor])
 
  useEffect(() => {
-  if(value?.bannerLink?.length === 0){
-    setErrorLink('Required')
-  }else{
+  if(value?.bannerLink){
     setErrorLink('')
+  }else{
+    setErrorLink('Required')
   }
  }, [value])
 
@@ -296,7 +299,7 @@ useEffect(() => {
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-900 ${ errorIcon ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900`}
                                 />
                                 {<div className='text-sm text-indigo-500'>{errorIcon}</div>}
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any font awesome icon to add to your button.  Please go  <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>

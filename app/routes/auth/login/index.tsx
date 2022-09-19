@@ -91,7 +91,7 @@ const loaderData = useLoaderData();
    return (
     <>
     
-      <div className="h-screen overflow-hidden flex flex-col justify-center pb-12 bg-gray-50">
+      <div className="h-[calc(100vh-3rem)] overflow-hidden flex flex-col justify-center pb-12 bg-gray-50">
         <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
       {!actionData?.errors && loaderData?.message?  <div className="rounded-md bg-green-50 p-4">
       <div className="flex ">
