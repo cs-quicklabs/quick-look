@@ -1,7 +1,6 @@
-import { Listbox,Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { Fragment, useEffect, useState } from 'react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
 import { Form, useTransition } from '@remix-run/react'
@@ -34,8 +33,19 @@ const people = [
 export default function CreateBanner({ OncloseBanner, setShowBanner, setShowCreatebanner, loaderData, mode, setmode}:any) {
   const transition = useTransition()
   
-  const [selectedColor, setSelectedColor] = useState(colors[1])
-  const [enabled, setEnabled] = useState(false)
+  const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
+  const [enabled, setEnabled] = useState(loaderData?.supportBanner?.toggleBanner)
+  const [click,setClicked]=useState(false)
+
+  const [value, setValue] = useState({bannerText:loaderData?.supportBanner?.bannerText, bannerColor:loaderData?.supportBanner?.bannerColor, bannerHex:loaderData?.supportBanner?.bannerHex , bannerIcon:loaderData?.supportBanner?.bannerIcon , bannerLink:loaderData?.supportBanner?.bannerlink, toggleBanner:loaderData?.supportBanner?.toggleBanner })
+
+  // const iconName = _.startCase(_.camelCase(value.bannerIcon)) + 'Icon'
+  // const Name = _.replace(iconName, ' ', '');
+  // const Final = Name.split(" ").join('')
+  // const {...icons} = HIcons
+  // //@ts-ignore
+  // const TheIcon: any = React.useMemo(() => icons[Final] || null,[Final])
+
 
   const Onclose = (e:any) => {
     
@@ -52,7 +62,80 @@ const OnCancel = ()=>{
   setShowBanner(false);
   setmode('desktop')
 }
-console.log(loaderData)
+
+useEffect(() => {
+  if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
+   setShowCreatebanner(false);
+  }
+}, [transition])
+
+  const [error,setError]=useState('')
+  const [errorHex,setErrorHex]=useState('')
+  const [errorColor,setErrorColor]=useState('')
+  const [errorNoColor, setErrorNoColor] = useState('')
+  const[errorIcon,setErrorIcon]= useState('')
+  const [errorLink,setErrorLink]=useState('')
+
+  const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+
+useEffect(() => {
+  if(value?.bannerHex?.length && !validRegex.test(value.bannerHex)){
+    setErrorHex("Invalid Hexcode")
+  }
+  else if(!value.bannerHex && selectedColor){
+setErrorHex("")
+  } else{
+setErrorHex("")
+  }
+
+}, [value?.bannerHex,selectedColor])
+
+useEffect(() => {
+  if(value?.bannerText?.length === 0){
+   setError('Required')
+  }else{
+   setError('')
+  }
+ }, [value])
+
+//  useEffect(() => {
+//   if(TheIcon){
+//    setErrorIcon('')
+//   }else if(value.bannerIcon === ''){
+//    setErrorIcon('')
+//   }
+//   else if(!TheIcon){
+//    setErrorIcon('Icon not available')
+//   }
+//  }, [value])
+ 
+ useEffect(() => {
+   if(!selectedColor && !value.bannerHex){
+     setErrorNoColor('Please select color or hexcode.')
+  }else {
+   setErrorNoColor('')
+  }
+  
+ }, [value, selectedColor])
+ 
+  useEffect(() => {
+   if(selectedColor && value.bannerHex){
+   setErrorColor('Hexcode will be given priority')
+  }else {
+   setErrorColor('')
+  }
+  
+ }, [value,selectedColor])
+
+ useEffect(() => {
+  if(value?.bannerLink?.length === 0){
+    setErrorLink('Required')
+  }else{
+    setErrorLink('')
+  }
+ }, [value])
+
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <div className="relative z-20">
@@ -77,7 +160,7 @@ console.log(loaderData)
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
                             <Dialog.Title className="text-lg font-medium text-gray-900 leading-7">
-                             Add support banner on your profile
+                             {loaderData?.supportBanner?.bannerText ? 'Edit' : 'Add'} support banner on your profile
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
@@ -112,18 +195,18 @@ console.log(loaderData)
                                 <input
                                   data-cy="bannerText"
                                   type="text"
-                                  // value={val.buttonText}
+                                  value={value.bannerText}
                                   name="bannerText"
                                   id="bannerText"
-                                  // onChange={(event) => {
-                                  //   setVal({
-                                  //     ...val,
-                                  //     [event.target.name]: event.target.value,
-                                  //   })
-                                  // }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500`}
+                                  onChange={(event) => {
+                                    setValue({
+                                      ...value,
+                                      [event.target.name]: event.target.value,
+                                    })
+                                  }}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-900 ${click && error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 />
-                               
+                                {click && <div className='text-sm text-red-500'>{error}</div>}
                               </div>
                             </div>
 
@@ -172,22 +255,26 @@ console.log(loaderData)
                                   <input
                                     data-cy="bannerHex"
                                     type="text"
-                                    // value={val.hexcode}
+                                    value={value.bannerHex}
                                     name='bannerHex'
                                     id="project-name"
-                                    // onChange={(event) => {
-                                    //   setVal({
-                                    //     ...val,
-                                    //     [event.target.name]: event.target.value,
-                                    //   })
-                                    // }}
-                                    className={`block w-full rounded-md shadow-sm sm:text-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500`}
+                                    onChange={(event) => {
+                                      setValue({
+                                        ...value,
+                                        [event.target.name]: event.target.value,
+                                      })
+                                    }}
+                                    className={`block w-full rounded-md shadow-sm sm:text-sm text-gray-900 ${click && errorHex ? "border-red-300 focus:ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"} `}
                                   />
-                                  
+                                  {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+                                  {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
                                 </div>
                               </div>
                               </div>
-
+                                
+                              <div>
+                              {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
+                              </div>
                               
                             </div>
 
@@ -200,19 +287,19 @@ console.log(loaderData)
                                 <input
                                   data-cy="bannerIcon"
                                   type="text"
-                                  // value={val.spotlightIcon}
+                                  value={value.bannerIcon}
                                   name="bannerIcon"
                                   id="project-name"
-                                  // onChange={(event) => {
-                                  //   setVal({
-                                  //     ...val,
-                                  //     [event.target.name]: event.target.value,
-                                  //   })
-                                  // }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500 }`}
+                                  onChange={(event) => {
+                                    setValue({
+                                      ...value,
+                                      [event.target.name]: event.target.value,
+                                    })
+                                  }}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm text-gray-900 ${ errorIcon ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 />
-                                {/* {<div className='text-sm text-indigo-500'>{errorIcon}</div>} */}
-                                <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any font awesome icon to add to your button.  Please go here to find name of icon</p>
+                                {<div className='text-sm text-indigo-500'>{errorIcon}</div>}
+                                <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any font awesome icon to add to your button.  Please go  <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>
                             </div>
 
@@ -225,17 +312,18 @@ console.log(loaderData)
                                 <input
                                   data-cy="bannerLink"
                                   type="text"
-                                  // value={val.buttonText}
+                                  value={value.bannerLink}
                                   name="bannerLink"
                                   id="project-name"
-                                  // onChange={(event) => {
-                                  //   setVal({
-                                  //     ...val,
-                                  //     [event.target.name]: event.target.value,
-                                  //   })
-                                  // }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500`}
+                                  onChange={(event) => {
+                                    setValue({
+                                      ...value,
+                                      [event.target.name]: event.target.value,
+                                    })
+                                  }}
+                                  className={`block w-full rounded-md border-gray-300 text-gray-900 shadow-sm  sm:text-sm ${click && error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 />
+                                {click && <div className='text-sm text-red-500'>{errorLink}</div>}
                                <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>
                                 Visitors will be redirected to this link if they click on your banner text
                                 </p>
@@ -283,11 +371,11 @@ console.log(loaderData)
                                 data-cy="addBannerButton"
                                 type="submit"
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                                // onClick={()=>{setClicked(true);
-                                // }}
+                                onClick={()=>{setClicked(true);
+                                }}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
-                                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
                                  'Add Support Banner' }
                                 
                               </button>

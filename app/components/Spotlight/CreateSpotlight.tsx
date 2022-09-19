@@ -196,7 +196,7 @@ const OnCancel = ()=>{
                             {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button to your profile`} 
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
-                              <Form replace={true} action="">
+                              {/* <Form replace={true} action=""> */}
                               <button
                                 type="button"
                                 className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
@@ -206,7 +206,8 @@ const OnCancel = ()=>{
                               
                                 <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                                 
-                              </button></Form>
+                              </button>
+                              {/* </Form> */}
                             </div>
                           </div>
                           <div className="mt-1">
