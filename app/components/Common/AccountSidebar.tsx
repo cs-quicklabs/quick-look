@@ -14,6 +14,7 @@ import NoTestimonial from '../Testimonial/NoTestimonial';
 import NoVideo from '../Video/NoVideo';
 import Portfolio from '../Portfolio';
 import SpotlightButton from '../Spotlight';
+import Banner from '../Banner';
 
 
 const navigationFirst = [
@@ -21,20 +22,21 @@ const navigationFirst = [
   { name: 'Bio', subheading: 'Introduction, Work and Education Details' },
   { name: 'Social Links', subheading: 'Links to Social Profile' },
   { name: 'Images', subheading: 'Update Images in your templates' },
+  { name: 'Support Banner', subheading: 'Add a support banner on top of your profile' },
 ]
 
 const navigationSecond = [
   { name: 'Spotlight Button', subheading: 'Add a call to action button on profile' },
   { name: 'Add Video', subheading: 'Add a video link to your profile' },
   { name: 'Add Testimonials', subheading: 'Add testimonials to your profile' },
-  { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile ' },
+  { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile' },
 ]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({initialInput,setMessage,bioMessage,setBioMessage, showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({ showBanner, setShowBanner, initialInput,setMessage,bioMessage,setBioMessage, showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -123,34 +125,63 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                             key={item.name}
                             onClick={() => {
                               if (item.name === 'Bio') {
-                                setshowBio(true);
+                                setShowSpotlight(false);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
                                 setSidebarOpen(false);
-                                setshowTemplate(false)
-                                setshowSocialLinks(false)
                                 setshowImages(false);
-
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(true);
+                                setShowBanner(false)
                               }
                               if (item.name === 'Design Templates') {
-                                setshowTemplate(true);
+                               setShowSpotlight(false);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
                                 setSidebarOpen(false);
-                                setshowBio(false);
-                                setshowSocialLinks(false)
                                 setshowImages(false);
-
+                                setshowSocialLinks(false);
+                                setshowTemplate(true);
+                                setshowBio(false);
+                                setShowBanner(false)
                               }
                               if (item.name === 'Social Links') {
-                                setshowSocialLinks(true);
+                                setShowSpotlight(false);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
                                 setSidebarOpen(false);
-                                setshowTemplate(false)
-                                setshowBio(false);
                                 setshowImages(false);
+                                setshowSocialLinks(true);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                                setShowBanner(false)
                               }
                               if (item.name === 'Images') {
-                                setshowImages(true);
+                                setShowSpotlight(false);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
                                 setSidebarOpen(false);
+                                setshowImages(true);
                                 setshowSocialLinks(false);
-
-                                setshowTemplate(false)
+                                setshowTemplate(false);
+                                setshowBio(false);
+                                setShowBanner(false)
+                              }
+                              if (item.name === 'Support Banner') {
+                                setShowBanner(true)
+                                setShowSpotlight(false);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
                                 setshowBio(false);
                               }
                             }}
@@ -195,6 +226,9 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           <UploadImages setshowImages={setshowImages} mode={mode} loaderData={loaderData} setmode={setmode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} /> :
                           null
                         }
+                        {showBanner ?
+                        <Banner showBanner={showBanner} setShowBanner={setShowBanner} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                        null}
                       </div>
 
                     </div>
@@ -212,25 +246,32 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                             data-cy={`${item.name}`}
                             onClick={() => { 
                               if (item.name === 'Spotlight Button') {
-                              setShowSpotlight(true);
-                              // setShowPortfolio(false);
-                              // setShowAddVideo(false);
-                              // setShowTestimonial(false);
-                              setSidebarOpen(false);
-                              setshowImages(false);
-                              setshowSocialLinks(false);
-                              setshowTemplate(false);
-                              setshowBio(false);
-                            }
+                                setShowSpotlight(true);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
+                                setShowTestimonial(false);
+                                setSidebarOpen(false);
+                                setshowImages(false);
+                                setshowSocialLinks(false);
+                                setshowTemplate(false);
+                                setshowBio(false);
+                                setShowBanner(false)
+                              }
                               if (item.name === 'Add Testimonials') {
+                                setShowSpotlight(false);
+                                setShowPortfolio(false);
+                                setShowAddVideo(false);
                                 setShowTestimonial(true);
                                 setSidebarOpen(false);
                                 setshowImages(false);
                                 setshowSocialLinks(false);
                                 setshowTemplate(false);
                                 setshowBio(false);
+                                setShowBanner(false)
                               }
                               if (item.name === 'Add Video') {
+                                setShowSpotlight(false);
+                                setShowPortfolio(false);
                                 setShowAddVideo(true);
                                 setShowTestimonial(false);
                                 setSidebarOpen(false);
@@ -238,6 +279,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                                 setshowSocialLinks(false);
                                 setshowTemplate(false);
                                 setshowBio(false);
+                                setShowBanner(false)
                               }
                               if (item.name === 'Add Portfolio') {
                                 setShowPortfolio(true);
@@ -248,6 +290,8 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                                 setshowSocialLinks(false);
                                 setshowTemplate(false);
                                 setshowBio(false);
+                                setShowSpotlight(false);
+                                setShowBanner(false)
                               }
                             }}
                             // className={classNames(
@@ -345,7 +389,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowSocialLinks(false);
                           setshowTemplate(false);
                           setshowBio(true);
-
+                          setShowBanner(false)
                         }
                         if (item.name === 'Design Templates') {
                          setShowSpotlight(false);
@@ -357,7 +401,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowSocialLinks(false);
                           setshowTemplate(true);
                           setshowBio(false);
-
+                          setShowBanner(false)
                         }
                         if (item.name === 'Social Links') {
                           setShowSpotlight(false);
@@ -369,6 +413,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowSocialLinks(true);
                           setshowTemplate(false);
                           setshowBio(false);
+                          setShowBanner(false)
                         }
                         if (item.name === 'Images') {
                           setShowSpotlight(false);
@@ -377,6 +422,19 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setShowTestimonial(false);
                           setSidebarOpen(false);
                           setshowImages(true);
+                          setshowSocialLinks(false);
+                          setshowTemplate(false);
+                          setshowBio(false);
+                          setShowBanner(false)
+                        }
+                        if (item.name === 'Support Banner') {
+                          setShowBanner(true)
+                          setShowSpotlight(false);
+                          setShowPortfolio(false);
+                          setShowAddVideo(false);
+                          setShowTestimonial(false);
+                          setSidebarOpen(false);
+                          setshowImages(false);
                           setshowSocialLinks(false);
                           setshowTemplate(false);
                           setshowBio(false);
@@ -422,6 +480,9 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                   <UploadImages setshowImages={setshowImages} loaderData={loaderData} mode={mode} setmode={setmode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} /> :
                   null
                 }
+                {showBanner ?
+                <Banner showBanner={showBanner} setShowBanner={setShowBanner} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                null}
 
               </div>
 
@@ -446,6 +507,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowSocialLinks(false);
                           setshowTemplate(false);
                           setshowBio(false);
+                          setShowBanner(false)
                         }
                         if (item.name === 'Add Testimonials') {
                           setShowSpotlight(false);
@@ -457,6 +519,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowSocialLinks(false);
                           setshowTemplate(false);
                           setshowBio(false);
+                          setShowBanner(false)
                         }
                         if (item.name === 'Add Video') {
                           setShowSpotlight(false);
@@ -468,7 +531,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowSocialLinks(false);
                           setshowTemplate(false);
                           setshowBio(false);
-
+                          setShowBanner(false)
                         }
                         if (item.name === 'Add Portfolio') {
                           setShowPortfolio(true);
@@ -480,6 +543,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           setshowTemplate(false);
                           setshowBio(false);
                           setShowSpotlight(false);
+                          setShowBanner(false)
                         }
                       }}
                       className={classNames(
