@@ -105,7 +105,7 @@ const toggledesktop = () =>{
 const [showUserSetting, setShowUserSetting] = useState(false);
 const togglemobile = () =>{
 setmode('mobile')
-setshowTemplate(!showSocialLinks && !showImages && !showBio && !showTestimonial && !showAddVideo && !showPortfolio && !showSpotlight ? true : false)
+setshowTemplate(!showSocialLinks && !showImages && !showBio && !showTestimonial && !showAddVideo && !showPortfolio && !showSpotlight && !showBanner ? true : false)
 }
 const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 'text-gray-700/20' : 'text-gray-700/40'
   return (

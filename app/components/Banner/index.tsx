@@ -83,7 +83,7 @@ export default function Banner({showBanner, setShowBanner, loaderData, mode, set
                         Add Support Banner
                       </button>
                       {showCreatebanner && (
-                        <CreateBanner setShowCreatebanner={setShowCreatebanner} mode={mode} setmode={setmode} loaderData={loaderData} />
+                        <CreateBanner OncloseBanner={OnCancel} setShowCreatebanner={setShowCreatebanner} mode={mode} setmode={setmode} loaderData={loaderData} />
                       )}
                     </div>:
                     <div className=''>

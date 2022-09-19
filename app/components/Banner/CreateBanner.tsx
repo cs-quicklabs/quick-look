@@ -31,7 +31,7 @@ const people = [
   { id: 7, name: 'Allow people to book an appointment' },
 ]
 
-export default function CreateBanner({showBanner, setShowBanner, setShowCreatebanner, loaderData, mode, setmode}:any) {
+export default function CreateBanner({ OncloseBanner, setShowBanner, setShowCreatebanner, loaderData, mode, setmode}:any) {
   const transition = useTransition()
   
   const [selectedColor, setSelectedColor] = useState(colors[1])
@@ -44,8 +44,8 @@ export default function CreateBanner({showBanner, setShowBanner, setShowCreateba
       setShowCreatebanner(false)
     }
     if(mode === 'mobile'){
-     
     }
+    OncloseBanner()
   };
 
 const OnCancel = ()=>{
@@ -56,7 +56,7 @@ const OnCancel = ()=>{
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
+      <div className="relative z-20">
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex `}>
@@ -85,11 +85,11 @@ const OnCancel = ()=>{
                               <button
                                 type="button"
                                 className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
-                                onClick={Onclose}
+                                onClick={OnCancel}
                               >
                                 <span className="sr-only">Close panel</span>
                               
-                                <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                                <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                                 
                               </button></Form>
                             </div>
@@ -290,7 +290,7 @@ const OnCancel = ()=>{
                                 disabled={transition?.state != "idle" ? true : false}
                               >
                                 {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
-                                loaderData?.spotlightButton?.buttonText  ? 'Edit Spotlight Button': 'Add Support Banner' }
+                                 'Add Support Banner' }
                                 
                               </button>
                             </div>
@@ -313,7 +313,7 @@ const OnCancel = ()=>{
             </div>
           </div>
         </div>
-      </Dialog>
+      </div>
     </Transition.Root>
   )
 }
