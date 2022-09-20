@@ -8,7 +8,6 @@ import VideoAddOn from './addOns/video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
-  console.log(loaderData)
 
   return (
     <>

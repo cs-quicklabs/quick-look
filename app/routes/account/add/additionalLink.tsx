@@ -6,6 +6,7 @@ import { getUser } from "~/services/auth.service.server";
 
 export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData()
+    console.log("formData",formData)
     const linkText = await formData.get('linkText') as string
     const linkUrl = await formData.get('linkUrl') as string
     const linkColor = await formData.get('linkColor') as string

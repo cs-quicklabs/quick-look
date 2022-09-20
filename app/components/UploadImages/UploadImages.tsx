@@ -29,7 +29,6 @@ const[edit,setEdit]=useState(false)
 const[edit2,setEdit2]=useState(false)
 const[drag,setDrag]=useState(false)
 const[drag2,setDrag2]=useState(false)
-console.log(drag);
 
 
   const onDrop = useCallback((acceptedFiles) => {

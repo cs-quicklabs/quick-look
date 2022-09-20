@@ -1,6 +1,6 @@
 import { Dialog, Transition  } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import {  Fragment, useState } from 'react'
+import {  Fragment, useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import ExistingSpotlightLink from './ExistingSpotlightLink';
 import { Form, useTransition } from '@remix-run/react'
@@ -23,6 +23,21 @@ function classNames(...classes: string[]) {
 export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
   const transition = useTransition();
   const [selectedColor, setSelectedColor] = useState(colors[1])
+  console.log("ghghjgj",loaderData)
+
+  const [val1, setVal1] = useState('');
+  const [val2, setVal2] = useState('');
+  const [val3, setVal3] = useState('');
+  const [val4, setVal4] = useState('');
+  const [clickedAddLink, setClickedAddLink] = useState(false);
+
+useEffect(() => {
+  if(transition?.state === "idle") {
+    setClickedAddLink(false);
+  }
+},[transition?.state])
+
+  // const [val, setVal] = useState({linkColor:loaderData?.additionalLinks?.linkColor, linkHex:loaderData?.additionalLinks?.linkHex, linkText:loaderData?.additionalLinks?.linkText, linkUrl:loaderData?.additionalLinks?.linkUrl})
 
   const Onclose = (e:any) => {
     if(mode === 'desktop'){
@@ -63,7 +78,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               Add Additional Links to your profile
             </Dialog.Title>
             <div className="ml-3 flex h-7 items-center">
-              <Form replace={true} action="">
+              {/* <Form replace={true} action=""> */}
               <button
                 type="button"
                 className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
@@ -73,7 +88,8 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               
                 <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                 
-              </button></Form>
+              </button>
+              {/* </Form> */}
             </div>
           </div>
           <div className="mt-1">
@@ -89,7 +105,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
 
             <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
               <div className="">
-              <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
+              <RadioGroup name="linkColor" value={selectedColor} onChange={ () => {setSelectedColor; console.log("selectedColor",selectedColor)}}>
                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                   Select Color For Button
                 </RadioGroup.Label>
@@ -128,15 +144,13 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               <div className="mt-1 p-1">
                 <input
                   type="text"
-                  // value={input.location}
-                  name="location"
-                  id="project-name"
-    //               onChange={(event) => {
-    //   setinput({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // }}
+                  // value={val2}
+                  name="linkHex"
+                  id="linkHex"
+                  // onChange={(event:any) => {
+                  //   setVal2(event.target.value);
+                  //   console.log('val2',val2)
+                  // }}
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
@@ -152,16 +166,13 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                 <input
                   data-cy="linkText"
                   type="text"
-                  // value={input.location}
+                  // value={val3}
                   name="linkText"
                   id="linkText"
-                  
-    //               onChange={(event) => {
-    //   setinput({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // }}
+                  // onChange={(event:any) => {
+                  //   setVal3(event.target.value);
+                  //   console.log("val3", val3)
+                  // }}
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
@@ -175,15 +186,13 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               <div className="mt-1">
                 <input
                   type="text"
-                  // value={input.location}
+                  value={val4}
                   name="linkUrl"
                   id="linkUrl"
-    //               onChange={(event) => {
-    //   setinput({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // }}
+                  // onChange={(event:any) => {
+                  //   setVal4(event.target.value);
+                  //   console.log("val4", val4)
+                  // }}
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
@@ -197,6 +206,9 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                 type="submit"
                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                 disabled={transition?.state != "idle" ? true : false}
+                onClick={() => {
+                  setClickedAddLink(true)
+                }}
               >
                 {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Add Link' }
               </button>
