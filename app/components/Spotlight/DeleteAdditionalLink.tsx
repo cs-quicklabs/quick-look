@@ -4,7 +4,7 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function DeleteAdditinalLink({ loaderData, openDeleteSpotlight, setOpenDeleteAdditionalLink, onClose}:any) {
+export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDeleteAdditionalLink, onClose}:any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
 
@@ -47,11 +47,11 @@ export default function DeleteAdditinalLink({ loaderData, openDeleteSpotlight, s
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                    Delete Spotlight
+                    Delete Additional Spotlight Link
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                      Are you sure you want to delete this spotlight link?
+                      Are you sure you want to delete this additional spotlight link?
                       </p>
                     </div>
                   </div>

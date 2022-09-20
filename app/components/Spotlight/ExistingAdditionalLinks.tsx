@@ -4,16 +4,6 @@ import EditAdditionalLink from './EditAdditionalLink';
 
 export default function ExistingAdditionalSpotlightLink({ setShowSpotlight,loaderData, mode, setmode}:any) {
 
-
-const spotlight = [
-  {
-    id:"1",
-    name: 'Spotlight Button Name',
-    description: 'Spotilght button description',
-  },
-  
-]
-
 const [clickedAdditionalSpotlight, setClickedAdditionalSpotlight] = useState<{ linkText: any; id: any; linkUrl: any; }>({ linkText: '', id: '', linkUrl: '' });
 
 const [showEditAdditional, setShowEditAdditional] = useState(false); 
@@ -59,7 +49,8 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  {/* <DeleteAdditinalLink openDeleteAdditionalLink={openDeleteAdditionalLink} setOpenDeleteAdditionalLink={setOpenDeleteAdditionalLink} onClose={() => setOpenDeleteAdditionalLink(false)}  /> */}
+                  {openDeleteAdditionalLink && 
+                  <DeleteAdditinalLink openDeleteAdditionalLink={openDeleteAdditionalLink} setOpenDeleteAdditionalLink={setOpenDeleteAdditionalLink} onClose={() => setOpenDeleteAdditionalLink(false)}  />}
 
                   
                 </div>
