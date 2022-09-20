@@ -1,16 +1,16 @@
 import { db } from "~/database/connection.server";
 import { AddAdditionalLink } from "~/types/additionalLink.server";
-import { getUser } from "./auth.service.server";
-import { getUserById } from "./user.service.serevr";
 
-export async function addAdditionalLink({linkColor, linkText, linkUrl, user}: AddAdditionalLink){
+
+export async function addAdditionalLink({linkColor, linkText, linkUrl, linkHex, user}: AddAdditionalLink){
     await db.additionalLink.create({
         data: {
             userId: user.id,
             linkText,
             linkColor,
-            linkUrl
-        }
+            linkUrl,
+            linkHex
+        },
     })
 }
 
