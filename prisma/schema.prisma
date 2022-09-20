@@ -157,6 +157,7 @@ model AdditionalLink {
   linkText  String?
   linkColor String?
   linkUrl   String?
+  linkHex   String?
 
   @@map("additionalLinks")
 }

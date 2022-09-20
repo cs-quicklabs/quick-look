@@ -9,10 +9,10 @@ export const action: ActionFunction = async ({ request }) => {
     const linkText = await formData.get('linkText') as string
     const linkUrl = await formData.get('linkUrl') as string
     const linkColor = await formData.get('linkColor') as string
-
+    const linkHex = await formData.get('linkHex') as string
 
     const user = await getUser(request) || undefined
-    await addAdditionalLink({ user, linkColor , linkUrl, linkText })
+    await addAdditionalLink({ user, linkColor , linkUrl, linkText, linkHex })
     return redirect('/account') 
   }
 
