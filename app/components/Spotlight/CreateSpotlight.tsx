@@ -196,7 +196,7 @@ const OnCancel = ()=>{
                             {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button to your profile`} 
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
-                              <Form replace={true} action="">
+                              {/* <Form replace={true} action=""> */}
                               <button
                                 type="button"
                                 className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
@@ -206,7 +206,8 @@ const OnCancel = ()=>{
                               
                                 <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                                 
-                              </button></Form>
+                              </button>
+                              {/* </Form> */}
                             </div>
                           </div>
                           <div className="mt-1">
@@ -329,7 +330,7 @@ const OnCancel = ()=>{
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500 }`}
+                                  className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500`}
                                 />{<div className='text-sm text-indigo-500'>{errorIcon}</div>}
                                 <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>You can select any Hero icon to add to your button.  Please go <a target='_blank' className='text-blue-800 underline' href='https://heroicons.com/'>here</a> to find name of icon</p>
                               </div>

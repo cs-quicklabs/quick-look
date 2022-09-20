@@ -1,31 +1,26 @@
 import { useState } from 'react';
-import EditTestimonial from '../Testimonial/EditTestimonial';
 import CreateSpotlight from './CreateSpotlight';
 import DeleteSpotlight from './DeleteSpotlight';
 import EditSpotlight from './EditSpotlight';
 
-export default function ExistingSpotlightLink({ setShowSpotlight,loaderData, mode, setmode}:any) {
+export default function ExistingAdditionalSpotlightLink({ setShowSpotlight,loaderData, mode, setmode}:any) {
 
 
 const spotlight = [
   {
-    name: loaderData?.spotlightButton?.buttonText,
-    description: loaderData?.spotlightButton?.buttonActionlink,
+    name: 'Spotlight Button Name',
+    description: 'Spotilght button description',
   },
-  // {
-  //   name: 'loaderData?.spotlightButton?.buttonText',
-  //   description: 'loaderData?.spotlightButton?.buttonActionlink',
-  // },
   
 ]
 
-const [clickedSpotlight, setClickedSpotlight] = useState<{ name: any; description: any }>({ name: '', description: '' });
+// const [clickedSpotlight, setClickedSpotlight] = useState<{ name: any; description: any }>({ name: '', description: '' });
 
 const [showEditSpotlight, setShowEditSpotlight] = useState(false); 
 
-const toggleEditSpotlight = (person: { name: string; description: string; }) => {
+const toggleEditAdditionalSpotlight = (person: { name: string; description: string; }) => {
   setShowEditSpotlight(!showEditSpotlight);
-  setClickedSpotlight(person);
+  // setClickedSpotlight(person);
 }
 
 const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
@@ -53,29 +48,29 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
                   <button
                     data-cy="editExistingSpotlight"
                     className="hover:text-indigo-600 text-[14px]"
-                    onClick={(e: any) => { e.preventDefault(); toggleEditSpotlight(person) }}
+                    onClick={(e: any) => { e.preventDefault(); toggleEditAdditionalSpotlight(person) }}
                   >
                     Edit
                   </button>
                   
                   <button
                     data-cy="deleteSpotlightButton"
-                    onClick={(e: any) => { e.preventDefault(); setOpenDeleteSpotlight(true); setClickedSpotlight(person); }}
+                    onClick={(e: any) => { e.preventDefault(); setOpenDeleteSpotlight(true); }}
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
-                  <DeleteSpotlight clickedSpotlight={clickedSpotlight} openDeleteSpotlight={openDeleteSpotlight} onClose={() => setOpenDeleteSpotlight(false)}  />
+                  <DeleteSpotlight openDeleteSpotlight={openDeleteSpotlight} onClose={() => setOpenDeleteSpotlight(false)}  />
 
                   
                 </div>
                   </div>
 
                   <div>
-                  {showEditSpotlight && clickedSpotlight.name === person.name && (
-                <CreateSpotlight showEditSpotlight={showEditSpotlight} setShowEditSpotlight={setShowEditSpotlight} setShowSpotlight={setShowSpotlight} clickedSpotlight={clickedSpotlight} loaderData={loaderData} mode={mode} setmode={setmode} />
+                  {showEditSpotlight && (
+                <EditSpotlight showEditSpotlight={showEditSpotlight} setShowEditSpotlight={setShowEditSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} mode={mode} setmode={setmode} />
               )}
 
-              
+             
                   </div>
                 
                 
@@ -93,4 +88,4 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
       </ul>
     </div>
   )
-}
+} 

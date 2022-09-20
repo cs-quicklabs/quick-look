@@ -4,11 +4,11 @@ import logo from '../../../assets/images/quicklook-icon.png'
 export default function Confirmation() {
  const Location = useLocation()
   return (
-    <div className='bg-gray-50 h-screen antialiased'>
+    <div className='bg-gray-50 h-[calc(100vh-3rem)] antialiased flex flex-col justify-center'>
 
       <div className='flex flex-col items-center justify-center '>
-        <div className='flex flex-col '>
-          <img src={logo} alt='' className='h-20 w-20 mt-60 mx-auto' />
+        <div className='flex flex-col'>
+          <img src={logo} alt='' className='h-20 w-20 mx-auto' />
           <p className='text-3xl leading-9 font-extrabold text-center mt-6 text-gray-900'>{Location.pathname.includes('/confirm/email')? 'Confirm your email' : Location.pathname.includes('/confirm/password')  ? 'Reset Your Password' :''}</p>
         </div>
         <div className='flex flex-col justify-center items-center  w-2/4 max-w-3xl h-auto shadow mt-7 gap-3 pb-6 bg-white rounded-lg'>

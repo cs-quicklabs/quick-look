@@ -11,7 +11,6 @@ const DynamicHeroIcon: FC<{icon?: string,Final?:any}> = ({icon,Final}:any) => {
   const TheIcon: any = useMemo(() => icons[icon] || null,[icon])
 
   useEffect(() => {
-    console.log('TheIcon',TheIcon)
   }, [icon])
 
 //  if(Final){

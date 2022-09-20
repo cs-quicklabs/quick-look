@@ -113,8 +113,8 @@ export default function SignUp() {
 
   return (
     <>
-      <div className=' h-screen flex flex-col  text-sm font-inter bg-gray-50 my-0 py-0'>
-        <div className='mx-auto flex flex-col items-center justify-center mt-20'>
+      <div className=' h-[calc(100vh-3rem)] flex flex-col justify-center text-sm font-inter bg-gray-50'>
+        <div className='mx-auto flex flex-col items-center justify-center'>
           <img src={logo} alt='' className='h-20 w-20' />
           <div className='flex flex-col items-center justify-center'>
             <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>

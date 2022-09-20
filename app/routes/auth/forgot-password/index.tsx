@@ -49,10 +49,10 @@ export default function Forgotpassword() {
 
   return (
     <>
-      <div className='h-screen flex  justify-center px-4 sm:px-6 lg:px-8 text-sm bg-gray-50 font-inter'>
+      <div className='h-[calc(100vh-3rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm bg-gray-50 font-inter'>
         <div>
           <div className='max-w-md w-full space-y-8'>
-            <img src={logo} alt='' className='mt-44 mx-auto h-20 w-20' />
+            <img src={logo} alt='' className='mx-auto h-20 w-20' />
             <h2 className='mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900'>
               Forgot Password?
             </h2>

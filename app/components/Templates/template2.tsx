@@ -6,11 +6,13 @@ import youtube from '../../../assets/images/youtube.png';
 import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video';
 import Spotlightbtn from './addOns/Spotlightbtn';
+import BannerAddOn from './addOns/Banner';
 export default function Template2({ input, loaderData,secondaryRestore }: any) {
 
   
   return (
     <>
+    {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className="-mt-12 flex flex-row h-screen font-inter">
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
 
