@@ -30,7 +30,7 @@ const people = [
   { id: 7, name: 'Allow people to book an appointment' },
 ]
 
-export default function CreateBanner({ setOpenDeleteBanner, OncloseBanner, setShowBanner, setShowCreatebanner, loaderData, mode, setmode}:any) {
+export default function CreateBanner({ setOpenDeleteBanner, OncloseBanner, setShowBanner, setShowCreatebanner, showCreatebanner, loaderData, mode, setmode}:any) {
   const transition = useTransition()
   
   const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
@@ -73,8 +73,8 @@ const OnCancel = ()=>{
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   useEffect(() => {
-    if(transition.state != 'idle' && !error && !errorLink && !errorHex && !errorColor ){
-     setShowCreatebanner(false);
+    if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
+      setShowCreatebanner(false);
     }
   }, [transition, error, errorLink, errorHex, errorColor])
 
@@ -378,7 +378,7 @@ useEffect(() => {
                                 }}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
-                                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
+                                {transition?.state != "idle" && !error && !errorLink && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
                                  'Add Support Banner' }
                                 
                               </button>

@@ -475,7 +475,7 @@ const OnCancel = ()=>{
                                 }}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
-                                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                                {transition?.state != "idle" && !error && !errorLink && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> :
                                 loaderData?.spotlightButton?.buttonText  ? 'Edit Spotlight Button': 'Add Spotlight Button' }
                                 
                               </button>
