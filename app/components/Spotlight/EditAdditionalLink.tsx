@@ -4,10 +4,10 @@ import {  useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Form } from '@remix-run/react';
 
-export default function EditSpotlight({clickedSpotlight, mode, setmode}:any) {
+export default function EditSpotlight({ showEditAdditional, setShowEditAdditional, clickedSpotlight, mode, setmode}:any) {
   const Onclose = (e:any) => {
     if(mode === 'desktop'){
-      // setShowSpotlight(false)
+      // setShowEditAdditional(false)
     }
     if(mode === 'mobile'){
      
@@ -17,7 +17,7 @@ const [name,SetName]= useState(clickedSpotlight?.name)
 const [val,SetVal]= useState(clickedSpotlight?.description)
 
   const OnCancel = ()=>{
-    // setShowSpotlight(false);
+    // setShowEditAdditional(false);
     setmode('desktop')
   }
 
@@ -47,8 +47,8 @@ const [val,SetVal]= useState(clickedSpotlight?.description)
                   type="text"
                   value={name}
                   // displayValue={() => clickedLink?.name}
-                  name="buttonText"
-                  id="project-name"
+                  name="linkText"
+                  id="linkText"
                   
                   onChange={(event) => {
       SetName(event.target.value)
@@ -68,8 +68,8 @@ const [val,SetVal]= useState(clickedSpotlight?.description)
                   type="text"
                   value={val}
                   // displayValue={() => clickedLink?.name}
-                  name="buttonActionlink"
-                  id="project-name"
+                  name="linkUrl"
+                  id="linkUrl"
                   onChange={(event) => SetVal(event.target.value)}
 
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"

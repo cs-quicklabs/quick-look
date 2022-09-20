@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import EditTestimonial from '../Testimonial/EditTestimonial';
 import CreateSpotlight from './CreateSpotlight';
 import DeleteSpotlight from './DeleteSpotlight';
-import EditSpotlight from './EditSpotlight';
 
 export default function ExistingSpotlightLink({ setShowSpotlight,loaderData, mode, setmode}:any) {
 

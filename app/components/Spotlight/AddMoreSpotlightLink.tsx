@@ -52,7 +52,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-              <Form replace={true} action="" method='post'>
+              <Form replace={true} action="add/additionalLink" method='post'>
       <div className={`flex h-screen pb-12 flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1 overflow-y-auto">
         <div className="py-6 px-4 sm:px-6 bg-gray-50">
@@ -87,7 +87,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
 
             <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
               <div className="">
-              <RadioGroup value={selectedColor} onChange={setSelectedColor}>
+              <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                   Select Color For Button
                 </RadioGroup.Label>
@@ -148,10 +148,11 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               </label>
               <div className="mt-1">
                 <input
+                  data-cy="linkText"
                   type="text"
                   // value={input.location}
-                  name="location"
-                  id="project-name"
+                  name="linkText"
+                  id="linkText"
                   
     //               onChange={(event) => {
     //   setinput({
@@ -173,8 +174,8 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                 <input
                   type="text"
                   // value={input.location}
-                  name="location"
-                  id="project-name"
+                  name="linkUrl"
+                  id="linkUrl"
     //               onChange={(event) => {
     //   setinput({
     //     ...input,

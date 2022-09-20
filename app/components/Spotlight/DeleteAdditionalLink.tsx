@@ -1,16 +1,22 @@
-import { Fragment, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function DeleteSpotlight({ openDeleteSpotlight, onClose}:any) {
+export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDeleteAdditionalLink, onClose}:any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
 
+  useEffect(() => {
+    if(transition.state === 'loading' ){
+      setOpenDeleteAdditionalLink(false)
+    }
+  }, [transition])
+
   return (
     <Transition.Root show={openDeleteSpotlight} as={Fragment}>
-      <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={onClose}>
+      <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -51,12 +57,12 @@ export default function DeleteSpotlight({ openDeleteSpotlight, onClose}:any) {
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
-                  <Form replace={true} action="delete/spotlight" method='post'>
+                  <Form replace={true} action="delete/additionalLink" method='post'>
                     <button
-                    data-cy="deleteSpotlightModalButton"
-                    id="deleteSpotlightModalButton" 
-                    name="deleteSpotlight" 
-                    value = "delete Spotlight"
+                    data-cy="deleteAdditionalLinkButton"
+                    id="deleteAdditionalLinkButton" 
+                    name="deleteAdditionalLinkButton" 
+                    value = "delete Additional Link"
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
                     disabled={transition?.state != "idle" ? true : false}
