@@ -86,32 +86,6 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
   return (
     <Form replace={true} action="/account/update/socialProfile" method= "post">
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-
-        
-        {/* {successUpdateMessage &&
-            <div className="rounded-md bg-green-50 p-4 mb-4">
-              <div className="flex  items-start justify-start">
-                <div className="flex-shrink-0 pt-1">
-                <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-                </div>
-                <div className="ml-3">
-                <p className="text-sm font-medium text-green-800">{successUpdateMessage}</p>
-                </div>
-                <div className="ml-auto pl-3">
-                <div className="-mx-1.5 -my-1.5 pt-1">
-                <button
-                type="button"
-                className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
-                >
-                <span className="sr-only">Dismiss</span>
-                <XIcon className="h-5 w-5" aria-hidden="true"  />
-                </button>
-                </div>
-                </div>
-              </div>
-            </div>} */}
-
-
             <div className="flex flex-1 flex-col justify-between">
               <div className="divide-y divide-gray-200 px-4 sm:px-6 mt-[-1rem]">
                   <div className="space-y-6 pb-1 border-b border-gray-200">

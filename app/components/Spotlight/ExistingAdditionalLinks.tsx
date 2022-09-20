@@ -14,13 +14,13 @@ const spotlight = [
   
 ]
 
-// const [clickedSpotlight, setClickedSpotlight] = useState<{ name: any; description: any }>({ name: '', description: '' });
+const [clickedAdditionalSpotlight, setClickedAdditionalSpotlight] = useState<{ linkText: any; id: any; linkUrl: any; }>({ linkText: '', id: '', linkUrl: '' });
 
 const [showEditAdditional, setShowEditAdditional] = useState(false); 
 
-const toggleEditAdditionalLink = (person: { name: string; description: string; }) => {
+const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any; linkUrl: any; }) => {
+  setClickedAdditionalSpotlight(prev => prev = additionalSpotlight);
   setShowEditAdditional(!showEditAdditional);
-  // setClickedSpotlight(person);
 }
 
 const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
@@ -28,10 +28,9 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
   return (
     <div className="pl-3 pr-3.5">
       <ul>
-        {spotlight.map((person) => (
-
-          <li key={person.name} id={person.id} className="">
-            {person.name ?
+        {loaderData?.additionalLinks.map((additionalSpotlight: { linkText: any; id: any; linkUrl: any; }) => (
+          <li key={additionalSpotlight.linkText} className="">
+            {additionalSpotlight.linkText ?
               <>
               <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
                 <div className='flex flex-col w-screen'>
@@ -39,8 +38,8 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
                   <div className="py-4 flex">
                   
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description?.slice(0,30)}....`}</p>
+                    <p className="text-sm font-medium text-gray-900">{additionalSpotlight.linkText}</p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${additionalSpotlight.linkUrl?.slice(0,30)}....`}</p>
                   </div>
                 </div>
 
@@ -48,7 +47,8 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
                   <button
                     data-cy="editExistingAdditionalLink"
                     className="hover:text-indigo-600 text-[14px]"
-                    onClick={(e: any) => { e.preventDefault(); toggleEditAdditionalLink(person) }}
+                    // id={additionalSpotlight.id}
+                    onClick={(e: any) => { e.preventDefault(); toggleEditAdditionalLink(additionalSpotlight); }}
                   >
                     Edit
                   </button>
@@ -66,8 +66,8 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
                   </div>
 
                   <div>
-                  {showEditAdditional && (
-                <EditAdditionalLink showEditAdditional={showEditAdditional} setShowEditAdditional={setShowEditAdditional} loaderData={loaderData} mode={mode} setmode={setmode} />
+                  {showEditAdditional && clickedAdditionalSpotlight.id === additionalSpotlight.id && (
+                <EditAdditionalLink id={additionalSpotlight.id} clickedAdditionalSpotlight={clickedAdditionalSpotlight} showEditAdditional={showEditAdditional} setShowEditAdditional={setShowEditAdditional} loaderData={loaderData} mode={mode} setmode={setmode} />
               )}
 
              
