@@ -124,7 +124,8 @@ export async function getUser(request: Request) {
         video: true,
         testimonial: true,
         portfolioImage: true,
-        supportBanner: true
+        supportBanner: true,
+        additionalLinks: true
       }
     })
     return user
