@@ -20,9 +20,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
           {loaderData?.profileImage?.primaryImage || primaryRestore ?
             <img className={` w-screen object-cover ${loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-[10rem]' : ''}`} src={primaryRestore === true ? bgimage : loaderData?.profileImage?.primaryImage} alt="" />: null}
           </div>
-          <div className={`relative   md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
+          <div className={`relative    md:pl-[11rem]   lg:pl-[12.5rem] ${ loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'top-[-4rem]' : 'top-[6rem]'}`}>
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-            <img className={`w-[7rem] h-[8rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage}  /> : null}
+            <img className={`w-[7rem] h-[7rem] md:h-[8rem] md:w-32  rounded-full shadow-lg shadow-white ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? 'border-4 border-white' :''}`} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage}  /> : null}
             {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
           </div>
         </div>
