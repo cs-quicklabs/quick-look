@@ -3,15 +3,28 @@ import { AddAdditionalLink } from "~/types/additionalLink.server";
 
 
 export async function addAdditionalLink({linkColor, linkText, linkUrl, linkHex, user}: AddAdditionalLink){
-    await db.additionalLink.create({
-        data: {
-            userId: user.id,
-            linkText,
-            linkColor,
-            linkUrl,
-            linkHex
-        },
+    const additionlLinkCount = await db.additionalLink.count({
+        where:{
+            userId: user.id
+        }
     })
+
+    if(additionlLinkCount <= 7){
+        await db.additionalLink.create({
+            data: {
+                userId: user.id,
+                linkText,
+                linkColor,
+                linkUrl,
+                linkHex
+            },
+        })
+        return true
+    }
+    else {
+        return false
+    }
+
 }
 
 export async function deleteAdditionalLink(linkId: string){
@@ -25,23 +38,21 @@ export async function deleteAdditionalLink(linkId: string){
 export async function updateAdditionalLink({linkColor, linkText, linkUrl, user}: AddAdditionalLink, linkId: string){
     const userAdditionalLink  = await db.additionalLink.findFirst({
         where: {
-            userId: user.id
+            id: linkId
         }
     })
-    await db.additionalLink.upsert({
-        where: {
-            id: linkId,
-        },
-        create: {
-            linkColor,
-            linkText,
-            linkUrl,
-            user
-        },
-        update: {
-            linkColor: linkColor?? userAdditionalLink?.linkColor,
-            linkText: linkText ?? userAdditionalLink?.linkText,
-            linkUrl: linkUrl ?? userAdditionalLink?. linkUrl
-        }
-    })
+    if(userAdditionalLink){
+        await db.additionalLink.update({
+            where: {
+                id: linkId,
+            },
+            data: {
+                linkColor: linkColor?? userAdditionalLink?.linkColor,
+                linkText: linkText ?? userAdditionalLink?.linkText,
+                linkUrl: linkUrl ?? userAdditionalLink?. linkUrl
+            }
+        })
+        return true
+    }
+    return false
 }
