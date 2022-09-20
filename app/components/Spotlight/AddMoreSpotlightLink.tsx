@@ -3,8 +3,9 @@ import { XIcon } from '@heroicons/react/outline'
 import {  Fragment, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import ExistingSpotlightLink from './ExistingSpotlightLink';
-import { Form } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 import ExistingAdditionalSpotlightLink from './ExistingAdditionalLinks';
+import { BeatLoader } from 'react-spinners';
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -20,6 +21,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
+  const transition = useTransition();
   const [selectedColor, setSelectedColor] = useState(colors[1])
 
   const Onclose = (e:any) => {
@@ -194,10 +196,9 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                 data-cy="addTestimonialButton"
                 type="submit"
                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                disabled
-                // disabled={error || !inputTestimonial.testimonialText || error1 || !inputTestimonial.testimonialBy ? true : false}
+                disabled={transition?.state != "idle" ? true : false}
               >
-                Add Link
+                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Add Link' }
               </button>
             </div>
 

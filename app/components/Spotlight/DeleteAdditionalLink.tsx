@@ -4,7 +4,7 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDeleteAdditionalLink, onClose}:any) {
+export default function DeleteAdditinalLink({ loaderData, openDeleteSpotlight, setOpenDeleteAdditionalLink, onClose}:any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
 
@@ -62,7 +62,7 @@ export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDelete
                     data-cy="deleteAdditionalLinkButton"
                     id="deleteAdditionalLinkButton" 
                     name="deleteAdditionalLinkButton" 
-                    value = "delete Additional Link"
+                    value = {loaderData}
                       type="submit"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
                     disabled={transition?.state != "idle" ? true : false}

@@ -2,9 +2,11 @@ import { Dialog } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import {  useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Form } from '@remix-run/react';
+import { Form, useTransition } from '@remix-run/react';
+import { BeatLoader } from 'react-spinners';
 
 export default function EditSpotlight({ showEditAdditional, setShowEditAdditional, clickedSpotlight, mode, setmode}:any) {
+  const transition = useTransition()
   const Onclose = (e:any) => {
     if(mode === 'desktop'){
       // setShowEditAdditional(false)
@@ -86,7 +88,7 @@ const [val,SetVal]= useState(clickedSpotlight?.description)
                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                 // disabled={error || !inputTestimonial.testimonialText || error1 || !inputTestimonial.testimonialBy ? true : false}
               >
-                Edit  Link
+                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
               </button>
             </div>
 
@@ -103,12 +105,6 @@ const [val,SetVal]= useState(clickedSpotlight?.description)
             
       </div>
 
-
-
-
-      {/* <div className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-            
-      </div> */}
     </Form>
   )
 }

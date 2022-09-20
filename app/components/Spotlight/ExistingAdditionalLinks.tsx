@@ -7,6 +7,7 @@ export default function ExistingAdditionalSpotlightLink({ setShowSpotlight,loade
 
 const spotlight = [
   {
+    id:"1",
     name: 'Spotlight Button Name',
     description: 'Spotilght button description',
   },
@@ -29,7 +30,7 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
       <ul>
         {spotlight.map((person) => (
 
-          <li key={person.name} className="">
+          <li key={person.name} id={person.id} className="">
             {person.name ?
               <>
               <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
