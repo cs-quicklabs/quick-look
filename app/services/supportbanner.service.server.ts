@@ -1,5 +1,4 @@
 import { db } from "~/database/connection.server";
-import { SpotlightFormType } from "~/types/spotlightForm.server";
 import { SupportBannerForm } from "~/types/supportBanner.server.type";
 
 export async function addUpdateSupportBanner(supportBannerForm: SupportBannerForm, user: any){

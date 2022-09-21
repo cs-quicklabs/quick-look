@@ -38,8 +38,8 @@ model UserVerification {
   userId       String   @unique
   uniqueString String
   expiresAt    DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("userverification")
 }
@@ -50,29 +50,33 @@ model Profile {
   userId      String   @unique
   isVerified  Boolean? @default(false)
   isPublished Boolean? @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("profile")
 }
 
 model MarketingUpdates {
-  id                      String  @id @unique @default(uuid())
-  user                    User    @relation(fields: [userId], references: [id])
-  userId                  String  @unique
-  recieveProductUpdates   Boolean @default(false)
-  recieveMarketingUpdates Boolean @default(false)
+  id                      String   @id @unique @default(uuid())
+  user                    User     @relation(fields: [userId], references: [id])
+  userId                  String   @unique
+  recieveProductUpdates   Boolean  @default(false)
+  recieveMarketingUpdates Boolean  @default(false)
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("marketingupdates")
 }
 
 model SocialMedia {
-  id           String  @id @unique @default(uuid())
-  user         User    @relation(fields: [userId], references: [id])
-  userId       String  @unique
+  id           String   @id @unique @default(uuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @unique
   facebookLink String?
   twitterLink  String?
   youtubeLink  String?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("socialmedia")
 }
@@ -87,40 +91,47 @@ model ProfileImage {
   secondaryImage          String?
   primaryImageKey         String?
   secondaryImageKey       String?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("profileimage")
 }
 
 model ProfileInformation {
-  id             String  @id @default(uuid())
-  user           User    @relation(fields: [userId], references: [id])
-  userId         String  @unique
+  id             String   @id @default(uuid())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String   @unique
   bio            String?
   location       String?
   occupation     String?
   company        String?
   education      String?
-  templateNumber String? @default("0")
-
+  templateNumber String?  @default("0")
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
   @@map("profileinformation")
 }
 
 model Video {
-  id             String  @id @default(uuid())
-  user           User    @relation(fields: [userId], references: [id])
-  userId         String  @unique
+  id             String   @id @default(uuid())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String   @unique
   videoLink      String?
   videoSourceKey String?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("video")
 }
 
 model PortfolioImage {
-  id       String  @id @default(uuid())
-  user     User    @relation(fields: [userId], references: [id])
-  userId   String
-  imageUrl String
-  imageKey String?
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  imageUrl  String
+  imageKey  String?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("portfolioimage")
 }
@@ -136,28 +147,34 @@ model SpotlightButton {
   buttonAction     String?
   buttonActionlink String?
   toggleSpotlight  Boolean? @default(false)
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("spotlightbutton")
 }
 
 model Testimonial {
-  id              String  @id @default(uuid())
-  user            User    @relation(fields: [userId], references: [id])
-  userId          String  @unique
+  id              String   @id @default(uuid())
+  user            User     @relation(fields: [userId], references: [id])
+  userId          String   @unique
   testimonialText String?
   testimonialBy   String?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("testimonial")
 }
 
 model AdditionalLink {
-  id        String  @id @default(uuid())
-  user      User    @relation(fields: [userId], references: [id])
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
   userId    String
   linkText  String?
   linkColor String?
   linkUrl   String?
   linkHex   String?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
 
   @@map("additionalLinks")
 }
@@ -172,4 +189,8 @@ model SupportBanner {
   bannerIcon   String?
   bannerlink   String?
   toggleBanner Boolean? @default(false)
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
+
+  @@map("supportBanner")
 }

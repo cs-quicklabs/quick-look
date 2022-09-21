@@ -119,7 +119,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-              <Form replace={true} action="add/additionalLink" method='post'>
+              <Form replace={true} action="/account/add/additionalLink" method='post'>
       <div className={`flex h-screen pb-12 flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1 overflow-y-auto">
         <div className="py-6 px-4 sm:px-6 bg-gray-50">
