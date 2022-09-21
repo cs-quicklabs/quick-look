@@ -35,7 +35,7 @@ export async function deleteAdditionalLink(linkId: string){
     })
 }
 
-export async function updateAdditionalLink({linkColor, linkText, linkUrl, user}: AddAdditionalLink, linkId: string){
+export async function updateAdditionalLink({ linkText, linkUrl, user}: AddAdditionalLink, linkId: string){
     const userAdditionalLink  = await db.additionalLink.findFirst({
         where: {
             id: linkId
@@ -47,7 +47,6 @@ export async function updateAdditionalLink({linkColor, linkText, linkUrl, user}:
                 id: linkId,
             },
             data: {
-                linkColor: linkColor?? userAdditionalLink?.linkColor,
                 linkText: linkText ?? userAdditionalLink?.linkText,
                 linkUrl: linkUrl ?? userAdditionalLink?. linkUrl
             }
@@ -55,4 +54,26 @@ export async function updateAdditionalLink({linkColor, linkText, linkUrl, user}:
         return true
     }
     return false
+}
+
+export async function updateHexColorForAllAdditionalLink(hexColor: string, user: any){
+    await db.additionalLink.updateMany({
+        where: {
+            userId : user.id
+        },
+        data: {
+            linkHex: hexColor
+        }
+    })
+}
+
+export async function updatecolorForAllAdditionalLink(color: string, user: any){
+    await db.additionalLink.updateMany({
+        where: {
+            userId : user.id
+        },
+        data: {
+            linkColor: color
+        }
+    })
 }
