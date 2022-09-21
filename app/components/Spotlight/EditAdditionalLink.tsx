@@ -11,7 +11,7 @@ export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmod
   const [val,setVal]= useState({linkText: clickedAdditionalSpotlight?.linkText, linkUrl: clickedAdditionalSpotlight?.linkUrl});
 
   return (
-    <Form action="add/spotlight" method='post' >
+    <Form action="update/additionalLink" method='post' >
       <div className={`flex flex-col ml-[-0.8rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
       <div className="h-0 flex-1">
         
