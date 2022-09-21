@@ -83,29 +83,29 @@ export const action: ActionFunction = async ({ request }) => {
 
 export const loader: LoaderFunction = async ({ request, context }) => {
   const user = await getUser(request)
-  
   if (user) {
     return  redirect('/account')
-
   }
-
   return null
 }
-
 export default function SignUp() {
   const captchaRef = useRef(null)
   const transition = useTransition()
   const actionData = useActionData()
-  const loader = useLoaderData()
   const [token, setToken] = useState('')
-console.log(loader)
+
   const handleSubmit = async (e: any) => {
     //@ts-ignore
     setToken(captchaRef.current.getValue())
-    console.log(token)
     //@ts-ignore
     captchaRef.current.execute();
   }
+const [googleCaptchaKey,setGoogleCaptchaKey]=useState('')
+ 
+useEffect(() => {
+  //@ts-ignore
+ setGoogleCaptchaKey(window.ENV.REACT_APP_SITE_KEY)
+}, [])
 
   const [val, setVal] = useState({
     firstName: '',
@@ -322,7 +322,8 @@ console.log(loader)
                 </div>
               </div>
               <div className='flex flex-col justify-end'>
-                <ReCAPTCHA  ref={captchaRef} sitekey={process.env.REACT_APP_SITE_KEY} onChange={handleSubmit} />
+               
+                <ReCAPTCHA  ref={captchaRef} sitekey={googleCaptchaKey} onChange={handleSubmit} />
                 <div className='text-red-600 text-sm'>
                   {actionData?.errors['captchaError']}
                 </div>
@@ -356,3 +357,5 @@ console.log(loader)
     </>
   )
 }
+
+
