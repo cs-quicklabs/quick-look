@@ -25,11 +25,20 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
   const [selectedColor, setSelectedColor] = useState('')
   const [click, setClick] = useState(false)
   const [input, setInput] = useState({ linkHex: '', linkText: '', linkUrl: ''})
+  // const [error,setError]=useState('')
   const [errorColor,setErrorColor]=useState('')
   const [errorNoColor, setErrorNoColor] = useState('')
    const [errorHex,setErrorHex]=useState('')
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
+
+   console.log("loaderData?.additionalLinks.length", loaderData?.additionalLinks.length)
+
+  //  useEffect(() => {
+  //   if(loaderData?.additionalLinks.length >= 7){
+  //     setError('You cannot add more than 7 additional links.')
+  //   }
+  //  })
 
    useEffect(() => {
     if(transition.state === 'loading' && !errorUrl && !errorLinkText && !errorHex && !errorColor ){
@@ -125,7 +134,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
         <div className="py-6 px-4 sm:px-6 bg-gray-50">
           <div className="flex items-center justify-between">
             <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> 
-              Add Additional Links to your profile
+              {loaderData?.additionalLinks.length < 7 ? ' Add Additional Links to your profile' : 'Additional Links to your profile' }
             </Dialog.Title>
             <div className="ml-3 flex h-7 items-center">
               <button
@@ -142,12 +151,12 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
           </div>
           <div className="mt-1">
             <p className="text-sm text-gray-500 leading-5 font-normal">
-              You can add more than one link to your profile
+             {loaderData?.additionalLinks.length < 7 ? 'You can add more than one link to your profile' :null }  
             </p>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-between">
+        {loaderData?.additionalLinks.length < 7 ? <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
             <div className="space-y-6 pt-6 pb-5">
 
@@ -162,7 +171,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                   {colors.map((color) => (
                     <RadioGroup.Option
                       key={color.name}
-                      value={color}
+                      value={color.bgColor}
                       className={({ active, checked }) =>
                         classNames(
                           color.selectedColor,
@@ -279,7 +288,18 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
 
             </div>
           </div>
-        </div> 
+        </div> : 
+        <>
+        <div className='inset-0'>
+         <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+         </div>
+ 
+         <div className='inset-0'>
+         <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+         </div></>
+         }
+
+         
         <div className='inset-0'>
         <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
         </div>

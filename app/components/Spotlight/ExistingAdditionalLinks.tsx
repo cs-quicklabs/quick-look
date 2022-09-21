@@ -14,7 +14,6 @@ const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any;
 }
 
 const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
-console.log("openDeleteAdditionalLink", openDeleteAdditionalLink)
 
 const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '', id: '', linkUrl: '' })
 
@@ -27,7 +26,7 @@ const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '',
               <>
               <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
                 <div className='flex flex-col w-screen'>
-                  <div className='flex border-b border-gray-200'>
+                  <div className={`flex ${showEditAdditional ? '' : 'border-b border-gray-200'}`}>
                   <div className="py-4 flex">
                   
                   <div className="ml-3">

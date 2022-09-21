@@ -5,15 +5,14 @@ import { RadioGroup } from '@headlessui/react'
 import { Form, useTransition } from '@remix-run/react';
 import { BeatLoader } from 'react-spinners';
 
-export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmode}:any) {
+export default function EditSpotlight({ setShowEditAdditional, clickedAdditionalSpotlight, mode, setmode}:any) {
   const transition = useTransition()
 
   const [val,setVal]= useState({linkText: clickedAdditionalSpotlight?.linkText, linkUrl: clickedAdditionalSpotlight?.linkUrl});
 
   return (
     <Form action="update/additionalLink" method='post' >
-      <div className={`flex flex-col ml-[-0.8rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
-      <div className="h-0 flex-1">
+      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
         
         <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
@@ -28,7 +27,6 @@ export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmod
                 <input
                   type="text"
                   value={val?.linkText}
-                  // displayValue={() => clickedLink?.name}
                   name="linkText"
                   id="linkText"
                   onChange={(event:any) => {
@@ -48,7 +46,6 @@ export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmod
                 <input
                   type="text"
                   value={val?.linkUrl}
-                  // displayValue={() => clickedLink?.name}
                   name="linkUrl"
                   id="linkUrl"
                   onChange={(event:any) => setVal(event.target.value)}
@@ -62,15 +59,31 @@ export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmod
             <div className="flex flex-shrink-0 justify-end mt-7">
 
               <input value={clickedAdditionalSpotlight.id} name="editAdditionalSpotlight" hidden />
+
+              <div className="flex flex-shrink-0 justify-end pl-4 pb-2 mt-7">
+                    <span>
+                      <button
+                      type="button"
+                      className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
+                      onClick={() => {
+                      setShowEditAdditional(false);
+                      }}
+                      disabled={transition?.state != "idle"}
+                      >
+                      Cancel
+                      </button>
+                    </span>
+                    <button
+                    data-cy="editAdditionalSpotlightButton"
+                    id="editAdditionalSpotlightButton"
+                    type="submit"
+                    className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
+                    disabled={transition?.state != "idle" ? true : false}
+                    >
+                      {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
+                    </button>
+                  </div>
     
-              <button
-                data-cy="editAdditionalSpotlightButton"
-                type="submit"
-                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                disabled={transition?.state != "idle" ? true : false}
-              >
-                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
-              </button>
             </div>
 
             
@@ -79,10 +92,6 @@ export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmod
           </div>
         </div> 
         
-      
-      
-        
-      </div>
             
       </div>
 
