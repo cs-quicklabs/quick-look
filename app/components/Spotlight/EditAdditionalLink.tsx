@@ -12,7 +12,7 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
 
   return (
     <Form action="update/additionalLink" method='post' >
-      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 font-inter ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
+      <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-[23rem] xl:w-[24rem]'} `}>
         
         <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
