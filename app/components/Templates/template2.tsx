@@ -12,7 +12,7 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
   
   return (
     <>
-    {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
+    {/* {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> } */}
     <div className="-mt-12 flex flex-row h-screen font-inter">
       <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
 

@@ -22,7 +22,37 @@ function classNames(...classes: string[]) {
 
 export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
   const transition = useTransition();
-  const [selectedColor, setSelectedColor] = useState(colors[1])
+  const [selectedColor, setSelectedColor] = useState('')
+  const [click, setClick] = useState(false)
+  const [input, setInput] = useState({ linkHex: '', linkText: '', linkUrl: ''})
+  const [errorColor,setErrorColor]=useState('')
+  const [errorNoColor, setErrorNoColor] = useState('')
+   const [errorHex,setErrorHex]=useState('')
+   const [errorLinkText,setErrorLinktext]=useState('')
+   const [errorUrl, setErrorUrl] = useState('')
+
+   useEffect(() => {
+    if(transition.state === 'loading' && !errorUrl && !errorLinkText && !errorHex && !errorColor ){
+      setInput({ linkHex: '', linkText: '', linkUrl: ''});
+      setSelectedColor('');
+      setClick(false);
+    }
+  }, [transition])
+  
+
+   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+
+
+   useEffect(() => {
+    if(input.linkHex.length && !validRegex.test(input.linkHex)){
+      setErrorHex("Invalid Hexcode")
+    }
+    else if(!input.linkHex && selectedColor){
+  setErrorHex("")
+    } else{
+  setErrorHex("")
+    }
+  }, [input.linkHex,selectedColor])
 
   const Onclose = (e:any) => {
     if(mode === 'desktop'){
@@ -32,6 +62,41 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
      
     }
   };
+
+  useEffect(() => {
+    if(input.linkText.length === 0){
+      setErrorLinktext('Required')
+    }else{
+      setErrorLinktext('')
+    }
+   }, [input])
+   
+   useEffect(() => {
+    if( input.linkUrl.length ===0){
+      setErrorUrl('Required')
+    }else{
+      setErrorUrl('')
+    }
+   }, [input])
+
+   useEffect(() => {
+    if(!selectedColor && !input.linkHex){
+      setErrorNoColor('Please select color or hexcode.')
+   }else {
+    setErrorNoColor('')
+   }
+   
+  }, [input, selectedColor])
+  
+   useEffect(() => {
+    if(selectedColor && input.linkHex){
+    setErrorColor('Hexcode will be given priority')
+   }else {
+    setErrorColor('')
+   }
+   
+  }, [input,selectedColor])
+   
 
   const OnCancel = ()=>{
     setShowSpotlight(false);
@@ -86,7 +151,8 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
             <div className="space-y-6 pt-6 pb-5">
 
-            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
+              <div className='flex flex-col'>
+              <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
               <div className="">
               <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
                 <RadioGroup.Label className="block text-sm font-medium text-gray-700">
@@ -101,7 +167,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                         classNames(
                           color.selectedColor,
                           active && checked ? 'ring ring-offset-1' : '',
-                          !active && checked ? 'ring-2' : '',
+                          !active && checked ? 'ring ring-offset-1' : '',
                           '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
                         )
                       }
@@ -128,12 +194,26 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                 <input
                   type="text"
                   name="linkHex"
+                  value={input.linkHex}
+                  onChange={(event) => {
+                    setInput({
+                      ...input,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
                   id="linkHex"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
+                {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+                {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
               </div>
             </div>
+
             </div>
+                <div>
+                  {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
+                </div>
+              </div>
 
             <div>
               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
@@ -146,8 +226,16 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                   type="text"
                   name="linkText"
                   id="linkText"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  value={input.linkText}
+                  onChange={(event) => {
+                    setInput({
+                      ...input,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
+                  className={`block w-full rounded-md border-gray-300 shadow-sm sm:text-sm  ${click && errorLinkText ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                 />
+                {click &&<div className='text-sm text-red-500'>{errorLinkText}</div>}
               </div>
             </div>
             
@@ -161,8 +249,16 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                   type="text"
                   name="linkUrl"
                   id="linkUrl"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  value={input.linkUrl}
+                  onChange={(event) => {
+                    setInput({
+                      ...input,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
+                  className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorUrl ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                 />
+                {click &&<div className='text-sm text-red-500'>{errorUrl}</div>}
               </div>
             </div>
             
@@ -173,9 +269,11 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
                 data-cy="addTestimonialButton"
                 type="submit"
                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
+                onClick={()=>{setClick(true);
+                }}
                 disabled={transition?.state != "idle" ? true : false}
               >
-                {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Add Link' }
+                {transition?.state != "idle"  && !errorUrl && !errorLinkText && !errorHex && !errorColor ? <BeatLoader color="#ffffff" /> : 'Add Link' }
               </button>
             </div>
 

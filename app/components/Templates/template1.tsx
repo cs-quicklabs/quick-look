@@ -7,6 +7,7 @@ import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
+import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
 
   return (
@@ -37,6 +38,10 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
         <div >
         {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}</div>
+
+          <div>
+            {loaderData?.additionalLinks?.linkText && <AdditionalLinksAddOn loaderData={loaderData} />}
+          </div>
         
         <div className='pl-[5rem] pr-[8rem] md:px-[12rem] lg:px-[14rem]  '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>

@@ -487,8 +487,6 @@ const OnCancel = ()=>{
                       
                         
                       </div>
-{/* 
-                      <AddMoreSpotlightLink showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} mode={mode} setmode={setmode} /> */}
                     </div>
                     
                     

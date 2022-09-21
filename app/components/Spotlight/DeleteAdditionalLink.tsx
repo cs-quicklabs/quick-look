@@ -4,7 +4,7 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDeleteAdditionalLink, onClose}:any) {
+export default function DeleteAdditinalLink({ additionalSpotlight, deleteAdditionalLink, onClose,setOpenDeleteAdditionalLink}:any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
 
@@ -15,7 +15,7 @@ export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDelete
   }, [transition])
 
   return (
-    <Transition.Root show={openDeleteSpotlight} as={Fragment}>
+    <Transition.Root show={additionalSpotlight.id === deleteAdditionalLink.id} as={Fragment}>
       <Dialog as="div" className="relative z-[999]" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
@@ -58,6 +58,7 @@ export default function DeleteAdditinalLink({ openDeleteSpotlight, setOpenDelete
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <Form replace={true} action="delete/additionalLink" method='post'>
+                  <input value={deleteAdditionalLink.id} name="editAdditionalSpotlight" hidden />
                     <button
                     data-cy="deleteAdditionalLinkButton"
                     id="deleteAdditionalLinkButton" 

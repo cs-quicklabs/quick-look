@@ -14,6 +14,9 @@ const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any;
 }
 
 const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
+console.log("openDeleteAdditionalLink", openDeleteAdditionalLink)
+
+const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '', id: '', linkUrl: '' })
 
   return (
     <div className="pl-3 pr-3.5">
@@ -33,7 +36,7 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
                   </div>
                 </div>
 
-                <div className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile' ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0' : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'}`}>
+                <div className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile' ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0' : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'} ${clickedAdditionalSpotlight.id === additionalSpotlight.id && showEditAdditional  ? 'hidden' : 'block'}`}>
                   <button
                     data-cy="editExistingAdditionalLink"
                     className="hover:text-indigo-600 text-[14px]"
@@ -45,12 +48,12 @@ const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
                   
                   <button
                     data-cy="deleteAdditionalLinkButton"
-                    onClick={(e: any) => { e.preventDefault(); setOpenDeleteAdditionalLink(true); }}
+                    onClick={(e: any) => { e.preventDefault(); setOpenDeleteAdditionalLink(true); setDeleteAdditionalLink(additionalSpotlight); }}
                     className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                     Delete
                   </button>
                   {openDeleteAdditionalLink && 
-                  <DeleteAdditinalLink openDeleteAdditionalLink={openDeleteAdditionalLink} setOpenDeleteAdditionalLink={setOpenDeleteAdditionalLink} onClose={() => setOpenDeleteAdditionalLink(false)}  />}
+                  <DeleteAdditinalLink additionalSpotlight={additionalSpotlight} setOpenDeleteAdditionalLink={setOpenDeleteAdditionalLink} deleteAdditionalLink={deleteAdditionalLink} onClose={() => setOpenDeleteAdditionalLink(false)}  />}
 
                   
                 </div>

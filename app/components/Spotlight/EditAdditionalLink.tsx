@@ -7,7 +7,6 @@ import { BeatLoader } from 'react-spinners';
 
 export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmode}:any) {
   const transition = useTransition()
-  console.log("clickedAdditionalSpotlight", clickedAdditionalSpotlight.id)
 
   const [val,setVal]= useState({linkText: clickedAdditionalSpotlight?.linkText, linkUrl: clickedAdditionalSpotlight?.linkUrl});
 
@@ -62,7 +61,7 @@ export default function EditSpotlight({ clickedAdditionalSpotlight, mode, setmod
 
             <div className="flex flex-shrink-0 justify-end mt-7">
 
-              <input id={clickedAdditionalSpotlight.id} name="editAdditionalSpotlight" hidden />
+              <input value={clickedAdditionalSpotlight.id} name="editAdditionalSpotlight" hidden />
     
               <button
                 data-cy="editAdditionalSpotlightButton"
