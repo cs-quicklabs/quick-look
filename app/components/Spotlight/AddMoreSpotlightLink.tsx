@@ -22,23 +22,14 @@ function classNames(...classes: string[]) {
 
 export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
   const transition = useTransition();
-  const [selectedColor, setSelectedColor] = useState('')
+  const [selectedColor, setSelectedColor] = useState( loaderData?.additionalLinks[0]?.linkColor || '')
   const [click, setClick] = useState(false)
   const [input, setInput] = useState({ linkHex: '', linkText: '', linkUrl: ''})
-  // const [error,setError]=useState('')
   const [errorColor,setErrorColor]=useState('')
   const [errorNoColor, setErrorNoColor] = useState('')
    const [errorHex,setErrorHex]=useState('')
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
-
-   console.log("loaderData?.additionalLinks.length", loaderData?.additionalLinks.length)
-
-  //  useEffect(() => {
-  //   if(loaderData?.additionalLinks.length >= 7){
-  //     setError('You cannot add more than 7 additional links.')
-  //   }
-  //  })
 
    useEffect(() => {
     if(transition.state === 'loading' && !errorUrl && !errorLinkText && !errorHex && !errorColor ){
@@ -159,70 +150,72 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
         {loaderData?.additionalLinks.length < 7 ? <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
             <div className="space-y-6 pt-6 pb-5">
-
-              <div className='flex flex-col'>
-              <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
-              <div className="">
-              <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
-                <RadioGroup.Label className="block text-sm font-medium text-gray-700">
-                  Select Color For Button
-                </RadioGroup.Label>
-                <div className="mt-4 flex items-center space-x-2">
-                  {colors.map((color) => (
-                    <RadioGroup.Option
-                      key={color.name}
-                      value={color.bgColor}
-                      className={({ active, checked }) =>
-                        classNames(
-                          color.selectedColor,
-                          active && checked ? 'ring ring-offset-1' : '',
-                          !active && checked ? 'ring ring-offset-1' : '',
-                          '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
-                        )
-                      }
-                    >
-                      <RadioGroup.Label as="span" className="sr-only">
-                        {color.name}
-                      </RadioGroup.Label>
-                      <span
-                        aria-hidden="true"
-                        className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
-                      />
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </RadioGroup>
+            {loaderData?.additionalLinks[0]?.linkColor || loaderData?.additionalLinks[0]?.linkHex ? null :
+            <div className='flex flex-col'>
+            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
+            <div className="">
+            <RadioGroup name="linkColor" value={loaderData?.additionalLinks[0]?.linkColor || selectedColor} onChange={setSelectedColor}>
+              <RadioGroup.Label className="block text-sm font-medium text-gray-700">
+                Select Color For Button
+              </RadioGroup.Label>
+              <div className="mt-4 flex items-center space-x-2">
+                {colors.map((color) => (
+                  <RadioGroup.Option
+                    key={color.name}
+                    value={color.bgColor}
+                    className={({ active, checked }) =>
+                      classNames(
+                        color.selectedColor,
+                        active && checked ? 'ring ring-offset-1' : '',
+                        !active && checked ? 'ring ring-offset-1' : '',
+                        '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                      )
+                    }
+                  >
+                    <RadioGroup.Label as="span" className="sr-only">
+                      {color.name}
+                    </RadioGroup.Label>
+                    <span
+                      aria-hidden="true"
+                      className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
+                    />
+                  </RadioGroup.Option>
+                ))}
               </div>
-
-              <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
-              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
-                {' '}
-                Or enter Hex Code{' '}
-              </label>
-              <div className="mt-1 p-1">
-                <input
-                  type="text"
-                  name="linkHex"
-                  value={input.linkHex}
-                  onChange={(event) => {
-                    setInput({
-                      ...input,
-                      [event.target.name]: event.target.value,
-                    })
-                  }}
-                  id="linkHex"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-                {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
-                {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
-              </div>
+            </RadioGroup>
             </div>
 
+            <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
+            <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+              {' '}
+              Or enter Hex Code{' '}
+            </label>
+            <div className="mt-1 p-1">
+              <input
+                type="text"
+                name="linkHex"
+                value={input.linkHex}
+                onChange={(event) => {
+                  setInput({
+                    ...input,
+                    [event.target.name]: event.target.value,
+                  })
+                }}
+                id="linkHex"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+              {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+              {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
             </div>
-                <div>
-                  {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
-                </div>
+          </div>
+
+          </div>
+              <div>
+                {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
               </div>
+            </div>}
+
+              
 
             <div>
               <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
