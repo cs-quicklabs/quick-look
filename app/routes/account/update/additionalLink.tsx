@@ -26,7 +26,7 @@ export const action: ActionFunction = async ({ request }) => {
         `Your dditional Link has been updated successfully.`
     );
 
-    if(isUpdated){ console.log('YES')
+    if(isUpdated){ 
         return redirect('/account', {
             headers: {
               "Set-Cookie": await commitSession(session),

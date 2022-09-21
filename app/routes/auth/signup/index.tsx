@@ -97,7 +97,6 @@ export default function SignUp() {
   const handleSubmit = async (e: any) => {
     //@ts-ignore
     setToken(captchaRef.current.getValue())
-    console.log(token)
     //@ts-ignore
     captchaRef.current.execute();
   }

@@ -14,7 +14,7 @@ const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any;
 }
 
 const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
-console.log("openDeleteAdditionalLink", openDeleteAdditionalLink)
+
 
 const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '', id: '', linkUrl: '' })
 
