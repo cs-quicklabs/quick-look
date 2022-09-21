@@ -5,20 +5,40 @@ import {
   Links,
   useCatch,
   useLocation,
+  useLoaderData,
 } from '@remix-run/react'
 import ErrorHandler from './components/error'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 import HeaderSecondary from './components/Common/Header'
+import { json } from '@remix-run/node'
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
 }
 
+export async function loader() {
+  return json({
+    ENV: {
+      REACT_APP_SITE_KEY: process.env.REACT_APP_SITE_KEY,
+    },
+  });
+}
+
 export default function App() {
+  const data = useLoaderData();
+ 
+  
   return (
     <Document>
       <Layout >
         <Outlet />
       </Layout>
+       <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(
+              data.ENV
+            )}`,
+          }}
+        />
       <Scripts />
     </Document>
   )
