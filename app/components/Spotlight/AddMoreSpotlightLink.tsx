@@ -22,7 +22,8 @@ function classNames(...classes: string[]) {
 
 export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
   const transition = useTransition();
-  const [selectedColor, setSelectedColor] = useState( loaderData?.additionalLinks[0]?.linkColor || '')
+  const [openAdditionalLinkForm, setOpenAdditionalLinkForm] = useState(false);
+  const [selectedColor, setSelectedColor] = useState('')
   const [click, setClick] = useState(false)
   const [input, setInput] = useState({ linkHex: '', linkText: '', linkUrl: ''})
   const [errorColor,setErrorColor]=useState('')
@@ -147,141 +148,175 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
           </div>
         </div>
 
-        {loaderData?.additionalLinks.length < 7 ? <div className="flex flex-1 flex-col justify-between">
-          <div className="divide-y divide-gray-200 px-4 sm:px-6">
-            <div className="space-y-6 pt-6 pb-5">
-            {loaderData?.additionalLinks[0]?.linkColor || loaderData?.additionalLinks[0]?.linkHex ? null :
-            <div className='flex flex-col'>
-            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
-            <div className="">
-            <RadioGroup name="linkColor" value={loaderData?.additionalLinks[0]?.linkColor || selectedColor} onChange={setSelectedColor}>
-              <RadioGroup.Label className="block text-sm font-medium text-gray-700">
-                Select Color For Button
-              </RadioGroup.Label>
-              <div className="mt-4 flex items-center space-x-2">
-                {colors.map((color) => (
-                  <RadioGroup.Option
-                    key={color.name}
-                    value={color.bgColor}
-                    className={({ active, checked }) =>
-                      classNames(
-                        color.selectedColor,
-                        active && checked ? 'ring ring-offset-1' : '',
-                        !active && checked ? 'ring ring-offset-1' : '',
-                        '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
-                      )
-                    }
-                  >
-                    <RadioGroup.Label as="span" className="sr-only">
-                      {color.name}
-                    </RadioGroup.Label>
-                    <span
-                      aria-hidden="true"
-                      className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
-                    />
-                  </RadioGroup.Option>
-                ))}
-              </div>
-            </RadioGroup>
-            </div>
+        {openAdditionalLinkForm && loaderData?.additionalLinks.length < 7 &&
+         <div className="flex flex-1 flex-col justify-between">
+         <div className="divide-y divide-gray-200 px-4 sm:px-6">
+           <div className="space-y-6 pt-6 pb-5">
+          
+           <div className='flex flex-col'>
+           <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
+           <div className="">
+           <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
+             <RadioGroup.Label className="block text-sm font-medium text-gray-700">
+               Select Color For Button
+             </RadioGroup.Label>
+             <div className="mt-4 flex items-center space-x-2">
+               {colors.map((color) => (
+                 <RadioGroup.Option
+                   key={color.name}
+                   value={color.bgColor}
+                   className={({ active, checked }) =>
+                     classNames(
+                       color.selectedColor,
+                       active && checked ? 'ring ring-offset-1' : '',
+                       !active && checked ? 'ring ring-offset-1' : '',
+                       '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                     )
+                   }
+                 >
+                   <RadioGroup.Label as="span" className="sr-only">
+                     {color.name}
+                   </RadioGroup.Label>
+                   <span
+                     aria-hidden="true"
+                     className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
+                   />
+                 </RadioGroup.Option>
+               ))}
+             </div>
+           </RadioGroup>
+           </div>
 
-            <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
-            <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
-              {' '}
-              Or enter Hex Code{' '}
-            </label>
-            <div className="mt-1 p-1">
-              <input
-                type="text"
-                name="linkHex"
-                value={input.linkHex}
-                onChange={(event) => {
-                  setInput({
-                    ...input,
-                    [event.target.name]: event.target.value,
-                  })
-                }}
-                id="linkHex"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
-              {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
-              {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
-            </div>
-          </div>
+           <div className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'}`}>
+           <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+             {' '}
+             Or enter Hex Code{' '}
+           </label>
+           <div className="mt-1 p-1">
+             <input
+               type="text"
+               name="linkHex"
+               value={input.linkHex}
+               onChange={(event) => {
+                 setInput({
+                   ...input,
+                   [event.target.name]: event.target.value,
+                 })
+               }}
+               id="linkHex"
+               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+             />
+             {selectedColor && !errorHex && <div className='text-[12px] text-indigo-500'>{errorColor}</div>}
+             {click && <div className='text-[12px] text-red-500'>{errorHex}</div>}
+           </div>
+         </div>
 
-          </div>
-              <div>
-                {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
-              </div>
-            </div>}
+         </div>
+             <div>
+               {click && !errorHex && <div className='text-sm text-red-500'>{errorNoColor}</div>}
+             </div>
+           </div>
 
-              
+             
 
-            <div>
-              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
-                {' '}
-                What do you want link to say{' '}
-              </label>
-              <div className="mt-1">
-                <input
-                  data-cy="linkText"
-                  type="text"
-                  name="linkText"
-                  id="linkText"
-                  value={input.linkText}
-                  onChange={(event) => {
-                    setInput({
-                      ...input,
-                      [event.target.name]: event.target.value,
-                    })
-                  }}
-                  className={`block w-full rounded-md border-gray-300 shadow-sm sm:text-sm  ${click && errorLinkText ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
-                />
-                {click &&<div className='text-sm text-red-500'>{errorLinkText}</div>}
-              </div>
-            </div>
-            
-            <div>
-              <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
-                {' '}
-                Add Button link{' '}
-              </label>
-              <div className="mt-1">
-                <input
-                  type="text"
-                  name="linkUrl"
-                  id="linkUrl"
-                  value={input.linkUrl}
-                  onChange={(event) => {
-                    setInput({
-                      ...input,
-                      [event.target.name]: event.target.value,
-                    })
-                  }}
-                  className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorUrl ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
-                />
-                {click &&<div className='text-sm text-red-500'>{errorUrl}</div>}
-              </div>
-            </div>
-            
+           <div>
+             <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+               {' '}
+               What do you want link to say{' '}
+             </label>
+             <div className="mt-1">
+               <input
+                 data-cy="linkText"
+                 type="text"
+                 name="linkText"
+                 id="linkText"
+                 value={input.linkText}
+                 onChange={(event) => {
+                   setInput({
+                     ...input,
+                     [event.target.name]: event.target.value,
+                   })
+                 }}
+                 className={`block w-full rounded-md border-gray-300 shadow-sm sm:text-sm  ${click && errorLinkText ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+               />
+               {click &&<div className='text-sm text-red-500'>{errorLinkText}</div>}
+             </div>
+           </div>
+           
+           <div>
+             <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
+               {' '}
+               Add Button link{' '}
+             </label>
+             <div className="mt-1">
+               <input
+                 type="text"
+                 name="linkUrl"
+                 id="linkUrl"
+                 value={input.linkUrl}
+                 onChange={(event) => {
+                   setInput({
+                     ...input,
+                     [event.target.name]: event.target.value,
+                   })
+                 }}
+                 className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorUrl ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+               />
+               {click &&<div className='text-sm text-red-500'>{errorUrl}</div>}
+             </div>
+           </div>
+           
 
-            <div className="flex flex-shrink-0 justify-end mt-7">
-    
-              <button
-                data-cy="addTestimonialButton"
-                type="submit"
-                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                onClick={()=>{setClick(true);
-                }}
-                disabled={transition?.state != "idle" ? true : false}
-              >
-                {transition?.state != "idle"  && !errorUrl && !errorLinkText && !errorHex && !errorColor ? <BeatLoader color="#ffffff" /> : 'Add Link' }
-              </button>
-            </div>
+           <div className="flex flex-shrink-0 justify-end mt-7">
+   
+             <button
+               data-cy="addTestimonialButton"
+               type="submit"
+               className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
+               onClick={()=>{setClick(true);
+               }}
+               disabled={transition?.state != "idle" ? true : false}
+             >
+               {transition?.state != "idle"  && !errorUrl && !errorLinkText && !errorHex && !errorColor ? <BeatLoader color="#ffffff" /> : 'Add Link' }
+             </button>
+           </div>
 
-            </div>
-          </div>
-        </div> : 
+           </div>
+         </div>
+       </div>}
+
+       
+
+        
+
+        {loaderData?.additionalLinks.length < 7 && !openAdditionalLinkForm ? 
+        <>
+         <div className='font-inter mt-7 flex flex-col items-center'>
+        <p className='text-xs leading-4 font-semibold tracking-wide'>
+          ADD MORE ADDITIONAL LINKS
+        </p>
+        <p className={`text-sm leading-5 font-normal text-gray-500 px-12 text-center  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
+        You can add more than one link to your profile
+        </p>
+        <button
+          data-cy="addTestimonialButton"
+          onClick={() => setOpenAdditionalLinkForm(true)}
+          type="button"
+          className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+        >
+          Add Additional Link
+        </button>
+
+      </div>
+      <div className='inset-0 mt-6'>
+      <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+      </div>
+
+      <div className='inset-0'>
+      <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+      </div></>
+       
+         : 
         <>
         <div className='inset-0'>
          <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
@@ -291,15 +326,6 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
          <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
          </div></>
          }
-
-         
-        <div className='inset-0'>
-        <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
-        </div>
-
-        <div className='inset-0'>
-        <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
-        </div>
       
       
         

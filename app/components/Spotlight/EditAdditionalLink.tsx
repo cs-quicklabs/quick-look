@@ -2,16 +2,46 @@ import { Dialog } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import {  useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react';
+import { Form, useSubmit, useTransition } from '@remix-run/react';
 import { BeatLoader } from 'react-spinners';
 
 export default function EditSpotlight({ setShowEditAdditional, clickedAdditionalSpotlight, mode, setmode}:any) {
   const transition = useTransition()
+  // const submit = useSubmit();
+
+  // function handleChange(event:any) {
+  //   submit(event.currentTarget, { replace: true });
+  // }
+
+  useEffect(() => {
+    if(transition.state === 'loading'){
+      setShowEditAdditional(false);
+    }
+  }, [transition])
 
   const [val,setVal]= useState({linkText: clickedAdditionalSpotlight?.linkText, linkUrl: clickedAdditionalSpotlight?.linkUrl});
+  const [click, setClicked] = useState(false)
+   const [errorLinkText,setErrorLinktext]=useState('')
+   const [errorUrl, setErrorUrl] = useState('')
+
+  useEffect(() => {
+    if(val?.linkText?.length === 0){
+      setErrorLinktext('Required')
+    }else{
+      setErrorLinktext('')
+    }
+   }, [val])
+
+   useEffect(() => {
+    if(val?.linkText?.length === 0){
+      setErrorUrl('Required')
+    }else{
+      setErrorUrl('')
+    }
+   }, [val])
 
   return (
-    <Form action="update/additionalLink" method='post' >
+    <Form replace action="/account/update/additionalLink" method='post'>
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-[23rem] xl:w-[24rem]'} `}>
         
         <div className="flex flex-1 flex-col justify-between">
@@ -32,8 +62,9 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                   onChange={(event:any) => {
                     setVal(event.target.value)
     }}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorLinkText ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                 />
+                {click &&<div className='text-sm text-red-500'>{errorLinkText}</div>}
               </div>
             </div>
             
@@ -50,8 +81,9 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                   id="linkUrl"
                   onChange={(event:any) => setVal(event.target.value)}
 
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorUrl ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                 />
+                {click &&<div className='text-sm text-red-500'>{errorUrl}</div>}
               </div>
             </div>
             
@@ -78,6 +110,8 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                     id="editAdditionalSpotlightButton"
                     type="submit"
                     className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
+                    onClick={()=>{setClicked(true);
+                    }}
                     disabled={transition?.state != "idle" ? true : false}
                     >
                       {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }

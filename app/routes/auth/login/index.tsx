@@ -93,7 +93,7 @@ const loaderData = useLoaderData();
     
       <div className="h-[calc(100vh-3rem)] overflow-hidden flex flex-col justify-center pb-12 bg-gray-50">
         <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
-      {!actionData?.errors && loaderData?.message?  <div className="rounded-md bg-green-50 p-4">
+      {!actionData?.errors && loaderData?.message?  <div className="rounded-md bg-green-50 px-4 py-4">
       <div className="flex ">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />

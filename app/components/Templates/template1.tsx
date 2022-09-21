@@ -39,9 +39,9 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
         {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}</div>
 
-          {/* <div> */}
-            { <AdditionalLinksAddOn loaderData={loaderData} />}
-          {/* </div> */}
+          <div>
+            { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+          </div>
         
         <div className='pl-[5rem] pr-[8rem] md:px-[12rem] lg:px-[14rem]  '>
           <div className='m-auto  pt-[2.5rem] flex flex-wrap'>
