@@ -49,7 +49,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
   }, [additionalLinkUpdateMessage])
 
    useEffect(() => {
-    if(transition.state != 'idle'){
+    if(transition.state === 'loading'){
       if(loaderData?.additionalLinks[0]?.linkHex){
      setInput({...input, linkText: '', linkUrl: ''});
       } else{
