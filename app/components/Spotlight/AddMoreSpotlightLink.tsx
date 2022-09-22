@@ -341,7 +341,6 @@ if(selectedColor && input.linkHex){
             {transition?.state != "idle" && !errorUrl && !errorLinkText && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> : 'Add Additional Link' }
          
         </button>
-
       </div>
       <div className='inset-0 mt-6'>
       <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
