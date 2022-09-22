@@ -2,7 +2,7 @@ import { useState } from 'react';
 import DeleteAdditinalLink from './DeleteAdditionalLink';
 import EditAdditionalLink from './EditAdditionalLink';
 
-export default function ExistingAdditionalSpotlightLink({ setShowSpotlight,loaderData, mode, setmode}:any) {
+export default function ExistingAdditionalSpotlightLink({ setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, setShowSpotlight,loaderData, mode, setmode}:any) {
 
 const [clickedAdditionalSpotlight, setClickedAdditionalSpotlight] = useState<{ linkText: any; id: any; linkUrl: any; }>({ linkText: '', id: '', linkUrl: '' });
 
@@ -10,7 +10,7 @@ const [showEditAdditional, setShowEditAdditional] = useState(false);
 
 const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any; linkUrl: any; }) => {
   setClickedAdditionalSpotlight(prev => prev = additionalSpotlight);
-  setShowEditAdditional(!showEditAdditional);
+  setShowEditAdditional(true);
 }
 
 const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);

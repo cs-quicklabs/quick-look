@@ -36,7 +36,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AccountSideBar({ showBanner, setShowBanner, initialInput,setMessage,bioMessage,setBioMessage, showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
+export default function AccountSideBar({ setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, showBanner, setShowBanner, initialInput,setMessage,bioMessage,setBioMessage, showSpotlight, setShowSpotlight, inputVideo, setInputVideo,inputTestimonial ,setInputTestimonial, showPortfolio, setShowPortfolio, showAddVideo, setShowAddVideo, setShowTestimonial, showTestimonial, successUpdateMessage,message, showSocialLinks, setshowSocialLinks,showTemplate, setshowTemplate,showImages, setshowImages, loaderData, setshow, input, setinput, mode, setshowBio, showBio, setmode, primaryRestore, secondaryRestore }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
@@ -569,7 +569,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                     </div>
                   ))}
                   {showSpotlight ?
-                  <SpotlightButton showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                  <SpotlightButton setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                   null
                 }
                   {showTestimonial ?

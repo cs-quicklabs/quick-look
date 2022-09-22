@@ -6,6 +6,7 @@ import ExistingSpotlightLink from './ExistingSpotlightLink';
 import { Form, useTransition } from '@remix-run/react'
 import ExistingAdditionalSpotlightLink from './ExistingAdditionalLinks';
 import { BeatLoader } from 'react-spinners';
+import { CheckCircleIcon } from '@heroicons/react/solid';
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -20,7 +21,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mode, setmode}:any) {
+export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, setShowSpotlight, loaderData, mode, setmode}:any) {
   const transition = useTransition();
   const [openAdditionalLinkForm, setOpenAdditionalLinkForm] = useState(false);
   const [selectedColor, setSelectedColor] = useState('')
@@ -39,6 +40,8 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
       setClick(false);
     }
   }, [transition])
+
+  console.log("loaderData",loaderData)
   
 
    const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
@@ -148,6 +151,17 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
           </div>
         </div>
 
+        {/* { additionalLinkUpdateMessage && <div className="rounded-md bg-green-50 px-4 py-4">
+      <div className="flex ">
+        <div className="flex-shrink-0">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{loaderData?.additionalLinkUpdateMessage}</p>
+        </div>
+      </div>
+    </div>} */}
+
         {openAdditionalLinkForm && loaderData?.additionalLinks.length < 7 &&
          <div className="flex flex-1 flex-col justify-between">
          <div className="divide-y divide-gray-200 px-4 sm:px-6">
@@ -156,7 +170,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
            <div className='flex flex-col'>
            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
            <div className="">
-           <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
+           <RadioGroup name="linkColor" value={loaderData?.additionalLinks?.linkColor ||selectedColor} onChange={setSelectedColor}>
              <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                Select Color For Button
              </RadioGroup.Label>
@@ -313,7 +327,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
       </div>
 
       <div className='inset-0'>
-      <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+      <ExistingAdditionalSpotlightLink setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
       </div></>
        
          : 
@@ -323,7 +337,7 @@ export default function AddMoreSpotlightLink({ setShowSpotlight, loaderData, mod
          </div>
  
          <div className='inset-0'>
-         <ExistingAdditionalSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+         <ExistingAdditionalSpotlightLink setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
          </div></>
          }
       
