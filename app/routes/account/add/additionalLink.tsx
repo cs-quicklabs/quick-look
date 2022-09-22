@@ -12,6 +12,7 @@ export const action: ActionFunction = async ({ request }) => {
   let linkHex = await formData.get('linkHex') as string
 
   const user = await getUser(request) || undefined
+
   if (linkHex?.length == 0 && linkColor?.length == 0) {
     return false;
   }
@@ -21,11 +22,12 @@ export const action: ActionFunction = async ({ request }) => {
       return false;
     }
   }
+
   if(linkText.length == 0 || linkUrl.length == 0){
     return false;
   }
   await addAdditionalLink({ user, linkUrl, linkText })
-  if(linkColor){ console.log('COMES HERE')
+  if(linkColor){
   await updatecolorForAllAdditionalLink(linkColor, user);
 } else if(linkHex){ console.log('COMES HERE 2')
   await updateHexColorForAllAdditionalLink(linkHex, user)
