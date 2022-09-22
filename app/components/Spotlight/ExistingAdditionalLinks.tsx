@@ -30,8 +30,8 @@ const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '',
                   <div className="py-4 flex">
                   
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{additionalSpotlight.linkText}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${additionalSpotlight.linkUrl?.slice(0,30)}....`}</p>
+                    <p className="text-sm font-medium text-gray-900">{`${additionalSpotlight.linkText?.slice(0,18)}...`}</p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${additionalSpotlight.linkUrl?.slice(0,18)}...`}</p>
                   </div>
                 </div>
 

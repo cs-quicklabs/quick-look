@@ -170,7 +170,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
            <div className='flex flex-col'>
            <div className={`flex ${mode === 'mobile' ? 'flex-col xl:flex-row xl:justify-between' : 'flex-col lg:flex-row lg:justify-between'}`}>
            <div className="">
-           <RadioGroup name="linkColor" value={loaderData?.additionalLinks?.linkColor ||selectedColor} onChange={setSelectedColor}>
+           <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
              <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                Select Color For Button
              </RadioGroup.Label>
@@ -314,11 +314,14 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
         </p>
         <button
           data-cy="addTestimonialButton"
-          onClick={() => setOpenAdditionalLinkForm(true)}
+          onClick={() => {
+            setOpenAdditionalLinkForm(true)}}
           type="button"
           className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-        >
-          Add Additional Link
+          disabled={transition?.state != "idle" ? true : false}
+          >
+            {transition?.state != "idle" && !errorUrl && !errorLinkText && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> : 'Add Additional Link' }
+         
         </button>
 
       </div>
