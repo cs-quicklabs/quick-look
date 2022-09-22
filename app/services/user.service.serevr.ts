@@ -181,6 +181,11 @@ export async function deleteUser(user?: any) {
             userId: user.id
         }
     })
+    const deleteAdditionalLinks = db.additionalLink.deleteMany({
+        where: {
+            userId: user.id
+        }
+    })
     const deletePortfolioImage = db.portfolioImage.deleteMany({
         where: {
             userId: user.id
@@ -226,6 +231,7 @@ export async function deleteUser(user?: any) {
         deleteUserProfile,
         deleteProfileImage,
         deletePortfolioImage,
+        deleteAdditionalLinks,
         deleteProfileInformation,
         deleteSupportBanner,
         deleteSocialMedia,

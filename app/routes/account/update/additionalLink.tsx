@@ -15,7 +15,10 @@ export const action: ActionFunction = async ({ request }) => {
     const linkText = await formData.get('linkText') as string
     const linkUrl = await formData.get('linkUrl') as string
     const linkId = await formData.get('editAdditionalSpotlight') as string
-
+    if(linkText.length == 0 || linkUrl.length == 0){
+        return false;
+    }
+    
     const isUpdated = await updateAdditionalLink({ linkText, linkUrl, user }, linkId )
 
     session.flash(
