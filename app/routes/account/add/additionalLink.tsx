@@ -21,6 +21,9 @@ export const action: ActionFunction = async ({ request }) => {
       return false;
     }
   }
+  if(linkText.length == 0 || linkUrl.length == 0){
+    return false;
+  }
   await addAdditionalLink({ user, linkUrl, linkText })
   if(linkColor){ console.log('COMES HERE')
   await updatecolorForAllAdditionalLink(linkColor, user);
