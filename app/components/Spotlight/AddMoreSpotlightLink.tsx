@@ -32,6 +32,20 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
    const [errorHex,setErrorHex]=useState('')
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
+   const [text, setText] = useState('')
+
+   useEffect(() => {
+    if(additionalLinkUpdateMessage){
+      setText(additionalLinkUpdateMessage)
+    }
+    setOpenAdditionalLinkForm(false)
+  
+    setTimeout(() => {
+      if(additionalLinkUpdateMessage)
+     { setText('')}
+    }, 2000);
+    
+  }, [additionalLinkUpdateMessage])
 
    useEffect(() => {
     if(transition.state != 'idle'){
@@ -169,17 +183,6 @@ if(selectedColor && input.linkHex){
             </p>
           </div>
         </div>
-
-        {/* { additionalLinkUpdateMessage && <div className="rounded-md bg-green-50 px-4 py-4">
-      <div className="flex ">
-        <div className="flex-shrink-0">
-          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-        </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{loaderData?.additionalLinkUpdateMessage}</p>
-        </div>
-      </div>
-    </div>} */}
 
         {openAdditionalLinkForm && loaderData?.additionalLinks?.length < 7 &&
          <div className="flex flex-1 flex-col justify-between">
@@ -341,6 +344,29 @@ if(selectedColor && input.linkHex){
             {transition?.state != "idle" && !errorUrl && !errorLinkText && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> : 'Add Additional Link' }
          
         </button>
+
+        { (text) &&
+      <div className="rounded-md bg-green-50 p-4 mt-4">
+      <div className="flex  items-start justify-start">
+        <div className="flex-shrink-0 pt-1">
+          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <p className="text-sm font-medium text-green-800">{text}</p>
+        </div>
+        <div className="ml-auto pl-3">
+          <div className="-mx-1.5 -my-1.5 pt-1">
+            <button
+              type="button"
+              className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+            >
+              <span className="sr-only">Dismiss</span>
+              <XIcon className="h-5 w-5" aria-hidden="true" onClick={()=>{setText('');}} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>}
       </div>
       <div className='inset-0 mt-6'>
       <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
