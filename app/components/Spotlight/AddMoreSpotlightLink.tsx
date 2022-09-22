@@ -370,24 +370,18 @@ if(selectedColor && input.linkHex){
       </div>
     </div>}
       </div>
-      <div className='inset-0 mt-6'>
-      <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
-      </div>
-
-      <div className='inset-0'>
-      <ExistingAdditionalSpotlightLink setOpenAdditionalLinkForm={setOpenAdditionalLinkForm} setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
-      </div></>
+      </>
        
          : 
-        <>
-        <div className='inset-0'>
+        null
+         }
+         <div className='inset-0'>
          <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
          </div>
  
          <div className='inset-0'>
          <ExistingAdditionalSpotlightLink setOpenAdditionalLinkForm={setOpenAdditionalLinkForm} setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
-         </div></>
-         }
+         </div>
       
       
         
