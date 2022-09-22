@@ -67,23 +67,37 @@ export async function updateAdditionalLink({ linkText, linkUrl, user}: AddAdditi
 }
 
 export async function updateHexColorForAllAdditionalLink(hexColor: string, user: any){
-    await db.additionalLink.updateMany({
+    const links = await db.additionalLink.findMany({
         where: {
-            userId : user.id
-        },
-        data: {
-            linkHex: hexColor
+            userId: user?.id
         }
+    })
+    links.forEach(async (link) => {
+        await db.additionalLink.update({
+            where: {
+                id : link?.id
+            },
+            data: {
+                linkHex: hexColor
+            }
+        })
     })
 }
 
 export async function updatecolorForAllAdditionalLink(color: string, user: any){
-    await db.additionalLink.updateMany({
+    const links = await db.additionalLink.findMany({
         where: {
-            userId : user.id
-        },
-        data: {
-            linkColor: color
+            userId: user?.id
         }
+    })
+    links.forEach(async (link) => {
+        await db.additionalLink.update({
+            where: {
+                id : link?.id
+            },
+            data: {
+                linkColor: color
+            }
+        })
     })
 }
