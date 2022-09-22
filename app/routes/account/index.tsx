@@ -17,11 +17,12 @@ export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(
     request.headers.get("Cookie")
   );
-const successMessage = session.get("successUpdateProfileMessage") || null;
+  const successMessage = session.get("successUpdateProfileMessage") || null;
   const message = session.get("successUpdateSocialMedia") || null;
   const bioMessage = session.get("successUpdateBioMessage") || null;
+  const additionalLinkUpdateMessage = session.get("successUpdateAdditionalLinkMessage") || null;
   return json(
-    { message,successMessage,bioMessage, user },
+    { message, successMessage, bioMessage, additionalLinkUpdateMessage, user },
     {
       headers: {
         "Set-Cookie": await commitSession(session),
