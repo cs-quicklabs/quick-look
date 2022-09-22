@@ -7,6 +7,7 @@ import { Form, useTransition } from '@remix-run/react'
 import ExistingAdditionalSpotlightLink from './ExistingAdditionalLinks';
 import { BeatLoader } from 'react-spinners';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import { addAdditionalLink } from '~/services/additionalLinks.service.server';
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -73,7 +74,9 @@ if(selectedColor && input.linkHex){
   useEffect(() =>{
     setSelectedColor(loaderData?.additionalLinks[0]?.linkColor);
     setInput({...input, linkHex: loaderData?.additionalLinks[0]?.linkHex});
+   
   },[loaderData])
+  
   
 
    const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
@@ -339,9 +342,8 @@ if(selectedColor && input.linkHex){
             setOpenAdditionalLinkForm(true)}}
           type="button"
           className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-          disabled={transition?.state != "idle" ? true : false}
           >
-            {transition?.state != "idle" && !errorUrl && !errorLinkText && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> : 'Add Additional Link' }
+            Add Additional Link
          
         </button>
 
@@ -373,7 +375,7 @@ if(selectedColor && input.linkHex){
       </div>
 
       <div className='inset-0'>
-      <ExistingAdditionalSpotlightLink setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+      <ExistingAdditionalSpotlightLink setOpenAdditionalLinkForm={setOpenAdditionalLinkForm} setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
       </div></>
        
          : 
@@ -383,7 +385,7 @@ if(selectedColor && input.linkHex){
          </div>
  
          <div className='inset-0'>
-         <ExistingAdditionalSpotlightLink setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+         <ExistingAdditionalSpotlightLink setOpenAdditionalLinkForm={setOpenAdditionalLinkForm} setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
          </div></>
          }
       

@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DeleteAdditinalLink from './DeleteAdditionalLink';
 import EditAdditionalLink from './EditAdditionalLink';
 
-export default function ExistingAdditionalSpotlightLink({ setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, setShowSpotlight,loaderData, mode, setmode}:any) {
+export default function ExistingAdditionalSpotlightLink({setOpenAdditionalLinkForm, setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, setShowSpotlight,loaderData, mode, setmode}:any) {
 
 const [clickedAdditionalSpotlight, setClickedAdditionalSpotlight] = useState<{ linkText: any; id: any; linkUrl: any; }>({ linkText: '', id: '', linkUrl: '' });
-
+useEffect(() => {
+  loaderData?.additionalLinks?.length == 7 ? setOpenAdditionalLinkForm(false) : null;
+  
+}, [loaderData])
 const [showEditAdditional, setShowEditAdditional] = useState(false); 
 
 const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any; linkUrl: any; }) => {
