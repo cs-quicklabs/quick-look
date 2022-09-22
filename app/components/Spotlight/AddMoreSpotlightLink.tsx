@@ -315,7 +315,7 @@ if(selectedColor && input.linkHex){
                onClick={(e:any)=>{setClick(true);  (!input?.linkHex?.length && !selectedColor?.length) || input.linkText === '' || input.linkUrl === '' ? e.preventDefault() : null}}
                disabled={transition?.state != "idle" ? true : false}
              >
-               {transition?.state != "idle"  && !errorUrl && !errorLinkText && !errorHex && !errorColor ? <BeatLoader color="#ffffff" /> : 'Add Link' }
+               {transition?.state != "idle" ? <BeatLoader color="#ffffff" /> : 'Add Link' }
              </button>
            </div>
 

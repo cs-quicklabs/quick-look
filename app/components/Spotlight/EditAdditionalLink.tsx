@@ -14,7 +14,7 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
    const [errorUrl, setErrorUrl] = useState('')
 
    useEffect(() => {
-    if(transition.state != 'idle'){ 
+    if(transition.state === 'loading'){ 
       setClicked(false);
       setShowEditAdditional(false);
     }
