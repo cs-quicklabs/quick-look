@@ -5,24 +5,20 @@ import { RadioGroup } from '@headlessui/react'
 import { Form, useSubmit, useTransition } from '@remix-run/react';
 import { BeatLoader } from 'react-spinners';
 
-export default function EditSpotlight({ setShowEditAdditional, clickedAdditionalSpotlight, mode, setmode}:any) {
+export default function EditSpotlight({ setShowEditAdditional, clickedAdditionalSpotlight, mode, setmode, loaderData}:any) {
   const transition = useTransition()
-  // const submit = useSubmit();
-
-  // function handleChange(event:any) {
-  //   submit(event.currentTarget, { replace: true });
-  // }
-
-  useEffect(() => {
-    if(transition.state === 'loading'){
-      setShowEditAdditional(false);
-    }
-  }, [transition])
 
   const [val,setVal]= useState({linkText: clickedAdditionalSpotlight?.linkText, linkUrl: clickedAdditionalSpotlight?.linkUrl});
   const [click, setClicked] = useState(false)
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
+
+   useEffect(() => {
+    if(transition.state != 'idle'){ 
+      setClicked(false);
+      setShowEditAdditional(false);
+    }
+  }, [transition])
 
   useEffect(() => {
     if(val?.linkText?.length === 0){
@@ -41,7 +37,7 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
    }, [val])
 
   return (
-    <Form replace action="/account/update/additionalLink" method='post'>
+    <Form replace action="update/additionalLink" method='post'>
       <div className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-[23rem] xl:w-[24rem]'} `}>
         
         <div className="flex flex-1 flex-col justify-between">
@@ -59,9 +55,12 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                   value={val?.linkText}
                   name="linkText"
                   id="linkText"
-                  onChange={(event:any) => {
-                    setVal(event.target.value)
-    }}
+                  onChange={(event) => {
+                    setVal({
+                      ...val,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
                   className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorLinkText ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                 />
                 {click &&<div className='text-sm text-red-500'>{errorLinkText}</div>}
@@ -79,7 +78,12 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                   value={val?.linkUrl}
                   name="linkUrl"
                   id="linkUrl"
-                  onChange={(event:any) => setVal(event.target.value)}
+                  onChange={(event) => {
+                    setVal({
+                      ...val,
+                      [event.target.name]: event.target.value,
+                    })
+                  }}
 
                   className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${click && errorUrl ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                 />
@@ -110,11 +114,12 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                     id="editAdditionalSpotlightButton"
                     type="submit"
                     className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
-                    onClick={()=>{setClicked(true);
+                    onClick={(e:any)=>{setClicked(true);
+                      val.linkText === '' || val.linkUrl === '' ? e.preventDefault() : null
                     }}
                     disabled={transition?.state != "idle" ? true : false}
                     >
-                      {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
+                      {transition?.state != "idle"  && !errorUrl && !errorLinkText  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
                     </button>
                   </div>
     
