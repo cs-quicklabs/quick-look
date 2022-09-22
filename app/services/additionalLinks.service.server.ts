@@ -78,7 +78,8 @@ export async function updateHexColorForAllAdditionalLink(hexColor: string, user:
                 id : link?.id
             },
             data: {
-                linkHex: hexColor
+                linkHex: hexColor,
+                linkColor: ''
             }
         })
     })
@@ -96,7 +97,8 @@ export async function updatecolorForAllAdditionalLink(color: string, user: any){
                 id : link?.id
             },
             data: {
-                linkColor: color
+                linkColor: color,
+                linkHex: ''
             }
         })
     })
