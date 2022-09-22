@@ -13,8 +13,8 @@ export const action: ActionFunction = async ({ request }) => {
 
   const user = await getUser(request) || undefined
 
-  if (linkHex?.length == 0 && linkColor?.length == 0) {
-    return false;
+  if (!linkHex?.length && !linkColor?.length) {
+    return ;
   }
   if (linkColor?.length! > 0 && linkHex?.length! > 0) {
     linkColor = ''
