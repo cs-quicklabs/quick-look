@@ -10,7 +10,7 @@ const [showEditAdditional, setShowEditAdditional] = useState(false);
 
 const toggleEditAdditionalLink = (additionalSpotlight: { linkText: any; id: any; linkUrl: any; }) => {
   setClickedAdditionalSpotlight(prev => prev = additionalSpotlight);
-  setShowEditAdditional(!showEditAdditional);
+  setShowEditAdditional(true);
 }
 
 const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false);
