@@ -117,7 +117,8 @@ useEffect(() => {
   })
   return (
     <>
-      <div className=' h-[calc(100vh-3rem)] flex flex-col justify-center text-sm font-inter bg-gray-50'>
+      <div className="flex flex-col min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="flex flex-col items-center justify-center w-full max-w-md space-y-8">
         <div className='mx-auto flex flex-col items-center justify-center'>
           <img src={logo} alt='' className='h-20 w-20' />
           <div className='flex flex-col items-center justify-center'>
@@ -353,6 +354,8 @@ useEffect(() => {
 
           </div>
         </div>
+        </div>
+        
       </div>
     </>
   )
