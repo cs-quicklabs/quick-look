@@ -126,8 +126,8 @@ export async function getUser(request: Request) {
         portfolioImage: true,
         supportBanner: true,
         additionalLinks: true
-      }
-    })
+        }
+      })
     return user
   } 
 

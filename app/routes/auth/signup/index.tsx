@@ -21,6 +21,7 @@ import { BeatLoader } from 'react-spinners'
 import ReCAPTCHA from "react-google-recaptcha"
 import { useRef } from 'react';
 import axios from 'axios'
+import { useLoaderData } from '@remix-run/react';
 
 export const action: ActionFunction = async ({ request }) => {
 
@@ -80,14 +81,13 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect('/confirm/email')
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, context }) => {
   const user = await getUser(request)
   if (user) {
-    return redirect('/account')
+    return  redirect('/account')
   }
   return null
 }
-
 export default function SignUp() {
   const captchaRef = useRef(null)
   const transition = useTransition()
@@ -100,6 +100,12 @@ export default function SignUp() {
     //@ts-ignore
     captchaRef.current.execute();
   }
+const [googleCaptchaKey,setGoogleCaptchaKey]=useState('')
+ 
+useEffect(() => {
+  //@ts-ignore
+ setGoogleCaptchaKey(window.ENV.REACT_APP_SITE_KEY)
+}, [])
 
   const [val, setVal] = useState({
     firstName: '',
@@ -109,7 +115,6 @@ export default function SignUp() {
     password: '',
     confirmPassword: '',
   })
-
   return (
     <>
       <div className=' h-[calc(100vh-3rem)] flex flex-col justify-center text-sm font-inter bg-gray-50'>
@@ -317,7 +322,8 @@ export default function SignUp() {
                 </div>
               </div>
               <div className='flex flex-col justify-end'>
-                <ReCAPTCHA  ref={captchaRef} sitekey='6LdMrsQhAAAAALgzO0zsjuRPDxFQDFs-alzf35m0' onChange={handleSubmit} />
+               
+                <ReCAPTCHA  ref={captchaRef} sitekey={googleCaptchaKey} onChange={handleSubmit} />
                 <div className='text-red-600 text-sm'>
                   {actionData?.errors['captchaError']}
                 </div>
@@ -351,3 +357,5 @@ export default function SignUp() {
     </>
   )
 }
+
+

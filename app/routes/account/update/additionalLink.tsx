@@ -14,10 +14,19 @@ export const action: ActionFunction = async ({ request }) => {
     
     const linkText = await formData.get('linkText') as string
     const linkUrl = await formData.get('linkUrl') as string
-    const linkColor = await formData.get('linkColor') as string
-    const linkHex = await formData.get('linkHex') as string
+    let linkColor = await formData.get('linkColor') as string
+    let linkHex = await formData.get('linkHex') as string
     const linkId = await formData.get('editAdditionalSpotlight') as string
 
+    if (linkHex?.length == 0 && linkColor?.length == 0) {
+        return false;
+    }
+    if(linkColor?.length! > 0 && linkHex?.length! > 0){
+        linkColor=''
+        if(!linkHex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)){
+          return false;
+        }
+    }
     const isUpdated = await updateAdditionalLink({ linkText, linkUrl, user }, linkId )
 
     if(linkColor){
@@ -25,10 +34,10 @@ export const action: ActionFunction = async ({ request }) => {
     } else if(linkHex){
         await updateHexColorForAllAdditionalLink(linkHex, user)
     }
-    
+
     session.flash(
         "successUpdateAdditionalLinkMessage",
-        `Your dditional Link has been updated successfully.`
+        `Your additional Link has been updated successfully.`
     );
 
     if(isUpdated){ 

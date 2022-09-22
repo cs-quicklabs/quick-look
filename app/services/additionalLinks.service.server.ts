@@ -3,6 +3,16 @@ import { AddAdditionalLink } from "~/types/additionalLink.server";
 
 
 export async function addAdditionalLink({linkColor, linkText, linkUrl, linkHex, user}: AddAdditionalLink){
+    if (linkHex?.length == 0 && linkColor?.length == 0) {
+        return false;
+      }
+      if(linkColor?.length! > 0 && linkHex?.length! > 0){
+        linkColor=''
+        if(!linkHex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)){
+          return false;
+        }
+    }
+
     const additionlLinkCount = await db.additionalLink.count({
         where:{
             userId: user.id
