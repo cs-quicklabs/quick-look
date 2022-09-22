@@ -181,7 +181,7 @@ export async function deleteUser(user?: any) {
             userId: user.id
         }
     })
-    const deleteAdditionalLinks = db.supportBanner.deleteMany({
+    const deleteAdditionalLinks = db.additionalLink.deleteMany({
         where: {
             userId: user.id
         }
