@@ -324,18 +324,21 @@ export async function getUserByUsername(username: string){
         where:{
             username: username
         },
-        include:{
-            profile: {},
-            profileImage:{},
-            portfolioImage:{},
-            additionalLinks: {},
-            testimonial: {},
-            spotlightButton: {},
-            video: {},
-            profileInfo: {},
-            socialMedia: {},
-            marketingUpdates: {},
-        }
+        include: {
+            profile : true,
+            profileInfo : true,
+            profileImage: true,
+            socialMedia: true,
+            marketingUpdates: true,
+            spotlightButton: true,
+            video: true,
+            testimonial: true,
+            portfolioImage: true,
+            supportBanner: true,
+            additionalLinks: {
+              orderBy: {createdAt: 'asc'}       
+            }
+          }
     })
     if(!user){
         return 'User Does not exist.'
