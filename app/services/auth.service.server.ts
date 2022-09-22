@@ -125,8 +125,10 @@ export async function getUser(request: Request) {
         testimonial: true,
         portfolioImage: true,
         supportBanner: true,
-        additionalLinks: true
+        additionalLinks: {
+          orderBy: {createdAt: 'asc'}       
         }
+      }
       })
     return user
   } 
