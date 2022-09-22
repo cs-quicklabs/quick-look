@@ -42,13 +42,18 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
   }, [transition])
 
   console.log("loaderData",loaderData)
+
+  useEffect(() =>{
+    setSelectedColor(loaderData?.additionalLinks[0]?.linkColor);
+    setInput({...input, linkHex: loaderData?.additionalLinks[0]?.linkHex});
+  },[loaderData])
   
 
    const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
 
    useEffect(() => {
-    if(input.linkHex.length && !validRegex.test(input.linkHex)){
+    if(input?.linkHex?.length && !validRegex.test(input.linkHex)){
       setErrorHex("Invalid Hexcode")
     }
     else if(!input.linkHex && selectedColor){
@@ -68,7 +73,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
   };
 
   useEffect(() => {
-    if(input.linkText.length === 0){
+    if(input?.linkText?.length === 0){
       setErrorLinktext('Required')
     }else{
       setErrorLinktext('')
@@ -76,7 +81,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
    }, [input])
    
    useEffect(() => {
-    if( input.linkUrl.length ===0){
+    if( input?.linkUrl?.length ===0){
       setErrorUrl('Required')
     }else{
       setErrorUrl('')
@@ -129,7 +134,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
         <div className="py-6 px-4 sm:px-6 bg-gray-50">
           <div className="flex items-center justify-between">
             <Dialog.Title className="text-lg font-medium text-gray-900 leading-7"> 
-              {loaderData?.additionalLinks.length < 7 ? ' Add Additional Links to your profile' : 'Additional Links to your profile' }
+              {loaderData?.additionalLinks?.length < 7 ? ' Add Additional Links to your profile' : 'Additional Links to your profile' }
             </Dialog.Title>
             <div className="ml-3 flex h-7 items-center">
               <button
@@ -146,7 +151,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
           </div>
           <div className="mt-1">
             <p className="text-sm text-gray-500 leading-5 font-normal">
-             {loaderData?.additionalLinks.length < 7 ? 'You can add more than one link to your profile' :null }  
+             {loaderData?.additionalLinks?.length < 7 ? 'You can add more than one link to your profile' :null }  
             </p>
           </div>
         </div>
@@ -162,7 +167,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
       </div>
     </div>} */}
 
-        {openAdditionalLinkForm && loaderData?.additionalLinks.length < 7 &&
+        {openAdditionalLinkForm && loaderData?.additionalLinks?.length < 7 &&
          <div className="flex flex-1 flex-col justify-between">
          <div className="divide-y divide-gray-200 px-4 sm:px-6">
            <div className="space-y-6 pt-6 pb-5">
@@ -303,7 +308,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
 
         
 
-        {loaderData?.additionalLinks.length < 7 && !openAdditionalLinkForm ? 
+        {loaderData?.additionalLinks?.length < 7 && !openAdditionalLinkForm ? 
         <>
          <div className='font-inter mt-7 flex flex-col items-center'>
         <p className='text-xs leading-4 font-semibold tracking-wide'>
