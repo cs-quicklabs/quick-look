@@ -34,12 +34,25 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
    const [errorUrl, setErrorUrl] = useState('')
 
    useEffect(() => {
-    if(transition.state === 'loading' && !errorUrl && !errorLinkText && !errorHex && !errorColor ){
-      setInput({ linkHex: '', linkText: '', linkUrl: ''});
-      setSelectedColor('');
+    if(transition.state != 'idle'){
+      if(loaderData?.additionalLinks[0]?.linkHex){
+     setInput({...input, linkText: '', linkUrl: ''});
+      } else{
+        
+      }
+      if(loaderData?.additionalLinks[0]?.linkColor){
+       setSelectedColor(loaderData?.additionalLinks[0]?.linkColor);
+       setInput({linkHex:'', linkText: '', linkUrl: ''});
+      }else{
+        setSelectedColor('');
+      }
+if(selectedColor && input.linkHex){
+       setInput({linkHex:'', linkText: '', linkUrl: ''});
+ setSelectedColor('');
+}
       setClick(false);
     }
-  }, [transition])
+  }, [transition,loaderData])
 
   console.log("loaderData",loaderData)
 
@@ -292,8 +305,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
                data-cy="addTestimonialButton"
                type="submit"
                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-               onClick={()=>{setClick(true);
-               }}
+               onClick={(e:any)=>{setClick(true); input?.linkHex === '' || input.linkText === '' || input.linkUrl === '' ? e.preventDefault() : null}}
                disabled={transition?.state != "idle" ? true : false}
              >
                {transition?.state != "idle"  && !errorUrl && !errorLinkText && !errorHex && !errorColor ? <BeatLoader color="#ffffff" /> : 'Add Link' }

@@ -2,16 +2,7 @@ import { db } from "~/database/connection.server";
 import { AddAdditionalLink } from "~/types/additionalLink.server";
 
 
-export async function addAdditionalLink({linkColor, linkText, linkUrl, linkHex, user}: AddAdditionalLink){
-    if (linkHex?.length == 0 && linkColor?.length == 0) {
-        return false;
-      }
-      if(linkColor?.length! > 0 && linkHex?.length! > 0){
-        linkColor=''
-        if(!linkHex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)){
-          return false;
-        }
-    }
+export async function addAdditionalLink({ linkText, linkUrl, user}: AddAdditionalLink){
 
     const additionlLinkCount = await db.additionalLink.count({
         where:{
@@ -24,9 +15,9 @@ export async function addAdditionalLink({linkColor, linkText, linkUrl, linkHex, 
             data: {
                 userId: user.id,
                 linkText,
-                linkColor,
+                
                 linkUrl,
-                linkHex
+                
             },
         })
         return true
