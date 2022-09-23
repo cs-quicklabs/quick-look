@@ -86,11 +86,17 @@ export const loader: LoaderFunction = async ({ request, context }) => {
   if (user) {
     return  redirect('/account')
   }
-  return null
+  return json({
+    ENV: {
+      REACT_APP_SITE_KEY: process.env.REACT_APP_SITE_KEY,
+    },
+  });
 }
 export default function SignUp() {
   const captchaRef = useRef(null)
   const transition = useTransition()
+  const Data = useLoaderData()
+ 
   const actionData = useActionData()
   const [token, setToken] = useState('')
 
@@ -100,12 +106,6 @@ export default function SignUp() {
     //@ts-ignore
     captchaRef.current.execute();
   }
-const [googleCaptchaKey,setGoogleCaptchaKey]=useState('')
- 
-useEffect(() => {
-  //@ts-ignore
- setGoogleCaptchaKey(window.ENV.REACT_APP_SITE_KEY)
-}, [])
 
   const [val, setVal] = useState({
     firstName: '',
@@ -133,7 +133,7 @@ useEffect(() => {
         </div>
         <div className='mt-5 mx-auto font-inter'>
           <div className='bg-gray-50 '>
-            <Form className='space-y-4' method='post' noValidate>
+            <Form replace={false} className='space-y-4' method='post' noValidate>
               <div className='grid grid-cols-2 gap-2'>
                 <div className='relative'>
                   <label className='text-gray-700 w-24 h-5 font-medium leading-5 text-sm'>
@@ -324,7 +324,7 @@ useEffect(() => {
               </div>
               <div className='flex flex-col justify-end'>
                
-                <ReCAPTCHA  ref={captchaRef} sitekey={googleCaptchaKey} onChange={handleSubmit} />
+                <ReCAPTCHA  ref={captchaRef} sitekey={Data.ENV.REACT_APP_SITE_KEY} onChange={handleSubmit} />
                 <div className='text-red-600 text-sm'>
                   {actionData?.errors['captchaError']}
                 </div>
