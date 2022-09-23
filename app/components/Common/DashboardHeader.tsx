@@ -26,15 +26,15 @@ export default function DashboardHeader({username, loaderData}: any) {
            
           <div className='flex flex-1 items-center'>
             <div className='flex w-full items-center justify-between md:w-auto'>
-              <Link
-                to='/account'
+              <a
+                href={`/${username}` } target='_blank'
                 className='flex items-center justify-center gap-4'
               >
                 <img className='hidden lg:block lg:mt-2 pb-0 lg:w-auto lg:h-9 md:mt-0 lg:pt-0 sm:pb-0' src={logo} alt='' />
                 <span className='w-max block font-base md:ml-3 lg:ml-0 sm:text-xl pt-2 pl-9 md:pl-0 sm:pt-2 sm:pb-1.5 sm:font-extrabold text-white'>
-                  Quicklook.me/{username}
+                    Quicklook.me/{username}
                 </span>
-              </Link>
+              </a>
               <a className='cursor-pointer' href={`/${username}` } target='_blank'>
 
                 <svg xmlns="http://www.w3.org/2000/svg" className="hidden lg:block lg:h-6 lg:w-6 lg:text-white lg:ml-4 lg:mb-2 lg:mt-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
