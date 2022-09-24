@@ -17,7 +17,8 @@ export default defineConfig({
       "uploadImage.spec.ts",
       "addTestimonial.spec.ts",
       "addVideo.spec.ts",
-      "addSpotlight.spec.ts"
+      "addSpotlight.spec.ts",
+      "addSupportBanner.spec.ts"
       //...
     ],
     "chromeWebSecurity": false,

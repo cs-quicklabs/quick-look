@@ -76,7 +76,7 @@ export default function Banner({setShowBanner, loaderData, mode, setmode}:any) {
                         Please add banner by clicking on button below
                       </p>
                       <button
-                        data-cy="addVideoLinkButton"
+                        data-cy="addBannerButton"
                         onClick={() => toggleCreateBanner()}
                         type="button"
                         className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
@@ -105,7 +105,7 @@ export default function Banner({setShowBanner, loaderData, mode, setmode}:any) {
               
                               <div className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile' ? 'mr-[6.5rem] xl:mr-0 flex-row xl:flex-col' : 'flex-row lg:flex-col  lg:ml-[3.2rem] ml-4 py-0 lg:py-4'}`}>
                                 <button
-                                  data-cy="editVideoButton"
+                                  data-cy="editBanner"
                                   className="hover:text-indigo-600 text-[14px]"
                                   onClick={(e: any) => { e.preventDefault(); setShowCreatebanner(true); }}
                                 >
@@ -116,7 +116,7 @@ export default function Banner({setShowBanner, loaderData, mode, setmode}:any) {
               
                                 )}
                                 <button
-                                  data-cy="deleteVideoButton"
+                                  data-cy="deleteBanner"
                                   onClick={(e: any) => { e.preventDefault(); setOpenDeleteBanner(true); }}
                                   className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'}`}>
                                   Delete

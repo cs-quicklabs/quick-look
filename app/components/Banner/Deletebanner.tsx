@@ -59,7 +59,7 @@ useEffect(() => {
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
                   <Form replace={true} action="delete/supportBanner" method='post'>
                     <button
-                    data-cy="deleteSpotlightModalButton"
+                    data-cy="deleteBannerButton"
                     id="deleteSpotlightModalButton" 
                     name="deleteSpotlight" 
                     value = "delete Spotlight"

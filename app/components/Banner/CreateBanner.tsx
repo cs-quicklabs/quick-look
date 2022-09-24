@@ -371,7 +371,7 @@ useEffect(() => {
                             <div className="flex flex-shrink-0 justify-end mt-7" >
                     
                               <button
-                                data-cy="addBannerButton"
+                                data-cy="addeditBannerButton"
                                 type="submit"
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                                 onClick={()=>{setClicked(true);
