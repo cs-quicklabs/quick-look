@@ -29,7 +29,7 @@ useEffect(() => {
 
 
 useEffect(() => {
- transition.state !='idle' ? setshowCreateProfile(false) : null
+ transition.state ==='loading' ? setshowCreateProfile(false) : null
 }, [transition,showCreateProfile])
 
 
