@@ -217,6 +217,7 @@ if(selectedColor && input.linkHex){
                      {color.name}
                    </RadioGroup.Label>
                    <span
+                    data-cy={color.bgColor}
                      aria-hidden="true"
                      className={classNames(color.bgColor, 'h-5 w-5 border border-black border-opacity-10 rounded-full')}
                    />
@@ -233,6 +234,7 @@ if(selectedColor && input.linkHex){
            </label>
            <div className="mt-1 p-1">
              <input
+                data-cy="linkHex"
                type="text"
                name="linkHex"
                value={input.linkHex}
@@ -289,6 +291,7 @@ if(selectedColor && input.linkHex){
              </label>
              <div className="mt-1">
                <input
+                 data-cy="linkUrl"
                  type="text"
                  name="linkUrl"
                  id="linkUrl"
@@ -309,7 +312,7 @@ if(selectedColor && input.linkHex){
            <div className="flex flex-shrink-0 justify-end mt-7">
    
              <button
-               data-cy="addTestimonialButton"
+               data-cy="addAdditionalLink"
                type="submit"
                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                onClick={(e:any)=>{setClick(true);  (!input?.linkHex?.length && !selectedColor?.length) || input.linkText === '' || input.linkUrl === '' ? e.preventDefault() : null}}
@@ -337,7 +340,7 @@ if(selectedColor && input.linkHex){
         You can add more than one link to your profile
         </p>
         <button
-          data-cy="addTestimonialButton"
+          data-cy="addAdditionalLinkButton"
           onClick={() => {
             setOpenAdditionalLinkForm(true)}}
           type="button"

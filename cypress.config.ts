@@ -18,7 +18,8 @@ export default defineConfig({
       "addTestimonial.spec.ts",
       "addVideo.spec.ts",
       "addSpotlight.spec.ts",
-      "addSupportBanner.spec.ts"
+      "addSupportBanner.spec.ts",
+      "addAdditionalLinks.spec.ts"
       //...
     ],
     "chromeWebSecurity": false,

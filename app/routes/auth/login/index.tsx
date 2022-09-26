@@ -102,7 +102,7 @@ const loaderData = useLoaderData();
           <p className="text-sm font-medium text-green-800">{loaderData?.message}</p>
         </div>
       </div>
-    </div> : <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50' : ''} p-4`}>
+    </div> : <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50 mt-20' : ''} p-4`}>
       <div className="flex">
         {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
           <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />

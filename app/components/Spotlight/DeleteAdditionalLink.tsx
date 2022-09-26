@@ -60,7 +60,7 @@ export default function DeleteAdditinalLink({ additionalSpotlight, deleteAdditio
                   <Form replace={true} action="delete/additionalLink" method='post'>
                   <input value={deleteAdditionalLink.id} name="deleteAdditionalLink" hidden />
                     <button
-                    data-cy="deleteAdditionalLinkButton"
+                    data-cy="deleteAdditionalLink"
                     id="deleteAdditionalLinkButton" 
                     name="deleteAdditionalLinkButton" 
                     // value = {loaderData}
