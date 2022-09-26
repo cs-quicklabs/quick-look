@@ -5,13 +5,12 @@ import CreateSocialLinks from './CreateSocialLinks'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
 import ExistingSocialLinks from './ExistingSocialLinks'
+import { useTransition } from '@remix-run/react';
 
 export default function AddMoreSocialLinks({setMessage,successUpdateMessage,setshowSocialLinks, loaderData,mode,setmode,message}:any) {
-
-
-
 const [text, setText] = useState('')
 const [text1, setText1] = useState('')
+const transition = useTransition()
 
 const [showCreateProfile, setshowCreateProfile] = useState(false);
 useEffect(() => {
@@ -20,15 +19,19 @@ useEffect(() => {
   if(successUpdateMessage){
     setText1(successUpdateMessage)
   }
-  setshowCreateProfile(false)
-
+  // setshowCreateProfile(false)
   setTimeout(() => {
     if(message || successUpdateMessage)
    { setText('')
     setText1('')}
   }, 2000);
-  
 }, [message,successUpdateMessage])
+
+
+useEffect(() => {
+ transition.state !='idle' ? setshowCreateProfile(false) : null
+}, [transition,showCreateProfile])
+
 
   const OnCancel = ()=>{
    setshowSocialLinks(false)
@@ -89,7 +92,7 @@ useEffect(() => {
                       </p>
                       <button
                         data-cy="addSocialProfileButton"
-                        onClick={ ()=> setshowCreateProfile(true)}
+                        onClick={ ()=> setshowCreateProfile((prev)=>prev = true)}
                         type="button"
                         className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                         disabled={text || text1 ? true : false}
@@ -98,7 +101,7 @@ useEffect(() => {
                       </button>
                       <div className=''>
                         {showCreateProfile && (
-                          <CreateSocialLinks OnCloseSocial={OnCancel} setMessage={setMessage} message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
+                          <CreateSocialLinks OnCloseSocial={OnCancel} showCreateProfile={showCreateProfile} setMessage={setMessage} message={message} successUpdateMessage={successUpdateMessage} setshowCreateProfile={setshowCreateProfile} setshowSocialLinks={setshowSocialLinks} mode={mode} loaderData={loaderData} />
                         )} 
                       </div>
                       
@@ -129,11 +132,12 @@ useEffect(() => {
         </div>
       </div>
     </div>}
-                    
-                    <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-6'}`}>
+                    {console.log(showCreateProfile)}
+                    <div  className={`${showCreateProfile ?'mt-36 z-20':'mt-4'}`}>
                     <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
                     </div>
                     
+                    {/* <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-6'}`}> */}
 
 
                   </div>                  

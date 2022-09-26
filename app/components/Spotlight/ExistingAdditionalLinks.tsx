@@ -24,7 +24,7 @@ const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '',
     <div className={` ${showEditAdditional ? 'pl-3 pr-3.5' : 'border-t border-gray-200 ml-0 mr-0'}`}>
       <ul>
         {loaderData?.additionalLinks.map((additionalSpotlight: { linkText: any; id: any; linkUrl: any; }) => (
-          <li key={additionalSpotlight.linkText} className="">
+          <li key={additionalSpotlight.id} className="">
             {additionalSpotlight.linkText ?
               <>
               <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>

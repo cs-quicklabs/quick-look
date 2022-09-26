@@ -4,17 +4,19 @@ import DeleteSocialLink from "./DeleteSocialLink";
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
+import { useTransition } from '@remix-run/react';
 
 export default function ExistingSocialLinks({clickedAdd, successUpdateMessage,message, loaderData, setshowSocialLinks, selectedSocialLinks, mode, setmode }: any) {
-const linkName = localStorage.getItem("LinkName")
-  const linkEmail = localStorage.getItem("LinkEmail")
 
-  
+
+const transition = useTransition()
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [open, setopen] = useState(false);
   const [clickedLink, setClickedLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
   const [deleteLink, setDeleteLink] = useState<{ name: any; email: any; image: any }>({ name: '', email: '', image: '' });
-  
+  useEffect(() => {
+  transition.state === 'loading' &&  setShowEditProfile(false);
+}, [transition,showEditProfile])
   const people = [
     {
       name: 'Facebook',
