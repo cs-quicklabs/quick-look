@@ -12,15 +12,12 @@ export const action: ActionFunction = async ({ request }) => {
 
   const user = await getUser(request) || undefined
 
-  if (!linkHex?.length && !linkColor?.length) {
-    return ;
-  }
-
   if (linkColor?.length! > 0 && linkHex?.length! > 0) {
     linkColor = ''
   }
 
-  if(linkHex.length > 0){
+  if(linkHex?.length! > 0){
+    linkColor = ''
     if (!linkHex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
       return ;
     }

@@ -1,25 +1,28 @@
+import { userInfo } from "os";
 import { db } from "~/database/connection.server";
 import { AddAdditionalLink } from "~/types/additionalLink.server";
 
 
 export async function addAdditionalLink({ linkText, linkColor,  linkUrl, linkHex, user}: AddAdditionalLink){
     if(linkColor?.length! > 0){
-        const updateColorForAdditionalLink = await db.profile.update({
+        await db.profile.update({
             where: {
                 userId: user.id
             },
             data: {
-                additionalLinksColor: linkColor
+                additionalLinksColor: linkColor,
+                additionalLinksHexCode: ''
             }
         })
     }
     if(linkHex?.length! > 0){
-        const updateHexForAdditionalLink = await db.profile.update({
+        await db.profile.update({
             where: {
                 userId: user.id
             },
             data: {
-                additionalLinksHexCode: linkHex
+                additionalLinksHexCode: linkHex,
+                additionalLinksColor: ''
             }
         })
     }
@@ -33,12 +36,28 @@ export async function addAdditionalLink({ linkText, linkColor,  linkUrl, linkHex
         return true
 }
 
-export async function deleteAdditionalLink(linkId: string){
+export async function deleteAdditionalLink(linkId: string, user?: any){
     await db.additionalLink.delete({
         where: {
             id: linkId
         }
     })
+    const additionalLinkCount = await db.additionalLink.count({
+        where: {
+            userId : user?.id
+        }
+    })
+    if(additionalLinkCount > 0){
+        await db.profile.update({
+            where: {
+                userId: user?.id
+            },
+            data :{
+                additionalLinksColor: '',
+                additionalLinksHexCode: ''
+            }
+        })
+    }
 }
 
 export async function updateAdditionalLink({ linkText, linkUrl, user}: AddAdditionalLink, linkId: string){
