@@ -50,13 +50,13 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
 
    useEffect(() => {
     if(transition.state === 'loading'){
-      if(loaderData?.additionalLinks[0]?.linkHex){
+      if(loaderData?.profile?.additionalLinksHexCode){
      setInput({...input, linkText: '', linkUrl: ''});
       } else{
         setInput({linkHex:'', linkText: '', linkUrl: ''});
       }
-      if(loaderData?.additionalLinks[0]?.linkColor){
-       setSelectedColor(loaderData?.additionalLinks[0]?.linkColor);
+      if(loaderData?.profile?.additionalLinksColor){
+       setSelectedColor(loaderData?.profile?.additionalLinksColor);
        setInput({linkHex:'', linkText: '', linkUrl: ''});
       }else{
         setSelectedColor('');
@@ -72,8 +72,8 @@ if(selectedColor && input.linkHex){
   
 
   useEffect(() =>{
-    setSelectedColor(loaderData?.additionalLinks[0]?.linkColor);
-    setInput({...input, linkHex: loaderData?.additionalLinks[0]?.linkHex});
+    setSelectedColor(loaderData?.profile?.additionalLinksColor);
+    setInput({...input, linkHex: loaderData?.profile?.linkHex});
    
   },[loaderData])
   

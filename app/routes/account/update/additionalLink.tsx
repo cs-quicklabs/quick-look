@@ -1,5 +1,5 @@
 import { ActionFunction, redirect } from "@remix-run/node";
-import { updateAdditionalLink, updatecolorForAllAdditionalLink, updateHexColorForAllAdditionalLink } from "~/services/additionalLinks.service.server";
+import { updateAdditionalLink } from "~/services/additionalLinks.service.server";
 import { getUser } from "~/services/auth.service.server";
 import { commitSession, getSession } from "~/services/session.service.server";
 
@@ -17,6 +17,7 @@ export const action: ActionFunction = async ({ request }) => {
     const linkId = await formData.get('editAdditionalSpotlight') as string
     let linkColor = await formData.get('linkColor') as string
     let linkHex = await formData.get('linkHex') as string
+    
     if(linkText.length == 0 || linkUrl.length == 0){
         return false;
     }
@@ -35,11 +36,6 @@ export const action: ActionFunction = async ({ request }) => {
         return false;
     }
 
-    if(linkColor){ 
-    await updatecolorForAllAdditionalLink(linkColor, user);
-    } else if(linkHex){
-    await updateHexColorForAllAdditionalLink(linkHex, user)
-    }
 
     session.flash(
         "successUpdateAdditionalLinkMessage",
