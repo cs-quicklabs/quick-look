@@ -1,7 +1,6 @@
 import { ActionFunction, redirect } from "@remix-run/node";
 import { addAdditionalLink } from "~/services/additionalLinks.service.server";
 import { getUser } from "~/services/auth.service.server";
-import { updatecolorForAllAdditionalLink, updateHexColorForAllAdditionalLink } from "~/services/additionalLinks.service.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -16,8 +15,12 @@ export const action: ActionFunction = async ({ request }) => {
   if (!linkHex?.length && !linkColor?.length) {
     return ;
   }
+
   if (linkColor?.length! > 0 && linkHex?.length! > 0) {
     linkColor = ''
+  }
+
+  if(linkHex.length > 0){
     if (!linkHex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
       return ;
     }
@@ -27,15 +30,7 @@ export const action: ActionFunction = async ({ request }) => {
     return false;
   }
 
-  await addAdditionalLink({ user, linkUrl, linkText }).then(async () => {
-    if(linkColor.length > 0){ 
-      await updatecolorForAllAdditionalLink(linkColor, user);
-    } else if(linkHex.length > 0){ 
-    await updateHexColorForAllAdditionalLink(linkHex, user)
-    }
-  }).catch((err) => {
-    console.log(err)
-  })
+  await addAdditionalLink({ user, linkUrl, linkText, linkColor, linkHex })
 
   return redirect('/account')
 }

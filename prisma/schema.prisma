@@ -50,6 +50,8 @@ model Profile {
   userId      String   @unique
   isVerified  Boolean? @default(false)
   isPublished Boolean? @default(false)
+  additionalLinksColor String? 
+  additionalLinksHexCode String?
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @updatedAt
 
@@ -170,9 +172,7 @@ model AdditionalLink {
   user      User     @relation(fields: [userId], references: [id])
   userId    String
   linkText  String?
-  linkColor String?
   linkUrl   String?
-  linkHex   String?
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @updatedAt
 

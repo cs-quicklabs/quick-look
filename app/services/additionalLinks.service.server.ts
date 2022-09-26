@@ -2,7 +2,27 @@ import { db } from "~/database/connection.server";
 import { AddAdditionalLink } from "~/types/additionalLink.server";
 
 
-export async function addAdditionalLink({ linkText, linkUrl, user}: AddAdditionalLink){
+export async function addAdditionalLink({ linkText, linkColor,  linkUrl, linkHex, user}: AddAdditionalLink){
+    if(linkColor?.length! > 0){
+        const updateColorForAdditionalLink = await db.profile.update({
+            where: {
+                userId: user.id
+            },
+            data: {
+                additionalLinksColor: linkColor
+            }
+        })
+    }
+    if(linkHex?.length! > 0){
+        const updateHexForAdditionalLink = await db.profile.update({
+            where: {
+                userId: user.id
+            },
+            data: {
+                additionalLinksHexCode: linkHex
+            }
+        })
+    }
         await db.additionalLink.create({
             data: {
                 userId: user.id,
@@ -42,7 +62,7 @@ export async function updateAdditionalLink({ linkText, linkUrl, user}: AddAdditi
     return false
 }
 
-export async function updateHexColorForAllAdditionalLink(hexColor: string, user: any){
+/* export async function updateHexColorForAllAdditionalLink(hexColor: string, user: any){
     const links = await db.additionalLink.findMany({
         where: {
             userId: user?.id
@@ -59,9 +79,9 @@ export async function updateHexColorForAllAdditionalLink(hexColor: string, user:
             }
         })
     })
-}
+} */
 
-export async function updatecolorForAllAdditionalLink(color: string, user: any){
+/* export async function updatecolorForAllAdditionalLink(color: string, user: any){
     const links = await db.additionalLink.findMany({
         where: {
             userId: user?.id
@@ -78,4 +98,4 @@ export async function updatecolorForAllAdditionalLink(color: string, user: any){
             }
         })
     })
-}
+} */
