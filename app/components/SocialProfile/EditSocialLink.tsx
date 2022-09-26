@@ -118,7 +118,6 @@ regexCheck(fbRegEx,e.target.value,whiteSpaceRegex)
                       className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                       onClick={() => {
                       setShowEditProfile(false);
-                      setshowSocialLinks(true);
                       }}
                       disabled={transition?.state != "idle"}
                       >

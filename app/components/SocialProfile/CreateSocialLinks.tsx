@@ -26,10 +26,8 @@ export default function CreateSocialLinks({OnCloseSocial,showCreateProfile,setsh
   const [click, setClick] = useState(false)
   
 useEffect(() => {
-  // To Prevent auto filling of input field from extensions
-    setValue('')
-},[])
-
+ transition.state === 'loading' && setshowCreateProfile(false)
+}, [transition,showCreateProfile])
   let fbRegEx:any = sociallink === 'facebook' ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm : sociallink === 'twitter' ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm :  sociallink === 'youtube' ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm :''
   let whiteSpaceRegex = /^\S*$/
   const regexCheck = (fbRegEx:any,value:any,whiteSpaceRegex:any)=>{
@@ -87,7 +85,7 @@ useEffect(() => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <Form replace={true} action='add/socialProfile' method="post" className='h-screen' >
+                  <div>
                     <div className={`flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
@@ -111,9 +109,8 @@ useEffect(() => {
                           </p>
                         </div>
                       </div>
+                  <Form replace={true} action='add/socialProfile' method="post"  >
                       <div className='pl-2.5 pr-5 mt-6'>
-                        <div>
-                          
                        <Combobox as="div" value={selectedSocialLinks} onChange={setSelectedSocialLinks}>
                           <Combobox.Label className="block text-sm leading-5 font-medium text-gray-700">Select Social Profile</Combobox.Label>
                           <div className="relative mt-1">
@@ -166,7 +163,7 @@ useEffect(() => {
                         
                           
                         </Combobox>
-                        </div>
+                        
                         <div className='mt-5'>
                           <label htmlFor="project-name" className="block text-sm font-medium leading-5 text-gray-700">
                             {' '}
@@ -216,11 +213,10 @@ useEffect(() => {
                         "Add Profile"}
                         </button>
                       </div>
-                      <div className='mt-12'>
-                       <ExistingSocialLinks  clickedAdd={clickedAdd} setshowCreateProfile={setshowCreateProfile} successUpdateMessage={message} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks} selectedSocialLinks={selectedSocialLinks} mode={mode} setmode={setmode} />   
-                      </div>
-                    </div>
                   </Form>
+                     
+                    </div>
+                  </div>
                   
                 </Dialog.Panel>
               </Transition.Child>

@@ -36,7 +36,11 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
    const [text, setText] = useState('')
-console.log(input,'@@')
+
+useEffect(() => {
+  loaderData
+}, [loaderData])
+
    useEffect(() => {
     if(additionalLinkUpdateMessage){
       setText(additionalLinkUpdateMessage)
@@ -349,7 +353,6 @@ if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalL
           className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
           >
             Add Additional Link
-         
         </button>
 
        
