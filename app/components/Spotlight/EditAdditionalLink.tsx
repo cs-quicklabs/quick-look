@@ -51,6 +51,7 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
               </label>
               <div className="mt-1">
                 <input
+                  data-cy="linkEditText"
                   type="text"
                   value={val?.linkText}
                   name="linkText"
@@ -74,6 +75,7 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
               </label>
               <div className="mt-1">
                 <input
+                  data-cy="linkEditUrl"
                   type="text"
                   value={val?.linkUrl}
                   name="linkUrl"
@@ -110,8 +112,8 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                       </button>
                     </span>
                     <button
-                    data-cy="editAdditionalSpotlightButton"
-                    id="editAdditionalSpotlightButton"
+                    data-cy="editLinkButton"
+                    id="editLinkButton"
                     type="submit"
                     className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                     onClick={(e:any)=>{setClicked(true);

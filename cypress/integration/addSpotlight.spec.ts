@@ -31,7 +31,7 @@ describe("Add SpotLight button test cases", function () {
     cy.contains("Select an icon for spotlight button (optional)")
     cy.get('[data-cy="addSpotlightIcon"]').type("chevron-double-up");
     cy.contains("Please provide download path of file which you want visiter to download")
-    cy.get('[data-cy="addSpotlightLink"]').type("Link Goes here");
+    cy.get('[data-cy="addSpotlightLink"]').type("www.template.com");
     cy.contains("Show spotlight button")
     cy.get('[data-cy="ToggleSpotlight"]').click();
     cy.get('[data-cy="addSpotlightButton"]').click();
