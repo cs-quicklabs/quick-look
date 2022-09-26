@@ -23,18 +23,20 @@ function classNames(...classes: string[]) {
 }
 
 export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, setShowSpotlight, loaderData, mode, setmode}:any) {
+  console.log(loaderData)
   const transition = useTransition();
   const [openAdditionalLinkForm, setOpenAdditionalLinkForm] = useState(false);
   const [selectedColor, setSelectedColor] = useState('')
   const [click, setClick] = useState(false)
-  const [input, setInput] = useState({ linkHex: '', linkText: '', linkUrl: ''})
+  const [input, setInput] = useState({ linkHex: loaderData?.profile?.additionalLinksHexCode
+, linkText: '', linkUrl: ''})
   const [errorColor,setErrorColor]=useState('')
   const [errorNoColor, setErrorNoColor] = useState('')
    const [errorHex,setErrorHex]=useState('')
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
    const [text, setText] = useState('')
-
+console.log(input,'@@')
    useEffect(() => {
     if(additionalLinkUpdateMessage){
       setText(additionalLinkUpdateMessage)
@@ -51,7 +53,7 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
    useEffect(() => {
     if(transition.state === 'loading'){
       if(loaderData?.profile?.additionalLinksHexCode){
-     setInput({...input, linkText: '', linkUrl: ''});
+     setInput({linkHex:loaderData?.profile?.additionalLinksHexCode, linkText: '', linkUrl: ''});
       } else{
         setInput({linkHex:'', linkText: '', linkUrl: ''});
       }
@@ -61,8 +63,8 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
       }else{
         setSelectedColor('');
       }
-if(selectedColor && input.linkHex){
-       setInput({linkHex:'', linkText: '', linkUrl: ''});
+if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalLinksHexCode){
+       setInput({...input, linkText: '', linkUrl: ''});
  setSelectedColor('');
 }
       setClick(false);
@@ -73,7 +75,7 @@ if(selectedColor && input.linkHex){
 
   useEffect(() =>{
     setSelectedColor(loaderData?.profile?.additionalLinksColor);
-    setInput({...input, linkHex: loaderData?.profile?.linkHex});
+    setInput({...input, linkHex: loaderData?.profile?.additionalLinksHexCode});
    
   },[loaderData])
   

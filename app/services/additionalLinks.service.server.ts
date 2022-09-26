@@ -47,7 +47,7 @@ export async function deleteAdditionalLink(linkId: string, user?: any){
             userId : user?.id
         }
     })
-    if(additionalLinkCount > 0){
+   if(additionalLinkCount <= 0){
         await db.profile.update({
             where: {
                 userId: user?.id

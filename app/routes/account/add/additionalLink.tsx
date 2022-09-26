@@ -9,7 +9,7 @@ export const action: ActionFunction = async ({ request }) => {
   const linkUrl = await formData.get('linkUrl') as string
   let linkColor = await formData.get('linkColor') as string
   let linkHex = await formData.get('linkHex') as string
-
+console.log('@@@@@',linkHex)
   const user = await getUser(request) || undefined
 
   if (linkColor?.length! > 0 && linkHex?.length! > 0) {
