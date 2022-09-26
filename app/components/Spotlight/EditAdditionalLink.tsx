@@ -119,7 +119,7 @@ export default function EditSpotlight({ setShowEditAdditional, clickedAdditional
                     }}
                     disabled={transition?.state != "idle" ? true : false}
                     >
-                      {transition?.state != "idle"  && !errorUrl && !errorLinkText  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
+                      {transition?.submission?.action === "/account/update/additionalLink"  && !errorUrl && !errorLinkText  ? <BeatLoader color="#ffffff" /> : 'Edit Link' }
                     </button>
                   </div>
     

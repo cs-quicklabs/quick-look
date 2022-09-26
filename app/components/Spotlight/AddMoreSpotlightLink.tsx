@@ -69,7 +69,7 @@ if(selectedColor && input.linkHex){
     }
   }, [transition,loaderData])
 
-  console.log("loaderData",loaderData)
+  
 
   useEffect(() =>{
     setSelectedColor(loaderData?.additionalLinks[0]?.linkColor);
@@ -315,7 +315,7 @@ if(selectedColor && input.linkHex){
                onClick={(e:any)=>{setClick(true);  (!input?.linkHex?.length && !selectedColor?.length) || input.linkText === '' || input.linkUrl === '' ? e.preventDefault() : null}}
                disabled={transition?.state != "idle" ? true : false}
              >
-               {transition?.state != "idle" ? <BeatLoader color="#ffffff" /> : 'Add Link' }
+               {transition?.submission?.action === "/account/add/additionalLink" ? <BeatLoader color="#ffffff" /> : 'Add Link' }
              </button>
            </div>
 
@@ -347,8 +347,15 @@ if(selectedColor && input.linkHex){
          
         </button>
 
-        { (text) &&
-      <div className="rounded-md bg-green-50 p-4 mt-4">
+       
+      </div>
+      </>
+       
+         : 
+        null
+         }
+          { (text) &&
+      <div className={`rounded-md bg-green-50 p-4 ${loaderData?.additionalLinks?.length === 7 ? 'mt-0' :'mt-4'}`}>
       <div className="flex  items-start justify-start">
         <div className="flex-shrink-0 pt-1">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
@@ -369,19 +376,28 @@ if(selectedColor && input.linkHex){
         </div>
       </div>
     </div>}
-      </div>
-      </>
-       
-         : 
-        null
-         }
-         <div className='inset-0'>
-         <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+         <div>
+          <div className={`text-xs font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5 ${loaderData?.additionalLinks?.length === 7 ? 'mt-0' : 'mt-4'}`}>
+            Spotlight Button
+          </div>
+          <div className='inset-0'>
+          <ExistingSpotlightLink loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+          </div>
          </div>
- 
-         <div className='inset-0'>
-         <ExistingAdditionalSpotlightLink setOpenAdditionalLinkForm={setOpenAdditionalLinkForm} setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+         
+
+         <div>
+          {loaderData?.additionalLinks[0]?.linkText ? 
+          <div className='text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700 pl-4 border-t border-gray-200 bg-gray-50 w-full leading-5'>
+          Additional Links
+          </div> : null}
+          
+  
+          <div className='inset-0'>
+          <ExistingAdditionalSpotlightLink setOpenAdditionalLinkForm={setOpenAdditionalLinkForm} setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} loaderData={loaderData} mode={mode} setmode={setmode} setShowSpotlight={setShowSpotlight} />
+          </div>
          </div>
+         
       
       
         

@@ -46,6 +46,7 @@ useEffect(() => {
 }, [mode,showImages])
 let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVideo && !showTestimonial && !showSocialLinks &&!showTemplate && !showImages && !showBio;
   const Location = useLocation();
+  console.log("loaderData",loaderData)
 
   return (
 
@@ -321,7 +322,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                           </a>
                         ))}
                         {showSpotlight ?
-                          <SpotlightButton showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
+                          <SpotlightButton setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} loaderData={loaderData} input={input} setinput={setinput} mode={mode} setmode={setmode} /> :
                           null
                         }
                         {showTestimonial ?
@@ -364,7 +365,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                     </div>
                     <div className="ml-3">
                       <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">{loaderData?.firstname} {loaderData?.lastname}</p>
-                      <p className="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                      <a  href={`/${loaderData?.username}` } target='_blank' className="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700">View profile</a>
                     </div>
                   </div>
                 </a>
