@@ -19,18 +19,23 @@ export const action: ActionFunction = async ({ request }) => {
   if (linkColor?.length! > 0 && linkHex?.length! > 0) {
     linkColor = ''
     if (!linkHex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
-      return false;
+      return ;
     }
   }
 
   if(linkText.length == 0 || linkUrl.length == 0){
     return false;
   }
-  await addAdditionalLink({ user, linkUrl, linkText })
-  if(linkColor){
-  await updatecolorForAllAdditionalLink(linkColor, user);
-} else if(linkHex){ console.log('COMES HERE 2')
-  await updateHexColorForAllAdditionalLink(linkHex, user)
-}
+
+  await addAdditionalLink({ user, linkUrl, linkText }).then(async () => {
+    if(linkColor.length > 0){ 
+      await updatecolorForAllAdditionalLink(linkColor, user);
+    } else if(linkHex.length > 0){ 
+    await updateHexColorForAllAdditionalLink(linkHex, user)
+    }
+  }).catch((err) => {
+    console.log(err)
+  })
+
   return redirect('/account')
 }
