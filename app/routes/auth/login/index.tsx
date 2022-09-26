@@ -122,7 +122,7 @@ const loaderData = useLoaderData();
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md bg-gray-50">
           <div className=" py-8 px-4   sm:rounded-lg sm:px-10 bg-gray-50">
-            <Form className="space-y-6 bg-gray-50" method="post">
+            <Form className="space-y-6 bg-gray-50" method="post" >
               <div className='relative'>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
@@ -214,12 +214,12 @@ const loaderData = useLoaderData();
                 </button>
               </div>
               <p className='mt-2 text-center text-sm'>
-                    <Link
-                      to='/auth/receive-email'
+                    <a
+                      href='/auth/receive-email'
                       className='font-medium text-indigo-600 hover:text-indigo-500'
                     >
                       Did not receive confirmation email?
-                    </Link>
+                    </a>
                   </p>
             </Form>
 
