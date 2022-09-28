@@ -5,6 +5,7 @@ import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
+import thumbnail3 from '../../../assets/images/screenshots/thumbnail3png.png'
 
 
 export default function AccountTemplate({setshowTemplate , mode, setmode}:any) {
@@ -44,7 +45,7 @@ const Onclose = () => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel data-cy="accountTemplate" className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
-                  <div className="flex h-full flex-col bg-white border-r border-gray-200">
+                  <div className="flex h-full flex-col bg-white border-r border-gray-200 overflow-auto">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
                         <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Select Template </Dialog.Title>
@@ -120,10 +121,10 @@ const Onclose = () => {
                           {selectTemplate === 'template3' && transition?.submission?.action == "/account/update/choose-template" ?
                             <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumbnail3} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                               :
-                              <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
+                              <img src={thumbnail3} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
 
                         </button>
                       </div>
