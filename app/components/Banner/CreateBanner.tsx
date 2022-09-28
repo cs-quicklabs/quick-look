@@ -73,7 +73,7 @@ const OnCancel = ()=>{
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   useEffect(() => {
-    if(transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor ){
+    if(transition.state === 'loading' && !error && !errorLink && !errorHex ){
       setShowCreatebanner(false);
     }
   }, [transition, error, errorLink, errorHex, errorColor])
@@ -324,7 +324,7 @@ useEffect(() => {
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md border-gray-300 text-gray-900 shadow-sm  sm:text-sm ${click && error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                                  className={`block w-full rounded-md border-gray-300 text-gray-900 shadow-sm  sm:text-sm ${click && errorLink ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                                 />
                                 {click && <div className='text-sm text-red-500'>{errorLink}</div>}
                                <p className='text-xs leading-5 font-normal text-gray-500 mt-1'>
@@ -378,7 +378,7 @@ useEffect(() => {
                                 }}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
-                                {transition?.state != "idle" && !error && !errorLink && !errorHex && !errorColor  ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
+                                {transition?.state != "idle" && !error && !errorLink && !errorHex  ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
                                  'Add Support Banner' }
                                 
                               </button>

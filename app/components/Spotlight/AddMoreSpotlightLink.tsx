@@ -36,10 +36,12 @@ export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, a
    const [errorLinkText,setErrorLinktext]=useState('')
    const [errorUrl, setErrorUrl] = useState('')
    const [text, setText] = useState('')
-
+ 
+   
 useEffect(() => {
+ transition.state === 'loading' && setOpenAdditionalLinkForm(false)
   loaderData
-}, [loaderData])
+}, [loaderData,transition])
 
    useEffect(() => {
     if(additionalLinkUpdateMessage){
