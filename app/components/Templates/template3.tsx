@@ -7,12 +7,24 @@ import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/video'
-export default function Template3 ({ input, loaderData,primaryRestore,secondaryRestore }: any) {
+import { useLocation } from 'react-router-dom'
+export default function Template3 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
+  console.log(mode);
   
+  const Location = useLocation()
+ const nav = Location.pathname.includes(`${loaderData.username}`)
+   {
+    const myStyle={
+        backgroundImage: 
+       `url(${Background3})`,
+        height:`${nav ?'96.5vh' :'90.5vh'}`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+    };
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className="flex flex-col xl:flex-row lg:ml-[5rem] p-[5.625rem] overflow-auto" style={{backgroundImage: `url(${Background3})`}}>
+    <div className={`flex  ${mode ==='mobile' ? 'flex-col' : 'lg:flex-row flex-col'}  justify-center items-center bg-no-repeat object-cover overflow-none`} style={myStyle}>
       <div className="mb-4 flex-shrink-0 sm:mb-0 sm:mr-[4rem]">
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
@@ -80,9 +92,7 @@ export default function Template3 ({ input, loaderData,primaryRestore,secondaryR
           </footer>
             
       </div>
-    </div>
-  
-      
+    </div>  
     </>
   )
-} 
+}} 
