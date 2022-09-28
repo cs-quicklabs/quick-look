@@ -24,13 +24,13 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto ${nav ?'h-[96.5vh]' : 'h-[95.5vh] '} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem] 2xl:flex-row' : 'flex-col xl:flex-row py-[5rem] pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`} style={myStyle}>
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 sm:mr-[4rem] ${mode ==='mobile' ? '' : 'lg:mt-4'}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 sm:mr-[4rem] ${mode ==='mobile' ? '' : 'lg:mt-[5.625rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`${mode ==='mobile' ? 'xl:pl-0 lg:h-[30rem] xl:h-[38rem] lg:max-w-[25rem] xl:max-w-[35rem]' : 'lg:max-w-7xl xl:max-w-[35rem] h-auto 2xl:ml-[2rem] xl:pl-[7rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] lg:h-[45rem] xl:h-[40rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'} `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage}  /> : null}
 
       </div>
-      <div className='mt-[3.75rem]'>
+      <div className='mt-[9.5rem]'>
         <h4 className={`text-2xl leading-8 font-bold ${mode ==='mobile' ? '' : '2xl:pr-[4rem] 2xl:ml-[2.5rem]'}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
