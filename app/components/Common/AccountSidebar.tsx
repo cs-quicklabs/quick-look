@@ -46,7 +46,6 @@ useEffect(() => {
 }, [mode,showImages])
 let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVideo && !showTestimonial && !showSocialLinks &&!showTemplate && !showImages && !showBio;
   const Location = useLocation();
-  console.log("loaderData",loaderData)
 
   return (
 

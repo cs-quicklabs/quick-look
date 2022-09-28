@@ -132,7 +132,6 @@ useEffect(() => {
         </div>
       </div>
     </div>}
-                    {console.log(showCreateProfile)}
                     <div  className={`${showCreateProfile ?'mt-36 z-20':'mt-4'}`}>
                     <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
                     </div>

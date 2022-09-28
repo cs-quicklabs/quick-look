@@ -23,7 +23,6 @@ function classNames(...classes: string[]) {
 }
 
 export default function AddMoreSpotlightLink({ setAdditionalLinkUpdateMessage, additionalLinkUpdateMessage, setShowSpotlight, loaderData, mode, setmode}:any) {
-  console.log(loaderData)
   const transition = useTransition();
   const [openAdditionalLinkForm, setOpenAdditionalLinkForm] = useState(false);
   const [selectedColor, setSelectedColor] = useState('')

@@ -40,7 +40,6 @@ export default function Profile() {
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
-  console.log(Data);
   
   
   const loaderData = Data?.user
