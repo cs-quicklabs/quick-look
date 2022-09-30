@@ -45,18 +45,7 @@ useEffect(() => {
   } else{
     setError1('')
   }
-    // if(testimonialBy === ''){
-    //   setError1('');
-    // }
-    
-    // else if(testimonialBy?.length < 6){
-    //   setError1('Name must be 6 characters long');
-    // } else if(testimonialBy?.length >24 ){
-    //   setError1('Name must not be more than 24 characters long');
-    // }
-    // else if(testimonialBy === ''){
-    //   setError1('required');
-    // }else{setError1('')}
+  
     if(testimonialText === ''){
       setError('');
     }
