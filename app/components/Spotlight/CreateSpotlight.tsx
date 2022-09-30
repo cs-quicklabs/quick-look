@@ -193,7 +193,7 @@ const OnCancel = ()=>{
                         <div className="py-6 px-4 sm:px-6 bg-gray-50">
                           <div className="flex items-center justify-between">
                             <Dialog.Title className="text-lg font-medium text-gray-900 leading-7">
-                            {`${loaderData?.spotlightButton?.buttonText  ? 'Edit': 'Add'} Spotlight Button to your profile`} 
+                            {`${loaderData?.spotlightButton?.buttonText  ? 'Edit Spotlight Button on your profile': 'Add Spotlight Button to your profile'} `} 
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               {/* <Form replace={true} action=""> */}
