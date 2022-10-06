@@ -285,7 +285,7 @@ function showCropAreaSecondary() {
                                           disabled={upload === 'primary' && transition.state !== "idle"}
                                           id="photo"
                                           name="primaryImageUpload"
-                                          accept="image/*"
+                                          accept="image/png, image/jpeg, image/jpg"
                                           onChange={handleChange} />
                                         <button type="submit" ref={ref} className="hidden">upload</button>
                                       </label>
@@ -375,7 +375,7 @@ function showCropAreaSecondary() {
                                       className="hidden"
                                       id="photo2"
                                       name="secondaryImageUpload"
-                                      accept="image/*"
+                                      accept="image/png, image/jpeg, image/jpg"
                                       onChange={handleChange2}
                                     />
                                     <button type="submit" ref={ref2} className="hidden">upload</button>

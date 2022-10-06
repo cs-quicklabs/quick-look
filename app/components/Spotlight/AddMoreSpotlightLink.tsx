@@ -322,7 +322,7 @@ if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalL
                data-cy="addAdditionalLink"
                type="submit"
                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-               onClick={(e:any)=>{setClick(true);  (!input?.linkHex?.length && !selectedColor?.length) || input.linkText === '' || input.linkUrl === '' ? e.preventDefault() : null}}
+              onClick={(e:any)=>{setClick(true);  ( errorUrl || errorLinkText || errorHex || errorNoColor) ? e.preventDefault() : null}}
                disabled={transition?.state != "idle" ? true : false}
              >
                {transition?.submission?.action === "/account/add/additionalLink" ? <BeatLoader color="#ffffff" /> : 'Add Link' }

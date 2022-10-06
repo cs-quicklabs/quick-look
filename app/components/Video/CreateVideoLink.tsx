@@ -86,7 +86,7 @@ const [error,SetError] = useState('')
                       <div className="bg-gray-50 py-6 px-4">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
-                          {`${loaderData?.video?.videoLink  ? 'Edit': 'Add'} Video Link to your profile`}
+                          {`${loaderData?.video?.videoLink  ? 'Edit Video Link on your profile': 'Add Video Link to your profile'} `}
                           </Dialog.Title>
                           <div className="ml-3 flex h-7 items-center">
                             <button

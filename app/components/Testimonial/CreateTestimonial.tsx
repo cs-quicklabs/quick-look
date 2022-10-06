@@ -45,18 +45,7 @@ useEffect(() => {
   } else{
     setError1('')
   }
-    // if(testimonialBy === ''){
-    //   setError1('');
-    // }
-    
-    // else if(testimonialBy?.length < 6){
-    //   setError1('Name must be 6 characters long');
-    // } else if(testimonialBy?.length >24 ){
-    //   setError1('Name must not be more than 24 characters long');
-    // }
-    // else if(testimonialBy === ''){
-    //   setError1('required');
-    // }else{setError1('')}
+  
     if(testimonialText === ''){
       setError('');
     }
@@ -111,7 +100,7 @@ return (
                     <div className="bg-gray-50 py-6 px-4">
                     <div className="flex items-center justify-between">
                       <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
-                        {`${loaderData?.testimonial?.testimonialBy  ? 'Edit': 'Add'} Testimonial to your profile`}
+                        {`${loaderData?.testimonial?.testimonialBy  ? 'Edit Testimonial on your profile': 'Add Testimonial to your profile'} `}
                         
                       </Dialog.Title>
                       <div className="ml-3 flex h-7 items-center">

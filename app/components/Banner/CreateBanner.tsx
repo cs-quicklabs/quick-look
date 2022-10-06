@@ -31,13 +31,14 @@ const people = [
 ]
 
 export default function CreateBanner({ setOpenDeleteBanner, OncloseBanner, setShowBanner, setShowCreatebanner, showCreatebanner, loaderData, mode, setmode}:any) {
+  
   const transition = useTransition()
   
   const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
   const [enabled, setEnabled] = useState(loaderData?.supportBanner?.toggleBanner)
   const [click,setClicked]=useState(false)
 
-  const [value, setValue] = useState({bannerText:loaderData?.supportBanner?.bannerText, bannerColor:loaderData?.supportBanner?.bannerColor, bannerHex:loaderData?.supportBanner?.bannerHex , bannerIcon:loaderData?.supportBanner?.bannerIcon , bannerLink:loaderData?.supportBanner?.bannerlink, toggleBanner:loaderData?.supportBanner?.toggleBanner })
+  const [value, setValue] = useState({bannerText:loaderData?.supportBanner?.bannerText || '', bannerColor:loaderData?.supportBanner?.bannerColor || '', bannerHex:loaderData?.supportBanner?.bannerHex || '' , bannerIcon:loaderData?.supportBanner?.bannerIcon || '' , bannerLink:loaderData?.supportBanner?.bannerlink || '', toggleBanner:loaderData?.supportBanner?.toggleBanner || '' })
 
   var _ = require('lodash');
   const iconName = _.startCase(_.camelCase(value.bannerIcon)) + 'Icon'
@@ -46,7 +47,6 @@ export default function CreateBanner({ setOpenDeleteBanner, OncloseBanner, setSh
   const {...icons} = HIcons
   //@ts-ignore
   const TheIcon: any = React.useMemo(() => icons[Final] || null,[Final])
-
 
   const Onclose = (e:any) => {
     
@@ -73,7 +73,7 @@ const OnCancel = ()=>{
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   useEffect(() => {
-    if(transition.state === 'loading' && !error && !errorLink && !errorHex ){
+    if(transition.state === 'loading' && !error && !errorLink && !errorHex && errorColor ){
       setShowCreatebanner(false);
     }
   }, [transition, error, errorLink, errorHex, errorColor])
@@ -82,7 +82,7 @@ useEffect(() => {
   if(value?.bannerHex?.length && !validRegex.test(value.bannerHex)){
     setErrorHex("Invalid Hexcode")
   }
-  else if(!value.bannerHex && selectedColor){
+  else if(!value?.bannerHex && selectedColor){
 setErrorHex("")
   } else{
 setErrorHex("")
@@ -91,20 +91,24 @@ setErrorHex("")
 }, [value?.bannerHex,selectedColor])
 
 useEffect(() => {
-  if(value?.bannerText){
+  if(value?.bannerText && value?.bannerText?.length <= 100){
    setError('')
-  }else{
+  } 
+  if (value?.bannerText?.length === 0){
    setError('Required')
+  }
+  if(value?.bannerText?.length > 100){
+    setError('Banner text should be less than 100 characters.')
   }
  }, [value])
 
  useEffect(() => {
   if(TheIcon){
    setErrorIcon('')
-  }else if(value.bannerIcon === ''){
+  }else if(value?.bannerIcon === ''){
    setErrorIcon('')
   }
-  else if(!TheIcon && value.bannerIcon){
+  else if(!TheIcon && value?.bannerIcon){
    setErrorIcon('Icon not available')
   }
   else {
@@ -113,7 +117,7 @@ useEffect(() => {
  }, [value, TheIcon])
  
  useEffect(() => {
-   if(!selectedColor && !value.bannerHex){
+   if(!selectedColor && !value?.bannerHex){
      setErrorNoColor('Please select color or hexcode.')
   }else {
    setErrorNoColor('')
@@ -122,7 +126,7 @@ useEffect(() => {
  }, [value, selectedColor])
  
   useEffect(() => {
-   if(selectedColor && value.bannerHex){
+   if(selectedColor && value?.bannerHex){
    setErrorColor('Hexcode will be given priority')
   }else {
    setErrorColor('')
@@ -373,12 +377,12 @@ useEffect(() => {
                               <button
                                 data-cy="addeditBannerButton"
                                 type="submit"
-                                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
-                                onClick={()=>{setClicked(true);
-                                }}
+                                className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
+                                onClick={(e:any)=>{setClicked(true);  
+                                  {( error || errorLink || errorHex || errorNoColor) ? e.preventDefault() : null }}}
                                 disabled={transition?.state != "idle" ? true : false}
                               >
-                                {transition?.state != "idle" && !error && !errorLink && !errorHex  ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
+                                {transition?.state != "idle" && !error && !errorLink && !errorHex && !errorColor ? <BeatLoader color="#ffffff" /> : loaderData?.supportBanner?.bannerText ? 'Edit Support Banner' :
                                  'Add Support Banner' }
                                 
                               </button>
