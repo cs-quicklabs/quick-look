@@ -8,13 +8,7 @@ import Portfolioimage from './portfolioimage';
 export default function Portfolio({ setShowPortfolio, mode, setmode,loaderData }: any) {
 
 const [image, setimage] = useState(null);
-const[show, setShow]=useState(false)
-const handleMouseOver=()=>{
-  setShow(true)
-}
-const handleMouseOut=()=>{
-  setShow(false)
-}
+
 
 const ref = useRef(null);
 console.log(image)
@@ -149,7 +143,7 @@ const handleChange = (e: any) => {
                           </div>
 <ul className='grid hover:mb-4 grid-cols-4 gap-4 items-center mx-6' >
    {loaderData.portfolioImage.map((img:any)=>(
- <Portfolioimage img={img} show={show} handleMouseOut={handleMouseOut} handleMouseOver={handleMouseOver}/>
+ <Portfolioimage img={img}/>
 ))}
 </ul>
 
