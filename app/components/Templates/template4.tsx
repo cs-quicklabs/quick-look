@@ -45,12 +45,12 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
           </div>
 
         <div className="mt-1">
-          <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] 2xl:pr-[14rem] 2xl:ml-[9.5rem]' : ''}`}>
+          <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] medium:pr-[5rem] medium:ml-[4.5rem] 2xl:pr-[14rem] 2xl:ml-[9.5rem]' : ''}`}>
               { input?.description?.trim()}
             </pre>
         </div>
 
-        <div className={`flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] lg:pr-[10rem] 2xl:ml-[9.5rem]' : ''}`}>
+        <div className={`flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] lg:pr-[10rem] medium:ml-[4.5rem] 2xl:ml-[9.5rem]' : ''}`}>
             <div className={`flex pt-4 ${nav ? 'lg:ml-[-10rem] xl:ml-0 2xl:ml-0' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className='flex w-[65%] md:w-[80%] 2xl:w-[33%]'>
