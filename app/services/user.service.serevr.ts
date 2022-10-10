@@ -341,7 +341,7 @@ export async function getUserByUsername(username: string){
           }
     })
     if(!user){
-        return 'User Does not exist.'
+        return undefined
     }
     return user;
 }
