@@ -16,13 +16,12 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
    {
-    // h-[calc(100vh-3rem)]
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] ${nav ?'h-[calc(96.5vh+50px)] lg:pr-[8rem] lg:pl-[7rem]' : 'h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col 2xl:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
+    <div className={`flex overflow-auto flex-col-reverse xl:flex-row scrollbar-hide bg-[#F1F6FF] ${nav ?'min-h-[calc(96.5vh+50px)] lg:pr-[8rem] lg:pl-[7rem]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col 2xl:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
       
-      <div className={`mt-[13.5rem]   ${mode ==='mobile' ? 'sm:ml-[4rem]' : 'sm:ml-[9rem]'} ${nav ? 'lg:ml-[14rem]' :''}`}>
+      <div className={`mt-[2.5rem] xl:mt-[5.625rem]   ${mode ==='mobile' ? 'sm:ml-[4rem]' : 'sm:ml-[9rem]'} ${nav ? 'lg:ml-[14rem]' :''}`}>
         <h4 className={`text-4xl leading-10 font-extrabold ${mode ==='mobile' ? '' : '2xl:pr-[4rem] ml-[-1rem] xxs:ml-[1.5rem] medium:ml-[9.5rem] 2xl:ml-[2.5rem]'} ${nav ? '2xl:ml-[33.5rem]' :''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -34,14 +33,14 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
 
         <div >
        
-          <div className={`${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0   medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[61rem]' : ''}`}>
+          <div className={`${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0   medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[8rem] large:pr-[61rem]' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[61rem]' : ''}`}>
+        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[8rem] large:pr-[61rem]' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
@@ -102,7 +101,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 flex-shrink-0 sm:mb-0  ${mode ==='mobile' ? 'order-first 2xl:order-last mt-[40rem] 2xl:mt-[12rem] 2xl:mr-[2rem]' : 'order-first xl:order-last mt-[67rem] lg:mt-[40rem] xl:mr-[2rem] xl:mt-[5.625rem]'} ${nav ? 'mt-[50rem] lg:mt-[55rem]' : ''}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem]  ${mode ==='mobile' ? '2xl:mr-[2rem]' : 'xl:mr-[2rem]'} ${nav ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`${mode ==='mobile' ? 'xl:pl-0 lg:h-[30rem] xl:h-[38rem] lg:max-w-[25rem] xl:max-w-[35rem]' : 'lg:max-w-7xl xl:max-w-[35rem] h-auto ml-[-1.5rem] sm:ml-[0.5rem] lg:ml-[0.7rem] 2xl:ml-[2rem] xl:pl-[7rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] lg:h-[45rem] xl:h-[40rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage}  /> : null}
