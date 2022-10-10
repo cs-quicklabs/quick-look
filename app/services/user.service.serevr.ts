@@ -53,13 +53,6 @@ export async function createUser(userRegister: RegisterForm) {
                                 }
                             })
                         }).then(async () => {
-                            await db.portfolioImage.create({
-                                data: {
-                                    userId: user.id,
-                                    imageUrl: ''
-                                }
-                            })
-                        }).then(async () => {
                             await db.video.create({
                                 data: {
                                     userId: user.id
