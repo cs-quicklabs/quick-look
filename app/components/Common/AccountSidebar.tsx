@@ -581,7 +581,7 @@ let hamburger = !sidebarOpen && !showSpotlight && !showPortfolio && !showAddVide
                     null
                   }
                   {showPortfolio ?
-                    <Portfolio setShowPortfolio={setShowPortfolio} loaderData={loaderData} mode={mode} setmode={setmode} /> :
+                    <Portfolio loaderData={loaderData} setShowPortfolio={setShowPortfolio}  mode={mode} setmode={setmode} /> :
                     null
                   }
                 </nav>
