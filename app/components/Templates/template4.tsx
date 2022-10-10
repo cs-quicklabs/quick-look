@@ -20,7 +20,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] ${nav ?'h-[calc(96.5vh+50px)]' : 'h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col 2xl:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
+    <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] ${nav ?'h-[calc(96.5vh+50px)] lg:pr-[8rem] lg:pl-[7rem]' : 'h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col 2xl:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
       
       <div className={`mt-[13.5rem]   ${mode ==='mobile' ? 'sm:ml-[4rem]' : 'sm:ml-[9rem]'} ${nav ? 'lg:ml-[14rem]' :''}`}>
         <h4 className={`text-4xl leading-10 font-extrabold ${mode ==='mobile' ? '' : '2xl:pr-[4rem] ml-[-1rem] xxs:ml-[1.5rem] medium:ml-[9.5rem] 2xl:ml-[2.5rem]'} ${nav ? '2xl:ml-[33.5rem]' :''}`}>
@@ -34,25 +34,25 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
 
         <div >
        
-          <div className={`${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0   medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[10rem]' : ''}`}>
+          <div className={`${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0   medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[61rem]' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[10rem]' : ''}`}>
+        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[61rem]' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
         <div className="mt-1">
-          <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem]' : ''}`}>
+          <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] 2xl:pr-[14rem] 2xl:ml-[9.5rem]' : ''}`}>
               { input?.description?.trim()}
             </pre>
         </div>
 
-        <div className={`flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'}`}>
-            <div className={`flex pt-4 ${nav ? 'lg:ml-[-10rem] xl:ml-[-8rem] 2xl:ml-0' : ''}`} >
+        <div className={`flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] lg:pr-[10rem] 2xl:ml-[9.5rem]' : ''}`}>
+            <div className={`flex pt-4 ${nav ? 'lg:ml-[-10rem] xl:ml-0 2xl:ml-0' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className='flex w-[65%] md:w-[80%] 2xl:w-[33%]'>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
