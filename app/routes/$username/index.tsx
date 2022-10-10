@@ -1,4 +1,4 @@
-import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
+import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import Template1 from "~/components/Templates/template1";
@@ -12,8 +12,10 @@ import { getUserByUsername } from "~/services/user.service.serevr";
 export const loader: LoaderFunction = async ({params}) => {
 
     const user = await getUserByUsername(params?.username!)
-    return json(user)
-
+    if(user?.profile?.isPublished){
+      return json(user)
+    }
+    return redirect('/');
   }
 
   export default function ProfileView() {
