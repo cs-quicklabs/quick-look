@@ -19,7 +19,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto flex-col-reverse xl:flex-row scrollbar-hide bg-[#F1F6FF] ${nav ?'min-h-[calc(96.5vh+50px)] lg:pr-[8rem] lg:pl-[7rem]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col 2xl:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
+    <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] ${nav ?'min-h-[calc(96.5vh+50px)] lg:pr-[8rem] lg:pl-[7rem]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col-reverse flex-col large:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] medium:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col-reverse xl:flex-row flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
       
       <div className={`mt-[2.5rem] xl:mt-[5.625rem]   ${mode ==='mobile' ? 'sm:ml-[4rem]' : 'sm:ml-[9rem]'} ${nav ? 'lg:ml-[14rem]' :''}`}>
         <h4 className={`text-4xl leading-10 font-extrabold ${mode ==='mobile' ? '' : '2xl:pr-[4rem] ml-[-1rem] xxs:ml-[1.5rem] medium:ml-[9.5rem] 2xl:ml-[2.5rem]'} ${nav ? '2xl:ml-[33.5rem]' :''}`}>
@@ -85,7 +85,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             </div>
             
 
-          <footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-0 lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-5rem] lg:ml-[-3rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'}  ${nav ? 'pr-[7rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'}`}>
+          <footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center ${mode ==='mobile' ? '' : 'medium:w-[40rem] pr-[3rem] sm:pr-0 lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-5rem] lg:ml-[-3rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'}  ${nav ? 'pr-[7rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
