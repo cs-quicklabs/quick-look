@@ -88,7 +88,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             </div>
             
 
-<footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center  ${nav ? 'pr-[7rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'}`}>
+          <footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center  ${nav ? 'pr-[7rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?

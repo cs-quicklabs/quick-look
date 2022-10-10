@@ -23,6 +23,11 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
+      screens: {
+        'xs': '426px',
+        'xxs': '375px',
+        'medium': '1920px',
+      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         display: ['Lexend', ...defaultTheme.fontFamily.sans],
