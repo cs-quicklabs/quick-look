@@ -26,7 +26,7 @@ module.exports = {
       screens: {
         'xs': '426px',
         'xxs': '375px',
-        'medium': '1920px',
+        'medium': '1560px',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
