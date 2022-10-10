@@ -23,6 +23,12 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
+      screens: {
+        'xs': '426px',
+        'xxs': '375px',
+        'medium': '1560px',
+        'large': '2560px',
+      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         display: ['Lexend', ...defaultTheme.fontFamily.sans],
@@ -35,5 +41,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar-hide')],
 }
