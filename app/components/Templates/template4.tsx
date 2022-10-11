@@ -22,12 +22,12 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
     <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] ${nav ?'min-h-[calc(96.5vh+50px)] lg:pr-[8rem] lg:pl-[7rem]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col-reverse flex-col large:flex-row p-[3rem] lg:pl-[6rem] xl:pl-[14rem] medium:pl-[14rem] 2xl:pl-[4rem]' : 'flex-col-reverse xl:flex-row flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
       
       <div className={`mt-[2.5rem] xl:mt-[5.625rem]   ${mode ==='mobile' ? 'sm:ml-[4rem]' : 'sm:ml-[9rem]'} ${nav ? 'lg:ml-[14rem]' :''}`}>
-        <h4 className={`text-4xl leading-10 font-extrabold sm:ml-[-7rem] ${mode ==='mobile' ? 'lg:ml-[-3rem]' : '2xl:pr-[4rem] xl:ml-[2rem] medium:ml-[6rem] '} ${nav ? '2xl:ml-[33.5rem]' :''}`}>
+        <h4 className={`text-xl leading-10 font-extrabold sm:ml-[-7rem] ${mode ==='mobile' ? 'lg:text-4xl lg:ml-[-3rem]' : 'lg:text-4xl 2xl:pr-[4rem] xl:ml-[2rem] medium:ml-[6rem] '} ${nav ? '2xl:ml-[33.5rem]' :''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-gray-600 w-max break-all text-2xl leading-8 font-medium mt-[0.375rem] sm:ml-[-7rem] ${mode ==='mobile' ? 'lg:ml-[-3rem]' : 'xl:ml-[2rem] medium:ml-[6rem]'}  ${nav ? '2xl:ml-[33.5rem]' :''} `} >
+          <h3 className={`text-gray-600 w-max break-all text-xs leading-8 font-medium sm:ml-[-7rem] ${mode ==='mobile' ? ' lg:text-2xl lg:mt-[0.375rem]  lg:ml-[-3rem]' : 'lg:mt-[0.375rem] lg:text-2xl xl:ml-[2rem] medium:ml-[6rem]'}  ${nav ? '2xl:ml-[33.5rem]' :''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
@@ -53,7 +53,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
         <div className={`flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] lg:pr-[10rem] medium:ml-[4.5rem] 2xl:ml-[9.5rem]' : ''}`}>
             <div className={`flex flex-col md:flex-row pt-4 ${nav ? 'lg:ml-[-10rem] xl:ml-0 2xl:ml-0' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
-                <div className='flex md:w-[80%] 2xl:w-[33%]'>
+                <div className='flex md:w-[80%] medium:w-[76%] 2xl:w-[33%]'>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
