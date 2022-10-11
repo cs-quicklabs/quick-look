@@ -67,11 +67,11 @@ function showCropAreaSecondary() {
 <PencilIcon onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-4  rounded-r-md bg-white opacity-60 text-indigo-600 absolute top-6 left-[2.3rem]' onClick={()=>{showCropAreaSecondary()}} />}
 </div>
  
-{/* <Form replace={true} action='update/portfolioImage' method='post'>
-  <input name='updatePortfolioImage'  value={url} type="text" />
-  <input name='imageId'  value={img.id} type="text" />
-<button type='submit' >ClickMe</button>
-</Form> */}
+<Form replace={true} action='update/portfolioImage' method='post'>
+  <input hidden name='updatePortfolioImage'  value={url} type="text" />
+  <input hidden name='imageId'  value={img.id} type="text" />
+<button ref={btnref} hidden type='submit' >ClickMe</button>
+</Form>
 
 </li>
 )
