@@ -45,7 +45,18 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         
     </div>
 
-    <div className="mt-[1.5rem] px-[1.5rem] lg:px-0">
+    <div className={` pr-[2.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
+          {loaderData?.spotlightButton?.toggleSpotlight && 
+          <Spotlightbtn loaderData={loaderData}/>}
+          </div>
+       
+       
+
+        <div className={`mb-10 pr-[2.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
+            { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+          </div>
+
+    <div className={`mt-[1.5rem] ml-[5rem] pr-[5rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
@@ -73,6 +84,18 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
                 </div> : <span></span>}
             </div>
           </div>
+
+          <div className={`mt-[-3rem] ml-[5rem] pr-[5rem] ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+          {loaderData?.testimonial?.testimonialText && 
+           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
+            }
+          </div>
+        
+            <div className={` ml-[5rem] pr-[5rem] ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+            {loaderData?.video?.videoLink && 
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
+            </div>
+            
 
           <footer className={`flex pt-[1.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
             {loaderData?.socialMedia?.facebookLink ?
