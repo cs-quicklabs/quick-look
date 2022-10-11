@@ -1,12 +1,28 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/outline';
+import { PencilIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
+import { Form } from '@remix-run/react';
+import { useEffect } from 'react';
+import Portfolioimage from './portfolioimage';
 
-export default function Portfolio({ setShowPortfolio, mode, setmode }: any) {
+export default function Portfolio({ setShowPortfolio, mode, setmode,loaderData }: any) {
+
+const [image, setimage] = useState(null);
 
 
-  const ref = useRef(null);
+const ref = useRef(null);
+console.log(image)
+useEffect(() => {
+  if(image){
+    //@ts-ignore
+    ref?.current?.click()
+  }
+}, [image])
 
+const handleChange = (e: any) => {
+  setimage(e.target.files[0]) 
+  console.log(image);
+  }
 
   const Onclose = (e: any) => {
 
@@ -39,7 +55,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode }: any) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form action="" encType="multipart/form-data" method='post'>
+                  <Form replace={true} action="add/portfolioimage" encType="multipart/form-data" method='post'>
 
                     <div className='h-screen'>
                       <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
@@ -68,13 +84,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode }: any) {
                               </p>
                             </div>
                           </div>
-
-
                         </div>
-
-
-                        
-
                           <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
                             <label className="block text-sm font-medium leading-5 text-gray-700">
                               Portfoilio Images
@@ -91,10 +101,12 @@ export default function Portfolio({ setShowPortfolio, mode, setmode }: any) {
 
                                       className="hidden"
                                       id="photo"
-                                      name="primaryImageUpload"
+                                      name="portfolioImage"
                                       accept="image/*"
-                                      // onChange={handleChange}
+                                     onChange={handleChange}
+
                                     />
+                                  
                                   </label>
                                   <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
                                 </div>
@@ -102,43 +114,48 @@ export default function Portfolio({ setShowPortfolio, mode, setmode }: any) {
 
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
 
-                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                                     Upload Image
 
                                     <input
                                       type="file"
-
                                       className="hidden"
                                       id="photo"
-                                      name="primaryImageUpload"
+                                      name="portfolioImage"
                                       accept="image/*"
-                                      // onChange={handleChange}
+                                      onChange={handleChange}
                                     />
+<button type="submit" ref={ref} className="hidden">upload</button>
 
                                     {/* <input type="file" name="photo" /> */}
-                                    <button type="submit" ref={ref} className="hidden">upload</button>
+                                    
                                   </label>
 
                                 </div>
-
                               </div>
                             </div>
                           </div>
+<ul className='grid hover:mb-4 grid-cols-4 col-span-2 gap-4 gap-y-4 items-center mx-6 mt-8' >
+   {loaderData.portfolioImage.map((img:any)=>(
+ <Portfolioimage img={img}/>
+))}
+</ul>
 
-                        
-
-                      
-
+    
                       </div>
 
                     </div>
 
-                  </form>
+                  </Form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
+          <div>
+      
         </div>
+        </div>
+        
       </Dialog>
     </Transition.Root>
   )
