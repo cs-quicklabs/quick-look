@@ -29,7 +29,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '' : ''}  justify-center bg-no-repeat object-cover overflow-none` } style={myStyle} >
       
       
-<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem]' : 'w-[32rem] lg:pl-[6.75rem]'}`} >
+<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem]' : 'w-[40rem] lg:pl-[6.75rem]'}`} >
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
@@ -45,18 +45,18 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         
     </div>
 
-    <div className={` pr-[2.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
+    <div className={` pr-[2.5rem] md:pr-[1.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
        
 
-        <div className={`mb-10 pr-[2.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
+        <div className={`mb-10 pr-[2.5rem] md:pr-[1.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
-    <div className={`mt-[1.5rem] ml-[5rem] pr-[5rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+    <div className={`mt-[1.5rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0  ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
@@ -85,13 +85,13 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             </div>
           </div>
 
-          <div className={`mt-[-3rem] ml-[5rem] pr-[5rem] ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+          <div className={`mt-[-3rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
           {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
           </div>
         
-            <div className={` ml-[5rem] pr-[5rem] ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+            <div className={` ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
             </div>
