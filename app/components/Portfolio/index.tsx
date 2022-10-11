@@ -84,13 +84,7 @@ const handleChange = (e: any) => {
                               </p>
                             </div>
                           </div>
-
-
                         </div>
-
-
-                        
-
                           <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
                             <label className="block text-sm font-medium leading-5 text-gray-700">
                               Portfoilio Images
@@ -141,7 +135,7 @@ const handleChange = (e: any) => {
                               </div>
                             </div>
                           </div>
-<ul className='grid hover:mb-4 grid-cols-4 gap-4 items-center mx-6' >
+<ul className='grid hover:mb-4 grid-cols-4 col-span-2 gap-4 gap-y-4 items-center mx-6 mt-8' >
    {loaderData.portfolioImage.map((img:any)=>(
  <Portfolioimage img={img}/>
 ))}

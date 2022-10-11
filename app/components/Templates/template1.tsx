@@ -8,6 +8,8 @@ import VideoAddOn from './addOns/video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
+import PortfolioAddon from './addOns/portfolio'
+
 export default function Template1({ input, loaderData,primaryRestore,secondaryRestore }: any) {
 
   return (
@@ -73,6 +75,7 @@ export default function Template1({ input, loaderData,primaryRestore,secondaryRe
                 </div> : <span></span>}
             </div>
           </div>
+          <PortfolioAddon loaderData={loaderData}/>
           {/* <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem] '> */}
            <footer className='flex pt-[2rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center'>
             {loaderData?.socialMedia?.facebookLink ?
