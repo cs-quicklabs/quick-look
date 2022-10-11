@@ -9,10 +9,12 @@ import {
 } from '@remix-run/react'
 import ErrorHandler from './components/error'
 import tailwindStylesheetUrl from './styles/tailwind.css'
+import LightGallery from './styles/lightgallery.css'
 import HeaderSecondary from './components/Common/Header'
 import { json } from '@remix-run/node'
 export function links() {
-  return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
+  return [{ rel: 'stylesheet', href: tailwindStylesheetUrl },
+{rel: 'stylesheet', href: LightGallery }]
 }
 
 export async function loader() {

@@ -1,19 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url('https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery.css');
 @import url('https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lg-zoom.css');
 @import url('https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lg-video.css');
 
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-
-
-@layer base {
-  html {
-    font-family: Proxima Nova, system-ui, sans-serif;
-  }
-}
