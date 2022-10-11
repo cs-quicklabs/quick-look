@@ -34,3 +34,14 @@ export async function getAllPortfolioImagesCount(user: any){
         }
     })
 }
+
+export async function updatePortfolioImage(url: string, imageId: string) {
+    await db.portfolioImage.update({
+        where: {
+            id: imageId
+        },
+        data: {
+            imageUrl: url
+        }
+    })
+}
