@@ -28,7 +28,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'xl:mt-[5.625rem]' : 'xl:mt-[5.625rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`${mode ==='mobile' ? 'xl:pl-0 lg:h-[30rem] xl:h-[38rem] lg:max-w-[25rem] xl:max-w-[32rem] 2xl:max-w-[47rem] medium:pl-[10rem] 2xl:pl-[10rem]' : 'mr-[1rem] ml-[-2rem] sm:mr-[4rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] h-auto 2xl:ml-[2rem] xl:pl-[7rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] lg:h-[45rem] xl:h-[40rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'} `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage}  /> : null}
+        <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'xl:pl-0 lg:h-[30rem] xl:h-[38rem] lg:max-w-[25rem] xl:max-w-[32rem] 2xl:max-w-[47rem] medium:pl-[10rem] 2xl:pl-[10rem]' : 'mr-[1rem] ml-[-2rem] sm:mr-[4rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] h-auto medium:h-[40rem] 2xl:ml-[2rem] xl:pl-[7rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] lg:h-[45rem] xl:h-[40rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'} `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage}  /> : null}
 
       </div>
       <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'xl:mt-[9.5rem] xl:ml-[4rem] 2xl:ml-[11rem]' : 'xl:mt-[9.5rem]'} `}>
