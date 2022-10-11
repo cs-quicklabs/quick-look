@@ -6,7 +6,7 @@ export const action: ActionFunction = async ({request}) => {
     const user = await getUser(request) || undefined
     const formData = await request.formData()
     const toDeleteId = formData.get('portfolioImage')
-
+console.log(toDeleteId)
     await deleteImage(toDeleteId as string , user)
     return redirect('/account')
 }

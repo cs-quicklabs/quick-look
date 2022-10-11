@@ -55,7 +55,6 @@ const handleChange = (e: any) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <Form replace={true} action="add/portfolioimage" encType="multipart/form-data" method='post'>
 
                     <div className='h-screen'>
                       <div className={`flex h-[95%] flex-col mt-12  bg-white font-inter border-r border-gray-200 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'w-[100vw] md:w-[20rem] lg:w-96'} `}>
@@ -94,6 +93,8 @@ const handleChange = (e: any) => {
                                 <p className='text-xs leading-4 font-semibold tracking-wide'>
                                   NO IMAGE ADDED YET
                                 </p>
+                  <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
+
                                 <div className="flex text-sm">
                                   <label className="relative cursor-pointer bg-white rounded-md font-medium">
                                     <input
@@ -114,6 +115,7 @@ const handleChange = (e: any) => {
 
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
 
+
                                   <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
                                     Upload Image
 
@@ -125,13 +127,13 @@ const handleChange = (e: any) => {
                                       accept="image/*"
                                       onChange={handleChange}
                                     />
-<button type="submit" ref={ref} className="hidden">upload</button>
+                            <button type="submit" ref={ref} className="hidden">upload</button>
 
                                     {/* <input type="file" name="photo" /> */}
                                     
                                   </label>
 
-                                </div>
+                                </div></Form>
                               </div>
                             </div>
                           </div>
@@ -146,7 +148,7 @@ const handleChange = (e: any) => {
 
                     </div>
 
-                  </Form>
+                  
                 </Dialog.Panel>
               </Transition.Child>
             </div>
