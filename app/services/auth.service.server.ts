@@ -123,7 +123,9 @@ export async function getUser(request: Request) {
         spotlightButton: true,
         video: true,
         testimonial: true,
-        portfolioImage: true,
+        portfolioImage: {
+          orderBy: {createdAt: 'asc'}
+        },
         supportBanner: true,
         additionalLinks: {
           orderBy: {createdAt: 'asc'}       
