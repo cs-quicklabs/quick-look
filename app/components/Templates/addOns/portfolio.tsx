@@ -6,7 +6,6 @@ import lgVideo from "lightgallery/plugins/video";
 
  export default function PortfolioAddon({loaderData}:any) {
  
-  console.log(loaderData)
 const images = loaderData?.portfolioImage.map((img:any) => (
   {
     original: img.imageUrl
@@ -35,8 +34,8 @@ const settings = {
           data-src={img.imageUrl}
           
         >
-          <img
-            className="img-responsive h-[10rem] w-[16rem] object-cover"
+          <img loading="lazy"
+            className="cursor-pointer img-responsive h-[10rem] w-[16rem] object-cover"
             src={img.imageUrl}
           />
         </a>

@@ -2,16 +2,26 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import * as cropro from "cropro";
 import { useRef } from 'react';
-import { Form } from '@remix-run/react';
- export default function Portfolioimage({img}:any) {
+import { Form, useTransition } from '@remix-run/react';
+import BeatLoader from 'react-spinners/BeatLoader';
+import DeletePortfolioImage from './deletePortfolioimage';
+
+ export default function Portfolioimage({img,setUpload,setEdit,
+setDel,del,edit}:any) {
+
+
+// console.log(del)
 
 
 const[show, setShow]=useState(false)
 const imageref=useRef(null)
 const btnref=useRef(null)
-
+const transition = useTransition()
   const [url,setUrl]=useState('')
-
+useEffect(() => {
+  transition.state =='loading' &&  setShow(false)
+  
+}, [transition,del])
   useEffect(() => {
     if(url){
       //@ts-ignore
@@ -19,7 +29,6 @@ const btnref=useRef(null)
     }
   }, [url])
 
-  console.log(url)
 const handleMouseOver=()=>{
   setShow(true)
 }
@@ -33,6 +42,8 @@ function showCropAreaSecondary() {
       // create a CropArea
       // @ts-ignore
       const cropArea = new cropro.CropArea(imageref?.current);
+      console.log(cropArea);
+
       cropArea.displayMode = "popup";
       // attach an event handler to assign cropped image back to our image element
       cropArea.addRenderEventListener(dataUrl => {
@@ -45,34 +56,36 @@ function showCropAreaSecondary() {
       });     
       // launch CROPRO
       cropArea.show();
+      
     }
   }
-
+const[open,setOpen]=useState(false)
 
 
    return (
      <li key={img.id}  className={`relative `} >
-      <img crossOrigin={'anonymous'} onMouseEnter={handleMouseOver}  onMouseOut={handleMouseOut} ref={imageref} id={img.id} src={img.imageUrl} alt="" className=' z-0 h-[4rem] w-[8rem]' />
+      {transition.state != 'idle' && show && edit || transition.state != 'idle' && show && del ? 
+<BeatLoader color="#184fad" /> :
+      <img loading="lazy" crossOrigin={'anonymous'} onMouseEnter={handleMouseOver}  onMouseOut={handleMouseOut} ref={imageref} id={img.id} src={img.imageUrl} alt="" className=' z-0 h-[4rem] w-[8rem]'/>}
 <div className=''> 
-<Form replace={true} action='/account/delete/portfolioImage' method='post'>
-  
-   <input hidden name='portfolioImage' type="text" value={img.id} />
-  <button type='submit'>
-{show &&
-  <TrashIcon onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-4 rounded-l-md   bg-white opacity-60  text-red-600 absolute top-6 left-[1.3rem]'></TrashIcon>}
-  </button>
-   </Form>
-{show &&
 
-<PencilIcon onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-4  rounded-r-md bg-white opacity-60 text-indigo-600 absolute top-6 left-[2.3rem]' onClick={()=>{showCropAreaSecondary()}} />}
+  <button type='submit' onClick={()=>{setUpload(false) ; setDel(true) ;setEdit(false);setOpen(true)}}>
+{show &&
+  <TrashIcon  onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-5 rounded-l-md   bg-white opacity-60  text-red-600 absolute top-6 left-[1rem]'></TrashIcon>}
+  </button>
+   
+{show &&
+<PencilIcon  onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-5  rounded-r-md bg-white cursor-pointer opacity-60 text-indigo-600 absolute top-6 left-[2.3rem]' 
+onClick={()=>{showCropAreaSecondary() ; setUpload(false); setDel(false) ;setEdit(true)}} />}
 </div>
  
 <Form replace={true} action='update/portfolioImage' method='post'>
-  <input hidden name='updatePortfolioImage'  value={url} type="text" />
-  <input hidden name='imageId'  value={img.id} type="text" />
-<button ref={btnref} hidden type='submit' >ClickMe</button>
+  <input hidden  name='updatePortfolioImage'  value={url} type="text" />
+  <input hidden  name='imageId'  value={img.id} type="text" />
+<button  hidden ref={btnref} type='submit' >ClickMe</button>
 </Form>
 
+<DeletePortfolioImage setShow={setShow} open={open} del={del} onClose={()=>setOpen(false) } id={img.id}/>
 </li>
 )
 }
