@@ -145,14 +145,16 @@ const handleChange = (e: any) => {
                               </div>
                             </div>:null}
                           </div>
+                          <div className={`relative ${transition.state != 'idle' && edit || transition.state != 'idle' && del ? 'opacity-30' : null}`}>
 <ul className='grid hover:mb-4 grid-cols-4 col-span-2 gap-4 gap-y-4 items-center mx-6 mt-8' >
    {loaderData.portfolioImage.map((img:any)=>(
  <Portfolioimage setUpload={setUpload} img={img} setEdit={setEdit}
 setDel={setDel} edit={edit}
 del={del} />
 ))}
-</ul>
-
+</ul></div>
+{transition.state != 'idle' && edit || transition.state != 'idle' && del ?
+<div className='absolute bottom-[18rem] left-[11rem]'><BeatLoader color="#184fad" /></div> : null}
     
                       </div>
 

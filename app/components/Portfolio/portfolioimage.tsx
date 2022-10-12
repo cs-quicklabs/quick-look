@@ -63,10 +63,12 @@ const[open,setOpen]=useState(false)
 
 
    return (
+    
      <li key={img.id}  className={`relative `} >
-      {transition.state != 'idle' && show && edit || transition.state != 'idle' && show && del ? 
-<BeatLoader color="#184fad" /> :
-      <img loading="lazy" crossOrigin={'anonymous'} onMouseEnter={handleMouseOver}  onMouseOut={handleMouseOut} ref={imageref} id={img.id} src={img.imageUrl} alt="" className=' z-0 h-[4rem] w-[8rem]'/>}
+      {/* {transition.state != 'idle' && show && edit || transition.state != 'idle' && show && del ?  */}
+{/* <BeatLoader color="#184fad" /> : */}
+      <img loading="lazy" crossOrigin={'anonymous'} onMouseEnter={handleMouseOver}  onMouseOut={handleMouseOut} ref={imageref} id={img.id} src={img.imageUrl} alt="" className=' z-0 h-[4rem] w-[8rem]'/>
+       {/* } */}
 <div className=''> 
 
   <button type='submit' onClick={()=>{setUpload(false) ; setDel(true) ;setEdit(false);setOpen(true)}}>
@@ -87,5 +89,6 @@ onClick={()=>{showCropAreaSecondary() ; setUpload(false); setDel(false) ;setEdit
 
 <DeletePortfolioImage setShow={setShow} open={open} del={del} onClose={()=>setOpen(false) } id={img.id}/>
 </li>
+
 )
 }
