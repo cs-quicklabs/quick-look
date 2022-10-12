@@ -33,14 +33,14 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
 
         <div >
        
-          <div className={`${mode ==='mobile' ? 'xl:ml-[-4rem]' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0   medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[8rem] large:pr-[61rem]' : ''}`}>
+          <div className={`${mode ==='mobile' ? 'xl:ml-[-4rem]' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[6rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[8rem] large:pr-[61rem]' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? 'xl:ml-[-4rem]' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[8rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[8rem] large:pr-[61rem]' : ''}`}>
+        <div className={`mb-10 ${mode ==='mobile' ? 'xl:ml-[-4rem]' : 'pr-[6rem] sm:pr-[12rem] lg:pr-[8rem] xl:pr-0 medium:pr-[6rem] 2xl:pr-[52rem]'} ${nav ? 'pr-[6rem] lg:pr-[14rem] xl:pr-[12rem] medium:pr-[8rem] large:pr-[61rem]' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
@@ -51,7 +51,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
         </div>
 
         <div className={`flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] md:ml-[-7rem] lg:ml-[2rem] lg:pr-[10rem] medium:ml-[4.5rem] 2xl:ml-[9.5rem]' : ''}`}>
-            <div className={`flex flex-col md:flex-row pt-[2rem] ${nav ? 'lg:ml-[-10rem] xl:ml-0 2xl:ml-0' : ''}`} >
+            <div className={`flex flex-col md:flex-row pt-[2rem] ${nav ? 'lg:ml-[-9rem] xl:ml-0 2xl:ml-0' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className='flex md:w-[80%] medium:w-[76%] 2xl:w-[33%]'>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
@@ -85,7 +85,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             </div>
             
 
-          <footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center ${mode ==='mobile' ? '' : 'medium:w-[40rem] pr-[3rem] sm:pr-0 lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-6rem] lg:ml-[-3rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'}  ${nav ? 'pr-[7rem] lg:pr-[8rem] medium:pr-0 medium:ml-[5.5rem] large:ml-[30rem]' : 'pr-[4rem] lg:pr-0'}`}>
+          <footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-center ${mode ==='mobile' ? '' : 'medium:w-[40rem] pr-[3rem] sm:pr-0 lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-6rem] lg:ml-[-3rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'}  ${nav ? 'pr-[4rem] lg:pr-[8rem] medium:pr-0 medium:ml-[13.5rem] large:ml-[30rem]' : 'pr-[4rem] lg:pr-0'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
@@ -101,10 +101,10 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem]  ${mode ==='mobile' ? '2xl:mr-[2rem]' : 'xl:mr-[2rem]'} ${nav ? '' : ''}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem] pr-[2rem] sm:pr-[6rem] ${mode ==='mobile' ? 'lg:pr-0 2xl:mr-[2rem] xl:pl-0 medium:pl-0 lg:max-w-[25rem] xl:max-w-[35rem] 2xl:max-w-[38rem]' : 'lg:pr-[2rem] xl:pr-0 medium:pl-0 xl:mr-[2rem] lg:max-w-7xl xl:max-w-[32rem] ml-[-1.5rem] sm:ml-[-2.5rem] md:ml-[0.5rem] lg:ml-[0.7rem] 2xl:ml-[2rem] xl:pl-[3rem]'} ${nav ? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] xl:max-w-[35rem] ' : 'xl:pl-0 2xl:pl-[6rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'xl:pl-0 lg:h-[30rem] xl:h-[38rem] lg:max-w-[25rem] xl:max-w-[35rem] 2xl:max-w-[38rem]' : 'lg:max-w-7xl xl:max-w-[32rem] h-auto medium:h-[40rem] ml-[-1.5rem] sm:ml-[-2.5rem] md:ml-[0.5rem] lg:ml-[0.7rem] 2xl:ml-[2rem] xl:pl-[3rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] lg:h-[45rem] xl:h-[40rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[6rem]'} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage}  /> : null}
+        <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem] ' : 'h-auto medium:h-[40rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'lg:h-[45rem] xl:h-[40rem] ' :''} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage}  /> : null}
 
       </div>
     </div>  

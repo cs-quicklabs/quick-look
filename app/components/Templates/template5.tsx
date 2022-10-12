@@ -33,7 +33,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`mb-3 w-[15rem] h-[15rem] rounded-full ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? pic5 : loaderData?.profileImage?.secondaryImage}  /> : null}
+        <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? pic5 : loaderData?.profileImage?.secondaryImage}  /> : null}
       
         <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl leading-8 font-extrabold lg:text-4xl lg:leading-10 px-[1.5rem] lg:px-0`}>
           {loaderData?.firstname} {loaderData?.lastname}
