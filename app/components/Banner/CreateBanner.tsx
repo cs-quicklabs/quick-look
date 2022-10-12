@@ -73,7 +73,7 @@ const OnCancel = ()=>{
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   useEffect(() => {
-    if(transition.state === 'loading' && !error && !errorLink && !errorHex && errorColor ){
+    if(transition.state === 'loading'){
       setShowCreatebanner(false);
     }
   }, [transition, error, errorLink, errorHex, errorColor])
