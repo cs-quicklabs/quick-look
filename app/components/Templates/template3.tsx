@@ -25,13 +25,13 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem] large:flex-row' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none`} style={myStyle}>
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'xl:mt-[5.625rem]' : 'xl:mt-[5.625rem]'}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'xl:mt-[5.625rem] xl:pl-0 lg:max-w-[25rem] xl:max-w-[32rem] 2xl:max-w-[47rem] medium:pl-[10rem] 2xl:pl-[10rem]' : 'xl:mt-[5.625rem] mr-[1rem] ml-[-2rem] sm:mr-[4rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[2rem] xl:pl-[7rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'xl:pl-0 lg:h-[30rem] xl:h-[38rem] lg:max-w-[25rem] xl:max-w-[32rem] 2xl:max-w-[47rem] medium:pl-[10rem] 2xl:pl-[10rem]' : 'mr-[1rem] ml-[-2rem] sm:mr-[4rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] h-auto medium:h-[40rem] 2xl:ml-[2rem] xl:pl-[7rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] lg:h-[45rem] xl:h-[40rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'} `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage}  /> : null}
+        <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem]' : 'h-auto medium:h-[40rem]'} ${nav? 'lg:h-[45rem] xl:h-[40rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage}  /> : null}
 
       </div>
-      <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'xl:mt-[9.5rem] xl:ml-[4rem] 2xl:ml-[11rem]' : 'xl:mt-[9.5rem]'} `}>
+      <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'xl:mt-[2.5rem] xl:ml-[4rem] 2xl:ml-[11rem]' : 'xl:mt-[9.5rem]'} `}>
         <h4 className={`text-2xl leading-8 font-bold ml-[-2rem] sm:ml-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] 2xl:ml-[2.5rem]'}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -70,14 +70,14 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
                 </div> : <span></span>}
             </div>
           </div>
-          <div className={`${mode ==='mobile' ? '' : 'pr-[6rem] lg:pr-4'} ${nav ? 'pr-[8rem] lg:pr-[10rem]' : ''}`}>
+          <div className={`${mode ==='mobile' ? '' : 'pr-[6rem] lg:pr-4'} ${nav ? 'pr-[6rem] lg:pr-[10rem]' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pr-[6rem] lg:pr-4 '} ${nav ? 'pr-[8rem] lg:pr-[10rem]' : ''}`}>
+        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pr-[6rem] lg:pr-4 '} ${nav ? 'pr-[6rem] lg:pr-[10rem]' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
