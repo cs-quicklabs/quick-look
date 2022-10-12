@@ -13,13 +13,10 @@ function DropzonePortfolio({setSecondaryImageError,setImage1, onDrop, accept,ima
     file.path
     ));
 
-  const onSubmit = ()=>{
-  setImage1(acceptedFiles[0]);
-  }
   const ref = useRef(null);
 
 
-  console.log(image1)
+
   useEffect(() => {
     if (image1) {
       // @ts-ignore
@@ -29,7 +26,7 @@ function DropzonePortfolio({setSecondaryImageError,setImage1, onDrop, accept,ima
   }, [image1]);
   return (
   <div>
-   {/* <Form replace action='update/portfolioImage'  method='post'> */}
+   <Form replace action='add/drop-portfolio-image'  method='post'>
       <div {...getRootProps({ className: "dropzone" })}>
         <div className="text-center">
             <p>
@@ -40,14 +37,14 @@ function DropzonePortfolio({setSecondaryImageError,setImage1, onDrop, accept,ima
     <input  
         // type='text'
         // className="hidden"
-        name='updatePortfolioImage'
+        name='addPortfolioImage'
         type="text"
         value={image1}
         // hidden
         />
         {/* <input hidden  name='imageId'  value={img.id} type="text" /> */}
        <button type="submit" hidden ref={ref}>upload</button>
-        {/* </Form> */}
+        </Form>
     </div>
    );
 }

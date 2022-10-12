@@ -12,7 +12,7 @@ function Dropzone({setSecondaryImageError,setImages, onDrop, accept,images }:any
   const files = acceptedFiles.map((file:any) => (
     file.path
   ));
-  console.log(files);
+
   
  
   const onSubmit = ()=>{

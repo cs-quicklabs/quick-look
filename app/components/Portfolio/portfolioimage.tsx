@@ -10,7 +10,7 @@ import DeletePortfolioImage from './deletePortfolioimage';
 setDel,del,edit}:any) {
 
 
-// console.log(del)
+
 
 
 const[show, setShow]=useState(false)
@@ -42,7 +42,7 @@ function showCropAreaSecondary() {
       // create a CropArea
       // @ts-ignore
       const cropArea = new cropro.CropArea(imageref?.current);
-      console.log(cropArea);
+
 
       cropArea.displayMode = "popup";
       // attach an event handler to assign cropped image back to our image element
