@@ -1,17 +1,38 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useCallback, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { PencilIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
-import { Form } from '@remix-run/react';
+import { Form, useTransition } from '@remix-run/react';
 import { useEffect } from 'react';
 import Portfolioimage from './portfolioimage';
+import BeatLoader from 'react-spinners/BeatLoader';
+import DropzonePortfolio from './DragandDrop';
+import Dropzone from './DragandDrop';
 
 export default function Portfolio({ setShowPortfolio, mode, setmode,loaderData }: any) {
-
+const [upload,setUpload] = useState(false)
 const [image, setimage] = useState(null);
+const [image1, setimage1] = useState(null);
+const transition = useTransition();
+const[edit,setEdit]=useState(false)
+const[del,setDel]=useState(false)
 
+const onDrop1 = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file:any) => {
+      const reader = new FileReader();
+
+      
+      reader.onload = function (e:any) {
+        // @ts-ignore
+        setImages1(
+          e.target.result
+        );
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
 
 const ref = useRef(null);
-console.log(image)
 useEffect(() => {
   if(image){
     //@ts-ignore
@@ -21,7 +42,6 @@ useEffect(() => {
 
 const handleChange = (e: any) => {
   setimage(e.target.files[0]) 
-  console.log(image);
   }
 
   const Onclose = (e: any) => {
@@ -88,6 +108,8 @@ const handleChange = (e: any) => {
                             <label className="block text-sm font-medium leading-5 text-gray-700">
                               Portfoilio Images
                             </label>
+{loaderData.portfolioImage.length <= 19 ? 
+
                             <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
                               <div className="text-center">
                                 <p className='text-xs leading-4 font-semibold tracking-wide'>
@@ -96,27 +118,16 @@ const handleChange = (e: any) => {
                   <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
 
                                 <div className="flex text-sm">
-                                  <label className="relative cursor-pointer bg-white rounded-md font-medium">
-                                    <input
-                                      type="file"
-
-                                      className="hidden"
-                                      id="photo"
-                                      name="portfolioImage"
-                                      accept="image/*"
-                                     onChange={handleChange}
-
-                                    />
-                                  
-                                  </label>
-                                  <p className={`text-gray-500 text-sm leading-5 font-normal ${mode === 'mobile' ? 'px-16 xl:px-0' : ''}`}>Drag and Drop an Image or click on button to upload</p>
+                                  {/* <DropzonePortfolio onDrop={onDrop1} image1={image1} setimage1={setimage1} accept={"image/*"}/> */}
                                 </div>
 
-
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
+                              
+{transition.state != 'idle' && upload ? 
+<BeatLoader color="#184fad" /> :
 
-
-                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max'>
+                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max' 
+                                  onClick={()=>{setUpload(true) ;setEdit(false) ; setDel(false)}}>
                                     Upload Image
 
                                     <input
@@ -131,15 +142,18 @@ const handleChange = (e: any) => {
 
                                     {/* <input type="file" name="photo" /> */}
                                     
-                                  </label>
+                                  </label> }
 
-                                </div></Form>
+                                </div>
+                                </Form>
                               </div>
-                            </div>
+                            </div>:null}
                           </div>
 <ul className='grid hover:mb-4 grid-cols-4 col-span-2 gap-4 gap-y-4 items-center mx-6 mt-8' >
    {loaderData.portfolioImage.map((img:any)=>(
- <Portfolioimage img={img}/>
+ <Portfolioimage setUpload={setUpload} img={img} setEdit={setEdit}
+setDel={setDel} edit={edit}
+del={del} />
 ))}
 </ul>
 

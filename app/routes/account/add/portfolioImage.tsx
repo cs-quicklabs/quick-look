@@ -10,7 +10,6 @@ export const action: ActionFunction = async ({ request }) => {
     const form = await unstable_parseMultipartFormData(request, digitalOceanUploadHandler)
     
     const portfolioImageUrl = form.get('portfolioImage') as string
-console.log('portfolioImageUrl',portfolioImageUrl);
 
     if(portfolioImageUrl){
         await addPortfolioImage(portfolioImageUrl, user);

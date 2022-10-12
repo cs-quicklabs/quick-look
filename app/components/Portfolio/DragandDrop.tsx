@@ -1,8 +1,7 @@
 import { Form } from "@remix-run/react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
-function DropzonePrimary({setImages1, onDrop, accept,images1,setPrimaryImageError }:any) {
-console.log(images1)
+function DropzonePortfolio({setSecondaryImageError,setImages, onDrop, accept,images }:any) {
   const { getRootProps, getInputProps, acceptedFiles } =
     useDropzone({
       accept,
@@ -13,26 +12,27 @@ console.log(images1)
   const files = acceptedFiles.map((file:any) => (
     file.path
   ));
-
+  
+ 
   const onSubmit = ()=>{
-  setImages1(acceptedFiles[0]);
+  setImages(acceptedFiles[0]);
   }
   const ref = useRef(null);
 
 
   
   useEffect(() => {
-    if(images1.includes('data:image/')){
+    if (images.includes('data:image/')) {
       // @ts-ignore
       ref.current.click()
-       setImages1('')
-    }
-    else if(images1){setPrimaryImageError('please Upload image only') }
-else{setPrimaryImageError('')}
-  }, [images1]);
+      setImages('')
+    } else if(!images.includes('data:image/') && images)
+    {setSecondaryImageError('please Upload image only')}
+    else{setSecondaryImageError('')}
+  }, [images]);
   return (
   <div>
-   <Form replace action="update/crop-image" method='post'>
+   <Form replace action='update/portfolioImage'  method='post'>
       <div {...getRootProps({ className: "dropzone" })}>
     
      
@@ -48,14 +48,15 @@ else{setPrimaryImageError('')}
     <input  
         // type='text'
         // className="hidden"
-        name="editPrimaryImage"
+        name='updatePortfolioImage'
         type="text"
-        value={images1}
+        value={images}
         hidden
         />
+        {/* <input hidden  name='imageId'  value={img.id} type="text" /> */}
        <button type="submit" hidden ref={ref}>upload</button>
         </Form>
     </div>
    );
 }
-export default DropzonePrimary;
+export default DropzonePortfolio;
