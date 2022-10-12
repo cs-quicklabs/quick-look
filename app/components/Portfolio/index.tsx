@@ -17,7 +17,7 @@ const[del,setDel]=useState(false)
  const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file:any) => {
       const reader = new FileReader();
-      console.log('file',reader);
+
       reader.onload = function (e:any) {
         setimage1(
           e.target.result
