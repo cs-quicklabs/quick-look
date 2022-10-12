@@ -7,6 +7,7 @@ import TestimonialAddOn from './addOns/testimonial';
 import VideoAddOn from './addOns/video';
 import Spotlightbtn from './addOns/Spotlightbtn';
 import BannerAddOn from './addOns/Banner';
+import AdditionalLinksAddOn from './addOns/AddtionalLinks';
 export default function Template2({ input, loaderData,secondaryRestore }: any) {
 
   
@@ -33,6 +34,10 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
          {loaderData?.spotlightButton?.toggleSpotlight && 
          <div className='mb-8'>
           <Spotlightbtn loaderData={loaderData}/></div>}
+
+          <div className={`mb-8`}>
+            { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+          </div>
 
         <div className='text-base mt-3 leading-6'>
           <pre className="text-gray-500 pt-2 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap break-all">
