@@ -1,7 +1,7 @@
 import { Form } from "@remix-run/react";
 import React, { useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
-function DropzonePortfolio({setSecondaryImageError,setImage1, onDrop, accept,image1 }:any) {
+function DropzonePortfolio({setErrorDrag,setSecondaryImageError,setimage1, onDrop, accept,image1 }:any) {
 
   const { getRootProps, getInputProps, acceptedFiles } =
     useDropzone({
@@ -18,12 +18,14 @@ function DropzonePortfolio({setSecondaryImageError,setImage1, onDrop, accept,ima
 
 
   useEffect(() => {
-    if (image1) {
+    if (image1?.includes('data:image/')) {
       // @ts-ignore
       ref.current.click()
-      setImage1('')
-    }
+      setimage1('')
+    } else if(image1){setErrorDrag('please Upload image only') }
+else{setErrorDrag('')}
   }, [image1]);
+
   return (
   <div>
    <Form replace action='add/drop-portfolio-image'  method='post'>
@@ -40,7 +42,7 @@ function DropzonePortfolio({setSecondaryImageError,setImage1, onDrop, accept,ima
         name='addPortfolioImage'
         type="text"
         value={image1}
-        // hidden
+        hidden
         />
         {/* <input hidden  name='imageId'  value={img.id} type="text" /> */}
        <button type="submit" hidden ref={ref}>upload</button>

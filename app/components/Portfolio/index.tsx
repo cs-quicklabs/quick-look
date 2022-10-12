@@ -11,7 +11,13 @@ export default function Portfolio({ setShowPortfolio, mode, setmode,loaderData }
 const [upload,setUpload] = useState(false)
 const [image, setimage] = useState(null);
 const [image1, setimage1] = useState(null);
+const [error, setError] = useState('');
+const [errorDrag, setErrorDrag] = useState('');
+
+console.log(image,image1)
 const transition = useTransition();
+
+// if(image1 && image1.includes)
 const[edit,setEdit]=useState(false)
 const[del,setDel]=useState(false)
  const onDrop = useCallback((acceptedFiles) => {
@@ -35,9 +41,20 @@ useEffect(() => {
     ref?.current?.click()
   }
 }, [image])
-
+const calc = loaderData.portfolioImage.length == 20 ? 'bottom-[31rem]':
+loaderData.portfolioImage.length > 16 && loaderData.portfolioImage.length < 20 ? 'bottom-[18rem]':
+loaderData.portfolioImage.length > 12 && loaderData.portfolioImage.length <= 16 ? 'bottom-[21rem]':
+loaderData.portfolioImage.length > 8 && loaderData.portfolioImage.length <= 12 ? 'bottom-[25rem]' :
+loaderData.portfolioImage.length > 4 && loaderData.portfolioImage.length <= 8 ?'bottom-[28rem]' :
+ loaderData.portfolioImage.length >=1 && loaderData.portfolioImage.length <=4 ? 'bottom-[31rem]' :''
 const handleChange = (e: any) => {
+  setEdit(false);
+  setDel(false);
+  if(e.target.files[0].type.includes("image/jpeg") || e.target.files[0].type.includes("image/jpg") || e.target.files[0].type.includes("image/png")){
   setimage(e.target.files[0]) 
+  }else{
+    setError("Please upload image only")
+  }
   }
 
   const Onclose = (e: any) => {
@@ -54,6 +71,13 @@ const handleChange = (e: any) => {
     setShowPortfolio(false)
     setmode('desktop')
   }
+  useEffect(() => {
+   if(transition.state != 'idle') {
+setError('') ;
+ setErrorDrag('')
+  } 
+
+  },[transition,error,errorDrag])
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -111,15 +135,13 @@ const handleChange = (e: any) => {
                                 <p className='text-xs leading-4 font-semibold tracking-wide'>
                                   NO IMAGE ADDED YET
                                 </p>
-                  <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
-
                                 <div className="flex text-sm">
-                                  <DropzonePortfolio onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}/>
+                                  <DropzonePortfolio setErrorDrag={setErrorDrag} onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}/>
                                 </div>
-
+                  <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
                               
-{transition.state != 'idle' && upload ? 
+{transition.state != 'idle' && upload || transition?.submission?.action == '/account/add/drop-portfolio-image' ? 
 <BeatLoader color="#184fad" /> :
 
                                   <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max' 
@@ -139,7 +161,7 @@ const handleChange = (e: any) => {
                                     {/* <input type="file" name="photo" /> */}
                                     
                                   </label> }
-
+<div className='text-sm mt-2 text-red-500'>{errorDrag || error }</div> 
                                 </div>
                                 </Form>
                               </div>
@@ -154,7 +176,8 @@ del={del} />
 ))}
 </ul></div>
 {transition.state != 'idle' && edit || transition.state != 'idle' && del ?
-<div className='absolute bottom-[18rem] left-[11rem]'><BeatLoader color="#184fad" /></div> : null}
+<div className={`absolute ${calc} left-[11rem]`}><BeatLoader color="#184fad" /></div>
+ : null}
     
                       </div>
 
