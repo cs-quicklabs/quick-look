@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import Portfolioimage from './portfolioimage';
 import BeatLoader from 'react-spinners/BeatLoader';
 import DropzonePortfolio from './DragandDrop';
-import Dropzone from './DragandDrop';
 
 export default function Portfolio({ setShowPortfolio, mode, setmode,loaderData }: any) {
 const [upload,setUpload] = useState(false)
@@ -15,15 +14,12 @@ const [image1, setimage1] = useState(null);
 const transition = useTransition();
 const[edit,setEdit]=useState(false)
 const[del,setDel]=useState(false)
-
-const onDrop1 = useCallback((acceptedFiles) => {
+ const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file:any) => {
       const reader = new FileReader();
-
-      
+      console.log('file',reader);
       reader.onload = function (e:any) {
-        // @ts-ignore
-        setImages1(
+        setimage1(
           e.target.result
         );
       };
@@ -118,7 +114,7 @@ const handleChange = (e: any) => {
                   <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
 
                                 <div className="flex text-sm">
-                                  {/* <DropzonePortfolio onDrop={onDrop1} image1={image1} setimage1={setimage1} accept={"image/*"}/> */}
+                                  <DropzonePortfolio onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}/>
                                 </div>
 
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>

@@ -40,6 +40,8 @@ const[drag2,setDrag2]=useState(false)
         setImages(
           e.target.result
         );
+        console.log('@#@#@',e.target.result);
+        
       };
       reader.readAsDataURL(file);
       return file;
