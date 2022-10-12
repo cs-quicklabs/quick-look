@@ -29,7 +29,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '' : ''}  justify-center bg-no-repeat object-cover overflow-none` } style={myStyle} >
       
       
-<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem]' : 'w-[40rem] lg:pl-[6.75rem]'}`} >
+<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem]' : 'w-[45rem] lg:pl-[6.75rem]'}`} >
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
