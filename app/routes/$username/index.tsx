@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async ({params}) => {
     if(user?.profile?.isPublished){
       return json(user)
     }
-    return redirect('/');
+    return redirect('/unpublishedAccountError');
   }
 
   export default function ProfileView() {

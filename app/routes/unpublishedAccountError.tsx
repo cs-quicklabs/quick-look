@@ -10,7 +10,7 @@ export default function PublishAccount() {
   return (
     <>
       <Links />
-      <div className='flex flex-col bg-white h-screen overflow-hidden flex flex-col justify-center'>
+      <div className='flex flex-col bg-white h-screen overflow-hidden justify-center'>
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img src={logo} alt='' className='ml-48 h-20 w-20' />
         </div>
