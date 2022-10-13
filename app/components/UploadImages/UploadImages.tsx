@@ -300,6 +300,8 @@ function showCropAreaSecondary() {
                                         Restore Default Image
                                       </button></Form>
                                   </div>}<div className='text-sm mt-2 text-red-500'>{primaryImageError}</div></>
+                                      <h4 className='text-sm'>(Supported image .jpg .jpeg, and .png)</h4>
+
                               </div>
                             </div>
                           </div>
@@ -394,7 +396,7 @@ function showCropAreaSecondary() {
                                     </button></Form>
                                 </div>}
 <div className='text-sm mt-2 text-red-500'>{secondaryImageError}</div>
-
+<h4 className='text-sm'>(Supported image .jpg .jpeg, and .png)</h4>
                               </div>
 
                             </div>
