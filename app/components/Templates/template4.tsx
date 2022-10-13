@@ -101,7 +101,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem] pr-[2rem] sm:pr-[6rem] ${mode ==='mobile' ? 'lg:pr-0 2xl:mr-[2rem] xl:pl-0 medium:pl-0 lg:max-w-[25rem] xl:max-w-[35rem] 2xl:max-w-[38rem]' : 'lg:pr-[2rem] xl:pr-0 medium:pl-0 xl:mr-[2rem] lg:max-w-7xl xl:max-w-[32rem] ml-[-1.5rem] sm:ml-[-2.5rem] md:ml-[0.5rem] lg:ml-[0.7rem] 2xl:ml-[2rem] xl:pl-[3rem]'} ${nav ? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] xl:max-w-[35rem] ' : 'xl:pl-0 2xl:pl-[6rem]'}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem] pr-[2rem] sm:pr-[6rem] ${mode ==='mobile' ? 'lg:pr-0 2xl:mr-[2rem] xl:pl-0 medium:pl-0 medium:max-w-[60rem] lg:max-w-[25rem] xl:max-w-[35rem] 2xl:max-w-[38rem]' : 'lg:pr-[2rem] xl:pr-0 medium:pl-0 xl:mr-[2rem] lg:max-w-7xl xl:max-w-[32rem] ml-[-1.5rem] sm:ml-[-2.5rem] md:ml-[0.5rem] lg:ml-[0.7rem] 2xl:ml-[2rem] xl:pl-[3rem]'} ${nav ? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] xl:max-w-[35rem] ' : 'xl:pl-0 2xl:pl-[6rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem] ' : 'h-auto medium:h-[40rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'lg:h-[45rem] xl:h-[40rem] ' :''} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage}  /> : null}
