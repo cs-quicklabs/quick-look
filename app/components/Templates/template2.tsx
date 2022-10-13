@@ -8,6 +8,7 @@ import VideoAddOn from './addOns/video';
 import Spotlightbtn from './addOns/Spotlightbtn';
 import BannerAddOn from './addOns/Banner';
 import AdditionalLinksAddOn from './addOns/AddtionalLinks';
+import PortfolioAddon from './addOns/portfolio';
 export default function Template2({ input, loaderData,secondaryRestore }: any) {
 
   
@@ -71,6 +72,7 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
               </div> : <span></span>}
           </div>
         </div>
+        <PortfolioAddon loaderData={loaderData}/>
         <div className='flex gap-4 justify-left mt-6'>
            {loaderData?.socialMedia?.facebookLink ?
           <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target="_blank">

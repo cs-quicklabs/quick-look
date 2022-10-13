@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import {BriefcaseIcon} from '@heroicons/react/outline'
 import {AcademicCapIcon} from '@heroicons/react/outline'
+import PortfolioAddon from './addOns/portfolio'
 
 export default function Template5 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
@@ -29,7 +30,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '' : ''}  justify-center bg-no-repeat object-cover overflow-none` } style={myStyle} >
       
       
-<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem]' : 'w-[45rem] lg:pl-[6.75rem]'}`} >
+<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem] largeLaptop:pl-[6.5rem]' : 'w-[45rem] lg:pl-[6.75rem]'}`} >
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
@@ -56,7 +57,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
-    <div className={`mt-[1.5rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0  ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+    <div className={`mt-[1.5rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
@@ -85,7 +86,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             </div>
           </div>
 
-          <div className={`mt-[-3rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+          <div className={`mt-[-3rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
@@ -96,8 +97,11 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
             </div>
             
-
-          <footer className={`flex pt-[1.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+            <div className={` ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+            <PortfolioAddon loaderData={loaderData}/>
+            </div>
+            
+          <footer className={`flex pt-[1.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?

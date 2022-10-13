@@ -10,6 +10,7 @@ import VideoAddOn from './addOns/video'
 import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
+import PortfolioAddon from './addOns/portfolio'
 export default function Template3 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
   const Location = useLocation()
@@ -96,6 +97,10 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             <div className={`${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
             {loaderData?.video?.videoLink && 
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
+            </div>
+            
+            <div  className={` ${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
+              <PortfolioAddon loaderData={loaderData}/>
             </div>
             
 
