@@ -1,6 +1,6 @@
-import facebook from '../../../assets/images/fb.png'
-import twitter from '../../../assets/images/twitter.png'
-import youtube from '../../../assets/images/youtube.png'
+import facebook from '../../../assets/images/socialIcons/fbIcon3.png'
+import twitter from '../../../assets/images/socialIcons/twitterIcon3.png'
+import youtube from '../../../assets/images/socialIcons/youtubeIcon3.png'
 import pic3 from '../../../assets/images/templates/pic3.png'
 import Background3 from '../../../assets/images/templates/template3.png'
 import BannerAddOn from './addOns/Banner'
@@ -26,7 +26,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[6rem] xl:pl-[14rem] 2xl:pl-[4rem] largeLaptop:flex-row' : 'flex-col xl:flex-row py-[5rem] pl-[3rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'flex-col lg:flex-row' :''}`} style={myStyle}>
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'xl:mt-[5.625rem] xl:pl-0 lg:max-w-[25rem] xl:max-w-[32rem]  2xl:max-w-[47rem] medium:max-w-[60rem] medium:pl-[10rem] 2xl:pl-[10rem] largeLaptop:pl-[6rem] large:pl-[3rem]' : 'xl:mt-[5.625rem] mr-[1rem] ml-[-2rem] sm:mr-[4rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[2rem] xl:pl-[7rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[29rem] xl:max-w-[35rem] ' :'xl:pl-0 2xl:pl-[2rem]'}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'xl:mt-[5.625rem] xl:pl-0 lg:max-w-[25rem] xl:max-w-[32rem]  2xl:max-w-[47rem] medium:max-w-[60rem] medium:pl-[10rem] 2xl:pl-[10rem] largeLaptop:pl-[6rem] large:pl-[3rem]' : 'xl:mt-[5.625rem] mr-[1rem] ml-[-2rem] sm:mr-[4rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[2rem] xl:pl-[7rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[29rem] xl:max-w-[35rem] lg:mx-[2.625rem] xl:mx-[5.625rem] medium:mx-[5.625rem] largeLaptop:mx-[5.625rem] large:mx-[10.625rem]' :'xl:pl-0 2xl:pl-[2rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem]' : 'h-auto medium:h-[40rem]'} ${nav? 'lg:h-[45rem] xl:h-[40rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage}  /> : null}
@@ -43,7 +43,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
           </h3> : <span></span>}
 
         <div >
-        <div className={`gap-20 ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[2.5rem]'}  ${nav ? 'large:ml-0' : ''}`}>
+        <div className={`gap-20 ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : 'largeLaptop:pr-[22rem]  large:pr-[54rem] 2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[2.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] largeLaptop:pr-[47.01rem] large:pr-[77rem]' : ''}`}>
             <div className={`flex flex-col pt-4 ${mode ==='mobile' ? 'xl:flex-row' : 'xl:flex-row'}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex lg:w-[50%] ${mode ==='mobile' ? 'xl:flex-col' : 'xl:flex-col'}`} >
@@ -104,16 +104,16 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             </div>
             
 
-          <footer className={`flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? 'pr-[5rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'}`}>
+          <footer className={`flex pt-[4rem] w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? 'pr-[5rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'}`}>
             {loaderData?.socialMedia?.facebookLink ?
-            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
+            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-[3.2rem] h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
             <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-              <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
+              <img src={twitter} alt="" className="w-9 md:w-[3.2rem] h-auto" />
             </a> : null}
             {loaderData?.socialMedia?.youtubeLink ?
             <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-              <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
+              <img src={youtube} alt="" className="w-9 md:w-[3.2rem] h-auto" />
 
             </a> : null}
           </footer>

@@ -1,6 +1,6 @@
-import facebook from '../../../assets/images/fb.png'
-import twitter from '../../../assets/images/twitter.png'
-import youtube from '../../../assets/images/youtube.png'
+import facebook from '../../../assets/images/socialIcons/fbIcon5.png'
+import twitter from '../../../assets/images/socialIcons/twitterIcon5.png'
+import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'
 import Background5 from '../../../assets/images/templates/template5.png'
 import pic5 from '../../../assets/images/templates/pic5.png'
 import BannerAddOn from './addOns/Banner'
@@ -30,7 +30,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '' : ''}  justify-center bg-no-repeat object-cover overflow-none` } style={myStyle} >
       
       
-<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem] largeLaptop:pl-[6.5rem]' : 'w-[45rem] lg:pl-[6.75rem]'}`} >
+<div className={`pt-[2rem] lg:pt-[6rem] px-[1.5rem] w-[48rem] ${mode ==='mobile' ? 'lg:pl-[3.5rem] xl:pl-[12.5rem] medium:pl-[10.5rem] largeLaptop:pl-[6.5rem]' : 'lg:pl-[6.75rem]'}`} >
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
@@ -46,18 +46,18 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         
     </div>
 
-    <div className={` pr-[2.5rem] md:pr-[1.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
+    <div className={` pr-[2.5rem] sm:pr-[0.5rem] md:pr-[1.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
        
 
-        <div className={`mb-10 pr-[2.5rem] md:pr-[1.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
+        <div className={`mb-10 pr-[2.5rem] sm:pr-[0.5rem] md:pr-[1.5rem] ${mode ==='mobile' ? 'lg:pr-[0.5rem]' : 'lg:pr-0'} ${nav ? '' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
-    <div className={`mt-[1.5rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+    <div className={`mt-[1.5rem] ml-[4rem] pr-[4rem] xs:ml-[2rem] xs:pr-[2rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
@@ -86,31 +86,31 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             </div>
           </div>
 
-          <div className={`mt-[-3rem] ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`mt-[-3rem] ml-[4rem] pr-[4rem] xs:ml-[2rem] xs:pr-[2rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
           </div>
         
-            <div className={` ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+            <div className={` ml-[4rem] pr-[4rem] xs:ml-[2rem] xs:pr-[2rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
             </div>
             
-            <div className={` ml-[5rem] pr-[5rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
+            <div className={` ml-[4rem] pr-[4rem] xs:ml-[2rem] xs:pr-[2rem] sm:ml-0 sm:pr-0 ${mode ==='mobile' ? '' : 'lg:ml-[1.5rem] lg:pr-[1.5rem]'} ${nav ? '' : ''}`}>
             <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex pt-[1.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+          <footer className={`flex pt-[2.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
             {loaderData?.socialMedia?.facebookLink ?
-            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
+            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9  md:w-[3.2rem] h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
             <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-              <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
+              <img src={twitter} alt="" className="w-9  md:w-[3.2rem] h-auto" />
             </a> : null}
             {loaderData?.socialMedia?.youtubeLink ?
             <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-              <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
+              <img src={youtube} alt="" className="w-9  md:w-[3.2rem] h-auto" />
 
             </a> : null}
           </footer>
