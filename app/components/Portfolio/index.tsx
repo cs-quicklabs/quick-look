@@ -43,10 +43,10 @@ useEffect(() => {
 }, [image])
 const calc = loaderData.portfolioImage.length == 20 ? 'bottom-[31rem]':
 loaderData.portfolioImage.length > 16 && loaderData.portfolioImage.length < 20 ? 'bottom-[18rem]':
-loaderData.portfolioImage.length > 12 && loaderData.portfolioImage.length <= 16 ? 'bottom-[21rem]':
-loaderData.portfolioImage.length > 8 && loaderData.portfolioImage.length <= 12 ? 'bottom-[25rem]' :
-loaderData.portfolioImage.length > 4 && loaderData.portfolioImage.length <= 8 ?'bottom-[28rem]' :
- loaderData.portfolioImage.length >=1 && loaderData.portfolioImage.length <=4 ? 'bottom-[31rem]' :''
+loaderData.portfolioImage.length > 12 && loaderData.portfolioImage.length <= 16 ? 'bottom-[19rem]':
+loaderData.portfolioImage.length > 8 && loaderData.portfolioImage.length <= 12 ? 'bottom-[22rem]' :
+loaderData.portfolioImage.length > 4 && loaderData.portfolioImage.length <= 8 ?'bottom-[25rem]' :
+ loaderData.portfolioImage.length >=1 && loaderData.portfolioImage.length <=4 ? 'bottom-[28rem]' :''
 const handleChange = (e: any) => {
   setEdit(false);
   setDel(false);
@@ -133,10 +133,10 @@ setError('') ;
                             <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
                               <div className="text-center">
                                 <p className='text-xs leading-4 font-semibold tracking-wide'>
-                                  NO IMAGE ADDED YET
+                                  ADD IMAGES.
                                 </p>
                                 <div className="flex text-sm">
-                                  <DropzonePortfolio setErrorDrag={setErrorDrag} onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}/>
+                                  <DropzonePortfolio setErrorDrag={setErrorDrag} onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}></DropzonePortfolio>
                                 </div>
                   <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
@@ -147,6 +147,7 @@ setError('') ;
                                   <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max' 
                                   onClick={()=>{setUpload(true) ;setEdit(false) ; setDel(false)}}>
                                     Upload Image
+                                   
 
                                     <input
                                       type="file"
@@ -162,6 +163,8 @@ setError('') ;
                                     
                                   </label> }
 <div className='text-sm mt-2 text-red-500'>{errorDrag || error }</div> 
+                                  <h4 className='text-sm'>(Supported image .jpg .jpeg, and .png)</h4>
+
                                 </div>
                                 </Form>
                               </div>
@@ -177,7 +180,7 @@ del={del} />
 </ul></div>
 {transition.state != 'idle' && edit || transition.state != 'idle' && del ?
 <div className={`absolute ${calc} left-[11rem]`}><BeatLoader color="#184fad" /></div>
- : null}
+  : null}
     
                       </div>
 
