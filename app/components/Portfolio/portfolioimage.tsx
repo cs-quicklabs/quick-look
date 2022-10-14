@@ -67,13 +67,13 @@ const[open,setOpen]=useState(false)
      <li key={img.id}  className={`relative `} >
       {/* {transition.state != 'idle' && show && edit || transition.state != 'idle' && show && del ?  */}
 {/* <BeatLoader color="#184fad" /> : */}
-      <img loading="lazy" crossOrigin={'anonymous'} onMouseEnter={handleMouseOver}  onMouseOut={handleMouseOut} ref={imageref} id={img.id} src={img.imageUrl} alt="" className=' z-0 h-[4rem] w-[8rem]'/>
+      <img data-cy="Image" loading="lazy" crossOrigin={'anonymous'} onMouseEnter={handleMouseOver}  onMouseOut={handleMouseOut} ref={imageref} id={img.id} src={img.imageUrl} alt="" className=' z-0 h-[4rem] w-[8rem]'/>
        {/* } */}
 <div className=''> 
 
   <button type='submit' onClick={()=>{setUpload(false) ; setDel(true) ;setEdit(false);setOpen(true)}}>
 {show &&
-  <TrashIcon  onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-5 rounded-l-md   bg-white opacity-60  text-red-600 absolute top-6 left-[1rem]'></TrashIcon>}
+  <TrashIcon data-cy="Delete"  onMouseOver={()=>setShow(true)} id={img.id} onMouseEnter={handleMouseOver}  className='h-5 rounded-l-md   bg-white opacity-60  text-red-600 absolute top-6 left-[1rem]'></TrashIcon>}
   </button>
    
 {show &&
