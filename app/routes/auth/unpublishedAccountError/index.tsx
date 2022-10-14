@@ -1,7 +1,6 @@
-import tailwindStylesheetUrl from '../styles/tailwind.css'
+import tailwindStylesheetUrl from '../../../styles/tailwind.css'
 import { Links } from '@remix-run/react'
-import logo from '../../assets/images/logos/quicklook-icon.svg'
-
+import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
 }
