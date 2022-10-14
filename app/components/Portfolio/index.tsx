@@ -126,14 +126,14 @@ setError('') ;
                         </div>
                           <div className="sm:col-span-6 mt-3.5 px-4 sm:px-6">
                             <label className="block text-sm font-medium leading-5 text-gray-700">
-                              Portfoilio Images
+                              Portfolio Images
                             </label>
 {loaderData.portfolioImage.length <= 19 ? 
 
                             <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
                               <div className="text-center">
                                 <p className='text-xs leading-4 font-semibold tracking-wide'>
-                                  ADD IMAGES.
+                                  ADD IMAGES
                                 </p>
                                 <div className="flex text-sm">
                                   <DropzonePortfolio setErrorDrag={setErrorDrag} onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}></DropzonePortfolio>
