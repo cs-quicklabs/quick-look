@@ -14,13 +14,13 @@ export default function Template2({ input, loaderData,secondaryRestore }: any) {
   
   return (
     <>
-    {/* {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> } */}
+    {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className="-mt-12 flex flex-row h-screen font-inter">
-      <div className="w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200">
+      <div className={`w-full md:w-3/5 md:h-full lg:w-11/12 text-center text-gray-200 ${loaderData?.supportBanner?.toggleBanner ? 'mt-[2.9rem]' : ''}`} >
 
         <img src={secondaryRestore ? pic : loaderData?.profileImage?.secondaryImage} className="h-full w-full object-cover" alt="" />
       </div>
-      <div className="flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200">
+      <div className={`flex flex-wrap w-screen md:w-2/5 md:h-full lg:w-6/12 p-4 lg:p-4 xl:p-16 text-gray-700 border border-gray-200 ${loaderData?.supportBanner?.toggleBanner ? 'mt-[2.9rem]' : ''}`}>
         <div className='mt-20'>
           <h1 className="text-lg leading-6 font-bold text-gray-900">
           {loaderData?.firstname} {loaderData?.lastname}
