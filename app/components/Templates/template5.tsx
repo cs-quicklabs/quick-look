@@ -103,14 +103,14 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             
           <footer className={`flex pt-[2.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
             {loaderData?.socialMedia?.facebookLink ?
-            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9  md:w-[3.2rem] h-auto" /></a> : null}
+            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-[3.2rem] h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
             <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-              <img src={twitter} alt="" className="w-9  md:w-[3.2rem] h-auto" />
+              <img src={twitter} alt="" className="w-[3.2rem] h-auto" />
             </a> : null}
             {loaderData?.socialMedia?.youtubeLink ?
             <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-              <img src={youtube} alt="" className="w-9  md:w-[3.2rem] h-auto" />
+              <img src={youtube} alt="" className="w-[3.2rem] h-auto" />
 
             </a> : null}
           </footer>
