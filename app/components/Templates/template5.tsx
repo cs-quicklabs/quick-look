@@ -34,7 +34,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? pic5 : loaderData?.profileImage?.secondaryImage}  /> : null}
+        <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? pic5 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
       
         <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl leading-8 font-extrabold lg:text-4xl lg:leading-10 px-[1.5rem] lg:px-0`}>
           {loaderData?.firstname} {loaderData?.lastname}
@@ -63,7 +63,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             </pre>
         </div>
 
-        <div className={`flex items-center justify-center px-[1.5rem] lg:px-0  ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className={`flex items-center justify-center px-[1.5rem] lg:px-0 pb-[4rem]  ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             <div className={`flex flex-col  items-center justify-center ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className='flex pt-[1.5rem]'>
@@ -103,14 +103,14 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
             
           <footer className={`flex pt-[2.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
             {loaderData?.socialMedia?.facebookLink ?
-            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-[3.2rem] h-auto" /></a> : null}
+            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
             <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-              <img src={twitter} alt="" className="w-[3.2rem] h-auto" />
+              <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.socialMedia?.youtubeLink ?
             <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-              <img src={youtube} alt="" className="w-[3.2rem] h-auto" />
+              <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}
           </footer>

@@ -44,7 +44,11 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
           </h3> : <span></span>}
 
         <div >
+<<<<<<< HEAD
         <div className={`gap-20 ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : 'largeLaptop:pr-[22rem]  large:pr-[54rem] 2xl:pr-[2rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] medium:pr-[24rem] largeLaptop:pr-[47.01rem] large:pr-[77rem] 2xl:ml-[0rem] 2xl:pr-[20rem]' : ''}`}>
+=======
+        <div className={`gap-20 ml-[0rem] sm:ml-0 pb-[4rem] ${mode ==='mobile' ? '' : 'largeLaptop:pr-[22rem]  large:pr-[54rem] 2xl:pr-[2rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] medium:pr-[24rem] largeLaptop:pr-[47.01rem] large:pr-[77rem] 2xl:ml-[0rem] 2xl:pr-[20rem]' : ''}`}>
+>>>>>>> e38065572e6542b8d75a2e2267ceaf665f0d8dea
             <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
@@ -54,7 +58,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className={`text-gray-500 font-medium text-sm leading-5 w-max hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
                     WORK
                   </h2>
-                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
+                  <h2 className="text-gray-900 w-[70%] text-sm leading-5 font-normal break-normal">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
@@ -66,7 +70,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className= {`text-gray-500 font-medium text-sm leading-5 w-max hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
                     EDUCATION
                   </h2>
-                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-all">
+                  <h2 className="text-gray-900 w-[70%] text-sm leading-5 font-normal break-normal">
                     {input.education}
                   </h2>
                 </div> : <span></span>}
@@ -106,14 +110,14 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             
           <footer className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? 'pr-[5rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
-            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-[3.2rem] h-auto" /></a> : null}
+            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
             <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-              <img src={twitter} alt="" className="w-[3.2rem] h-auto" />
+              <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.socialMedia?.youtubeLink ?
             <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-              <img src={youtube} alt="" className="w-[3.2rem] h-auto" />
+              <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}
           </footer>

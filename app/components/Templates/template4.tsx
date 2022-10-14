@@ -91,14 +91,14 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
 
           <footer className={` pb-[5rem] flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-start ${mode ==='mobile' ? '' : 'medium:w-[40rem] pr-[3rem] sm:pr-0 lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] lg:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'}  ${nav ? 'pr-[4rem] lg:pr-[8rem] medium:pr-0 medium:ml-[1.4rem] 2xl:ml-[-0.75rem] largeLaptop:ml-[2.5rem] large:ml-[5rem]' : 'pr-[4rem] lg:pr-0'} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
-            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-[3.2rem] h-auto" /></a> : null}
+            <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
             <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-              <img src={twitter} alt="" className="w-[3.2rem] h-auto" />
+              <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
             </a> : null}
             {loaderData?.socialMedia?.youtubeLink ?
             <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-              <img src={youtube} alt="" className="w-[3.2rem] h-auto" />
+              <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
 
             </a> : null}
           </footer>
