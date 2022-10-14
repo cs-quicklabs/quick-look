@@ -43,11 +43,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
           </h3> : <span></span>}
 
         <div >
-<<<<<<< HEAD
-        <div className={`gap-20 ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : 'largeLaptop:pr-[22rem]  large:pr-[54rem] 2xl:pr-[2rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] medium:pr-[24rem] largeLaptop:pr-[47.01rem] large:pr-[77rem] 2xl:ml-[0rem] 2xl:pr-[20rem]' : ''}`}>
-=======
         <div className={`gap-20 ml-[0rem] sm:ml-0 pb-[4rem] ${mode ==='mobile' ? '' : 'largeLaptop:pr-[22rem]  large:pr-[54rem] 2xl:pr-[2rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] medium:pr-[24rem] largeLaptop:pr-[47.01rem] large:pr-[77rem] 2xl:ml-[0rem] 2xl:pr-[20rem]' : ''}`}>
->>>>>>> e38065572e6542b8d75a2e2267ceaf665f0d8dea
             <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
