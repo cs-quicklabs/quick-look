@@ -10,8 +10,8 @@ import Template2 from "~/components/Templates/template2";
 import  { DesktopComputerIcon, DeviceMobileIcon } from "@heroicons/react/outline";
 import AccountSidebar from "~/components/Common/AccountSidebar";
 import Template3 from "~/components/Templates/template3";
-import Template4 from "~/components/Templates/template4";
 import Template5 from "~/components/Templates/template5";
+import Template4 from "~/components/Templates/template4";
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
@@ -43,7 +43,6 @@ export default function Profile() {
   const [showImages, setshowImages] = useState(false);
   const [showTemplate, setshowTemplate] = useState(false);
   const Data = useLoaderData();
-  console.log(Data)
   
   const loaderData = Data?.user
   const [message,setMessage] = useState('')
