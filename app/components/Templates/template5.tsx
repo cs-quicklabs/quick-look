@@ -36,7 +36,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? pic5 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
       
-        <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl leading-8 font-extrabold lg:text-4xl lg:leading-10 px-[1.5rem] lg:px-0`}>
+        <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl lg:text-[36px] leading-8 font-extrabold lg:leading-10 px-[1.5rem] lg:px-0`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h5>
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
