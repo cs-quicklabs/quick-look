@@ -8,6 +8,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import DropzonePortfolio from './DragandDrop';
 
 export default function Portfolio({ setShowPortfolio, mode, setmode,loaderData }: any) {
+  
 const [upload,setUpload] = useState(false)
 const [image, setimage] = useState(null);
 const [image1, setimage1] = useState(null);
@@ -131,19 +132,20 @@ setError('') ;
 
                             <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md">
                               <div className="text-center">
+                                <DropzonePortfolio setErrorDrag={setErrorDrag} onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}>
                                 <p className='text-xs leading-4 font-semibold tracking-wide'>
                                   ADD IMAGES
                                 </p>
                                 <div className="flex text-sm">
-                                  <DropzonePortfolio setErrorDrag={setErrorDrag} onDrop={onDrop} image1={image1} setimage1={setimage1} accept={"image/*"}></DropzonePortfolio>
-                                </div>
+                                  
+                                </div></DropzonePortfolio>
                   <Form replace={true} action="/account/add/portfolioImage" encType="multipart/form-data" method='post'>
                                 <div className='flex flex-col justify-center items-center md:mx-12 lg:mx-20'>
                               
 {transition.state != 'idle' && upload || transition?.submission?.action == '/account/add/drop-portfolio-image' ? 
 <BeatLoader color="#184fad" /> :
 
-                                  <label htmlFor="photo" id="primaryUploadImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max' 
+                                  <label htmlFor="photo" id="primaryUploadImage" data-cy="portfolioImage" className='cursor-pointer inline-flex justify-center rounded-md bord~er border-transparent shadow-sm mx-4 px-4 py-3 mt-4 bg-indigo-600 text-sm leading-5 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 w-max' 
                                   onClick={()=>{setUpload(true) ;setEdit(false) ; setDel(false)}}>
                                     Upload Image
                                    

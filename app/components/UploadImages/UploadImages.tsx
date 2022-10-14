@@ -264,11 +264,12 @@ function showCropAreaSecondary() {
                             <div className="mt-3.5 flex justify-center px-auto md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md" onDragEnter={()=>{setDrag(true);setDrag2(false)}}>
                               <div className="text-center" >
                                 
-                                <><p className='text-xs leading-4 font-semibold tracking-wide'>
-                                  NO IMAGE ADDED YET
-                                </p><div className="flex text-sm" >
-                                    <DropzonePrimary setPrimaryImageError={setPrimaryImageError} images1={images1} setImages1={setImages1} accept={"image/*"} onDrop={onDrop1} />
+                                <>
+                                <DropzonePrimary setPrimaryImageError={setPrimaryImageError} images1={images1} setImages1={setImages1} accept={"image/*"} onDrop={onDrop1}>
+                                  <div className="flex text-sm" >
+                                    
                                   </div>
+                                  </DropzonePrimary>
                                   {upload === 'primary' && transition?.submission?.action === "/account/add/image" || restore  && transition?.submission?.action === "/account/update/restoreImage" ||  drag && transition?.submission?.action == "/account/update/crop-image" ?
                                   <div className='h-[5.8rem] flex items-center justify-center'>
                                     <BeatLoader color="#184fad" />
@@ -319,7 +320,7 @@ function showCropAreaSecondary() {
                               <div className="flex justify-center h-[8rem] w-[8rem]  rounded-full mt-3.5">
                                 {deleteImage === 'secondary' && transition?.submission?.action == "/account/delete/image" || edit2 &&  transition?.submission?.action == "/account/update/crop-image" ?
                                 <div className='relative top-[-1.8rem]'><BeatLoader color="#184fad" className='relative top-20 left-[2.2rem]'/>
-                                <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover opacity-30' /></div>:
+                                <img src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-[8rem] w-[8rem] object-cover opacity-30' /></div>:
                                 <img ref={ref5} crossOrigin={`${secondaryRestore ? "" : "anonymous"}`} src={secondaryRestore ? defaultProfileimage : loaderData?.profileImage?.secondaryImage} alt="" className='rounded-full h-full w-full object-cover' />}
                                 <Form replace action='update/crop-image' method='post'>
                                 <input name='editSecondaryImage' type="text" value={urlSec} hidden/>
@@ -353,13 +354,11 @@ function showCropAreaSecondary() {
                             </label>
                             <div className="mt-3.5 flex justify-center px-[1px] md:pt-6 lg:pt-10 pb-2.5 border border-gray-300 border-dashed rounded-md" onDragEnter={()=>{setDrag(false);setDrag2(true)}}>
                               <div className="text-center">
-                                <p className=' text-xs leading-4 font-semibold tracking-wide'>
-                                  NO IMAGE ADDED YET
-                                </p>
+                                <Dropzone setSecondaryImageError={setSecondaryImageError} setImages={setImages} accept={"image/*"} onDrop={onDrop} images={images}>
                                 <div className="flex text-sm" >
                                  
-                                  <Dropzone setSecondaryImageError={setSecondaryImageError} setImages={setImages} accept={"image/*"} onDrop={onDrop} images={images}/>
                                 </div>
+                                  </Dropzone>
                                 {upload2 === 'sec'  && transition?.submission?.action === "/account/add/image" || restore2  && transition?.submission?.action === "/account/update/restoreImage"  || drag2 &&  transition?.submission?.action == "/account/update/crop-image" ?
                                   <div className='h-[6rem] flex items-center justify-center'>
                                     <BeatLoader color="#184fad" />

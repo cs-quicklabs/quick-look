@@ -36,7 +36,9 @@ function Dropzone({setSecondaryImageError,setImages, onDrop, accept,images }:any
    <Form replace action="update/crop-image"  method='post'>
       <div {...getRootProps({ className: "dropzone" })}>
     
-     
+     <p className=' text-xs leading-4 font-semibold tracking-wide'>
+                                  NO IMAGE ADDED YET
+                                </p>
         <div className="text-center">
           
             <p>

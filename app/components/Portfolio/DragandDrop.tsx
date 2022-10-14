@@ -30,6 +30,9 @@ else{setErrorDrag('')}
   <div>
    <Form replace action='add/drop-portfolio-image'  method='post'>
       <div {...getRootProps({ className: "dropzone" })}>
+        <p className='text-xs leading-4 font-semibold tracking-wide'>
+                                  ADD IMAGES
+                                </p>
         <div className="text-center">
             <p>
              Drag and Drop an Image or click on button to upload
