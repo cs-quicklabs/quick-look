@@ -51,8 +51,8 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             </pre>
         </div>
 
-        <div className={` flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] md:ml-[-7rem] lg:ml-[2rem] lg:pr-[10rem] medium:ml-[2rem] largeLaptop:ml-[3rem] 2xl:ml-[-0.75rem]' : ''}`}>
-            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? '2xl:flex-row ' : 'xl:flex-row '} ${nav ? 'lg:ml-[-9rem] xl:ml-0 2xl:ml-0' : ''}`} >
+        <div className={` pb-[4rem] flex flex-col ${mode ==='mobile' ? '' : 'pr-[3rem] sm:pr-[6rem] lg:pr-[2rem] xl:pr-0 2xl:pr-[4rem] sm:ml-[-7rem] xl:ml-[1rem] 2xl:ml-[2.5rem]'} ${nav ? 'sm:ml-[2rem] md:ml-[-7rem] lg:ml-[2rem] lg:pr-[10rem] medium:ml-[2rem] largeLaptop:ml-[3rem] 2xl:ml-[-0.75rem]' : ''}`}>
+            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? ' ' : 'xl:flex-row '} ${nav ? 'lg:ml-[-9rem] xl:ml-0 2xl:ml-0' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex md:w-[80%] 2xl:w-[33%] ${mode ==='mobile' ? '2xl:w-[45%] ' : ''} ${nav ? 'large:w-[68%] 2xl:w-[40%] medium:w-[31%]' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
@@ -63,7 +63,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
                   </h2>
                 </div> : <span></span>}
               {loaderData?.profileInfo?.education || input.education ?
-                <div className={`flex mt-[2rem]  ${mode ==='mobile' ? '2xl:mt-0 ' : 'xl:mt-0 '}`}>
+                <div className={`flex mt-[2rem]  ${mode ==='mobile' ? ' ' : 'xl:mt-0 '}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
@@ -105,7 +105,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem] pr-[1rem] sm:pr-[6rem] w-[65%] ${mode ==='mobile' ? 'lg:ml-[9rem] xl:ml-[14.5rem] medium:ml-[16rem] largeLaptop:ml-[25rem] lg:pr-0 2xl:mr-[2rem] large:mr-[0rem] xl:pl-0 medium:pl-0 medium:max-w-[60rem] largeLaptop:max-w-[45rem] lg:max-w-[20rem] xl:max-w-[35rem] 2xl:max-w-[38rem] 2xl:pl-[3rem]' : '2xl:pl-[6rem] pl-[3rem] lg:pr-[5rem] xl:pr-0 medium:pl-0 xl:mr-[2rem] 2xl:mr-[6rem] lg:max-w-7xl xl:max-w-[32rem] ml-[3rem] sm:ml-[5.5rem] md:ml-[6.5rem] lg:ml-[5.7rem] lg:w-[86%] xl:w-[39%] 2xl:ml-[-40rem] xl:pl-[0rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'} ${nav ? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] xl:max-w-[35rem] lg:pr-[8rem] lg:pl-[7rem] lg:ml-[5.7rem] 2xl:ml-[-25rem] 2xl:mr-[6rem]' : 'xl:pl-0 '}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 xl:mt-[5.625rem] pr-[1rem] sm:pr-[6rem] w-[65%] ${mode ==='mobile' ? 'lg:ml-[9rem] xl:ml-[14.5rem] 2xl:ml-[13.5rem] medium:ml-[16rem] largeLaptop:ml-[25rem] lg:pr-0 2xl:mr-[2rem] large:mr-[0rem] xl:pl-0 medium:pl-0 medium:max-w-[60rem] largeLaptop:max-w-[45rem] lg:max-w-[20rem] xl:max-w-[35rem] 2xl:max-w-[38rem] 2xl:pl-[3rem]' : '2xl:pl-[6rem] pl-[3rem] lg:pr-[5rem] xl:pr-0 medium:pl-0 xl:mr-[2rem] 2xl:mr-[6rem] lg:max-w-7xl xl:max-w-[32rem] ml-[3rem] sm:ml-[5.5rem] md:ml-[6.5rem] lg:ml-[5.7rem] lg:w-[86%] xl:w-[39%] 2xl:ml-[-40rem] xl:pl-[0rem] sm:pl-[6rem] lg:pl-[8rem] xl:p-[0rem]'} ${nav ? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[47rem] xl:max-w-[35rem] lg:pr-[8rem] lg:pl-[7rem] lg:ml-[5.7rem] 2xl:ml-[-25rem] 2xl:mr-[6rem]' : 'xl:pl-0 '}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem] ' : 'h-auto medium:h-[40rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'lg:h-[45rem] xl:h-[40rem] ' :''} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
