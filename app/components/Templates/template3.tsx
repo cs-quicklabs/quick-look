@@ -22,7 +22,6 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
     };
-    console.log("loaderData", loaderData)
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }

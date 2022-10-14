@@ -14,7 +14,6 @@ const [image1, setimage1] = useState(null);
 const [error, setError] = useState('');
 const [errorDrag, setErrorDrag] = useState('');
 
-console.log(image,image1)
 const transition = useTransition();
 
 // if(image1 && image1.includes)
