@@ -9,6 +9,7 @@ import { findUserByEmail } from '~/services/user.service.serevr'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { commitSession, getSession } from '~/services/session.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -36,7 +37,21 @@ export const action: ActionFunction = async ({ request }) => {
     }
     return redirect('/confirm/email')
   } else if (user && user.profile['isVerified'] == true) {
-    return redirect('/successlogin')
+
+    const session = await getSession(
+      request.headers.get("Cookie")
+    );
+
+    session.flash(
+      "authMessage",
+      `Your email has been confirmed. Please login to continue.`
+    );
+    
+    return redirect('/auth/login', {
+      headers: {
+        "Set-Cookie": await commitSession(session),
+      },
+    })
   }
 }
 
