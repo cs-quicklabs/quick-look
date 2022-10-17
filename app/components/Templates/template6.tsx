@@ -17,6 +17,7 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
   
   const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
+ console.log(loaderData)
    {
     const myStyle={
       backgroundImage: 
@@ -31,9 +32,9 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex flex-col-reverse lg:items-center justify-center bg-white ${mode ==='mobile' ? '' : 'lg:flex-row'} ${nav ?'' : ' '}`}>
+    <div className={`flex flex-col-reverse lg:items-center justify-center bg-white ${mode ==='mobile' ? '' : 'lg:flex-row lg:justify-between lg:gap=[20rem]'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-[24rem] pl-[1rem] ${mode ==='mobile' ? '' : 'lg:w-[20rem] lg:mt-[14.375rem]'} ${nav? '' :''}`}>
+      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] ${mode ==='mobile' ? '' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem]'} ${nav? 'lg:w-[50rem]' :''}`}>
         <h4 className={`text-xl leading-8 font-semibold lg:text-4xl lg:leading-10 lg:font-extrabold ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -41,35 +42,7 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
           <h3 className={`text-xs leading-5 font-normal lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : ''}  ${nav ? '=' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
-
-          <div className={`gap-20 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
-            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
-              {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
-                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode ==='mobile' ? '' : 'xl:hidden'}`}>
-                    <BriefcaseIcon />
-                  </h2>
-                  <h2 className={`text-gray-500 font-medium text-sm leading-5 w-max hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
-                    WORK
-                  </h2>
-                  <h2 className="text-gray-900 w-[70%] text-sm leading-5 font-normal break-normal">
-                    {input.company}
-                  </h2>
-                </div> : <span></span>}
-              {loaderData?.profileInfo?.education || input.education ?
-                <div className={`flex mt-[0.75rem] ${mode ==='mobile' ? '' : 'xl:flex-col xl:mt-0'}`} >
-                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode ==='mobile' ? '' : 'xl:hidden'}`} >
-                    <AcademicCapIcon />
-                  </h2>
-                  <h2 className= {`text-gray-500 font-medium text-sm leading-5 w-max hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
-                    EDUCATION
-                  </h2>
-                  <h2 className="text-gray-900 w-[70%] text-sm leading-5 font-normal break-normal">
-                    {input.education}
-                  </h2>
-                </div> : <span></span>}
-            </div>
-          </div>
+          
 
           <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
@@ -86,6 +59,30 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
             </pre>
         </div>
 
+        <div>
+            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}  ${nav ? 'lg:gap-[20rem]' : ''}`} >
+              {loaderData?.profileInfo?.company || input.company ?
+                <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
+                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] ${mode ==='mobile' ? '' : ''}`}>
+                    <BriefcaseIcon />
+                  </h2>
+                  
+                  <h2 className={`text-gray-900 w-[80%] text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${mode ==='mobile' ? '' : 'lg:mt-[-0.25rem]'}  ${nav ? 'lg:w-[100%]' : ''}`}>
+                    {input.company}
+                  </h2>
+                </div> : <span></span>}
+              {loaderData?.profileInfo?.education || input.education ?
+                <div className={`flex mt-[0.75rem] ${mode ==='mobile' ? '' : ' lg:mt-0'}`} >
+                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] ${mode ==='mobile' ? '' : ''}`} >
+                    <AcademicCapIcon />
+                  </h2>
+                  <h2 className={`text-gray-900 w-[80%] text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${mode ==='mobile' ? '' : 'lg:mt-[-0.25rem]'}  ${nav ? 'lg:w-[100%]' : ''}`}>
+                    {input.education}
+                  </h2>
+                </div> : <span></span>}
+            </div>
+          </div>
+
         <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
@@ -97,11 +94,11 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
             </div>
             
-            <div  className={`pt-[4rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div  className={` ${ loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex w-full gap-4 md:gap-8 justify-start pb-[5rem]  ${nav ? '' : ''} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
+          <footer className={`flex w-full gap-4 md:gap-8 justify-start pb-[5rem]  ${nav ? '' : ''} ${ loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
@@ -118,9 +115,9 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-      <div className={`w-[22rem] pt-[2rem] ${mode ==='mobile' ? '' : ''} ${nav? '' :''}`} style={myStyle}>
+      <div className={`w-[22rem] md:w-[45rem] py-[2rem] lg:py-[0rem] ml-[4.5rem] ${mode ==='mobile' ? '' : 'lg:pt-[7rem] lg:mt-[-69rem]'} ${nav? 'lg:pt-[7rem] lg:mt-[-50rem]' :''}`} style={myStyle}>
       {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full shadow-xl object-cover bg-red-400 ml-[3.5rem] ${mode ==='mobile' ? '' : ''} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full shadow-xl object-cover ml-[-1rem] ${mode ==='mobile' ? '' : ''} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
       </div>
     </div>  
     </>
