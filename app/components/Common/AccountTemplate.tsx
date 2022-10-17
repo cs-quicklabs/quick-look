@@ -89,7 +89,7 @@ const Onclose = () => {
                         </div>
                       </Form>
 
-                      <Form replace={true} action= {templateHandle} method='post'>
+                     {/*  <Form replace={true} action= {templateHandle} method='post'>
                       <div >
                         <input type="hidden" name='template' value='1' />
                         <button 
@@ -109,7 +109,7 @@ const Onclose = () => {
                         </button>
                       </div>
 
-                      </Form>
+                      </Form> */}
 
                       <Form replace={true} action= {templateHandle} method='post'>
                       <div >
