@@ -12,6 +12,7 @@ import AccountSidebar from "~/components/Common/AccountSidebar";
 import Template3 from "~/components/Templates/template3";
 import Template5 from "~/components/Templates/template5";
 import Template4 from "~/components/Templates/template4";
+import AccountTemplate from './../../components/Common/AccountTemplate';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request);
@@ -122,9 +123,11 @@ const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 
     <div className='h-100vw '>
       <DashboardHeader showUserSetting setShowUserSetting username={ loaderData?.username } loaderData={loaderData}/>
       <div className='flex relative'>
-        <div className={`w-[0%] md:w-0 lg:w-[20.1%]  ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
+        <div className={`w-[0%] md:w-0 lg:w-[20.1%] grow-0 ${mode === 'mobile' ? 'lg:z-[50]' :'lg:z-20'}`}>
       <AccountSidebar setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage} additionalLinkUpdateMessage={additionalLinkUpdateMessage} showBanner={showBanner} setShowBanner={setShowBanner} initialInput={initialInput} setMessage={setMessage} bioMessage={bioMessage} setBioMessage={setBioMessage} showSpotlight={showSpotlight} setShowSpotlight={setShowSpotlight} inputVideo={inputVideo} setInputVideo={setInputVideo} inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} showPortfolio={showPortfolio} setShowPortfolio={setShowPortfolio} showAddVideo={showAddVideo} setShowAddVideo={setShowAddVideo} showTestimonial={showTestimonial} setShowTestimonial={setShowTestimonial}  successUpdateMessage={successUpdateMessage} setshowSocialLinks={setshowSocialLinks} message={message} showSocialLinks={showSocialLinks} setshowTemplate={setshowTemplate} showTemplate={showTemplate} showImages={showImages} setshowImages={setshowImages}  actionData={actionData} loaderData={loaderData} setmode={setmode}  setshow={setshow} input={input} setinput={setinput} mode={mode} showBio={showBio} setshowBio={setshowBio} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore}/></div>
-     <div className={`flex-1 w-[70%] z-10 flex-grow ml-0 lg:ml-[5rem] xl:ml-[0rem] ${mode === 'mobile' ? 'lg:pl-[12rem] xl:pl-[20rem]' : ''}`}>
+
+     {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
+     <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]'}`}>
       { loaderData?.profileInfo?.templateNumber == '0' ?
       <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '2' ? <Template3 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/>  : loaderData?.profileInfo?.templateNumber == '3' ? <Template4 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '4' ? <Template5 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
