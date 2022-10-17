@@ -6,7 +6,6 @@ import { commitSession, getSession } from "~/services/session.service.server";
 
 import Template1 from "~/components/Templates/template1";
 import { useEffect, useState } from "react";
-import Template2 from "~/components/Templates/template2";
 import  { DesktopComputerIcon, DeviceMobileIcon } from "@heroicons/react/outline";
 import AccountSidebar from "~/components/Common/AccountSidebar";
 import Template3 from "~/components/Templates/template3";
@@ -129,7 +128,7 @@ const disabledIcon = loaderData?.profileImage?.primaryImage || primaryRestore ? 
      {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
      <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]'}`}>
       { loaderData?.profileInfo?.templateNumber == '0' ?
-      <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '1' ? <Template2 secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '2' ? <Template3 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/>  : loaderData?.profileInfo?.templateNumber == '3' ? <Template4 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '4' ? <Template5 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
+      <Template1 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '2' ? <Template3 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/>  : loaderData?.profileInfo?.templateNumber == '3' ? <Template4 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '4' ? <Template5 mode={mode} primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : null }</div>
         </div>
         
         <div className={`hidden w-[80px] lg:flex absolute top-[4.5rem] right-[2rem] ${!showUserSetting ? 'z-40':'z-[60]'}  rounded-l-md rounded-r-md ${loaderData?.profileImage?.primaryImage || primaryRestore ? '' :'border border-gray-300'} ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ""} ${loaderData?.supportBanner?.toggleBanner && "mt-[3rem]"} `}>
