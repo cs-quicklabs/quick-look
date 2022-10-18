@@ -1,17 +1,17 @@
-import { json, LoaderFunction } from "@remix-run/node";
-import { getUser, requireUserId } from "~/services/auth.service.server";
-import DashboardHeader from "~/components/Common/DashboardHeader";
-import { useActionData, useLoaderData } from "@remix-run/react";
-import { commitSession, getSession } from "~/services/session.service.server";
+import { json, LoaderFunction } from '@remix-run/node'
+import { getUser, requireUserId } from '~/services/auth.service.server'
+import DashboardHeader from '~/components/Common/DashboardHeader'
+import { useActionData, useLoaderData } from '@remix-run/react'
+import { commitSession, getSession } from '~/services/session.service.server'
 
-import Template1 from "~/components/Templates/template1";
-import { useEffect, useState } from "react";
-import  { DesktopComputerIcon, DeviceMobileIcon } from "@heroicons/react/outline";
-import AccountSidebar from "~/components/Common/AccountSidebar";
-import Template3 from "~/components/Templates/template3";
-import Template5 from "~/components/Templates/template5";
-import Template4 from "~/components/Templates/template4";
-import Template6 from "~/components/Templates/template6";
+import Template1 from '~/components/Templates/template1'
+import { useEffect, useState } from 'react'
+import { DesktopComputerIcon, DeviceMobileIcon } from '@heroicons/react/outline'
+import AccountSidebar from '~/components/Common/AccountSidebar'
+import Template3 from '~/components/Templates/template3'
+import Template5 from '~/components/Templates/template5'
+import Template4 from '~/components/Templates/template4'
+import Template6 from '~/components/Templates/template6'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -217,13 +217,51 @@ export default function Profile() {
         </div>
 
         {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
-        <div className={`flex-1 grow z-30  
-     ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0' ? 'lg:ml-[48rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : loaderData?.profileInfo?.templateNumber == '0' ? 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]' : null}  
-     ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '1' ? 'lg:ml-[12rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : loaderData?.profileInfo?.templateNumber == '1' ? 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]' : null}
-     ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2' ? 'lg:ml-[30rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : loaderData?.profileInfo?.templateNumber == '2' ? 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]' : null}
-     ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3' ? 'lg:ml-[29rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : loaderData?.profileInfo?.templateNumber == '3' ? 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]' : null}
-     ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4' ? 'lg:ml-[48rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : loaderData?.profileInfo?.templateNumber == '4' ? 'lg:ml-[5rem] largeLaptop:ml-[0rem] medium:ml-[3rem]' : null}
-     ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5' ? 'lg:ml-[49rem] largeLaptop:ml-[24rem] medium:ml-[27rem]' : loaderData?.profileInfo?.templateNumber == '5' ? 'lg:ml-[24rem] largeLaptop:ml-[0rem] medium:ml-[3rem]' : null}`}>
+        <div
+          className={`z-30 flex-1 grow  
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
+         ? 'lg:ml-[48rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '0'
+         ? 'lg:ml-[5rem] medium:ml-[3rem] largeLaptop:ml-[0rem]'
+         : null
+     }  
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '1'
+         ? 'lg:ml-[12rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '1'
+         ? 'lg:ml-[5rem] medium:ml-[3rem] largeLaptop:ml-[0rem]'
+         : null
+     }
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
+         ? 'lg:ml-[30rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '2'
+         ? 'lg:ml-[5rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         : null
+     }
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
+         ? 'lg:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '3'
+         ? 'lg:ml-[5rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         : null
+     }
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
+         ? 'lg:ml-[48rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '4'
+         ? 'lg:ml-[5rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         : null
+     }
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
+         ? 'lg:ml-[49rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '5'
+         ? 'lg:ml-[24rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         : null
+     }`}
+        >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
             <Template1
               primaryRestore={primaryRestore}
@@ -263,7 +301,8 @@ export default function Profile() {
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
-            /> ) : null}
+            />
+          ) : null}
         </div>
       </div>
 
