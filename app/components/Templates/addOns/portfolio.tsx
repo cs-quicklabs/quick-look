@@ -37,6 +37,7 @@ export default function PortfolioAddon({ loaderData }: any) {
             data-src={img.imageUrl}
           >
             <img
+              draggable={false}
               loading="lazy"
               className="img-responsive h-[10rem] w-[16rem] cursor-pointer object-cover"
               src={img.imageUrl}
