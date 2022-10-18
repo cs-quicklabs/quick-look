@@ -30,7 +30,7 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex flex-col-reverse lg:items-center justify-center bg-white ml-[0.1rem] ${mode ==='mobile' ? '' : 'lg:flex-row lg:justify-between lg:gap=[20rem]'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] ${mode ==='mobile' ? '' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem]'} ${nav? 'lg:w-[51rem]' :''}`}>
+      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] ${mode ==='mobile' ? 'lg:w-[45rem]' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem]'} ${nav? 'lg:w-[51rem]' :''}`}>
         <h4 className={`text-xl leading-8 font-semibold lg:text-4xl lg:leading-10 lg:font-extrabold ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -111,9 +111,9 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-      <div className={`w-[22rem] md:w-[45rem] py-[2rem] lg:py-[0rem] ml-[4.5rem] ${mode ==='mobile' ? 'largeLaptop:ml-[26.5rem]' : 'lg:pt-[7rem] lg:mt-[-85rem]  lg:w-[38rem]'} ${nav? 'lg:pt-[14rem] lg:mt-[-69rem]  lg:w-[45rem]' :''}`} style={myStyle}>
+      <div className={`w-[22rem] md:w-[45rem] py-[2rem] lg:py-[0rem] ml-[4.5rem] lg:w-[38rem] ${mode ==='mobile' ? 'largeLaptop:ml-[26.5rem] lg:py-[2rem]' : 'lg:pt-[7rem] lg:mt-[-93rem]'} ${nav? 'lg:pt-[14rem]  lg:w-[45rem]' :''}`} style={myStyle}>
       {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full shadow-xl object-cover ml-[-1rem] ${mode ==='mobile' ? '' : 'lg:ml-[-3rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full shadow-xl object-cover ml-[-1rem] lg:ml-[-3rem] ${mode ==='mobile' ? '' : ''} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
       </div>
     </div>  
     </>
