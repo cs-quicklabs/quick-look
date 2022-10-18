@@ -20,11 +20,11 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ${nav ?'min-h-[calc(96.5vh+50px)] ' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'largeLaptop:bg-white  flex-col' : 'xl:bg-white xl:flex-row flex-col  pt-[2rem] lg:pt-[5rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
+    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ${nav ?'min-h-[calc(96.5vh+50px)] ' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col  pt-[2rem] lg:pt-[5rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
 
       <div></div>
       
-      <div className={`mt-[1rem] sm:mt-[2rem] xl:mt-[5.625rem] pt-[1rem] bg-white ${mode ==='mobile' ? 'sm:ml-[4rem] lg:ml-[2rem] 2xl:ml-0 largeLaptop:mr-[1rem]  p-[3rem] lg:pl-[3rem] xl:pl-[10.5rem] medium:pl-[14rem] largeLaptop:pl-[22rem] large:pl-[0rem] 2xl:pl-[11rem]' : 'pl-[2rem] xl:pl-[7rem] largeLaptop:pl-[0rem]  md:pl-[9rem] lg:pl-[15rem] xl:p-[0rem] largeLaptop:mr-[6rem]'} ${nav ? 'lg:pr-[8rem] lg:pl-[9rem] largeLaptop:pl-[0rem]' :''}`}>
+      <div className={`mt-[1rem] sm:mt-[2rem] xl:mt-[5.625rem] pt-[1rem] bg-white ${mode ==='mobile' ? 'sm:ml-[4rem] lg:ml-[2rem] 2xl:ml-0 largeLaptop:mr-[1rem]  p-[3rem] lg:pl-[3rem] xl:pl-[10.5rem] medium:pl-[14rem] largeLaptop:pl-[22rem] large:pl-[0rem] 2xl:pl-[11rem]' : 'lg:bg-purple-50 pl-[2rem] xl:pl-[7rem] largeLaptop:pl-[0rem]  md:pl-[9rem] lg:pl-[15rem] xl:p-[0rem] largeLaptop:mr-[6rem]'} ${nav ? 'lg:pr-[8rem] lg:pl-[9rem] largeLaptop:pl-[0rem]' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?
         <h4 className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode ==='mobile' ? 'xl:text-[36px] xl:leading-10 lg:ml-0' : 'lg:text-[36px] lg:leading-10 2xl:pr-[4rem] xl:ml-[2rem] medium:ml-[0rem] 2xl:ml-[0rem] '} ${nav ? '2xl:ml-[0.5rem] largeLaptop:mr-[0rem]' :''}`}>
         {loaderData?.firstname} {loaderData?.lastname}
