@@ -231,12 +231,14 @@ export default function Profile() {
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
+              mode={mode}
             />
           ) : loaderData?.profileInfo?.templateNumber == '1' ? (
             <Template2
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
+              mode={mode}
             />
           ) : loaderData?.profileInfo?.templateNumber == '2' ? (
             <Template3
