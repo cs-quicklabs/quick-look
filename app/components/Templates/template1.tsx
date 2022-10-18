@@ -98,7 +98,7 @@ export default function Template1({
             )}
           </div>
 
-          <div className="pl-[5rem] pr-[8rem] md:px-[12rem] lg:px-[14rem]  ">
+          <div className="pl-[5rem] pr-[8rem] md:px-[12rem] lg:pr-[14rem] lg:pl-[3rem] largeLaptop:px-[14rem]">
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">
               <pre className="flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}
@@ -144,7 +144,7 @@ export default function Template1({
               </div>
             </div>
             {/* <footer className='flex pt-[2rem] lg:pt-[5rem] gap-4 md:gap-4 w-[40%] justify-center mx-[3.4rem] md:mx-[3.5rem]  lg:mx-[4.1rem] '> */}
-            <footer className="flex w-full justify-center gap-4 pt-[2rem] md:gap-8  lg:pt-[5rem]">
+            <footer className="flex w-full justify-center gap-4 pt-[2rem] md:gap-8  lg:pt-[5rem] pb-[4rem]">
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.facebookLink}`}
