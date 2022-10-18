@@ -111,9 +111,9 @@ export default function Template6 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-      <div className={`w-[22rem] md:w-[45rem] py-[2rem] lg:py-[0rem] ml-[4.5rem] ${mode ==='mobile' ? '' : 'lg:pt-[7rem] lg:mt-[-85rem]  lg:w-[40rem]'} ${nav? 'lg:pt-[14rem] lg:mt-[-69rem]  lg:w-[45rem]' :''}`} style={myStyle}>
+      <div className={`w-[22rem] md:w-[45rem] py-[2rem] lg:py-[0rem] ml-[4.5rem] ${mode ==='mobile' ? 'largeLaptop:ml-[26.5rem]' : 'lg:pt-[7rem] lg:mt-[-85rem]  lg:w-[38rem]'} ${nav? 'lg:pt-[14rem] lg:mt-[-69rem]  lg:w-[45rem]' :''}`} style={myStyle}>
       {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full shadow-xl object-cover ml-[-1rem] ${mode ==='mobile' ? '' : ''} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full shadow-xl object-cover ml-[-1rem] ${mode ==='mobile' ? '' : 'lg:ml-[-3rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
       </div>
     </div>  
     </>

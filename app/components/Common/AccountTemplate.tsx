@@ -2,7 +2,6 @@ import { Fragment, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
-import thumbnail2 from '../../../assets/images/screenshots/thumbnail2.png'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import thumbnail3 from '../../../assets/images/screenshots/thumbnail3.png'
@@ -88,28 +87,6 @@ const Onclose = () => {
                           </button>
                         </div>
                       </Form>
-
-                     {/*  <Form replace={true} action= {templateHandle} method='post'>
-                      <div >
-                        <input type="hidden" name='template' value='1' />
-                        <button 
-                        type='submit'
-                        className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template2') }}
-                        disabled={transition?.state != 'idle'}
-                        >
-                          {selectTemplate === 'template2' && transition?.submission?.action == "/account/update/choose-template" ?
-                            <div className='relative top-[-1rem] '><BeatLoader color="#184fad" 
-                            className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
-                              </div>
-                              :
-                              <img src={thumbnail2} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
-
-                        </button>
-                      </div>
-
-                      </Form> */}
 
                       <Form replace={true} action= {templateHandle} method='post'>
                       <div >
