@@ -49,7 +49,7 @@ export const action: ActionFunction = async ({ request }) => {
 
       if(isUpdated){
         session.flash(
-          "updateProfileMessage",
+          "updateSuccessProfileMessage",
           `Your profile has been updated successfully.`
       );
       return redirect('/account/profile', {
@@ -102,10 +102,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(
     request.headers.get("Cookie")
   );
-  const updateProfileMessage = session.get("updateProfileMessage") || null;
+  const updateSuccessProfileMessage = session.get("updateSuccessProfileMessage") || null;
   const updatePasswordMessage = session.get("updatePasswordMessage") || null;
   return json(
-    { updateProfileMessage, updatePasswordMessage, user },
+    { updateSuccessProfileMessage, updatePasswordMessage, user },
     {
       headers: {
         "Set-Cookie": await commitSession(session),
@@ -128,11 +128,11 @@ export default function Profile() {
     profileId: `${loaderData?.user?.username}`,
   })
 
-  const [profileMessage, setProfileMessage] = useState(loaderData?.updateProfileMessage)
+  const [profileMessage, setProfileMessage] = useState(loaderData?.updateSuccessProfileMessage)
   const [passwordMessasge, setPasswordMessage] = useState(loaderData?.updatePasswordMessage)
 
   useEffect(() => {
-    setProfileMessage(loaderData?.updateProfileMessage);
+    setProfileMessage(loaderData?.updateSuccessProfileMessage);
     setPasswordMessage(loaderData?.updatePasswordMessage)
   },[loaderData])
 
