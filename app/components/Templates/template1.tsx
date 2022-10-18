@@ -98,7 +98,7 @@ export default function Template1({
             )}
           </div>
 
-          <div className="pl-[5rem] pr-[8rem] md:px-[12rem] lg:pr-[14rem] lg:pl-[3rem] largeLaptop:px-[14rem]">
+          <div className={`pl-[5rem] pr-[8rem] md:px-[12rem]  largeLaptop:px-[14rem] ${mode ==='mobile' ? 'lg:pr-[14rem] lg:pl-[3rem]' : 'xl:flex-row lg:px-[14rem]'}`} >
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">
               <pre className="flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}
