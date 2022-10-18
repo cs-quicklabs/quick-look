@@ -103,9 +103,13 @@ export default function Portfolio({
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={() => {}}>
-        <div className="fixed inset-0 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden">
+      <Dialog
+        as="div"
+        className="relative z-20 overflow-y-auto"
+        onClose={() => {}}
+      >
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="absolute inset-0 ">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">
               <Transition.Child
                 as={Fragment}
@@ -117,12 +121,14 @@ export default function Portfolio({
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="h-screen">
+                  <div className="h-screen" style={{ overflow: 'auto' }}>
                     <div
-                      className={`font-inter mt-12 flex h-[95%]  flex-col border-r border-gray-200 bg-white ${
+                      className={`font-inter mt-12 flex ${
+                        loaderData.portfolioImage.length <= 12 ? 'h-full' : ''
+                      }   flex-col border-r border-gray-200 bg-white ${
                         mode === 'mobile'
                           ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                          : 'w-[100vw] md:w-[20rem] lg:w-96'
+                          : 'w-[100vw] md:w-[20rem] lg:w-[23rem] largeLaptop:w-96'
                       } `}
                     >
                       <div className="">
@@ -239,7 +245,10 @@ export default function Portfolio({
                             : null
                         }`}
                       >
-                        <ul className="col-span-2 mx-6 mt-8 grid grid-cols-4 items-center gap-4 gap-y-4 hover:mb-4">
+                        <ul
+                          className="col-span-2 mx-6 mt-8 grid grid-cols-4 items-center gap-4 gap-y-4 hover:mb-4"
+                          style={{ overflow: 'auto' }}
+                        >
                           {loaderData.portfolioImage.map((img: any) => (
                             <Portfolioimage
                               setUpload={setUpload}
