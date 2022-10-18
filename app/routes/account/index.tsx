@@ -235,14 +235,14 @@ export default function Profile() {
      }
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '2'
          ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
-         ? 'lg:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[48.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '3'
          ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
          : null
