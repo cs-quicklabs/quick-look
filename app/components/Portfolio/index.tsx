@@ -51,16 +51,16 @@ export default function Portfolio({
       ? 'bottom-[18rem]'
       : loaderData.portfolioImage.length > 12 &&
         loaderData.portfolioImage.length <= 16
-      ? 'bottom-[19rem]'
+      ? 'bottom-[14rem]'
       : loaderData.portfolioImage.length > 8 &&
         loaderData.portfolioImage.length <= 12
-      ? 'bottom-[22rem]'
+      ? 'bottom-[10.5rem]'
       : loaderData.portfolioImage.length > 4 &&
         loaderData.portfolioImage.length <= 8
-      ? 'bottom-[25rem]'
+      ? 'bottom-[7rem]'
       : loaderData.portfolioImage.length >= 1 &&
         loaderData.portfolioImage.length <= 4
-      ? 'bottom-[28rem]'
+      ? 'bottom-[4rem]'
       : ''
 
   const handleChange = (e: any) => {
@@ -263,9 +263,9 @@ export default function Portfolio({
                       </div>
                       {(transition.state != 'idle' && edit) ||
                       (transition.state != 'idle' && del) ? (
-                        <div className={`absolute ${calc} left-[11rem]`}>
-                          <BeatLoader color="#184fad" />
-                        </div>
+                      <div className={`relative ${calc} left-[11rem]`}>
+                        <BeatLoader color="#184fad" />
+                      </div>
                       ) : null}
                     </div>
                   </div>

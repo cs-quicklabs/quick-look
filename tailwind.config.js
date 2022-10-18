@@ -30,6 +30,7 @@ module.exports = {
         medium: '1560px',
         largeLaptop: '1920px',
         large: '2560px',
+        Smheight: { raw: '(max-height: 1234px)' },
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
