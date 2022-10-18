@@ -1,18 +1,17 @@
-import { json, LoaderFunction } from '@remix-run/node'
-import { getUser, requireUserId } from '~/services/auth.service.server'
-import DashboardHeader from '~/components/Common/DashboardHeader'
-import { useActionData, useLoaderData } from '@remix-run/react'
-import { commitSession, getSession } from '~/services/session.service.server'
+import { json, LoaderFunction } from "@remix-run/node";
+import { getUser, requireUserId } from "~/services/auth.service.server";
+import DashboardHeader from "~/components/Common/DashboardHeader";
+import { useActionData, useLoaderData } from "@remix-run/react";
+import { commitSession, getSession } from "~/services/session.service.server";
 
-import Template1 from '~/components/Templates/template1'
-import { useEffect, useState } from 'react'
-import Template2 from '~/components/Templates/template2'
-import { DesktopComputerIcon, DeviceMobileIcon } from '@heroicons/react/outline'
-import AccountSidebar from '~/components/Common/AccountSidebar'
-import Template3 from '~/components/Templates/template3'
-import Template5 from '~/components/Templates/template5'
-import Template4 from '~/components/Templates/template4'
-import AccountTemplate from './../../components/Common/AccountTemplate'
+import Template1 from "~/components/Templates/template1";
+import { useEffect, useState } from "react";
+import  { DesktopComputerIcon, DeviceMobileIcon } from "@heroicons/react/outline";
+import AccountSidebar from "~/components/Common/AccountSidebar";
+import Template3 from "~/components/Templates/template3";
+import Template5 from "~/components/Templates/template5";
+import Template4 from "~/components/Templates/template4";
+import AccountTemplate from './../../components/Common/AccountTemplate';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -228,13 +227,6 @@ export default function Profile() {
           {loaderData?.profileInfo?.templateNumber == '0' ? (
             <Template1
               primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-              input={input}
-              loaderData={loaderData}
-              mode={mode}
-            />
-          ) : loaderData?.profileInfo?.templateNumber == '1' ? (
-            <Template2
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
