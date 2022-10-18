@@ -169,6 +169,8 @@ export default function Portfolio({
                                 image1={image1}
                                 setimage1={setimage1}
                                 accept={'image/*'}
+                                setEdit={setEdit}
+                                setDel={setDel}
                               >
                                 <p className="text-xs font-semibold leading-4 tracking-wide">
                                   ADD IMAGES
