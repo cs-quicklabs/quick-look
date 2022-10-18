@@ -24,11 +24,12 @@ module.exports = {
         '4xl': '2rem',
       },
       screens: {
-        'xs': '426px',
-        'xxs': '375px',
-        'medium': '1560px',
-        'largeLaptop': '1920px',
-        'large': '2560px',
+        xs: '426px',
+        xxs: '375px',
+        small: '1024px',
+        medium: '1560px',
+        largeLaptop: '1920px',
+        large: '2560px',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -42,7 +43,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('tailwind-scrollbar-hide')],
+  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar-hide')],
 }
