@@ -25,7 +25,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col xl:flex-row pt-[3rem] pb-[5rem] pl-[1rem] sm:pl-[3rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'flex-col lg:flex-row lg:pl-[1.5rem]' :''}`} style={myStyle}>
+    <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide  ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col xl:flex-row pt-[3rem] pb-[5rem] pl-[1rem] sm:pl-[3rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'flex-col lg:flex-row lg:pl-[1.5rem]' :''}`} style={myStyle}>
       <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'lg:pl-[2rem] xl:pl-[2rem]  xl:mt-[5.625rem] lg:max-w-[25rem] xl:max-w-[32rem]  2xl:max-w-[47rem] medium:max-w-[60rem] medium:pl-[13rem] 2xl:pl-[13rem] largeLaptop:pl-[6rem] large:pl-[3rem]' : 'pl-[2.5rem] sm:pl-[3rem] xl:mt-[5.625rem] mr-[4rem] ml-[0rem] sm:mr-[6rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[3rem] xl:pl-[7rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[29rem] xl:max-w-[35rem] lg:mx-[1.625rem] xl:mx-[5.625rem] medium:mx-[5.625rem] largeLaptop:mx-[10.625rem] large:mx-[12.625rem] 2xl:ml-[7.01rem]' :'xl:pl-0 2xl:pl-[2rem]'}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?

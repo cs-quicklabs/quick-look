@@ -20,7 +20,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ${nav ?'min-h-[calc(96.5vh+50px)] ' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col  pt-[2rem] lg:pt-[5rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
+    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] ${nav ?'min-h-[calc(96.5vh+50px)] ' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col  pt-[2rem] lg:pt-[5rem]'}  justify-center bg-no-repeat object-cover overflow-none`}>
 
       <div></div>
       
