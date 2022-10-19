@@ -29,7 +29,11 @@ function Template9({
       {loaderData?.supportBanner?.toggleBanner && (
         <BannerAddOn mode={mode} loaderData={loaderData} />
       )}
-      <div className={`flex h-[25vh] flex-col md:h-[52vh] `}>
+      <div
+        className={`flex  flex-col  ${
+          mode === 'mobile' ? 'h-[25vh]' : 'h-[25vh] md:h-[52vh]'
+        }`}
+      >
         <div>
           {primaryRestore || loaderData?.profileImage?.primaryImage ? (
             <img
@@ -38,7 +42,9 @@ function Template9({
                   ? DefaultCoverPicture
                   : loaderData?.profileImage?.primaryImage
               }
-              className=" h-[20vh] w-[100%] object-cover md:h-[40vh]"
+              className={` w-[100%] object-cover  ${
+                mode === 'mobile' ? 'h-[20vh]' : 'h-[20vh] md:h-[40vh]'
+              }`}
               alt=""
             />
           ) : null}
@@ -46,9 +52,13 @@ function Template9({
         <div
           className={`relative flex justify-center  ${
             primaryRestore || loaderData?.profileImage?.primaryImage
-              ? 'bottom-[6rem] md:bottom-[12rem]'
+              ? ` ${
+                  mode === 'mobile'
+                    ? 'bottom-[5rem]'
+                    : 'bottom-[6rem] md:bottom-[12rem]'
+                }`
               : 'bottom-[-11rem]'
-          }`}
+          } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
@@ -58,7 +68,11 @@ function Template9({
                   : loaderData?.profileImage?.secondaryImage
               }
               alt=""
-              className=" h-[8rem] w-[8rem] rounded-full drop-shadow md:h-[18rem] md:w-[18rem] md:border-[15px] md:border-white"
+              className={`rounded-full ${
+                mode === 'mobile'
+                  ? 'h-[8rem] w-[8rem]'
+                  : 'h-[8rem] w-[8rem]  drop-shadow md:h-[18rem] md:w-[18rem]  md:border-[15px] md:border-white'
+              }  `}
             />
           ) : null}
         </div>
@@ -71,13 +85,13 @@ function Template9({
           {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
           {input.location}
         </div>
-        <div className="w-[22rem] md:w-full">
+        <div className="mr-8 w-[22rem] md:mr-0 md:w-full">
           {loaderData?.spotlightButton?.toggleSpotlight && (
             <Spotlightbtn loaderData={loaderData} />
           )}
         </div>
 
-        <div className="w-[22rem] md:w-full">
+        <div className="mr-8 w-[22rem] md:mr-0 md:w-full">
           {loaderData?.spotlightButton?.toggleSpotlight && (
             <AdditionalLinksAddOn loaderData={loaderData} />
           )}
