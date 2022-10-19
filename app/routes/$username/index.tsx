@@ -6,7 +6,7 @@ import Template3 from '~/components/Templates/template3'
 import Template4 from '~/components/Templates/template4'
 import Template5 from '~/components/Templates/template5'
 import Template6 from '~/components/Templates/template6'
-import Template9 from '~/components/Templates/template9'
+import Template9 from '~/components/Templates/template10'
 
 import { getUserByUsername } from '~/services/user.service.serevr'
 
