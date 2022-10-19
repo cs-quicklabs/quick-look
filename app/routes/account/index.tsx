@@ -10,7 +10,7 @@ import { DesktopComputerIcon, DeviceMobileIcon } from '@heroicons/react/outline'
 import AccountSidebar from '~/components/Common/AccountSidebar'
 import Template3 from '~/components/Templates/template3'
 import Template5 from '~/components/Templates/template5'
-import Template4 from '~/components/Templates/template4'
+import Template8 from '~/components/Templates/template8'
 import Template6 from '~/components/Templates/template6'
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -279,7 +279,7 @@ export default function Profile() {
               loaderData={loaderData}
             />
           ) : loaderData?.profileInfo?.templateNumber == '3' ? (
-            <Template4
+            <Template8
               mode={mode}
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}

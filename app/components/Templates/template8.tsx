@@ -12,7 +12,7 @@ import {BriefcaseIcon} from '@heroicons/react/outline'
 import {AcademicCapIcon} from '@heroicons/react/outline'
 import PortfolioAddon from './addOns/portfolio'
 
-export default function Template4 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
+export default function Template8 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
   const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
@@ -20,9 +20,9 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col pt-[2rem] lg:pt-[5rem] lg:gap-[4rem] largeLaptop:gap-[10rem]'} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
+    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col pt-[2rem] lg:pt-[5rem] lg:gap-[4rem] lg:items-start lg:justify-start largeLaptop:gap-[12rem]  '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem] lg:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
 
-      <div className={`mt-[1rem] sm:mt-[2rem] xl:mt-[5.625rem] pt-[1rem] pl-[1rem] w-[25rem] md:w-[47rem] bg-white ${mode ==='mobile' ? 'lg:pr-[3rem] largeLaptop:w-[72rem]' : 'lg:bg-purple-50 lg:w-[32rem] largeLaptop:w-[43rem]'} ${nav ? 'lg:w-[40rem]' :''}`}>
+      <div className={`mt-[1rem] sm:mt-[2rem] pt-[1rem] pl-[1rem] w-[25rem] md:w-[47rem] bg-white ${mode ==='mobile' ? 'lg:pr-[3rem] largeLaptop:w-[72rem]' : 'lg:bg-purple-50 lg:w-[32rem] lg:pl-[3rem] lg:mt-[12rem] largeLaptop:w-[43rem] largeLaptop:pl-[6rem] largeLaptop:mt-[11.625rem]'} ${nav ? 'lg:w-[45.5rem] lg:pl-[7rem] largeLaptop:w-[55rem] largeLaptop:pl-[12rem]' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?
         <h4 className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode ==='mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '} ${nav ? '' :''}`}>
         {loaderData?.firstname} {loaderData?.lastname}
@@ -58,7 +58,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
         </div>
 
         <div className={` pb-[4rem] flex flex-col ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? ' ' : 'lg:flex-row lg:gap-[9rem] largeLaptop:gap-[20rem]'} ${nav ? '' : ''}`} >
+            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? ' ' : 'lg:flex-row lg:gap-[7rem] largeLaptop:gap-[15rem]'} ${nav ? 'lg:gap-[16rem]' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex ${mode ==='mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
@@ -111,7 +111,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'xl:mt-[5.625rem] lg:w-[28rem]' : 'lg:mt-[-87rem] lg:w-[27rem]'} ${nav ? 'lg:w-[35rem] lg:mt-[-77rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
+      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] pt-[4rem] pb-[2rem]' : 'lg:w-[33rem] largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}

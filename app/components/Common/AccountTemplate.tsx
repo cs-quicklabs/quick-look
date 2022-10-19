@@ -112,14 +112,14 @@ const Onclose = () => {
 
                       <Form replace={true} action= {templateHandle} method='post'>
                       <div >
-                        <input type="hidden" name='template' value='3' />
+                        <input type="hidden" name='template' value='8' />
                         <button 
                         type='submit'
                         className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template4') }}
+                        onClick={(e: any) => { setSelectTemplate('template8') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template4' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template8' && transition?.submission?.action == "/account/update/choose-template" ?
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail4} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
