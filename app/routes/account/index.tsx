@@ -12,6 +12,7 @@ import Template2 from '~/components/Templates/template2'
 import Template7 from '~/components/Templates/template7'
 import Template8 from '~/components/Templates/template8'
 import Template5 from '~/components/Templates/template5'
+import Template9 from '~/components/Templates/template9'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -254,6 +255,13 @@ export default function Profile() {
          ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
          : null
      }
+     ${
+      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
+        ? 'lg:ml-[32rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        : loaderData?.profileInfo?.templateNumber == '9'
+        ? 'lg:ml-[11.3rem] xl:ml-[6.3rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
+        : null
+    }
      
      `}
         >
@@ -297,7 +305,15 @@ export default function Profile() {
               input={input}
               loaderData={loaderData}
             />
-          )  : null}
+          ) : loaderData?.profileInfo?.templateNumber == '9' ? (
+            <Template9
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          ) : null}
         </div>
       </div>
 

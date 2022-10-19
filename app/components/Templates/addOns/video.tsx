@@ -8,7 +8,7 @@ export default function VideoAddOn(videoLink: any) {
   // const ytfbVideo = videoLink.videoSourceKey === 'youtube' ? youtubeVideoId : facebookVideoId
 
   return (
-    <div className="mx-auto mt-8 w-[42rem] ">
+    <div className="mx-auto mt-8 w-[20rem] md:w-[42rem] ">
       {/* {videoLink.videoSourceKey === 'youtube' ?  */}
       {link?.includes('youtube') ? (
         <iframe
@@ -18,8 +18,9 @@ export default function VideoAddOn(videoLink: any) {
       ) : (
         <iframe
           src={`https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.${youtubeVideoId}`}
-          width="734"
-          height="700"
+          // width="734"
+          className="md:h-[700px] w-[370px] h-[350px] md:w-[734px]"
+          // height="700"
           scrolling="no"
           allowTransparency={true}
           allowFullScreen={true}

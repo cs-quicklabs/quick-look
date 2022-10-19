@@ -1,4 +1,4 @@
-import { Fragment, useState} from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
@@ -8,34 +8,41 @@ import thumbnail3 from '../../../assets/images/screenshots/thumbnail3.png'
 import thumbnail4 from '../../../assets/images/screenshots/thumbnail4.png'
 import thumbnail5 from '../../../assets/images/screenshots/thumbnail5.png'
 import thumbnail6 from '../../../assets/images/screenshots/thumbnail6.png'
-
-export default function AccountTemplate({setshowTemplate , mode, setmode}:any) {
-  const transition = useTransition();
+import temp9 from '../../../assets/images/screenshots/temp9.png'
+export default function AccountTemplate({
+  setshowTemplate,
+  mode,
+  setmode,
+}: any) {
+  const transition = useTransition()
 
   const [selectTemplate, setSelectTemplate] = useState('')
   const templateHandle = 'update/choose-template'
-  const OnCancel = ()=>{
- setshowTemplate(false);
-  setmode('desktop')
-}
-const Onclose = () => {
-   
-    if(mode === 'desktop'){
-   setshowTemplate(false)
+  const OnCancel = () => {
+    setshowTemplate(false)
+    setmode('desktop')
+  }
+  const Onclose = () => {
+    if (mode === 'desktop') {
+      setshowTemplate(false)
     }
-    if(mode === 'mobile'){
-     
+    if (mode === 'mobile') {
     }
- 
   }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
+      <Dialog as="div" className="relative z-20" onClose={() => {}}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12 ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
+            <div
+              className={`pointer-events-none fixed inset-y-0 left-0 mt-12  flex ${
+                mode === 'mobile'
+                  ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
+                  : 'lg:w-96'
+              }`}
+            >
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -45,15 +52,20 @@ const Onclose = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel data-cy="accountTemplate" className="pointer-events-auto w-full md:max-w-xs lg:max-w-md">
-                  <div className="flex h-full flex-col bg-white border-r border-gray-200 overflow-auto">
+                <Dialog.Panel
+                  data-cy="accountTemplate"
+                  className="pointer-events-auto w-full md:max-w-xs lg:max-w-md"
+                >
+                  <div className="flex h-full flex-col overflow-auto border-r border-gray-200 bg-white">
                     <div className="bg-gray-50 py-6 px-4 sm:px-6">
                       <div className="flex items-center justify-between">
-                        <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">Select Template </Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
+                          Select Template{' '}
+                        </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white leading-3 text-sm"
+                            className="rounded-md bg-white text-sm leading-3 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
                             onClick={OnCancel}
                           >
                             <span className="sr-only">Close panel</span>
@@ -62,8 +74,9 @@ const Onclose = () => {
                         </div>
                       </div>
                       <div className="pt-1 pr-2">
-                        <p className="text-sm leading-5 font-normal text-gray-500">
-                        Select how you want your profile to look like. Click on Toggle button to view in mobile and Desktop mode
+                        <p className="text-sm font-normal leading-5 text-gray-500">
+                          Select how you want your profile to look like. Click
+                          on Toggle button to view in mobile and Desktop mode
                         </p>
                       </div>
                     </div>
@@ -97,17 +110,22 @@ const Onclose = () => {
                         onClick={(e: any) => { setSelectTemplate('template2') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template2' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template2' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
-                              :
-                              <img src={thumbnail3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
-
-                        </button>
-                      </div>
-
+                            ) : (
+                              <img
+                                src={thumbnail3}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
                       </Form>
 
                       <Form replace={true} action= {templateHandle} method='post'>
@@ -119,17 +137,22 @@ const Onclose = () => {
                         onClick={(e: any) => { setSelectTemplate('template8') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template8' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template8' && transition?.submission?.action == "/account/update/choose-template" ?(
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail4} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
-                              :
-                              <img src={thumbnail4} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
-
-                        </button>
-                      </div>
-
+                            ) : (
+                              <img
+                                src={thumbnail4}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
                       </Form>
 
                       <Form replace={true} action= {templateHandle} method='post'>
@@ -141,17 +164,22 @@ const Onclose = () => {
                         onClick={(e: any) => { setSelectTemplate('template7') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template7' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template7' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail5} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
-                              :
-                              <img src={thumbnail5} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
-
-                        </button>
-                      </div>
-
+                            ) : (
+                              <img
+                                src={thumbnail5}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
                       </Form>
 
                       <Form replace={true} action= {templateHandle} method='post'>
@@ -163,19 +191,70 @@ const Onclose = () => {
                         onClick={(e: any) => { setSelectTemplate('template5') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template5' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template5' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
-                              :
-                              <img src={thumbnail6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} /> } 
-
-                        </button>
-                      </div>
-
+                            ) : (
+                              <img
+                                src={thumbnail6}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
                       </Form>
-
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="9" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template9')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template9' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={temp9}
+                                  alt=""
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
+                              </div>
+                            ) : (
+                              <img
+                                src={temp9}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </Form>
                     </div>
                   </div>
                 </Dialog.Panel>
