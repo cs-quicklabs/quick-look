@@ -154,15 +154,19 @@ function Template10({
           }`}
         >
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
-            <div className="w-[18px] ">
-              <BriefcaseIcon />
-            </div>
+            {input.company && (
+              <div className="w-[18px] ">
+                <BriefcaseIcon />
+              </div>
+            )}
             {input.company}
           </div>
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
-            <div className="w-[20px] ">
-              <AcademicCapIcon />
-            </div>
+            {input.education && (
+              <div className="w-[20px] ">
+                <AcademicCapIcon />
+              </div>
+            )}
             {input.education}{' '}
           </div>
         </div>
