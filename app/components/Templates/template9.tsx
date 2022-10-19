@@ -113,7 +113,7 @@ function Template9({
           )}
         </div>
         <div
-          className={`m-auto flex w-[20rem] flex-wrap pt-[2.5rem] md:w-[35rem] ${
+          className={`m-auto flex w-[20rem] flex-wrap pt-[2.5rem] md:w-[32rem] ${
             mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
           }`}
         >
@@ -123,7 +123,7 @@ function Template9({
           </pre>{' '}
         </div>
         <div
-          className={`m-auto flex w-[20rem] flex-wrap md:w-[35rem] ${
+          className={`m-auto flex w-[20rem] flex-wrap md:w-[32rem] ${
             mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
           }`}
         >
@@ -158,7 +158,7 @@ function Template9({
             {input.company}
           </div>
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
-            <div className="w-[18px] ">
+            <div className="w-[20px] ">
               <AcademicCapIcon />
             </div>
             {input.education}{' '}
@@ -169,7 +169,7 @@ function Template9({
         className={`flex w-full items-center justify-center gap-4 pb-[5rem] md:gap-8 ${
           mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
         } ${nav ? '' : ''} ${
-          loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'
+          loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[2rem]'
         }`}
       >
         {loaderData?.socialMedia?.facebookLink ? (
