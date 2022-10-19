@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
 import PortfolioAddon from './addOns/portfolio'
-export default function Template3 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
+export default function Template2 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
   const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)

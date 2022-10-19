@@ -74,10 +74,10 @@ const Onclose = () => {
                           <button 
                           type='submit'
                           className='disabled:cursor-pointer'
-                          onClick={(e: any) => { setSelectTemplate('template1') }}
+                          onClick={(e: any) => { setSelectTemplate('template0') }}
                           disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template1' && transition?.submission?.action == "/account/update/choose-template" ?
+                            {selectTemplate === 'template0' && transition?.submission?.action == "/account/update/choose-template" ?
                               <div className='relative top-[-1rem] '>
                                 <BeatLoader color="#184fad" className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                                 <img src={thumbnail1} alt="" className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
@@ -94,10 +94,10 @@ const Onclose = () => {
                         <button 
                         type='submit'
                         className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template3') }}
+                        onClick={(e: any) => { setSelectTemplate('template2') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template3' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template2' && transition?.submission?.action == "/account/update/choose-template" ?
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
@@ -134,14 +134,14 @@ const Onclose = () => {
 
                       <Form replace={true} action= {templateHandle} method='post'>
                       <div >
-                        <input type="hidden" name='template' value='4' />
+                        <input type="hidden" name='template' value='7' />
                         <button 
                         type='submit'
                         className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template5') }}
+                        onClick={(e: any) => { setSelectTemplate('template7') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template5' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template7' && transition?.submission?.action == "/account/update/choose-template" ?
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail5} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
@@ -160,10 +160,10 @@ const Onclose = () => {
                         <button 
                         type='submit'
                         className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template6') }}
+                        onClick={(e: any) => { setSelectTemplate('template5') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template6' && transition?.submission?.action == "/account/update/choose-template" ?
+                          {selectTemplate === 'template5' && transition?.submission?.action == "/account/update/choose-template" ?
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />

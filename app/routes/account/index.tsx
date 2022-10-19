@@ -4,14 +4,14 @@ import DashboardHeader from '~/components/Common/DashboardHeader'
 import { useActionData, useLoaderData } from '@remix-run/react'
 import { commitSession, getSession } from '~/services/session.service.server'
 
-import Template1 from '~/components/Templates/template1'
+import Template0 from '~/components/Templates/template0'
 import { useEffect, useState } from 'react'
 import { DesktopComputerIcon, DeviceMobileIcon } from '@heroicons/react/outline'
 import AccountSidebar from '~/components/Common/AccountSidebar'
-import Template3 from '~/components/Templates/template3'
-import Template5 from '~/components/Templates/template5'
+import Template2 from '~/components/Templates/template2'
+import Template7 from '~/components/Templates/template7'
 import Template8 from '~/components/Templates/template8'
-import Template6 from '~/components/Templates/template6'
+import Template5 from '~/components/Templates/template5'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -227,13 +227,6 @@ export default function Profile() {
          : null
      }  
      ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '1'
-         ? 'lg:ml-[12rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '1'
-         ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[0rem]'
-         : null
-     }
-     ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
          ? 'lg:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '2'
@@ -241,29 +234,31 @@ export default function Profile() {
          : null
      }
      ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
+      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
+        ? 'lg:ml-[49rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        : loaderData?.profileInfo?.templateNumber == '5'
+        ? 'lg:ml-[24rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+        : null
+    }
+    ${
+      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
+        ? 'lg:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        : loaderData?.profileInfo?.templateNumber == '7'
+        ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+        : null
+    }
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
          ? 'lg:ml-[48.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '3'
+         : loaderData?.profileInfo?.templateNumber == '8'
          ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
          : null
      }
-     ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
-         ? 'lg:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '4'
-         ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
-         : null
-     }
-     ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-         ? 'lg:ml-[49rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '5'
-         ? 'lg:ml-[24rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
-         : null
-     }`}
+     
+     `}
         >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
-            <Template1
+            <Template0
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
               input={input}
@@ -271,23 +266,7 @@ export default function Profile() {
               mode={mode}
             />
           ) : loaderData?.profileInfo?.templateNumber == '2' ? (
-            <Template3
-              mode={mode}
-              primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-              input={input}
-              loaderData={loaderData}
-            />
-          ) : loaderData?.profileInfo?.templateNumber == '3' ? (
-            <Template8
-              mode={mode}
-              primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-              input={input}
-              loaderData={loaderData}
-            />
-          ) : loaderData?.profileInfo?.templateNumber == '4' ? (
-            <Template5
+            <Template2
               mode={mode}
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -295,14 +274,30 @@ export default function Profile() {
               loaderData={loaderData}
             />
           ) : loaderData?.profileInfo?.templateNumber == '5' ? (
-            <Template6
+            <Template5
               mode={mode}
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
             />
-          ) : null}
+          ) : loaderData?.profileInfo?.templateNumber == '7' ? (
+            <Template7
+              mode={mode}
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+            />
+          ): loaderData?.profileInfo?.templateNumber == '8' ? (
+            <Template8
+              mode={mode}
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+            />
+          )  : null}
         </div>
       </div>
 
