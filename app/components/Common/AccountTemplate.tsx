@@ -219,11 +219,11 @@ export default function AccountTemplate({
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template9')
+                              setSelectTemplate('template10')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template9' &&
+                            {selectTemplate === 'template10' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">

@@ -12,7 +12,7 @@ import Template2 from '~/components/Templates/template2'
 import Template7 from '~/components/Templates/template7'
 import Template8 from '~/components/Templates/template8'
 import Template5 from '~/components/Templates/template5'
-import Template9 from '~/components/Templates/template9'
+import Template10 from '~/components/Templates/template10'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -306,7 +306,7 @@ export default function Profile() {
               loaderData={loaderData}
             />
           ) : loaderData?.profileInfo?.templateNumber == '9' ? (
-            <Template9
+            <Template10
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
               input={input}
