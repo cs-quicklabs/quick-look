@@ -28,6 +28,7 @@ module.exports = {
         xxs: '375px',
         small: '1024px',
         medium: '1560px',
+        mediumLaptop: '1700px',
         largeLaptop: '1920px',
         large: '2560px',
         Smheight: { raw: '(max-height: 1234px)' },
