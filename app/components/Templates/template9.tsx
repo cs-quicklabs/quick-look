@@ -30,9 +30,9 @@ function Template9({
         <BannerAddOn mode={mode} loaderData={loaderData} />
       )}
       <div
-        className={`flex  flex-col  ${
-          mode === 'mobile' ? 'h-[25vh]' : 'h-[25vh] md:h-[52vh]'
-        }`}
+        className={`flex  flex-col ${
+          mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+        }  ${mode === 'mobile' ? 'h-[25vh]' : 'h-[25vh] md:h-[52vh]'}`}
       >
         <div>
           {primaryRestore || loaderData?.profileImage?.primaryImage ? (
@@ -78,31 +78,55 @@ function Template9({
         </div>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <div className="text-xl font-extrabold leading-10 md:text-4xl">
+        <div
+          className={`text-xl font-extrabold leading-10 md:text-4xl ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {loaderData?.firstname} {loaderData?.lastname}
         </div>
-        <div className="text-xs font-medium leading-8 md:text-2xl ">
+        <div
+          className={`text-xs font-medium leading-8 md:text-2xl ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
           {input.location}
         </div>
-        <div className="mr-8 w-[22rem] md:mr-0 md:w-full">
+        <div
+          className={`mr-8 w-[22rem] md:mr-0 md:w-full ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {loaderData?.spotlightButton?.toggleSpotlight && (
             <Spotlightbtn loaderData={loaderData} />
           )}
         </div>
 
-        <div className="mr-8 w-[22rem] md:mr-0 md:w-full">
+        <div
+          className={`mr-8 w-[22rem] md:mr-0 md:w-full ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {loaderData?.spotlightButton?.toggleSpotlight && (
             <AdditionalLinksAddOn loaderData={loaderData} />
           )}
         </div>
-        <div className="m-auto flex w-[20rem] flex-wrap pt-[2.5rem] md:w-[35rem]">
+        <div
+          className={`m-auto flex w-[20rem] flex-wrap pt-[2.5rem] md:w-[35rem] ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {' '}
           <pre className="whitespace-pre-wrap break-all font-sans text-xs font-normal leading-5 text-gray-500 md:text-base">
             {input?.description?.trim()}{' '}
           </pre>{' '}
         </div>
-        <div className="m-auto flex w-[20rem] flex-wrap md:w-[35rem]">
+        <div
+          className={`m-auto flex w-[20rem] flex-wrap md:w-[35rem] ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {loaderData?.testimonial?.testimonialText && (
             <TestimonialAddOn
               testimonialText={loaderData?.testimonial?.testimonialText}
@@ -110,7 +134,11 @@ function Template9({
             />
           )}
         </div>
-        <div className="mr-[3.5rem]">
+        <div
+          className={`mr-[3.5rem] ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           {loaderData?.video?.videoLink && (
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />
           )}
@@ -118,7 +146,11 @@ function Template9({
         <div className="ml-[5rem] flex w-[50rem] items-center justify-center pr-[4rem] lg:px-0 lg:pr-0 lg:pl-0">
           <PortfolioAddon loaderData={loaderData} />
         </div>
-        <div className="mt-5 flex w-[20rem] items-center gap-8 md:w-full md:flex-col">
+        <div
+          className={`mt-5 flex w-[20rem] items-center gap-8 md:w-full md:flex-col ${
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          }`}
+        >
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
             <div className="w-[18px] ">
               <BriefcaseIcon />
@@ -134,9 +166,11 @@ function Template9({
         </div>
       </div>
       <footer
-        className={`flex w-full items-center justify-center gap-4 pb-[5rem] md:gap-8  ${
-          nav ? '' : ''
-        } ${loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'}`}
+        className={`flex w-full items-center justify-center gap-4 pb-[5rem] md:gap-8 ${
+          mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+        } ${nav ? '' : ''} ${
+          loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'
+        }`}
       >
         {loaderData?.socialMedia?.facebookLink ? (
           <a
