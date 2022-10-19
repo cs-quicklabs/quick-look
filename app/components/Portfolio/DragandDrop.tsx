@@ -10,6 +10,7 @@ function DropzonePortfolio({
   image1,
   setEdit,
   setDel,
+  mode,
 }: any) {
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept,
@@ -42,7 +43,13 @@ function DropzonePortfolio({
             ADD IMAGES
           </p>
           <div className="text-center">
-            <p>Drag and Drop an Image or click on button to upload</p>
+            <p
+              className={`${
+                mode === 'mobile' ? 'px-0 lg:px-[4rem] xl:px-0' : ''
+              }`}
+            >
+              Drag and Drop an Image or click on button to upload
+            </p>
           </div>
         </div>
         <input
