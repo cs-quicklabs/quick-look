@@ -19,7 +19,7 @@ export default function PortfolioAddon({ loaderData }: any) {
   return (
     <div className="img mt-8">
       <LightGallery
-        elementClassNames="grid grid-cols-5 gap-4"
+        elementClassNames="grid w-[20rem] md:w-full grid-cols-3 md:grid-cols-5 gap-4"
         counter
         animateThumb={false}
         zoomFromOrigin={false}
