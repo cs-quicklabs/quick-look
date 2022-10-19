@@ -64,7 +64,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-all ${mode ==='mobile' ? ' ' : 'lg:mt-[-0.25rem] '}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-all ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'lg:mt-[-0.25rem] '}`} >
                     {input.company}
                   </h2>
                 </div> : <span></span>}
@@ -73,7 +73,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-all ${mode ==='mobile' ? ' ' : 'lg:mt-[-0.25rem] '}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-all ${mode ==='mobile' ? ' lg:mt-[-0.25rem]' : 'lg:mt-[-0.25rem] '}`} >
                     {input.education}
                   </h2>
                 </div> : <span></span>}
