@@ -14,7 +14,7 @@ import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/video'
 import PortfolioAddon from './addOns/portfolio'
 
-function Template9({
+function Template10({
   input,
   loaderData,
   primaryRestore,
@@ -143,7 +143,7 @@ function Template9({
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />
           )}
         </div>
-        <div className="ml-[5rem] flex w-[50rem] items-center justify-center pr-[4rem] lg:px-0 lg:pr-0 lg:pl-0">
+        <div className="flex w-[42rem] items-center justify-center pr-[4rem] lg:px-0 lg:pr-0 lg:pl-0">
           <PortfolioAddon loaderData={loaderData} />
         </div>
         <div
@@ -201,4 +201,4 @@ function Template9({
   )
 }
 
-export default Template9
+export default Template10

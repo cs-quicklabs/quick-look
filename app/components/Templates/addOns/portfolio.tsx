@@ -16,10 +16,23 @@ export default function PortfolioAddon({ loaderData }: any) {
     slidesToScroll: 1,
     initialSlide: 2,
   }
+  // grid-cols-3 md:grid-cols-5
   return (
     <div className="img mt-8">
       <LightGallery
-        elementClassNames="grid w-[20rem] md:w-full grid-cols-3 md:grid-cols-5 gap-4"
+        elementClassNames={`grid w-[20rem] md:w-full gap-4 ${
+          loaderData.portfolioImage.length == 1
+            ? 'grid-cols-1'
+            : loaderData.portfolioImage.length == 2
+            ? 'grid-cols-2'
+            : loaderData.portfolioImage.length == 3
+            ? 'grid-cols-3'
+            : loaderData.portfolioImage.length == 4
+            ? 'grid-cols-4'
+            : loaderData.portfolioImage.length >= 5
+            ? 'grid-cols-5'
+            : ''
+        }`}
         counter
         animateThumb={false}
         zoomFromOrigin={false}
