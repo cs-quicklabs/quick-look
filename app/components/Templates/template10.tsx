@@ -79,15 +79,17 @@ function Template10({
       </div>
       <div className="flex flex-col items-center justify-center">
         <div
-          className={`text-xl font-extrabold leading-10 md:text-4xl ${
-            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          className={` font-extrabold leading-10 md:mt-0  lg:mt-4 xl:mt-0 ${
+            mode === 'mobile'
+              ? 'pr-0 lg:pr-[8rem] lg:text-xl xl:pr-0 xl:text-4xl'
+              : 'text-xl md:text-4xl'
           }`}
         >
           {loaderData?.firstname} {loaderData?.lastname}
         </div>
         <div
           className={`text-xs font-medium leading-8 md:text-2xl ${
-            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] lg:text-base xl:pr-0' : ''
           }`}
         >
           {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
@@ -143,8 +145,8 @@ function Template10({
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />
           )}
         </div>
-        <div className="flex w-[42rem] items-center justify-center pr-[4rem] lg:px-0 lg:pr-0 lg:pl-0">
-          <PortfolioAddon loaderData={loaderData} />
+        <div className="flex w-[42rem] items-center justify-center pr-[4rem] md:pr-0 lg:px-0 lg:pl-0">
+          <PortfolioAddon mode={mode} loaderData={loaderData} />
         </div>
         <div
           className={`mt-5 flex w-[20rem] items-center gap-8 md:w-full md:flex-col ${
@@ -152,15 +154,19 @@ function Template10({
           }`}
         >
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
-            <div className="w-[18px] ">
-              <BriefcaseIcon />
-            </div>
+            {input.company && (
+              <div className="w-[18px] ">
+                <BriefcaseIcon />
+              </div>
+            )}
             {input.company}
           </div>
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
-            <div className="w-[20px] ">
-              <AcademicCapIcon />
-            </div>
+            {input.education && (
+              <div className="w-[20px] ">
+                <AcademicCapIcon />
+              </div>
+            )}
             {input.education}{' '}
           </div>
         </div>

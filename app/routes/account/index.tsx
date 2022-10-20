@@ -256,14 +256,25 @@ export default function Profile() {
          : null
      }
      ${
-      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
-        ? 'lg:ml-[32rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-        : loaderData?.profileInfo?.templateNumber == '9'
-        ? 'lg:ml-[11.3rem] xl:ml-[6.3rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
-        : null
-    }
-     
-     `}
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
+         ? 'lg:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '4'
+         ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         : null
+     }
+     ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
+         ? 'lg:ml-[49rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '5'
+         ? 'lg:ml-[24rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         : null
+     } ${
+            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
+              ? 'lg:ml-[32rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              : loaderData?.profileInfo?.templateNumber == '9'
+              ? 'lg:ml-[24.1rem] xl:ml-[6.3rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
+              : null
+          }`}
         >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
             <Template0

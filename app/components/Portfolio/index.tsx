@@ -108,9 +108,11 @@ export default function Portfolio({
         className="relative z-20 overflow-y-auto"
         onClose={() => {}}
       >
-        <div className="fixed inset-0 overflow-y-auto">
+        <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 ">
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">
+            <div
+              className={`pointer-events-none fixed inset-y-0 left-0 flex w-96`}
+            >
               <Transition.Child
                 as={Fragment}
                 enter=""
@@ -121,7 +123,7 @@ export default function Portfolio({
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="h-screen" style={{ overflow: 'auto' }}>
+                  <div className="h-screen">
                     <div
                       className={`font-inter mt-12 flex ${
                         loaderData.portfolioImage.length <= 12 ? 'h-full' : ''
@@ -177,6 +179,7 @@ export default function Portfolio({
                                 accept={'image/*'}
                                 setEdit={setEdit}
                                 setDel={setDel}
+                                mode={mode}
                               >
                                 <p className="text-xs font-semibold leading-4 tracking-wide">
                                   ADD IMAGES
@@ -263,9 +266,9 @@ export default function Portfolio({
                       </div>
                       {(transition.state != 'idle' && edit) ||
                       (transition.state != 'idle' && del) ? (
-                      <div className={`relative ${calc} left-[11rem]`}>
-                        <BeatLoader color="#184fad" />
-                      </div>
+                        <div className={`relative ${calc} left-[11rem]`}>
+                          <BeatLoader color="#184fad" />
+                        </div>
                       ) : null}
                     </div>
                   </div>

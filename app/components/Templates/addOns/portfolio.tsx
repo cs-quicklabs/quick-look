@@ -4,7 +4,7 @@ import lgZoom from 'lightgallery/plugins/zoom'
 import lgVideo from 'lightgallery/plugins/video'
 // import '../../../styles/tailwind.css'
 
-export default function PortfolioAddon({ loaderData }: any) {
+export default function PortfolioAddon({ loaderData, mode }: any) {
   const images = loaderData?.portfolioImage.map((img: any) => ({
     original: img.imageUrl,
   }))
@@ -20,7 +20,9 @@ export default function PortfolioAddon({ loaderData }: any) {
   return (
     <div className="img mt-8">
       <LightGallery
-        elementClassNames={`grid w-[20rem] md:w-full gap-4 ${
+        elementClassNames={`grid   gap-4 ${
+          mode === 'mobile' ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full' : ''
+        } ${
           loaderData.portfolioImage.length == 1
             ? 'grid-cols-1'
             : loaderData.portfolioImage.length == 2
