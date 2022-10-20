@@ -31,9 +31,9 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     </div>
     
-    <div className={`flex flex-col-reverse justify-center ml-[0.1rem] ${mode ==='mobile' ? '' : 'lg:flex-row lg:items-start largeLaptop:gap-[18rem]'} ${nav ?'' : ' '}`}>
+    <div className={`flex flex-col-reverse justify-center ml-[0.1rem] ${mode ==='mobile' ? '' : 'lg:flex-row lg:items-start largeLaptop:gap-[0rem]'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:w-[45rem] largeLaptop:w-[63rem]' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem] largeLaptop:pl-[3rem]'} ${nav? 'lg:w-[51rem]' :''}`}>
+      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:w-[45rem] largeLaptop:w-[63rem]' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem] largeLaptop:pl-[3rem] largeLaptop:w-[45rem]'} ${nav? 'lg:w-[51rem] largeLaptop:pl-[9rem] largeLaptop:w-[65rem]' :''}`}>
         <h4 className={`text-xl leading-8 font-semibold lg:text-4xl lg:leading-10 lg:font-extrabold ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -59,7 +59,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         </div>
 
         <div>
-            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}  ${nav ? 'lg:gap-[5rem]' : ''}`} >
+            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row largeLaptop:gap-[18.5rem]'}  ${nav ? 'lg:gap-[5rem]' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
                   <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] ${mode ==='mobile' ? '' : ''}`}>
