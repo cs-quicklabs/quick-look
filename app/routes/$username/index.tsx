@@ -8,6 +8,9 @@ import Template7 from "~/components/Templates/template7";
 import Template5 from "~/components/Templates/template5";
 import Template10 from '~/components/Templates/template10'
 import { getUserByUsername } from "~/services/user.service.serevr";
+import Template3 from "~/components/Templates/template3";
+import Template4 from "~/components/Templates/template4";
+import Template6 from "~/components/Templates/template6";
 
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -29,6 +32,27 @@ export const loader: LoaderFunction = async ({ params }) => {
         { loaderData?.profileInfo?.templateNumber == '0' ?
         <Template0 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '2' ? <Template2 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/>  : loaderData?.profileInfo?.templateNumber == '5' ? <Template5 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '7' ? <Template7 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '8' ? <Template8 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '9' ? (
           <Template10
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        ): loaderData?.profileInfo?.templateNumber == '3' ? (
+          <Template3
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        ): loaderData?.profileInfo?.templateNumber == '4' ? (
+          <Template4
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        ): loaderData?.profileInfo?.templateNumber == '6' ? (
+          <Template6
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
             input={input}
