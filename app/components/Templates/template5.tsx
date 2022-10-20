@@ -31,9 +31,9 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     </div>
     
-    <div className={`flex flex-col-reverse justify-center bg-white ml-[0.1rem] ${mode ==='mobile' ? '' : 'lg:flex-row lg:items-start largeLaptop:gap-[18rem]'} ${nav ?'' : ' '}`}>
+    <div className={`flex flex-col-reverse justify-center ml-[0.1rem] ${mode ==='mobile' ? '' : 'lg:flex-row lg:items-start largeLaptop:gap-[18rem]'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] ${mode ==='mobile' ? 'lg:w-[45rem] largeLaptop:w-[63rem]' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem] largeLaptop:pl-[0rem]'} ${nav? 'lg:w-[35rem] largeLaptop:w-[40rem]' :''}`}>
+      <div className={`w-[24rem] md:w-[42rem] pl-[1rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:w-[45rem] largeLaptop:w-[63rem]' : 'lg:w-[30rem] lg:mt-[14.375rem] lg:pl-[6rem] largeLaptop:pl-[3rem]'} ${nav? 'lg:w-[51rem]' :''}`}>
         <h4 className={`text-xl leading-8 font-semibold lg:text-4xl lg:leading-10 lg:font-extrabold ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -114,14 +114,10 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-      <div className={`relative h-[22rem] md:h-[45rem] ${nav? 'lg:h-[45rem]' :''}`} >
-        <div className={`absolute w-[22rem] h-[25rem] ml-[4.5rem] md:w-[45rem] md:h-[45rem] largeLaptop:w-[37rem] largeLaptop:h-[45rem] ${mode ==='mobile' ? ' largeLaptop:ml-[26.5rem]' : 'lg:w-[33rem] lg:h-[33rem] '} ${nav? 'lg:w-[45rem] lg:h-[45rem] lg:ml-[7.5rem]' :''}`} style={myStyle}></div>
-
-        <div className={`relative py-[2rem] ml-[4.5rem] lg:py-[0rem] ${mode ==='mobile' ? 'lg:pt-[3.5rem] lg:ml-[7.5rem] largeLaptop:ml-[20.5rem]' : 'lg:pt-[7rem]'} ${nav? '' :''}`}>
+        <div className={`ml-[4.5rem] flex justify-center items-center py-[2rem] ${mode ==='mobile' ? 'mediumLaptop:ml-[20.5rem]' : 'lg:h-[100vh] mediumLaptop:ml-[13.5rem]'} ${nav? 'mediumLaptop:ml-[15.5rem]' :''}`} style={myStyle}>
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`relative rounded-full shadow-xl object-cover w-[22rem] h-[22rem] ml-[-1rem] md:w-[45rem] md:h-[45rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem] ${mode ==='mobile' ? 'lg:w-[35rem] lg:h-[35rem]' : 'lg:w-[25rem] lg:h-[25rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img className={`relative rounded-full shadow-xl object-cover ml-[-1rem] lg:ml-[-3rem] ${mode ==='mobile' ? '' : 'largeLaptop:mt-[-17rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
         </div>
-      </div>
 
       
     </div>  
