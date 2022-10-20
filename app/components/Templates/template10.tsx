@@ -31,7 +31,7 @@ function Template10({
       )}
       <div
         className={`flex  flex-col ${
-          mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+          mode === 'mobile' ? 'pr-0 lg:pr-[0rem] xl:pr-0' : ''
         }  ${mode === 'mobile' ? 'h-[25vh]' : 'h-[25vh] md:h-[52vh]'}`}
       >
         <div>
@@ -54,14 +54,14 @@ function Template10({
             primaryRestore || loaderData?.profileImage?.primaryImage
               ? ` ${
                   mode === 'mobile'
-                    ? 'bottom-[5rem]'
+                    ? 'bottom-[5rem] right-0 lg:right-[4rem] xl:right-0'
                     : 'bottom-[6rem] md:bottom-[12rem]'
                 }`
               : 'bottom-[-11rem]'
           } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
-            <img
+            <img 
               src={
                 secondaryRestore
                   ? defaultimg
@@ -70,7 +70,7 @@ function Template10({
               alt=""
               className={`rounded-full ${
                 mode === 'mobile'
-                  ? 'h-[8rem] w-[8rem]'
+                  ? 'h-[8rem] w-[8rem] pr-0 xl:pr-0'
                   : 'h-[8rem] w-[8rem]  drop-shadow md:h-[18rem] md:w-[18rem]  md:border-[15px] md:border-white'
               }  `}
             />
@@ -138,7 +138,7 @@ function Template10({
         </div>
         <div
           className={`mr-[3.5rem] ${
-            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+            mode === 'mobile' ? 'pr-0 lg:pr-[0rem] xl:pr-0' : ''
           }`}
         >
           {loaderData?.video?.videoLink && (
