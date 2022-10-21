@@ -114,9 +114,9 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-        <div className={`ml-[4.5rem] flex justify-center items-center py-[2rem] ${mode ==='mobile' ? 'mediumLaptop:ml-[20.5rem]' : 'lg:h-[100vh] mediumLaptop:ml-[13.5rem]'} ${nav? 'mediumLaptop:ml-[10.5rem] largeLaptop:ml-[15.5rem]' :''}`} style={myStyle}>
+        <div className={`ml-[4.5rem] flex justify-center items-center py-[2rem] md:ml-[15.5rem] w-[22rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:w-[28rem] lg:ml-[18.5rem] mediumLaptop:ml-[29.5rem] largeLaptop:w-[40rem]  largeLaptop:ml-[31.5rem]' : 'lg:h-[100vh] lg:w-[35rem] lg:ml-[4.5rem] lg:py-[0rem] mediumLaptop:ml-[13.5rem]'} ${nav? 'lg:ml-[8.5rem] mediumLaptop:ml-[15.5rem] largeLaptop:ml-[19.5rem]' :''}`} style={myStyle}>
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`relative rounded-full shadow-xl object-cover ml-[-1rem] lg:ml-[-3rem] ${mode ==='mobile' ? '' : 'mediumLaptop:mt-[-10rem] largeLaptop:mt-[-17rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img className={`relative rounded-full shadow-xl object-cover ml-[-1rem] h-[22rem] w-[22rem] md:ml-[-20rem] md:h-[35rem] md:w-[35rem] lg:ml-[-3rem] ${mode ==='mobile' ? 'lg:h-[28rem] lg:w-[28rem] largeLaptop:h-[40rem] largeLaptop:w-[40rem]' : 'lg:h-[25rem] lg:w-[25rem] mediumLaptop:mt-[-10rem] largeLaptop:mt-[-17rem] largeLaptop:w-[28rem] largeLaptop:h-[28rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic6 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
         </div>
 
       
