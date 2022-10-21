@@ -9,6 +9,10 @@ import thumbnail4 from '../../../assets/images/screenshots/thumbnail4.png'
 import thumbnail5 from '../../../assets/images/screenshots/thumbnail5.png'
 import thumbnail6 from '../../../assets/images/screenshots/thumbnail6.png'
 import temp9 from '../../../assets/images/screenshots/temp9.png'
+import thumb3 from '../../../assets/images/screenshots/thumb3.png'
+import thumb4 from '../../../assets/images/screenshots/thumb4.png'
+import thumb6 from '../../../assets/images/screenshots/thumb6.png'
+
 export default function AccountTemplate({
   setshowTemplate,
   mode,
@@ -268,11 +272,11 @@ export default function AccountTemplate({
                           {selectTemplate === 'template3' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumbnail3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumb3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                             ) : (
                               <img
-                                src={thumbnail3}
+                                src={thumb3}
                                 alt=""
                                 className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
@@ -295,11 +299,11 @@ export default function AccountTemplate({
                           {selectTemplate === 'template4' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumbnail3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumb4} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                             ) : (
                               <img
-                                src={thumbnail3}
+                                src={thumb4}
                                 alt=""
                                 className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
@@ -322,11 +326,11 @@ export default function AccountTemplate({
                           {selectTemplate === 'template6' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumbnail3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumb6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                             ) : (
                               <img
-                                src={thumbnail3}
+                                src={thumb6}
                                 alt=""
                                 className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
