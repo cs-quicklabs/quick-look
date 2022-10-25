@@ -25,81 +25,84 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide bg-black ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col xl:flex-row pt-[3rem] pb-[5rem] pl-[1rem] sm:pl-[3rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'flex-col lg:flex-row lg:pl-[1.5rem]' :''}`}>
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 rounded-full ${mode ==='mobile' ? '' : ''} ${nav? '' :''}`} >
+    <div className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide bg-black ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col pt-[3rem] pb-[5rem] lg:gap-[8rem] lg:flex-row'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'lg:gap-[12rem] mediumLaptop:gap-[12rem] largeLaptop:gap-[15rem]' :''}`}>
+      <div className={`my-4 flex-shrink-0 flex justify-center items-center   ${mode ==='mobile' ? '' : 'sm:mb-0 lg:items-start'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover p-4 border-4 border-white  ${mode ==='mobile' ? '' : ''} ${nav? 'lg:h-[45rem] xl:h-[40rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem]' : 'lg:w-[20rem] lg:h-[20rem] lg:p-4 mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
-      <div className={`mt-[1.5rem] ${mode ==='mobile' ? '' : 'lg:w-[55rem]'} ${nav ? '' : ''}`}>
-        <h4 className={`text-white text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+
+      <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? '' : 'lg:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'} ${nav ? 'lg:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
+        <h4 className={`text-white text-center text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-white lg:text-gray-50 w-max break-all text-xs leading-5 font-normal lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''} `} >
+          <h3 className={`text-white text-center break-all text-xs leading-5 font-normal lg:text-gray-50 lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : 'lg:w-max mediumLaptop:w-full'}  ${nav ? 'lg:w-full' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
         <div >
        
-          <div className={`${mode ==='mobile' ? '' : 'pl-[0rem] pr-[6rem] lg:pr-4'} ${nav ? 'pr-[6rem] lg:pr-[10rem]' : ''}`}>
+          <div className={` text-center ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pl-[0rem] pr-[6rem] lg:pr-4 '} ${nav ? 'pr-[6rem] lg:pr-[10rem]' : ''}`}>
+        <div className={`mb-10 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
-        <div className="mt-1">
-          <pre className={`text-white lg:text-gray-50 text-xs leading-5 lg:text-lg lg:leading-none  font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-              { input?.description?.trim()}
-            </pre>
-        </div>
+          <div className='flex flex-col-reverse lg:flex-col'>
+            <div className="mt-1">
+            <pre className={`text-white lg:text-gray-50 text-xs leading-5 lg:text-lg lg:leading-none  font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+                { input?.description?.trim()}
+              </pre>
+          </div>
 
-        <div className={`gap-20 ml-[0rem] sm:ml-0 pb-[4rem] ${mode ==='mobile' ? '' : 'largeLaptop:pr-[0rem]  large:pr-[54rem] 2xl:pr-[2rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] medium:pr-[24rem] largeLaptop:pr-[47.01rem] large:pr-[77rem] 2xl:ml-[0rem] 2xl:pr-[20rem]' : ''}`}>
-            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
-              {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
-                  <h2 className={`text-gray-500 font-medium text-sm leading-5 w-max  ${mode ==='mobile' ? '' : ''}`} >
-                    WORK
-                  </h2>
-                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-normal">
-                    {input.company}
-                  </h2>
-                </div> : <span></span>}
-              {loaderData?.profileInfo?.education || input.education ?
-                <div className={`flex mt-[0.75rem] ${mode ==='mobile' ? '' : 'xl:flex-col xl:mt-0'}`} >
-                  <h2 className= {`text-gray-500 font-medium text-sm leading-5 w-max ${mode ==='mobile' ? '' : ''}`} >
-                    EDUCATION
-                  </h2>
-                  <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-normal">
-                    {input.education}
-                  </h2>
-                </div> : <span></span>}
+          <div className={`pb-[1rem] lg:pb-[1rem] ${mode ==='mobile' ? '' : ''} `}>
+              <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'lg:flex-row lg:gap-[5rem]'} ${nav ? 'lg:gap-[10rem]' : ''}`} >
+                {loaderData?.profileInfo?.company || input.company ?
+                  <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'flex-col'}`} >
+                    <h2 className={`text-white lg:text-gray-50 font-medium text-sm leading-5 w-max  ${mode ==='mobile' ? '' : ''}`} >
+                      WORK
+                    </h2>
+                    <h2 className="text-gray-100 lg:text-gray-50 w-max text-sm leading-5 font-normal break-normal">
+                      {input.company}
+                    </h2>
+                  </div> : <span></span>}
+                {loaderData?.profileInfo?.education || input.education ?
+                  <div className={`flex mt-[1.5rem]  ${mode ==='mobile' ? '' : 'flex-col lg:mt-[0rem]'} ${nav ? '' : ''}`} >
+                    <h2 className= {`text-white lg:text-gray-50 font-medium text-sm leading-5 w-max ${mode ==='mobile' ? '' : ''}`} >
+                      EDUCATION
+                    </h2>
+                    <h2 className="text-gray-100 lg:text-gray-50 w-max text-sm leading-5 font-normal break-normal">
+                      {input.education}
+                    </h2>
+                  </div> : <span></span>}
+              </div>
             </div>
           </div>
 
-            <div className={`${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'lg:pr-[7.5rem] large:pr-[14.5rem]' : ''}`}>
+            <div className={`mb-[2rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.testimonial?.testimonialText && 
-           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
+           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />
             }
             </div>
         
-            <div className={`${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
+            <div className={`border-2 border-white ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
-            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
             </div>
             
-            <div  className={`pt-[4rem] ${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
+            <div  className={`pt-[4rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? 'pr-[5rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
+          <footer className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? '' : ''} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?

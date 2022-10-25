@@ -274,7 +274,7 @@ export default function Profile() {
           } 
           ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? 'lg:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '4'
               ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
               : null
@@ -348,6 +348,7 @@ export default function Profile() {
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
+              mode={mode}
             />
           ): loaderData?.profileInfo?.templateNumber == '6' ? (
             <Template6
