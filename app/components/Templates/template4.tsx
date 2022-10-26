@@ -17,7 +17,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide bg-black ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col pt-[3rem] pb-[5rem] lg:gap-[8rem] lg:flex-row'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'lg:gap-[12rem] mediumLaptop:gap-[12rem] largeLaptop:gap-[15rem]' :''}`}>
+    <div className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide bg-black ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col pt-[3rem] pb-[5rem] lg:gap-[8rem] xl:flex-row'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'lg:gap-[12rem] mediumLaptop:gap-[12rem] largeLaptop:gap-[15rem]' :''}`}>
       <div className={`my-4 flex-shrink-0 flex justify-center items-center   ${mode ==='mobile' ? '' : 'sm:mb-0 lg:items-start'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
@@ -25,7 +25,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? '' : 'lg:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'} ${nav ? 'lg:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
+      <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? '' : 'xl:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'} ${nav ? 'xl:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
         <h4 className={`text-white text-center text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>

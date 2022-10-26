@@ -267,16 +267,16 @@ export default function Profile() {
           } 
           ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
-              ? 'lg:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '3'
-              ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+              ? 'lg:ml-[11rem] xl:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
               : null
           } 
           ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+              ? 'lg:ml-[24rem] xl:ml-[5.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
               : null
           } 
           ${
