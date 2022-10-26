@@ -25,10 +25,11 @@ export default function Template9({
 
   return (
     <>
-    {loaderData?.supportBanner?.bannerText &&
-      <BannerAddOn mode={mode} loaderData={loaderData} />}
+      {loaderData?.supportBanner?.bannerText && (
+        <BannerAddOn mode={mode} loaderData={loaderData} />
+      )}
       <div
-        className={`flex h-full mb-[5rem] ${
+        className={`mb-[5rem] flex h-full ${
           nav ? 'w-screen' : ''
         }  items-center justify-center`}
       >
@@ -42,7 +43,8 @@ export default function Template9({
           <div className="flex flex-col">
             <div
               className={`relative flex items-center justify-center ${
-                mode == 'mobile' ? 'top-[-3rem]' : 'top-[-5rem]'}`}
+                mode == 'mobile' ? 'top-[-3rem]' : 'top-[-5rem]'
+              }`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
@@ -112,11 +114,25 @@ export default function Template9({
               </div>
               <div className=" flex flex-wrap px-[2rem] pt-[2.5rem]">
                 {' '}
-                <pre className="flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-white">
+                <pre
+                  className={`flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-white ${
+                    loaderData?.video?.videoLink
+                      ? 'w-[22rem] md:w-[30rem]'
+                      : 'w-fit'
+                  }`}
+                >
                   {input?.description?.trim()}{' '}
                 </pre>{' '}
               </div>
-
+              {loaderData?.video?.videoLink && (
+                <VideoAddOn
+                  loaderData={loaderData}
+                  videoLink={loaderData?.video?.videoLink}
+                />
+              )}
+              <div className="flex w-[23rem] items-center justify-center pr-[4rem] md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0">
+                <PortfolioAddon mode={mode} loaderData={loaderData} />
+              </div>
               <div className="mt-4 flex flex-col gap-4 ">
                 <div className="flex items-center justify-center gap-4">
                   {input.company && (
@@ -135,6 +151,7 @@ export default function Template9({
                   </h2>
                 </div>
               </div>
+
               <footer
                 className={` flex w-full justify-center gap-4 pb-[5rem] pt-[2rem] md:gap-8   ${
                   mode === 'mobile' ? '' : ''
