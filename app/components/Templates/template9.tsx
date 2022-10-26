@@ -94,7 +94,7 @@ export default function Template9({
               )}
               <div
                 className={`mr-8 w-[22rem] md:mr-0 md:w-full ${
-                  mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+                  mode === 'mobile' ? 'pr-0 xl:pr-0' : ''
                 }`}
               >
                 {loaderData?.spotlightButton?.toggleSpotlight && (
@@ -103,7 +103,7 @@ export default function Template9({
               </div>
               <div
                 className={`mr-8 w-[22rem] md:mr-0 md:w-full ${
-                  mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
+                  mode === 'mobile' ? 'pr-0 xl:pr-0' : ''
                 }`}
               >
                 {loaderData?.spotlightButton?.toggleSpotlight && (

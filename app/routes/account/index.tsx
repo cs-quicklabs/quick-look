@@ -271,9 +271,9 @@ export default function Profile() {
          : null
      }${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[32rem] MdRes:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? ' lg:ml-[32rem] MdRes:ml-[30rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
+              ? ' lg:ml-[11.3rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
               : null
           }`}
         >
