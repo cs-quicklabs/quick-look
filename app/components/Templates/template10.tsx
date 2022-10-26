@@ -61,7 +61,7 @@ function Template10({
           } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
-            <img 
+            <img
               src={
                 secondaryRestore
                   ? defaultimg
@@ -124,18 +124,15 @@ function Template10({
             {input?.description?.trim()}{' '}
           </pre>{' '}
         </div>
-        <div
-          className={`m-auto flex w-[20rem] flex-wrap md:w-[32rem] ${
-            mode === 'mobile' ? 'pr-0 lg:pr-[8rem] xl:pr-0' : ''
-          }`}
-        >
-          {loaderData?.testimonial?.testimonialText && (
-            <TestimonialAddOn
-              testimonialText={loaderData?.testimonial?.testimonialText}
-              testimonialBy={loaderData?.testimonial?.testimonialBy}
-            />
-          )}
-        </div>
+
+        {loaderData?.testimonial?.testimonialText && (
+          <TestimonialAddOn
+            loaderData={loaderData}
+            testimonialText={loaderData?.testimonial?.testimonialText}
+            testimonialBy={loaderData?.testimonial?.testimonialBy}
+          />
+        )}
+
         <div
           className={`mr-[3.5rem] ${
             mode === 'mobile' ? 'pr-0 lg:pr-[0rem] xl:pr-0' : ''

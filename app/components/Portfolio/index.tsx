@@ -103,11 +103,7 @@ export default function Portfolio({
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-20 overflow-y-auto"
-        onClose={() => {}}
-      >
+      <Dialog as="div" className="relative z-20 " onClose={() => {}}>
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 ">
             <div
@@ -125,8 +121,10 @@ export default function Portfolio({
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="h-screen">
                     <div
-                      className={`font-inter mt-12 flex ${
-                        loaderData.portfolioImage.length <= 12 ? 'h-full' : ''
+                      className={`font-inter mt-12 flex overflow-y-auto ${
+                        loaderData.portfolioImage.length <= 12
+                          ? 'h-full'
+                          : 'h-[100vh]'
                       }   flex-col border-r border-gray-200 bg-white ${
                         mode === 'mobile'
                           ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'

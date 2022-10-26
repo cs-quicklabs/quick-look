@@ -3,7 +3,11 @@ import React from 'react'
 export default function TestimonialAddOn({testimonialText, testimonialBy, loaderData}:any) {
   return (
     <section className="mt-[1rem] overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+            <div className= {`mx-auto ${
+          loaderData?.profileInfo?.templateNumber == '10'
+            ? 'w-[32rem]'
+            : 'max-w-7xl '
+        }`} >
 
               <div className="">
 
@@ -30,6 +34,9 @@ export default function TestimonialAddOn({testimonialText, testimonialBy, loader
                 </blockquote>
               </div>
             </div>
-          </section>
+          </blockquote>
+        </div>
+      </div>
+    </section>
   )
 }
