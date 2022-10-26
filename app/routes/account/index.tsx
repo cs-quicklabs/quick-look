@@ -233,30 +233,30 @@ export default function Profile() {
      }  
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[31.8rem] xl:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[31.8rem] xl:ml-[47.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[11.7rem] xl:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[11.7rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[32rem] xl:ml-[48rem] 2xl:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        ? 'lg:ml-[32rem] xl:ml-[48rem] 2xl:ml-[29rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
         : loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[11rem] xl:ml-[24rem] 2xl:ml-[5rem] medium:ml-[3rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
+        ? 'lg:ml-[11rem] xl:ml-[24rem] 2xl:ml-[5rem] medium:ml-[5rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
         : null
     }
     ${
       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[31.9rem] xl:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        ? 'lg:ml-[31.9rem] xl:ml-[47.9rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
         : loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[23.7rem] xl:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+        ? 'lg:ml-[23.7rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
         : null
     }
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[31.8rem] xl:ml-[48.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[31.8rem] xl:ml-[48.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[10.9rem] xl:ml-[23.9rem] 2xl:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[10.9rem] xl:ml-[23.9rem] 2xl:ml-[4.9rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
