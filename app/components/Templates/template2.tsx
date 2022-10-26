@@ -43,8 +43,8 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
           </h3> : <span></span>}
 
         <div >
-        <div className={`gap-20 ml-[0rem] sm:ml-0 pb-[4rem] ${mode ==='mobile' ? '' : 'largeLaptop:pr-[0rem]  large:pr-[54rem] 2xl:pr-[2rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 xl:pr-[17rem] medium:pr-[24rem] largeLaptop:pr-[47.01rem] large:pr-[77rem] 2xl:ml-[0rem] 2xl:pr-[20rem]' : ''}`}>
-            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
+        <div className={`ml-[0rem] sm:ml-0 pb-[4rem] ${mode ==='mobile' ? '' : ''}  ${nav ? 'pr-[6rem] lg:pr-[8rem] 2xl:pr-[8.01rem] medium:pr-[8rem] large:pr-0 large:ml-0 large:w-[86%] 2xl:ml-[0.5rem]' : ''}`}>
+            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row xl:justify-between xl:ml-[1rem]'}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
                   <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode ==='mobile' ? '' : 'xl:hidden'}`}>
