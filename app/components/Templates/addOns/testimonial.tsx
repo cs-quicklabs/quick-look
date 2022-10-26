@@ -34,9 +34,6 @@ export default function TestimonialAddOn({testimonialText, testimonialBy, loader
                 </blockquote>
               </div>
             </div>
-          </blockquote>
-        </div>
-      </div>
     </section>
   )
 }
