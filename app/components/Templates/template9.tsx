@@ -37,7 +37,7 @@ export default function Template9({
           className={`mb-[5rem] flex items-center justify-center bg-gray-900 ${
             mode == 'mobile'
               ? 'w-[34rem] rounded-none'
-              : ' w-[90%]  md:w-[34rem] md:rounded-2xl'
+              : ' w-[90%]  md:w-[40rem] md:rounded-2xl'
           } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
           <div className="flex flex-col">
