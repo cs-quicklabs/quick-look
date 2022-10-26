@@ -59,10 +59,10 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         </div>
 
         <div>
-            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row lg:gap-[1rem] mediumLaptop:gap-[5rem] largeLaptop:gap-[18.5rem]'}  ${nav ? 'xl:gap-[6rem]' : ''  }`} >
+            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row lg:justify-between'}  ${nav ? '' : ''  }`} >
               {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
-                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] ${mode ==='mobile' ? '' : ''}`}>
+                <div className={`flex  ${mode ==='mobile' ? '' : 'xl:w-[50%]'}`} >
+                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] ${mode ==='mobile' ? '' : 'xl:w-[2.125rem]'}`}>
                     <BriefcaseIcon />
                   </h2>
                   

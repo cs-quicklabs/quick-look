@@ -229,9 +229,9 @@ export default function Profile() {
      }  
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[31.8rem] xl:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[11.7rem] xl:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
@@ -243,16 +243,16 @@ export default function Profile() {
     }
     ${
       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        ? 'lg:ml-[31.9rem] xl:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
         : loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+        ? 'lg:ml-[23.7rem] xl:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
         : null
     }
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[48.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[31.8rem] xl:ml-[48.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[10.9rem] xl:ml-[23.9rem] 2xl:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
