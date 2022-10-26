@@ -8,7 +8,7 @@ export default function VideoAddOn({ videoLink, loaderData }: any) {
   // const ytfbVideo = videoLink.videoSourceKey === 'youtube' ? youtubeVideoId : facebookVideoId
 
   return (
-    <div className="mx-auto mt-8 w-[20rem] md:w-[42rem] ">
+    <div className="mx-auto mt-8 w-[20rem] md:w-[31rem] ">
       {/* {videoLink.videoSourceKey === 'youtube' ?  */}
       {link?.includes('youtube') ? (
         <iframe
@@ -23,7 +23,11 @@ export default function VideoAddOn({ videoLink, loaderData }: any) {
         <iframe
           src={`https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.${youtubeVideoId}`}
           // width="734"
-          className="h-[350px] w-[370px] md:h-[700px] md:w-[734px]"
+          className={`h-[350px] md:h-[700px]${
+            loaderData?.profileInfo?.templateNumber == '9'
+              ? 'ml-[5.5rem] w-[20rem] md:w-[31rem]'
+              : ' w-[370px]  md:w-[734px]'
+          }`}
           // height="700"
           scrolling="no"
           allowTransparency={true}

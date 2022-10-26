@@ -36,7 +36,7 @@ export default function Template9({
         <div
           className={`mb-[5rem] flex items-center justify-center bg-gray-900 ${
             mode == 'mobile'
-              ? 'h-[38rem] w-[34rem] rounded-none'
+              ? 'w-[34rem] rounded-none'
               : ' w-[90%]  md:w-[34rem] md:rounded-2xl'
           } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
@@ -117,20 +117,30 @@ export default function Template9({
                 <pre
                   className={`flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-white ${
                     loaderData?.video?.videoLink
-                      ? 'w-[22rem] md:w-[30rem]'
+                      ? 'w-[20rem] md:w-[30rem]'
                       : 'w-fit'
                   }`}
                 >
                   {input?.description?.trim()}{' '}
                 </pre>{' '}
               </div>
+              <div className="w-[20rem] md:w-[30rem]">
+                {loaderData?.testimonial?.testimonialText && (
+                  <TestimonialAddOn
+                    loaderData={loaderData}
+                    testimonialText={loaderData?.testimonial?.testimonialText}
+                    testimonialBy={loaderData?.testimonial?.testimonialBy}
+                  />
+                )}
+              </div>
+
               {loaderData?.video?.videoLink && (
                 <VideoAddOn
                   loaderData={loaderData}
                   videoLink={loaderData?.video?.videoLink}
                 />
               )}
-              <div className="flex w-[23rem] items-center justify-center pr-[4rem] md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0">
+              <div className="flex w-[20rem] items-center justify-center md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0">
                 <PortfolioAddon mode={mode} loaderData={loaderData} />
               </div>
               <div className="mt-4 flex flex-col gap-4 ">
