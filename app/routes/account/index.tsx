@@ -13,6 +13,7 @@ import Template7 from '~/components/Templates/template7'
 import Template8 from '~/components/Templates/template8'
 import Template5 from '~/components/Templates/template5'
 import Template10 from '~/components/Templates/template10'
+import Template9 from '~/components/Templates/template9'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -235,12 +236,12 @@ export default function Profile() {
          : null
      }
      ${
-      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-        : loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[5rem] medium:ml-[3rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
-        : null
-    }
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
+         ? 'lg:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '5'
+         ? 'lg:ml-[5rem] medium:ml-[3rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
+         : null
+     }
     ${
       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
         ? 'lg:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
@@ -263,12 +264,18 @@ export default function Profile() {
          : null
      }
      ${
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[32rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-              : loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
-              : null
-          }`}
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
+         ? 'lg:ml-[32rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '9'
+         ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
+         : null
+     }${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
+         ? 'lg:ml-[32rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         : loaderData?.profileInfo?.templateNumber == '9'
+         ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
+         : null
+     }`}
         >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
             <Template0
@@ -302,7 +309,7 @@ export default function Profile() {
               input={input}
               loaderData={loaderData}
             />
-          ): loaderData?.profileInfo?.templateNumber == '8' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '8' ? (
             <Template8
               mode={mode}
               primaryRestore={primaryRestore}
@@ -310,8 +317,16 @@ export default function Profile() {
               input={input}
               loaderData={loaderData}
             />
-          ) : loaderData?.profileInfo?.templateNumber == '9' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '10' ? (
             <Template10
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          ) : loaderData?.profileInfo?.templateNumber == '9' ? (
+            <Template9
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
               input={input}
