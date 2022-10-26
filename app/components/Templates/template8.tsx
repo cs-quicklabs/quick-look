@@ -58,9 +58,9 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
         </div>
 
         <div className={` pb-[4rem] flex flex-col ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? ' ' : 'lg:flex-row lg:gap-[7rem] largeLaptop:gap-[15rem]'} ${nav ? 'lg:gap-[16rem]' : ''}`} >
+            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? ' ' : 'lg:flex-row lg:justify-between'} ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex ${mode ==='mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
+                <div className={`flex lg:w-[60%] ${mode ==='mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
