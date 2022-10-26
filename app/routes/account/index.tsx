@@ -236,9 +236,9 @@ export default function Profile() {
      }
      ${
       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        ? 'lg:ml-[32rem] xl:ml-[48rem] 2xl:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
         : loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[5rem] medium:ml-[3rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
+        ? 'lg:ml-[11rem] xl:ml-[24rem] 2xl:ml-[5rem] medium:ml-[3rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
         : null
     }
     ${
