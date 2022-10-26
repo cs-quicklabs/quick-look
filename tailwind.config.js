@@ -30,7 +30,7 @@ module.exports = {
         smRes: '1176px',
         SmMedium: '1220px',
         MdRes: '1366px',
-        medium: '1560px',
+        medium: '1518px',
         mediumLaptop: '1700px',
         largeLaptop: '1920px',
         large: '2560px',
