@@ -70,7 +70,7 @@ export default function Template9({
               }`}
             >
               <h1
-                className={`w-fit px-4  font-bold leading-8 text-white ${
+                className={`w-fit px-4  font-bold leading-8 text-gray-100 ${
                   mode == 'mobile' ? 'text-2xl' : 'text-2xl md:text-4xl'
                 }`}
               >
@@ -81,7 +81,7 @@ export default function Template9({
               input.location ||
               loaderData?.profileInfo?.location ? (
                 <h3
-                  className={` break-all text-white ${
+                  className={` break-all text-gray-100 ${
                     mode == 'mobile'
                       ? 'w-fit px-4 text-xl'
                       : 'w-fit px-4 text-xl  md:text-2xl'
@@ -115,7 +115,7 @@ export default function Template9({
               <div className=" flex flex-wrap px-[2rem] pt-[2.5rem]">
                 {' '}
                 <pre
-                  className={`flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-white ${
+                  className={`flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-gray-100 ${
                     loaderData?.video?.videoLink
                       ? 'w-[20rem] md:w-[30rem]'
                       : 'w-fit'
@@ -146,17 +146,17 @@ export default function Template9({
               <div className="mt-4 flex flex-col gap-4 ">
                 <div className="flex items-center justify-center gap-4">
                   {input.company && (
-                    <BriefcaseIcon className="h-6 w-6 text-white" />
+                    <BriefcaseIcon className="h-6 w-6 text-gray-100" />
                   )}
-                  <h2 className="w-max  break-all text-base font-normal leading-5 text-white">
+                  <h2 className="w-max  break-all text-base font-normal leading-5 text-gray-100">
                     {input.company}{' '}
                   </h2>
                 </div>
                 <div className="flex items-center justify-center gap-4">
                   {input.education && (
-                    <AcademicCapIcon className="h-6 w-6 text-white" />
+                    <AcademicCapIcon className="h-6 w-6 text-gray-100" />
                   )}
-                  <h2 className="w-max break-all text-base font-normal leading-5 text-white">
+                  <h2 className="w-max break-all text-base font-normal leading-5 text-gray-100">
                     {input.education}{' '}
                   </h2>
                 </div>
