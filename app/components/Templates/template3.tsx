@@ -1,7 +1,7 @@
 import facebook from '../../../assets/images/socialIcons/fbIcon3.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon3.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon3.png'
-import pic3 from '../../../assets/images/templates/pic3.png'
+import defaultimg from '../../../assets/images/profile.png'
 import Background3 from '../../../assets/images/templates/temp3.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
@@ -23,12 +23,12 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row'} ${nav? '' :''}`} style={myStyle}>
+    <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row'} ${nav? '' :''}`} style={myStyle} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem]  ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center xl:w-[24rem] lg:py-[10rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:h-full  xl:w-[24rem]  mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full object-cover w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
         <h4 className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
@@ -41,7 +41,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full ${mode ==='mobile' ? '' : 'xl:pt-[10rem] lg:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`} >
+      <div className={`w-full ${mode ==='mobile' ? '' : 'xl:pt-[10rem] lg:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
       <div className={`flex ${mode ==='mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'}`} >
         <div className="mt-1 pl-[1rem] pr-[1.5rem]">
@@ -90,7 +90,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
               }
               </div>
           
-              <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && 
               <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
               </div>

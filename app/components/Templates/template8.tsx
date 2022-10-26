@@ -1,7 +1,7 @@
 import facebook from '../../../assets/images/socialIcons/fbIcon5.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon5.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'
-import pic4 from '../../../assets/images/templates/pic4.png'
+import defaultimg from '../../../assets/images/profile.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import TestimonialAddOn from './addOns/testimonial'
@@ -114,7 +114,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] pt-[4rem] pb-[2rem]' : 'lg:w-[33rem] largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? pic4 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-lg object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
     </div>  

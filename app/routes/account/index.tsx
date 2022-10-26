@@ -226,37 +226,37 @@ export default function Profile() {
           className={`z-30 flex-1 grow  
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
-         ? 'lg:ml-[48rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[48rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '0'
-         ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[0rem]'
+         ? 'lg:ml-[4.9rem] medium:ml-[5rem] largeLaptop:ml-[0rem]'
          : null
      }  
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[47.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-         ? 'lg:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[29rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '5'
-         ? 'lg:ml-[5rem] medium:ml-[3rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[5rem] medium:ml-[5rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
          : null
      }
     ${
       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[47.9rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+        ? 'lg:ml-[47.9rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
         : loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+        ? 'lg:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
         : null
     }
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[48.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[48.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[4.9rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+         ? 'lg:ml-[4.9rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
          : null
      }
      ${
@@ -267,23 +267,23 @@ export default function Profile() {
          : null
      }${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[32rem] MdRes:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? 'lg:ml-[32rem] MdRes:ml-[29rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
+              ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[5rem] largeLaptop:ml-[2px]'
               : null
           }
           ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
-              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '3'
-              ? 'lg:ml-[11rem] xl:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+              ? 'lg:ml-[11rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
               : null
           } 
           ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
+              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
               : loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[24rem] xl:ml-[5.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
+              ? 'lg:ml-[24rem] xl:ml-[5.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
               : null
           } 
           ${

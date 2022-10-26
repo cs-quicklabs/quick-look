@@ -2,7 +2,7 @@ import facebook from '../../../assets/images/socialIcons/fbIcon5.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon5.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'
 import Background5 from '../../../assets/images/templates/template5.png'
-import pic5 from '../../../assets/images/templates/pic5.png'
+import defaultimg from '../../../assets/images/profile.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import TestimonialAddOn from './addOns/testimonial'
@@ -34,7 +34,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
    
     <div className="flex flex-col items-center">
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? pic5 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
       
         <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl lg:text-[36px] leading-8 font-extrabold lg:leading-10 px-[1.5rem] lg:px-0`}>
           {loaderData?.firstname} {loaderData?.lastname}

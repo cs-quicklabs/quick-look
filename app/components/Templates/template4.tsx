@@ -1,7 +1,7 @@
 import facebook from '../../../assets/images/socialIcons/fbIcon3.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon3.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon3.png'
-import pic3 from '../../../assets/images/templates/pic3.png'
+import defaultimg from '../../../assets/images/profile.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import TestimonialAddOn from './addOns/testimonial'
@@ -21,7 +21,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`my-4 flex-shrink-0 flex justify-center items-center   ${mode ==='mobile' ? '' : 'sm:mb-0 lg:items-start'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem]' : 'lg:w-[20rem] lg:h-[20rem] lg:p-4 mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? pic3 : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem]' : 'lg:w-[20rem] lg:h-[20rem] lg:p-4 mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 
@@ -85,7 +85,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             }
             </div>
         
-            <div className={`border-2 border-white ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
             <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
             </div>
@@ -94,7 +94,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? '' : ''} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
+          <footer className={`flex w-full gap-4 md:gap-8  justify-end pb-[5rem]  ${nav ? '' : ''} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
