@@ -25,14 +25,15 @@ export default function Template9({
 
   return (
     <>
-      <BannerAddOn mode={mode} loaderData={loaderData} />
+    {loaderData?.supportBanner?.bannerText &&
+      <BannerAddOn mode={mode} loaderData={loaderData} />}
       <div
         className={`flex h-screen ${
           nav ? 'w-screen' : ''
         }  items-center justify-center`}
       >
         <div
-          className={`mt-4 flex justify-center bg-gray-900  ${
+          className={`mt-[10rem] mb-[5rem] flex items-center justify-center bg-gray-900  ${
             mode == 'mobile'
               ? 'h-[38rem] w-[34rem] rounded-none'
               : ' w-[90%]  md:w-[34rem] md:rounded-2xl'
