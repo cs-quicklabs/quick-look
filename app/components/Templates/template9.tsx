@@ -28,20 +28,21 @@ export default function Template9({
     {loaderData?.supportBanner?.bannerText &&
       <BannerAddOn mode={mode} loaderData={loaderData} />}
       <div
-        className={`flex h-screen ${
+        className={`flex h-full mb-[5rem] ${
           nav ? 'w-screen' : ''
         }  items-center justify-center`}
       >
         <div
-          className={`mt-[10rem] mb-[5rem] flex items-center justify-center bg-gray-900  ${
+          className={`mb-[5rem] flex items-center justify-center bg-gray-900 ${
             mode == 'mobile'
               ? 'h-[38rem] w-[34rem] rounded-none'
               : ' w-[90%]  md:w-[34rem] md:rounded-2xl'
-          }`}
+          } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
           <div className="flex flex-col">
             <div
-              className={`relative top-[-5rem] flex items-center justify-center`}
+              className={`relative flex items-center justify-center ${
+                mode == 'mobile' ? 'top-[-3rem]' : 'top-[-5rem]'}`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
