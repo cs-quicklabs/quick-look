@@ -26,12 +26,12 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
       </div>
 
       <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? '' : 'xl:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'} ${nav ? 'xl:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
-        <h4 className={`text-white text-center text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+        <h4 className={`text-white text-center  text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : 'lg:text-start'}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : 'xl:w-max mediumLaptop:w-full'}  ${nav ? 'xl:w-full' : ''} `} >
+          <h3 className={`text-white text-center  break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : 'lg:text-start xl:w-max mediumLaptop:w-full'}  ${nav ? 'xl:w-full' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
