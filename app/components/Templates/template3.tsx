@@ -36,7 +36,7 @@ console.log("loaderData", loaderData)
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-white text-center break-all text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${mode ==='mobile' ? '' : 'lg:w-max mediumLaptop:w-full'}  ${nav ? 'lg:w-full' : ''} `} >
+          <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${mode ==='mobile' ? '' : 'lg:w-max mediumLaptop:w-full'}  ${nav ? 'lg:w-full' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 

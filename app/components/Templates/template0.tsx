@@ -77,7 +77,7 @@ export default function Template1({
             input.occupation ||
             input.location ||
             loaderData?.profileInfo?.location ? (
-              <h3 className="w-max break-all text-gray-500">
+              <h3 className="w-max break-normal text-gray-500">
                 {input.occupation}{' '}
                 {input.location && input.occupation ? `in` : ''}{' '}
                 {input.location}

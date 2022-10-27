@@ -40,7 +40,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
           {loaderData?.firstname} {loaderData?.lastname}
         </h5>
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-xs leading-5 lg:text-2xl lg:leading-8 font-normal text-gray-600 w-max break-all px-[1.5rem] lg:px-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] 2xl:ml-[2.5rem]'} `} >
+          <h3 className={`text-xs leading-5 lg:text-2xl lg:leading-8 font-normal text-gray-600 w-max break-normal  px-[1.5rem] lg:px-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] 2xl:ml-[2.5rem]'} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
         
@@ -70,7 +70,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
-                  <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-all">
+                  <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-normal">
                     {input.company}
                   </h2>
                 </div> : <span></span>}
@@ -79,7 +79,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
-                  <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-all">
+                  <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-normal">
                     {input.education}
                   </h2>
                 </div> : <span></span>}

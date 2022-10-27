@@ -34,7 +34,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
         
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={` text-gray-500 break-all text-xs leading-5 font-medium ${mode ==='mobile' ? 'xl:leading-8 xl:text-gray-600 xl:text-2xl lg:mt-[0.375rem]' : 'lg:leading-8 lg:text-gray-600 lg:mt-[0.375rem] lg:text-2xl'}  ${nav ? '' :''} `} >
+          <h3 className={` text-gray-500 break-normal text-xs leading-5 font-medium ${mode ==='mobile' ? 'xl:leading-8 xl:text-gray-600 xl:text-2xl lg:mt-[0.375rem]' : 'lg:leading-8 lg:text-gray-600 lg:mt-[0.375rem] lg:text-2xl'}  ${nav ? '' :''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
@@ -64,7 +64,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-all ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'lg:mt-[-0.25rem] '}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'lg:mt-[-0.25rem] '}`} >
                     {input.company}
                   </h2>
                 </div> : <span></span>}
@@ -73,7 +73,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-all ${mode ==='mobile' ? ' lg:mt-[-0.25rem]' : 'lg:mt-[-0.25rem] '}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? ' lg:mt-[-0.25rem]' : 'lg:mt-[-0.25rem] '}`} >
                     {input.education}
                   </h2>
                 </div> : <span></span>}

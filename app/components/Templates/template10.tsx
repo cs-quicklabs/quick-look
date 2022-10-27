@@ -120,7 +120,7 @@ function Template10({
           }`}
         >
           {' '}
-          <pre className="whitespace-pre-wrap break-all font-sans text-xs font-normal leading-5 text-gray-500 md:text-base">
+          <pre className="whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 md:text-base">
             {input?.description?.trim()}{' '}
           </pre>{' '}
         </div>

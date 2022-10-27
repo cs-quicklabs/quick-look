@@ -81,7 +81,7 @@ export default function Template9({
               input.location ||
               loaderData?.profileInfo?.location ? (
                 <h3
-                  className={` break-all text-gray-100 ${
+                  className={` break-normal text-gray-100 ${
                     mode == 'mobile'
                       ? 'w-fit px-4 text-xl'
                       : 'w-fit px-4 text-xl  md:text-2xl'
@@ -115,7 +115,7 @@ export default function Template9({
               <div className=" flex flex-wrap px-[2rem] pt-[2.5rem]">
                 {' '}
                 <pre
-                  className={`flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-gray-100 ${
+                  className={`flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-100 ${
                     loaderData?.video?.videoLink
                       ? 'w-[20rem] md:w-[30rem]'
                       : 'w-fit'
@@ -148,7 +148,7 @@ export default function Template9({
                   {input.company && (
                     <BriefcaseIcon className="h-6 w-6 text-gray-100" />
                   )}
-                  <h2 className="w-max  break-all text-base font-normal leading-5 text-gray-100">
+                  <h2 className="w-max break-normal  text-base font-normal leading-5 text-gray-100">
                     {input.company}{' '}
                   </h2>
                 </div>
@@ -156,7 +156,7 @@ export default function Template9({
                   {input.education && (
                     <AcademicCapIcon className="h-6 w-6 text-gray-100" />
                   )}
-                  <h2 className="w-max break-all text-base font-normal leading-5 text-gray-100">
+                  <h2 className="w-max break-normal text-base font-normal leading-5 text-gray-100">
                     {input.education}{' '}
                   </h2>
                 </div>

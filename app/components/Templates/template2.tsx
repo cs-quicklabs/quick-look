@@ -38,7 +38,7 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-gray-600 w-max break-all text-xs leading-5 font-normal ml-[0rem] sm:ml-0 ${mode ==='mobile' ? 'xl:text-base' : 'lg:text-base 2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem] '}  ${nav ? 'large:ml-0 2xl:ml-[0rem]' : ''} `} >
+          <h3 className={`text-gray-600 w-max break-normal text-xs leading-5 font-normal ml-[0rem] sm:ml-0 ${mode ==='mobile' ? 'xl:text-base' : 'lg:text-base 2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem] '}  ${nav ? 'large:ml-0 2xl:ml-[0rem]' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
