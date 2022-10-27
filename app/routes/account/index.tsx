@@ -226,9 +226,9 @@ export default function Profile() {
           className={`z-30 flex-1 grow  
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
-         ? 'lg:ml-[48rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
+         ? 'lg:ml-[32rem] medium:ml-[48rem] largeLaptop:ml-[24rem]'
          : loaderData?.profileInfo?.templateNumber == '0'
-         ? 'lg:ml-[4.9rem] medium:ml-[5rem] largeLaptop:ml-[0rem]'
+         ? 'lg:ml-[23.9rem] medium:ml-[5rem] largeLaptop:ml-[0rem]'
          : null
      }  
      ${

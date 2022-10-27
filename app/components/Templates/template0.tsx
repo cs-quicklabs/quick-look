@@ -44,7 +44,7 @@ export default function Template1({
               ) : null}
             </div>
             <div
-              className={`relative    md:pl-[11rem]   lg:pl-[12.5rem] ${
+              className={`relative  md:pl-[11rem] lg:pl-[8.5rem] xl:pl-[12.5rem] ${
                 loaderData?.profileImage?.primaryImage ||
                 primaryRestore === true
                   ? 'top-[-4rem]'
@@ -69,7 +69,7 @@ export default function Template1({
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
             </div>
           </div>
-          <div className="m-auto px-[7rem] pt-1 md:px-[19rem]  lg:px-[21rem]">
+          <div className="m-auto px-[7rem] pt-1 md:px-[19rem] lg:pl-[18rem] xl:px-[21rem]">
             <h1 className="w-max text-2xl font-bold leading-8 text-gray-900 ">
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
@@ -86,13 +86,13 @@ export default function Template1({
               <span></span>
             )}
           </div>
-          <div className="w-[22rem] md:w-full">
+          <div className="w-[22rem] md:w-full lg:w-[72%] xl:w-full">
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <Spotlightbtn loaderData={loaderData} />
             )}
           </div>
 
-          <div className="w-[22rem] md:w-full">
+          <div className="w-[22rem] md:w-full lg:w-[72%] xl:w-full">
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <AdditionalLinksAddOn loaderData={loaderData} />
             )}
@@ -102,7 +102,7 @@ export default function Template1({
             className={`w-[30rem] pl-[5rem] pr-[8rem] md:w-full md:px-[12rem]  largeLaptop:px-[14rem] ${
               mode === 'mobile'
                 ? 'lg:pr-[14rem] lg:pl-[3rem]'
-                : 'lg:px-[14rem] xl:flex-row'
+                : 'lg:pl-[8rem] lg:pr-[18rem] xl:px-[14rem] xl:flex-row'
             }`}
           >
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">
@@ -128,7 +128,7 @@ export default function Template1({
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
                       WORK
                     </h2>
-                    <h2 className="w-max break-all text-sm font-normal leading-5 text-gray-900">
+                    <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-normal">
                       {input.company}
                     </h2>
                   </div>
@@ -140,7 +140,7 @@ export default function Template1({
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
                       EDUCATION
                     </h2>
-                    <h2 className="w-max break-all text-sm font-normal leading-5 text-gray-900">
+                    <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-normal">
                       {input.education}
                     </h2>
                   </div>

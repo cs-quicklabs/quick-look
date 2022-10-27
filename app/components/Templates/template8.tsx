@@ -22,7 +22,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col pt-[2rem] lg:pt-[5rem] lg:gap-[4rem] lg:items-start lg:justify-start largeLaptop:gap-[12rem]  '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem] lg:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
 
-      <div className={`mt-[1rem] sm:mt-[2rem] pt-[1rem] pl-[1rem] w-[25rem] md:w-[47rem] bg-white ${mode ==='mobile' ? 'lg:pr-[3rem] mediumLaptop:w-[57rem] largeLaptop:w-[72rem]' : 'lg:bg-purple-50 lg:w-[32rem] lg:pl-[3rem] lg:mt-[0rem] largeLaptop:w-[43rem] largeLaptop:pl-[6rem]'} ${nav ? 'lg:w-[45.5rem] lg:pl-[7rem] largeLaptop:w-[55rem] largeLaptop:pl-[12rem]' :''}`}>
+      <div className={`mt-[1rem] sm:mt-[2rem] pt-[1rem] pl-[1rem] w-[25rem] md:w-[47rem] bg-white ${mode ==='mobile' ? 'lg:pr-[3rem] mediumLaptop:w-[57rem] largeLaptop:w-[72rem]' : 'lg:bg-purple-50 lg:w-[32rem] lg:pl-[3rem] lg:mt-[0rem] largeLaptop:w-[43rem] largeLaptop:pl-[6rem]'} ${nav ? 'lg:w-[57.5rem] lg:pl-[7rem] xl:w-[45.5rem] largeLaptop:w-[55rem] largeLaptop:pl-[12rem]' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?
         <h4 className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode ==='mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '} ${nav ? '' :''}`}>
         {loaderData?.firstname} {loaderData?.lastname}
@@ -69,7 +69,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
                   </h2>
                 </div> : <span></span>}
               {loaderData?.profileInfo?.education || input.education ?
-                <div className={`flex mt-[2rem]  ${mode ==='mobile' ? ' ' : 'xl:mt-0 '}`}>
+                <div className={`flex mt-[2rem]  ${mode ==='mobile' ? ' ' : 'lg:mt-0 '}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
@@ -88,7 +88,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
         
             <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
-            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} mode={mode} />}
             </div>
             
             <div className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
@@ -111,7 +111,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] pt-[4rem] pb-[2rem]' : 'lg:w-[33rem] largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
+      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] lg:pr-[10rem] xl:pr-auto pt-[4rem] pb-[2rem]' : 'lg:w-[45rem] lg:pl-[22rem] xl:w-[33rem] xl:pl-[6rem] xl:pl-auto largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}

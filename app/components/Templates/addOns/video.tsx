@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function VideoAddOn({ videoLink, loaderData }: any) {
+export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
   const link = videoLink
   let youtubeVideoId = link?.slice(link.indexOf('=') + 1)
   let facebookVideoId = link
@@ -14,8 +14,12 @@ export default function VideoAddOn({ videoLink, loaderData }: any) {
         <iframe
           className={`h-[25rem] ${
             loaderData?.profileInfo?.templateNumber == '9'
-              ? 'ml-[2.5rem] w-[75%] md:ml-[5.3rem]'
-              : ' w-full'
+              ? 'ml-[2.5rem] w-[75%] md:ml-[5.3rem]' 
+              : loaderData?.profileInfo?.templateNumber == '2' 
+              ? 'w-full lg:w-[75%] xl:w-[90%] medium:w-[75%] largeLaptop:w-full'
+              : loaderData?.profileInfo?.templateNumber == '8' && mode ==='mobile'
+              ? 'lg:w-[60%] 2xl:w-full'
+              : 'w-full'
           }`}
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
         />
