@@ -106,7 +106,7 @@ export default function Template1({
             }`}
           >
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">
-              <pre className="flex whitespace-pre-wrap break-all font-sans text-base font-normal leading-5 text-gray-500">
+              <pre className="flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}
               </pre>
             </div>
