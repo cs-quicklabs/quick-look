@@ -223,7 +223,7 @@ export default function Profile() {
 
         {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
         <div
-          className={`z-30 flex-1 grow  
+          className={`z-20 lg:z-30 flex-1 grow  
      ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
          ? 'lg:ml-[48rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'

@@ -134,9 +134,7 @@ function Template10({
         )}
 
         <div
-          className={`mr-[3.5rem] ${
-            mode === 'mobile' ? 'pr-0 lg:pr-[0rem] xl:pr-0' : ''
-          }`}
+          className={`${mode === 'mobile' ? 'pr-0 lg:pr-[0rem] xl:pr-0' : ''}`}
         >
           {loaderData?.video?.videoLink && (
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />
@@ -156,7 +154,7 @@ function Template10({
                 <BriefcaseIcon />
               </div>
             )}
-            {input.company}
+            <div className="w-max">{input.company}</div>
           </div>
           <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
             {input.education && (
@@ -164,7 +162,7 @@ function Template10({
                 <AcademicCapIcon />
               </div>
             )}
-            {input.education}{' '}
+            <div className="w-max">{input.education} </div>
           </div>
         </div>
       </div>
