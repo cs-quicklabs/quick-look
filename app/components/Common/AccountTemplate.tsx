@@ -474,7 +474,7 @@ export default function AccountTemplate({
                         </div>
                       </Form>
 
-                      <Form replace={true} action= {templateHandle} method='post'>
+                      {/* <Form replace={true} action= {templateHandle} method='post'>
                       <div >
                         <input type="hidden" name='template' value='6' />
                         <button 
@@ -499,7 +499,7 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                      </Form> */}
 
                     </div>
                   </div>

@@ -20,6 +20,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 };
+console.log("loaderData", loaderData)
   return(
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
@@ -95,7 +96,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
               <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
               </div>
               
-              <div  className={`pt-[4rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              <div  className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 <PortfolioAddon loaderData={loaderData}/>
               </div>
               

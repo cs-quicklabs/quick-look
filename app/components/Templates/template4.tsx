@@ -56,9 +56,9 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
           </div>
 
           <div className={`pb-[1rem] lg:pb-[1rem] ${mode ==='mobile' ? '' : ''} `}>
-              <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'lg:flex-row lg:gap-[5rem]'} ${nav ? 'lg:gap-[10rem]' : ''}`} >
+              <div className={`flex flex-col pt-4 ${mode ==='mobile' ? 'flex-col' : 'lg:flex-row lg:gap-[5rem]'} ${nav ? 'lg:gap-[10rem]' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
-                  <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'flex-col'}`} >
+                  <div className={`flex lg:w-[50%] ${mode ==='mobile' ? 'flex-col' : 'flex-col'}`} >
                     <h2 className={`text-white lg:text-gray-50 font-medium text-sm leading-5 w-max  ${mode ==='mobile' ? '' : ''}`} >
                       WORK
                     </h2>
@@ -67,7 +67,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
                     </h2>
                   </div> : <span></span>}
                 {loaderData?.profileInfo?.education || input.education ?
-                  <div className={`flex mt-[1.5rem]  ${mode ==='mobile' ? '' : 'flex-col lg:mt-[0rem]'} ${nav ? '' : ''}`} >
+                  <div className={`flex mt-[1.5rem]  ${mode ==='mobile' ? 'flex-col' : 'flex-col lg:mt-[0rem]'} ${nav ? '' : ''}`} >
                     <h2 className= {`text-white lg:text-gray-50 font-medium text-sm leading-5 w-max ${mode ==='mobile' ? '' : ''}`} >
                       EDUCATION
                     </h2>
@@ -90,7 +90,7 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
             </div>
             
-            <div  className={`pt-[4rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div  className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             

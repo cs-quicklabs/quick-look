@@ -101,7 +101,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
             <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex pt-[2.5rem] w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+          <footer className={`flex w-full gap-4 md:gap-8 items-center justify-center px-[1.5rem] lg:px-0 pb-[5rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''} ${loaderData?.portfolioImage.length > 1 ? 'pt-[2.5rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?

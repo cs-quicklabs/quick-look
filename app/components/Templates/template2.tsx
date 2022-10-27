@@ -32,7 +32,7 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem]' : 'h-auto medium:h-[40rem]'} ${nav? 'lg:h-[45rem] xl:h-[40rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
-      <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'xl:mt-[2.5rem] large:mt-[9.5rem] xl:ml-[0rem] medium:ml-[1rem] 2xl:ml-[1rem] largeLaptop:ml-[3rem]' : 'xl:mt-[9.5rem] lg:w-[25rem] largeLaptop:mr-[5rem] largeLaptop:w-[43rem]'} ${nav ? 'lg:w-[55rem]' : ''}`}>
+      <div className={`mt-[1.5rem] ${mode ==='mobile' ? ' xl:mt-[2.5rem] large:mt-[9.5rem] xl:ml-[0rem] medium:ml-[1rem] 2xl:ml-[1rem] largeLaptop:ml-[3rem]' : 'xl:mt-[9.5rem] lg:w-[25rem] largeLaptop:mr-[5rem] largeLaptop:w-[43rem]'} ${nav ? 'lg:w-[55rem]' : ''}`}>
         <h4 className={`text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 2xl:ml-[0rem]' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -94,12 +94,12 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
             }
             </div>
         
-            <div className={`${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
+            <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
-            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
             </div>
             
-            <div  className={`pt-[4rem] ${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
+            <div  className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             

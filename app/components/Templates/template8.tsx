@@ -91,7 +91,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
             </div>
             
-            <div className={`pt-[4rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
 
