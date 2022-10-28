@@ -121,7 +121,7 @@ export default function Portfolio({
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="h-screen">
                     <div
-                      className={`font-inter mt-12 flex overflow-y-auto ${
+                      className={`font-inter mt-12 flex overflow-y-auto scrollbar-hide ${
                         loaderData.portfolioImage.length <= 12
                           ? 'h-full'
                           : 'h-[100vh]'
