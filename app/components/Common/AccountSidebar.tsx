@@ -167,9 +167,12 @@ export default function AccountSideBar({
                             <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
                               {loaderData?.firstname} {loaderData?.lastname}
                             </p>
-                            <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+                            <a
+                            href={`/${loaderData?.username}`}
+                            target="_blank"
+                            className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
                               View profile
-                            </p>
+                            </a>
                           </div>
                         </div>
                       </a>
