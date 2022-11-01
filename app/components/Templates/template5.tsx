@@ -17,7 +17,6 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
   
   const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
- console.log(loaderData)
    {
     const myStyle={
       backgroundImage: 

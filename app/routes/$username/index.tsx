@@ -12,6 +12,7 @@ import Template3 from "~/components/Templates/template3";
 import Template4 from "~/components/Templates/template4";
 import Template6 from "~/components/Templates/template6";
 import Template9 from '~/components/Templates/template9'
+import Template13 from '~/components/Templates/template13'
 
 export const loader: LoaderFunction = async ({ params }) => {
   const user = await getUserByUsername(params?.username!)
@@ -65,7 +66,14 @@ export const loader: LoaderFunction = async ({ params }) => {
             input={input}
             loaderData={loaderData}
           />
-        )  : null}
+        ): loaderData?.profileInfo?.templateNumber == '13' ? (
+          <Template13
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        ): null}
         </div>
     )
   }

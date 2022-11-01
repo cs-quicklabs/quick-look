@@ -10,9 +10,9 @@ import VideoAddOn from './addOns/video'
 import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
-export default function Template3 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
+export default function Template13 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
-  const Location = useLocation()
+ const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
  const myStyle={
   backgroundImage: 

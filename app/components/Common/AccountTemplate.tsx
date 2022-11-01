@@ -13,6 +13,8 @@ import thumb3 from '../../../assets/images/screenshots/thumb3.png'
 import thumb4 from '../../../assets/images/screenshots/thumb4.png'
 import thumb6 from '../../../assets/images/screenshots/thumb6.png'
 import template9 from '../../../assets/images/screenshots/template-9.png'
+import thumb13 from '../../../assets/images/screenshots/thumbnail13.png'
+
 
 export default function AccountTemplate({
   setshowTemplate,
@@ -473,7 +475,7 @@ export default function AccountTemplate({
                           </button>
                         </div>
                       </Form>
-
+                      
                       {/* <Form replace={true} action= {templateHandle} method='post'>
                       <div >
                         <input type="hidden" name='template' value='6' />
@@ -500,6 +502,34 @@ export default function AccountTemplate({
                           </button>
                         </div>
                       </Form> */}
+
+<Form replace={true} action= {templateHandle} method='post'>
+                      <div >
+                        <input type="hidden" name='template' value='13' />
+                        <button 
+                        type='submit'
+                        className='disabled:cursor-pointer'
+                        onClick={(e: any) => { setSelectTemplate('template13') }}
+                        disabled={transition?.state != 'idle'}
+                        >
+                          {selectTemplate === 'template13' && transition?.submission?.action == "/account/update/choose-template" ? (
+                            <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
+                            className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
+                            <img src={thumb13} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                              </div>
+                            ) : (
+                              <img
+                                src={thumb13}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </Form>
+
 
                     </div>
                   </div>
