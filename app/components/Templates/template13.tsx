@@ -14,28 +14,23 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
   
  const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
- const myStyle={
-  backgroundImage: 
- `url(${Background3})`,
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-};
+ 
   return(
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row'} ${nav? '' :''}`} style={myStyle} >
+    <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row'} ${nav? '' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:py-[10rem] xl:w-[24rem]  mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:py-[10rem] xl:w-[24rem]  mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-t-lg object-cover w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
-        <h4 className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+        <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${mode ==='mobile' ? '' : 'lg:w-max mediumLaptop:w-full'}  ${nav ? 'lg:w-full' : ''} `} >
+          <h3 className={`text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${mode ==='mobile' ? '' : 'lg:w-max mediumLaptop:w-full'}  ${nav ? 'lg:w-full' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
@@ -49,7 +44,7 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
               { input?.description?.trim()}
             </pre>
           </div>
-          <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] bg-black w-full lg:pl-[2rem] ${mode ==='mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent'} `}>
+          <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] ${mode ==='mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent'} `}>
             <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
