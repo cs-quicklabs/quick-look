@@ -26,13 +26,13 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide  ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col lg:gap-[5rem] xl:flex-row pt-[3rem] pb-[5rem] pl-[1rem] sm:pl-[3rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'flex-col lg:flex-row lg:pl-[1.5rem]' :''}`} style={myStyle}>
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'lg:pl-[2rem] xl:pl-[7rem]  xl:mt-[5.625rem] lg:max-w-[25rem] xl:max-w-[32rem]  2xl:max-w-[47rem] medium:max-w-[60rem] medium:pl-[4rem] 2xl:pl-[4rem] largeLaptop:pl-[15rem] large:pl-[3rem]' : 'pl-[2.5rem] sm:pl-[3rem] xl:mt-[5.625rem] mr-[10rem] ml-[0rem] sm:mr-[6rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[0rem] xl:pl-[2rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[29rem] xl:max-w-[35rem] lg:mx-[1.625rem] xl:mx-[5.625rem] medium:mx-[5.625rem] largeLaptop:mx-[10.625rem] large:mx-[12.625rem] 2xl:ml-[7rem]' :''}`} >
+      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'lg:pl-[2rem] xl:pl-[1rem]  xl:mt-[5.625rem] lg:max-w-[25rem] xl:max-w-[32rem]  2xl:max-w-[47rem] medium:max-w-[60rem] medium:pl-[8rem] 2xl:pl-[8rem] largeLaptop:pl-[15rem] large:pl-[3rem]' : 'pl-[2.5rem] sm:pl-[3rem] xl:mt-[5.625rem] mr-[10rem] ml-[0rem] sm:mr-[6rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[0rem] xl:pl-[7rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[29rem] xl:max-w-[35rem] lg:mx-[1.625rem] xl:mx-[5.625rem] medium:mx-[5.625rem] largeLaptop:mx-[10.625rem] large:mx-[12.625rem] 2xl:ml-[7rem]' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem]' : 'h-auto medium:h-[40rem]'} ${nav? 'lg:h-[45rem] xl:h-[40rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
-      <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'lg:w-[25rem] xl:mt-[2.5rem] large:mt-[9.5rem] xl:ml-[0rem] medium:ml-[1rem] 2xl:ml-[1rem] largeLaptop:ml-[3rem]' : 'xl:mt-[9.5rem] lg:w-[25rem] largeLaptop:mr-[5rem] largeLaptop:w-[43rem]'} ${nav ? 'lg:w-[34rem] xl:w-[55rem]' : ''}`}>
+      <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'lg:w-[25rem] 2xl:w-[35rem] xl:mt-[2.5rem] large:mt-[9.5rem] xl:ml-[0rem] medium:ml-[1rem] 2xl:ml-[1rem] largeLaptop:ml-[3rem]' : 'xl:mt-[9.5rem] lg:w-[25rem] largeLaptop:mr-[5rem] largeLaptop:w-[43rem]'} ${nav ? 'lg:w-[34rem] xl:w-[55rem]' : ''}`}>
         <h4 className={`text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 2xl:ml-[0rem]' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
