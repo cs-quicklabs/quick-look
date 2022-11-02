@@ -171,8 +171,7 @@ const OnCancel = ()=>{
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
-        <div className="fixed inset-0 overflow-hidden">
+      <Dialog as="div" className="relative z-40" onClose={()=>{}}>
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex `}>
               <Transition.Child
@@ -497,7 +496,6 @@ const OnCancel = ()=>{
               </Transition.Child>
             </div>
           </div>
-        </div>
       </Dialog>
     </Transition.Root>
   )

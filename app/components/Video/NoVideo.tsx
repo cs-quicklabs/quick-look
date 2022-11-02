@@ -30,10 +30,10 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
   }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
-        <div className="fixed inset-0" />
+      <Dialog as="div" className="relative z-40" onClose={()=>{}}>
+        
 
-        <div className={`fixed inset-0 overflow-hidden`}>
+        
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
             <Transition.Child
@@ -100,7 +100,7 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
               </Transition.Child>
             </div>
           </div>
-        </div>
+        
       </Dialog>
     </Transition.Root>
   )

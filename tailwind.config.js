@@ -28,7 +28,7 @@ module.exports = {
         xxs: '375px',
         small: '1024px',
         smRes: '1176px',
-        SmMedium: '1220px',
+        SmMedium: '1280px',
         MdRes: '1366px',
         medium: '1518px',
         mediumLaptop: '1700px',
