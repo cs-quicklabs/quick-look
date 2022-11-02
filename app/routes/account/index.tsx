@@ -223,14 +223,76 @@ export default function Profile() {
 
         {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
         <div
-          className={`z-20 grow basis-[78%]
+          className={`z-20 grow basis-[78%] 
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
+        ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '0'
+        ? 'lg:ml-[21rem] xl:ml-[0rem]'
+        : null
+      }  
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
+        ? 'lg:ml-[22rem] xl:ml-[46rem] 2xl:ml-[35rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '2'
+        ? 'lg:ml-[12rem] xl:ml-[0rem]'
+        : null
+      }
+      ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
+       ? 'lg:ml-[23rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+       :  loaderData?.profileInfo?.templateNumber == '5'
+       ? 'lg:ml-[9rem] xl:ml-[19rem] mediumLaptop:ml-[0rem]'
+       : null
+     }
      ${
-          mode === 'mobile' 
-            ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
-            : 'lg:ml-[21rem] xl:ml-[0rem]'
-            
-        }
-        
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
+       ? 'lg:ml-[30rem] xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+       :  loaderData?.profileInfo?.templateNumber == '7'
+       ? 'lg:ml-[21rem] xl:ml-[0rem]'
+       : null
+     }
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
+        ? 'lg:ml-[32rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '8'
+        ? 'lg:ml-[21rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+        : null
+      }
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
+        ? 'lg:ml-[30rem] xl:ml-[36rem] 2xl:ml-[30rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '10'
+        ? 'lg:ml-[13rem] 2xl:ml-[0rem] mediumLaptop:ml-[0rem]'
+        : null
+      }${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
+             ? 'lg:ml-[22rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '9'
+             ? 'lg:ml-[13rem] xl:ml-[0rem]'
+             : null
+           }
+           ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
+             ? 'lg:ml-[22rem] xl:ml-[46rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '3'
+             ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+             : null
+           } 
+           ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
+             ? 'lg:ml-[22rem] xl:ml-[46rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '4'
+             ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+             : null
+           } 
+           ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '6'
+             ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '6'
+             ? 'lg:ml-[21rem] xl:ml-[0rem]'
+             : null
+           }
        
      `}
         >

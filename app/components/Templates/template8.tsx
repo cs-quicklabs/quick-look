@@ -111,7 +111,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] lg:pr-[10rem] xl:pr-auto pt-[4rem] pb-[2rem]' : 'lg:w-[45rem] lg:pl-[22rem] xl:w-[33rem] xl:pl-[6rem] xl:pl-auto largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
+      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] lg:pr-[10rem] xl:pr-auto pt-[4rem] pb-[2rem]' : 'lg:w-[45rem] lg:pl-[8rem] xl:w-[33rem] xl:pl-[6rem] xl:pl-auto largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
