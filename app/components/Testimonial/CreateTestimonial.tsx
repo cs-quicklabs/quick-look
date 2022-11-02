@@ -38,10 +38,10 @@ useEffect(() => {
    else if (!onlyAlphabetsRegex.test(testimonialBy)) {
     return setError1('Only alphabets allowed.')
   }
-  else if (testimonialBy.length < 3) {
-  return setError1(`First Name must be at least 3 characters long.`)
-  } else if (testimonialBy.length > 18) {
-  return setError1(`First Name must be less than 18 characters.`)
+  else if (testimonialBy.length < 2) {
+  return setError1(`Name must be 2 characters long`)
+  } else if (testimonialBy.length > 24) {
+  return setError1(`Name must not be more than 24 characters long`)
   } else{
     setError1('')
   }
@@ -79,9 +79,9 @@ useEffect(() => {
 return (
   <Transition.Root show={true} as={Fragment}>
     <div className="relative z-20" >
-      <div className="fixed inset-0" />
+      
 
-      <div className="fixed inset-0 overflow-hidden">
+      
         <div className="absolute inset-0 overflow-hidden">
           <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
             <Transition.Child
@@ -234,7 +234,7 @@ return (
             </Transition.Child>
           </div>
         </div>
-      </div>
+    
     </div>
   </Transition.Root>
 )

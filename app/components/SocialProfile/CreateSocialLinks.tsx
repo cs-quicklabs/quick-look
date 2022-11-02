@@ -70,9 +70,8 @@ useEffect(() => {
           })
   return (
     <Transition.Root show={showCreateProfile} as={Fragment}>
-      <div className="relative z-20" >
+      <div className="relative z-40" >
         
-        <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex `}>
             <Transition.Child
@@ -222,7 +221,6 @@ useEffect(() => {
               </Transition.Child>
             </div>
           </div>
-        </div>
       </div>
     </Transition.Root>
   )

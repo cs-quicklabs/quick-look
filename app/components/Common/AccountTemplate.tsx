@@ -38,10 +38,10 @@ export default function AccountTemplate({
   }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={() => {}}>
-        <div className="fixed inset-0" />
+      <Dialog as="div" className="relative z-40" onClose={() => {}}>
+        {/* <div className="fixed inset-0" /> */}
 
-        <div className="fixed inset-0 overflow-hidden">
+        <div className=" inset-0 ">
           <div className="absolute inset-0 overflow-hidden">
             <div
               className={`pointer-events-none fixed inset-y-0 left-0 mt-12  flex ${
@@ -422,19 +422,40 @@ export default function AccountTemplate({
                         </div>
                       </Form>
 
-                      <Form replace={true} action= {templateHandle} method='post'>
-                      <div >
-                        <input type="hidden" name='template' value='3' />
-                        <button 
-                        type='submit'
-                        className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template3') }}
-                        disabled={transition?.state != 'idle'}
-                        >
-                          {selectTemplate === 'template3' && transition?.submission?.action == "/account/update/choose-template" ? (
-                            <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
-                            className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumb3} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="3" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template3')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template3' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={thumb3}
+                                  alt=""
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
                               </div>
                             ) : (
                               <img
@@ -449,19 +470,40 @@ export default function AccountTemplate({
                         </div>
                       </Form>
 
-                      <Form replace={true} action= {templateHandle} method='post'>
-                      <div >
-                        <input type="hidden" name='template' value='4' />
-                        <button 
-                        type='submit'
-                        className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template4') }}
-                        disabled={transition?.state != 'idle'}
-                        >
-                          {selectTemplate === 'template4' && transition?.submission?.action == "/account/update/choose-template" ? (
-                            <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
-                            className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumb4} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="4" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template4')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template4' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={thumb4}
+                                  alt=""
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
                               </div>
                             ) : (
                               <img

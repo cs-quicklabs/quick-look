@@ -39,10 +39,8 @@ useEffect(() => {
 }
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={()=>{}}>
-        <div className="fixed inset-0" />
+      <Dialog as="div" className="relative z-40" onClose={()=>{}}>
 
-        <div className={`fixed inset-0 overflow-hidden`}>
           <div className="absolute inset-0 overflow-hidden">
             <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-80' : 'lg:w-80'}`}>
               <Transition.Child
@@ -132,7 +130,7 @@ useEffect(() => {
         </div>
       </div>
     </div>}
-                    <div  className={`${showCreateProfile ?'mt-36 z-20':'mt-4'}`}>
+                    <div  className={`${showCreateProfile ?'mt-36 z-40':'mt-4'}`}>
                     <ExistingSocialLinks successUpdateMessage={successUpdateMessage} message={message} loaderData={loaderData} setshowSocialLinks={setshowSocialLinks}  mode={mode} setmode={setmode} />  
                     </div>
                     
@@ -144,7 +142,6 @@ useEffect(() => {
               </Transition.Child>
             </div>
           </div>
-        </div>
       </Dialog>
     </Transition.Root>
   )

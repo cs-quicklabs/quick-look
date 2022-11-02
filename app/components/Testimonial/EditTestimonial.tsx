@@ -32,9 +32,9 @@ let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
     }else if (!onlyAlphabetsRegex.test(testimonialBy)) {
       return setError1('Only alphabets allowed.')
     }
-    else if(testimonialBy?.length < 6){
-      setError1('Name must be 6 characters long');
-    } else if(testimonialBy.length >24 ){
+    else if(testimonialBy?.length < 2){
+      setError1('Name must be 2 characters long');
+    } else if(testimonialBy.length > 24 ){
       setError1('Name must not be more than 24 characters long');
     }
     else if(testimonialBy === ''){
@@ -73,9 +73,9 @@ let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
   return (
     <Transition.Root show={true} as={Fragment}>
     <div className="relative z-20">
-      <div className="fixed inset-0" />
+    
 
-      <div className="fixed inset-0 overflow-hidden">
+      
         <div className="absolute inset-0 overflow-hidden">
           <div className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'}`}>
             <Transition.Child
@@ -197,7 +197,7 @@ let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
             </Transition.Child>
           </div>
         </div>
-      </div>
+      
     </div>
   </Transition.Root>
   )

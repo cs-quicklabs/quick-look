@@ -181,8 +181,8 @@ export default function NoImages({
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={() => {}}>
-        <div className="fixed inset-0 overflow-hidden">
+      <Dialog as="div" className="relative z-40" onClose={() => {}}>
+        
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">
               <Transition.Child
@@ -238,7 +238,7 @@ export default function NoImages({
                       {bgimageAlreadyuploaded || primaryRestore ? (
                         <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
                           <label className="block text-sm font-medium leading-5 text-gray-700">
-                            Primary Image
+                            Cover Image
                           </label>
 
                           <div>
@@ -340,7 +340,7 @@ export default function NoImages({
                       ) : (
                         <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
                           <label className="block text-sm font-medium leading-5 text-gray-700">
-                            Primary Image
+                            Cover Image
                           </label>
 
                           <div
@@ -454,7 +454,7 @@ export default function NoImages({
                         <div className="">
                           <div className="mt-6 px-4 sm:col-span-6 sm:px-6">
                             <label className="block text-sm font-medium leading-5 text-gray-700">
-                              Secondary Image
+                              Profile Image
                             </label>
 
                             <div className="mt-3.5 flex h-[8rem] w-[8rem]  justify-center rounded-full">
@@ -543,7 +543,7 @@ export default function NoImages({
                         <div className="px-4 sm:col-span-6 sm:px-6 md:mt-6 md:mb-7 lg:mt-16 lg:mb-0">
                           <label className="block text-sm font-medium leading-5 text-gray-700">
                             {' '}
-                            Secondary Image
+                            Profile Image
                           </label>
                           <div
                             className="mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 px-[1px] pb-2.5 md:pt-6 lg:pt-10"
@@ -660,7 +660,7 @@ export default function NoImages({
               </Transition.Child>
             </div>
           </div>
-        </div>
+        
       </Dialog>
     </Transition.Root>
   )

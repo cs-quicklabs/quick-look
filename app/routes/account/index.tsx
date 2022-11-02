@@ -175,8 +175,8 @@ export default function Profile() {
       />
       <div className="relative flex">
         <div
-          className={`w-[0%] grow-0 md:w-0 lg:w-[20.1%] ${
-            mode === 'mobile' ? 'lg:z-[50]' : 'lg:z-20'
+          className={`w-[0%] grow-0 md:w-0 lg:basis-[20.1%] ${
+            mode === 'mobile' ? 'lg:z-[50]' : 'lg:z-[21]'
           }`}
         >
           <AccountSidebar
@@ -224,83 +224,78 @@ export default function Profile() {
 
         {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
         <div
-          className={`z-20 lg:z-30 flex-1 grow  
-     ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
-         ? 'lg:ml-[32rem] medium:ml-[48rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '0'
-         ? 'lg:ml-[23.9rem] medium:ml-[5rem] largeLaptop:ml-[0rem]'
-         : null
-     }  
-     ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[31.8rem] xl:ml-[47.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '2'
-         ? 'lg:ml-[11.7rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
-         : null
+          className={`z-20 grow basis-[78%] 
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
+        ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '0'
+        ? 'lg:ml-[21rem] xl:ml-[0rem]'
+        : null
+      }  
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
+        ? 'lg:ml-[22rem] xl:ml-[32rem] 2xl:ml-[35rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '2'
+        ? 'lg:ml-[12rem] xl:ml-[0rem]'
+        : null
+      }
+      ${
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
+       ? 'lg:ml-[23rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+       :  loaderData?.profileInfo?.templateNumber == '5'
+       ? 'lg:ml-[9rem] xl:ml-[19rem] mediumLaptop:ml-[0rem]'
+       : null
      }
      ${
-      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[32rem] xl:ml-[48rem] 2xl:ml-[29rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-        : loaderData?.profileInfo?.templateNumber == '5'
-        ? 'lg:ml-[11rem] xl:ml-[24rem] 2xl:ml-[5rem] medium:ml-[5rem] mediumLaptop:ml-[8rem] largeLaptop:ml-[1px]'
-        : null
-    }
-    ${
-      mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[31.9rem] xl:ml-[47.9rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-        : loaderData?.profileInfo?.templateNumber == '7'
-        ? 'lg:ml-[23.7rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
-        : null
-    }
-     ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[31.8rem] xl:ml-[48.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '8'
-         ? 'lg:ml-[10.9rem] xl:ml-[23.9rem] 2xl:ml-[4.9rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
-         : null
+       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '7'
+       ? 'lg:ml-[30rem] xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+       :  loaderData?.profileInfo?.templateNumber == '7'
+       ? 'lg:ml-[21rem] xl:ml-[0rem]'
+       : null
      }
-     ${
-       mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
-         ? 'lg:ml-[29rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-         : loaderData?.profileInfo?.templateNumber == '10'
-         ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[5.1rem] medium:ml-[6.3rem] largeLaptop:ml-[2px]'
-         : null
-     }${
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[32rem] MdRes:ml-[29rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-              : loaderData?.profileInfo?.templateNumber == '9'
-              ? 'lg:ml-[24.1rem] smRes:ml-[9.3rem] SmMedium:ml-[8.2rem] MdRes:ml-[6.1rem] medium:ml-[5rem] largeLaptop:ml-[2px]'
-              : null
-          }
-          ${
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
-              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-              : loaderData?.profileInfo?.templateNumber == '3'
-              ? 'lg:ml-[11rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
-              : null
-          } 
-          ${
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[32rem] xl:ml-[47.8rem] 2xl:ml-[28.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-              : loaderData?.profileInfo?.templateNumber == '4'
-              ? 'lg:ml-[24rem] xl:ml-[5.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
-              : null
-          } 
-          ${
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '6'
-              ? 'lg:ml-[47.8rem] medium:ml-[27rem] largeLaptop:ml-[24rem]'
-              : loaderData?.profileInfo?.templateNumber == '6'
-              ? 'lg:ml-[4.7rem] medium:ml-[3rem] largeLaptop:ml-[1px]'
-              : null
-          }
-          ${
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '13'
-              ? 'lg:ml-[31.8rem] xl:ml-[47.8rem] medium:ml-[29rem] largeLaptop:ml-[24rem]'
-              : loaderData?.profileInfo?.templateNumber == '13'
-              ? 'lg:ml-[11.7rem] xl:ml-[4.7rem] medium:ml-[5rem] largeLaptop:ml-[1px]'
-              : null
-          }`}
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '8'
+        ? 'lg:ml-[32rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '8'
+        ? 'lg:ml-[21rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+        : null
+      }
+      ${
+        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
+        ? 'lg:ml-[30rem] xl:ml-[36rem] 2xl:ml-[30rem] mediumLaptop:ml-[30rem]'
+        :  loaderData?.profileInfo?.templateNumber == '10'
+        ? 'lg:ml-[13rem] xl:ml-[0rem] mediumLaptop:ml-[0rem]'
+        : null
+      } ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
+             ? 'lg:ml-[22rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '9'
+             ? 'lg:ml-[13rem] xl:ml-[6rem]'
+             : null
+           }
+           ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
+             ? 'lg:ml-[22rem] xl:ml-[36rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '3'
+             ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+             : null
+           } 
+           ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
+             ? 'lg:ml-[22rem] xl:ml-[36rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '4'
+             ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+             : null
+           } 
+           ${
+             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '6'
+             ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+             :  loaderData?.profileInfo?.templateNumber == '6'
+             ? 'lg:ml-[21rem] xl:ml-[0rem]'
+             : null
+           }
+       
+     `}
         >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
             <Template0
