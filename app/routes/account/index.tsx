@@ -233,7 +233,7 @@ export default function Profile() {
       }  
       ${
         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
-        ? 'lg:ml-[22rem] xl:ml-[46rem] 2xl:ml-[35rem] mediumLaptop:ml-[30rem]'
+        ? 'lg:ml-[22rem] xl:ml-[32rem] 2xl:ml-[35rem] mediumLaptop:ml-[30rem]'
         :  loaderData?.profileInfo?.templateNumber == '2'
         ? 'lg:ml-[12rem] xl:ml-[0rem]'
         : null
@@ -263,13 +263,13 @@ export default function Profile() {
         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
         ? 'lg:ml-[30rem] xl:ml-[36rem] 2xl:ml-[30rem] mediumLaptop:ml-[30rem]'
         :  loaderData?.profileInfo?.templateNumber == '10'
-        ? 'lg:ml-[13rem] 2xl:ml-[0rem] mediumLaptop:ml-[0rem]'
+        ? 'lg:ml-[13rem] xl:ml-[0rem] mediumLaptop:ml-[0rem]'
         : null
-      }${
+      } ${
              mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
              ? 'lg:ml-[22rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
              :  loaderData?.profileInfo?.templateNumber == '9'
-             ? 'lg:ml-[13rem] xl:ml-[0rem]'
+             ? 'lg:ml-[13rem] xl:ml-[6rem]'
              : null
            }
            ${
