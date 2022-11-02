@@ -274,14 +274,14 @@ export default function Profile() {
            }
            ${
              mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
-             ? 'lg:ml-[22rem] xl:ml-[46rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             ? 'lg:ml-[22rem] xl:ml-[36rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
              :  loaderData?.profileInfo?.templateNumber == '3'
              ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
              : null
            } 
            ${
              mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '4'
-             ? 'lg:ml-[22rem] xl:ml-[46rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             ? 'lg:ml-[22rem] xl:ml-[36rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
              :  loaderData?.profileInfo?.templateNumber == '4'
              ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
              : null
