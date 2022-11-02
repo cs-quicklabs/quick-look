@@ -128,7 +128,7 @@ export default function Portfolio({
                       }   flex-col border-r border-gray-200 bg-white ${
                         mode === 'mobile'
                           ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                          : 'w-[100vw] md:w-[20rem] lg:w-[23rem] largeLaptop:w-96'
+                          : 'w-[100vw] md:w-[20rem] lg:w-[24rem] largeLaptop:w-96'
                       } `}
                     >
                       <div className="">

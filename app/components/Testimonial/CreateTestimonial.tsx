@@ -38,10 +38,10 @@ useEffect(() => {
    else if (!onlyAlphabetsRegex.test(testimonialBy)) {
     return setError1('Only alphabets allowed.')
   }
-  else if (testimonialBy.length < 3) {
-  return setError1(`First Name must be at least 3 characters long.`)
-  } else if (testimonialBy.length > 18) {
-  return setError1(`First Name must be less than 18 characters.`)
+  else if (testimonialBy.length < 2) {
+  return setError1(`Name must be 2 characters long`)
+  } else if (testimonialBy.length > 24) {
+  return setError1(`Name must not be more than 24 characters long`)
   } else{
     setError1('')
   }
