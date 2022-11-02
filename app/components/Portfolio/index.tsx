@@ -121,14 +121,14 @@ export default function Portfolio({
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="h-screen">
                     <div
-                      className={`font-inter mt-12 flex overflow-y-auto scrollbar-hide ${
+                      className={`font-inter mt-12 flex overflow-y-auto ${
                         loaderData.portfolioImage.length <= 12
                           ? 'h-full'
                           : 'h-[100vh]'
                       }   flex-col border-r border-gray-200 bg-white ${
                         mode === 'mobile'
                           ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                          : 'w-[100vw] md:w-[20rem] lg:w-[23rem] largeLaptop:w-96'
+                          : 'w-[100vw] md:w-[20rem] lg:w-[24rem] largeLaptop:w-96'
                       } `}
                     >
                       <div className="">
