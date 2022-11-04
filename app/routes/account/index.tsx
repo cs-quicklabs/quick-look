@@ -294,6 +294,13 @@ export default function Profile() {
              ? 'lg:ml-[21rem] xl:ml-[0rem]'
              : null
            }
+           ${
+            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '13'
+            ? 'lg:ml-[23rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+            :  loaderData?.profileInfo?.templateNumber == '13'
+            ? 'lg:ml-[13rem] xl:ml-[0rem]'
+            : null
+          }
        
      `}
         >
