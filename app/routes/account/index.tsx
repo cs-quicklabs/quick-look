@@ -17,6 +17,7 @@ import Template3 from '~/components/Templates/template3'
 import Template4 from '~/components/Templates/template4'
 import Template6 from '~/components/Templates/template6'
 import Template9 from '~/components/Templates/template9'
+import Template14 from '~/components/Templates/template14'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -375,7 +376,16 @@ export default function Profile() {
               input={input}
               loaderData={loaderData}
             />
-          ) : null}
+          ) : loaderData?.profileInfo?.templateNumber == '14' ? (
+            <Template14
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          )
+          : null}
         </div>
       </div>
 
