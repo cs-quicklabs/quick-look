@@ -16,7 +16,8 @@ export default function Spotlightbtn({ loaderData }: any) {
   return (
     <div className='flex justify-center items-center mt-9 mb-4'>
       <a className='pr-8 md:pr-0' href={loaderData?.spotlightButton?.buttonActionlink.includes('https') ? loaderData?.spotlightButton?.buttonActionlink : 'https://'+loaderData?.spotlightButton?.buttonActionlink} target="_blank">
-        <button style={{ 'backgroundColor': loaderData?.spotlightButton?.buttonhex, 'textShadow': '0px 1px black' }} className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px] ml-[4.5rem] sm:ml-auto h-10 shadow-sm text-sm leading-5 font-medium text-white ${loaderData?.spotlightButton?.buttonColor}`}><DynamicHeroIcon icon={Final} Final={Final} /> {btnText}
+        <button style={{ 'backgroundColor': loaderData?.spotlightButton?.buttonhex, 'textShadow': '0px 1px black' }} className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px] ml-[4.5rem] sm:ml-auto h-10 shadow-sm text-sm leading-5 font-medium text-white ${loaderData?.spotlightButton?.buttonColor} ${loaderData?.profileInfo?.templateNumber == '14'
+            ? 'ml-[2rem]' : ''} `}><DynamicHeroIcon icon={Final} Final={Final} /> {btnText}
         </button>
       </a>
     </div>
