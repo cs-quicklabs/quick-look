@@ -22,7 +22,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
     
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
 
-    <div className={`relative flex overflow-auto scrollbar-hide bg-white justify-center items-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
+    <div className={`relative flex overflow-auto scrollbar-hide bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
 
       <div className={`flex-shrink-0 flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
 
@@ -53,13 +53,13 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
           } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[10rem]' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`flex relative rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem]' : 'lg:pt-[2rem] lg:w-[25rem] lg:h-[36rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`flex relative rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem]' : 'lg:pt-[2rem] lg:w-[25rem] lg:h-[36rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[43rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
           
         </div>
 
       </div>
 
-      <div className={`shadow-lg rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-4rem] sm:mt-[-10rem] px-[1rem] ${mode ==='mobile' ? 'xl:mt-[-2rem]' : 'lg:mt-[-4rem] xl:pt-[23rem] lg:w-[35rem] xl:rounded-none xl:shadow-none xl:justify-start xl:items-start mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`shadow-lg rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-4rem] ml-[1.5rem] px-[1rem] sm:mt-[-10rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-2rem]' : 'lg:mt-[-4rem] xl:pt-[23rem] med:pt-[28rem] mediumLaptop:pt-[36rem] lg:w-[35rem] xl:rounded-none xl:shadow-none xl:justify-start xl:items-start mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
         <div className={`${mode ==='mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}`} >
         <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>

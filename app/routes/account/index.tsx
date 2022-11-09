@@ -302,11 +302,10 @@ export default function Profile() {
             :  loaderData?.profileInfo?.templateNumber == '13'
             ? 'lg:ml-[13rem] xl:ml-[0rem]'
             : null
-          }
-            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14'
-            ? 'lg:ml-[23rem] xl:ml-[46rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+          } ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14'
+            ? 'lg:ml-[23rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
             :  loaderData?.profileInfo?.templateNumber == '14'
-            ? 'lg:ml-[13rem] xl:ml-[0rem]'
+            ? 'lg:ml-[13rem] xl:ml-[7rem] 2xl:ml-[0rem]'
             : null
           }
           ${
