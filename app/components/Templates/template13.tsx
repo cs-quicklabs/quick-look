@@ -21,21 +21,21 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide bg-[#F1F6FF] justify-center items-center overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:bg-white'} ${nav? '' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:py-[10rem] xl:w-[24rem] xl:justify-start xl:items-start mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:pt-[5rem] lg:pb-[10rem] xl:w-[24rem] xl:justify-start xl:items-start mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-t-lg object-cover w-[15rem] h-[15rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:rounded-lg mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-t-lg object-cover w-[15rem] h-[15rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:rounded-lg med:h-[28rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 
       <div className={` flex flex-col justify-center items-center w-full ${mode ==='mobile' ? '' : 'xl:pt-[23rem] lg:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
-      <div className={`shadow-lg rounded-lg bg-white w-[80%] mt-[-2rem] ${mode ==='mobile' ? '' : 'lg:mt-[-10rem] xl:rounded-none xl:shadow-none xl:w-full xl:pl-[1rem]'}`} >
+      <div className={`shadow-lg rounded-lg bg-white w-[80%] mt-[-2rem] ${mode ==='mobile' ? '' : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full xl:pl-[1rem]'}`} >
           <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none'}  ${nav ? '' : ''}`}>
             {loaderData?.firstname} {loaderData?.lastname}
           </h4>
 
-          <div className='xl:border-b-[1px] xl:border-gray-300 xl:mt-[1rem]'></div>
+          <div className= {`${mode ==='mobile' ? '' :'xl:border-b-[1px] xl:border-gray-300 xl:mt-[1rem] w-[50%]'} `}></div>
 
           {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
             <h3 className={`text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-[1rem]'}  ${nav ? 'lg:w-full' : ''} `} >
@@ -43,7 +43,7 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
             </h3> : <span></span>}
 
             <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem]'} `}>
-              <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? 'lg:gap-[10rem]' : ''}`} >
+              <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
                   <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
                     <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode ==='mobile' ? '' : ''}`}>
