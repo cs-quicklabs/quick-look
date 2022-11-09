@@ -34,6 +34,9 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
             : loaderData.portfolioImage.length >= 5
             ? 'grid-cols-5'
             : ''
+        }
+        ${
+          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14' ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full'  : loaderData?.profileInfo?.templateNumber == '14' ? 'w-[90%]' : ''
         }`}
         counter
         animateThumb={false}

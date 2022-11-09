@@ -18,6 +18,8 @@ import Template4 from '~/components/Templates/template4'
 import Template6 from '~/components/Templates/template6'
 import Template9 from '~/components/Templates/template9'
 import Template13 from '~/components/Templates/template13'
+import Template14 from '~/components/Templates/template14'
+import Template16 from '~/components/Templates/template16'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -301,6 +303,19 @@ export default function Profile() {
             ? 'lg:ml-[13rem] xl:ml-[0rem]'
             : null
           }
+            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14'
+            ? 'lg:ml-[23rem] xl:ml-[46rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+            :  loaderData?.profileInfo?.templateNumber == '14'
+            ? 'lg:ml-[13rem] xl:ml-[0rem]'
+            : null
+          }
+          ${
+            mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '16'
+            ? 'lg:ml-[32rem] xl:ml-[46rem] med:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+            :  loaderData?.profileInfo?.templateNumber == '16'
+            ? 'lg:ml-[14rem] xl:ml-[0rem] med:ml-[7rem] medium:ml-[5rem]'
+            : null
+          }
        
      `}
         >
@@ -391,7 +406,24 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          ):null}
+          ) : loaderData?.profileInfo?.templateNumber == '14' ? (
+            <Template14
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          )
+          : loaderData?.profileInfo?.templateNumber == '16' ? (
+            <Template16
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          ) : null}
         </div>
       </div>
 

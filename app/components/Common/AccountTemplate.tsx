@@ -14,7 +14,8 @@ import thumb4 from '../../../assets/images/screenshots/thumb4.png'
 import thumb6 from '../../../assets/images/screenshots/thumb6.png'
 import template9 from '../../../assets/images/screenshots/template-9.png'
 import thumb13 from '../../../assets/images/screenshots/thumbnail13.png'
-
+import thumbnail14 from '../../../assets/images/screenshots/thumbnail14.png'
+import thumbnail16 from '../../../assets/images/screenshots/thumbnail16.png'
 
 export default function AccountTemplate({
   setshowTemplate,
@@ -545,7 +546,54 @@ export default function AccountTemplate({
                         </div>
                       </Form> */}
 
-<Form replace={true} action= {templateHandle} method='post'>
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="14" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template14')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template14' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={thumbnail14}
+                                  alt=""
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
+                              </div>
+                            ) : (
+                              <img
+                                src={thumbnail14}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </Form>
+                      <Form replace={true} action= {templateHandle} method='post'>
                       <div >
                         <input type="hidden" name='template' value='13' />
                         <button 
@@ -572,6 +620,53 @@ export default function AccountTemplate({
                         </div>
                       </Form>
 
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="16" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template16')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template16' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={thumbnail16}
+                                  alt=""
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
+                              </div>
+                            ) : (
+                              <img
+                                src={thumbnail16}
+                                alt=""
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </Form>
 
                     </div>
                   </div>
