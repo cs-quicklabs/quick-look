@@ -21,12 +21,12 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
       <div className=''>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
       </div>
-    <div className={`flex overflow-auto scrollbar-hide bg-black justify-center items-center overflow-none pb-[4rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start med:gap-[5rem] medium:gap-[9rem]'} ${nav? '' :''}`} >
+    <div className={`relative flex overflow-auto scrollbar-hide bg-black justify-center items-center overflow-none pb-[4rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start med:gap-[5rem] medium:gap-[9rem]'} ${nav? '' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-start items-start ${mode ==='mobile' ? 'w-full ' : 'w-full xl:w-[24rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-start items-start ${mode ==='mobile' ? 'w-full ' : 'w-full xl:pl-[2rem] xl:w-[24rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? 'xl:pl-[4rem]' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? '' : 'med:w-[24rem] med:h-[36rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? '' : 'med:w-[24rem] med:h-[36rem] mediumLaptop:w-[25rem] mediumLaptop:h-[37rem] largeLaptop:w-[30rem] largeLaptop:h-[46rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
         <div className={`relative rounded-lg flex flex-col bg-yellow-500 gap-4 md:gap-8 justify-start mt-[8rem] px-[1rem] py-[1rem]`}>
           {loaderData?.socialMedia?.facebookLink ?
