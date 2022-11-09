@@ -20,6 +20,7 @@ import Template9 from '~/components/Templates/template9'
 import Template13 from '~/components/Templates/template13'
 import Template14 from '~/components/Templates/template14'
 import Template16 from '~/components/Templates/template16'
+import Template11 from '~/components/Templates/template11'
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -296,6 +297,12 @@ export default function Profile() {
              ? 'lg:ml-[21rem] xl:ml-[0rem]'
              : null
            }
+           ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '11'
+            ? 'lg:ml-[32rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+            :  loaderData?.profileInfo?.templateNumber == '11'
+            ? 'lg:ml-[13rem] xl:ml-[7rem] 2xl:ml-[0rem]'
+            : null
+          }
            ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '13'
             ? 'lg:ml-[23rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
@@ -396,6 +403,14 @@ export default function Profile() {
               secondaryRestore={secondaryRestore}
               input={input}
               loaderData={loaderData}
+            />
+          ): loaderData?.profileInfo?.templateNumber == '11' ? (
+            <Template11
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
             />
           ) : loaderData?.profileInfo?.templateNumber == '13' ? (
             <Template13
