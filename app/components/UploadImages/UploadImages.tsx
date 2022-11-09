@@ -9,6 +9,7 @@ import { Form, useTransition, useSubmit } from '@remix-run/react'
 import * as cropro from 'cropro'
 import Dropzone from './DragandDrop'
 import DropzonePrimary from './DragandDropPrimary'
+import ProfileImage from './ProfileImage'
 
 export default function NoImages({
   setshowImages,
@@ -66,6 +67,7 @@ export default function NoImages({
   }, [])
 
   const transition = useTransition()
+  console.log(transition)
   const ref = useRef(null)
   const ref2 = useRef(null)
   const ref3 = useRef(null)
@@ -395,10 +397,8 @@ export default function NoImages({
                                         <input
                                           type="file"
                                           className="hidden"
-                                          disabled={
-                                            upload === 'primary' &&
-                                            transition.state !== 'idle'
-                                          }
+                                          disabled={transition.state !== 'idle' ? true : false}
+
                                           id="photo"
                                           name="primaryImageUpload"
                                           accept="image/png, image/jpeg, image/jpg"
@@ -450,7 +450,7 @@ export default function NoImages({
                         </div>
                       )}
 
-                      {profileimageAlreadyuploaded || secondaryRestore ? (
+                      {/* {profileimageAlreadyuploaded || secondaryRestore ? (
                         <div className="">
                           <div className="mt-6 px-4 sm:col-span-6 sm:px-6">
                             <label className="block text-sm font-medium leading-5 text-gray-700">
@@ -587,17 +587,14 @@ export default function NoImages({
                                         setUpload2((prev) => (prev = 'sec'))
                                         setUpload('')
                                       }}
+                                      
                                       id="secondaryUploadImage"
                                       className="mx-4 mt-4 inline-flex w-max cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
                                     >
                                       Upload Image
                                       <input
                                         type="file"
-                                        disabled={
-                                          upload === 'sec' &&
-                                          transition?.submission?.action ==
-                                            '/account/add/image'
-                                        }
+                                        disabled={transition.state !== 'idle' ? true : false}
                                         className="hidden"
                                         id="photo2"
                                         name="secondaryImageUpload"
@@ -647,7 +644,12 @@ export default function NoImages({
                             </div>
                           </div>
                         </div>
-                      )}
+                      )} */}
+                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} 
+setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError ={setSecondaryImageError}
+setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} setimage2={setimage2} upload={upload}
+setRestore2={setRestore2} secondaryImageError={secondaryImageError} 
+setRestore={setRestore}/>
                       <DeleteImage
                         open={open}
                         onClose={() => setopen(false)}
