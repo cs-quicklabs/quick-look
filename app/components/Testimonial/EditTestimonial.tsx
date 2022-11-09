@@ -32,9 +32,9 @@ let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
     }else if (!onlyAlphabetsRegex.test(testimonialBy)) {
       return setError1('Only alphabets allowed.')
     }
-    else if(testimonialBy?.length < 6){
-      setError1('Name must be 6 characters long');
-    } else if(testimonialBy.length >24 ){
+    else if(testimonialBy?.length < 2){
+      setError1('Name must be 2 characters long');
+    } else if(testimonialBy.length > 24 ){
       setError1('Name must not be more than 24 characters long');
     }
     else if(testimonialBy === ''){
