@@ -22,7 +22,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
     
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
 
-    <div className={`relative flex overflow-auto scrollbar-hide bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
+    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
 
       <div className={`flex-shrink-0 flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
 
@@ -35,7 +35,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                   : loaderData?.profileImage?.primaryImage
               }
               className={`absolute w-[100%] object-cover ${
-                mode === 'mobile' ? 'h-[79vh] med:h-[58vh] medium:h-[69vh] mediumLaptop:h-[41vh]' : 'h-[52vh] md:h-[57vh] lg:h-[75vh] xl:h-[32vh]'
+                mode === 'mobile' ? 'h-[79vh] med:h-[58vh] medium:h-[69vh] mediumLaptop:h-[45vh]' : 'h-[52vh] md:h-[57vh] lg:h-[75vh] xl:h-[32vh]'
               }`}
               alt=""
             />
@@ -50,7 +50,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                     : 'bottom-[6rem] md:bottom-[12rem]'
                 }`
               : 'bottom-[-11rem]'
-          } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[10rem]' : 'med:ml-[5rem] xl:bg-white xl:h-[35rem] xl:mt-[20rem] xl:pt-[0rem] xl:rounded-md xl:ml-[10rem]'}`}
+          } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[10rem]' : 'med:ml-[5rem] xl:bg-white xl:h-[35rem] xl:mt-[20rem] xl:pt-[0rem] xl:rounded-md xl:ml-[10rem] xl:shadow-md'}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`flex relative rounded-full object-cover w-[7rem] h-[7rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[12rem] lg:h-[12rem]' : 'lg:pt-[0rem] lg:w-[12rem] lg:h-[12rem] mediumLaptop:w-[12rem] mediumLaptop:h-[12rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
@@ -64,7 +64,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
 
-        <div className={`pb-[1rem] pl-[1rem] pr-[3rem] w-full lg:pl-[2rem] ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:pl-[1rem]'} `}>
+        <div className={`pb-[1rem] pl-[1rem] pr-[3rem] w-full lg:pl-[2rem]  ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:pl-[1rem] xl:hidden'} `}>
               <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
                   <div className={`flex flex-col ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
@@ -94,7 +94,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
               </div>
             </div>
 
-            <footer className={`flex w-full gap-4 md:gap-8 justify-center pb-[3rem]  ${nav ? '' : ''} `}>
+            <footer className={`flex w-full gap-4 md:gap-8 justify-center pb-[3rem] xl:pt-[1rem] ${nav ? '' : ''} `}>
               {loaderData?.socialMedia?.facebookLink ?
               <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
               {loaderData?.socialMedia?.twitterLink ?
@@ -117,6 +117,36 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
           <pre className={`text-gray-900 text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
+
+            <div className={`pb-[1rem] pr-[3rem] w-full hidden ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:pl-[0rem] xl:block'} `}>
+              <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
+                {loaderData?.profileInfo?.company || input.company ?
+                  <div className={`flex flex-col ${mode ==='mobile' ? '' : 'xl:flex-row'}`} >
+                    <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? '' : 'xl:hidden'}`}>
+                    Work
+                  </h2>
+                  <h2 className={`text-black font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem] hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
+                  <BriefcaseIcon />
+                  </h2>
+                    <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'}`} >
+                      {input.company}
+                    </h2>
+                  </div> : <span></span>}
+                {loaderData?.profileInfo?.education || input.education ?
+                  <div className={`flex flex-col ${mode ==='mobile' ? '' : 'xl:flex-row'} ${nav ? '' : ''}`} >
+                    <h2 className={`text-white text-xs leading-5 font-normal w-max  ${mode ==='mobile' ? '' : 'xl:hidden'}`} >
+                    Education
+                  </h2>
+                  <h2 className= {`text-black font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem] hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
+                  <AcademicCapIcon />
+                    
+                  </h2>
+                    <h2 className={`text-white w-max text-xs leading-5 font-normal break-normal  ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'}`} >
+                      {input.education}
+                    </h2>
+                  </div> : <span></span>}
+              </div>
+            </div>
 
         <div className=''>
           <div className={` text-center ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>

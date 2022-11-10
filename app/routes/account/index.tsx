@@ -312,14 +312,14 @@ export default function Profile() {
           } ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14'
             ? 'lg:ml-[23rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
             :  loaderData?.profileInfo?.templateNumber == '14'
-            ? 'lg:ml-[13rem] xl:ml-[7rem] 2xl:ml-[0rem]'
+            ? 'lg:ml-[13rem] xl:ml-[7rem] medium:ml-[5rem] mediumLaptop:ml-[0rem]'
             : null
           }
           ${
             mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '16'
             ? 'lg:ml-[32rem] xl:ml-[37rem] med:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
             :  loaderData?.profileInfo?.templateNumber == '16'
-            ? 'lg:ml-[14rem] xl:ml-[0rem] med:ml-[7rem] medium:ml-[5rem]'
+            ? 'lg:ml-[14rem] xl:ml-[0rem] med:ml-[7rem] medium:ml-[5rem] mediumLaptop:ml-[0rem]'
             : null
           }
        
