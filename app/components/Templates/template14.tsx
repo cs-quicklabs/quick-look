@@ -59,7 +59,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
 
       </div>
 
-      <div className={`shadow-xl bg-red-400 rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-5rem] ml-[1.5rem] px-[1rem] sm:mt-[-7rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-6rem]' : 'lg:w-[35rem] xl:items-start xl:mt-[21rem] xl:rounded-none xl:shadow-none med:mt-[24rem] medium:mt-[20rem] mediumLaptop:w-[40rem] mediumLaptop:mt-[23rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`shadow-xl bg-red-400 rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-5rem] ml-[1.5rem] px-[1rem] sm:mt-[-7rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-6rem]' : 'lg:w-[35rem] xl:items-start xl:mt-[21rem] xl:rounded-none xl:shadow-none med:mt-[24rem] medium:mt-[20rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${loaderData?.video?.videoLink || loaderData?.portfolioImage.length > 0 || loaderData?.testimonial?.testimonialText ? 'mediumLaptop:mt-[32rem]' : 'mediumLaptop:mt-[23rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
         <div className={`${mode ==='mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}`} >
         <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
