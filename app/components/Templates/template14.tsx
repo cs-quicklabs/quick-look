@@ -22,7 +22,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
     
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
 
-    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
+    <div className={`flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row items-start xl:justify-start'} ${nav? '' :''}`} >
 
       <div className={`flex-shrink-0 flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
 
@@ -34,7 +34,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
                   ? DefaultCoverPicture
                   : loaderData?.profileImage?.primaryImage
               }
-              className={`absolute w-[100%] object-cover ${
+              className={`w-[100%] object-cover ${
                 mode === 'mobile' ? 'h-[30vh]' : 'h-[35vh] md:h-[40vh] lg:50vh'
               }`}
               alt=""
@@ -53,7 +53,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
           } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[10rem]' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`flex relative rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem]' : 'lg:pt-[2rem] lg:w-[25rem] lg:h-[25rem] xl:h-[46rem] mediumLaptop:w-[25rem] mediumLaptop:h-[50rem] largeLaptop:w-[30rem] largeLaptop:h-[53rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`flex rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem]' : 'lg:pt-[2rem] lg:w-[25rem] lg:h-[25rem] xl:h-[46rem] mediumLaptop:w-[25rem] mediumLaptop:h-[50rem] largeLaptop:w-[30rem] largeLaptop:h-[53rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
           
         </div>
 
