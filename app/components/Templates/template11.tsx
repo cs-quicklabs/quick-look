@@ -22,7 +22,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
     
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
 
-    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
+    <div className={`flex overflow-auto scrollbar-hide font-inter bg-white overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
 
       <div className={`flex-shrink-0 flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
 
@@ -53,14 +53,14 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
           } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[10rem]' : 'med:ml-[5rem] xl:bg-white xl:h-[35rem] xl:w-[85%] xl:mt-[20rem] xl:pt-[0rem] xl:rounded-md xl:ml-[10rem] xl:shadow-md'}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`flex relative rounded-full object-cover w-[7rem] h-[7rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[12rem] lg:h-[12rem]' : 'lg:pt-[0rem] lg:w-[12rem] lg:h-[12rem] xl:mt-[-9rem] mediumLaptop:w-[12rem] mediumLaptop:h-[12rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`flex rounded-full object-cover w-[7rem] h-[7rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[12rem] lg:h-[12rem]' : 'lg:pt-[0rem] lg:w-[12rem] lg:h-[12rem] xl:mt-[-9rem] mediumLaptop:w-[12rem] mediumLaptop:h-[12rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
        
         <h4 className={`text-white text-center text-xl leading-8 font-semibold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-black xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
             {loaderData?.firstname} {loaderData?.lastname}
           </h4>
 
           {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-            <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-[0.5rem]'}  ${nav ? 'lg:w-full' : ''} `} >
+            <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-[0.5rem] xl:px-[0.75rem]'}  ${nav ? 'lg:w-full' : ''} `} >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
 
@@ -112,7 +112,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
 
       </div>
 
-      <div className={`flex flex-col justify-center items-center w-[80%] mt-[-7rem] ml-[1.5rem] px-[1rem] sm:mt-[-12rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-2rem]' : 'lg:mt-[-10rem] xl:pt-[23rem] med:pt-[28rem] mediumLaptop:pt-[36rem] lg:w-[35rem xl:justify-start xl:items-start mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[90%] xl:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`flex flex-col justify-center items-center w-[80%] ml-[1.5rem] px-[1rem] sm:ml-[2.5rem] ${mode ==='mobile' ? '' : 'xl:pt-[23rem] med:pt-[27rem] mediumLaptop:pt-[36rem] lg:w-[35rem xl:justify-start xl:items-start mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${(mode !='mobile' && loaderData?.socialMedia?.facebookLink) || (mode !='mobile' && loaderData?.socialMedia?.twitterLink) || (mode !='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'mt-[-7rem] sm:mt-[-13rem] lg:mt-[-10rem] med:mt-[-8rem] medium:mt-[-11rem]' : mode !='mobile' ?  'mt-[-5rem] sm:mt-[-10rem] lg:mt-[-8rem] medium:mt-[-11rem]' : ''} ${(mode ==='mobile' && loaderData?.socialMedia?.facebookLink) || (mode ==='mobile' && loaderData?.socialMedia?.twitterLink) || (mode ==='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[-5rem] xl:mt-[-4rem] mediumLaptop:mt-[-1.5rem]' : mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-2rem] mediumLaptop:mt-[1.5rem]' : '' } ${nav ? 'lg:w-[90%] xl:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
           <pre className={`text-gray-900 text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
@@ -128,7 +128,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                   <h2 className={`text-black font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem] hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
                   <BriefcaseIcon />
                   </h2>
-                    <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'}`} >
+                    <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem] xl:w-[65%] medium:w-max'}`} >
                       {input.company}
                     </h2>
                   </div> : <span></span>}
