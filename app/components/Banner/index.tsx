@@ -132,10 +132,11 @@ export default function Banner({
                             <div className="flex py-4">
                               <div className="ml-3">
                                 <p className="text-sm font-medium text-gray-900">
-                                  {loaderData?.supportBanner?.bannerText?.slice(
+                                  {loaderData?.supportBanner?.bannerText?.length > 35 ?
+                                  loaderData?.supportBanner?.bannerText?.slice(
                                     0,
-                                    18
-                                  ) + '...'}
+                                    35
+                                  ) + '...' : loaderData?.supportBanner?.bannerText}
                                 </p>
                                 <p
                                   className={` overflow-hidden text-ellipsis text-sm text-gray-500 ${
@@ -143,10 +144,10 @@ export default function Banner({
                                   }`}
                                 >
                                   {loaderData?.supportBanner?.bannerlink
-                                    ?.length > 18
+                                    ?.length > 25
                                     ? loaderData?.supportBanner?.bannerlink.slice(
                                         0,
-                                        18
+                                        25
                                       ) + '...'
                                     : loaderData?.supportBanner?.bannerlink}
                                 </p>

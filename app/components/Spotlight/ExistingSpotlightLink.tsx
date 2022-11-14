@@ -36,14 +36,18 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
           <li key={person.name} className="">
             {person.name ?
               <>
-              <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between items-center ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
                 <div className='flex flex-col w-screen'>
                   <div className='flex'>
                   <div className="py-4 flex">
                   
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${person.description?.slice(0,30)}....`}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                    {person?.name?.length > 27 ? person?.name?.slice(0,27)+'...' :person.name}
+                    </p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">
+                      {person?.description?.length > 22 ? person?.description?.slice(0,22)+'...' : person?.description}
+                      </p>
                   </div>
                 </div>
 

@@ -44,7 +44,7 @@ function DropzonePortfolio({
           </p>
           <div className="text-center">
             <p
-              className={`${
+              className={`text-sm leading-4 tracking-wide ${ 
                 mode === 'mobile' ? 'px-0 lg:px-[4rem] xl:px-0' : ''
               }`}
             >
