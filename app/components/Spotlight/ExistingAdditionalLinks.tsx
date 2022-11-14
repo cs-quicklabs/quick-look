@@ -27,14 +27,17 @@ const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '',
           <li key={additionalSpotlight.id} className="">
             {additionalSpotlight.linkText ?
               <>
-              <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between items-center ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
                 <div className='flex flex-col w-screen'>
                   <div className={`flex ${showEditAdditional ? '' : 'border-b border-gray-200 ml-3 mr-2.5 lg:mr-3.5'}`}>
                   <div className="py-4 flex">
                   
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{`${additionalSpotlight.linkText?.slice(0,18)}...`}</p>
-                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">{`${additionalSpotlight.linkUrl?.slice(0,18)}...`}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {additionalSpotlight.linkText?.length > 27 ? additionalSpotlight.linkText?.slice(0,27)+'...' :additionalSpotlight.linkText}  </p>
+                    <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">
+                      {additionalSpotlight?.linkUrl?.length > 22 ? additionalSpotlight?.linkUrl?.slice(0,22)+'...' : additionalSpotlight?.linkUrl}  </p>
+                      
                   </div>
                 </div>
 

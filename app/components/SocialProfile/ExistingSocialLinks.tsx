@@ -66,7 +66,7 @@ const transition = useTransition()
                     <div className="ml-3">
                       <p className="text-sm font-medium text-gray-900">{person.name}</p>
                       <p className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile'?'w-[8rem]':'w-52'}`}>
-                        {person.email.length > 18 ? person.email.slice(0,18) + '...' : person.email}
+                        {person.email.length > 25 ? person.email.slice(0,25) + '...' : person.email}
                         </p>
                     </div>
                   </div>

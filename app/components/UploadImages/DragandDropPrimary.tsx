@@ -40,7 +40,7 @@ else{setPrimaryImageError('')}
                                 </p>
         <div className="text-center">
           
-            <p>
+            <p className='text-sm leading-4 tracking-wide'>
              Drag and Drop an Image or click on button to upload
             </p>
         

@@ -188,7 +188,8 @@ if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalL
           </div>
           <div className="mt-1">
             <p className="text-sm text-gray-500 leading-5 font-normal">
-             {loaderData?.additionalLinks?.length < 7 ? 'You can add more than one link to your profile' :null }  
+             {loaderData?.additionalLinks?.length < 7 ? 'You can add more than one link to your profile.' :null }
+                
             </p>
           </div>
         </div>
@@ -343,7 +344,8 @@ if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalL
           ADD MORE ADDITIONAL LINKS
         </p>
         <p className={`text-sm leading-5 font-normal text-gray-500 px-12 text-center  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'}`}>
-        You can add more than one link to your profile
+        You can add more than one link to your profile.   
+        <p className='text-indigo-400'> {loaderData?.additionalLinks?.length < 7 ? 'All the Additional links will be of same color.' :null }</p>
         </p>
         <button
           data-cy="addAdditionalLinkButton"
@@ -353,6 +355,7 @@ if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalL
           className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
           >
             Add Additional Link
+            
         </button>
 
        
