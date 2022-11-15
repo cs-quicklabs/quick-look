@@ -58,14 +58,37 @@ export async function deleteAdditionalLink(linkId: string, user?: any){
             }
         })
     }
+    
 }
 
-export async function updateAdditionalLink({ linkText, linkUrl, user}: AddAdditionalLink, linkId: string){
+export async function updateAdditionalLink({ linkText,linkColor, linkUrl,linkHex, user}: AddAdditionalLink, linkId: string){
     const userAdditionalLink  = await db.additionalLink.findFirst({
         where: {
             id: linkId
         }
     })
+    if(linkColor && !linkHex){
+        await db.profile.update({
+            where: {
+                userId: user.id
+            },
+            data: {
+                additionalLinksColor: linkColor,
+                additionalLinksHexCode: ''
+            }
+        })
+    }
+    if(linkHex && !linkColor){
+        await db.profile.update({
+            where: {
+                userId: user.id
+            },
+            data: {
+                additionalLinksHexCode: linkHex,
+                additionalLinksColor: ''
+            }
+        })
+    }
     if(userAdditionalLink){
         await db.additionalLink.update({
             where: {
@@ -73,11 +96,13 @@ export async function updateAdditionalLink({ linkText, linkUrl, user}: AddAdditi
             },
             data: {
                 linkText: linkText ?? userAdditionalLink?.linkText,
-                linkUrl: linkUrl ?? userAdditionalLink?. linkUrl
+                linkUrl: linkUrl ?? userAdditionalLink?. linkUrl,
             }
         })
         return true
+        
     }
+    
     return false
 }
 

@@ -57,7 +57,7 @@ const transition = useTransition()
           <li key={person.email} className="">
             {person.email ?
             <>
-              <div className={`flex justify-between ${mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between items-center ${mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'}`}>
                   <div className={` ${mode === 'mobile' ? '' : ''}`}>
                     {/* <div className={`flex justify-between ${mode === 'mobile' ? 'gap-[1.8rem] lg:gap-[3.2rem] xl:gap-[5.2rem]' : 'gap-[3.2rem]'} ${showEditProfile && clickedLink.name === person.name  ? 'border-transparent' : 'border-b border-gray-200'} `}> */}
                     <div className={`${mode === 'mobile' ? 'lg:flex lg:justify-between lg:items-center' : 'lg:flex lg:justify-between'} ${showEditProfile && clickedLink.name === person.name  ? 'border-transparent' : 'border-b border-gray-200'} `}>
