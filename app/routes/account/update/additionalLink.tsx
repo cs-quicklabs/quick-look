@@ -17,7 +17,7 @@ export const action: ActionFunction = async ({ request }) => {
     const linkId = await formData.get('editAdditionalSpotlight') as string
     let linkColor = await formData.get('linkColor') as string
     let linkHex = await formData.get('linkHex') as string
-    
+    console.log('@#@#@#@#@',linkHex)
     if(linkText.length == 0 || linkUrl.length == 0){
         return false;
     }
@@ -31,7 +31,7 @@ export const action: ActionFunction = async ({ request }) => {
           return false;
         }
     }
-    const isUpdated = await updateAdditionalLink({ linkText, linkUrl, user }, linkId )
+    const isUpdated = await updateAdditionalLink({ linkText, linkUrl, user,linkColor,linkHex }, linkId )
     if(linkText.length == 0 || linkUrl.length == 0){
         return false;
     }
