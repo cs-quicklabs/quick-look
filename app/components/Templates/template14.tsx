@@ -22,7 +22,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
     
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
 
-    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} ${nav? '' :''}`} >
+    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:justify-start'} ${nav? '' :''}`} >
 
       <div className={`flex-shrink-0 flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
 
@@ -34,32 +34,32 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
                   ? DefaultCoverPicture
                   : loaderData?.profileImage?.primaryImage
               }
-              className={`absolute w-[100%] object-cover ${
-                mode === 'mobile' ? 'h-[30vh]' : 'h-[35vh] md:h-[40vh] lg:50vh'
+              className={`w-[100%] object-cover ${
+                mode === 'mobile' ? 'h-[30vh] xl:h-[40vh]' : 'xl:absolute h-[35vh] md:h-[40vh] lg:50vh'
               }`}
               alt=""
             />
           ) : null}
         </div>
         <div
-          className={`relative flex justify-center pt-[12rem] sm:pt-[18rem]  ${
+          className={`relative flex justify-center  ${
             primaryRestore || loaderData?.profileImage?.primaryImage
               ? ` ${
                   mode === 'mobile'
-                    ? 'bottom-[5rem] right-0 lg:right-[4rem] xl:right-0'
-                    : 'bottom-[6rem] md:bottom-[12rem]'
+                    ? 'bottom-[5rem] right-0 lg:right-[4rem] xl:bottom-[8rem] xl:right-0'
+                    : 'bottom-[6rem] sm:bottom-[8rem] xl:bottom-[-9rem]'
                 }`
               : 'bottom-[-11rem]'
-          } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[10rem]' : ''}`}
+          } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`flex relative rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem]' : 'lg:pt-[2rem] lg:w-[25rem] lg:h-[25rem] xl:h-[46rem] mediumLaptop:w-[25rem] mediumLaptop:h-[50rem] largeLaptop:w-[30rem] largeLaptop:h-[53rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`flex rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem] mediumLaptop:w-[28rem] mediumLaptop:h-[29rem]' : 'lg:w-[25rem] lg:h-[25rem] xl:h-[33rem] mediumLaptop:w-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
           
         </div>
 
       </div>
 
-      <div className={`shadow-lg rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-5rem] ml-[1.5rem] px-[1rem] sm:mt-[-10rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-3rem] medium:mt-[-3rem]' : 'lg:mt-[-10rem] xl:mt-[-4rem] xl:pt-[23rem] med:pt-[27rem] medium:pt-[23rem] mediumLaptop:pt-[33rem] lg:w-[35rem] xl:rounded-none xl:shadow-none xl:justify-start xl:items-start mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-5rem] ml-[1.5rem] px-[1rem] sm:mt-[-7rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-6rem]' : 'lg:w-[35rem] xl:items-start xl:mt-[21rem] xl:rounded-none xl:shadow-none med:mt-[24rem] medium:mt-[20rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${(mode !='mobile' && loaderData?.video?.videoLink) ||  (mode !='mobile' && loaderData?.portfolioImage.length > 0) || (mode !='mobile' && loaderData?.testimonial?.testimonialText)  ? 'mediumLaptop:mt-[32rem]' : mode ==='mobile' ? '' : 'mediumLaptop:mt-[23rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
         <div className={`${mode ==='mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}`} >
         <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
@@ -74,7 +74,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
      
           
 
-            <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] xl:hidden ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:pl-[0rem]'} `}>
+            <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem]  ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:hidden xl:pl-[0rem]'} `}>
               <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
                   <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
@@ -101,7 +101,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
               { input?.description?.trim()}
             </pre>
 
-            <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] hidden xl:block ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:pl-[0rem]'} `}>
+            <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] hidden ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'xl:block xl:pl-[0rem]'} `}>
               <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
                   <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
