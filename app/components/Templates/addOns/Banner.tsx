@@ -13,14 +13,16 @@ export default function BannerAddOn({ loaderData, mode }: any) {
     <div
       className={`flex items-center justify-center ${
         mode === 'mobile' ? 'z-0' : ''
-      }`}
+      }
+       ${loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100vw] small:w-[73vw]' : (mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0') ? 'small:w-[62vw]' : ''}`}
     >
       <button
         style={{
           backgroundColor: loaderData?.supportBanner?.bannerHex,
           textShadow: '0px 1px black',
         }}
-        className={`flex h-10 w-full cursor-default items-center justify-center text-sm font-medium leading-5 text-white shadow-sm ${loaderData?.supportBanner?.bannerColor}`}
+        className={`flex h-10 cursor-default items-center justify-center text-sm font-medium leading-5 text-white shadow-sm w-full
+        ${loaderData?.supportBanner?.bannerColor}`}
       >
         <DynamicHeroIcon icon={Final} Final={Final} />
         <a

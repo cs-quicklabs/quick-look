@@ -44,7 +44,7 @@ export default function Template1({
               ) : null}
             </div>
             <div
-              className={`relative  md:pl-[11rem] lg:pl-[8.5rem] xl:pl-[12.5rem] ${
+              className={`relative pl-[1rem] sm:pl-[7rem] md:pl-[11rem] lg:pl-[8.5rem] xl:pl-[12.5rem] ${
                 loaderData?.profileImage?.primaryImage ||
                 primaryRestore === true
                   ? 'top-[-4rem]'
@@ -53,7 +53,7 @@ export default function Template1({
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
-                  className={`h-[7rem] w-[7rem] rounded-full shadow-lg  shadow-white md:h-[8rem] md:w-32 ${
+                  className={`h-[9rem] w-[9rem] rounded-full shadow-lg  shadow-white md:h-[8rem] md:w-32 ${
                     loaderData?.profileImage?.secondaryImage ||
                     secondaryRestore === true
                       ? 'border-4 border-white'
@@ -69,7 +69,7 @@ export default function Template1({
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
             </div>
           </div>
-          <div className="m-auto px-[7rem] pt-1 md:px-[19rem] lg:pl-[18rem] xl:px-[21rem]">
+          <div className="m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] small:px-[17.5rem] xl:px-[21rem]">
             <h1 className="w-max text-2xl font-bold leading-8 text-gray-900 ">
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
@@ -99,7 +99,7 @@ export default function Template1({
           </div>
 
           <div
-            className={`w-[30rem] pl-[5rem] pr-[8rem] md:w-full md:px-[12rem]  largeLaptop:px-[14rem] ${
+            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[7rem] smallScreen:pl-[5rem] smallScreen:pr-[9rem] small:pr-[26rem] small:pl-[8rem] mediumScreen:pr-[7rem] largeLaptop:px-[14rem] ${
               mode === 'mobile'
                 ? 'lg:pr-[14rem] lg:pl-[3rem]'
                 : 'lg:pl-[8rem] lg:pr-[18rem] xl:px-[14rem] xl:flex-row'
@@ -117,18 +117,18 @@ export default function Template1({
               />
             )}
             {loaderData?.video?.videoLink && (
-              <VideoAddOn videoLink={loaderData?.video?.videoLink} />
+              <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
             )}
             <PortfolioAddon loaderData={loaderData} />
 
-            <div className="flex flex-col gap-20">
-              <div className="flex  pt-16 ">
+            <div className="flex flex-col justify-between">
+              <div className="flex  pt-[2rem] ">
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div className="flex w-[50%] flex-col">
+                  <div className="flex flex-col">
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
                       WORK
                     </h2>
-                    <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-normal">
+                    <h2 className={`w-[65%] text-sm font-normal leading-5 text-gray-900 break-normal ${mode === 'mobile' ? '' : ''}`} >
                       {input.company}
                     </h2>
                   </div>

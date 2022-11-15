@@ -24,8 +24,10 @@ module.exports = {
         '4xl': '2rem',
       },
       screens: {
-        xs: '426px',
+        xs: '425px',
         xxs: '375px',
+        smallScreen: '640px',
+        mediumScreen: '768px',
         small: '1024px',
         smRes: '1176px',
         SmMedium: '1280px',

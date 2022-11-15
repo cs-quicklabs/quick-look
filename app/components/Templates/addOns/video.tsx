@@ -11,6 +11,7 @@ export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
     <div className="mx-auto mt-8 w-[20rem] md:w-[31rem] ">
       {/* {videoLink.videoSourceKey === 'youtube' ?  */}
       {link?.includes('youtube') ? (
+        // eslint-disable-next-line jsx-a11y/iframe-has-title
         <iframe
           className={`h-[25rem] ${
             loaderData?.profileInfo?.templateNumber == '9'
@@ -24,6 +25,7 @@ export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
           src={`https://www.youtube.com/embed/${youtubeVideoId}`}
         />
       ) : (
+        // eslint-disable-next-line jsx-a11y/iframe-has-title
         <iframe
           src={`https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.${youtubeVideoId}`}
           // width="734"
