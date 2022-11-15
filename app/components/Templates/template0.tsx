@@ -44,12 +44,12 @@ export default function Template1({
               ) : null}
             </div>
             <div
-              className={`relative pl-[1rem] sm:pl-[7rem] md:pl-[11rem] lg:pl-[8.5rem] xl:pl-[12.5rem] ${
+              className={`relative pl-[1rem] sm:pl-[7rem] md:pl-[11rem] lg:pl-[8.5rem] ${
                 loaderData?.profileImage?.primaryImage ||
                 primaryRestore === true
                   ? 'top-[-4rem]'
                   : 'top-[6rem]'
-              }`}
+              } ${mode === 'mobile' ? '' : 'xl:pl-[22.5rem]'}`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
@@ -69,7 +69,7 @@ export default function Template1({
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
             </div>
           </div>
-          <div className="m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] small:px-[17.5rem] xl:px-[21rem]">
+          <div className={`m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] small:px-[17.5rem] ${mode === 'mobile' ? '' : 'SmMedium:px-[31.5rem]'}`} >
             <h1 className="w-max text-2xl font-bold leading-8 text-gray-900 ">
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
@@ -99,10 +99,10 @@ export default function Template1({
           </div>
 
           <div
-            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[7rem] smallScreen:pl-[5rem] smallScreen:pr-[9rem] small:pr-[26rem] small:pl-[8rem] mediumScreen:pr-[7rem] largeLaptop:px-[14rem] ${
+            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[7rem] smallScreen:pl-[5rem] smallScreen:pr-[9rem] small:pr-[26rem] small:pl-[8rem] mediumScreen:pr-[7rem]  ${
               mode === 'mobile'
-                ? 'lg:pr-[14rem] lg:pl-[3rem]'
-                : 'lg:pl-[8rem] lg:pr-[18rem] xl:px-[14rem] xl:flex-row'
+                ? 'small:w-[91%] small:pr-[26rem] small:pl-[6rem] med:pr-[2rem] medium:pl-[8rem] mediumLaptop:pl-[14rem] largeLaptop:pl-[9rem] largeLaptop:pr-[1rem]'
+                : 'lg:pl-[8rem] lg:pr-[18rem] SmMedium:pr-[5rem] SmMedium:pl-[22rem] SmMedium:flex-row med:pl-[14rem] medium:pl-[12rem] mediumLaptop:pl-[8rem]'
             }`}
           >
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">

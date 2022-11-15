@@ -14,7 +14,7 @@ export default function BannerAddOn({ loaderData, mode }: any) {
       className={`flex items-center justify-center ${
         mode === 'mobile' ? 'z-0' : ''
       }
-       ${loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100vw] small:w-[73vw]' : (mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0') ? 'small:w-[62vw]' : ''}`}
+       ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0' ? 'small:w-[62vw] SmMedium:w-[48vw] med:w-[52vw] mediumLaptop:w-[60vw]' : loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100vw] small:w-[73vw] SmMedium:w-[125%] med:w-[111%] mediumLaptop:w-[104%]' : ''}`}
     >
       <button
         style={{
