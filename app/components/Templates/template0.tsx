@@ -44,12 +44,12 @@ export default function Template1({
               ) : null}
             </div>
             <div
-              className={`relative pl-[1rem] sm:pl-[7rem] md:pl-[11rem] lg:pl-[8.5rem] ${
+              className={`relative pl-[1rem] sm:pl-[7rem] md:pl-[11rem] ${
                 loaderData?.profileImage?.primaryImage ||
                 primaryRestore === true
                   ? 'top-[-4rem]'
                   : 'top-[6rem]'
-              } ${mode === 'mobile' ? '' : 'xl:pl-[22.5rem]'}`}
+              } ${mode === 'mobile' ? 'small:pl-[5.5rem] medium:pl-[8.5rem] mediumLaptop:pl-[14.5rem] largeLaptop:pl-[10.5rem]' : 'small:pl-[8.5rem] SmMedium:pl-[22.5rem] med:pl-[14.5rem] medium:pl-[12.5rem] largeLaptop:pl-[10.5rem]'}`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
@@ -69,7 +69,7 @@ export default function Template1({
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
             </div>
           </div>
-          <div className={`m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] small:px-[17.5rem] ${mode === 'mobile' ? '' : 'SmMedium:px-[31.5rem]'}`} >
+          <div className={`m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] ${mode === 'mobile' ? 'small:px-[14.5rem] medium:px-[17.5rem] mediumLaptop:px-[23.5rem] largeLaptop:px-[20.5rem]' : 'small:px-[17.5rem] SmMedium:px-[31.5rem] med:px-[23.5rem] medium:px-[21.5rem] largeLaptop:px-[19.5rem]'}`} >
             <h1 className="w-max text-2xl font-bold leading-8 text-gray-900 ">
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
@@ -99,10 +99,10 @@ export default function Template1({
           </div>
 
           <div
-            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[7rem] smallScreen:pl-[5rem] smallScreen:pr-[9rem] small:pr-[26rem] small:pl-[8rem] mediumScreen:pr-[7rem]  ${
+            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[7rem] smallScreen:pl-[5rem] smallScreen:pr-[9rem] mediumScreen:pr-[7rem]  ${
               mode === 'mobile'
-                ? 'small:w-[91%] small:pr-[26rem] small:pl-[6rem] med:pr-[2rem] medium:pl-[8rem] mediumLaptop:pl-[14rem] largeLaptop:pl-[9rem] largeLaptop:pr-[1rem]'
-                : 'lg:pl-[8rem] lg:pr-[18rem] SmMedium:pr-[5rem] SmMedium:pl-[22rem] SmMedium:flex-row med:pl-[14rem] medium:pl-[12rem] mediumLaptop:pl-[8rem]'
+                ? 'small:w-[91%] small:pr-[6rem] small:pl-[5rem] med:pr-[2rem] medium:pl-[8rem] mediumLaptop:pl-[14rem] largeLaptop:pl-[9rem] largeLaptop:pr-[2rem]'
+                : 'small:pr-[8rem] small:pl-[8rem] SmMedium:pr-[4rem] SmMedium:pl-[22rem] SmMedium:flex-row med:pl-[14rem] med:pr-[8rem] medium:pl-[12rem] medium:pr-[7rem] mediumLaptop:pl-[8rem] mediumLaptop:pr-[6rem] largeLaptop:pr-[8rem]'
             }`}
           >
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">
@@ -119,7 +119,10 @@ export default function Template1({
             {loaderData?.video?.videoLink && (
               <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
             )}
-            <PortfolioAddon loaderData={loaderData} />
+            <div className=''>
+            <PortfolioAddon loaderData={loaderData} mode={mode} />
+            </div>
+            
 
             <div className="flex flex-col justify-between">
               <div className="flex  pt-[2rem] ">

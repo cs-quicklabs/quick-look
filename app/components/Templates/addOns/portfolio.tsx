@@ -20,8 +20,8 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
   return (
     <div className="img mt-8">
       <LightGallery
-        elementClassNames={`grid   gap-4 ${
-          mode === 'mobile' ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full' : ''
+        elementClassNames={`grid gap-4 ${
+          mode === 'mobile' ? 'gap-4 grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full medium:grid-cols-3' : 'gap-[auto]'
         } ${
           loaderData.portfolioImage.length == 1
             ? 'grid-cols-1'

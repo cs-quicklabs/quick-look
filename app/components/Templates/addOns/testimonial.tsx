@@ -17,7 +17,9 @@ export default function TestimonialAddOn({
           loaderData?.profileInfo?.templateNumber == '14'
             ? 'w-[90%]'
             : 'max-w-7xl '
-        }`}
+        }
+        ${
+          loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100%]' : '' }`}
       >
         <div className="">
           <blockquote className="">
