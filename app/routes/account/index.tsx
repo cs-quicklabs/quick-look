@@ -278,9 +278,9 @@ export default function Profile() {
            }
            ${
              mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '3'
-             ? 'lg:ml-[22rem] xl:ml-[36rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             ? 'lg:ml-[22rem] xl:ml-[38rem] med:ml-[36rem] 2xl:ml-[36rem] mediumLaptop:ml-[31rem] largeLaptop:ml-[28rem] large:ml-[18rem]'
              :  loaderData?.profileInfo?.templateNumber == '3'
-             ? 'lg:ml-[12rem] xl:ml-[5rem] mediumLaptop:ml-[0rem]'
+             ? 'lg:ml-[12rem] xl:ml-[9rem] med:ml-[6rem] mediumLaptop:ml-[0rem] large:ml-[-9rem]'
              : null
            } 
            ${
