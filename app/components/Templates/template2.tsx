@@ -24,29 +24,31 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
     };
   return(
     <>
-    {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide  ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col lg:gap-[5rem] xl:flex-row pt-[3rem] pb-[5rem] pl-[1rem] sm:pl-[3rem] lg:pl-[8rem] xl:p-[0rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'flex-col lg:flex-row lg:pl-[1.5rem]' :''}`} style={myStyle}>
-      <div className={`mb-4 flex-shrink-0 sm:mb-0 ${mode ==='mobile' ? 'lg:pl-[2rem] xl:pl-[1rem]  xl:mt-[5.625rem] lg:max-w-[25rem] xl:max-w-[32rem]  2xl:max-w-[47rem] medium:max-w-[60rem] medium:pl-[8rem] 2xl:pl-[8rem] largeLaptop:pl-[15rem] large:pl-[3rem]' : 'pl-[2.5rem] sm:pl-[3rem] xl:mt-[5.625rem] mr-[10rem] ml-[0rem] sm:mr-[6rem] sm:ml-[-1rem] md:ml-0 lg:max-w-7xl xl:max-w-[35rem] 2xl:ml-[0rem] xl:pl-[7rem]'} ${nav? 'xl:pl-[2rem] 2xl:pl-0 lg:w-[29rem] xl:max-w-[35rem] lg:mx-[1.625rem] xl:mx-[5.625rem] medium:mx-[5.625rem] largeLaptop:mx-[10.625rem] large:mx-[12.625rem] 2xl:ml-[7rem]' :''}`} >
+    {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} mode={mode} /> }
+    <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide justify-center items-center pb-[3rem] pt-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col xl:flex-row xl:gap-[0rem] xl:items-start xl:justify-around'} ${nav? '' :''}`} style={myStyle} >
+
+      <div className={`pb-[1rem] flex-shrink-0 ${mode ==='mobile' ? 'xl:pl-[1rem]  xl:mt-[1.5em]' : 'xl:mt-[5.625rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover ${mode ==='mobile' ? 'lg:h-[30rem] xl:h-[38rem]' : 'h-auto medium:h-[40rem]'} ${nav? 'lg:h-[45rem] xl:h-[40rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-lg object-cover h-auto w-[16rem] sm:h-[20rem] sm:w-[20rem] md:h-[24rem] md:w-[22rem] ${mode ==='mobile' ? 'lg:w-[22rem] lg:h-[24rem] xl:h-[20rem] xl:w-[18rem] med:w-[25rem] med:h-[28rem] mediumLaptop:h-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[33rem] largeLaptop:h-[35rem]' : 'xl:h-[30rem] xl:w-[25rem] med:h-[38rem] med:w-[28rem] medium:h-[40rem] mediumLaptop:w-[35rem] largeLaptop:h-[40rem] largeLaptop:w-[38rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
-      <div className={`mt-[1.5rem] ${mode ==='mobile' ? 'lg:w-[25rem] 2xl:w-[35rem] xl:mt-[2.5rem] large:mt-[9.5rem] xl:ml-[0rem] medium:ml-[1rem] 2xl:ml-[1rem] largeLaptop:ml-[3rem]' : 'xl:mt-[9.5rem] lg:w-[25rem] largeLaptop:mr-[5rem] largeLaptop:w-[43rem]'} ${nav ? 'lg:w-[34rem] xl:w-[55rem]' : ''}`}>
-        <h4 className={`text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : '2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem]'}  ${nav ? 'large:ml-0 2xl:ml-[0rem]' : ''}`}>
+
+      <div className={`w-[23rem] ml-[3rem] sm:w-[36rem] md:w-[44rem] ${mode ==='mobile' ? 'small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'lg:w-[38rem] xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] med:w-[30rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} ${nav ? '' : ''}`}>
+        <h4 className={`text-2xl leading-8 font-bold ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-gray-600 w-max break-normal text-xs leading-5 font-normal ml-[0rem] sm:ml-0 ${mode ==='mobile' ? 'xl:text-base' : 'lg:text-base 2xl:pr-[4rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem] '}  ${nav ? 'large:ml-0 2xl:ml-[0rem]' : ''} `} >
+          <h3 className={`text-gray-600 w-max break-normal text-xs leading-5 font-normal ${mode ==='mobile' ? 'xl:text-base' : 'lg:text-base'}  ${nav ? '' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
         <div >
-        <div className={`ml-[0rem] sm:ml-0 pb-[4rem] ${mode ==='mobile' ? '' : ''}  ${nav ? 'pr-[6rem] lg:pr-[8rem] 2xl:pr-[8.01rem] medium:pr-[8rem] large:pr-0 large:ml-0 large:w-[86%] 2xl:ml-[0.5rem]' : ''}`}>
-            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'lg:flex-row lg:justify-between xl:ml-[1rem]'}`} >
+        <div className={`${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+            <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'lg:flex-row lg:justify-between'}`} >
               {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex lg:w-[50%] ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
+                <div className={`flex ${mode ==='mobile' ? '' : 'xl:flex-col'}`} >
                   <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode ==='mobile' ? '' : 'xl:hidden'}`}>
                     <BriefcaseIcon />
                   </h2>
@@ -71,39 +73,43 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
                 </div> : <span></span>}
             </div>
           </div>
-          <div className={`${mode ==='mobile' ? '' : 'pl-[0rem] pr-[6rem] lg:pr-4'} ${nav ? 'pr-[6rem] lg:pr-[10rem]' : ''}`}>
-          {loaderData?.spotlightButton?.toggleSpotlight && 
-          <Spotlightbtn loaderData={loaderData}/>}
+          
+          <div className={`pr-[2.5rem] ${mode ==='mobile' ? '' : 'xl:pr-[0rem]'}`} >
+
+            <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            {loaderData?.spotlightButton?.toggleSpotlight && 
+            <Spotlightbtn loaderData={loaderData} />}
+            </div>
+            <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+            </div>
+
           </div>
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? '' : 'pl-[0rem] pr-[6rem] lg:pr-4 '} ${nav ? 'pr-[6rem] lg:pr-[10rem]' : ''}`}>
-            { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
-          </div>
-
         <div className="mt-1">
-          <pre className={`text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : 'pr-[8rem] sm:pr-[6rem] lg:pr-[1rem] medium:pr-[2rem] 2xl:pr-[2rem] large:pr-[6rem] medium:ml-[0.5rem] 2xl:ml-[0.5rem] '} ${nav ? 'pr-[6rem] lg:pr-[8.1rem] 2xl:pr-[8.01rem] medium:pr-[8rem] large:pr-0 large:ml-0 large:w-[86%] 2xl:ml-[0.5rem]' : ''}`}>
+          <pre className={`text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
         </div>
 
-            <div className={`${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'lg:pr-[7.5rem] large:pr-[14.5rem]' : ''}`}>
+            <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.testimonial?.testimonialText && 
            <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
             }
             </div>
         
-            <div className={`${mode ==='mobile' ? '' : 'pr-[7rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'lg:pr-[7.5rem] large:pr-[14.5rem]' : ''}`}>
+            <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
             <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
             </div>
             
-            <div  className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : 'pr-[4rem] sm:pr-[6rem] lg:pr-4 large:pr-[6rem]'} ${nav ? 'pr-[6rem] lg:pr-[8rem] large:pr-[14.5rem]' : ''}`}>
+            <div  className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? 'pr-[5rem] lg:pr-[8rem]' : 'pr-[4rem] lg:pr-0'} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
+          <footer className={`flex w-full gap-4 md:gap-8 justify-start ${nav ? '' : ''} ${ loaderData?.portfolioImage ? 'pt-[1.5rem]' : ''}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?

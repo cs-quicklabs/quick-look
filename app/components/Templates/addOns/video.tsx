@@ -8,7 +8,7 @@ export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
   // const ytfbVideo = videoLink.videoSourceKey === 'youtube' ? youtubeVideoId : facebookVideoId
 
   return (
-    <div className={`mx-auto mt-8 ${loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100%]' : 'w-[20rem] md:w-[31rem]'} `} >
+    <div className={`mx-auto mt-8 ${loaderData?.profileInfo?.templateNumber == '0' || loaderData?.profileInfo?.templateNumber == '2' ? 'w-[100%]' : 'w-[20rem] md:w-[31rem]'} `} >
       {/* {videoLink.videoSourceKey === 'youtube' ?  */}
       {link?.includes('youtube') ? (
         // eslint-disable-next-line jsx-a11y/iframe-has-title
@@ -16,8 +16,6 @@ export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
           className={`h-[25rem] ${
             loaderData?.profileInfo?.templateNumber == '9'
               ? 'ml-[2.5rem] w-[75%] md:ml-[5.3rem]' 
-              : loaderData?.profileInfo?.templateNumber == '2' 
-              ? 'w-full lg:w-[75%] xl:w-[90%] medium:w-[75%] largeLaptop:w-full'
               : loaderData?.profileInfo?.templateNumber == '8' && mode ==='mobile'
               ? 'lg:w-[60%] 2xl:w-full'
               : 'w-full'
