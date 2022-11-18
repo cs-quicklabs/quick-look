@@ -34,7 +34,7 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-[23rem] ml-[3rem] sm:w-[36rem] md:w-[44rem] ${mode ==='mobile' ? 'small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'lg:w-[38rem] xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] med:w-[30rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} ${nav ? '' : ''}`}>
+      <div className={`w-[23rem] sm:w-[36rem] md:w-[44rem] ${mode ==='mobile' ? 'ml-[3rem] small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'lg:w-[35rem] xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] med:w-[30rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} ${nav ? '' : ''}`}>
         <h4 className={`text-2xl leading-8 font-bold ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>

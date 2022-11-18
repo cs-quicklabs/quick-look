@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
 import DynamicHeroIcon from './DynmaicIcon'
 
@@ -14,8 +15,8 @@ export default function BannerAddOn({ loaderData, mode }: any) {
       className={`flex items-center justify-center ${
         mode === 'mobile' ? 'z-0' : ''
       }
-       ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0' ? 'small:w-[59vw] SmMedium:w-[48vw] med:w-[52vw] mediumLaptop:w-[60vw]' : loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100vw] small:w-[73vw] SmMedium:w-[125%] med:w-[111%] medium:w-[104%] mediumLaptop:w-[104%] largeLaptop:w-[100%]' : ''} 
-       ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2' ? 'xl:w-[126%] medium:w-[104%]' : 'w-[100%]'}`}
+       ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0' ? 'small:w-[59vw] SmMedium:w-[48vw] med:w-[52vw] mediumLaptop:w-[62vw]' : loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100vw] small:w-[73vw] SmMedium:w-[108%] med:w-[111%] medium:w-[104%] mediumLaptop:w-[104%] largeLaptop:w-[100%]' : 'w-[100%]'} 
+       ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2' ? 'xl:w-[126%] medium:w-[104%]' : ''}`}
     >
       <button
         style={{

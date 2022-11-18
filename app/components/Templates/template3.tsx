@@ -64,7 +64,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] lg:w-[40rem] xl:pt-[14rem] xl:w-[28rem] xl:pl-[0rem] xl:pr-[0rem] med:w-[33rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'} ${nav ? 'mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`w-full px-[1rem] ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] lg:w-[40rem] xl:pt-[14rem] xl:w-[28rem] xl:pl-[0rem] xl:pr-[0rem] med:w-[33rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'} ${nav ? 'mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
       <div className={`flex ${mode ==='mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'}`} >
         <div className="mt-1 ">

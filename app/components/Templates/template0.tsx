@@ -52,6 +52,7 @@ export default function Template1({
               } ${mode === 'mobile' ? 'small:pl-[5.5rem] medium:pl-[8.5rem] mediumLaptop:pl-[14.5rem] largeLaptop:pl-[10.5rem]' : 'small:pl-[8.5rem] SmMedium:pl-[22.5rem] med:pl-[14.5rem] medium:pl-[12.5rem] largeLaptop:pl-[10.5rem]'}`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
+                // eslint-disable-next-line jsx-a11y/alt-text
                 <img
                   className={`h-[9rem] w-[9rem] rounded-full shadow-lg  shadow-white md:h-[8rem] md:w-32 ${
                     loaderData?.profileImage?.secondaryImage ||
@@ -86,25 +87,26 @@ export default function Template1({
               <span></span>
             )}
           </div>
-          <div className="w-[22rem] md:w-full lg:w-[72%] xl:w-full">
+
+          <div
+            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[15rem] smallScreen:pl-[2rem] smallScreen:pr-[14rem] mediumScreen:pr-[12rem]  ${
+              mode === 'mobile'
+                ? 'small:w-[91%] small:pr-[12rem] small:pl-[5rem] med:pr-[2rem] medium:pl-[6rem] mediumLaptop:pl-[14rem] largeLaptop:pl-[9rem] largeLaptop:pr-[2rem]'
+                : 'small:pr-[14rem] small:pl-[7rem] SmMedium:pr-[15rem] SmMedium:pl-[20rem] SmMedium:flex-row med:pl-[13rem] med:pr-[8rem] medium:pl-[12rem] medium:pr-[7rem] mediumLaptop:pl-[8rem] mediumLaptop:pr-[6rem] largeLaptop:pr-[8rem]'
+            }`}
+          >
+            <div className="">
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <Spotlightbtn loaderData={loaderData} />
             )}
           </div>
 
-          <div className="w-[22rem] md:w-full lg:w-[72%] xl:w-full">
+          <div className="">
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <AdditionalLinksAddOn loaderData={loaderData} />
             )}
           </div>
 
-          <div
-            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[7rem] smallScreen:pl-[5rem] smallScreen:pr-[9rem] mediumScreen:pr-[7rem]  ${
-              mode === 'mobile'
-                ? 'small:w-[91%] small:pr-[6rem] small:pl-[5rem] med:pr-[2rem] medium:pl-[8rem] mediumLaptop:pl-[14rem] largeLaptop:pl-[9rem] largeLaptop:pr-[2rem]'
-                : 'small:pr-[8rem] small:pl-[8rem] SmMedium:pr-[4rem] SmMedium:pl-[22rem] SmMedium:flex-row med:pl-[14rem] med:pr-[8rem] medium:pl-[12rem] medium:pr-[7rem] mediumLaptop:pl-[8rem] mediumLaptop:pr-[6rem] largeLaptop:pr-[8rem]'
-            }`}
-          >
             <div className="m-auto  flex flex-wrap pt-[2.5rem]">
               <pre className="flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}

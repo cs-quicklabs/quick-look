@@ -232,14 +232,14 @@ export default function Profile() {
         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
         ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
         :  loaderData?.profileInfo?.templateNumber == '0'
-        ? 'lg:ml-[21rem] xl:ml-[0rem]'
+        ? 'lg:ml-[21rem] xl:ml-[9rem] med:ml-[0rem]'
         : null
       }  
       ${
         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
         ? 'lg:ml-[27rem] xl:ml-[32rem] 2xl:ml-[35rem] mediumLaptop:ml-[30rem] large:ml-[13rem]'
         :  loaderData?.profileInfo?.templateNumber == '2'
-        ? 'small:ml-[12rem] SmMedium:ml-[9rem] med:ml-[5rem] 2xl:ml-[6rem]'
+        ? 'small:ml-[12rem] SmMedium:ml-[9rem] med:ml-[5rem] 2xl:ml-[6rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem]'
         : null
       }
       ${
