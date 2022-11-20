@@ -34,6 +34,7 @@ module.exports = {
         MdRes: '1366px',
         med:'1440px',
         medium: '1518px',
+        medScreen: '1600px',
         mediumLaptop: '1700px',
         largeLaptop: '1920px',
         large: '2560px',
