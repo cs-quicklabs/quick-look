@@ -20,9 +20,9 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col xl:pt-[5rem] xl:gap-[4rem] lg:items-start lg:justify-start largeLaptop:gap-[12rem]  '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem] lg:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
+    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' flex-col lg:items-start lg:justify-start xl:pt-[5rem] xl:gap-[0rem] xl:flex-row med:gap-[4rem] mediumLaptop:gap-[6rem] largeLaptop:gap-[8rem]  '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem] lg:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
 
-      <div className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode ==='mobile' ? 'lg:pr-[3rem] xl:pr-[6rem] xl:pl-[4rem] mediumLaptop:w-[57rem] largeLaptop:w-[72rem]' : 'lg:pt-[1.5rem] lg:pl-[4rem] lg:pr-[4rem] lg:mt-[0rem] xl:bg-purple-50 xl:pl-[6rem] largeLaptop:w-[43rem] largeLaptop:pl-[6rem]'} ${nav ? '' :''}`}>
+      <div className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode ==='mobile' ? 'lg:pr-[3rem] xl:pr-[6rem] xl:pl-[4rem] mediumLaptop:pl-[7rem] mediumLaptop:w-[57rem] largeLaptop:pl-[5rem] largeLaptop:w-[72rem]' : 'lg:pt-[1.5rem] lg:pl-[4rem] lg:pr-[4rem] lg:mt-[0rem] xl:bg-purple-50 xl:pl-[6rem] xl:w-[37rem] mediumLaptop:pl-[8rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem] largeLaptop:pl-[6rem]'} ${nav ? '' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?
         <h4 className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode ==='mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '} ${nav ? '' :''}`}>
         {loaderData?.firstname} {loaderData?.lastname}
@@ -111,10 +111,10 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`py-[2rem] ${mode ==='mobile' ? 'xl:pr-[2rem] xl:pr-auto' : 'lg:pl-[8rem] xl:w-[33rem] xl:pl-[6rem] xl:pl-auto largeLaptop:w-[35rem]'} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
+      <div className={`py-[2rem] ${mode ==='mobile' ? 'xl:pr-[2rem] xl:pr-auto' : 'lg:pl-[8rem] xl:pl-[0rem]'} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover w-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem]' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-lg object-cover w-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] medium:w-[25rem] medium:h-[25rem] mediumLaptop:w-[30rem] mediumLaptop:h-[30rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]' : 'xl:w-[20rem] xl:h-[25rem] medium:w-[25rem] medium:h-[35rem] mediumLaptop:w-[30rem] largeLaptop:w-[35rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
     </div>  
