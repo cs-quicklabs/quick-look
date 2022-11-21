@@ -51,8 +51,8 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
-        <div className="mt-1 ">
-          <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className="mt-[1rem]">
+          <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
         </div>
@@ -64,7 +64,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[60%]'}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[65%]'}`} >
                     {input.company}
                   </h2>
                 </div> : <span></span>}
@@ -82,7 +82,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
           
           <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.testimonial?.testimonialText && 
-           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
+           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />
             }
           </div>
         
