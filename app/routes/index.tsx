@@ -2,7 +2,6 @@ import { CallToAction } from '../components/CallToAction'
 import { Faqs } from '../components/Faqs'
 import { Footer } from '../components/Footer'
 import { Hero } from '../components/Hero'
-import { Pricing } from '../components/Pricing'
 import { PrimaryFeatures } from '../components/PrimaryFeatures'
 import { SecondaryFeatures } from '../components/SecondaryFeatures'
 import { Testimonials } from '../components/Testimonials'
@@ -10,6 +9,7 @@ import { Header } from '../components/Header'
 import { LoaderFunction, redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
 import { useLoaderData, useLocation } from '@remix-run/react'
+import Pricing from '~/components/Pricing'
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await getUser(request)
@@ -32,7 +32,7 @@ export default function Home() {
       <SecondaryFeatures />
       {/* <Testimonials /> */}
       <Pricing />
-      <Faqs />
+      {/* <Faqs /> */}
       <CallToAction />
       <Footer />
     </>
