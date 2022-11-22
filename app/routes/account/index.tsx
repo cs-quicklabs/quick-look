@@ -298,7 +298,7 @@ export default function Profile() {
              : null
            }
            ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '11'
-            ? 'lg:ml-[24rem] xl:ml-[38rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+            ? 'lg:ml-[24rem] xl:ml-[38rem] medium:ml-[32rem] mediumLaptop:ml-[29rem]'
             :  loaderData?.profileInfo?.templateNumber == '11'
             ? 'lg:ml-[13rem] xl:ml-[7rem] 2xl:ml-[0rem]'
             : null
