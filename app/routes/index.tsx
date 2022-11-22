@@ -11,31 +11,29 @@ import { LoaderFunction, redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
 import { useLoaderData, useLocation } from '@remix-run/react'
 
-
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await getUser(request)
-  if(user){
+  if (user) {
     return redirect('/account')
   }
-  
+
   return user
 }
 
 export default function Home() {
-
   const loaderData = useLoaderData()
   const isLoggedin = loaderData?.id
-  
+
   return (
     <>
       <Header isloggedin={isLoggedin} />
       <Hero />
       <PrimaryFeatures />
       <SecondaryFeatures />
-      <CallToAction />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Pricing />
       <Faqs />
+      <CallToAction />
       <Footer />
     </>
   )
