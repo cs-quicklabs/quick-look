@@ -48,7 +48,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
               ? ` ${
                   mode === 'mobile'
                     ? 'bottom-[5rem] right-0 lg:right-[1rem] xl:right-0'
-                    : 'bottom-[6rem] md:bottom-[12rem] xl:bottom-[-8rem]'
+                    : 'bottom-[6rem] md:bottom-[12rem] xl:bottom-[-6rem] medium:bottom-[-9rem]'
                 }`
               : 'bottom-[-11rem]'
           } ${mode === 'mobile' ? 'bottom-[5rem] lg:pt-[7rem]' : 'med:ml-[5rem] xl:bg-white xl:h-[35rem] xl:w-[85%] xl:pt-[0rem] xl:rounded-md xl:ml-[4rem] xl:shadow-md'}`}
@@ -115,8 +115,8 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
 
       <div className={`flex flex-col justify-center items-center w-full
       ${mode ==='mobile' ? '' : 'lg:w-[35rem mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} 
-      ${(mode !='mobile' || loaderData?.socialMedia?.facebookLink) || (mode !='mobile' || loaderData?.socialMedia?.twitterLink) || (mode !='mobile' || loaderData?.socialMedia?.youtubeLink) ? 'mt-[-8rem] sm:mt-[-7.5rem] md:mt-[-13.5rem] lg:mt-[-13rem] xl:mt-[19rem] med:mt-[-8rem] medium:mt-[-11rem]' : mode !='mobile' ?  'mt-[-10rem] sm:mt-[-10rem] lg:mt-[-8rem] xl:mt-[19rem] medium:mt-[-11rem]' : ''} 
-      ${(mode ==='mobile' && loaderData?.socialMedia?.facebookLink) || (mode ==='mobile' && loaderData?.socialMedia?.twitterLink) || (mode ==='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[-6rem] SmMedium:mt-[-6rem] mediumLaptop:mt-[-1.5rem]' : mode ==='mobile' ? 'lg:mt-[-6rem] xl:mt-[-7rem] mediumLaptop:mt-[1.5rem]' : '' } 
+      ${(mode !='mobile' || loaderData?.socialMedia?.facebookLink) || (mode !='mobile' || loaderData?.socialMedia?.twitterLink) || (mode !='mobile' || loaderData?.socialMedia?.youtubeLink) ? 'mt-[-8rem] sm:mt-[-7.5rem] md:mt-[-13.5rem] lg:mt-[-13rem] xl:mt-[19rem] med:mt-[21rem] medium:mt-[-11rem]' : mode !='mobile' ?  'mt-[-10rem] sm:mt-[-10rem] lg:mt-[-8rem] xl:mt-[19rem] med:mt-[21rem] medium:mt-[-11rem]' : ''} 
+      ${(mode ==='mobile' && loaderData?.socialMedia?.facebookLink) || (mode ==='mobile' && loaderData?.socialMedia?.twitterLink) || (mode ==='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[-6rem] SmMedium:mt-[-6rem] med:mt-[-6rem] mediumLaptop:mt-[-1.5rem]' : mode ==='mobile' ? 'lg:mt-[-6rem] xl:mt-[-7rem] med:mt-[-5rem] mediumLaptop:mt-[1.5rem]' : '' } 
       ${nav ? '' : ''}
       `}>
 
