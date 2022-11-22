@@ -20,9 +20,9 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' xl:flex-row flex-col pt-[2rem] lg:pt-[5rem] lg:gap-[4rem] lg:items-start lg:justify-start largeLaptop:gap-[12rem]  '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem] lg:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
+    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' flex-col lg:items-start lg:justify-start xl:pt-[5rem] xl:gap-[0rem] xl:flex-row med:gap-[4rem] mediumLaptop:gap-[6rem] largeLaptop:gap-[8rem]  '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:gap-[10rem] lg:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
 
-      <div className={`mt-[1rem] sm:mt-[2rem] pt-[1rem] pl-[1rem] w-[25rem] md:w-[47rem] bg-white ${mode ==='mobile' ? 'lg:pr-[3rem] xl:pr-[6rem] xl:pl-[4rem] mediumLaptop:w-[57rem] largeLaptop:w-[72rem]' : 'lg:bg-purple-50 lg:w-[32rem] lg:pl-[3rem] lg:mt-[0rem] xl:pl-[6rem] largeLaptop:w-[43rem] largeLaptop:pl-[6rem]'} ${nav ? 'lg:w-[57.5rem] lg:pl-[7rem] xl:w-[45.5rem] largeLaptop:w-[55rem] largeLaptop:pl-[12rem]' :''}`}>
+      <div className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode ==='mobile' ? 'lg:pr-[3rem] xl:pr-[6rem] xl:pl-[4rem] mediumLaptop:pl-[7rem] mediumLaptop:w-[57rem] largeLaptop:pl-[5rem] largeLaptop:w-[72rem]' : 'lg:pt-[1.5rem] lg:pl-[4rem] lg:pr-[4rem] lg:mt-[0rem] xl:bg-purple-50 xl:pl-[6rem] xl:w-[37rem] mediumLaptop:pl-[8rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem] largeLaptop:pl-[6rem]'} ${nav ? '' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?
         <h4 className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode ==='mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '} ${nav ? '' :''}`}>
         {loaderData?.firstname} {loaderData?.lastname}
@@ -47,42 +47,42 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
        
         </div>
 
-        <div className={`mb-10 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
-        <div className="mt-1 ">
-          <pre className={`text-gray-700 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className="mt-[1rem]">
+          <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
         </div>
 
-        <div className={` pb-[4rem] flex flex-col ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-            <div className={`flex flex-col pt-[2rem] ${mode ==='mobile' ? ' ' : 'lg:flex-row lg:justify-between'} ${nav ? '' : ''}`} >
+        <div className={`flex flex-col ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={`flex flex-col pt-[1.5rem] ${mode ==='mobile' ? ' ' : 'xl:flex-row xl:justify-between'} ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex lg:w-[60%] ${mode ==='mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
+                <div className={`flex ${mode ==='mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'lg:mt-[-0.25rem] '}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[65%]'}`} >
                     {input.company}
                   </h2>
                 </div> : <span></span>}
               {loaderData?.profileInfo?.education || input.education ?
-                <div className={`flex mt-[2rem]  ${mode ==='mobile' ? ' ' : 'lg:mt-0 '}`}>
+                <div className={`flex mt-[2rem]  ${mode ==='mobile' ? ' ' : 'xl:mt-0 '}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
-                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? ' lg:mt-[-0.25rem]' : 'lg:mt-[-0.25rem] '}`} >
+                  <h2 className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode ==='mobile' ? ' lg:mt-[-0.25rem]' : 'xl:mt-[-0.25rem] '}`} >
                     {input.education}
                   </h2>
                 </div> : <span></span>}
             </div>
           </div>
           
-          <div className={` mt-[-4rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.testimonial?.testimonialText && 
-           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
+           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />
             }
           </div>
         
@@ -91,11 +91,11 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} mode={mode} />}
             </div>
             
-            <div className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={`${loaderData?.portfolioImage[0] ? 'pt-[0rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
 
-          <footer className={` pb-[5rem] flex pt-[4rem] w-full lg:pt-[5rem] gap-4 md:gap-8  justify-start ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''} ${ loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
+          <footer className={`flex w-full gap-4 md:gap-8  justify-start ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''} ${ loaderData?.portfolioImage[0] ? 'pt-[1rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
@@ -111,10 +111,10 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`mb-4 sm:mb-0 w-[15rem] md:w-[20rem] ${mode ==='mobile' ? 'lg:w-[28rem] lg:pr-[10rem] xl:pr-[2rem] xl:pr-auto pt-[4rem] pb-[2rem]' : 'lg:w-[45rem] lg:pl-[8rem] xl:w-[33rem] xl:pl-[6rem] xl:pl-auto largeLaptop:w-[35rem]'} ${nav ? 'lg:w-[35rem]' : ' '} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
+      <div className={`py-[2rem] ${mode ==='mobile' ? 'xl:pr-[2rem] xl:pr-auto' : 'lg:pl-[8rem] xl:pl-[0rem]'} ${loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover ${mode ==='mobile' ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-lg object-cover w-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] medium:w-[25rem] medium:h-[25rem] mediumLaptop:w-[30rem] mediumLaptop:h-[30rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]' : 'xl:w-[20rem] xl:h-[25rem] medium:w-[25rem] medium:h-[35rem] mediumLaptop:w-[30rem] largeLaptop:w-[35rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? '' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
     </div>  

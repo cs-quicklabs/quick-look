@@ -17,7 +17,9 @@ export default function TestimonialAddOn({
           loaderData?.profileInfo?.templateNumber == '14'
             ? 'w-[90%]'
             : 'max-w-7xl '
-        }`}
+        }
+        ${
+          loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100%]' : '' }`}
       >
         <div className="">
           <blockquote className="">
@@ -34,13 +36,13 @@ export default function TestimonialAddOn({
                 &ldquo;
               </div>
               <pre
-                className={`flex whitespace-pre-wrap pt-2 text-center font-sans text-base font-normal leading-5 ${
+                className={`flex whitespace-pre-wrap pt-2 text-center font-sans  font-normal leading-5 ${
                   loaderData?.profileInfo?.templateNumber == '4' ||
                   loaderData?.profileInfo?.templateNumber == '9' ||
                   loaderData?.profileInfo?.templateNumber == '16'
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
-                }`}
+                } ${loaderData?.profileInfo?.templateNumber == '8' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 {testimonialText}
               </pre>
@@ -52,7 +54,8 @@ export default function TestimonialAddOn({
                   loaderData?.profileInfo?.templateNumber == '16'
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
-                }`}
+                }
+                ${loaderData?.profileInfo?.templateNumber == '8' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 -- {testimonialBy}
               </div>

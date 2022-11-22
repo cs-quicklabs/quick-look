@@ -23,9 +23,9 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row'} ${nav? '' :''}`} style={myStyle} >
+    <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${nav? '' :''}`} style={myStyle} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:py-[10rem] xl:w-[24rem]  mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center xl:py-[10rem] xl:w-[24rem]  mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-full object-cover w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
@@ -39,17 +39,40 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
+          <div className={`pb-[1rem]  bg-black w-full lg:pl-[2rem] ${mode ==='mobile' ? '' : 'lg:bg-transparent xl:hidden'} `}>
+            <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''}`} >
+              {loaderData?.profileInfo?.company || input.company ?
+                <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
+                  <h2 className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${mode ==='mobile' ? '' : 'xl:leading-5 xl:font-medium xl:text-gray-600'}`} >
+                    WORK
+                  </h2>
+                  <h2 className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${mode ==='mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'}`} >
+                    {input.company}
+                  </h2>
+                </div> : <span></span>}
+              {loaderData?.profileInfo?.education || input.education ?
+                <div className={`flex flex-col  ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
+                  <h2 className= {`text-white w-max text-xs leading-5 font-normal  ${mode ==='mobile' ? 'xl:text-sm' : 'xl:text-sm xl:leading-5 xl:font-medium xl:text-gray-600'}`} >
+                    EDUCATION
+                  </h2>
+                  <h2 className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${mode ==='mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'}`} >
+                    {input.education}
+                  </h2>
+                </div> : <span></span>}
+            </div>
+          </div>
+
       </div>
 
-      <div className={`w-full ${mode ==='mobile' ? '' : 'xl:pt-[10rem] lg:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? 'lg:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`w-full px-[1rem] ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] lg:w-[40rem] xl:pt-[14rem] xl:w-[28rem] xl:pl-[0rem] xl:pr-[0rem] med:w-[33rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'} ${nav ? 'mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
 
       <div className={`flex ${mode ==='mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'}`} >
-        <div className="mt-1 pl-[1rem] pr-[1.5rem]">
-          <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify pl-[1rem] lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className="mt-1 ">
+          <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
           </div>
-          <div className={`pb-[1rem] pl-[1rem] pr-[1.5rem] bg-black w-full lg:pl-[2rem] ${mode ==='mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent'} `}>
+          <div className={`pb-[1rem]  bg-black w-full hidden ${mode ==='mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent xl:block'} `}>
             <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
@@ -73,14 +96,14 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
           </div>
         </div>
 
-        <div className='pl-[1rem] pr-[1.5rem]'>
-          <div className={` text-center ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className=''>
+          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 
             <Spotlightbtn loaderData={loaderData}/>}
             </div>
           
 
-          <div className={`mb-10 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
             </div>
 
@@ -95,7 +118,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
               <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
               </div>
               
-              <div  className={`${loaderData?.portfolioImage.length > 1 ? 'pt-[4rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              <div  className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 <PortfolioAddon loaderData={loaderData}/>
               </div>
               
