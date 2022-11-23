@@ -8,7 +8,7 @@ export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
   // const ytfbVideo = videoLink.videoSourceKey === 'youtube' ? youtubeVideoId : facebookVideoId
 
   return (
-    <div className={`mx-auto mt-8 ${loaderData?.profileInfo?.templateNumber == '0' || loaderData?.profileInfo?.templateNumber == '2' || loaderData?.profileInfo?.templateNumber == '3' || loaderData?.profileInfo?.templateNumber == '4' || loaderData?.profileInfo?.templateNumber == '7' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' ? 'w-[100%]' : 'w-[20rem] md:w-[31rem]'} `} >
+    <div className={`mx-auto mt-8 ${loaderData?.profileInfo?.templateNumber == '0' || loaderData?.profileInfo?.templateNumber == '2' || loaderData?.profileInfo?.templateNumber == '3' || loaderData?.profileInfo?.templateNumber == '4' || loaderData?.profileInfo?.templateNumber == '7' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '13' ? 'w-[100%]' : 'w-[20rem] md:w-[31rem]'} `} >
       {/* {videoLink.videoSourceKey === 'youtube' ?  */}
       {link?.includes('youtube') ? (
         // eslint-disable-next-line jsx-a11y/iframe-has-title
