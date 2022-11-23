@@ -14,11 +14,6 @@ export default function TestimonialAddOn({
             : 'max-w-7xl '
         }
         ${
-          loaderData?.profileInfo?.templateNumber == '14'
-            ? 'w-[90%]'
-            : 'max-w-7xl '
-        }
-        ${
           loaderData?.profileInfo?.templateNumber == '0' ? 'w-[100%]' : '' }`}
       >
         <div className="">
@@ -42,7 +37,7 @@ export default function TestimonialAddOn({
                   loaderData?.profileInfo?.templateNumber == '16'
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
-                } ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' ? 'text-xs lg:text-base' : 'text-base'}`}
+                } ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 {testimonialText}
               </pre>
@@ -55,7 +50,7 @@ export default function TestimonialAddOn({
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
                 }
-                ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' ? 'text-xs lg:text-base' : 'text-base'}`}
+                ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 -- {testimonialBy}
               </div>
