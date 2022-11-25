@@ -85,10 +85,11 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
             }
             </div>
         
+            {loaderData?.video?.videoLink && 
             <div className={`border border-1 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
             <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
-            </div>
+            </div>}
             
             <div  className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>

@@ -5,7 +5,7 @@ export default function AdditionalLinksAddOn({ loaderData }: any) {
     <div>
       {loaderData?.additionalLinks.map((additionalSpotlight: { linkText: any; linkHex: any; linkUrl: any; linkColor:any; }) => (
       // eslint-disable-next-line react/jsx-key
-      <div className={`flex justify-center items-center ${loaderData?.profileInfo?.templateNumber == '2' || loaderData?.profileInfo?.templateNumber == '4' || loaderData?.profileInfo?.templateNumber == '7' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '13' || loaderData?.profileInfo?.templateNumber == '14' ? 'mb-[2rem]' : 'mt-9 mb-4' }`} >
+      <div className={`flex justify-center items-center ${loaderData?.profileInfo?.templateNumber == '2' || loaderData?.profileInfo?.templateNumber == '4' || loaderData?.profileInfo?.templateNumber == '7' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '13' || loaderData?.profileInfo?.templateNumber == '14' || loaderData?.profileInfo?.templateNumber == '16' ? 'mb-[2rem]' : 'mt-9 mb-4' }`} >
 
       <a className='' href={additionalSpotlight?.linkUrl.includes('https') ? additionalSpotlight?.linkUrl : 'https://'+ additionalSpotlight?.linkUrl} target="_blank">
         
