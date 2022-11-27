@@ -10,7 +10,7 @@ export default function TestimonialAddOn({
       <div
         className={`mx-auto ${
           loaderData?.profileInfo?.templateNumber == '10'
-            ? 'w-[32rem]'
+            ? 'w-[100%]'
             : 'max-w-7xl '
         }
         ${
@@ -37,7 +37,8 @@ export default function TestimonialAddOn({
                   loaderData?.profileInfo?.templateNumber == '16'
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
-                } ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ? 'text-xs lg:text-base' : 'text-base'}`}
+                } ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ||
+                loaderData?.profileInfo?.templateNumber == '10' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 {testimonialText}
               </pre>
@@ -50,7 +51,8 @@ export default function TestimonialAddOn({
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
                 }
-                ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ? 'text-xs lg:text-base' : 'text-base'}`}
+                ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ||
+                loaderData?.profileInfo?.templateNumber == '10' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 -- {testimonialBy}
               </div>
