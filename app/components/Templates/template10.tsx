@@ -141,7 +141,7 @@ function Template10({
           )}
 
           <div
-            className={`bg-red-400 ${mode === 'mobile' ? '' : ''}`}
+            className={` ${mode === 'mobile' ? '' : ''}`}
           >
             {loaderData?.video?.videoLink && (
               <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />

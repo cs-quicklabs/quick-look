@@ -271,9 +271,9 @@ export default function Profile() {
         : null
       } ${
              mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '9'
-             ? 'lg:ml-[22rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem]'
+             ? 'lg:ml-[22rem] xl:ml-[37rem] 2xl:ml-[36rem] mediumLaptop:ml-[30rem] largeLaptop:ml-[28rem]'
              :  loaderData?.profileInfo?.templateNumber == '9'
-             ? 'lg:ml-[13rem] xl:ml-[6rem]'
+             ? 'lg:ml-[13rem] xl:ml-[6rem] mediumLaptop:ml-[0rem]'
              : null
            }
            ${

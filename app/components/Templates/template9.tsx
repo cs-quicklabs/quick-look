@@ -29,15 +29,15 @@ export default function Template9({
         <BannerAddOn mode={mode} loaderData={loaderData} />
       )}
       <div
-        className={`mb-[5rem] flex h-full ${
+        className={`mb-[3rem] flex h-full ${
           nav ? 'w-screen' : ''
         }  items-center justify-center`}
       >
         <div
-          className={`mb-[5rem] flex items-center justify-center bg-gray-900 ${
+          className={`mb-[5rem] flex items-center justify-center bg-gray-900 rounded-2xl px-[2rem] ${
             mode == 'mobile'
-              ? 'w-[34rem] rounded-none'
-              : ' w-[90%]  md:w-[40rem] md:rounded-2xl'
+              ? 'lg:w-[28rem] medium:w-[32rem] mediumLaptop:w-[38rem]'
+              : 'w-[90%] md:w-[40rem] lg:w-[35rem] medium:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]'
           } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
           <div className="flex flex-col">
@@ -70,7 +70,7 @@ export default function Template9({
               }`}
             >
               <h1
-                className={`w-fit px-4  font-bold leading-8 text-gray-100 ${
+                className={`w-fit px-4 font-bold leading-8 text-gray-100 ${
                   mode == 'mobile' ? 'text-2xl' : 'text-2xl md:text-4xl'
                 }`}
               >
@@ -81,10 +81,10 @@ export default function Template9({
               input.location ||
               loaderData?.profileInfo?.location ? (
                 <h3
-                  className={` break-normal text-gray-100 ${
+                  className={`break-normal text-gray-100 ${
                     mode == 'mobile'
                       ? 'w-fit px-4 text-xl'
-                      : 'w-fit px-4 text-xl  md:text-2xl'
+                      : 'w-fit px-4 text-xl md:text-2xl'
                   }`}
                 >
                   {input.occupation}{' '}
@@ -94,9 +94,13 @@ export default function Template9({
               ) : (
                 <span></span>
               )}
+
+              <div className={`${
+                  mode === 'mobile' ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]' : ''
+                }`}>
               <div
-                className={`mr-8 w-[22rem] md:mr-0 md:w-full ${
-                  mode === 'mobile' ? 'pr-0 xl:pr-0' : ''
+                className={`${
+                  mode === 'mobile' ? '' : ''
                 }`}
               >
                 {loaderData?.spotlightButton?.toggleSpotlight && (
@@ -104,27 +108,23 @@ export default function Template9({
                 )}
               </div>
               <div
-                className={`mr-8 w-[22rem] md:mr-0 md:w-full ${
-                  mode === 'mobile' ? 'pr-0 xl:pr-0' : ''
+                className={`${
+                  mode === 'mobile' ? '' : ''
                 }`}
               >
                 {loaderData?.spotlightButton?.toggleSpotlight && (
                   <AdditionalLinksAddOn loaderData={loaderData} />
                 )}
               </div>
-              <div className=" flex flex-wrap px-[2rem] pt-[2.5rem]">
+              <div className="flex flex-wrap pt-[1rem]">
                 {' '}
                 <pre
-                  className={`flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-100 ${
-                    loaderData?.video?.videoLink
-                      ? 'w-[20rem] md:w-[30rem]'
-                      : 'w-fit'
-                  }`}
+                  className={`flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-100 `}
                 >
                   {input?.description?.trim()}{' '}
                 </pre>{' '}
               </div>
-              <div className="w-[20rem] md:w-[30rem]">
+              <div className="]">
                 {loaderData?.testimonial?.testimonialText && (
                   <TestimonialAddOn
                     loaderData={loaderData}
@@ -135,15 +135,18 @@ export default function Template9({
               </div>
 
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
+                <div className=''>
+                  <VideoAddOn
                   loaderData={loaderData}
                   videoLink={loaderData?.video?.videoLink}
                 />
+                </div>
               )}
-              <div className="flex w-[20rem] items-center justify-center md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0">
+              {/* <div className="flex w-[20rem] items-center justify-center md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0"> */}
+              <div>
                 <PortfolioAddon mode={mode} loaderData={loaderData} />
               </div>
-              <div className="mt-4 flex flex-col gap-4 ">
+              <div className="mt-[2rem] flex flex-col gap-4">
                 <div className="flex items-center justify-center gap-4">
                   {input.company && (
                     <BriefcaseIcon className="h-6 w-6 text-gray-100" />
@@ -193,7 +196,8 @@ export default function Template9({
                     <img src={youtube} alt="" className="h-auto w-9 md:w-11" />
                   </a>
                 ) : null}
-              </footer>
+              </footer></div>
+
             </div>
           </div>
         </div>
