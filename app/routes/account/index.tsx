@@ -244,7 +244,7 @@ export default function Profile() {
       }
       ${
        mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '5'
-       ? 'lg:ml-[23rem] xl:ml-[39rem] med:ml-[36rem] mediumLaptop:ml-[30rem]'
+       ? 'lg:ml-[23rem] xl:ml-[39rem] med:ml-[36rem] mediumLaptop:ml-[30rem] largeLaptop:ml-[28rem]'
        :  loaderData?.profileInfo?.templateNumber == '5'
        ? 'lg:ml-[13rem] xl:ml-[8rem] med:ml-[6rem] mediumLaptop:ml-[0rem]'
        : null
