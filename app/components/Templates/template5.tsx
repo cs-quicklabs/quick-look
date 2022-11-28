@@ -32,7 +32,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     
     <div className={`flex flex-col-reverse items-end ml-[0.1rem] pb-[3rem] ${mode ==='mobile' ? '' : 'xl:flex-row xl:items-start xl:justify-between'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-full px-[2rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:px-[3rem]' : 'xl:mt-[10rem] xl:w-[50%] xl:pl-[6rem] medium:pl-[3rem] mediumLaptop:w-[35rem] mediumLaptop:pl-[5rem] largeLaptop:w-[45rem]'} ${nav? '' :''}`}>
+      <div className={`w-full px-[2rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:px-[3rem]' : 'xl:mt-[10rem] xl:w-[53%] medium:pl-[3rem] mediumLaptop:w-[40rem] mediumLaptop:pl-[5rem] largeLaptop:w-[45rem]'} ${nav? '' :''}`}>
         <h4 className={`text-xl leading-8 font-semibold text-black lg:text-4xl lg:leading-10 lg:font-extrabold lg:text-gray-800 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -113,9 +113,9 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-        <div className={`flex py-[2rem] w-[23rem] sm:w-[31rem] md:w-[36rem] ${mode ==='mobile' ? 'lg:w-[29rem] xl:w-[33rem] largeLaptop:w-[40rem]' : 'lg:w-[31rem] xl:h-[100vh] xl:pt-[4rem] xl:w-[26rem] medium:w-[29rem] mediumLaptop:w-[34rem] largeLaptop:w-[37rem]'} ${nav? '' :''}`} style={myStyle}>
+        <div className={`flex py-[2rem] w-[24rem] sm:w-[33rem] md:w-[38rem] ${mode ==='mobile' ? 'lg:w-[28rem] xl:w-[26rem] med:w-[26rem] medium:w-[36rem] largeLaptop:w-[40rem]' : 'lg:w-[28rem] xl:h-[100vh] xl:pt-[4rem] xl:w-[26rem] medium:w-[31rem] mediumLaptop:w-[35rem] largeLaptop:w-[38rem]'} ${nav? 'xl:w-[33rem]' :''}`} style={myStyle}>
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`relative rounded-full shadow-xl object-cover ml-[-1rem] h-[22rem] w-[22rem] sm:h-[30rem] sm:w-[30rem] md:h-[35rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:h-[25rem] lg:w-[25rem] xl:w-[28rem] xl:h-[28rem] largeLaptop:h-[35rem] largeLaptop:w-[35rem]' : 'lg:ml-[-3rem] lg:h-[30rem] lg:w-[30rem] xl:w-[25rem] xl:h-[25rem] xl:ml-[-6rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img className={`relative rounded-full shadow-xl object-cover h-[22rem] w-[22rem] sm:h-[30rem] sm:w-[30rem] md:h-[35rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:h-[35rem] largeLaptop:w-[35rem]' : ' lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]'} ${nav? 'SmMedium:w-[30rem] SmMedium:h-[30rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
         </div>
 
       
