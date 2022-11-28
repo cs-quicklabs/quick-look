@@ -30,9 +30,9 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     </div>
     
-    <div className={`flex flex-col-reverse justify-center ml-[0.1rem] ${mode ==='mobile' ? '' : 'xl:flex-row lg:items-start largeLaptop:gap-[0rem]'} ${nav ?'mediumLaptop:gap-[5rem]' : ' '}`}>
+    <div className={`flex flex-col-reverse items-end ml-[0.1rem] pb-[3rem] ${mode ==='mobile' ? '' : 'xl:flex-row xl:items-start xl:justify-between'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-[24rem] sm:w-[36rem] md:w-[42rem] pl-[1rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:w-[30rem] xl:w-[40rem] largeLaptop:w-[63rem]' : 'lg:w-[38rem] lg:mt-[14.375rem] lg:pl-[6rem] mediumLaptop:pl-[3rem] mediumLaptop:w-[32rem] largeLaptop:pl-[3rem] largeLaptop:w-[45rem]'} ${nav? 'lg:w-[50rem] lg:pl-[12rem] xl:w-[51rem] mediumLaptop:pl-[6rem] mediumLaptop:w-[50rem] largeLaptop:pl-[9rem] largeLaptop:w-[65rem]' :''}`}>
+      <div className={`w-full px-[2rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:px-[3rem]' : 'xl:mt-[10rem] xl:w-[50%] xl:pl-[6rem] medium:pl-[3rem] mediumLaptop:w-[35rem] mediumLaptop:pl-[5rem] largeLaptop:w-[45rem]'} ${nav? '' :''}`}>
         <h4 className={`text-xl leading-8 font-semibold text-black lg:text-4xl lg:leading-10 lg:font-extrabold lg:text-gray-800 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
@@ -47,7 +47,7 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
 
-          <div className={`mb-10 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
@@ -60,12 +60,12 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
         <div>
             <div className={`flex flex-col pt-4 ${mode ==='mobile' ? '' : 'xl:flex-row lg:justify-between'}  ${nav ? '' : ''  }`} >
               {loaderData?.profileInfo?.company || input.company ?
-                <div className={`flex  ${mode ==='mobile' ? '' : 'xl:w-[50%]'}`} >
-                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] lg:text-gray-800 ${mode ==='mobile' ? '' : 'xl:w-[2.125rem]'}`}>
+                <div className={`flex  ${mode ==='mobile' ? '' : ''}`} >
+                  <h2 className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] lg:text-gray-800 ${mode ==='mobile' ? '' : ''}`}>
                     <BriefcaseIcon />
                   </h2>
                   
-                  <h2 className={`text-gray-600 w-max text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${mode ==='mobile' ? '' : 'lg:mt-[-0.25rem]'}  ${nav ? '' : ''}`}>
+                  <h2 className={`text-gray-600 w-max text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${mode ==='mobile' ? '' : 'lg:mt-[-0.25rem] xl:w-[65%] largeLaptop:w-max'}  ${nav ? '' : ''}`}>
                     {input.company}
                   </h2>
                 </div> : <span></span>}
@@ -83,20 +83,20 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
 
         <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.testimonial?.testimonialText && 
-           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} />
+           <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />
             }
             </div>
         
             <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.video?.videoLink && 
-            <VideoAddOn videoLink={loaderData?.video?.videoLink} />}
+            <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />}
             </div>
             
-            <div  className={` ${ loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'} ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div  className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <PortfolioAddon loaderData={loaderData}/>
             </div>
             
-          <footer className={`flex w-full gap-4 md:gap-8 justify-start pb-[5rem]  ${nav ? '' : ''} ${ loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
+          <footer className={`flex w-full gap-4 md:gap-8 justify-start  ${nav ? '' : ''} ${ loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'}`}>
             {loaderData?.socialMedia?.facebookLink ?
             <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
              {loaderData?.socialMedia?.twitterLink ?
@@ -113,9 +113,9 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>  
 
-        <div className={`ml-[4.5rem] flex justify-center items-center py-[2rem] sm:ml-[17.5rem] md:ml-[15.5rem] w-[22rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:ml-[8.5rem] lg:w-[28rem] xl:ml-[14.5rem] 2xl:ml-[18.5rem] mediumLaptop:ml-[29.5rem] largeLaptop:w-[40rem]  largeLaptop:ml-[31.5rem]' : 'lg:h-[100vh] lg:w-[35rem] lg:ml-[12.5rem] lg:py-[0rem] mediumLaptop:ml-[13.5rem]'} ${nav? 'lg:ml-[29.5rem] xl:ml-[8.5rem] mediumLaptop:ml-[15.5rem] largeLaptop:ml-[19.5rem]' :''}`} style={myStyle}>
+        <div className={`flex py-[2rem] w-[23rem] sm:w-[31rem] md:w-[36rem] ${mode ==='mobile' ? 'lg:w-[29rem] xl:w-[33rem] largeLaptop:w-[40rem]' : 'lg:w-[31rem] xl:h-[100vh] xl:pt-[4rem] xl:w-[26rem] medium:w-[29rem] mediumLaptop:w-[34rem] largeLaptop:w-[37rem]'} ${nav? '' :''}`} style={myStyle}>
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`relative rounded-full shadow-xl object-cover ml-[-1rem] h-[22rem] w-[22rem] md:ml-[-20rem] md:h-[35rem] md:w-[35rem] lg:ml-[-3rem] ${mode ==='mobile' ? 'lg:h-[28rem] lg:w-[28rem] largeLaptop:h-[40rem] largeLaptop:w-[40rem]' : 'lg:h-[25rem] lg:w-[25rem] mediumLaptop:mt-[-10rem] largeLaptop:mt-[-17rem] largeLaptop:w-[28rem] largeLaptop:h-[28rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img className={`relative rounded-full shadow-xl object-cover ml-[-1rem] h-[22rem] w-[22rem] sm:h-[30rem] sm:w-[30rem] md:h-[35rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:h-[25rem] lg:w-[25rem] xl:w-[28rem] xl:h-[28rem] largeLaptop:h-[35rem] largeLaptop:w-[35rem]' : 'lg:ml-[-3rem] lg:h-[30rem] lg:w-[30rem] xl:w-[25rem] xl:h-[25rem] xl:ml-[-6rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]'} ${nav? 'lg:ml-[-1rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
         </div>
 
       

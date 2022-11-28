@@ -37,7 +37,7 @@ export default function TestimonialAddOn({
                   loaderData?.profileInfo?.templateNumber == '16'
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
-                } ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ||
+                } ${loaderData?.profileInfo?.templateNumber == '5' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ||
                 loaderData?.profileInfo?.templateNumber == '10' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 {testimonialText}
@@ -51,7 +51,7 @@ export default function TestimonialAddOn({
                     ? 'text-white lg:text-gray-50'
                     : 'text-gray-500'
                 }
-                ${loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ||
+                ${loaderData?.profileInfo?.templateNumber == '5' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '14' ||
                 loaderData?.profileInfo?.templateNumber == '10' ? 'text-xs lg:text-base' : 'text-base'}`}
               >
                 -- {testimonialBy}
@@ -59,7 +59,7 @@ export default function TestimonialAddOn({
 
               <div
                 className={`mb-[-3rem] flex justify-end pt-3 text-7xl ${
-                  loaderData?.profileInfo?.templateNumber == '4' ||
+                  loaderData?.profileInfo?.templateNumber == '4' || 
                   loaderData?.profileInfo?.templateNumber == '9' ||
                   loaderData?.profileInfo?.templateNumber == '16'
                     ? 'text-white lg:text-gray-50'
