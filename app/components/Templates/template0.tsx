@@ -9,6 +9,7 @@ import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
+import { useLocation } from '@remix-run/react'
 
 export default function Template1({
   input,
@@ -17,6 +18,10 @@ export default function Template1({
   secondaryRestore,
   mode,
 }: any) {
+
+  const Location = useLocation()
+  const nav = Location.pathname.includes(`${loaderData.username}`)
+
   return (
     <>
       {loaderData?.supportBanner?.toggleBanner && (
@@ -89,11 +94,12 @@ export default function Template1({
           </div>
 
           <div
-            className={`w-[100%] pl-[2rem] pr-[13rem] xs:pr-[15rem] smallScreen:pl-[2rem] smallScreen:pr-[14rem] mediumScreen:pr-[12rem]  ${
+            className={`w-[100%] pl-[2rem] pr-[7.5rem] smallScreen:pl-[2rem] smallScreen:pr-[5.5rem] mediumScreen:pr-[3.5rem]  ${
               mode === 'mobile'
-                ? 'small:w-[91%] small:pr-[12rem] small:pl-[5rem] med:pr-[2rem] medium:pl-[6rem] mediumLaptop:pl-[14rem] largeLaptop:pl-[9rem] largeLaptop:pr-[2rem]'
-                : 'small:pr-[14rem] small:pl-[7rem] SmMedium:pr-[15rem] SmMedium:pl-[20rem] SmMedium:flex-row med:pl-[13rem] med:pr-[8rem] medium:pl-[12rem] medium:pr-[7rem] mediumLaptop:pl-[8rem] mediumLaptop:pr-[6rem] largeLaptop:pr-[8rem]'
-            }`}
+                ? 'small:w-[91%] small:pr-[5rem] small:pl-[5rem] med:pr-[2rem] medium:pl-[6rem] mediumLaptop:pl-[10rem] largeLaptop:pl-[9rem] largeLaptop:pr-[2rem]'
+                : 'small:pr-[7rem] small:pl-[7rem] SmMedium:pr-[8rem] SmMedium:pl-[20rem] SmMedium:flex-row med:pl-[13rem] med:pr-[8rem] medium:pl-[12rem] medium:pr-[7rem] mediumLaptop:pl-[8rem] mediumLaptop:pr-[6rem] largeLaptop:pr-[8rem]'
+            }
+            ${nav ?'SmMedium:pl-[8rem] med:pl-[8rem] medium:pl-[7rem] mediumLaptop:pl-[8rem]' : ''}`}
           >
             <div className="">
             {loaderData?.spotlightButton?.toggleSpotlight && (

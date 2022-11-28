@@ -230,7 +230,7 @@ export default function Profile() {
           className={`z-20 grow basis-[78%] 
       ${
         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '0'
-        ? 'lg:ml-[30rem] xl:ml-[46rem] mediumLaptop:ml-[30rem]'
+        ? 'lg:ml-[30rem] xl:ml-[46rem] med:ml-[36rem] mediumLaptop:ml-[30rem]'
         :  loaderData?.profileInfo?.templateNumber == '0'
         ? 'lg:ml-[21rem] xl:ml-[9rem] med:ml-[0rem]'
         : null

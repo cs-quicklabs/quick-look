@@ -30,11 +30,11 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`pb-[1rem] flex-shrink-0 ${mode ==='mobile' ? 'xl:pl-[1rem]  xl:mt-[1.5em]' : 'xl:mt-[5.625rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover h-auto w-[16rem] sm:h-[20rem] sm:w-[20rem] md:h-[24rem] md:w-[22rem] ${mode ==='mobile' ? 'lg:w-[22rem] lg:h-[24rem] xl:h-[20rem] xl:w-[18rem] med:w-[25rem] med:h-[28rem] mediumLaptop:h-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[33rem] largeLaptop:h-[35rem]' : 'xl:h-[30rem] xl:w-[25rem] med:h-[38rem] med:w-[28rem] medium:h-[40rem] mediumLaptop:w-[35rem] largeLaptop:h-[40rem] largeLaptop:w-[38rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-lg object-cover h-auto w-[16rem] sm:h-[20rem] sm:w-[20rem] md:h-[24rem] md:w-[22rem] ${mode ==='mobile' ? 'lg:w-[22rem] lg:h-[24rem] xl:h-[20rem] xl:w-[18rem] med:w-[25rem] med:h-[28rem] mediumLaptop:h-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[33rem] largeLaptop:h-[35rem]' : 'xl:h-[30rem] xl:w-[25rem] med:h-[38rem] med:w-[28rem] medium:h-[40rem] mediumLaptop:w-[35rem] largeLaptop:h-[40rem] largeLaptop:w-[35rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 
-      <div className={`w-[23rem] sm:w-[36rem] md:w-[44rem] ${mode ==='mobile' ? 'ml-[3rem] small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'lg:w-[35rem] xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] med:w-[30rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} ${nav ? '' : ''}`}>
+      <div className={`w-[23rem] sm:w-[36rem] md:w-[44rem] ${mode ==='mobile' ? 'ml-[3rem] small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'lg:w-[35rem] xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} ${nav ? 'SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]' : 'med:w-[30rem] '}`}>
         <h4 className={`text-2xl leading-8 font-bold ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
