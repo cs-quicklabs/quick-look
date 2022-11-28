@@ -95,7 +95,7 @@ function Template10({
             {loaderData?.firstname} {loaderData?.lastname}
           </div>
           <div
-            className={`text-xs font-medium leading-8 md:text-2xl ${
+            className={`text-xs font-medium md:leading-8 md:text-2xl ${
               mode === 'mobile' ? '' : ''
             }`}
           >

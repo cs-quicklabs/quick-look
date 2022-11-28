@@ -265,7 +265,7 @@ export default function Profile() {
       }
       ${
         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
-        ? 'lg:ml-[23rem] xl:ml-[41rem] med:ml-[36rem] 2xl:ml-[30rem] mediumLaptop:ml-[32rem] largeLaptop:ml-[30rem]'
+        ? 'lg:ml-[23rem] xl:ml-[38rem] med:ml-[36rem] 2xl:ml-[30rem] mediumLaptop:ml-[32rem] largeLaptop:ml-[30rem]'
         :  loaderData?.profileInfo?.templateNumber == '10'
         ? 'lg:ml-[13rem] xl:ml-[9rem] med:ml-[7rem] medium:ml-[5rem] mediumLaptop:ml-[0rem]'
         : null
