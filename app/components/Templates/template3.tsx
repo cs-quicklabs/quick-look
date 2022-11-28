@@ -25,10 +25,10 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${nav? '' :''}`} style={myStyle} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center xl:py-[10rem] xl:w-[24rem]  mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full' : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover w-[10rem] h-[10rem]   ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full object-cover w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]' : 'lg:w-[25rem] lg:h-[25rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
         <h4 className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
@@ -39,8 +39,8 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
-          <div className={`pb-[1rem]  bg-black w-full lg:pl-[2rem] ${mode ==='mobile' ? '' : 'lg:bg-transparent xl:hidden'} `}>
-            <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''}`} >
+          <div className={`pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent lg:pl-[3rem] xl:hidden'} `}>
+            <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
                   <h2 className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${mode ==='mobile' ? '' : 'xl:leading-5 xl:font-medium xl:text-gray-600'}`} >
@@ -64,10 +64,10 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full px-[1rem] ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] lg:w-[40rem] xl:pt-[14rem] xl:w-[28rem] xl:pl-[0rem] xl:pr-[0rem] med:w-[33rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'} ${nav ? 'mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : ''}`}>
+      <div className={`w-full px-[1rem] ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] xl:pt-[14rem] xl:w-[23rem] xl:pl-[0rem] xl:pr-[0rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : ''}`}>
 
       <div className={`flex ${mode ==='mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'}`} >
-        <div className="mt-1 ">
+        <div className="mt-1">
           <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
