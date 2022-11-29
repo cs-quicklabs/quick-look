@@ -17,15 +17,15 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide bg-black pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:pt-[3rem] xl:gap-[4rem] xl:flex-row med:gap-[5rem] mediumLaptop:gap-[7rem]'}  justify-center bg-no-repeat object-cover overflow-none ${nav? 'lg:gap-[12rem] mediumLaptop:gap-[12rem] largeLaptop:gap-[15rem]' :''}`}>
+    <div className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide justify-center bg-no-repeat object-cover overflow-none bg-black pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:pt-[3rem] xl:flex-row xl:justify-around'} ${nav? '' :''}`}>
       <div className={`pt-[1rem] pb-[0.5rem] flex-shrink-0 flex justify-center items-center ${mode ==='mobile' ? 'lg:pb-[0rem] lg:pt-[1.5rem]' : 'sm:mb-0 lg:pb-[0rem] lg:pt-[1.5rem] lg:items-start'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem] sm:w-[13rem] sm:h-[13rem]   ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] med:w-[25rem] med:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:p-4 med:w-[25rem] med:h-[25rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem] sm:w-[13rem] sm:h-[13rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] med:w-[25rem] med:h-[25rem] medium:w-[30rem] medium:h-[30rem] mediumLaptop:w-[33rem] mediumLaptop:h-[33rem] largeLaptop:w-[36rem] largeLaptop:h-[36rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:p-4 med:w-[25rem] med:h-[25rem] medium:w-[30rem] medium:h-[30rem] mediumLaptop:w-[33rem] mediumLaptop:h-[33rem] largeLaptop:w-[36rem] largeLaptop:h-[36rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 
-      <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? 'lg:pr-[2.5rem] lg:pl-[4rem] xl:pl-[5rem] med:pr-[3.5rem] med:pl-[4rem]' : 'lg:pr-[3rem] lg:pl-[4rem] xl:pr-0 xl:pl-0 xl:w-[25rem] med:w-[30rem] medium:w-[32rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} ${nav ? '' : ''}`}>
+      <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? 'lg:pr-[2.5rem] lg:pl-[4rem] xl:pl-[5rem] med:pr-[3.5rem] med:pl-[4rem]' : 'lg:pr-[3rem] lg:pl-[4rem] xl:pr-0 xl:pl-0 xl:w-[25rem]'} ${nav ? 'SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[41rem] largeLaptop:w-[48rem]' : mode != 'mobile' ? 'med:w-[30rem] medium:w-[32rem] mediumLaptop:w-[38rem] largeLaptop:w-[45rem]' : ''}`}>
         <h4 className={`text-white text-center text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : 'xl:text-start'}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
