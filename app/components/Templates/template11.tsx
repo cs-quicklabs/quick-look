@@ -35,7 +35,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                   : loaderData?.profileImage?.primaryImage
               }
               className={`absolute w-[100%] object-cover ${
-                (mode === 'mobile' && loaderData?.socialMedia?.facebookLink) || (mode === 'mobile' && loaderData?.socialMedia?.twitterLink) || (mode === 'mobile' && loaderData?.socialMedia?.youtubeLink) ? 'h-[79vh] lg:h-[76vh] xl:h-[74vh] med:h-[74vh] medium:h-[55vh] mediumLaptop:h-[55vh]' : mode === 'mobile' ? 'lg:h-[67vh] xl:h-[63vh] medium:h-[51vh]' : ''
+                (mode === 'mobile' && loaderData?.socialMedia?.facebookLink) || (mode === 'mobile' && loaderData?.socialMedia?.twitterLink) || (mode === 'mobile' && loaderData?.socialMedia?.youtubeLink) ? 'h-[79vh] lg:h-[76vh] xl:h-[74vh] med:h-[74vh] medium:h-[62vh] mediumLaptop:h-[65vh] largeLaptop:h-[56vh]' : mode === 'mobile' ? 'lg:h-[67vh] xl:h-[63vh] medium:h-[51vh] mediumLaptop:h-[55vh] largeLaptop:h-[51vh]' : ''
               }
               ${(mode !='mobile' && loaderData?.socialMedia?.facebookLink) || (mode !='mobile' &&loaderData?.socialMedia?.twitterLink) || (mode !='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'h-[54vh] sm:h-[58vh] md:h-[58vh] lg:h-[75vh] xl:h-[42vh]' : mode !='mobile' ? 'h-[48vh] sm:h-[51vh] md:h-[52vh] lg:h-[68vh] xl:h-[42vh]' : ''}`}
               alt=""
@@ -114,10 +114,9 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
       </div>
 
       <div className={`flex flex-col justify-center items-center w-full
-      ${mode === 'mobile' ? '' : 'lg:w-[35rem mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'} 
-      ${(mode === 'mobile') && (loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[-6rem] SmMedium:mt-[-6.5rem] med:mt-[-6.5rem] mediumLaptop:mt-[-6.5rem] largeLaptop:mt-[-6.5rem]' : mode === 'mobile' ? 'lg:mt-[-6.5rem] xl:mt-[-8rem] med:mt-[-7.5rem] mediumLaptop:mt-[-5.5rem] largeLaptop:mt-[-5.5rem]' : '' } 
-      ${(mode != 'mobile' || loaderData?.socialMedia?.facebookLink) || (mode != 'mobile' || loaderData?.socialMedia?.twitterLink) || (mode != 'mobile' || loaderData?.socialMedia?.youtubeLink) ? 'mt-[-8rem] sm:mt-[-7.5rem] md:mt-[-13.5rem] lg:mt-[-13rem] xl:mt-[16rem] mediumLaptop:mt-[21rem] largeLaptop:mt-[21.5rem]' : mode != 'mobile' ?  'mt-[-10rem] sm:mt-[-10rem] lg:mt-[-8rem] xl:mt-[16rem] mediumLaptop:mt-[21rem] largeLaptop:mt-[21.5rem]' : ''} 
-      ${nav ? '' : ''}
+      ${mode === 'mobile' ? '' : 'largeLaptop:w-[45rem]'}
+      ${nav ? 'xl:w-[40rem] med:w-[45rem] medium:w-[45rem] mediumLaptop:w-[50rem] largeLaptop:w-[55rem]' : mode != 'mobile' ? 'xl:w-[35rem] med:w-[40rem] medium:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : '' } 
+      ${(mode === 'mobile') && (loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[-6rem] SmMedium:mt-[-6.5rem] med:mt-[-6.5rem] medium:mt-[-6.5rem] mediumLaptop:mt-[-6.5rem] largeLaptop:mt-[-6.5rem]' : mode === 'mobile' ? 'lg:mt-[-6.5rem] xl:mt-[-8rem] med:mt-[-7.5rem] mediumLaptop:mt-[-7.5rem] largeLaptop:mt-[-5.5rem]' : (mode != 'mobile' || loaderData?.socialMedia?.facebookLink) || (mode != 'mobile' || loaderData?.socialMedia?.twitterLink) || (mode != 'mobile' || loaderData?.socialMedia?.youtubeLink) ? 'mt-[-8rem] sm:mt-[-7.5rem] md:mt-[-13.5rem] lg:mt-[-13rem] xl:mt-[16rem] medium:mt-[19rem] mediumLaptop:mt-[19rem] largeLaptop:mt-[21.5rem]' : mode != 'mobile' ? 'mt-[-10rem] sm:mt-[-10rem] lg:mt-[-8rem] xl:mt-[16rem] mediumLaptop:mt-[19rem] largeLaptop:mt-[21.5rem]' : '' } 
       `}>
 
         {loaderData?.spotlightButton?.toggleSpotlight && 
