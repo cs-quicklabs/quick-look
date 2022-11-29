@@ -21,30 +21,32 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
       <div className=''>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
       </div>
-    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-black justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start xl:gap-[8rem] med:gap-[11rem] medium:gap-[12rem] largeLaptop:gap-[14rem]'} ${nav? '' :''}`} >
+    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-black justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} 
+    ${nav ? 'xl:gap-[11rem] med:gap-[14rem] medium:gap-[15rem] largeLaptop:gap-[17rem]' : mode !='mobile' ? 'xl:gap-[8rem] med:gap-[11rem] medium:gap-[12rem] largeLaptop:gap-[14rem]' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-start items-start ${mode ==='mobile' ? 'w-full ' : 'w-full xl:pl-[8rem] xl:w-[24rem] med:pl-[5rem] medium:pl-[10rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem] largeLaptop:pl-[8rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-start items-start h-[25rem] ${mode ==='mobile' ? 'w-full lg:h-[30rem] largeLaptop:h-[40rem]' : 'w-full lg:h-[28rem] xl:pl-[8rem] xl:w-[24rem] xl:h-[100vh] med:pl-[5rem] medium:pl-[7rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem] largeLaptop:pl-[8rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'h-[30rem] largeLaptop:h-[40rem]' : 'lg:h-[28rem] xl:w-[20rem] xl:h-[100vh] med:w-[24rem] med:h-[100vh] mediumLaptop:w-[25rem] largeLaptop:w-[32rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'lg:h-[30rem] largeLaptop:h-[40rem]' : 'lg:h-[28rem] xl:w-[20rem] xl:h-[100vh] med:w-[24rem] mediumLaptop:w-[25rem] largeLaptop:w-[32rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
+        {(loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) && 
         <div className={`relative rounded-lg flex flex-col bg-yellow-500 gap-4 lg:gap-8 px-[0.5rem] py-[0.75rem] lg:px-[1rem] lg:py-[1rem] mt-[8.5rem] ${mode ==='mobile' ? 'lg:mt-[12rem] med:mt-[13rem]' : 'xl:mt-[12.5rem] med:mt-[46vh]'}`}>
-          {loaderData?.socialMedia?.facebookLink ?
-          <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" /></a> : null}
-          {loaderData?.socialMedia?.twitterLink ?
-          <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
-            <img src={twitter} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
-          </a> : null}
-          {loaderData?.socialMedia?.youtubeLink ?
-          <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
-            <img src={youtube} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
+        {loaderData?.socialMedia?.facebookLink ?
+        <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" /></a> : null}
+        {loaderData?.socialMedia?.twitterLink ?
+        <a href={`https://${loaderData?.socialMedia?.twitterLink}`} target='_blank'>
+          <img src={twitter} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
+        </a> : null}
+        {loaderData?.socialMedia?.youtubeLink ?
+        <a href={`https://${loaderData?.socialMedia?.youtubeLink}`} target='_blank'>
+          <img src={youtube} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
 
-          </a> : null}
-        </div>
+        </a> : null}
+      </div> }
 
       </div>
 
-      <div className={`flex flex-col justify-center items-center w-[90%] pt-[8.5rem] px-[1rem] sm:pt-[7.5rem] ${mode ==='mobile' ? 'lg:pt-[4rem] med:pt-[3.5rem] largeLaptop:pt-[13.5rem]' : 'lg:pt-[6rem] lg:w-[35rem] xl:pt-[7rem] xl:w-[26rem] mediumLaptop:w-[37rem] largeLaptop:w-[40rem]'} ${nav ? '' : ''}`}>
+      <div className={`flex flex-col justify-center items-center w-[90%] px-[1rem] ${mode ==='mobile' ? '' : 'xl:pt-[7rem]'} ${nav ? 'lg:w-[90%] xl:w-[35rem] med:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[25rem] med:w-[30rem] mediumLaptop:w-[37rem] largeLaptop:w-[40rem]' : ''}`}>
 
       <div className={`w-full ${mode ==='mobile' ? '' : 'xl:rounded-none xl:shadow-none'}`} >
           <h4 className={`text-white text-left text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-yellow-500 xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none'}  ${nav ? '' : ''}`}>
@@ -56,7 +58,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
 
-            <div className={`pb-[1rem] w-full xl:hidden ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent'} `}>
+            <div className={`pb-[1rem] w-full ${mode ==='mobile' ? '' : 'lg:bg-transparent xl:hidden'} `}>
               <div className={`flex pt-4 justify-between flex-col ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
                   <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
@@ -86,7 +88,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
             </pre>
           </div>
 
-          <div className={`pb-[1rem] w-full hidden xl:block ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent'} `}>
+          <div className={`pb-[1rem] w-full hidden ${mode ==='mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:block'} `}>
               <div className={`flex pt-[2rem] justify-between flex-col ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
                   <div className={`flex ${mode ==='mobile' ? '' : ''}`} >
