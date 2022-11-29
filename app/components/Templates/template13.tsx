@@ -19,16 +19,17 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
   return(
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:gap-[3rem] xl:px-[1rem] xl:bg-white med:gap-[4rem] mediumLaptop:gap-[3rem] mediumLaptop:px-[4rem] largeLaptop:gap-[7rem] largeLaptop:px-[6rem]'} ${nav? '' :''}`} >
+    <div className={`flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:px-[1rem] xl:bg-white mediumLaptop:px-[4rem] largeLaptop:px-[6rem]'} ${nav ? 'xl:gap-[0rem] med:gap-[0rem] mediumLaptop:gap-[0rem] largeLaptop:gap-[0rem]' : mode !='mobile' ? 'xl:gap-[3rem] med:gap-[4rem] mediumLaptop:gap-[3rem] largeLaptop:gap-[7rem]' : ''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:pt-[5rem] lg:pb-[10rem] xl:w-[30rem] xl:items-start xl:pl-[8rem] med:w-[35rem] medium:pl-[6rem] mediumLaptop:w-[40rem] largeLaptop:w-[40rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:pt-[5rem] lg:pb-[10rem] xl:w-[30rem] xl:items-start med:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[40rem]'} ${nav ? 'xl:pl-[0rem] medium:pl-[0rem]' : mode !='mobile' ? 'xl:pl-[8rem] medium:pl-[6rem]' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-t-lg object-cover w-[15rem] h-[15rem]  ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem] med:h-[30rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem]' : 'lg:w-[25rem] lg:h-[25rem] xl:w-[23rem] xl:rounded-lg med:h-[37rem] med:w-[30rem mediumLaptop:w-[30rem] mediumLaptop:h-[40rem] largeLaptop:w-[35rem] largeLaptop:h-[45rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-t-lg object-cover w-[15rem] h-[15rem]  ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem] xl:h-[30rem] med:h-[35rem] med:w-[30rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]' : 'lg:w-[25rem] lg:h-[25rem] xl:w-[25rem] xl:h-[30rem] xl:rounded-lg med:h-[35rem] med:w-[30rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 
-      <div className={`flex flex-col justify-center items-center w-full px-[2rem] ${mode ==='mobile' ? '' : 'lg:w-[35rem] xl:w-[25rem] xl:pt-[23rem] xl:px-[0rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]'} ${nav ? '' : ''}`}>
+      <div className={`flex flex-col justify-center items-center w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[23rem] xl:px-[0rem]'} 
+      ${nav ? 'lg:w-[35rem] xl:w-[30rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[25rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' :  ''}`}>
 
       <div className={`shadow-lg rounded-lg bg-white mt-[-2rem] w-full ${mode ==='mobile' ? '' : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full'}`} >
           <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none'}  ${nav ? '' : ''}`}>
