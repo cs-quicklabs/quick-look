@@ -47,19 +47,20 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
               ? ` ${
                   mode === 'mobile'
                     ? 'bottom-[5rem] right-0 lg:right-[0rem] xl:bottom-[8rem] xl:right-0'
-                    : 'bottom-[6rem] sm:bottom-[8rem] xl:bottom-[-5rem] xl:right-[-2rem] med:right-0'
+                    : 'bottom-[8rem] sm:bottom-[8rem] xl:bottom-[-5rem] med:right-0'
                 }`
               : 'bottom-[-11rem]'
-          } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}`}
+          } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}
+          ${nav ? 'xl:right-[0rem]' : mode !='mobile' ? 'xl:right-[-2rem]' :''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`flex rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[33rem] mediumLaptop:w-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`flex rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[33rem] xl:w-[25rem] mediumLaptop:w-[30rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
           
         </div>
 
       </div>
 
-      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-5rem] ml-[1.5rem] px-[1rem] sm:mt-[-7rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-6rem] xl:w-[85%] xl:ml-[4rem] med:ml-[3rem] mediumLaptop:ml-[5rem]' : 'lg:w-[35rem] xl:items-start xl:mt-[16rem] xl:rounded-none xl:shadow-none med:mt-[16rem] medium:mt-[20rem] mediumLaptop:w-[40rem] mediumLaptop:mt-[21rem] largeLaptop:w-[45rem]'} ${nav ? '' : ''}`}>
+      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-7rem] ml-[1.5rem] px-[1rem] sm:mt-[-7rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-6rem] xl:w-[85%] xl:ml-[4rem] med:ml-[3rem] mediumLaptop:ml-[5rem]' : 'xl:items-start xl:mt-[16rem] xl:rounded-none xl:shadow-none med:mt-[16rem] medium:mt-[20rem] mediumLaptop:mt-[21rem]'} ${nav ? 'lg:w-[90%] xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[48rem] largeLaptop:w-[50rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[30rem] med:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
 
         <div className={`${mode ==='mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}`} >
         <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
