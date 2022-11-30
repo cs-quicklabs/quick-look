@@ -25,7 +25,7 @@ export default function DashboardHeader({username, loaderData}: any) {
         >
            
           <div className='flex flex-1 items-center'>
-            <div className='flex w-full items-center justify-between md:w-auto'>
+            <div className='flex w-full items-center md:w-auto'>
               <a
                 href='/account'
                 className='flex items-center justify-center gap-4'

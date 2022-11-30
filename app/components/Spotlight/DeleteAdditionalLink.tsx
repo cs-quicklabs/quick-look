@@ -30,7 +30,7 @@ export default function DeleteAdditinalLink({ additionalSpotlight, deleteAdditio
         </Transition.Child>
 
         <div className="fixed z-[999] inset-0 overflow-y-auto font-inter">
-          <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+          <div className="flex items-end sm:items-center justify-center min-h-[80%] sm:min-h-full p-4 text-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

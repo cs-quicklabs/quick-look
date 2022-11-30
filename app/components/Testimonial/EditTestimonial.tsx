@@ -131,7 +131,7 @@ let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
                                  event.target.value
                               )
                             }}
-                           className={`text-ellipsis text-gray-900 w-[18rem] lg:w-[22rem] block rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
+                           className={`text-ellipsis text-gray-900 w-full lg:w-[22rem] block rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${error ? 'border border-red-600 focus:border-red-500 focus:ring-red-500' : 'focus:border-indigo-500 focus:ring-indigo-500'}`}
                           />
                           <div className='text-red-600 text-sm'>
                             {error}

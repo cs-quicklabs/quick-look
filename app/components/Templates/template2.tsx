@@ -77,7 +77,7 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
             </div>
           </div>
           
-          <div className={`pr-[2.5rem] ${mode ==='mobile' ? '' : 'xl:pr-[0rem]'}`} >
+          <div className={`${mode ==='mobile' ? '' : ''}`} >
 
             <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 
