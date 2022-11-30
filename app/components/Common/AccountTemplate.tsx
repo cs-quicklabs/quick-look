@@ -120,7 +120,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail1}
                                   alt=""
-                                  className={` w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -129,7 +129,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail1}
                                 alt=""
-                                className={` w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -168,7 +168,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail3}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -177,7 +177,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail3}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -216,7 +216,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail4}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -225,7 +225,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail4}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -264,7 +264,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail5}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -273,7 +273,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail5}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -312,7 +312,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail6}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -321,7 +321,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail6}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -359,7 +359,7 @@ export default function AccountTemplate({
                                 <img
                                   src={temp9}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -368,7 +368,7 @@ export default function AccountTemplate({
                               <img
                                 src={temp9}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -406,7 +406,7 @@ export default function AccountTemplate({
                                 <img
                                   src={template9}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -415,7 +415,7 @@ export default function AccountTemplate({
                               <img
                                 src={template9}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -454,7 +454,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumb3}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -463,7 +463,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumb3}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -502,7 +502,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumb4}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -511,7 +511,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumb4}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -532,13 +532,13 @@ export default function AccountTemplate({
                           {selectTemplate === 'template6' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumb6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumb6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                             ) : (
                               <img
                                 src={thumb6}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -558,13 +558,13 @@ export default function AccountTemplate({
                           {selectTemplate === 'template11' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumbnail11} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumbnail11} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                             ) : (
                               <img
                                 src={thumbnail11}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -585,13 +585,13 @@ export default function AccountTemplate({
                           {selectTemplate === 'template13' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
-                            <img src={thumb13} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
+                            <img src={thumb13} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
                               </div>
                             ) : (
                               <img
                                 src={thumb13}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -630,7 +630,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail14}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -639,7 +639,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail14}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
@@ -679,7 +679,7 @@ export default function AccountTemplate({
                                 <img
                                   src={thumbnail16}
                                   alt=""
-                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black opacity-30 ${
+                                  className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
                                     mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                   }`}
                                 />
@@ -688,7 +688,7 @@ export default function AccountTemplate({
                               <img
                                 src={thumbnail16}
                                 alt=""
-                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-black ${
+                                className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />

@@ -32,7 +32,8 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
     
     <div className={`flex flex-col-reverse items-end ml-[0.1rem] pb-[3rem] ${mode ==='mobile' ? '' : 'xl:flex-row xl:items-start xl:justify-between'} ${nav ?'' : ' '}`}>
       
-      <div className={`w-full px-[2rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:px-[3rem]' : 'xl:mt-[10rem] xl:w-[53%] medium:pl-[3rem] mediumLaptop:w-[40rem] mediumLaptop:pl-[5rem] largeLaptop:w-[45rem]'} ${nav? 'mediumLaptop:w-[45rem]' :''}`}>
+      <div className={`w-full px-[2rem] mt-[3rem] h-full ${mode ==='mobile' ? 'lg:px-[3rem]' : 'xl:mt-[10rem] medium:pl-[3rem]  mediumLaptop:pl-[5rem] '} ${nav? 'xl:w-[53%] mediumLaptop:w-[50rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[53%] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' :''}`}>
+
         <h4 className={`text-xl leading-8 font-semibold text-black lg:text-4xl lg:leading-10 lg:font-extrabold lg:text-gray-800 ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>

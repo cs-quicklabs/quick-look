@@ -29,7 +29,7 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
       </div>
 
       <div className={`flex flex-col justify-center items-center w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[23rem] xl:px-[0rem]'} 
-      ${nav ? 'lg:w-[35rem] xl:w-[30rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[25rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' :  ''}`}>
+      ${nav ? 'lg:w-[45rem] xl:w-[30rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[25rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' :  ''}`}>
 
       <div className={`shadow-lg rounded-lg bg-white mt-[-2rem] w-full ${mode ==='mobile' ? '' : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full'}`} >
           <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none'}  ${nav ? '' : ''}`}>

@@ -75,7 +75,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                   <h2 className={`text-black font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem] hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
                   <BriefcaseIcon />
                   </h2>
-                    <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem] med:w-[65%]'}`} >
+                    <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem] ' } ${nav ? 'med:w-max' : mode !='mobile' ? 'med:w-[65%]' : ''} `} >
                       {input.company}
                     </h2>
                   </div> : <span></span>}
@@ -139,7 +139,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                     <h2 className={`text-black font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem] hidden ${mode ==='mobile' ? '' : 'xl:block'}`} >
                     <BriefcaseIcon />
                     </h2>
-                      <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem] xl:w-[65%] medium:w-max'}`} >
+                      <h2 className={`text-white text-xs leading-5 font-normal w-max ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'} ${nav ? 'xl:w-max med:w-max' : mode !='mobile' ? ' xl:w-[65%] med:w-[65%] medium:w-max' : ''}`} >
                         {input.company}
                       </h2>
                     </div> : <span></span>}

@@ -48,7 +48,7 @@ export default function Template9({
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
-                  className={`rounded-full ${
+                  className={`rounded-full object-cover ${
                     mode == 'mobile'
                       ? 'h-[10rem] w-[10rem]'
                       : 'h-[10rem] w-[10rem] md:h-[14rem] md:w-[14rem]'

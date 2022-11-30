@@ -87,7 +87,7 @@ useEffect(() => {
                   <div>
                     <div className={`flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 overflow-y-auto ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'} `}>
                       <div className="bg-gray-50 py-6 px-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex md:items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
                             Add Social Profile Links
                           </Dialog.Title>

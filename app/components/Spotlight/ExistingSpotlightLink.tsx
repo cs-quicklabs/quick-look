@@ -37,7 +37,7 @@ const [openDeleteSpotlight, setOpenDeleteSpotlight] = useState(false);
             {person.name ?
               <>
               <div className={`flex justify-between items-center ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
-                <div className='flex flex-col w-screen'>
+                <div className='flex flex-col lg:w-screen'>
                   <div className='flex'>
                   <div className="py-4 flex">
                   

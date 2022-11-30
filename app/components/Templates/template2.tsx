@@ -34,8 +34,11 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-[23rem] sm:w-[36rem] md:w-[44rem] ${mode ==='mobile' ? 'ml-[3rem] small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'lg:w-[35rem] xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} ${nav ? 'SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]' : 'med:w-[30rem] '}`}>
-        <h4 className={`text-2xl leading-8 font-bold ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
+      <div className={`w-[23rem] sm:w-[36rem] md:w-[44rem] 
+      ${mode ==='mobile' ? 'ml-[3rem] small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} 
+      ${nav ? 'lg:w-full px-[2rem] SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]' : mode !='mobile' ? 'lg:w-[35rem] med:w-[30rem]' : ''}`}>
+        <h4 className={`text-2xl leading-8 font-bold 
+        ${mode ==='mobile' ? '' : ''} `}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 

@@ -36,7 +36,7 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
             : ''
         }
         ${
-          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10' ? 'grid-cols-2 w-[20rem] lg:w-full lg:w-full lg:grid-cols-3'  : loaderData?.profileInfo?.templateNumber == '10' ? 'grid-cols-2 w-[20rem] lg:w-full lg:grid-cols-3' : ''
+          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10' ? 'grid-cols-2 w-[20rem] lg:w-full lg:w-full md:grid-cols-3'  : loaderData?.profileInfo?.templateNumber == '10' ? 'grid-cols-2 w-[20rem] lg:w-full md:grid-cols-3' : ''
         }
         ${
           mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14' ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full'  : loaderData?.profileInfo?.templateNumber == '14' ? 'w-[90%]' : ''

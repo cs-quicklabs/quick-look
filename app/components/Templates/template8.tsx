@@ -20,7 +20,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start largeLaptop:gap-[17rem]' : 'min-h-[calc(95.5vh+50px)] '} `}>
+    <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start' : 'min-h-[calc(95.5vh+50px)] '} `}>
 
       <div className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode ==='mobile' ? 'lg:pr-[3rem] xl:pr-[3rem] xl:pl-[5rem] med:pl-[4rem] medium:pl-[3.5rem] mediumLaptop:pl-[5rem] largeLaptop:pl-[3rem]' : 'lg:pt-[1.5rem] lg:pl-[4rem] lg:pr-[4rem] lg:mt-[0rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'} ${nav ? 'SmMedium:w-[35rem] med:w-[40rem]' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?

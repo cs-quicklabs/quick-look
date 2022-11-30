@@ -57,7 +57,7 @@ export default function Banner({
                   className={`flex h-full flex-col overflow-y-auto border-r border-gray-200 bg-white ${
                     mode === 'mobile'
                       ? ' w-[16rem] xl:w-96'
-                      : ' w-[20rem] lg:w-96'
+                      : 'md:w-[20rem] lg:w-96'
                   }`}
                 >
                   <div className="bg-gray-50 py-6 px-4">

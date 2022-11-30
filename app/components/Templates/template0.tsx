@@ -83,7 +83,7 @@ export default function Template1({
             input.occupation ||
             input.location ||
             loaderData?.profileInfo?.location ? (
-              <h3 className="w-max break-normal text-gray-500">
+              <h3 className="w-[130%] sm:w-max break-normal text-gray-500">
                 {input.occupation}{' '}
                 {input.location && input.occupation ? `in` : ''}{' '}
                 {input.location}
@@ -113,7 +113,7 @@ export default function Template1({
             )}
           </div>
 
-            <div className="m-auto  flex flex-wrap pt-[2.5rem]">
+            <div className={`m-auto  flex flex-wrap ${loaderData?.spotlightButton?.toggleSpotlight ? 'pt-[1.5rem]' : 'pt-[2rem]'}`} >
               <pre className="flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}
               </pre>
