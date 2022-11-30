@@ -27,7 +27,7 @@ const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({ linkText: '',
           <li key={additionalSpotlight.id} className="">
             {additionalSpotlight.linkText ?
               <>
-              <div className={`flex justify-between items-center ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between lg:items-center ${mode === 'mobile' ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]' : 'flex-col lg:flex-row'}`}>
                 <div className='flex flex-col lg:w-screen'>
                   <div className={`flex ${showEditAdditional ? '' : 'border-b border-gray-200 ml-3 mr-2.5 lg:mr-3.5'}`}>
                   <div className="py-4 flex">

@@ -29,7 +29,7 @@ const [openDeleteVideoModal, setOpenDeleteVideoModal] = useState(false);
 
           <li key={person.name} className="">
             {person.link ?
-              <div className={`flex justify-between items-center  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between lg:items-center  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
                 <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                   <div className="ml-3">

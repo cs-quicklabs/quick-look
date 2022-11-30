@@ -28,7 +28,7 @@ const [openDeleteTestimonial, setOpenDeleteTestimonial] = useState(false);
 
           <li key={person.name} className="">
             {person.description ?
-              <div className={`flex justify-between items-center border-b border-gray-200 items-center ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
+              <div className={`flex justify-between lg:items-center border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'}`}>
                 <div className="py-4 flex">
                   
                   <div className="ml-3">
