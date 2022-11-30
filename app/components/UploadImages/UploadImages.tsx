@@ -199,7 +199,7 @@ export default function NoImages({
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="h-screen">
                     <div
-                      className={`font-inter mt-12 flex h-[95%]  flex-col overflow-y-auto border-r border-gray-200 bg-white ${
+                      className={`font-inter mt-12 flex h-[95%]  flex-col overflow-y-auto border-r border-gray-200 bg-white pb-[2rem] ${
                         mode === 'mobile'
                           ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
                           : 'w-[100vw] md:w-[20rem] lg:w-96'
