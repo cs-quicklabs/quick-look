@@ -82,7 +82,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
             </div>
         </div>
 
-        <div className="mt-1">
+        <div className={`${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'}`}>
           <pre className={`text-white text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${mode ==='mobile' ? '' : 'lg:text-gray-50'} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
