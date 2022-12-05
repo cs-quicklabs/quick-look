@@ -250,7 +250,7 @@ export default function Profile() {
                     what you share.
                   </p>
                 </div>
-                <div className="grid max-w-lg grid-cols-1  border-b border-gray-200">
+                <div className="grid sm:max-w-[36rem] md:max-w-lg grid-cols-1  border-b border-gray-200">
                   <div className="col-span-3 sm:col-span-2">
                     <div className="relative">
                       <label className="h-5 w-24 text-sm font-medium leading-5 text-gray-700">

@@ -18,12 +18,18 @@ export default function BannerAddOn({ loaderData, mode }: any) {
        
        ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2' ? 'xl:w-[126%] medium:w-[104%]' : ''}`}
     >
-      <button
+      <a
+      href={
+        loaderData?.supportBanner?.bannerlink.includes('https')
+          ? loaderData?.supportBanner?.bannerlink
+          : 'https://' + loaderData?.supportBanner?.bannerlink
+      }
+      target="_blank"
         style={{
           backgroundColor: loaderData?.supportBanner?.bannerHex,
           textShadow: '0px 1px black',
         }}
-        className={`flex h-10 cursor-default items-center justify-center text-sm font-medium leading-5 text-white shadow-sm w-full
+        className={`flex h-10 cursor-pointer items-center justify-center text-sm font-medium leading-5 text-white shadow-sm w-full
         ${loaderData?.supportBanner?.bannerColor}`}
       >
         <DynamicHeroIcon icon={Final} Final={Final} />
@@ -38,7 +44,7 @@ export default function BannerAddOn({ loaderData, mode }: any) {
         >
           {loaderData?.supportBanner?.bannerText}{' '}
         </a>
-      </button>
+      </a>
     </div>
   )
 }
