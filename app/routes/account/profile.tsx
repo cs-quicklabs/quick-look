@@ -195,7 +195,7 @@ export default function Profile() {
           loaderData={loaderData.user}
         />
       </div>
-      <div className="md:flex md:flex-wrap lg:grid lg:grid-cols-12 lg:gap-x-5">
+      <div className="md:flex md:flex-wrap lg:grid lg:grid-cols-12 lg:gap-x-5 px-[1rem] md:px-[0rem]">
         <div className="md:w-[25%] lg:w-2/5 ">
           <ProfileSetting />
         </div>
