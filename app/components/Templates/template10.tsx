@@ -127,7 +127,7 @@ function Template10({
             }`}
           >
             {' '}
-            <pre className="whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base">
+            <pre className= {`whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'}`} >
               {input?.description?.trim()}{' '}
             </pre>{' '}
           </div>
