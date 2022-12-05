@@ -54,7 +54,7 @@ export default function Template1({
                 primaryRestore === true
                   ? 'top-[-4rem]'
                   : 'top-[6rem]'
-              } ${mode === 'mobile' ? 'small:pl-[5.5rem] medium:pl-[8.5rem] mediumLaptop:pl-[14.5rem] largeLaptop:pl-[10.5rem]' : 'small:pl-[8.5rem] SmMedium:pl-[22.5rem] med:pl-[14.5rem] medium:pl-[12.5rem] largeLaptop:pl-[10.5rem]'}`}
+              } ${mode === 'mobile' ? 'small:pl-[5.5rem] medium:pl-[8.5rem] mediumLaptop:pl-[14.5rem] largeLaptop:pl-[10.5rem]' : 'small:pl-[8.5rem]'}`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 // eslint-disable-next-line jsx-a11y/alt-text
@@ -75,7 +75,7 @@ export default function Template1({
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
             </div>
           </div>
-          <div className={`m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] ${mode === 'mobile' ? 'small:px-[14.5rem] medium:px-[17.5rem] mediumLaptop:px-[23.5rem] largeLaptop:px-[20.5rem]' : 'small:px-[17.5rem] SmMedium:px-[31.5rem] med:px-[23.5rem] medium:px-[21.5rem] largeLaptop:px-[19.5rem]'}`} >
+          <div className={`m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] ${mode === 'mobile' ? 'small:px-[14.5rem] medium:px-[17.5rem] mediumLaptop:px-[23.5rem] largeLaptop:px-[20.5rem]' : 'small:px-[17.5rem]'}`} >
             <h1 className="w-max text-2xl font-bold leading-8 text-gray-900 ">
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
@@ -94,10 +94,10 @@ export default function Template1({
           </div>
 
           <div
-            className={`w-[100%] pl-[2rem] pr-[7.5rem] smallScreen:pl-[2rem] smallScreen:pr-[5.5rem] mediumScreen:pr-[3.5rem]  ${
+            className={`w-[100%] pl-[2rem] pr-[7.5rem] smallScreen:pr-[5.5rem] mediumScreen:pr-[3.5rem]  ${
               mode === 'mobile'
-                ? 'small:w-[91%] small:pr-[5rem] small:pl-[5rem] med:pr-[2rem] medium:pl-[6rem] mediumLaptop:pl-[10rem] largeLaptop:pl-[9rem] largeLaptop:pr-[2rem]'
-                : 'small:pr-[7rem] small:pl-[7rem] SmMedium:pr-[8rem] SmMedium:pl-[20rem] SmMedium:flex-row med:pl-[13rem] med:pr-[8rem] medium:pl-[12rem] medium:pr-[7rem] mediumLaptop:pl-[8rem] mediumLaptop:pr-[6rem] largeLaptop:pr-[8rem]'
+                ? 'small:w-[91%] small:pr-[5rem] med:w-[100%] med:pr-[2rem] largeLaptop:pr-[2rem]'
+                : 'small:pr-[7rem] SmMedium:pr-[2rem] SmMedium:flex-row'
             }
             ${nav ?'SmMedium:pl-[8rem] med:pl-[8rem] medium:pl-[7rem] mediumLaptop:pl-[8rem]' : ''}`}
           >
