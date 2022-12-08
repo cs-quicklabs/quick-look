@@ -39,7 +39,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
-          <div className={`pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent lg:pl-[3rem] xl:hidden'} `}>
+          <div className={`pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'} `}>
             <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
@@ -64,7 +64,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full px-[1rem] ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] xl:pt-[14rem]  xl:pl-[0rem] xl:pr-[0rem] '} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
+      <div className={`w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[14rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
 
       <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 

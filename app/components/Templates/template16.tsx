@@ -22,9 +22,9 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
       </div>
     <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-black justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} 
-    ${nav ? 'xl:gap-[11rem] med:gap-[14rem] medium:gap-[15rem] largeLaptop:gap-[17rem]' : mode !='mobile' ? 'xl:gap-[8rem] med:gap-[11rem] medium:gap-[12rem] largeLaptop:gap-[14rem]' :''}`} >
+    ${nav ? 'xl:gap-[11rem] med:gap-[14rem] medium:gap-[15rem] largeLaptop:gap-[17rem]' : mode !='mobile' ? 'xl:gap-[4rem] med:gap-[9rem] medium:gap-[10rem] largeLaptop:gap-[12rem]' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-start items-start h-[25rem] ${mode ==='mobile' ? 'w-full lg:h-[30rem] largeLaptop:h-[40rem]' : 'w-full lg:h-[28rem] xl:pl-[8rem] xl:w-[24rem] xl:h-[100vh] med:pl-[5rem] medium:pl-[7rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem] largeLaptop:pl-[8rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-start items-start h-[25rem] ${mode ==='mobile' ? 'w-full lg:h-[30rem] largeLaptop:h-[40rem]' : 'w-full lg:h-[28rem] xl:pl-[4rem] xl:w-[24rem] xl:h-[100vh] med:pl-[5rem] medium:pl-[7rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem] largeLaptop:pl-[8rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'lg:h-[30rem] largeLaptop:h-[40rem]' : 'lg:h-[28rem] xl:w-[20rem] xl:h-[100vh] med:w-[24rem] mediumLaptop:w-[25rem] largeLaptop:w-[32rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
@@ -54,7 +54,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
           </h4>
 
           {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-            <h3 className={`text-white text-left break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-[1rem]'}  ${nav ? 'lg:w-full' : ''} `} >
+            <h3 className={`text-white text-left break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-[1rem]'}  ${nav ? 'lg:w-full' : ''} `} >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
 
@@ -75,7 +75,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
                     <h2 className={`text-white font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode ==='mobile' ? '' : 'xl:text-yellow-500'}`}>
                       <BriefcaseIcon />
                     </h2>
-                    <h2 className={`text-gray-50 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal mt-[-0.15rem] xl:text-base xl:leading-6 xl:font-normal  ${mode ==='mobile' ? 'lg:text-sm' : 'lg:text-white lg:text-sm lg:mt-[-0.15rem] xl:w-max'}`} >
+                    <h2 className={`text-gray-50 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal mt-[-0.15rem] xl:text-base xl:leading-6 xl:font-normal  ${mode ==='mobile' ? 'lg:text-sm xl:w-max' : 'lg:text-white lg:text-sm lg:mt-[-0.15rem] xl:w-max'}`} >
                       {input.company}
                     </h2>
                   </div> : <span></span>}

@@ -62,7 +62,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
             </h4>
 
             {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-              <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-[0.5rem] xl:px-[0.75rem]'}  ${nav ? 'lg:w-full' : ''} `} >
+              <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-[14rem] xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-[0.5rem] xl:px-[0.75rem]'}  ${nav ? 'lg:w-full' : ''} `} >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3> : <span></span>}
 
