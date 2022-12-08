@@ -22,7 +22,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode ==='mobile' ? '  flex-col' : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '} ${nav ?'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start' : 'min-h-[calc(95.5vh+50px)] '} `}>
 
-      <div className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode ==='mobile' ? 'lg:pr-[3rem] xl:pr-[3rem] xl:pl-[5rem] med:pl-[4rem] medium:pl-[3.5rem] mediumLaptop:pl-[5rem] largeLaptop:pl-[3rem]' : 'lg:pt-[1.5rem] lg:pl-[4rem] lg:pr-[4rem] lg:mt-[0rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'} ${nav ? 'SmMedium:w-[35rem] med:w-[40rem]' :''}`}>
+      <div className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode ==='mobile' ? '' : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'} ${nav ? 'SmMedium:w-[35rem] med:w-[40rem]' :''}`}>
         {loaderData?.profileInfo?.occupation === '' && !loaderData?.spotlightButton && !loaderData?.portfolioImage[0] && loaderData?.testimonial?.testimonialText === '' && loaderData?.video?.videoLink === '' && !input?.description ?
         <h4 className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode ==='mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '} ${nav ? '' :''}`}>
         {loaderData?.firstname} {loaderData?.lastname}
@@ -111,7 +111,7 @@ export default function Template8 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
 
-      <div className={`py-[2rem] ${mode ==='mobile' ? 'xl:pl-[3rem] xl:pr-auto med:pl-[1rem]' : ''} ${nav ? '' : ''}`} >
+      <div className={`py-[2rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`rounded-lg object-cover w-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]' : 'xl:w-[25rem] xl:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? 'SmMedium:w-[25rem] med:w-[30rem] med:h-[30rem] medium:w-[30rem]' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}

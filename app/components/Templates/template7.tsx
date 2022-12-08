@@ -27,7 +27,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-center justify-center pt-[1rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'lg:w-full]' : 'lg:pt-[6rem] xl:pl-[6.75rem]'}  justify-center bg-no-repeat object-cover overflow-none` } style={myStyle} >
+    <div className={`flex overflow-auto scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-center justify-center pt-[1rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '} ${mode ==='mobile' ? 'lg:w-full]' : 'lg:pt-[6rem]'}  justify-center bg-no-repeat object-cover overflow-none` } style={myStyle} >
 
       <div className='flex flex-col items-center justify-center'>
       {secondaryRestore || loaderData?.profileImage?.secondaryImage ?

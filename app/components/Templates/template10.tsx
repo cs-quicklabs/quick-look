@@ -39,7 +39,7 @@ function Template10({
                   : loaderData?.profileImage?.primaryImage
               }
               className={`w-[100%] object-cover ${
-                mode === 'mobile' ? 'h-[36vh]' : 'h-[20vh] md:h-[40vh]'
+                mode === 'mobile' ? 'h-[15rem]' : 'h-[8rem] md:h-[14rem]'
               }`}
               alt=""
             />
@@ -50,7 +50,7 @@ function Template10({
       <div
         className={`flex flex-col ${
           mode === 'mobile' ? '' : ''
-        }  ${mode === 'mobile' ? 'h-[25vh] largeLaptop:h-[20vh]' : 'h-[10vh] md:h-[20vh]'}`}
+        }  ${mode === 'mobile' ? 'h-[9rem] largeLaptop:h-[20vh]' : 'h-[4rem] md:h-[7rem] largeLaptop:h-[9rem]'}`}
       >
        
         <div

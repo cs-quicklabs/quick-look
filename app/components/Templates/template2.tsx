@@ -25,7 +25,7 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
   return(
     <>
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} mode={mode} /> }
-    <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide justify-center items-center pb-[3rem] pt-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col p-[3rem] lg:pl-[4rem] xl:pl-[12rem] 2xl:pl-[2rem]' : 'flex-col xl:flex-row xl:gap-[0rem] xl:items-start xl:justify-around'} ${nav? '' :''}`} style={myStyle} >
+    <div className={`ml-[0.1rem] flex overflow-auto scrollbar-hide justify-center items-center pb-[3rem] pt-[1.5rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[0rem] xl:items-start xl:justify-around'} ${nav? '' :''}`} style={myStyle} >
 
       <div className={`pb-[1rem] flex-shrink-0 ${mode ==='mobile' ? 'xl:pl-[1rem]  xl:mt-[1.5em]' : 'xl:mt-[5.625rem]'} ${nav? '' :''}`} >
 
@@ -34,8 +34,8 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-[23rem] sm:w-[36rem] md:w-[44rem] 
-      ${mode ==='mobile' ? 'ml-[3rem] small:w-[29rem] xl:ml-[0rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] mediumLaptop:ml-[3rem] largeLaptop:ml-[0rem] largeLaptop:w-[64rem]' : 'xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} 
+      <div className={`w-[21rem] sm:w-[36rem] md:w-[44rem] 
+      ${mode ==='mobile' ? 'small:w-[29rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] largeLaptop:w-[64rem]' : 'xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'} 
       ${nav ? 'lg:w-full px-[2rem] SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]' : mode !='mobile' ? 'lg:w-[35rem] med:w-[30rem]' : ''}`}>
         <h4 className={`text-2xl leading-8 font-bold 
         ${mode ==='mobile' ? '' : ''} `}>
