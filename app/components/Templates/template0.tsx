@@ -27,13 +27,13 @@ export default function Template1({
       {loaderData?.supportBanner?.toggleBanner && (
         <BannerAddOn mode={mode} loaderData={loaderData} />
       )}
-      <div className="flex overflow-hidden">
+      <div className={`flex overflow-hidden w-[100vw] sm:w-full ${mode === 'mobile' ? 'lg:w-full' : 'w-full'}`} >
         <div className="flex-grow">
           <div className="h-[10rem]">
             <div className="relative">
               {loaderData?.profileImage?.primaryImage || primaryRestore ? (
                 <img
-                  className={` w-screen object-cover ${
+                  className={`w-[100%] object-cover ${
                     loaderData?.profileImage?.primaryImage ||
                     primaryRestore === true
                       ? 'h-[10rem]'
@@ -83,7 +83,7 @@ export default function Template1({
             input.occupation ||
             input.location ||
             loaderData?.profileInfo?.location ? (
-              <h3 className="w-[130%] sm:w-max break-normal text-gray-500">
+              <h3 className={`w-[130%] break-normal text-gray-500 sm:w-[215%] ${mode === 'mobile' ? 'lg:w-[185%]' : 'lg:w-[207%]'}`} >
                 {input.occupation}{' '}
                 {input.location && input.occupation ? `in` : ''}{' '}
                 {input.location}
@@ -94,12 +94,12 @@ export default function Template1({
           </div>
 
           <div
-            className={`w-[100%] pl-[2rem] pr-[7.5rem] smallScreen:pr-[5.5rem] mediumScreen:pr-[3.5rem]  ${
+            className={`w-[100%] pl-[2rem] pr-[8.5rem] xs:pr-[5.5rem] smallScreen:pr-[5.5rem] mediumScreen:pr-[3.5rem]  ${
               mode === 'mobile'
                 ? 'small:w-[91%] small:pr-[5rem] med:w-[100%] med:pr-[2rem] largeLaptop:pr-[2rem]'
-                : 'small:pr-[7rem] SmMedium:pr-[2rem] SmMedium:flex-row'
+                : 'SmMedium:flex-row'
             }
-            ${nav ?'SmMedium:pl-[8rem] med:pl-[8rem] medium:pl-[7rem] mediumLaptop:pl-[8rem]' : ''}`}
+            ${nav ?'small:pl-[4rem] small:pr-[4rem]' : mode != 'mobile' ? 'small:pr-[7rem] SmMedium:pr-[2rem]' : '' }`}
           >
             <div className="">
             {loaderData?.spotlightButton?.toggleSpotlight && (

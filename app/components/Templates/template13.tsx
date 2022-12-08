@@ -68,6 +68,17 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
         </div>
 
         <div className='mt-[1rem]'>
+
+        <div className={`text-center ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            {loaderData?.spotlightButton?.toggleSpotlight && 
+            <Spotlightbtn loaderData={loaderData}/>}
+            </div>
+          
+
+          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+            </div>
+
         <div className="mt-1">
           <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {input?.description?.trim()}
@@ -99,16 +110,6 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
          
 
         <div className=''>
-          <div className={`text-center ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-            {loaderData?.spotlightButton?.toggleSpotlight && 
-            <Spotlightbtn loaderData={loaderData}/>}
-            </div>
-          
-
-          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
-            </div>
-
               <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && 
             <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />

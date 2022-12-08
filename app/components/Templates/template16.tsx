@@ -58,6 +58,16 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
 
+            <div className={` ${nav ? '' : ''}`}>
+            {loaderData?.spotlightButton?.toggleSpotlight && 
+            <Spotlightbtn loaderData={loaderData}/>}
+            </div>
+          
+
+          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+            </div>
+
             <div className={`pb-[1rem] w-full ${mode ==='mobile' ? '' : 'lg:bg-transparent xl:hidden'} `}>
               <div className={`flex pt-4 justify-between flex-col ${mode ==='mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'} ${nav ? '' : ''}`} >
                 {loaderData?.profileInfo?.company || input.company ?
@@ -112,16 +122,6 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
             </div>
 
         <div className=''>
-          <div className={` ${nav ? '' : ''}`}>
-            {loaderData?.spotlightButton?.toggleSpotlight && 
-            <Spotlightbtn loaderData={loaderData}/>}
-            </div>
-          
-
-          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
-            </div>
-
               <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && 
             <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />
