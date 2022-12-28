@@ -200,7 +200,7 @@ export default function Profile() {
           <ProfileSetting />
         </div>
 
-        <div className=" font-inter mt-2 max-w-xl md:w-3/5 lg:col-span-9 lg:ml-64 lg:px-0 xl:ml-60 2xl:ml-44">
+        <div className=" font-inter mt-2 max-w-xl md:w-3/5 lg:col-span-9 lg:ml-64 lg:px-0 px-4 xl:ml-60 2xl:ml-44">
           <Form method="post">
             <div className="sm:overflow-hidde sm:rounded-md">
               <div className="flex "></div>
