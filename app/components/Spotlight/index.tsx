@@ -1,4 +1,3 @@
-import React from 'react'
 import AddMoreSpotlightLink from './AddMoreSpotlightLink'
 import CreateSpotlight from './CreateSpotlight'
 
