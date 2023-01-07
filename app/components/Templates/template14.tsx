@@ -22,9 +22,9 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
     
     {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
 
-    <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:justify-start'} ${nav? '' :''}`} >
+    <div className={`flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col'} ${nav? '' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
+      <div className={`relative flex flex-col ${mode ==='mobile' ? 'w-full ' : ''} ${nav? '' :''}`} >
 
       <div className=''>
         {primaryRestore || loaderData?.profileImage?.primaryImage ? (
@@ -35,32 +35,34 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
                   : loaderData?.profileImage?.primaryImage
               }
               className={`w-[100%] object-cover ${
-                mode === 'mobile' ? 'h-[30vh] xl:h-[40vh]' : 'xl:absolute h-[35vh] md:h-[40vh] lg:50vh'
+                mode === 'mobile' ? 'h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]' : 'absolute h-[13rem] md:h-[16rem] lg:h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]'
               }`}
               alt=""
             />
           ) : null}
         </div>
-        <div
-          className={`relative flex justify-center  ${
-            primaryRestore || loaderData?.profileImage?.primaryImage
-              ? ` ${
-                  mode === 'mobile'
-                    ? 'bottom-[5rem] right-0 lg:right-[0rem] xl:bottom-[8rem] xl:right-0'
-                    : 'bottom-[8rem] sm:bottom-[8rem] xl:bottom-[-5rem] med:right-0'
-                }`
-              : 'bottom-[-11rem]'
-          } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}
-          ${nav ? 'xl:right-[0rem]' : mode !='mobile' ? 'xl:right-[-2rem]' :''}`}
-        >
-          {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`flex rounded-lg object-cover w-[15rem] h-[15rem] justify-center items-center  ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[33rem] xl:w-[25rem] mediumLaptop:w-[30rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
-          
+        <div className={`flex justify-center items-center ${mode ==='mobile' ? '' : 'xl:items-start xl:justify-start'}`} >
+          <div
+            className={`absolute ${
+              primaryRestore || loaderData?.profileImage?.primaryImage
+                ? ` ${
+                    mode === 'mobile'
+                      ? 'top-[5rem] md:top-[7rem] lg:top-[8rem] xl:top-[9rem]'
+                      : 'top-[5rem] md:top-[7rem] lg:top-[8rem] xl:top-[9rem]'
+                  }`
+                : 'bottom-[-11rem]'
+            } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}
+            ${nav ? '' : mode !='mobile' ? '' :''}`}
+          >
+            {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
+          <img className={`rounded-lg object-cover w-[15rem] h-[15rem] md:w-[18rem] md:h-[18rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] med:h-[22rem] med:w-[22rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[29rem] largeLaptop:h-[29rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[30rem] xl:w-[23rem] mediumLaptop:w-[28rem] mediumLaptop:h-[35rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+            
+          </div>
         </div>
 
       </div>
 
-      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[-7rem] ml-[1.5rem] px-[1rem] sm:mt-[-7rem] sm:ml-[2.5rem] ${mode ==='mobile' ? 'lg:mt-[-3rem] xl:mt-[-6rem] xl:w-[85%] xl:ml-[4rem] med:ml-[3rem] mediumLaptop:ml-[5rem]' : 'xl:items-start xl:mt-[16rem] xl:rounded-none xl:shadow-none med:mt-[16rem] medium:mt-[20rem] mediumLaptop:mt-[21rem]'} ${nav ? 'lg:w-[90%] xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[48rem] largeLaptop:w-[50rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[30rem] med:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
+      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[21rem] mx-[1rem] px-[1rem] sm:w-[95%] md:mt-[26rem] ${mode ==='mobile' ? 'lg:mt-[11rem] xl:mt-[10rem] medium:mt-[8rem] mediumLaptop:mt-[10rem] largeLaptop:mt-[11rem]' : 'lg:mt-[29rem] xl:items-start xl:mt-[22rem] xl:rounded-none xl:shadow-none xl:ml-[25rem] med:mt-[24rem] medium:mt-[26rem] mediumLaptop:ml-[30rem] mediumLaptop:mt-[28rem] largeLaptop:ml-[32rem] largeLaptop:mt-[30rem]'} ${nav ? 'xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[48rem] largeLaptop:w-[50rem]' : mode !='mobile' ? 'xl:w-[30rem] med:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
 
         <div className={`${mode ==='mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}`} >
         <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
@@ -98,6 +100,17 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
               </div>
             </div>
 
+            <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            {loaderData?.spotlightButton?.toggleSpotlight && 
+            <Spotlightbtn loaderData={loaderData} />}
+            </div>
+          
+
+          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+            </div>
+
+
           <pre className={`text-gray-700 text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
@@ -126,16 +139,6 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
             </div>
 
         <div className=''>
-          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-            {loaderData?.spotlightButton?.toggleSpotlight && 
-            <Spotlightbtn loaderData={loaderData} />}
-            </div>
-          
-
-          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
-            </div>
-
               <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && 
             <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />

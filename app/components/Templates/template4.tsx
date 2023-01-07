@@ -21,17 +21,17 @@ export default function Template4 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`pt-[1rem] pb-[0.5rem] flex-shrink-0 flex justify-center items-center ${mode ==='mobile' ? 'lg:pb-[0rem] lg:pt-[1.5rem]' : 'sm:mb-0 lg:pb-[0rem] lg:pt-[1.5rem] lg:items-start'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem] sm:w-[13rem] sm:h-[13rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] med:w-[25rem] med:h-[25rem] medium:w-[30rem] medium:h-[30rem] mediumLaptop:w-[33rem] mediumLaptop:h-[33rem] largeLaptop:w-[36rem] largeLaptop:h-[36rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:p-4 med:w-[25rem] med:h-[25rem] medium:w-[30rem] medium:h-[30rem] mediumLaptop:w-[33rem] mediumLaptop:h-[33rem] largeLaptop:w-[36rem] largeLaptop:h-[36rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem] sm:w-[13rem] sm:h-[13rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] med:w-[25rem] med:h-[25rem] medium:w-[30rem] medium:h-[30rem] mediumLaptop:w-[33rem] mediumLaptop:h-[33rem] largeLaptop:w-[36rem] largeLaptop:h-[36rem]' : 'small:w-[20rem] small:h-[20rem] xl:p-4 med:w-[25rem] med:h-[25rem] medium:w-[30rem] medium:h-[30rem] mediumLaptop:w-[33rem] mediumLaptop:h-[33rem] largeLaptop:w-[36rem] largeLaptop:h-[36rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 
-      <div className={`lg:mt-[1.5rem] pl-[1rem] pr-[2rem] w-full ${mode ==='mobile' ? 'lg:pr-[2.5rem] lg:pl-[4rem] xl:pl-[5rem] med:pr-[3.5rem] med:pl-[4rem]' : 'lg:pr-[3rem] lg:pl-[4rem] xl:pr-0 xl:pl-0 xl:w-[25rem]'} ${nav ? 'SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[41rem] largeLaptop:w-[48rem]' : mode != 'mobile' ? 'med:w-[30rem] medium:w-[32rem] mediumLaptop:w-[38rem] largeLaptop:w-[45rem]' : ''}`}>
+      <div className={`lg:mt-[1.5rem] px-[2rem] w-full ${mode ==='mobile' ? '' : 'xl:pr-0 xl:pl-0 xl:w-[25rem]'} ${nav ? 'SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[41rem] largeLaptop:w-[48rem]' : mode != 'mobile' ? 'med:w-[30rem] medium:w-[32rem] mediumLaptop:w-[38rem] largeLaptop:w-[45rem]' : ''}`}>
         <h4 className={`text-white text-center text-2xl leading-8 font-bold lg:text-4xl lg:leading-10 lg:font-extrabold ml-[0rem] sm:ml-0 ${mode ==='mobile' ? '' : 'xl:text-start'}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h4>
 
         {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-          <h3 className={`text-white text-center  break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : 'xl:text-start xl:w-max mediumLaptop:w-full'}  ${nav ? 'xl:w-full' : ''} `} >
+          <h3 className={`text-white text-center  break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-2xl lg:leading-8 lg:font-medium ${mode ==='mobile' ? '' : 'xl:text-start xl:w-full'}  ${nav ? 'xl:w-full' : ''} `} >
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
