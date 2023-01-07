@@ -22,19 +22,19 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (user?.profile?.isPublished) {
     return json(user)
   }
-  return redirect('/auth/unpublishedAccountError')
+  return redirect('/auth/error')
 }
 
-  export default function ProfileView() {
+export default function ProfileView() {
 
-    const loaderData =  useLoaderData()
-    const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
-    const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
-    const [input, setinput] = useState({description:loaderData?.profileInfo?.bio ,location:loaderData?.profileInfo?.location,occupation:loaderData?.profileInfo?.occupation,company:loaderData?.profileInfo?.company,education:loaderData?.profileInfo?.education})
-    return (
-        <div>
-        { loaderData?.profileInfo?.templateNumber == '0' ?
-        <Template0 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '2' ? <Template2 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/>  : loaderData?.profileInfo?.templateNumber == '5' ? <Template5 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '7' ? <Template7 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '8' ? <Template8 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input}  loaderData = {loaderData}/> : loaderData?.profileInfo?.templateNumber == '10' ? (
+  const loaderData = useLoaderData()
+  const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
+  const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
+  const [input, setinput] = useState({ description: loaderData?.profileInfo?.bio, location: loaderData?.profileInfo?.location, occupation: loaderData?.profileInfo?.occupation, company: loaderData?.profileInfo?.company, education: loaderData?.profileInfo?.education })
+  return (
+    <div>
+      {loaderData?.profileInfo?.templateNumber == '0' ?
+        <Template0 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '2' ? <Template2 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '5' ? <Template5 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '7' ? <Template7 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '8' ? <Template8 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '10' ? (
           <Template10
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
@@ -48,21 +48,21 @@ export const loader: LoaderFunction = async ({ params }) => {
             input={input}
             loaderData={loaderData}
           />
-        ): loaderData?.profileInfo?.templateNumber == '3' ? (
+        ) : loaderData?.profileInfo?.templateNumber == '3' ? (
           <Template3
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
             input={input}
             loaderData={loaderData}
           />
-        ): loaderData?.profileInfo?.templateNumber == '4' ? (
+        ) : loaderData?.profileInfo?.templateNumber == '4' ? (
           <Template4
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
             input={input}
             loaderData={loaderData}
           />
-        ): loaderData?.profileInfo?.templateNumber == '6' ? (
+        ) : loaderData?.profileInfo?.templateNumber == '6' ? (
           <Template6
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
@@ -76,7 +76,7 @@ export const loader: LoaderFunction = async ({ params }) => {
             input={input}
             loaderData={loaderData}
           />
-        ): loaderData?.profileInfo?.templateNumber == '13' ? (
+        ) : loaderData?.profileInfo?.templateNumber == '13' ? (
           <Template13
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
@@ -91,14 +91,14 @@ export const loader: LoaderFunction = async ({ params }) => {
             loaderData={loaderData}
           />
         )
-        : loaderData?.profileInfo?.templateNumber == '16' ? (
-          <Template16
-            primaryRestore={primaryRestore}
-            secondaryRestore={secondaryRestore}
-            input={input}
-            loaderData={loaderData}
-          />
-        )  : null}
-        </div>
-    )
-  }
+          : loaderData?.profileInfo?.templateNumber == '16' ? (
+            <Template16
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+            />
+          ) : null}
+    </div>
+  )
+}
