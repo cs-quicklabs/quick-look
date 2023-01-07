@@ -122,7 +122,7 @@ export default function SignUp() {
         <div className='mx-auto flex flex-col items-center justify-center'>
           <img src={logo} alt='' className='h-20 w-20' />
           <div className='flex flex-col items-center justify-center'>
-            <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl  leading-9 text-gray-900'>
+            <h2 className='w-full h-9 mt-6 font-[800] text-center sm:text-3xl text-2xl leading-9 text-gray-900'>
               Create new Account
             </h2>
             <p className='mt-2 text-center text-sm font-inter font-medium'>
@@ -204,7 +204,7 @@ export default function SignUp() {
                 <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
                   Choose your Profile ID
                 </label>
-                <div className={`mt-2 sm:mt-0 sm:col-span-2 relative rounded-md shadow-sm`}>
+                <div className={`mt-2 sm:col-span-2 relative rounded-md shadow-sm`}>
                   <div className={`max-w-lg flex rounded-md`}>
                     <span className={`inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm ${actionData?.errors['username']
                       ? 'border-t border-b border-l border-r border-r-gray-300 border-red-400'

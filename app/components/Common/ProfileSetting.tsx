@@ -74,9 +74,7 @@ export default function ProfileSetting() {
                   </button>
                 </div>
               </Transition.Child>
-              {/* <div className="flex-shrink-0 flex items-center px-4">
-              </div> */}
-              <div className="mt-8 ml-2 flex-1 h-0 overflow-y-auto bg-white">
+              <div className="mt-8 flex-1 h-0 overflow-y-auto bg-white">
                 <div className="flex items-center flex-shrink-0 px-4 mt-12">
                   <h2 className="text-lg leading-6 font-medium text-gray-900">Account</h2>
                 </div>

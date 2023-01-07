@@ -43,18 +43,18 @@ export default function Profile() {
           <DashboardHeader username={loaderData?.username} loaderData={loaderData}/>
         </div>
         <div className='lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap'>
-          <div className='w-[20%] lg:w-2/5 '>
+          <div className='w-[20%] lg:w-2/5'>
             <ProfileSetting />
           </div>
-          <div className="sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl">
-            <div className="py-6 px-4 sm:p-6">
+          <div className="sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl py-6 px-4 sm:p-6">
+            <div className="">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
               <p className="text-sm text-gray-500 max-w-lg">
                 We'll always let you know about important changes, but you pick what else you want to hear about.
               </p>
             </div>
-            <div className="ml-6">
-              <fieldset className="mt-0">
+            <div className="">
+              <fieldset className="mt-6">
                 <legend className="sr-only">By Email</legend>
                 <div className="text-base font-medium text-gray-900" aria-hidden="true">
                   By Email
@@ -81,16 +81,14 @@ export default function Profile() {
                   </div>
                   <div className="relative flex items-start">
                     <div className="flex items-center h-5">
-                      
                       <input
                         id="marketingUpdates"
                         name="checkedMarketingUpdate"
                         type="checkbox"
                         value='marketingupdate'
                         className="mt-1 lg:mt-[0.5rem] xl:mt-[-1rem] h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                        
                       />
-                    <div className="ml-3 mt-[3.2rem] md:mt-[3.25rem] lg:mt-[3.2rem] xl:mt-[1.7rem] 2xl:mt-[1.5rem] text-sm w-[33rem]">
+                    <div className="ml-3 mt-[3.2rem] md:mt-[3.25rem] lg:mt-[3.2rem] xl:mt-[1.7rem] 2xl:mt-[1.5rem] text-sm h-[4.4rem]">
                       <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
                         Marketing Updates
                       </label>
@@ -101,7 +99,7 @@ export default function Profile() {
                   </form>
               </fieldset>
             </div>
-            <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-20 md:mt-16 rounded-lg ml-6 w-[35rem]">
+            <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-20 md:mt-16 rounded-lg flex flex-col max-w-xl">
               <h3 className="text-lg leading-6 font-medium text-gray-900">{loaderData?.profile?.isPublished ? 'Unpublish your Account' : 'Publish your Account'}</h3>
               <p className="text-sm font-normal leading-5 text-gray-500 max-w-lg">
                 {loaderData?.profile?.isPublished ? <span> <span>Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link </span> <span className='font-[800]'>quicklook.me/{loaderData?.username}</span>. <span>You can enable your profile anytime you want.</span></span> :<span> Publishing your account will show your account and anyone should be able to visit your profile from the link <span className='font-[800]'>quicklook.me/{loaderData?.username}</span> . You can disable your profile anytime you want.</span>}
@@ -116,22 +114,16 @@ export default function Profile() {
                 </button>
               </div>
             </div>
-
-    
-            <div className="ml-6 mt-6 mb-6 w-[35rem]">
-              <div className=" ">
-                <div className="bg-white py-4 px-[1.8rem] shadow sm:rounded-lg ">
+              <div className="my-6 bg-white py-4 px-[1.8rem] shadow rounded-lg flex flex-col max-w-xl">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Delete your account</h3>
-                    <p className="text-sm text-gray-500 leading-5 max-w-lg">
-                    Once you delete your account, you will lose all data associated with it.
-                    </p>
-                    <div className="flex justify-start items-center">
-                      <button onClick={()=>{setopen(true)}} className="mt-5 rounded-md bg-red-100 hover:bg-red-600 text-red-700 hover:text-white font-medium py-2 px-4">
-                        Delete account
-                      </button>
-                    </div>
+                <p className="text-sm text-gray-500 leading-5 max-w-lg">
+                Once you delete your account, you will lose all data associated with it.
+                </p>
+                <div className="flex justify-start items-center">
+                  <button onClick={()=>{setopen(true)}} className="mt-5 rounded-md bg-red-100 hover:bg-red-600 text-red-700 hover:text-white font-medium py-2 px-4">
+                    Delete account
+                  </button>
                 </div>
-              </div>
             </div>
           </div>
         </div>
