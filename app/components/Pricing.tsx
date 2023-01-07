@@ -30,14 +30,13 @@ export default function Pricing() {
             <div className="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
               <div className="flex-1 bg-white px-6 py-8 lg:p-12">
                 <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
-                  Free till end of year 2022
+                  Pay Once, Own it Forever
                 </h3>
                 <p className="mt-6 text-base text-gray-500">
                   {/* We offer unmatched feature for a unmatched price . You can
                   always signup for free and buy the memebrship later for the
                   premium features. */}
-                  If you sign up before 1st January 2023, you will get lifetime
-                  access to Quicklook for free.
+                  Signup today and get 14 days free trial. No credit card required. If you like it, just do own time payment and own it forever.
                 </p>
                 <div className="mt-8">
                   <div className="flex items-center">
@@ -69,7 +68,7 @@ export default function Pricing() {
               </div>
               <div className="bg-gray-50 py-8 px-6 text-center lg:flex lg:flex-shrink-0 lg:flex-col lg:justify-center lg:p-12">
                 <p className="text-lg font-medium leading-6 text-gray-900">
-                  Pay once, own it forever
+                  Simple pricing for everyone
                 </p>
                 <div className="mt-4 flex items-center justify-center text-5xl font-bold tracking-tight text-gray-900">
                   <span>$19</span>
@@ -84,7 +83,7 @@ export default function Pricing() {
                     color="blue"
                     className={undefined}
                   >
-                    <span className="p-[0.3rem]">Get Access</span>
+                    <span className="p-[0.3rem]">Get Free Access</span>
                   </ButtonLink>
                 </div>
               </div>

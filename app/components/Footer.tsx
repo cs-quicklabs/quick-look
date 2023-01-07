@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="bg-slate-50">
       <Container className={undefined}>
         <div className="py-16">
-         <div className='flex items-center justify-center gap-2'>
+          <div className='flex items-center justify-center gap-2'>
             <a href='/' className='flex items-center'>
               <img src={logo} alt='' className='mx-auto h-10 w-auto'></img>
             </a>
@@ -28,31 +28,31 @@ export function Footer() {
         <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
           <div className='flex md:space-x-6 space-x-0 text-sm '>
             <a
-                  href='/general/terms'
-                  className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
-                >
-                  Terms & Conditions
-                </a>
+              href='/general/terms'
+              className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+            >
+              Terms & Conditions
+            </a>
             <a
-                  href='/general/privacy'
-                  className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
-                >
-                  Privacy Policy
-                </a>
+              href='/general/privacy'
+              className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+            >
+              Privacy Policy
+            </a>
             <a href='/general/refund-policy' className='rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'>
-              
-                 Refund Policy 
-              
+
+              Refund Policy
+
             </a>
           </div>
-        
-         
-        
-          
+
+
+
+
           <p className='mt-6 text-sm text-slate-500 sm:mt-0'>
-            Copyright @2022 Crownstack Technologies. All rights reserved.
+            Copyright @2023 Crownstack Technologies. All rights reserved.
           </p>
-        
+
         </div>
       </Container>
     </footer>
