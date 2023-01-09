@@ -90,140 +90,138 @@ const loaderData = useLoaderData();
 
    return (
     <>
-    
-      <div className="h-[calc(100vh-3rem)] overflow-hidden flex flex-col justify-center pb-12 bg-gray-50">
-        <div className='mb-8 sm:mx-auto w-[25rem] ml-[2rem] '>
-      {!actionData?.errors && loaderData?.message?  <div className="rounded-md bg-green-50 p-4 mt-20">
-      <div className="flex ">
-        <div className="flex-shrink-0">
-          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-        </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-green-800">{loaderData?.message}</p>
-        </div>
-      </div>
-    </div> : <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50 mt-20' : ''} p-4`}>
-      <div className="flex">
-        {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
-          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
-        </div> : ''}
-       
-        <div className="ml-3">
-          <p className="text-sm font-medium text-red-800">{actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? actionData?.errors['checkIncorrectCredentials'] : ''}</p>
-          
-        </div>
-      </div>
-    </div>}</div>
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-         <img src={logo} alt='' className='ml-48 h-20 w-20' />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-          
-        </div>
-
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md bg-gray-50">
-          <div className=" py-8 px-4   sm:rounded-lg sm:px-10 bg-gray-50">
-            <Form className="space-y-6 bg-gray-50" method="post" >
-              <div className='relative'>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email address
-                </label>
-                <div className='mt-1'>
-                <input
-                  name='email'
-                  type='email'
-                  value={val.email}
-                  onChange={(event) => {
-                    setVal({
-                      ...val,
-                      [event.target.name]: event.target.value,
-                    })
-                  }}
-                  className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                    actionData?.errors['email'] ? 'border border-red-400' : ''
-                  }`}
-                />
-                {actionData?.errors['email'] ?
-                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
-                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
-                </div>:''}
+      <div className="flex flex-col min-h-screen items-center justify-center py-12 px-4 lg:px-8 bg-gray-50">
+        <div className='sm:mx-auto sm:w-full sm:max-w-md'>
+        {!actionData?.errors && loaderData?.message ? 
+          <div className="rounded-md bg-green-50 p-4 mb-4">
+            <div className="flex ">
+              <div className="flex-shrink-0">
+                <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
               </div>
-              <div className={`text-red-600 text-sm`}>
-                {actionData?.errors['email']}
+              <div className="ml-3">
+                <p className="text-sm font-medium text-green-800">{loaderData?.message}</p>
               </div>
+            </div>
+          </div> : 
+          <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50 p-4 mb-4' : ''}`}>
+            <div className="flex">
+              {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
+                <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+              </div> : ''}
+              <div className="ml-3">
+                <p className="text-sm font-medium text-red-800">{actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? actionData?.errors['checkIncorrectCredentials'] : ''}</p>
+                
               </div>
-
-              <div className='relative'>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <div className='mt-1'>
-                <input
-                  type='password'
-                  name='password'
-                  value={val.password}
-                  onChange={(event) => {
-                    setVal({
-                      ...val,
-                      [event.target.name]: event.target.value,
-                    })
-                  }}
-                  className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                    actionData?.errors['password'] ? 'border border-red-400' : ''
-                  }`}
-                />
-                {actionData?.errors['password'] ?
-                <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
-                  <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
-                </div>:''}
-              </div>
-              <div className={`text-red-600 text-sm`}>
-                {actionData?.errors['password']}
-              </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                  />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                    Remember me
+            </div>
+          </div>
+        }
+          <div className='sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center justify-center'>
+            <img src={logo} alt='' className='h-20 w-20' />
+            <div className='flex flex-col items-center justify-center'>
+              <h2 className='w-full h-9 mt-6 font-[800] text-center text-3xl leading-9 text-gray-900'>
+                Sign in to your account
+              </h2>
+            </div>
+          </div>
+          <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md bg-gray-50">
+            <div className="py-8 px-4 sm:rounded-lg bg-gray-50">
+              <Form className="space-y-6 bg-gray-50" method="post" >
+                <div className=''>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    Email address
                   </label>
+                  <div className='mt-1'>
+                  <input
+                    name='email'
+                    type='email'
+                    value={val.email}
+                    onChange={(event) => {
+                      setVal({
+                        ...val,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                    className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                      actionData?.errors['email'] ? 'border border-red-400' : ''
+                    }`}
+                  />
+                  {actionData?.errors['email'] ?
+                  <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                    <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                  </div>:''}
                 </div>
-
-                <div className="text-sm">
-                  <a href="/auth/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
-                    Forgot your password?
-                  </a>
+                <div className={`text-red-600 text-sm`}>
+                  {actionData?.errors['email']}
                 </div>
-              </div>
-
-              <div>
-                <button
-                  data-cy="loginButton"
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md  -sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  disabled={transition?.state != "idle" ? true : false}
-                  >
-                    {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
-                    "Sign in"}
-                  
-                </button>
-              </div>
-              <p className='mt-2 text-center text-sm'>
-                    <a
-                      href='/auth/receive-email'
-                      className='font-medium text-indigo-600 hover:text-indigo-500'
-                    >
-                      Did not receive confirmation email?
+                </div>
+                <div className='relative'>
+                  <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm'>
+                    Password
+                  </label>
+                  <input
+                    data-cy="password"
+                    className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['password']
+                        ? 'border border-red-400'
+                        : ''
+                      }`}
+                    type='password'
+                    name='password'
+                    value={val.password}
+                    onChange={(event) => {
+                      setVal({
+                        ...val,
+                        [event.target.name]: event.target.value,
+                      })
+                    }}
+                  />
+                  {actionData?.errors['password'] ?
+                    <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                      <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                    </div> : ''}
+                  <div className='text-red-600 text-sm '>
+                    {actionData?.errors['password']}
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <input
+                      id="remember-me"
+                      name="remember-me"
+                      type="checkbox"
+                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                      Remember me
+                    </label>
+                  </div>
+                  <div className="text-sm">
+                    <a href="/auth/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
+                      Forgot your password?
                     </a>
-                  </p>
-            </Form>
-
-            
+                  </div>
+                </div>
+                <div>
+                  <button
+                    data-cy="loginButton"
+                    type="submit"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md  -sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    disabled={transition?.state != "idle" ? true : false}
+                    >
+                      {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                      "Sign in"}
+                    
+                  </button>
+                </div>
+                <p className='mt-2 text-center text-sm'>
+                  <a
+                    href='/auth/receive-email'
+                    className='font-medium text-indigo-600 hover:text-indigo-500'
+                  >
+                    Did not receive confirmation email?
+                  </a>
+                </p>
+              </Form>
+            </div>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
-import { Dialog } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import React from 'react';
 import { useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Form, useSubmit, useTransition } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 import { BeatLoader } from 'react-spinners'
 
 export default function EditSpotlight({

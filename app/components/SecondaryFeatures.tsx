@@ -61,9 +61,9 @@ const features = [
   },
   {
     name: 'Mobile Mode',
-    summary: 'Toggle between mobile and desktop mode.',
+    summary: 'Toggle mobile or desktop mode.',
     description:
-      'You can always toggle to mobile mode and check how your website would look on a mobile screen.',
+      'You can always toggle to mobile mode or desktop mode and check how your website would look on every screen possible.',
     image: screenshotContacts,
     icon: function ContactsIcon() {
       return (

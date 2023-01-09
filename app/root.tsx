@@ -96,8 +96,7 @@ function Layout({ children }: any) {
       ) : (
         <></>
       )}
-      <div className={`${Location.pathname.includes('/auth/login') ||
-
+      <div className={`${
         Location.pathname.includes('/forgot-password') ||
         Location.pathname.includes('/successlogin') ||
         Location.pathname.includes('/auth/password') ||

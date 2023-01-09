@@ -489,7 +489,7 @@ export default function AccountSideBar({
         {/* static desktop  */}
         {}
         <div
-          className={`hidden lg:flex ${
+          className={`hidden lg:flex grow ${
             mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'
           }  font-inter mt-12 md:fixed md:inset-y-0 md:flex-col`}
         >

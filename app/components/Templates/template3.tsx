@@ -39,7 +39,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
-          <div className={`pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent lg:pl-[3rem] xl:hidden'} `}>
+          <div className={`pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'} `}>
             <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
@@ -64,10 +64,21 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full px-[1rem] ${mode ==='mobile' ? 'lg:pl-[3rem] lg:pr-[2rem]' : 'lg:pl-[3rem] lg:pr-[1rem] xl:pt-[14rem]  xl:pl-[0rem] xl:pr-[0rem] '} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
+      <div className={`w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[14rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
+
+      <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            {loaderData?.spotlightButton?.toggleSpotlight && 
+            <Spotlightbtn loaderData={loaderData}/>}
+            </div>
+          
+
+          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+            </div>
+
 
       <div className={`flex ${mode ==='mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'}`} >
-        <div className="mt-1">
+        <div className={`${ loaderData?.spotlightButton?.toggleSpotlight ? 'mt-[1rem] xl:mt-1' : 'mt-[2rem]'}`}>
           <pre className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { input?.description?.trim()}
             </pre>
@@ -97,16 +108,6 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
         </div>
 
         <div className=''>
-          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-            {loaderData?.spotlightButton?.toggleSpotlight && 
-            <Spotlightbtn loaderData={loaderData}/>}
-            </div>
-          
-
-          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
-            </div>
-
               <div className={`mb-[2rem] ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && 
             <TestimonialAddOn testimonialText={loaderData?.testimonial?.testimonialText} testimonialBy={loaderData?.testimonial?.testimonialBy} loaderData={loaderData} />

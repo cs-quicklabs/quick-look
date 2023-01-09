@@ -195,12 +195,12 @@ export default function Profile() {
           loaderData={loaderData.user}
         />
       </div>
-      <div className="md:flex md:flex-wrap lg:grid lg:grid-cols-12 lg:gap-x-5">
+      <div className="md:flex md:flex-wrap lg:grid lg:grid-cols-12 lg:gap-x-5 px-[1rem] md:px-[0rem]">
         <div className="md:w-[25%] lg:w-2/5 ">
           <ProfileSetting />
         </div>
 
-        <div className=" font-inter mt-2 max-w-xl md:w-3/5 lg:col-span-9 lg:ml-64 lg:px-0 xl:ml-60 2xl:ml-44">
+        <div className=" font-inter mt-2 max-w-xl md:w-3/5 lg:col-span-9 lg:ml-64 lg:px-0 px-4 xl:ml-60 2xl:ml-44">
           <Form method="post">
             <div className="sm:overflow-hidde sm:rounded-md">
               <div className="flex "></div>
@@ -250,7 +250,7 @@ export default function Profile() {
                     what you share.
                   </p>
                 </div>
-                <div className="grid max-w-lg grid-cols-1  border-b border-gray-200">
+                <div className="grid sm:max-w-[36rem] md:max-w-lg grid-cols-1  border-b border-gray-200">
                   <div className="col-span-3 sm:col-span-2">
                     <div className="relative">
                       <label className="h-5 w-24 text-sm font-medium leading-5 text-gray-700">
