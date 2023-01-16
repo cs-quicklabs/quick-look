@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState } from 'react'
+import {useTransition} from '@remix-run/react'
 import { Dialog, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { useLocation } from 'react-router-dom'
+import { MenuIcon,XIcon } from '@heroicons/react/outline';
+import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid';
 import AccountBio from './AccountBio'
 import AccountTemplate from './AccountTemplate'
 import DefaultProfileIcon from '../../../assets/images/profile.png'
@@ -12,6 +13,7 @@ import NoVideo from '../Video/NoVideo'
 import Portfolio from '../Portfolio'
 import SpotlightButton from '../Spotlight'
 import Banner from '../Banner'
+import Unpublish from "~/components/Common/unpublishModal";
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template' },
@@ -78,7 +80,8 @@ export default function AccountSideBar({
   primaryRestore,
   secondaryRestore,
 }: any) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
   // const [showSocialLinks, setshowSocialLinks] = useState(false);
@@ -86,7 +89,7 @@ export default function AccountSideBar({
     if (showImages && mode === 'mobile') {
       setshowImages(true)
     }
-  }, [mode, showImages])
+  }, [mode, showImages]);
   let hamburger =
     !sidebarOpen &&
     !showSpotlight &&
@@ -96,8 +99,29 @@ export default function AccountSideBar({
     !showSocialLinks &&
     !showTemplate &&
     !showImages &&
-    !showBio
-  const Location = useLocation()
+    !showBio;
+
+  const renderPublishStatus = () => {
+    const { isPublished } = loaderData?.profile;
+    let color = 'green';
+    let PublishIcon = CheckCircleIcon;
+    if(!isPublished) {
+      color = 'yellow';
+      PublishIcon = ExclamationIcon;
+    }
+    return (
+      <div className={`w-full inline-flex rounded-md bg-${color}-100 text-${color}-700 text-sm py-1 px-2`}>
+        <PublishIcon className={`mt-1 mr-2 h-4 w-4 text-${color}-400`}/>
+        <span>{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
+        <span 
+          className="ml-auto font-medium" 
+          onClick={() => setShowModal(true)}
+        >
+          {isPublished ? `Unpublish ->` : 'Publish ->'}
+        </span>
+    </div>
+    );
+  }
 
   return (
     <>
@@ -174,6 +198,7 @@ export default function AccountSideBar({
                               View profile
                             </a>
                           </div>
+                          {renderPublishStatus()}
                         </div>
                       </a>
                     </div>
@@ -523,6 +548,7 @@ export default function AccountSideBar({
                       </a>
                     </div>
                   </div>
+                  {renderPublishStatus()}
                 </a>
               </div>
               <div>
@@ -839,6 +865,8 @@ export default function AccountSideBar({
             </button>
           </div>
         </div>
+
+        <Unpublish isPublished={loaderData?.profile?.isPublished} open={showModal} setopenModal={setShowModal} onClose={() => setShowModal(false)}/>
       </div>
     </>
   )

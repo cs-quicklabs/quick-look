@@ -9,13 +9,13 @@ export default function Delete({open,onClose,isPublished, setopenModal}:any) {
   const cancelButtonRef = useRef(null)
 
   useEffect(() => {
-    transition?.state === 'loading' && setopenModal(false)
+    transition?.state === 'submitting' && setopenModal(false)
   }, [transition])
   
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {}}>
+      <Dialog as="div" className="relative z-20" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
