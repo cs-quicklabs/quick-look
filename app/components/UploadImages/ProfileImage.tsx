@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import { Form, useTransition } from '@remix-run/react';
 import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from 'react-spinners/BeatLoader';
@@ -7,10 +7,12 @@ import * as cropro from 'cropro'
 
 function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, urlSec, ref6, setUrl,
   setEdit2, setEdit, setopen, setDeleteImage, setDrag, setDrag2, setSecondaryImageError,
-  setImages, images, upload2, restore2, drag2, setUpload2, setUpload, ref2, setimage2, upload,
+  setImages, images, upload2, restore2, drag2, setUpload2, setUpload, ref2, image2, setimage2, upload,
   setRestore2, secondaryImageError,
-  setRestore }: any) {
+  setRestore, setChangeProfile, changeProfile, setChangeCover, changeCover }: any) {
   const transition = useTransition()
+  const ref7 = useRef(null)
+  const ref8 = useRef(null)
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const handleChange2 = (e: any) => {
     if (e.target.files[0].size / 1024 < 4300) {
@@ -27,6 +29,34 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
       setSecondaryImageError('Image size can be upto 4mb.')
     }
   }
+
+  const handleChangeProfileImage = (e: any) => {
+    if (e.target.files[0].size / 1024 < 4300) {
+      if (
+        e.target.files[0].type.includes('image/jpeg') ||
+        e.target.files[0].type.includes('image/jpg') ||
+        e.target.files[0].type.includes('image/png')
+      ) {
+        setimage2(e.target.files[0])
+      } else {
+        setSecondaryImageError('Please upload image only')
+      }
+    } else {
+      setSecondaryImageError('Image size can be upto 4mb.')
+    }
+  }
+
+  const handleChangeImage = () => {
+    console.log('called this ');
+    setChangeProfile((prev: any) => (prev = 'sec'))
+    setChangeCover('')
+    // console.log('image changed is', image2);
+    console.log('change profile is', changeProfile);
+    
+    // console.log('transition is', transition)
+    // handleEdit()
+  }
+
   function showCropAreaSecondary() {
     if (ref5.current !== null) {
       // create a CropArea
@@ -72,7 +102,10 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                 '/account/delete/image') ||
                 (edit2 &&
                   transition?.submission?.action ==
-                  '/account/update/crop-image') ? (
+                  '/account/update/crop-image') ||
+                (upload2 &&
+                  transition?.submission?.action ==
+                  '/account/add/SecImage') ? (
                 <div className="relative top-[-1.8rem]">
                   <BeatLoader
                     color="#184fad"
@@ -135,14 +168,37 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
               Edit
             </button>
             {/* starts here */}
-            <button
-              id="secondaryUpdateImage"
-              className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
-              onClick={() => {
-              }}
+            <Form
+              replace={true}
+              action="change/SecImage"
+              encType="multipart/form-data"
+              method="post"
+              className='mb-[1px]'
             >
-              Change
-            </button>
+              <label
+                onClick={handleChangeImage}
+                id="secondaryChangeImage"
+                className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
+              >
+                Change
+                <input
+                  type="file"
+                  disabled={transition.state !== 'idle' ? true : false}
+                  className="hidden"
+                  id="photo2"
+                  name="secondaryImageChange"
+                  accept="image/png, image/jpeg, image/jpg"
+                  onChange={handleChangeProfileImage}
+                />
+                <button
+                  type="submit"
+                  ref={ref7}
+                  className="hidden"
+                >
+                  change
+                </button>
+              </label>
+            </Form>
             {/* ends here */}
             <button
               id="secondaryDeleteButton"
@@ -203,6 +259,10 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                     <label
                       onClick={() => {
                         setUpload2((prev: any) => (prev = 'sec'))
+                        console.log('image uploaded is', image2);
+                        
+                        // console.log('transition of upload image', transition);
+
                         setUpload('')
                       }}
 
