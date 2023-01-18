@@ -31,8 +31,6 @@ export default function NoImages({
   const [secondaryImageError, setSecondaryImageError] = useState('')
   const [upload, setUpload] = useState('')
   const [upload2, setUpload2] = useState('')  
-  const [changeCover, setChangeCover] = useState('')
-  const [changeProfile, setChangeProfile] = useState('')
   const [restore, setRestore] = useState(false)
   const [restore2, setRestore2] = useState(false)
   const [images, setImages] = useState('')
@@ -40,20 +38,6 @@ export default function NoImages({
   const [edit2, setEdit2] = useState(false)
   const [drag, setDrag] = useState(false)
   const [drag2, setDrag2] = useState(false)
-
-  const onDrop = useCallback((acceptedFiles: any) => {
-    acceptedFiles.map((file: any) => {
-      const reader = new FileReader()
-
-      reader.onload = function (e: any) {
-        // @ts-ignore
-        setImages(e.target.result)
-      }
-      reader.readAsDataURL(file)
-      return file
-    })
-  }, [])
-
   const [images1, setImages1] = useState('')
   const onDrop1 = useCallback((acceptedFiles: any[]) => {
     acceptedFiles.map((file: any) => {
@@ -99,59 +83,6 @@ export default function NoImages({
     }
   }
 
-  function handy() {
-    if (ref.current !== null) {
-      // create a CropArea
-      const cropArea = new cropro.CropArea(ref.current)
-      cropArea.displayMode = 'popup'
-      // attach an event handler to assign cropped image back to our image element
-      cropArea.addRenderEventListener((dataUrl) => {
-        if (ref.current) {
-          // @ts-ignore
-          ref.current.src = dataUrl
-          // @ts-ignore
-          setUrl(ref.current.src)
-        }
-      })
-      // launch CROPRO
-      cropArea.show()
-    }
-  }
-
-  const handlePrimaryUpload = () => {
-    setUpload(
-        (prev) => (prev = 'primary')
-      )
-    setUpload2('')
-    if(transition.state === 'loading') {
-      console.log('seeeee here');
-      
-    handy()
-    setUrlSec('')
-    setEdit(true)
-    setEdit2(false)
-    }
-  }
-
-  function showCropAreaSecondary() {
-    if (ref5.current !== null) {
-      // create a CropArea
-      const cropArea = new cropro.CropArea(ref5.current)
-      cropArea.displayMode = 'popup'
-      // attach an event handler to assign cropped image back to our image element
-      cropArea.addRenderEventListener((dataUrl) => {
-        if (ref5.current) {
-          // @ts-ignore
-          ref5.current.src = dataUrl
-          // @ts-ignore
-          setUrlSec(ref5.current.src)
-        }
-      })
-      // launch CROPRO
-      cropArea.show()
-    }
-  }
-
   useEffect(() => {
     if (image) {
       // @ts-ignore
@@ -186,21 +117,6 @@ export default function NoImages({
       }
     } else {
       setPrimaryImageError('Image size can be upto 4mb.')
-    }
-  }
-  const handleChange2 = (e: any) => {
-    if (e.target.files[0].size / 1024 < 4300) {
-      if (
-        e.target.files[0].type.includes('image/jpeg') ||
-        e.target.files[0].type.includes('image/jpg') ||
-        e.target.files[0].type.includes('image/png')
-      ) {
-        setimage2(e.target.files[0])
-      } else {
-        setSecondaryImageError('Please upload image only')
-      }
-    } else {
-      setSecondaryImageError('Image size can be upto 4mb.')
     }
   }
 
@@ -426,21 +342,12 @@ export default function NoImages({
                                     encType="multipart/form-data"
                                   >
                                     <label
-                                      onClick={handlePrimaryUpload}
-                                      // onClick={() => {
-                                      //   setUpload(
-                                      //     (prev) => (prev = 'primary')
-                                      //   )
-                                      //   setUpload2('')
-                                      //   if(transition.state === 'loading') {
-                                      //     console.log('seeeee here');
-                                          
-                                      //   handy()
-                                      //   setUrlSec('')
-                                      //   setEdit(true)
-                                      //   setEdit2(false)
-                                      //   }
-                                      // }}
+                                      onClick={() => {
+                                        setUpload(
+                                          (prev) => (prev = 'primary')
+                                        )
+                                        setUpload2('')
+                                      }}
                                       id="primaryUploadImage"
                                       className="mx-4 mt-4 inline-flex w-max cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
                                     >
@@ -504,7 +411,7 @@ export default function NoImages({
                       setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError={setSecondaryImageError}
                       setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} image2={image2} setimage2={setimage2} upload={upload}
                       setRestore2={setRestore2} secondaryImageError={secondaryImageError}
-                      setRestore={setRestore} setChangeProfile={setChangeProfile} changeProfile={changeProfile} setChangeCover={setChangeCover} changeCover={changeCover}/>
+                      setRestore={setRestore}/>
                     <DeleteImage
                       open={open}
                       onClose={() => setopen(false)}

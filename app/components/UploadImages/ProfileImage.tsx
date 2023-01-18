@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback } from 'react'
 import { Form, useTransition } from '@remix-run/react';
 import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from 'react-spinners/BeatLoader';
@@ -9,10 +9,8 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
   setEdit2, setEdit, setopen, setDeleteImage, setDrag, setDrag2, setSecondaryImageError,
   setImages, images, upload2, restore2, drag2, setUpload2, setUpload, ref2, image2, setimage2, upload,
   setRestore2, secondaryImageError,
-  setRestore, setChangeProfile, changeProfile, setChangeCover, changeCover }: any) {
+  setRestore }: any) {
   const transition = useTransition()
-  const ref7 = useRef(null)
-  const ref8 = useRef(null)
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const handleChange2 = (e: any) => {
     if (e.target.files[0].size / 1024 < 4300) {
@@ -30,31 +28,9 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
     }
   }
 
-  const handleChangeProfileImage = (e: any) => {
-    if (e.target.files[0].size / 1024 < 4300) {
-      if (
-        e.target.files[0].type.includes('image/jpeg') ||
-        e.target.files[0].type.includes('image/jpg') ||
-        e.target.files[0].type.includes('image/png')
-      ) {
-        setimage2(e.target.files[0])
-      } else {
-        setSecondaryImageError('Please upload image only')
-      }
-    } else {
-      setSecondaryImageError('Image size can be upto 4mb.')
-    }
-  }
-
   const handleChangeImage = () => {
-    console.log('called this ');
-    setChangeProfile((prev: any) => (prev = 'sec'))
-    setChangeCover('')
-    // console.log('image changed is', image2);
-    console.log('change profile is', changeProfile);
-    
-    // console.log('transition is', transition)
-    // handleEdit()
+    setUpload2((prev: any) => (prev = 'sec'))
+    setUpload('')
   }
 
   function showCropAreaSecondary() {
@@ -170,14 +146,14 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
             {/* starts here */}
             <Form
               replace={true}
-              action="change/SecImage"
+              action="add/SecImage"
               encType="multipart/form-data"
               method="post"
               className='mb-[1px]'
             >
               <label
                 onClick={handleChangeImage}
-                id="secondaryChangeImage"
+                id="secondaryUploadImage"
                 className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
               >
                 Change
@@ -185,14 +161,14 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                   type="file"
                   disabled={transition.state !== 'idle' ? true : false}
                   className="hidden"
-                  id="photo2"
-                  name="secondaryImageChange"
+                  id="photo2change"
+                  name="secondaryImageUpload"
                   accept="image/png, image/jpeg, image/jpg"
-                  onChange={handleChangeProfileImage}
+                  onChange={handleChange2}
                 />
                 <button
                   type="submit"
-                  ref={ref7}
+                  ref={ref2}
                   className="hidden"
                 >
                   change
