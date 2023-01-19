@@ -66,7 +66,7 @@ export default function TestimonialAddOn({
                     : 'text-black'
                 }`}
               >
-                &ldquo;
+                &rdquo;
               </div>
             </div>
           </blockquote>

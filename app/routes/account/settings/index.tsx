@@ -102,7 +102,7 @@ export default function Profile() {
             <div className="py-6 px-6 sm:p-6 bg-gray-50 mt-20 md:mt-16 rounded-lg flex flex-col max-w-xl">
               <h3 className="text-lg leading-6 font-medium text-gray-900">{loaderData?.profile?.isPublished ? 'Unpublish your Account' : 'Publish your Account'}</h3>
               <p className="text-sm font-normal leading-5 text-gray-500 max-w-lg">
-                {loaderData?.profile?.isPublished ? <span> <span>Unpublishing your account will hide your account temporarity and no one should be able to visit your profile from the link </span> <span className='font-[800]'>quicklook.me/{loaderData?.username}</span>. <span>You can enable your profile anytime you want.</span></span> :<span> Publishing your account will show your account and anyone should be able to visit your profile from the link <span className='font-[800]'>quicklook.me/{loaderData?.username}</span> . You can disable your profile anytime you want.</span>}
+                {loaderData?.profile?.isPublished ? <span> <span>Unpublishing your account will hide your account temporarily and no one should be able to visit your profile from the link </span> <span className='font-[800]'>quicklook.me/{loaderData?.username}</span>. <span>You can enable your profile anytime you want.</span></span> :<span> Publishing your account will show your account and anyone should be able to visit your profile from the link <span className='font-[800]'>quicklook.me/{loaderData?.username}</span> . You can disable your profile anytime you want.</span>}
               </p>
               <div className="flex justify-start ml-1 items-center">
                 <button 
