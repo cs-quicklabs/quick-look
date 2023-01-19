@@ -1,16 +1,19 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Form, useTransition } from '@remix-run/react';
 import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from 'react-spinners/BeatLoader';
 import Dropzone from './DragandDrop';
 import * as cropro from 'cropro'
 
-function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, urlSec, ref6, setUrl,
+function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, urlSec, setUrlSec, ref6, setUrl,
   setEdit2, setEdit, setopen, setDeleteImage, setDrag, setDrag2, setSecondaryImageError,
   setImages, images, upload2, restore2, drag2, setUpload2, setUpload, ref2, image2, setimage2, upload,
   setRestore2, secondaryImageError,
   setRestore }: any) {
   const transition = useTransition()
+  const [uploadNew, setUploadNew] = useState('')  
+  // console.log('transition is', transition)
+
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const handleChange2 = (e: any) => {
     if (e.target.files[0].size / 1024 < 4300) {
@@ -29,28 +32,53 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
   }
 
   const handleChangeImage = () => {
-    setUpload2((prev: any) => (prev = 'sec'))
+    setUploadNew((prev: any) => (prev = 'sec'))
     setUpload('')
+    console.log('loader data is', loaderData.profileImage.secondaryImageKey);
   }
 
+  const transitionRef = useRef(false)
+  useEffect(() => {
+    if(transition?.state === 'loading' && transition?.submission?.action === "/account/add/SecImage") {
+      transitionRef.current = true
+    }
+    if(transition?.state === 'idle' && transitionRef.current && image2) {
+      console.log('inmage is', image2);
+      
+      showCropAreaSecondary()
+      setUrl('')
+      setEdit2(true)
+      setEdit(false)
+      transitionRef.current = false
+    }
+    
+    console.log('transition', transition);
+    
+  }, [transition, image2])
+
   function showCropAreaSecondary() {
-    if (ref5.current !== null) {
+    if (ref5?.current !== null) {
       // create a CropArea
-      const cropArea = new cropro.CropArea(ref5.current)
+      const cropArea = new cropro.CropArea(ref5?.current)
       cropArea.displayMode = 'popup'
       // attach an event handler to assign cropped image back to our image element
       cropArea.addRenderEventListener((dataUrl) => {
-        if (ref5.current) {
+        console.log('called here 2');
+        if (ref5?.current) {
+          
+          
           // @ts-ignore
           ref5.current.src = dataUrl
           // @ts-ignore
-          setUrlSec(ref5.current.src)
+          console.log('called this....', dataUrl, ref5?.current);
+          setUrlSec(ref5?.current?.src)
         }
       })
       // launch CROPRO
       cropArea.show()
     }
   }
+
   const onDrop = useCallback((acceptedFiles: any) => {
     acceptedFiles.map((file: any) => {
       const reader = new FileReader()
@@ -79,7 +107,7 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                 (edit2 &&
                   transition?.submission?.action ==
                   '/account/update/crop-image') ||
-                (upload2 &&
+                (uploadNew &&
                   transition?.submission?.action ==
                   '/account/add/SecImage') ? (
                 <div className="relative top-[-1.8rem]">
@@ -161,7 +189,7 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                   type="file"
                   disabled={transition.state !== 'idle' ? true : false}
                   className="hidden"
-                  id="photo2change"
+                  id="photo2"
                   name="secondaryImageUpload"
                   accept="image/png, image/jpeg, image/jpg"
                   onChange={handleChange2}
@@ -235,9 +263,6 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                     <label
                       onClick={() => {
                         setUpload2((prev: any) => (prev = 'sec'))
-                        console.log('image uploaded is', image2);
-                        
-                        // console.log('transition of upload image', transition);
 
                         setUpload('')
                       }}

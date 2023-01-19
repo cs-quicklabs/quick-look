@@ -23,7 +23,6 @@ export default function NoImages({
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false)
   const [image, setimage] = useState(null)
-  // console.log('image', image)
 
   const [image2, setimage2] = useState(null)
   const [deleteImage, setDeleteImage] = useState('')
@@ -53,7 +52,6 @@ export default function NoImages({
   }, [])
 
   const transition = useTransition()
-  console.log('transition is', transition)
   const ref = useRef(null)
   const ref2 = useRef(null)
   const ref3 = useRef(null)
@@ -201,7 +199,10 @@ export default function NoImages({
                               '/account/delete/image') ||
                               (edit &&
                                 transition?.submission?.action ==
-                                '/account/update/crop-image') ? (
+                                '/account/update/crop-image') ||
+                                (upload &&
+                                  transition?.submission?.action ==
+                                  '/account/add/image') ?  (
                               <div className="relative top-[-1rem] ">
                                 <BeatLoader
                                   color="#184fad"
@@ -218,7 +219,9 @@ export default function NoImages({
                                     transition?.submission?.action ==
                                     '/account/delete/image') ||
                                     transition?.submission?.action ==
-                                    '/account/update/crop-image'
+                                    '/account/update/crop-image' ||
+                                    transition?.submission?.action ==
+                                    '/account/add/image'
                                     ? 'opacity-30'
                                     : ''
                                     }`}
@@ -269,14 +272,42 @@ export default function NoImages({
                               Edit
                             </button>
                             {/* starts here */}
-                            <button
-                              onClick={() => {
-                              }}
-                              id="primaryChangeImage"
-                              className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
+                            <Form
+                              replace={true}
+                              action="add/image"
+                              encType="multipart/form-data"
+                              method="post"
+                              className='mb-[1px]'
                             >
-                              Change
-                            </button>
+                              <label
+                                onClick={() => {
+                                  setUpload(
+                                    (prev) => (prev = 'primary')
+                                  )
+                                  setUpload2('')
+                                }}
+                                id="primaryUploadImage"
+                                className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
+                              >
+                                Change
+                                <input
+                                  type="file"
+                                  disabled={transition.state !== 'idle' ? true : false}
+                                  className="hidden"
+                                  id="photo"
+                                  name="primaryImageUpload"
+                                  accept="image/png, image/jpeg, image/jpg"
+                                  onChange={handleChange}
+                                />
+                                <button
+                                  type="submit"
+                                  ref={ref}
+                                  className="hidden"
+                                >
+                                  change
+                                </button>
+                              </label>
+                            </Form>
                             {/* ends here */}
                             <button
                               id="primaryDeleteButton"
@@ -407,7 +438,7 @@ export default function NoImages({
                         </div>
                       </div>
                     )}
-                    <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl}
+                    <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} setUrlSec={setUrlSec} ref6={ref6} setUrl={setUrl}
                       setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError={setSecondaryImageError}
                       setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} image2={image2} setimage2={setimage2} upload={upload}
                       setRestore2={setRestore2} secondaryImageError={secondaryImageError}
