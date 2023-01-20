@@ -104,7 +104,7 @@ export default function AccountSideBar({
     const { isPublished } = loaderData?.profile;
     let PublishIcon = isPublished ? CheckCircleIcon : ExclamationIcon;
     return (
-      <div className={`w-full inline-flex rounded-md ${isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} text-sm py-1 px-2`}>
+      <div className={`w-full inline-flex rounded-md ${isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} text-sm mt-3 py-1 px-2`}>
         <PublishIcon className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}/>
         <span>{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
         <span 
