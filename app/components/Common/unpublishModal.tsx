@@ -4,18 +4,27 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
+import type { ActionArgs } from "@remix-run/node"; // or cloudflare/deno
+import { getUser } from "~/services/auth.service.server";
+import { publishToggle } from "~/services/user.service.serevr";
+
+export async function action({ request }: ActionArgs) {
+  const user  = await getUser(request);
+  return await publishToggle(user);
+}
+
 export default function Delete({open,onClose,isPublished, setopenModal}:any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
-
+  
   useEffect(() => {
-    transition?.state === 'submitting' && setopenModal(false)
+    if(transition?.state === 'submitting') setopenModal(false)
   }, [transition])
   
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-20" initialFocus={cancelButtonRef} onClose={() => {}}>
+      <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -59,30 +68,30 @@ export default function Delete({open,onClose,isPublished, setopenModal}:any) {
                   </div>
                 </div>
                 <div className={`mt-5 sm:mt-4 sm:flex ${isPublished ? "pl-[3.5rem]" :'pl-[1rem]'}`}>
-                 <Form replace={true} action="/account/settings/unpublishAccount">
+                 <Form method='patch'>
                   <button
                     type="submit"
                     // onClick={onClose}
                     className={`inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 disabled:cursor-pointer ${isPublished ? 'bg-red-600 hover:bg-red-700' :'bg-indigo-600 hover:bg-indigo-700'}  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
-                    disabled={transition?.state != "idle" ? true : false}
+                    disabled={transition?.state === "submitting"}
                     >
-                      {transition?.state === "submitting"  ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> :
+                      {transition?.state === "submitting" ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> :
                       isPublished ? 'Unpublish' : 'Publish'}
-                  </button></Form>
-                  <button
-                    type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
-                    onClick={onClose}
-                    disabled={transition?.state != "idle"}
-                  >
-                    Cancel
                   </button>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
+                </Form>
+                <button
+                  type="button"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
+                  onClick={onClose}
+                  disabled={transition?.state === "submitting"}
+                >
+                  Cancel
+                </button>
+              </div>
+            </Dialog.Panel>
+          </Transition.Child>
         </div>
-      </Dialog>
-    </Transition.Root>
-  )
-}
+      </div>
+    </Dialog>
+  </Transition.Root>
+)}

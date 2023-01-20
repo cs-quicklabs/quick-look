@@ -1,7 +1,7 @@
 import { json, LoaderFunction } from '@remix-run/node'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import DashboardHeader from '~/components/Common/DashboardHeader'
-import { useActionData, useLoaderData } from '@remix-run/react'
+import { useActionData, useLoaderData, useTransition } from '@remix-run/react'
 import { commitSession, getSession } from '~/services/session.service.server'
 
 import Template0 from '~/components/Templates/template0'
@@ -21,6 +21,9 @@ import Template13 from '~/components/Templates/template13'
 import Template14 from '~/components/Templates/template14'
 import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
+
+import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
+export const action = ModalAction;
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -50,6 +53,7 @@ export default function Profile() {
   const [showTestimonial, setShowTestimonial] = useState(false)
   const [showImages, setshowImages] = useState(false)
   const [showTemplate, setshowTemplate] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const Data = useLoaderData()
 
   const loaderData = Data?.user
@@ -57,6 +61,8 @@ export default function Profile() {
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('')
   const [additionalLinkUpdateMessage, setAdditionalLinkUpdateMessage] =
     useState('')
+
+  const transition = useTransition()
 
   useEffect(() => {
     setMessage(Data?.message)
@@ -223,6 +229,8 @@ export default function Profile() {
             setshowBio={setshowBio}
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
+            showModal={showModal}
+            setShowModal={setShowModal}
           />
         </div>
 
@@ -397,6 +405,7 @@ export default function Profile() {
         </button>
         {/* </form> */}
       </div>
+      <Unpublish isPublished={loaderData?.profile?.isPublished} open={showModal} setopenModal={setShowModal} onClose={() => setShowModal(false)}/>
     </div>
   )
 }

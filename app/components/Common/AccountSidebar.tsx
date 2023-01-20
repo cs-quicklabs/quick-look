@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react'
-import {useTransition} from '@remix-run/react'
 import { Dialog, Transition } from '@headlessui/react'
 import { MenuIcon,XIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid';
@@ -13,7 +12,6 @@ import NoVideo from '../Video/NoVideo'
 import Portfolio from '../Portfolio'
 import SpotlightButton from '../Spotlight'
 import Banner from '../Banner'
-import Unpublish from "~/components/Common/unpublishModal";
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template' },
@@ -79,9 +77,10 @@ export default function AccountSideBar({
   setmode,
   primaryRestore,
   secondaryRestore,
+  showModal,
+  setShowModal,
 }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
   // const [showSocialLinks, setshowSocialLinks] = useState(false);
@@ -860,8 +859,6 @@ export default function AccountSideBar({
             </button>
           </div>
         </div>
-
-        <Unpublish isPublished={loaderData?.profile?.isPublished} open={showModal} setopenModal={setShowModal} onClose={() => setShowModal(false)}/>
       </div>
     </>
   )
