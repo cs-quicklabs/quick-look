@@ -4,10 +4,11 @@ import { useState } from "react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
-import Unpublish from "~/components/Common/unpublishModal";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import { updateUserPreferences } from "~/services/user.service.serevr";
 
+import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
+export const action = ModalAction;
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
