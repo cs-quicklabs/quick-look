@@ -23,7 +23,6 @@ export default function NoImages({
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false)
   const [image, setimage] = useState(null)
-  console.log(image)
 
   const [image2, setimage2] = useState(null)
   const [deleteImage, setDeleteImage] = useState('')
@@ -39,7 +38,7 @@ export default function NoImages({
   const [drag, setDrag] = useState(false)
   const [drag2, setDrag2] = useState(false)
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: any) => {
     acceptedFiles.map((file: any) => {
       const reader = new FileReader()
 
@@ -53,7 +52,7 @@ export default function NoImages({
   }, [])
 
   const [images1, setImages1] = useState('')
-  const onDrop1 = useCallback((acceptedFiles) => {
+  const onDrop1 = useCallback((acceptedFiles: any) => {
     acceptedFiles.map((file: any) => {
       const reader = new FileReader()
 
@@ -67,7 +66,6 @@ export default function NoImages({
   }, [])
 
   const transition = useTransition()
-  console.log(transition)
   const ref = useRef(null)
   const ref2 = useRef(null)
   const ref3 = useRef(null)

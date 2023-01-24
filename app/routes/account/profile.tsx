@@ -141,7 +141,6 @@ export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
   const transition = useTransition()
-  console.log(transition, actionData?.errors)
   const [pass, SetPass] = useState({
     oldpassword: '',
     newpassword: '',
