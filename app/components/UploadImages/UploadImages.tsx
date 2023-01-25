@@ -23,8 +23,9 @@ export default function NoImages({
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false)
   const [image, setimage] = useState(null)
-
   const [image2, setimage2] = useState(null)
+  const [coverImageChange, setCoverImageChange] = useState(null)
+  const [profileImageChange, setProfileImageChange] = useState(null)
   const [deleteImage, setDeleteImage] = useState('')
   const [primaryImageError, setPrimaryImageError] = useState('')
   const [secondaryImageError, setSecondaryImageError] = useState('')
@@ -58,6 +59,8 @@ export default function NoImages({
   const ref4 = useRef(null)
   const ref5 = useRef(null)
   const ref6 = useRef(null)
+  const refProfileImageChange = useRef(null)
+  const refCoverImageChange = useRef(null)
 
   const [url, setUrl] = useState('')
   const [urlSec, setUrlSec] = useState('')
@@ -86,9 +89,17 @@ export default function NoImages({
       // @ts-ignore
       ref?.current?.click()
     }
+    if (coverImageChange) {
+      // @ts-ignore
+      refCoverImageChange?.current?.click()
+    }
     if (image2 !== null) {
       // @ts-ignore
       ref2?.current?.click()
+    }
+    if (profileImageChange !== null) {
+      // @ts-ignore
+      refProfileImageChange?.current?.click()
     }
     if (url && url.includes('data:')) {
       // @ts-ignore
@@ -100,7 +111,7 @@ export default function NoImages({
       ref6?.current?.click()
       setUrlSec('')
     }
-  }, [image, image2, url, urlSec])
+  }, [image, coverImageChange, image2, profileImageChange, url, urlSec])
 
   const handleChange = (e: any) => {
     if (e.target.files[0].size / 1024 < 4300) {
@@ -110,6 +121,22 @@ export default function NoImages({
         e.target.files[0].type.includes('image/png')
       ) {
         setimage(e.target.files[0])
+      } else {
+        setPrimaryImageError('Please upload image only')
+      }
+    } else {
+      setPrimaryImageError('Image size can be upto 4mb.')
+    }
+  }
+
+  const handleCoverImageChange = (e: any) => {
+    if (e.target.files[0].size / 1024 < 4300) {
+      if (
+        e.target.files[0].type.includes('image/jpeg') ||
+        e.target.files[0].type.includes('image/jpg') ||
+        e.target.files[0].type.includes('image/png')
+      ) {
+        setCoverImageChange(e.target.files[0])
       } else {
         setPrimaryImageError('Please upload image only')
       }
@@ -297,11 +324,11 @@ export default function NoImages({
                                   id="photo"
                                   name="primaryImageUpload"
                                   accept="image/png, image/jpeg, image/jpg"
-                                  onChange={handleChange}
+                                  onChange={handleCoverImageChange}
                                 />
                                 <button
                                   type="submit"
-                                  ref={ref}
+                                  ref={refCoverImageChange}
                                   className="hidden"
                                 >
                                   change
@@ -442,7 +469,7 @@ export default function NoImages({
                       setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError={setSecondaryImageError}
                       setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} image2={image2} setimage2={setimage2} upload={upload}
                       setRestore2={setRestore2} secondaryImageError={secondaryImageError}
-                      setRestore={setRestore}/>
+                      setRestore={setRestore} refProfileImageChange={refProfileImageChange} setProfileImageChange={setProfileImageChange}/>
                     <DeleteImage
                       open={open}
                       onClose={() => setopen(false)}

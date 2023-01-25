@@ -8,11 +8,8 @@ import * as cropro from 'cropro'
 function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, urlSec, setUrlSec, ref6, setUrl,
   setEdit2, setEdit, setopen, setDeleteImage, setDrag, setDrag2, setSecondaryImageError,
   setImages, images, upload2, restore2, drag2, setUpload2, setUpload, ref2, image2, setimage2, upload,
-  setRestore2, secondaryImageError,
-  setRestore }: any) {
+  setRestore2, secondaryImageError, setRestore, refProfileImageChange, setProfileImageChange }: any) {
   const transition = useTransition()
-  const [uploadNew, setUploadNew] = useState('')  
-  // console.log('transition is', transition)
 
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const handleChange2 = (e: any) => {
@@ -31,8 +28,24 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
     }
   }
 
+  const handleChangeImage2 = (e: any) => {
+    if (e.target.files[0].size / 1024 < 4300) {
+      if (
+        e.target.files[0].type.includes('image/jpeg') ||
+        e.target.files[0].type.includes('image/jpg') ||
+        e.target.files[0].type.includes('image/png')
+      ) {
+        setProfileImageChange(e.target.files[0])
+      } else {
+        setSecondaryImageError('Please upload image only')
+      }
+    } else {
+      setSecondaryImageError('Image size can be upto 4mb.')
+    }
+  }
+
   const handleChangeImage = () => {
-    setUploadNew((prev: any) => (prev = 'sec'))
+    setUpload2((prev: any) => (prev = 'sec'))
     setUpload('')
     console.log('loader data is', loaderData.profileImage.secondaryImageKey);
   }
@@ -42,9 +55,8 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
     if(transition?.state === 'loading' && transition?.submission?.action === "/account/add/SecImage") {
       transitionRef.current = true
     }
-    if(transition?.state === 'idle' && transitionRef.current && image2) {
-      console.log('inmage is', image2);
-      
+    if(transition?.state === 'idle' && transitionRef.current && image2 && profileimageAlreadyuploaded) {
+      console.log('image is', image2, ref5.current, profileimageAlreadyuploaded);
       showCropAreaSecondary()
       setUrl('')
       setEdit2(true)
@@ -52,9 +64,7 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
       transitionRef.current = false
     }
     
-    console.log('transition', transition);
-    
-  }, [transition, image2])
+  }, [transition, image2, ref5, profileimageAlreadyuploaded])
 
   function showCropAreaSecondary() {
     if (ref5?.current !== null) {
@@ -63,10 +73,7 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
       cropArea.displayMode = 'popup'
       // attach an event handler to assign cropped image back to our image element
       cropArea.addRenderEventListener((dataUrl) => {
-        console.log('called here 2');
         if (ref5?.current) {
-          
-          
           // @ts-ignore
           ref5.current.src = dataUrl
           // @ts-ignore
@@ -107,7 +114,7 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                 (edit2 &&
                   transition?.submission?.action ==
                   '/account/update/crop-image') ||
-                (uploadNew &&
+                (upload2 &&
                   transition?.submission?.action ==
                   '/account/add/SecImage') ? (
                 <div className="relative top-[-1.8rem]">
@@ -141,7 +148,7 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                 />
               )}
               <Form
-                replace
+                replace={true}
                 action="update/crop-image"
                 method="post"
               >
@@ -192,11 +199,11 @@ function ProfileImage({ secondaryRestore, loaderData, deleteImage, edit2, ref5, 
                   id="photo2"
                   name="secondaryImageUpload"
                   accept="image/png, image/jpeg, image/jpg"
-                  onChange={handleChange2}
+                  onChange={handleChangeImage2}
                 />
                 <button
                   type="submit"
-                  ref={ref2}
+                  ref={refProfileImageChange}
                   className="hidden"
                 >
                   change
