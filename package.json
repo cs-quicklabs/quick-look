@@ -26,7 +26,7 @@
     "@remix-run/vercel": "^1.10.0",
     "@sendgrid/mail": "^7.7.0",
     "@tailwindcss/forms": "^0.5.3",
-    "@vercel/node": "^2.8.6",
+    "@vercel/node": "^2.8.16",
     "aws-sdk": "^2.1293.0",
     "axios": "^1.2.2",
     "bcryptjs": "^2.4.3",
