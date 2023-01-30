@@ -24,7 +24,7 @@ export default function Portfolio({
   // if(image1 && image1.includes)
   const [edit, setEdit] = useState(false)
   const [del, setDel] = useState(false)
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: any) => {
     acceptedFiles.map((file: any) => {
       const reader = new FileReader()
 
@@ -194,7 +194,7 @@ export default function Portfolio({
                                   {(transition.state != 'idle' && upload) ||
                                   transition?.submission?.action ==
                                     '/account/add/drop-portfolio-image' ? (
-                                    <BeatLoader color="#184fad" />
+                                    <BeatLoader color="#184fad" className="mt-2"/>
                                   ) : (
                                     <label
                                       htmlFor="photo"
@@ -264,7 +264,7 @@ export default function Portfolio({
                       </div>
                       {(transition.state != 'idle' && edit) ||
                       (transition.state != 'idle' && del) ? (
-                        <div className={`relative ${calc} left-[11rem]`}>
+                        <div className={`relative ${calc} mx-auto`}>
                           <BeatLoader color="#184fad" />
                         </div>
                       ) : null}

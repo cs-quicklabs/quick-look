@@ -108,7 +108,7 @@ export default function AccountSideBar({
         <PublishIcon className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}/>
         <span>{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
         <span 
-          className="ml-auto font-medium" 
+          className="ml-2 font-medium" 
           onClick={() => setShowModal(true)}
         >
           {isPublished ? `Unpublish ->` : 'Publish ->'}
@@ -170,7 +170,7 @@ export default function AccountSideBar({
                     </div>
                   </Transition.Child>
                   <div className="mt-[1rem] h-0 flex-1 overflow-y-auto pb-4">
-                    <div className="flex flex-shrink-0 p-4">
+                    <div className="flex flex-shrink-0 px-2">
                       <a href="#" className="group block flex-shrink-0">
                         <div className="flex items-center">
                           <div>
@@ -192,8 +192,8 @@ export default function AccountSideBar({
                               View profile
                             </a>
                           </div>
-                          {renderPublishStatus()}
                         </div>
+                          {renderPublishStatus()}
                       </a>
                     </div>
                     <div>

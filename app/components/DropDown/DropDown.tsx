@@ -10,7 +10,7 @@ export default function DropDown({loaderData,setIsOpen}:any) {
  
   return (
     <div >
-      <Menu as="div" >
+      <Menu as="div">
         
           <Menu.Button as='div'>
             <img
@@ -21,7 +21,7 @@ export default function DropDown({loaderData,setIsOpen}:any) {
                   
                   title="Open Profile"
                   loading="eager"
-                  className="mt-2 pb-0 w-8 h-8 md:mt-0 sm:pt-0 sm:pb-0 rounded-full"
+                  className="w-8 h-8 rounded-full"
                    src={!loaderData?.profileImage?.secondaryImage ? DefaultProfileIcon : loaderData?.profileImage?.secondaryImage}
                   // onClick={() => toggleSetting()}
                 />

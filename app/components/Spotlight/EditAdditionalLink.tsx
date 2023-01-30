@@ -31,7 +31,6 @@ export default function EditSpotlight({
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
   }
-  console.log(loaderData)
   const transition = useTransition()
 
   const [val, setVal] = useState({
