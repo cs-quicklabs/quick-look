@@ -38,7 +38,7 @@
     "focus-visible": "^5.2.0",
     "lightgallery": "^2.7.1",
     "lodash": "^4.17.21",
-    "postcss-focus-visible": "^7.1.0",
+    "postcss-focus-visible": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
