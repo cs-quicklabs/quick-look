@@ -7,35 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Coupon {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  startDate DateTime
+  endDate   DateTime
+  code      String   @unique
+  users     User[]
+
+  @@map("coupon")
+}
+
 model User {
-  id               String              @id @unique @default(uuid())
-  firstname        String
-  lastname         String
-  email            String
-  username         String              @unique
-  password         String
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
-  additionalLinks  AdditionalLink[]
-  testimonial      Testimonial?
-  spotlightButton  SpotlightButton?
-  portfolioImage   PortfolioImage[]
-  video            Video?
-  profileInfo      ProfileInformation?
-  profileImage     ProfileImage?
-  socialMedia      SocialMedia?
-  marketingUpdates MarketingUpdates?
-  userVerification UserVerification?
-  profile          Profile?
-  supportBanner    SupportBanner?
+  id                  String              @id @unique @default(uuid())
+  firstname           String
+  lastname            String
+  email               String
+  username            String              @unique
+  password            String
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  additionalLinks     AdditionalLink[]
+  testimonial         Testimonial?
+  spotlightButton     SpotlightButton?
+  portfolioImage      PortfolioImage[]
+  video               Video?
+  profileInfo         ProfileInformation?
+  profileImage        ProfileImage?
+  socialMedia         SocialMedia?
+  marketingUpdates    MarketingUpdates?
+  userVerification    UserVerification?
+  profile             Profile?
+  supportBanner       SupportBanner?
+  coupon_code         Coupon?             @relation(fields: [couponId], references: [id])
+  couponId            String?
+  allowed_free_access Boolean             @default(true)
 
   @@map("user")
 }
 
 model UserVerification {
-  id           String   @id @default(uuid())
-  user         User     @relation(fields: [userId], references: [id])
-  userId       String   @unique
+  id           String    @id @default(uuid())
+  user         User      @relation(fields: [userId], references: [id])
+  userId       String    @unique
   uniqueString String
   expiresAt    DateTime
   createdAt    DateTime? @default(now())
@@ -45,35 +60,35 @@ model UserVerification {
 }
 
 model Profile {
-  id          String   @id @unique @default(uuid())
-  user        User     @relation(fields: [userId], references: [id])
-  userId      String   @unique
-  isVerified  Boolean? @default(false)
-  isPublished Boolean? @default(false)
-  additionalLinksColor String? 
+  id                     String    @id @unique @default(uuid())
+  user                   User      @relation(fields: [userId], references: [id])
+  userId                 String    @unique
+  isVerified             Boolean?  @default(false)
+  isPublished            Boolean?  @default(false)
+  additionalLinksColor   String?
   additionalLinksHexCode String?
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  createdAt              DateTime? @default(now())
+  updatedAt              DateTime? @updatedAt
 
   @@map("profile")
 }
 
 model MarketingUpdates {
-  id                      String   @id @unique @default(uuid())
-  user                    User     @relation(fields: [userId], references: [id])
-  userId                  String   @unique
-  recieveProductUpdates   Boolean  @default(false)
-  recieveMarketingUpdates Boolean  @default(false)
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  id                      String    @id @unique @default(uuid())
+  user                    User      @relation(fields: [userId], references: [id])
+  userId                  String    @unique
+  recieveProductUpdates   Boolean   @default(false)
+  recieveMarketingUpdates Boolean   @default(false)
+  createdAt               DateTime? @default(now())
+  updatedAt               DateTime? @updatedAt
 
   @@map("marketingupdates")
 }
 
 model SocialMedia {
-  id           String   @id @unique @default(uuid())
-  user         User     @relation(fields: [userId], references: [id])
-  userId       String   @unique
+  id           String    @id @unique @default(uuid())
+  user         User      @relation(fields: [userId], references: [id])
+  userId       String    @unique
   facebookLink String?
   twitterLink  String?
   youtubeLink  String?
@@ -84,111 +99,112 @@ model SocialMedia {
 }
 
 model ProfileImage {
-  id                      String   @id @default(uuid())
-  user                    User     @relation(fields: [userId], references: [id])
-  userId                  String   @unique
-  isUsingPrimaryDefault   Boolean? @default(true)
-  isUsingSecondaryDefault Boolean? @default(true)
+  id                      String    @id @default(uuid())
+  user                    User      @relation(fields: [userId], references: [id])
+  userId                  String    @unique
+  isUsingPrimaryDefault   Boolean?  @default(true)
+  isUsingSecondaryDefault Boolean?  @default(true)
   primaryImage            String?
   secondaryImage          String?
   primaryImageKey         String?
   secondaryImageKey       String?
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  createdAt               DateTime? @default(now())
+  updatedAt               DateTime? @updatedAt
 
   @@map("profileimage")
 }
 
 model ProfileInformation {
-  id             String   @id @default(uuid())
-  user           User     @relation(fields: [userId], references: [id])
-  userId         String   @unique
+  id             String    @id @default(uuid())
+  user           User      @relation(fields: [userId], references: [id])
+  userId         String    @unique
   bio            String?
   location       String?
   occupation     String?
   company        String?
   education      String?
-  templateNumber String?  @default("0")
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  templateNumber String?   @default("0")
+  createdAt      DateTime? @default(now())
+  updatedAt      DateTime? @updatedAt
+
   @@map("profileinformation")
 }
 
 model Video {
-  id             String   @id @default(uuid())
-  user           User     @relation(fields: [userId], references: [id])
-  userId         String   @unique
+  id             String    @id @default(uuid())
+  user           User      @relation(fields: [userId], references: [id])
+  userId         String    @unique
   videoLink      String?
   videoSourceKey String?
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  createdAt      DateTime? @default(now())
+  updatedAt      DateTime? @updatedAt
 
   @@map("video")
 }
 
 model PortfolioImage {
-  id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
   userId    String
   imageUrl  String
   imageKey  String?
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 
   @@map("portfolioimage")
 }
 
 model SpotlightButton {
-  id               String   @id @default(uuid())
-  user             User     @relation(fields: [userId], references: [id])
-  userId           String   @unique
+  id               String    @id @default(uuid())
+  user             User      @relation(fields: [userId], references: [id])
+  userId           String    @unique
   buttonText       String?
   buttonColor      String?
   buttonhex        String?
   spotlightIcon    String?
   buttonAction     String?
   buttonActionlink String?
-  toggleSpotlight  Boolean? @default(false)
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  toggleSpotlight  Boolean?  @default(false)
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
 
   @@map("spotlightbutton")
 }
 
 model Testimonial {
-  id              String   @id @default(uuid())
-  user            User     @relation(fields: [userId], references: [id])
-  userId          String   @unique
+  id              String    @id @default(uuid())
+  user            User      @relation(fields: [userId], references: [id])
+  userId          String    @unique
   testimonialText String?
   testimonialBy   String?
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  createdAt       DateTime? @default(now())
+  updatedAt       DateTime? @updatedAt
 
   @@map("testimonial")
 }
 
 model AdditionalLink {
-  id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
   userId    String
   linkText  String?
   linkUrl   String?
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 
   @@map("additionalLinks")
 }
 
 model SupportBanner {
-  id           String   @id @default(uuid())
-  user         User     @relation(fields: [userId], references: [id])
-  userId       String   @unique
+  id           String    @id @default(uuid())
+  user         User      @relation(fields: [userId], references: [id])
+  userId       String    @unique
   bannerText   String?
   bannerColor  String?
   bannerHex    String?
   bannerIcon   String?
   bannerlink   String?
-  toggleBanner Boolean? @default(false)
+  toggleBanner Boolean?  @default(false)
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @updatedAt
 
