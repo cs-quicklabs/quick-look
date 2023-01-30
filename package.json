@@ -28,7 +28,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@vercel/node": "^2.8.16",
     "aws-sdk": "^2.1293.0",
-    "axios": "^1.2.5",
+    "axios": "^1.2.6",
     "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
     "cropro": "^1.2.1",
