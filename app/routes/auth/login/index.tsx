@@ -104,7 +104,7 @@ const loaderData = useLoaderData();
             </div>
           </div> : 
           <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50 p-4 mb-4' : ''}`}>
-            <div className="flex">
+            <div className="flex items-center">
               {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
                 <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
               </div> : ''}

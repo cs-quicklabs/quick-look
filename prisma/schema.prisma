@@ -50,6 +50,7 @@ model Profile {
   userId      String   @unique
   isVerified  Boolean? @default(false)
   isPublished Boolean? @default(false)
+  isBlocked   Boolean? @default(false)
   additionalLinksColor String? 
   additionalLinksHexCode String?
   createdAt    DateTime? @default(now())
