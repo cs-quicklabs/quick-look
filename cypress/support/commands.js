@@ -51,13 +51,14 @@ Cypress.Commands.add("commonLogin", () => {
   cy.url().should('include', '/account');
 });
 
-Cypress.Commands.add("signup", (firstName, lastName, profileId, email, password, confirmPassword) => {
+Cypress.Commands.add("signup", (firstName, lastName, profileId, email, password, confirmPassword, couponCode) => {
   cy.get('[data-cy="firstName"]').type(firstName);
   cy.get('[data-cy="lastName"]').type(lastName);
   cy.get('[data-cy="profileId"]').type(profileId);
   cy.get('[data-cy="email"]').type(email);
   cy.get('[data-cy="password"]').type(password);
   cy.get('[data-cy="confirmPassword"]').type(confirmPassword);
+  cy.get('[data-cy="coupon_code"]').type(couponCode);
   cy.get('[data-cy="createNewAccountButton"]').click();
 }
 );
