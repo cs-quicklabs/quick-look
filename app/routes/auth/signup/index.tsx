@@ -1,6 +1,6 @@
 import { ExclamationCircleIcon, LockClosedIcon } from '@heroicons/react/solid'
 import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
-import { getUser, register } from '~/services/auth.service.server'
+import { getUser, register, validateCoupon } from '~/services/auth.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import {
@@ -14,7 +14,7 @@ import {
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 import { Form, useActionData, useTransition } from '@remix-run/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ServerResponse } from '~/types/response.server'
 import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
 import { BeatLoader } from 'react-spinners'
@@ -33,12 +33,22 @@ export const action: ActionFunction = async ({ request }) => {
     username,
     confirmPassword,
     url,
-    captchaToken
+    captchaToken,
+    coupon_code
   } = await SignUpFormGenerator(request)
 
   const res = await axios.post(
     `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${captchaToken}`
   )
+
+  let coupon_code_error = ""
+  let couponId = ""
+
+  if(coupon_code){
+    const response = await validateCoupon(coupon_code)
+    couponId = response?.couponId || ""
+    coupon_code_error = response?.error || ""
+  }
 
   const errors = {
     email: await validateSignupEmail(email),
@@ -48,7 +58,8 @@ export const action: ActionFunction = async ({ request }) => {
     username: await validateUsername(username, false),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),
     captchaTokenError: captchaToken ? undefined : 'Incorrect Captcha',
-    captchaError: res.status == 200 ? undefined : 'Incorrect Captcha'
+    captchaError: res.status == 200 ? undefined : 'Incorrect Captcha',
+    coupon_code : coupon_code_error
   }
 
   if (Object.values(errors).some(Boolean)) {
@@ -67,7 +78,8 @@ export const action: ActionFunction = async ({ request }) => {
     username,
     email,
     password,
-    confirmPassword
+    confirmPassword,
+    couponId,
   })
 
   const generatedToken = uuidv4() as string
@@ -114,6 +126,7 @@ export default function SignUp() {
     email: '',
     password: '',
     confirmPassword: '',
+    coupon_code: '',
   })
   return (
     <>
@@ -322,6 +335,40 @@ export default function SignUp() {
                   {actionData?.errors['isPasswordSame']}
                 </div>
               </div>
+
+              <div className='relative'>
+                <label className='text-gray-700 w-36 h-5 mt-4 font-medium leading-5 text-sm' htmlFor='coupon_code'>
+                  Coupon Code (Optional)
+                </label>
+
+                <input
+                  data-cy="coupon_code"
+                  id="coupon_code"
+                  className={`box-border appearance-none block w-full h-10 px-2.5 py-3.5 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5 ${actionData?.errors['coupon_code']
+                      ? 'border border-red-400'
+                      : ''
+                    }`}
+                  type='text'
+                  name='coupon_code'
+                  value={val.coupon_code}
+                  onChange={(e) => {
+                    const {name, value} = e?.target
+                    setVal({
+                      ...val,
+                      [name]: value?.toUpperCase()?.trim(),
+                    })
+                  }}
+                />
+
+                {actionData?.errors['coupon_code'] ?
+                  <div className="absolute inset-y-0 right-0 pr-3 pt-1.5 flex items-center pointer-events-none ">
+                    <ExclamationCircleIcon className="h-4 w-4 text-red-500" aria-hidden="true" />
+                  </div> : ''}
+                <div className='text-red-600 text-sm '>
+                  {actionData?.errors['coupon_code']}
+                </div>
+              </div>
+
               <div className='flex flex-col justify-end'>
                
                 <ReCAPTCHA  ref={captchaRef} sitekey={Data.ENV.REACT_APP_SITE_KEY} onChange={handleSubmit} />
