@@ -6,3 +6,8 @@ export type ServerResponse = {
         userEmail?: string,
     },
 }
+
+export type ValidCouponServerResponse = {
+    couponId?: string, 
+    error?: string, 
+}

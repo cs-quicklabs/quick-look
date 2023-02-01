@@ -1,4 +1,4 @@
-import { EmojiHappyIcon ,CogIcon } from '@heroicons/react/outline';
+import { EmojiHappyIcon ,CogIcon, CreditCardIcon} from '@heroicons/react/outline';
 import { Fragment,useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Dialog, Menu, Transition } from '@headlessui/react';
@@ -9,6 +9,7 @@ import {
 
 const navigation = [
   { name: 'Profile', icon: EmojiHappyIcon, href: '/account/profile' },
+  { name: 'License', icon: CreditCardIcon, href: '/account/license' },
   { name: 'Settings', icon: CogIcon, href: '/account/settings'},
 ]
 const secondaryNavigation = [

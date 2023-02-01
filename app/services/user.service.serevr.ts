@@ -15,6 +15,7 @@ export async function createUser(userRegister: RegisterForm) {
             username: userRegister.username.toLocaleLowerCase(),
             email: userRegister.email.toLocaleLowerCase(),
             password,
+            couponId : userRegister?.couponId || null,
         }
     })
     await db.profile.create({

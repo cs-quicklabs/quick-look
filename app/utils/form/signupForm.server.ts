@@ -8,8 +8,9 @@ export async function SignUpFormGenerator(request: Request) {
     let username = form.get('profileId') as string
     let confirmPassword = form.get('confirmPassword') as string 
     let captchaToken = form.get('captcha') as string
+    let coupon_code = form.get('coupon_code') as string
 
     let url = request.url
 
-    return {firstname, lastname, email, password, username, confirmPassword, url, captchaToken}
+    return {firstname, lastname, email, password, username, confirmPassword, url, captchaToken, coupon_code}
 }
