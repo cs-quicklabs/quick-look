@@ -313,6 +313,23 @@ export async function updateUserTemplate(templateId: string, user: any) {
     })
 }
 
+export async function changePublishedStatus(profileId: string, data: boolean) {
+    try{
+        await db.profile.update({
+            where: {
+                id: profileId
+            },
+            data: {
+                isPublished: data
+            }
+        })
+        return true
+    }
+    catch(e){
+        return null
+    }
+}
+
 export async function getUserByUsername(username: string){
     const user = await db.user.findFirst({
         where:{

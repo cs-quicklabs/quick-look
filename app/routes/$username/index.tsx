@@ -19,7 +19,7 @@ import Template11 from '~/components/Templates/template11'
 
 export const loader: LoaderFunction = async ({ params }) => {
   const user = await getUserByUsername(params?.username!)
-  if (user?.profile?.isPublished) {
+  if (user?.profile?.isPublished && !user?.profile?.isBlocked) {
     return json(user)
   }
   return redirect('/auth/error')
