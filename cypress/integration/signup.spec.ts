@@ -33,6 +33,8 @@ describe("Signup test", function () {
     cy.get('[data-cy="password"]').should("exist");
     cy.contains('Confirm Password');
     cy.get('[data-cy="confirmPassword"]').should("exist");
+    cy.contains('Coupon Code (Optional)');
+    cy.get('[data-cy="coupon_code"]').should("exist").should('be.visible').should('be.enabled');
     cy.get('button[type="submit"]')
       .contains("Create New Account")
       .should("exist")
@@ -48,7 +50,8 @@ describe("Signup test", function () {
         user.profileId,
         user.email,
         user.password,
-        user.confirmPassword
+        user.confirmPassword,
+        user.couponCode
       );
     });
     cy.contains("First Name must be less than 18 characters.").should(
@@ -61,6 +64,7 @@ describe("Signup test", function () {
       "be.visible"
     );
     cy.contains("Password does not match.").scrollIntoView().should("be.visible");
+    cy.contains("This coupon code is invalid or has expired").scrollIntoView().should("be.visible");
   });
 
   it("should signup with valid credentials ", () => {
@@ -72,6 +76,8 @@ describe("Signup test", function () {
     cy.xpath('//input[@name="email"]').should('be.visible').clear().type(signupDetails.email);
     cy.xpath('//input[@name="password"]').should('be.visible').clear().type(signupDetails.password);
     cy.xpath('//input[@name="confirmPassword"]').should('be.visible').clear().type(signupDetails.confirmPassword);
+    // will need to create a coupon code named - "TESTCODE" in database
+    cy.xpath('//input[@name="coupon_code"]').should('be.visible').clear().scrollIntoView().type("TESTCODE");
     cy.get('[data-cy="createNewAccountButton"]').click();
 
     cy.writeFile('cypress/fixtures/signUpDetails.json' ,{

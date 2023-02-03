@@ -16,7 +16,8 @@ declare namespace Cypress {
       profileId: string,
       email: string,
       password: string,
-      confirmPassword: string
+      confirmPassword: string,
+      couponCode: string,
     ): void;
 
   }

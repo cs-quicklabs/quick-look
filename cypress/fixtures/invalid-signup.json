@@ -4,5 +4,6 @@
   "profileId": "user",
   "email": "john.doe@yopmail",
   "password": "123456 78",
-  "confirmPassword": "12345678"
+  "confirmPassword": "12345678",
+  "couponCode": "NEWDEMO"
 }

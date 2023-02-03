@@ -28,10 +28,10 @@ export default function License() {
 
         <div className="sm:px-6 md:w-3/5 lg:w-[90%] lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl py-6 px-4 sm:p-6">
           <div className="">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">License</h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900" data-cy="license-header">License</h3>
             
             {(loaderData?.couponId || loaderData?.allowed_free_access) &&
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-gray-500 mt-2" data-cy="license-text">
                 {loaderData?.couponId ? 
                   `You have signed up with coupon code ${loaderData?.coupon_code?.code} which allowed you free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me`
                   :
