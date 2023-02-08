@@ -11,6 +11,8 @@ import Dropzone from './DragandDrop'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
 
+let timeOut : string | number | NodeJS.Timeout | undefined;
+
 export default function NoImages({
   setshowImages,
   mode,
@@ -179,6 +181,43 @@ export default function NoImages({
     setmode('desktop')
   }
 
+
+
+  // states to change cover image
+  const changeImageSubmitRef = useRef(null)
+  const [changeImageResponse, setChangeImageResponse] = useState({ message: "", type: false })
+  
+  const handleChangeImage  = (event: any) => {
+    const file = event?.target?.files?.[0];
+
+    if (file?.type?.includes("image") && !file?.type?.includes("svg")) {
+      
+      if(file?.size / 1024 > 4096){
+        setChangeImageResponse({ message: "Image size can be upto 4MB.", type: false });
+        return
+      }
+
+      // @ts-ignore
+      changeImageSubmitRef?.current?.click()
+
+    } else {
+      setChangeImageResponse({
+        message: "Only jpg, jpeg and png files are supported!",
+        type: false,
+      });
+    }
+  };
+
+  useEffect(()=>{
+    if(changeImageResponse?.type){
+      clearTimeout(timeOut);
+
+      timeOut = setTimeout(() => {
+        setChangeImageResponse({ message: "", type: false });
+      }, 4000);
+    }
+  },[changeImageResponse])
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={() => {}}>
@@ -248,7 +287,9 @@ export default function NoImages({
                                   '/account/delete/image') ||
                               (edit &&
                                 transition?.submission?.action ==
-                                  '/account/update/crop-image') ? (
+                                  '/account/update/crop-image') || 
+                                  (transition?.submission?.action ===
+                                    '/account/update/change-image') ? (
                                 <div className="relative top-[-1rem] ">
                                   <BeatLoader
                                     color="#184fad"
@@ -266,7 +307,9 @@ export default function NoImages({
                                         transition?.submission?.action ==
                                           '/account/delete/image') ||
                                       transition?.submission?.action ==
-                                        '/account/update/crop-image'
+                                        '/account/update/crop-image' ||
+                                        (transition?.submission?.action ===
+                                          '/account/update/change-image')
                                         ? 'opacity-30'
                                         : ''
                                     }`}
@@ -304,7 +347,7 @@ export default function NoImages({
                               </Form>
                             </div>
 
-                            <div className="mt-3 flex items-center justify-center">
+                            <div className={`mt-3 flex items-center justify-center ${transition?.state === "idle" ? "" : "hidden"}`}>
                               <button
                                 onClick={() => {
                                   showCropArea()
@@ -317,6 +360,30 @@ export default function NoImages({
                               >
                                 Edit
                               </button>
+                              
+                              {/* to change image */}
+                              <Form
+                                replace
+                                action="update/change-image"
+                                method="post"
+                                encType="multipart/form-data"
+                              >
+                                <input
+                                  name={"changePrimaryImage"}
+                                  id="changePrimaryImage"
+                                  type="file"
+                                  className="hidden"
+                                  onChange={handleChangeImage}
+                                  accept="image/*"
+                                  value={""}
+                                />
+
+                                <button type="submit" ref={changeImageSubmitRef} hidden/>
+                              </Form>
+
+                              <label htmlFor='changePrimaryImage' className="mx-4 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600">
+                                Change
+                              </label>
 
                               <button
                                 id="primaryDeleteButton"
@@ -325,7 +392,7 @@ export default function NoImages({
                                   setopen(true)
                                   setDeleteImage('primary')
                                 }}
-                                className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
+                                className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
                                 disabled={
                                   deleteImage === 'primary' &&
                                   transition?.submission?.action ==
@@ -335,6 +402,12 @@ export default function NoImages({
                                 Delete
                               </button>
                             </div>
+
+                            {!changeImageResponse?.type && changeImageResponse.message &&
+                              <div className="flex justify-center mt-2 text-sm text-red-500">
+                                {changeImageResponse.message}
+                              </div>
+                            }
                           </div>
                         </div>
                       ) : (
