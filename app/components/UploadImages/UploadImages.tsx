@@ -186,6 +186,7 @@ export default function NoImages({
   // states to change cover image
   const changeImageSubmitRef = useRef(null)
   const [changeImageResponse, setChangeImageResponse] = useState({ message: "", type: false })
+  const changeImageStateRef = useRef(false)
   
   const handleChangeImage  = (event: any) => {
     const file = event?.target?.files?.[0];
@@ -217,6 +218,25 @@ export default function NoImages({
       }, 4000);
     }
   },[changeImageResponse])
+
+
+  // callback to open editor for cover image after changing
+  useEffect(()=>{
+    
+    if(transition?.submission?.action.includes("change-image") && !changeImageStateRef?.current)
+      changeImageStateRef.current = true
+    
+    if(transition?.state === "idle" && changeImageStateRef?.current){
+      changeImageStateRef.current = false
+
+      setTimeout(()=>{
+        showCropArea()
+        setUrlSec('')
+        setEdit(true)
+        setEdit2(false)
+      },1500)
+    }
+  },[transition])
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -403,7 +423,7 @@ export default function NoImages({
                               </button>
                             </div>
 
-                            {!changeImageResponse?.type && changeImageResponse.message &&
+                            {!changeImageResponse?.type && changeImageResponse?.message &&
                               <div className="flex justify-center mt-2 text-sm text-red-500">
                                 {changeImageResponse.message}
                               </div>
