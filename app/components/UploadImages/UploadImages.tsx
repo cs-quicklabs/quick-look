@@ -210,7 +210,7 @@ export default function NoImages({
   };
 
   useEffect(()=>{
-    if(changeImageResponse?.type){
+    if(changeImageResponse?.message){
       clearTimeout(timeOut);
 
       timeOut = setTimeout(() => {

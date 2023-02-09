@@ -1,9 +1,12 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Form, useTransition } from '@remix-run/react';
 import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from 'react-spinners/BeatLoader';
 import Dropzone from './DragandDrop';
 import * as cropro from 'cropro'
+
+
+let timeOut : string | number | NodeJS.Timeout | undefined;
 
 function ProfileImage({secondaryRestore,loaderData,deleteImage,edit2,ref5,urlSec,ref6,setUrl,
 setEdit2,setEdit,setopen,setDeleteImage,setDrag,setDrag2,setSecondaryImageError,
@@ -57,6 +60,43 @@ function showCropAreaSecondary() {
       return file
     })
   }, [])
+
+
+  // states to change profile image
+  const changeImageSubmitRef = useRef(null)
+  const [changeImageResponse, setChangeImageResponse] = useState({ message: "", type: false })
+
+  const handleChangeImage  = (event: any) => {
+    const file = event?.target?.files?.[0];
+
+    if (file?.type?.includes("image") && !file?.type?.includes("svg")) {
+
+      if(file?.size / 1024 > 4096){
+        setChangeImageResponse({ message: "Image size can be upto 4MB.", type: false });
+        return
+      }
+
+      // @ts-ignore
+      changeImageSubmitRef?.current?.click()
+
+    } else {
+      setChangeImageResponse({
+        message: "Only jpg, jpeg and png files are supported!",
+        type: false,
+      });
+    }
+  };
+
+  useEffect(()=>{
+    if(changeImageResponse?.message){
+      clearTimeout(timeOut);
+
+      timeOut = setTimeout(() => {
+        setChangeImageResponse({ message: "", type: false });
+      }, 4000);
+    }
+  },[changeImageResponse])
+
   return (
     <>
       {profileimageAlreadyuploaded || secondaryRestore ? (
@@ -72,7 +112,9 @@ function showCropAreaSecondary() {
                                   '/account/delete/image') ||
                               (edit2 &&
                                 transition?.submission?.action ==
-                                  '/account/update/crop-image') ? (
+                                  '/account/update/crop-image') ||
+                                  (transition?.submission?.action ===
+                                    '/account/update/change-profile-image') ? (
                                 <div className="relative top-[-1.8rem]">
                                   <BeatLoader
                                     color="#184fad"
@@ -122,7 +164,7 @@ function showCropAreaSecondary() {
                             </div>
                           </div>
 
-                          <div className="ml-6 mt-3 flex w-[7rem] items-center justify-center">
+                          <div className={`px-4 mt-3 flex items-center sm:px-6 ${transition?.state === "idle" ? "" : "hidden"}`}>
                             <button
                               id="secondaryEditImage"
                               className=" cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
@@ -135,6 +177,31 @@ function showCropAreaSecondary() {
                             >
                               Edit
                             </button>
+
+                            {/* to change profile image */}
+                            <Form
+                              replace
+                              action="update/change-profile-image"
+                              method="post"
+                              encType="multipart/form-data"
+                              >
+                                <input
+                                  name={"changeSecondaryImage"}
+                                  id="changeSecondaryImage"
+                                  type="file"
+                                  className="hidden"
+                                  onChange={handleChangeImage}
+                                  accept="image/*"
+                                  value={""}
+                                />
+
+                                <button type="submit" ref={changeImageSubmitRef} hidden/>
+                              </Form>
+
+                              <label htmlFor='changeSecondaryImage' className="mx-4 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600">
+                                Change
+                              </label>
+
                             <button
                               id="secondaryDeleteButton"
                               onClick={(e: any) => {
@@ -142,11 +209,17 @@ function showCropAreaSecondary() {
                                 setopen(true)
                                 setDeleteImage('secondary')
                               }}
-                              className="ml-3 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
+                              className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
                             >
                               Delete
                             </button>
                           </div>
+
+                          {!changeImageResponse?.type && changeImageResponse.message &&
+                            <div className="flex mt-2 text-sm text-red-500 px-4 sm:px-6">
+                              {changeImageResponse.message}
+                            </div>
+                          }
                         </div>
                       ) : (
                         <div className="px-4 sm:col-span-6 sm:px-6 md:mt-6 md:mb-7 lg:mt-16 lg:mb-0">
