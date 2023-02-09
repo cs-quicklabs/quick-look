@@ -11,7 +11,7 @@ let timeOut : string | number | NodeJS.Timeout | undefined;
 function ProfileImage({secondaryRestore,loaderData,deleteImage,edit2,ref5,urlSec,ref6,setUrl,
 setEdit2,setEdit,setopen,setDeleteImage,setDrag,setDrag2,setSecondaryImageError,
 setImages,images,upload2,restore2,drag2,setUpload2,setUpload,ref2,setimage2,upload,
-setRestore2,secondaryImageError,
+setRestore2,secondaryImageError, setUrlSec,
 setRestore}:any) {
  const transition = useTransition()
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
@@ -64,6 +64,7 @@ function showCropAreaSecondary() {
 
   // states to change profile image
   const changeImageSubmitRef = useRef(null)
+  const changeImageStateRef = useRef(false)
   const [changeImageResponse, setChangeImageResponse] = useState({ message: "", type: false })
 
   const handleChangeImage  = (event: any) => {
@@ -96,6 +97,25 @@ function showCropAreaSecondary() {
       }, 4000);
     }
   },[changeImageResponse])
+
+  // callback to open editor for cover image after changing
+  useEffect(()=>{
+
+    if(transition?.submission?.action.includes("change-profile-image") && !changeImageStateRef?.current)
+      changeImageStateRef.current = true
+
+    if(transition?.state === "idle" && changeImageStateRef?.current){
+      changeImageStateRef.current = false
+
+      setTimeout(()=>{
+        showCropAreaSecondary()
+        setUrl('')
+        setEdit2(true)
+        setEdit(false)
+      },1500)
+    }
+  },[transition])
+
 
   return (
     <>

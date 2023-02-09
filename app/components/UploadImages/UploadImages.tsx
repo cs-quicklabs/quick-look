@@ -736,7 +736,7 @@ export default function NoImages({
                           </div>
                         </div>
                       )} */}
-                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} 
+                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} setUrlSec={setUrlSec} 
 setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError ={setSecondaryImageError}
 setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} setimage2={setimage2} upload={upload}
 setRestore2={setRestore2} secondaryImageError={secondaryImageError} 
