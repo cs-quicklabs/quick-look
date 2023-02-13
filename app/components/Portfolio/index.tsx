@@ -101,6 +101,12 @@ export default function Portfolio({
     }
   }, [transition, error, errorDrag])
 
+  
+  const isUploading = (transition.state !== 'idle' && upload) ||
+    (transition?.submission?.action === '/account/add/drop-portfolio-image');
+
+  // const isUploading = true
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40 " onClose={() => {}}>
@@ -167,8 +173,15 @@ export default function Portfolio({
                           Portfolio Images
                         </label>
                         {loaderData.portfolioImage.length <= 19 ? (
-                          <div className="px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10">
-                            <div className="text-center">
+                          <div className="relative px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10">
+                            
+                            {isUploading && 
+                              <div className='h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10'>
+                                <BeatLoader color="#184fad" className="mt-2" size={20}/>
+                              </div>
+                            }
+                            
+                            <div className={`text-center ${isUploading ? "invisible" : ""}`}>
                               <DropzonePortfolio
                                 setErrorDrag={setErrorDrag}
                                 onDrop={onDrop}
@@ -191,11 +204,7 @@ export default function Portfolio({
                                 method="post"
                               >
                                 <div className="flex flex-col items-center justify-center md:mx-12 lg:mx-20">
-                                  {(transition.state != 'idle' && upload) ||
-                                  transition?.submission?.action ==
-                                    '/account/add/drop-portfolio-image' ? (
-                                    <BeatLoader color="#184fad" className="mt-2"/>
-                                  ) : (
+                                  
                                     <label
                                       htmlFor="photo"
                                       id="primaryUploadImage"
@@ -225,7 +234,7 @@ export default function Portfolio({
                                       </button>
                                       {/* <input type="file" name="photo" /> */}
                                     </label>
-                                  )}
+                                  
                                   <div className="mt-2 text-sm text-red-500">
                                     {errorDrag || error}
                                   </div>
