@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export type AlertType = {
   message : string | JSX.Element;
-  autoClose : number
+  autoClose? : number
 }
 
 export function AlertSuccess(props: AlertType) {

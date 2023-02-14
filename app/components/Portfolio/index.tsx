@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import Portfolioimage from './portfolioimage'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DropzonePortfolio from './DragandDrop'
+import { AlertSuccess } from '../Alert/Alert'
 
 export default function Portfolio({
   setShowPortfolio,
@@ -18,6 +19,8 @@ export default function Portfolio({
   const [image1, setimage1] = useState(null)
   const [error, setError] = useState('')
   const [errorDrag, setErrorDrag] = useState('')
+  const [message, setMessage] = useState('')
+  const apiResponseRef = useRef("")
 
   const transition = useTransition()
 
@@ -104,8 +107,25 @@ export default function Portfolio({
   
   const isUploading = (transition.state !== 'idle' && upload) ||
     (transition?.submission?.action === '/account/add/drop-portfolio-image');
+  
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
 
-  // const isUploading = true
+    if(action.includes("add/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your Portfolio Image added successfully."
+
+    if(action.includes("update/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your Portfolio Image has been updated successfully."
+
+    if(action.includes("delete/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your Portfolio Image has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setMessage(apiResponseRef.current)
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -168,6 +188,11 @@ export default function Portfolio({
                           </div>
                         </div>
                       </div>
+
+                      <div className='px-4 sm:px-6 my-2'>
+                        <AlertSuccess message={message}/>
+                      </div>
+
                       <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
                         <label className="block text-sm font-medium leading-5 text-gray-700">
                           Portfolio Images
