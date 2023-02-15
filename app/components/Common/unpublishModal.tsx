@@ -72,10 +72,10 @@ export default function Delete({open,onClose,isPublished, setopenModal}:any) {
                   <button
                     type="submit"
                     // onClick={onClose}
-                    className={`inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 disabled:cursor-pointer ${isPublished ? 'bg-red-600 hover:bg-red-700' :'bg-indigo-600 hover:bg-indigo-700'}  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
+                    className={`inline-flex justify-center items-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 disabled:cursor-pointer ${isPublished ? 'bg-red-600 hover:bg-red-700' :'bg-indigo-600 hover:bg-indigo-700'}  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
                     disabled={transition?.state === "submitting"}
                     >
-                      {transition?.state === "submitting" ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> :
+                      {transition?.state === "submitting" ? <BeatLoader color="#ffffff" size={12} className="px-0 py-0.5" /> :
                       isPublished ? 'Unpublish' : 'Publish'}
                   </button>
                 </Form>

@@ -156,7 +156,7 @@ export default function EditSpotlight({
                 <div className="mt-1">
                   <input
                     data-cy="linkEditUrl"
-                    type="text"
+                    type="url"
                     value={val?.linkUrl}
                     name="linkUrl"
                     id="linkUrl"
@@ -295,7 +295,7 @@ export default function EditSpotlight({
                     data-cy="editLinkButton"
                     id="editLinkButton"
                     type="submit"
-                    className="ml-4 mb-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
+                    className="ml-4 mb-4 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                     onClick={(e: any) => {
                       setClicked(true)
                       val.linkText === '' ||
@@ -313,7 +313,7 @@ export default function EditSpotlight({
                       '/account/update/additionalLink' &&
                     !errorUrl &&
                     !errorLinkText ? (
-                      <BeatLoader color="#ffffff" />
+                      <BeatLoader color="#ffffff" size={12} />
                     ) : (
                       'Edit Link'
                     )}

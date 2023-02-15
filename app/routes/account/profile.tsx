@@ -360,7 +360,7 @@ export default function Profile() {
                       type="submit"
                       name="_action"
                       value="updateProfile"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-pointer"
+                      className="inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-pointer"
                       onClick={(e: any) => {
                         setSelectSave('profileSaveButton')
                       }}
@@ -368,7 +368,7 @@ export default function Profile() {
                     >
                       {selectSave === 'profileSaveButton' &&
                       transition?.submission?.action == '/account/profile' ? (
-                        <BeatLoader color="#ffffff" />
+                        <BeatLoader color="#ffffff" size={12} />
                       ) : (
                         'Save'
                       )}
@@ -534,7 +534,7 @@ export default function Profile() {
                           type="submit"
                           name="_action"
                           value="updatePassword"
-                          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-pointer"
+                          className="inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-pointer"
                           onClick={(e: any) => {
                             setSelectSave('passwordSaveButton')
                           }}
@@ -543,7 +543,7 @@ export default function Profile() {
                           {selectSave === 'passwordSaveButton' &&
                           transition?.submission?.action ==
                             '/account/profile' ? (
-                            <BeatLoader color="#ffffff" />
+                            <BeatLoader color="#ffffff" size={12} />
                           ) : (
                             'Save'
                           )}

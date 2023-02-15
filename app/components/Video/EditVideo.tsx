@@ -137,12 +137,12 @@ useEffect(() => {
                         <button
                           data-cy="editVideoLinkButton"
                           type="submit"
-                          className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer disabled:cursor-pointer" 
+                          className="ml-4 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer disabled:cursor-pointer" 
                           // @ts-ignore
                         //  onClick={transition.state === 'loading' ? OnCancel : null}
                           disabled={!val || transition?.state != "idle"  ? true : !error ? false : true }
                         >
-                          {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                          {transition?.state != "idle"  ? <BeatLoader color="#ffffff" size={12} /> :
                         "Edit Video"}
                         </button>
                       </div>

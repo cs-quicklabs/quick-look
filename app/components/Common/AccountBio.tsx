@@ -265,11 +265,11 @@ export default function DashboardBio({
                     </button>
                     <button
                       type="submit"
-                      className="ml-4 mr-2 mb-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
+                      className="ml-4 mr-2 mb-4 inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                       disabled={transition?.state != 'idle' ? true : false}
                     >
                       {transition?.state != 'idle' ? (
-                        <BeatLoader color="#ffffff" />
+                        <BeatLoader color="#ffffff" size={10} />
                       ) : (
                         'Update'
                       )}

@@ -54,10 +54,10 @@ export default function Delete({open,onClose}:any) {
                  <Form action="/account/settings/deleteAccount">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
+                    className="inline-flex justify-center items-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
                     disabled={transition?.state != "idle"}
                   >
-                   {transition?.state != "idle"  ? <BeatLoader color="#ffffff" className="px-0 py-0.5" /> : "Delete"} 
+                   {transition?.state != "idle"  ? <BeatLoader size={14} color="#ffffff" className="px-0 py-0.5" /> : "Delete"} 
                   </button></Form>
                   <button
                     type="button"
