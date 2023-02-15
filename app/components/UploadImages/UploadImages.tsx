@@ -10,6 +10,7 @@ import * as cropro from 'cropro'
 import Dropzone from './DragandDrop'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
+import { CheckCircleIcon } from '@heroicons/react/solid'
 
 let timeOut : string | number | NodeJS.Timeout | undefined;
 
@@ -238,6 +239,34 @@ export default function NoImages({
     }
   },[transition])
 
+
+  // for success alert
+  const apiResponseRef = useRef("")
+  const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
+  const {id, message} = apiResponse
+
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
+
+    if(action.includes("add/image") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image added successfully."
+
+    if(action.includes("update/crop-image") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been updated successfully."
+
+    if(action.includes("update/change-") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been changed successfully."
+
+    if(action.includes("delete/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={() => {}}>
@@ -293,6 +322,20 @@ export default function NoImages({
                           </div>
                         </div>
                       </div>
+
+                      {message && 
+                        <div className="rounded-md bg-green-50 p-4 mx-4 sm:mx-6 my-2" data-cy="alertSuccess">
+                          <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                              <CheckCircleIcon
+                                className="h-5 w-5 text-green-400"
+                                aria-hidden="true"
+                              />
+                            </div>
+                            <p className="text-sm font-medium text-green-800">{message}</p>
+                          </div>
+                        </div>
+                      }
 
                       {bgimageAlreadyuploaded || primaryRestore ? (
                         <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
