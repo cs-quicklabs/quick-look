@@ -244,6 +244,7 @@ export default function NoImages({
   const apiResponseRef = useRef("")
   const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
   const {id, message} = apiResponse
+  const timeOutRef = useRef("")
 
   useEffect(()=>{
     const action = transition?.submission?.action || ""
@@ -253,6 +254,9 @@ export default function NoImages({
 
     if(action.includes("update/crop-image") && !apiResponseRef?.current)
       apiResponseRef.current = "Image has been updated successfully."
+
+    if(action.includes("update/restoreImage") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been restored successfully."
 
     if(action.includes("update/change-") && !apiResponseRef?.current)
       apiResponseRef.current = "Image has been changed successfully."
@@ -266,6 +270,17 @@ export default function NoImages({
     }
 
   },[transition])
+
+
+  useEffect(()=>{
+    if(apiResponse?.message){
+      clearTimeout(timeOutRef?.current)
+      // @ts-ignore
+      timeOutRef.current = setTimeout(()=>{
+        setApiResponse({...apiResponse, message: ""})
+      },4000)
+    }
+  },[apiResponse])
 
   return (
     <Transition.Root show={true} as={Fragment}>
