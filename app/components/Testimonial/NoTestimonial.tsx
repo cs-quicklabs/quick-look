@@ -1,8 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateTestimonial from './CreateTestimonial';
 import ExistingTestimonial from './ExistingTestimonial';
+import { AlertSuccess } from '../Alert/Alert';
+import { useTransition } from '@remix-run/react';
 
 export default function NoTestimonial({ inputTestimonial, setInputTestimonial, setShowTestimonial, loaderData, mode, setmode}:any) {
 
@@ -11,7 +13,9 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
 //   setText(successUpdateMessage)
 // }, [successUpdateMessage])
 
-  const [showCreateTestimonial, setShowCreateTestimonial] = useState(false);
+const [showCreateTestimonial, setShowCreateTestimonial] = useState(false);
+const apiResponseRef = useRef("")
+const transition = useTransition()
 
   const toggleCreatetestimonial = () => {
     setShowCreateTestimonial(!showCreateTestimonial);
@@ -28,6 +32,32 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
     if(mode === 'mobile'){
     }
   }
+
+
+
+  const [message, setMessage] = useState('')
+
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
+
+    if(action.includes("add/testimonial") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your testimonial added successfully."
+
+    if(action.includes("update/testimonial") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your testimonial has been updated successfully."
+
+    if(action.includes("delete/testimonial") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your testimonial has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setMessage(apiResponseRef.current)
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
+
+
+  
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={()=>{}}>
@@ -71,6 +101,10 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
                         </div>
                     </div>
 
+                    <div className='px-4 my-2'>
+                      <AlertSuccess message={message}/>
+                    </div>
+
                     {!loaderData?.testimonial?.testimonialBy ? 
                     
                       <div className='font-inter mt-7 flex flex-col items-center'>
@@ -96,10 +130,7 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
                       <div className=''>
                       <ExistingTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} loaderData={loaderData} mode={mode} setShowTestimonial={setShowTestimonial} />
                       </div>
-                    }
-
-                    
-                    
+                    }                 
                   </div>                  
                 </Dialog.Panel>
               </Transition.Child>
