@@ -1,8 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateVideoLink from './CreateVideoLink';
 import ExistingVideo from './ExistingVideo';
+import { useTransition } from '@remix-run/react';
+import { AlertSuccess } from '../Alert/Alert';
 
 export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mode, loaderData, setmode}:any) {
 
@@ -28,6 +30,32 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
     if(mode === 'mobile'){
     }
   }
+
+
+  const [message, setMessage] = useState('')
+  const apiResponseRef = useRef("")
+  const transition = useTransition()
+
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
+
+    if(action.includes("add/video") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your video link added successfully."
+
+    if(action.includes("update/video") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your video link has been updated successfully."
+
+    if(action.includes("delete/video") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your video link has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setMessage(apiResponseRef.current)
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
+
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={()=>{}}>
@@ -68,6 +96,10 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
                             Please provide link of video you would like to show on profile
                           </p>
                         </div>
+                    </div>
+
+                    <div className='px-4 my-2'>
+                      <AlertSuccess message={message}/>
                     </div>
 
                     {!loaderData?.video?.videoLink ? <div className='font-inter mt-7 flex flex-col items-center'>
