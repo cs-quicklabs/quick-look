@@ -10,6 +10,9 @@ import * as cropro from 'cropro'
 import Dropzone from './DragandDrop'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
+import { CheckCircleIcon } from '@heroicons/react/solid'
+
+let timeOut : string | number | NodeJS.Timeout | undefined;
 
 export default function NoImages({
   setshowImages,
@@ -179,6 +182,106 @@ export default function NoImages({
     setmode('desktop')
   }
 
+
+
+  // states to change cover image
+  const changeImageSubmitRef = useRef(null)
+  const [changeImageResponse, setChangeImageResponse] = useState({ message: "", type: false })
+  const changeImageStateRef = useRef(false)
+  
+  const handleChangeImage  = (event: any) => {
+    const file = event?.target?.files?.[0];
+
+    if (file?.type?.includes("image") && !file?.type?.includes("svg")) {
+      
+      if(file?.size / 1024 > 4096){
+        setChangeImageResponse({ message: "Image size can be upto 4MB.", type: false });
+        return
+      }
+
+      // @ts-ignore
+      changeImageSubmitRef?.current?.click()
+
+    } else {
+      setChangeImageResponse({
+        message: "Only jpg, jpeg and png files are supported!",
+        type: false,
+      });
+    }
+  };
+
+  useEffect(()=>{
+    if(changeImageResponse?.message){
+      clearTimeout(timeOut);
+
+      timeOut = setTimeout(() => {
+        setChangeImageResponse({ message: "", type: false });
+      }, 4000);
+    }
+  },[changeImageResponse])
+
+
+  // callback to open editor for cover image after changing
+  useEffect(()=>{
+    
+    if(transition?.submission?.action.includes("change-image") && !changeImageStateRef?.current)
+      changeImageStateRef.current = true
+    
+    if(transition?.state === "idle" && changeImageStateRef?.current){
+      changeImageStateRef.current = false
+
+      setTimeout(()=>{
+        showCropArea()
+        setUrlSec('')
+        setEdit(true)
+        setEdit2(false)
+      },1500)
+    }
+  },[transition])
+
+
+  // for success alert
+  const apiResponseRef = useRef("")
+  const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
+  const {id, message} = apiResponse
+  const timeOutRef = useRef("")
+
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
+
+    if(action.includes("add/image") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image added successfully."
+
+    if(action.includes("update/crop-image") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been updated successfully."
+
+    if(action.includes("update/restoreImage") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been restored successfully."
+
+    if(action.includes("update/change-") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been changed successfully."
+
+    if(action.includes("delete/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
+
+
+  useEffect(()=>{
+    if(apiResponse?.message){
+      clearTimeout(timeOutRef?.current)
+      // @ts-ignore
+      timeOutRef.current = setTimeout(()=>{
+        setApiResponse({...apiResponse, message: ""})
+      },4000)
+    }
+  },[apiResponse])
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={() => {}}>
@@ -235,6 +338,20 @@ export default function NoImages({
                         </div>
                       </div>
 
+                      {message && 
+                        <div className="rounded-md bg-green-50 p-4 mx-4 sm:mx-6 my-2" data-cy="alertSuccess">
+                          <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                              <CheckCircleIcon
+                                className="h-5 w-5 text-green-400"
+                                aria-hidden="true"
+                              />
+                            </div>
+                            <p className="text-sm font-medium text-green-800">{message}</p>
+                          </div>
+                        </div>
+                      }
+
                       {bgimageAlreadyuploaded || primaryRestore ? (
                         <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
                           <label className="block text-sm font-medium leading-5 text-gray-700">
@@ -248,7 +365,9 @@ export default function NoImages({
                                   '/account/delete/image') ||
                               (edit &&
                                 transition?.submission?.action ==
-                                  '/account/update/crop-image') ? (
+                                  '/account/update/crop-image') || 
+                                  (transition?.submission?.action ===
+                                    '/account/update/change-image') ? (
                                 <div className="relative top-[-1rem] ">
                                   <BeatLoader
                                     color="#184fad"
@@ -266,7 +385,9 @@ export default function NoImages({
                                         transition?.submission?.action ==
                                           '/account/delete/image') ||
                                       transition?.submission?.action ==
-                                        '/account/update/crop-image'
+                                        '/account/update/crop-image' ||
+                                        (transition?.submission?.action ===
+                                          '/account/update/change-image')
                                         ? 'opacity-30'
                                         : ''
                                     }`}
@@ -304,7 +425,7 @@ export default function NoImages({
                               </Form>
                             </div>
 
-                            <div className="mt-3 flex items-center justify-center">
+                            <div className={`mt-3 flex items-center justify-center ${transition?.state === "idle" ? "" : "hidden"}`}>
                               <button
                                 onClick={() => {
                                   showCropArea()
@@ -317,6 +438,30 @@ export default function NoImages({
                               >
                                 Edit
                               </button>
+                              
+                              {/* to change image */}
+                              <Form
+                                replace
+                                action="update/change-image"
+                                method="post"
+                                encType="multipart/form-data"
+                              >
+                                <input
+                                  name={"changePrimaryImage"}
+                                  id="changePrimaryImage"
+                                  type="file"
+                                  className="hidden"
+                                  onChange={handleChangeImage}
+                                  accept="image/*"
+                                  value={""}
+                                />
+
+                                <button type="submit" ref={changeImageSubmitRef} hidden/>
+                              </Form>
+
+                              <label htmlFor='changePrimaryImage' className="mx-4 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600">
+                                Change
+                              </label>
 
                               <button
                                 id="primaryDeleteButton"
@@ -325,7 +470,7 @@ export default function NoImages({
                                   setopen(true)
                                   setDeleteImage('primary')
                                 }}
-                                className="ml-2 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
+                                className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
                                 disabled={
                                   deleteImage === 'primary' &&
                                   transition?.submission?.action ==
@@ -335,6 +480,12 @@ export default function NoImages({
                                 Delete
                               </button>
                             </div>
+
+                            {!changeImageResponse?.type && changeImageResponse?.message &&
+                              <div className="flex justify-center mt-2 text-sm text-red-500">
+                                {changeImageResponse.message}
+                              </div>
+                            }
                           </div>
                         </div>
                       ) : (
@@ -643,7 +794,7 @@ export default function NoImages({
                           </div>
                         </div>
                       )} */}
-                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} 
+                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} setUrlSec={setUrlSec} 
 setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError ={setSecondaryImageError}
 setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} setimage2={setimage2} upload={upload}
 setRestore2={setRestore2} secondaryImageError={secondaryImageError} 
