@@ -414,7 +414,7 @@ const OnCancel = ()=>{
                               <div className="mt-1">
                                 <input
                                   data-cy="addSpotlightLink"
-                                  type="text"
+                                  type="url"
                                   value={val.buttonActionlink}
                                   name="buttonActionlink"
                                   id="project-name"

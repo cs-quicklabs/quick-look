@@ -300,7 +300,7 @@ if(loaderData?.profile?.additionalLinksColor && loaderData?.profile?.additionalL
              <div className="mt-1">
                <input
                  data-cy="linkUrl"
-                 type="text"
+                 type="url"
                  name="linkUrl"
                  id="linkUrl"
                  value={input.linkUrl}

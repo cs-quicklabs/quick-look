@@ -156,7 +156,7 @@ export default function EditSpotlight({
                 <div className="mt-1">
                   <input
                     data-cy="linkEditUrl"
-                    type="text"
+                    type="url"
                     value={val?.linkUrl}
                     name="linkUrl"
                     id="linkUrl"
