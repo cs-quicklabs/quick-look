@@ -14,10 +14,10 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.245.0",
-    "@aws-sdk/lib-storage": "^3.259.0",
+    "@aws-sdk/client-s3": "^3.267.0",
+    "@aws-sdk/lib-storage": "^3.267.0",
     "@headlessui/react": "^1.7.7",
-    "@heroicons/react": "^1.0.6",
+    "@heroicons/react": "^2.0.15",
     "@material-tailwind/react": "^1.2.5",
     "@prisma/client": "^4.9.0",
     "@remix-run/node": "^1.12.0",
@@ -48,7 +48,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
-    "react-spinners": "^0.13.7",
+    "react-spinners": "^0.13.8",
     "tailwind-scrollbar-hide": "^1.1.7",
     "uuid": "^9.0.0"
   },
@@ -57,7 +57,7 @@
     "@remix-run/dev": "^1.12.0",
     "@remix-run/eslint-config": "^1.12.0",
     "@types/bcryptjs": "^2.4.2",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.13.0",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "@types/react-google-recaptcha": "^2.1.5",
