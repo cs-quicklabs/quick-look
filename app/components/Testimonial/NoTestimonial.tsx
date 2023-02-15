@@ -14,8 +14,10 @@ export default function NoTestimonial({ inputTestimonial, setInputTestimonial, s
 // }, [successUpdateMessage])
 
 const [showCreateTestimonial, setShowCreateTestimonial] = useState(false);
+const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
 const apiResponseRef = useRef("")
 const transition = useTransition()
+const {id, message} = apiResponse
 
   const toggleCreatetestimonial = () => {
     setShowCreateTestimonial(!showCreateTestimonial);
@@ -35,8 +37,7 @@ const transition = useTransition()
 
 
 
-  const [message, setMessage] = useState('')
-
+  
   useEffect(()=>{
     const action = transition?.submission?.action || ""
 
@@ -50,7 +51,7 @@ const transition = useTransition()
       apiResponseRef.current = "Your testimonial has been deleted successfully."
 
     if(transition?.state === "idle" && apiResponseRef?.current){
-      setMessage(apiResponseRef.current)
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
       apiResponseRef.current = ""
     }
 
@@ -102,7 +103,7 @@ const transition = useTransition()
                     </div>
 
                     <div className='px-4 my-2'>
-                      <AlertSuccess message={message}/>
+                      <AlertSuccess message={message} key={id}/>
                     </div>
 
                     {!loaderData?.testimonial?.testimonialBy ? 
@@ -130,7 +131,7 @@ const transition = useTransition()
                       <div className=''>
                       <ExistingTestimonial inputTestimonial={inputTestimonial} setInputTestimonial={setInputTestimonial} loaderData={loaderData} mode={mode} setShowTestimonial={setShowTestimonial} />
                       </div>
-                    }                 
+                    }                
                   </div>                  
                 </Dialog.Panel>
               </Transition.Child>

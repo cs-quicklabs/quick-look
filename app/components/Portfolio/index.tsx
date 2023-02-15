@@ -19,10 +19,10 @@ export default function Portfolio({
   const [image1, setimage1] = useState(null)
   const [error, setError] = useState('')
   const [errorDrag, setErrorDrag] = useState('')
-  const [message, setMessage] = useState('')
   const apiResponseRef = useRef("")
-
   const transition = useTransition()
+  const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
+  const {id, message} = apiResponse
 
   // if(image1 && image1.includes)
   const [edit, setEdit] = useState(false)
@@ -121,7 +121,7 @@ export default function Portfolio({
       apiResponseRef.current = "Your Portfolio Image has been deleted successfully."
 
     if(transition?.state === "idle" && apiResponseRef?.current){
-      setMessage(apiResponseRef.current)
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
       apiResponseRef.current = ""
     }
 
@@ -190,7 +190,7 @@ export default function Portfolio({
                       </div>
 
                       <div className='px-4 sm:px-6 my-2'>
-                        <AlertSuccess message={message}/>
+                        <AlertSuccess message={message} key={id} />
                       </div>
 
                       <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">

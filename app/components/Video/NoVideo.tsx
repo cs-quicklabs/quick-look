@@ -14,6 +14,10 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
 // }, [successUpdateMessage])
 
   const [showCreateVideoLink, setShowCreateVideoLink] = useState(false);
+  const apiResponseRef = useRef("")
+  const transition = useTransition()
+  const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
+  const {id, message} = apiResponse
 
   const toggleCreateVideo = () => {
     setShowCreateVideoLink(!showCreateVideoLink);
@@ -32,9 +36,6 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
   }
 
 
-  const [message, setMessage] = useState('')
-  const apiResponseRef = useRef("")
-  const transition = useTransition()
 
   useEffect(()=>{
     const action = transition?.submission?.action || ""
@@ -49,7 +50,7 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
       apiResponseRef.current = "Your video link has been deleted successfully."
 
     if(transition?.state === "idle" && apiResponseRef?.current){
-      setMessage(apiResponseRef.current)
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
       apiResponseRef.current = ""
     }
 
@@ -99,7 +100,7 @@ export default function NoVideo({ inputVideo, setInputVideo, setShowAddVideo, mo
                     </div>
 
                     <div className='px-4 my-2'>
-                      <AlertSuccess message={message}/>
+                      <AlertSuccess message={message} key={id} />
                     </div>
 
                     {!loaderData?.video?.videoLink ? <div className='font-inter mt-7 flex flex-col items-center'>
