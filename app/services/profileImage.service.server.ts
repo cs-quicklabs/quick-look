@@ -94,7 +94,7 @@ export async function restoreSecondaryImage(user: User){
         }
     })
     if(userProfileImagerecord){
-        await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
+        await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
     }
     await db.profileImage.update({
         where:{
@@ -118,6 +118,24 @@ export async function removePrimaryImage(user: User){
         
         if(userProfileImagerecord){
             await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
+        }
+        return true
+    }
+    catch (e){
+        return null
+    }
+}
+
+export async function removeSecondaryImage(user: User){
+    try {
+        const userProfileImagerecord = await db.profileImage.findFirst({
+            where: {
+                userId : user?.id
+            }
+        })
+        
+        if(userProfileImagerecord){
+            await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
         }
         return true
     }

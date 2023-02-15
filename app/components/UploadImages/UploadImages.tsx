@@ -10,6 +10,7 @@ import * as cropro from 'cropro'
 import Dropzone from './DragandDrop'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
+import { CheckCircleIcon } from '@heroicons/react/solid'
 
 let timeOut : string | number | NodeJS.Timeout | undefined;
 
@@ -210,7 +211,7 @@ export default function NoImages({
   };
 
   useEffect(()=>{
-    if(changeImageResponse?.type){
+    if(changeImageResponse?.message){
       clearTimeout(timeOut);
 
       timeOut = setTimeout(() => {
@@ -237,6 +238,49 @@ export default function NoImages({
       },1500)
     }
   },[transition])
+
+
+  // for success alert
+  const apiResponseRef = useRef("")
+  const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
+  const {id, message} = apiResponse
+  const timeOutRef = useRef("")
+
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
+
+    if(action.includes("add/image") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image added successfully."
+
+    if(action.includes("update/crop-image") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been updated successfully."
+
+    if(action.includes("update/restoreImage") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been restored successfully."
+
+    if(action.includes("update/change-") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been changed successfully."
+
+    if(action.includes("delete/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Image has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
+
+
+  useEffect(()=>{
+    if(apiResponse?.message){
+      clearTimeout(timeOutRef?.current)
+      // @ts-ignore
+      timeOutRef.current = setTimeout(()=>{
+        setApiResponse({...apiResponse, message: ""})
+      },4000)
+    }
+  },[apiResponse])
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -293,6 +337,20 @@ export default function NoImages({
                           </div>
                         </div>
                       </div>
+
+                      {message && 
+                        <div className="rounded-md bg-green-50 p-4 mx-4 sm:mx-6 my-2" data-cy="alertSuccess">
+                          <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                              <CheckCircleIcon
+                                className="h-5 w-5 text-green-400"
+                                aria-hidden="true"
+                              />
+                            </div>
+                            <p className="text-sm font-medium text-green-800">{message}</p>
+                          </div>
+                        </div>
+                      }
 
                       {bgimageAlreadyuploaded || primaryRestore ? (
                         <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
@@ -736,7 +794,7 @@ export default function NoImages({
                           </div>
                         </div>
                       )} */}
-                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} 
+                      <ProfileImage secondaryRestore={secondaryRestore} loaderData={loaderData} deleteImage={deleteImage} edit2={edit2} ref5={ref5} urlSec={urlSec} ref6={ref6} setUrl={setUrl} setUrlSec={setUrlSec} 
 setEdit2={setEdit2} setEdit={setEdit} setopen={setopen} setDeleteImage={setDeleteImage} setDrag={setDrag} setDrag2={setDrag2} setSecondaryImageError ={setSecondaryImageError}
 setImages={setImages} images={images} upload2={upload2} restore2={restore2} drag2={drag2} setUpload2={setUpload2} setUpload={setUpload} ref2={ref2} setimage2={setimage2} upload={upload}
 setRestore2={setRestore2} secondaryImageError={secondaryImageError} 
