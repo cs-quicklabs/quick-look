@@ -9,7 +9,30 @@ import Stripe from "stripe"
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "", {apiVersion:"2022-11-15"});
 
+type PaymentStatus = {
+    userId : string;
+    customerId : string;
+    paymentIntent : string;
+    paymentStatus : string;
+}
 
+
+export async function updatePaymentStatus(request:PaymentStatus) {
+    try{
+        const {customerId, paymentIntent, paymentStatus} = request
+        await db.payment.update({
+            where : {
+                customerId
+            },
+            data : {
+                paymentIntentId : paymentIntent,
+                paymentStatus
+            }
+        })
+    }catch(err){
+        throw("Something went wrong, Please try again!")
+    }
+}
 
 
   
