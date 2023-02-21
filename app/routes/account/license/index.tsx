@@ -1,9 +1,51 @@
-import { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { ActionFunction, LoaderFunction} from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
+import { Form, useLoaderData } from "@remix-run/react";
 import DashboardHeader from "~/components/Common/DashboardHeader";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import { getUser, requireUserId } from "~/services/auth.service.server";
+import Stripe from "stripe"
 
+export const action: ActionFunction = async ({ request }) => {
+  
+  try{
+    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "", {apiVersion:"2022-11-15"});
+    const user  = await getUser(request);
+    const metadata = {
+      email : user?.email || "",
+      userId : user?.id || "",
+    }
+
+    if(user?.paymentStatus?.paymentIntentId && user?.paymentStatus?.paymentStatus === "paid")
+    throw("User has already purchased the license")
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [
+        {
+          price: process.env.STRIPE_PRICE_ID,
+          quantity: 1,
+        }
+      ],
+      metadata,
+      customer : user?.paymentStatus?.customerId,
+      success_url: `${process.env.REACT_APP_URL}/license?success=true`,
+      cancel_url: `${process.env.REACT_APP_URL}/license?cancel=true`,
+    });
+
+    if(session.url)
+    return redirect(session.url)
+
+    else throw("Something went wrong, Please try again!")
+    
+  }
+  catch(err){
+    return json(
+      { errors : err || "Something went wrong, Please try again!"},
+      { status: 400 }
+    )
+  }
+}
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   await requireUserId(request);
@@ -40,6 +82,12 @@ export default function License() {
               </p>
             }
           </div>
+
+          {!loaderData?.paymentStatus?.paymentStatus &&
+            <Form replace={false} className='space-y-4' method='post' noValidate>
+              <button type="submit">Pay Now</button>
+            </Form>
+          }
         </div>
       </div>
     </>
