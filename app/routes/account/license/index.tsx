@@ -5,6 +5,7 @@ import DashboardHeader from "~/components/Common/DashboardHeader";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import Stripe from "stripe"
+import dayjs from "dayjs";
 
 export const action: ActionFunction = async ({ request }) => {
   
@@ -56,6 +57,8 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export default function License() {
   const loaderData = useLoaderData()
+
+  const trialExpireAt =  dayjs(new Date(new Date(loaderData?.createdAt).getTime()+(86400*1000*14))).format('MMMM DD, YYYY');
   
   return (
     <>
@@ -72,22 +75,33 @@ export default function License() {
           <div className="">
             <h3 className="text-lg leading-6 font-medium text-gray-900" data-cy="license-header">License</h3>
             
-            {(loaderData?.couponId || loaderData?.allowed_free_access) &&
-              <p className="text-sm text-gray-500 mt-2" data-cy="license-text">
-                {loaderData?.couponId ? 
-                  `You have signed up with coupon code ${loaderData?.coupon_code?.code} which allowed you free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me`
+              <p className="text-sm leading-5 font-normal text-gray-500 pt-1" data-cy="license-text">
+                {
+                  loaderData?.couponId ? 
+                    `You have signed up with coupon code ${loaderData?.coupon_code?.code} which allowed you free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me`
+                  
                   :
-                  "You have been given free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me"
+                  loaderData?.allowed_free_access ?
+                    "You have been given free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me"
+                  
+                  :
+                  loaderData?.paymentStatus?.paymentStatus === "paid" ?
+                    "You have purchased the license with one time payment and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me"
+                  : 
+                  <>
+                    <>
+                      Your account is under trial period which will expire on {trialExpireAt}. Please buy a license to keep using product.
+                    </>
+
+                    <Form replace={false} method='post' noValidate>
+                      <button type="submit" className="mt-6 flex items-center justify-center bg-indigo-600 py-2 px-4 shadow-sm rounded-md text-sm leading-5 font-medium text-white hover:font-semibold">
+                        Buy License for $19
+                      </button>
+                    </Form>
+                  </>
                 }
               </p>
-            }
           </div>
-
-          {!loaderData?.paymentStatus?.paymentStatus &&
-            <Form replace={false} className='space-y-4' method='post' noValidate>
-              <button type="submit">Pay Now</button>
-            </Form>
-          }
         </div>
       </div>
     </>

@@ -35,6 +35,7 @@
     "cuid": "^2.1.8",
     "cypress": "^12.3.0",
     "cypress-xpath": "^2.0.1",
+    "dayjs": "^1.11.7",
     "focus-visible": "^5.2.0",
     "lightgallery": "^2.7.1",
     "lodash": "^4.17.21",
