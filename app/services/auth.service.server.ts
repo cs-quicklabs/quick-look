@@ -2,7 +2,7 @@ import { json, createCookieSessionStorage, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import { LoginForm } from '~/types/loginForm.server'
 import { RegisterForm } from '~/types/regirsterForm.server'
-import { createUser } from './user.service.serevr'
+import { createStripeCustomer, createUser } from './user.service.serevr'
 import bcrypt from 'bcryptjs'
 import { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 
@@ -79,7 +79,8 @@ export async function login(loginForm: LoginForm) {
       email: loginForm.email,
     },
     include: {
-      profile: true
+      profile: true,
+      paymentStatus: true
     }
   })
 
@@ -94,6 +95,10 @@ export async function login(loginForm: LoginForm) {
 
   if (user.profile?.isVerified == false) {
     throw json({ error: 'Account Not verified' }, { status: 401 })
+  }
+
+  if(!user?.paymentStatus?.customerId){
+    await createStripeCustomer(user?.id)
   }
 
   return { id: user.id, email: loginForm.email }
@@ -135,6 +140,7 @@ export async function getUser(request: Request) {
       },
       include: {
         coupon_code : true,
+        paymentStatus : true,
         profile : true,
         profileInfo : true,
         profileImage: true,

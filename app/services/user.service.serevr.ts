@@ -5,6 +5,49 @@ import { nameCasing } from "~/utils/string.server";
 import { UpdateProfileDetails } from "~/types/updateProfile.server";
 import { UserPreferences } from "~/types/updateUserPreferences.server";
 import { UpdateUserBioDetails } from "~/types/updateUserBioDetails.server";
+import Stripe from "stripe"
+
+const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "", {apiVersion:"2022-11-15"});
+
+
+
+
+  
+export async function createStripeCustomer(userId:string) {
+    try{
+        const user = await db.user.findFirst({
+            where: {
+                id: userId
+            },
+            include: {
+                paymentStatus: true
+            }
+        })
+
+        if(user?.paymentStatus?.customerId)
+        return
+
+        const customer = await stripe.customers.create({
+            name :`${user?.firstname} ${user?.lastname}`,
+            email : user?.email,
+            metadata : {
+                userId,
+                email : user?.email || "",
+            }
+        })
+
+        await db.payment.create({
+            data: {
+                userId,
+                customerId : customer?.id
+            }
+        })
+        return true
+    }
+    catch(err){
+        return null
+    }
+}
 
 export async function createUser(userRegister: RegisterForm) {
     const password = await bcrypt.hash(userRegister.password, 10)
@@ -18,6 +61,9 @@ export async function createUser(userRegister: RegisterForm) {
             couponId : userRegister?.couponId || null,
         }
     })
+
+    await createStripeCustomer(user?.id)
+
     await db.profile.create({
         data: {
             userId: user.id,

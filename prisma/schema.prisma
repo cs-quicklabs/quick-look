@@ -40,6 +40,7 @@ model User {
   userVerification    UserVerification?
   profile             Profile?
   supportBanner       SupportBanner?
+  paymentStatus       Payment?
   coupon_code         Coupon?             @relation(fields: [couponId], references: [id])
   couponId            String?
   allowed_free_access Boolean?            @default(false)
@@ -57,6 +58,19 @@ model UserVerification {
   updatedAt    DateTime? @updatedAt
 
   @@map("userverification")
+}
+
+model Payment {
+  id              String    @id @unique @default(uuid())
+  createdAt       DateTime? @default(now())
+  updatedAt       DateTime? @updatedAt
+  userId          String    @unique
+  customerId      String    @unique
+  paymentIntentId String?
+  paymentStatus   String?
+  user            User      @relation(fields: [userId], references: [id])
+
+  @@map("payment")
 }
 
 model Profile {
