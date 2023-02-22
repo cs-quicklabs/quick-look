@@ -284,6 +284,13 @@ export async function deleteUser(user?: any) {
             userId: user.id
         }
     })
+
+    const deletePayment = db.payment.delete({
+        where: {
+            userId: user.id
+        }
+    })
+
     const deleteuser = db.user.delete({
         where: {
             id: user.id
@@ -302,6 +309,7 @@ export async function deleteUser(user?: any) {
         deletespotlightButton,
         deletetestimonial,
         deleteVideo,
+        deletePayment,
         deleteuser
     ])
 }
