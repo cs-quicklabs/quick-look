@@ -23,6 +23,7 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 
 import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
+
 export const action = ModalAction;
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -170,6 +171,21 @@ export default function Profile() {
         : false
     )
   }
+
+  if(loaderData?.needPaymentToContinue){
+    return <div className='h-screen'>
+      <DashboardHeader
+        showUserSetting
+        setShowUserSetting
+        username={loaderData?.username}
+        loaderData={loaderData}
+        noHamburger={true}
+      />
+    </div>
+  }
+
+
+
   const disabledIcon =
     loaderData?.profileImage?.primaryImage || primaryRestore
       ? 'text-gray-700/20'

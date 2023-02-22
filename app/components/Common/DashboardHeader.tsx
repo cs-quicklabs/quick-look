@@ -8,7 +8,7 @@ import DropDown from "../DropDown/DropDown";
 import TrialStatus from './TrialStatus';
 
 
-export default function DashboardHeader({username, loaderData}: any) {
+export default function DashboardHeader({username, loaderData, noHamburger}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [showUserSetting, setShowUserSetting] = useState(false);
 
@@ -31,10 +31,21 @@ export default function DashboardHeader({username, loaderData}: any) {
                 href='/account'
                 className='flex items-center justify-center gap-4'
               >
-                <img className='hidden lg:block pb-0 lg:w-auto lg:h-9 md:mt-0 lg:pt-0 sm:pb-0' src={logo} alt='' />
-                <span className='w-max block font-base md:ml-3 lg:ml-0 sm:text-xl pt-2 pl-9 md:pl-0 sm:pt-2 sm:pb-1.5 sm:font-extrabold text-white'>
-                    Quicklook.me/{username}
-                </span>
+                {noHamburger ? 
+                  <>
+                    <img className='block py-0 w-auto h-9 mt-0' src={logo} alt='' />
+                    <span className='w-max block font-base sm:text-xl sm:font-extrabold text-white'>
+                        Quicklook.me/{username}
+                    </span>
+                  </> 
+                  :
+                  <>
+                    <img className='hidden lg:block pb-0 lg:w-auto lg:h-9 md:mt-0 lg:pt-0 sm:pb-0' src={logo} alt='' />
+                    <span className='w-max block font-base md:ml-3 lg:ml-0 sm:text-xl pt-2 pl-9 md:pl-0 sm:pt-2 sm:pb-1.5 sm:font-extrabold text-white'>
+                        Quicklook.me/{username}
+                    </span>
+                  </>
+                }
               </a>
               <a className='cursor-pointer' href={`/${username}` } target='_blank'>
 
