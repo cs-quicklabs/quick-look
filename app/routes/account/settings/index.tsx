@@ -6,6 +6,7 @@ import Delete from "~/components/Common/deleteaccountModal";
 import ProfileSetting from "~/components/Common/ProfileSetting";
 import { getUser, requireUserId } from "~/services/auth.service.server";
 import { updateUserPreferences } from "~/services/user.service.serevr";
+import { useNavigate } from "@remix-run/react"
 
 import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
 export const action = ModalAction;
@@ -25,6 +26,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 }
 
 export default function Profile() {
+  const navigate = useNavigate()
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
@@ -119,7 +121,13 @@ export default function Profile() {
               </p>
               <div className="flex justify-start ml-1 items-center">
                 <button 
-                onClick={()=>{setopenModal(true)}} 
+                onClick={()=>{
+                  if(loaderData?.needPaymentToContinue){
+                    navigate("/account")
+                    return
+                  }
+                  setopenModal(true)
+                }} 
                 className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300"
                 disabled={transition?.state != "idle" ? true : false}
                 >

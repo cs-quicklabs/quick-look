@@ -63,7 +63,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function License() {
   const loaderData = useLoaderData()
-
   const trialExpireAt =  dayjs(new Date(new Date(loaderData?.createdAt).getTime()+(86400*1000*14))).format('MMMM DD, YYYY');
   
   return (
@@ -95,9 +94,15 @@ export default function License() {
                     "You have purchased the license with one time payment and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me"
                   : 
                   <>
-                    <>
-                      Your account is under trial period which will expire on {trialExpireAt}. Please buy a license to keep using product.
-                    </>
+                    {loaderData?.needPaymentToContinue ?
+                      <>
+                        Your 14 days trial period expired on {trialExpireAt}. Please buy license for USD 19 to continue using quicklook.
+                      </>
+                    :
+                      <>
+                        Your account is under trial period which will expire on {trialExpireAt}. Please buy a license to keep using product.
+                      </>
+                    }
 
                     <Form replace={false} method='post' noValidate>
                       <button type="submit" className="mt-6 flex items-center justify-center bg-indigo-600 py-2 px-4 shadow-sm rounded-md text-sm leading-5 font-medium text-white hover:font-semibold">

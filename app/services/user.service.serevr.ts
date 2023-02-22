@@ -414,6 +414,8 @@ export async function getUserByUsername(username: string){
         },
         include: {
             profile : true,
+            coupon_code : true,
+            paymentStatus : true,
             profileInfo : true,
             profileImage: true,
             socialMedia: true,
@@ -428,6 +430,29 @@ export async function getUserByUsername(username: string){
             }
           }
     })
+
+    if(user?.profile?.isPublished
+        && !user?.allowed_free_access 
+        && !user?.coupon_code?.id 
+        && user?.paymentStatus?.paymentStatus !== "paid"
+    ){
+        const currentDate = new Date().getTime();
+        const trialExpireDate = new Date(new Date(user?.createdAt).getTime()+(86400*1000*14)).getTime();
+
+        if(currentDate > trialExpireDate){
+            await db.profile.update({
+              where: {
+                userId: user?.id
+              },
+              data: {
+                isPublished: false
+              }
+            })
+            
+            return {...user, profile: {...user?.profile, isPublished: false}}
+        }
+    }
+
     if(!user){
         return undefined
     }

@@ -178,11 +178,21 @@ export async function getUser(request: Request) {
             needPaymentToContinue : true
           }
         })
-        return {...user, needPaymentToContinue:true}
+
+        await db.profile.update({
+          where: {
+            userId: userId
+          },
+          data: {
+            isPublished: false
+          }
+        })
+        
+        return {...user, needPaymentToContinue: true, profile: {...user?.profile, isPublished: false}}
       }
     }
 
-    if((user?.allowed_free_access || user?.coupon_code?.id || user?.paymentStatus?.paymentStatus === "paid")){      
+    if(user?.allowed_free_access || user?.coupon_code?.id || user?.paymentStatus?.paymentStatus === "paid"){      
       
       if(user?.needPaymentToContinue){
         await db.user.update({
@@ -193,7 +203,7 @@ export async function getUser(request: Request) {
             needPaymentToContinue : false
           }
         })
-        return {...user, needPaymentToContinue:false}
+        return {...user, needPaymentToContinue: false}
       }
     }
 
