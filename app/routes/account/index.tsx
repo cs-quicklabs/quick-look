@@ -21,8 +21,8 @@ import Template13 from '~/components/Templates/template13'
 import Template14 from '~/components/Templates/template14'
 import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
-
 import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
+import TrialExpired from '~/components/TrialExpired'
 
 export const action = ModalAction;
 
@@ -181,6 +181,10 @@ export default function Profile() {
         loaderData={loaderData}
         noHamburger={true}
       />
+
+      <div className='mt-24 md:mt-52'>
+        <TrialExpired userData={loaderData}/>
+      </div>
     </div>
   }
 
