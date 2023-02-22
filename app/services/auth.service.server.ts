@@ -157,7 +157,46 @@ export async function getUser(request: Request) {
           orderBy: {createdAt: 'asc'}       
         }
       }
-      })
+    })
+
+    // to check if user's free trial expired
+    if(user 
+      && !user?.needPaymentToContinue 
+      && !user?.allowed_free_access 
+      && !user?.coupon_code?.id 
+      && user?.paymentStatus?.paymentStatus !== "paid"
+    ){
+      const currentDate = new Date().getTime();
+      const trialExpireDate = new Date(new Date(user?.createdAt).getTime()+(86400*1000*14)).getTime(); 
+
+      if(currentDate > trialExpireDate){
+        await db.user.update({
+          where: {
+            id: userId
+          },
+          data: {
+            needPaymentToContinue : true
+          }
+        })
+        return {...user, needPaymentToContinue:true}
+      }
+    }
+
+    if((user?.allowed_free_access || user?.coupon_code?.id || user?.paymentStatus?.paymentStatus === "paid")){      
+      
+      if(user?.needPaymentToContinue){
+        await db.user.update({
+          where: {
+            id: userId
+          },
+          data: {
+            needPaymentToContinue : false
+          }
+        })
+        return {...user, needPaymentToContinue:false}
+      }
+    }
+
     return user
   } 
 

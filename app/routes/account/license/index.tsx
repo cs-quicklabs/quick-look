@@ -48,11 +48,17 @@ export const action: ActionFunction = async ({ request }) => {
   }
 }
 
-export const loader: LoaderFunction = async ({ request, params }) => {
-  await requireUserId(request);
-  const user = await getUser(request)
-  
-  return user;
+export const loader: LoaderFunction = async ({ request }) => {
+  try{
+    const user = await getUser(request)
+    return json({...user});
+
+  }catch(error){
+    return json(
+      {error},
+      {status: 400}
+    )
+  }
 }
 
 export default function License() {

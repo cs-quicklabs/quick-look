@@ -20,30 +20,31 @@ model Coupon {
 }
 
 model User {
-  id                  String              @id @unique @default(uuid())
-  firstname           String
-  lastname            String
-  email               String
-  username            String              @unique
-  password            String
-  createdAt           DateTime            @default(now())
-  updatedAt           DateTime            @updatedAt
-  additionalLinks     AdditionalLink[]
-  testimonial         Testimonial?
-  spotlightButton     SpotlightButton?
-  portfolioImage      PortfolioImage[]
-  video               Video?
-  profileInfo         ProfileInformation?
-  profileImage        ProfileImage?
-  socialMedia         SocialMedia?
-  marketingUpdates    MarketingUpdates?
-  userVerification    UserVerification?
-  profile             Profile?
-  supportBanner       SupportBanner?
-  paymentStatus       Payment?
-  coupon_code         Coupon?             @relation(fields: [couponId], references: [id])
-  couponId            String?
-  allowed_free_access Boolean?            @default(false)
+  id                    String              @id @unique @default(uuid())
+  firstname             String
+  lastname              String
+  email                 String
+  username              String              @unique
+  password              String
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  additionalLinks       AdditionalLink[]
+  testimonial           Testimonial?
+  spotlightButton       SpotlightButton?
+  portfolioImage        PortfolioImage[]
+  video                 Video?
+  profileInfo           ProfileInformation?
+  profileImage          ProfileImage?
+  socialMedia           SocialMedia?
+  marketingUpdates      MarketingUpdates?
+  userVerification      UserVerification?
+  profile               Profile?
+  supportBanner         SupportBanner?
+  paymentStatus         Payment?
+  coupon_code           Coupon?             @relation(fields: [couponId], references: [id])
+  couponId              String?
+  allowed_free_access   Boolean?            @default(false)
+  needPaymentToContinue Boolean?            @default(false)
 
   @@map("user")
 }
