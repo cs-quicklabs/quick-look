@@ -116,6 +116,13 @@ function showCropAreaSecondary() {
     }
   },[transition])
 
+  const isUploading =
+    (upload2 === "sec" &&
+      transition?.submission?.action === "/account/add/SecImage") ||
+    (restore2 &&
+      transition?.submission?.action === "/account/update/restoreImage") ||
+    (drag2 && transition?.submission?.action == "/account/update/crop-image");
+
 
   return (
     <>
@@ -248,13 +255,19 @@ function showCropAreaSecondary() {
                             Profile Image
                           </label>
                           <div
-                            className="mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 px-[1px] pb-2.5 md:pt-6 lg:pt-10"
+                            className="relative mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 px-[1px] pb-2.5 md:pt-6 lg:pt-10"
                             onDragEnter={() => {
                               setDrag(false)
                               setDrag2(true)
                             }}
                           >
-                            <div className="text-center">
+                            {isUploading && 
+                              <div className='h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10'>
+                                <BeatLoader color="#184fad" className="mt-2" size={20}/>
+                              </div>
+                            }
+
+                            <div className={`text-center ${isUploading ? "invisible" : ""} ${transition.state !== 'idle' ? "pointer-events-none" : ""} `}>
                               <Dropzone
                                 setSecondaryImageError={setSecondaryImageError}
                                 setImages={setImages}
@@ -264,19 +277,7 @@ function showCropAreaSecondary() {
                               >
                                 <div className="flex text-sm"></div>
                               </Dropzone>
-                              {(upload2 === 'sec' &&
-                                transition?.submission?.action ===
-                                  '/account/add/SecImage') ||
-                              (restore2 &&
-                                transition?.submission?.action ===
-                                  '/account/update/restoreImage') ||
-                              (drag2 &&
-                                transition?.submission?.action ==
-                                  '/account/update/crop-image') ? (
-                                <div className="flex h-[6rem] items-center justify-center">
-                                  <BeatLoader color="#184fad" />
-                                </div>
-                              ) : (
+                              
                                 <div className="flex flex-col items-center justify-center md:mx-12 lg:mx-20 ">
                                   <Form
                                     replace={true}
@@ -336,7 +337,7 @@ function showCropAreaSecondary() {
                                     </button>
                                   </Form>
                                 </div>
-                              )}
+
                               <div className="mt-2 text-sm text-red-500">
                                 {secondaryImageError}
                               </div>
