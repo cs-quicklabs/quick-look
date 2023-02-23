@@ -41,7 +41,6 @@ export default function TrialExpired({userData}:any) {
         <Form action="/account/settings/deleteAccount">
           <button 
             className="relative shadow-sm bg-red-600 border border-red-600 rounded-md py-3 px-5 flex justify-center text-white text-base leading-6 font-medium"
-            onClick={()=>{console.log("Delete")}}
             disabled={transition?.state !== "idle"}
           >
             {loaderDeleteBtn &&

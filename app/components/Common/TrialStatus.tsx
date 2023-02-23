@@ -8,8 +8,6 @@ const TrialStatus = ({userData}:any) => {
   const trialExpireAt = dayjs(new Date(new Date(userData?.createdAt).getTime()+(86400*1000*14)))
   const diff = trialExpireAt.diff(currentDate, "day", true)
   const daysLeft = Math.ceil(diff) + (diff > 1 ? " days left" : " day left")
-  
-  // console.log({currentDate, trialExpireAt, diff,daysLeft, userData})
 
   const returnNull = !userData || diff <= 0 || userData?.allowed_free_access || userData?.couponId || userData?.paymentStatus?.paymentStatus === "paid";
 
