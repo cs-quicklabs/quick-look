@@ -222,12 +222,15 @@ export default function NoImages({
 
 
   // callback to open editor for cover image after changing
+  const [openEditor, setOpenEditor] = useState(false)
+
   useEffect(()=>{
+    const action = transition?.submission?.action || ""
     
-    if(transition?.submission?.action.includes("change-image") && !changeImageStateRef?.current)
-      changeImageStateRef.current = true
+    if((action.includes("change-image") || action.includes("add/image")) && !changeImageStateRef?.current)
+    changeImageStateRef.current = true
     
-    if(transition?.state === "idle" && changeImageStateRef?.current){
+    if(transition?.state === "idle" && changeImageStateRef?.current && openEditor){
       changeImageStateRef.current = false
 
       setTimeout(()=>{
@@ -235,9 +238,10 @@ export default function NoImages({
         setUrlSec('')
         setEdit(true)
         setEdit2(false)
-      },1500)
+      },1000)
     }
-  },[transition])
+    setOpenEditor(false)
+  },[transition, openEditor])
 
 
   // for success alert
@@ -406,6 +410,9 @@ export default function NoImages({
                                   }
                                   alt=""
                                   className="h-full w-full object-cover"
+                                  onLoad={()=>{
+                                    setOpenEditor(true)
+                                  }}
                                 />
                               )}
                               <Form
