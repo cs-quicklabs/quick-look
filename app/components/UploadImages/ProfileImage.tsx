@@ -8,6 +8,7 @@ import * as cropro from 'cropro'
 
 let timeOut : string | number | NodeJS.Timeout | undefined;
 
+
 function ProfileImage({secondaryRestore,loaderData,deleteImage,edit2,ref5,urlSec,ref6,setUrl,
 setEdit2,setEdit,setopen,setDeleteImage,setDrag,setDrag2,setSecondaryImageError,
 setImages,images,upload2,restore2,drag2,setUpload2,setUpload,ref2,setimage2,upload,
