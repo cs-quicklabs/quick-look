@@ -12,6 +12,7 @@ import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import {BriefcaseIcon} from '@heroicons/react/outline'
 import {AcademicCapIcon} from '@heroicons/react/outline'
 import PortfolioAddon from './addOns/portfolio'
+import PoweredBy from '../Common/PoweredBy'
 
 export default function Template7 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
@@ -33,7 +34,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
       {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
         <img className={`mb-3 w-[15rem] h-[15rem] rounded-full object-cover ${mode ==='mobile' ? 'xl:w-[20rem] xl:h-[20rem]' : 'xl:w-[20rem] xl:h-[20rem]'} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
-        <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl lg:text-[36px] leading-8 font-extrabold lg:leading-10 text-center`}>
+        <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl lg:text-[36px] leading-8 font-extrabold lg:leading-10 text-center lg:text-4xl`}>
           {loaderData?.firstname} {loaderData?.lastname}
         </h5>
 
@@ -112,6 +113,10 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
 
             </a> : null}
           </footer>
+
+          <div className='py-5'>
+            <PoweredBy/>
+          </div>
       </div>
         
     </div>

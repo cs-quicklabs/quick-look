@@ -13,6 +13,7 @@ import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/video'
 import PortfolioAddon from './addOns/portfolio'
+import PoweredBy from '../Common/PoweredBy'
 
 function Template10({
   input,
@@ -95,7 +96,7 @@ function Template10({
             {loaderData?.firstname} {loaderData?.lastname}
           </div>
           <div
-            className={`text-xs font-medium md:leading-8 md:text-2xl ${
+            className={`text-xs font-medium md:leading-8 md:text-2xl mt-1 ${
               mode === 'mobile' ? '' : ''
             }`}
           >
@@ -127,7 +128,7 @@ function Template10({
             }`}
           >
             {' '}
-            <pre className= {`whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'}`} >
+            <pre className= {`max-w-[472px] whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'}`} >
               {input?.description?.trim()}{' '}
             </pre>{' '}
           </div>
@@ -141,7 +142,7 @@ function Template10({
           )}
 
           <div
-            className={` ${mode === 'mobile' ? '' : ''}`}
+            className={`w-auto sm:w-[472px] ${mode === 'mobile' ? '' : ''}`}
           >
             {loaderData?.video?.videoLink && (
               <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
@@ -153,7 +154,7 @@ function Template10({
           </div>
 
           <div
-            className={`mt-5 flex w-[20rem] items-center gap-8 md:w-full flex-col ${
+            className={`mt-5 flex w-[20rem] items-center gap-6 md:w-full flex-col ${
               mode === 'mobile' ? '' : ''
             }`}
           >
@@ -205,6 +206,10 @@ function Template10({
             </a>
           ) : null}
         </footer>
+
+        <div className='py-5 mt-5'>
+          <PoweredBy/>
+        </div>
       </div>
       </div>
     </>

@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
+import PoweredBy from '../Common/PoweredBy'
 export default function Template13 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
  const Location = useLocation()
@@ -19,7 +20,7 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
   return(
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
-    <div className={`flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-around xl:px-[1rem] xl:bg-white mediumLaptop:px-[4rem] largeLaptop:px-[6rem]'} ${nav ? '' : mode !='mobile' ? '' : ''}`} >
+    <div className={`xl:ml-28 xl:gap-16 flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start xl:px-[1rem] xl:bg-white mediumLaptop:px-[4rem] largeLaptop:px-[6rem]'} ${nav ? '' : mode !='mobile' ? '' : ''}`} >
 
       <div className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode ==='mobile' ? 'w-full ' : 'w-full lg:items-center lg:pt-[5rem] lg:pb-[10rem] xl:w-[22rem] xl:items-start med:w-[25rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'} ${nav ? '' : mode !='mobile' ? '' :''}`} >
 
@@ -28,16 +29,16 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
 
       </div>
 
-      <div className={`flex flex-col justify-center items-center w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[23rem] xl:px-[0rem]'} 
+      <div className={`xl:ml-1.5 flex flex-col justify-center items-center w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[23rem] xl:px-[0rem]'} 
       ${nav ? 'lg:w-[45rem] xl:w-[32rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]' : mode !='mobile' ? 'lg:w-[35rem] xl:w-[20rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]' :  ''}`}>
 
-      <div className={`shadow-lg rounded-lg bg-white mt-[-2rem] w-full ${mode ==='mobile' ? '' : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full'}`} >
+      <div className={`max-w-[320px] sm:max-w-[400px] lg:max-w-[450px] shadow-lg rounded-lg bg-white mt-[-2rem] w-full ${mode ==='mobile' ? '' : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full'}`} >
           <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] break-keep ${mode ==='mobile' ? '' : 'xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}  ${nav ? '' : ''}`}>
             {loaderData?.firstname} {loaderData?.lastname}
           </h4>
 
           {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-            <h3 className={`text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:text-left xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-[1rem]'}  ${nav ? 'lg:w-full' : ''} `} >
+            <h3 className={`mt-1 text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:text-left xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-6'}  ${nav ? 'lg:w-full' : ''} `} >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
 
@@ -67,13 +68,13 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
 
         <div className='mt-[1rem]'>
 
-        <div className={`text-center ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+        <div className={`text-center xl:flex ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 
             <Spotlightbtn loaderData={loaderData}/>}
             </div>
           
 
-          <div className={` ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`xl:flex ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
               { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
             </div>
 
@@ -144,6 +145,10 @@ export default function Template13 ({ mode,input, loaderData,primaryRestore,seco
          
             
       </div>
+    </div>
+
+    <div className='-mt-10 xl:-mt-0 xl:pb-10'>
+      <PoweredBy/>
     </div>
     </>
   )

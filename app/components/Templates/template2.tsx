@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
 import PortfolioAddon from './addOns/portfolio'
+import PoweredBy from '../Common/PoweredBy'
 export default function Template2 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
   const Location = useLocation()
@@ -125,9 +126,13 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
 
             </a> : null}
           </footer>
-            
       </div>
-    </div>  
+
+      </div> 
+
+      <div className='w-full pb-10 -mt-8 text-center'>
+        <PoweredBy/>
+      </div>
     </>
   )
 }} 

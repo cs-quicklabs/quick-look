@@ -11,6 +11,7 @@ import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
 import DefaultCoverPicture from '../../../assets/images/temp9Cover.png'
+import PoweredBy from '../Common/PoweredBy'
 
 export default function Template14 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
@@ -34,7 +35,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
                   ? DefaultCoverPicture
                   : loaderData?.profileImage?.primaryImage
               }
-              className={`w-[100%] object-cover ${
+              className={`max-h-[277px] w-[100%] object-cover ${
                 mode === 'mobile' ? 'h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]' : 'absolute h-[13rem] md:h-[16rem] lg:h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]'
               }`}
               alt=""
@@ -47,22 +48,22 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
               primaryRestore || loaderData?.profileImage?.primaryImage
                 ? ` ${
                     mode === 'mobile'
-                      ? 'top-[5rem] md:top-[7rem] lg:top-[8rem] xl:top-[9rem]'
-                      : 'top-[5rem] md:top-[7rem] lg:top-[8rem] xl:top-[9rem]'
+                      ? 'top-[5rem] md:top-[7rem]'
+                      : 'top-[5rem] md:top-[7rem]'
                   }`
                 : 'bottom-[-11rem]'
             } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}
             ${nav ? '' : mode !='mobile' ? '' :''}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`rounded-lg object-cover w-[15rem] h-[15rem] md:w-[18rem] md:h-[18rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem] med:h-[22rem] med:w-[22rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[29rem] largeLaptop:h-[29rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[30rem] xl:w-[23rem] mediumLaptop:w-[28rem] mediumLaptop:h-[35rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img className={`rounded-lg object-cover w-[10rem] h-[10rem] md:w-[12rem] md:h-[12rem] ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[18rem] med:h-[20rem] med:w-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[29rem] largeLaptop:h-[29rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[30rem] xl:w-[23rem] mediumLaptop:w-[28rem] mediumLaptop:h-[35rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
             
           </div>
         </div>
 
       </div>
 
-      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[21rem] mx-[1rem] px-[1rem] sm:w-[95%] md:mt-[26rem] ${mode ==='mobile' ? 'lg:mt-[11rem] xl:mt-[10rem] medium:mt-[8rem] mediumLaptop:mt-[10rem] largeLaptop:mt-[11rem]' : 'lg:mt-[29rem] xl:items-start xl:mt-[22rem] xl:rounded-none xl:shadow-none xl:ml-[25rem] med:mt-[24rem] medium:mt-[26rem] mediumLaptop:ml-[30rem] mediumLaptop:mt-[28rem] largeLaptop:ml-[32rem] largeLaptop:mt-[30rem]'} ${nav ? 'xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[48rem] largeLaptop:w-[50rem]' : mode !='mobile' ? 'xl:w-[30rem] med:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
+      <div className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[16rem] mx-[1rem] px-[1rem] sm:w-[95%] md:mt-[20rem] ${mode ==='mobile' ? 'lg:mt-[11rem] xl:mt-[10rem] medium:mt-[8rem] mediumLaptop:mt-[10rem] largeLaptop:mt-[11rem]' : 'lg:mt-[29rem] xl:items-start xl:mt-[20rem] xl:rounded-none xl:shadow-none xl:ml-[25rem] med:mt-[20rem] medium:mt-[20rem] mediumLaptop:ml-[30rem] mediumLaptop:mt-[20rem] largeLaptop:ml-[32rem] largeLaptop:mt-[20rem]'} ${nav ? 'xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[48rem] largeLaptop:w-[50rem]' : mode !='mobile' ? 'xl:w-[30rem] med:w-[35rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]' : ''}`}>
 
         <div className={`${mode ==='mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'}`} >
         <h4 className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
@@ -70,7 +71,7 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
           </h4>
 
           {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-            <h3 className={`text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-[0.5rem]'}  ${nav ? 'lg:w-full' : ''} `} >
+            <h3 className={`mt-1 text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'}  ${nav ? 'lg:w-full' : ''} `} >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3> : <span></span>}
         </div>
@@ -177,6 +178,9 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
 
          
             
+      </div>
+      <div className='py-2 sm:py-0'>
+        <PoweredBy/>
       </div>
     </div>
         
