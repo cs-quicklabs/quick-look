@@ -65,7 +65,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[14rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
+      <div className={`w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[6rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
 
       <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 

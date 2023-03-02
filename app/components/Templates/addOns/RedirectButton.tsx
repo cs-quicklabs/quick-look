@@ -1,7 +1,7 @@
 export default function RedirectButton({ link, text }: {link:string, text:string}) {
 
   return (
-    <div className='mt-8 bg-gray-800 flex justify items-center w-full rounded-lg hover:scale-105'>
+    <div className='mt-6 bg-gray-800 flex justify items-center w-full rounded-lg hover:scale-105'>
       <a
         href={link}
         target="_blank"

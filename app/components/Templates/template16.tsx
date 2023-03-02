@@ -28,7 +28,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
       <div className={`flex-shrink-0 flex flex-col justify-start items-start h-[25rem] ${mode ==='mobile' ? 'w-full lg:h-[30rem] largeLaptop:h-[40rem]' : 'w-full lg:h-[28rem] xl:pl-20 xl:h-[100vh] xl:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'lg:h-[30rem] largeLaptop:h-[40rem]' : `lg:h-[28rem] xl:w-[${nav ? '586px' : '400px'}] xl:h-[100vh]`} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'lg:h-[28rem]' : `lg:h-[28rem] ${nav? 'xl:w-[586px]' :'xl:w-[400px]'} xl:h-[100vh]`} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
         {(loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) && 
         <div className={`relative rounded-lg flex flex-col bg-yellow-500 gap-4 lg:gap-8 px-[0.5rem] py-[0.75rem] lg:px-[1rem] lg:py-[1rem] mt-[8.5rem] ${mode ==='mobile' ? 'lg:mt-[12rem] med:mt-[13rem]' : 'xl:mt-[12.5rem] med:mt-[46vh]'}`}>

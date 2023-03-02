@@ -73,10 +73,10 @@ function Template10({
                   : loaderData?.profileImage?.secondaryImage
               }
               alt=""
-              className={`rounded-full ${
+              className={`rounded-full h-[8rem] w-[8rem] md:w-[275px] md:h-[275px] ${
                 mode === 'mobile'
-                  ? 'drop-shadow border-white lg:h-[18rem] lg:w-[18rem] lg:border-[10px] '
-                  : 'h-[8rem] w-[8rem] border-[7px] border-white drop-shadow sm:h-[11rem] sm:w-[11rem] md:h-[18rem] md:w-[18rem] md:border-[10px]'
+                  ? 'drop-shadow border-white lg:border-[10px] '
+                  : 'border-[7px] border-white drop-shadow md:border-[10px]'
               }  `}
             />
           ) : null}
