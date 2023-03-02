@@ -1,9 +1,8 @@
 import defaultimg from '../../../assets/images/profile.png'
 import PoweredBy from '../Common/PoweredBy'
-import Background3 from '../../../assets/images/templates/temp3.png'
 import RedirectButton from './addOns/RedirectButton'
 
-export default function Template17({
+export default function Template18({
   input,
   loaderData,
   secondaryRestore,
@@ -15,16 +14,8 @@ export default function Template17({
                   :
                   loaderData?.spotlightButton?.buttonText;
 
-
-  const myStyle={
-    backgroundImage: 
-   `url(${Background3})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  };
-
   return (
-    <div className='flex justify-center min-h-screen px-4' style={myStyle}>
+    <div className='flex justify-center min-h-screen bg-black px-4'>
 
       <div className='w-full max-w-2xl flex items-center flex-col mt-16'>
         <img
@@ -37,16 +28,16 @@ export default function Template17({
           alt="profilePic"
         />
 
-        <h2 className='mt-4 text-2xl font-bold leading-8 text-gray-900'>
+        <h2 className='mt-4 text-2xl font-bold leading-8 text-gray-100'>
           {loaderData?.firstname} {loaderData?.lastname}
         </h2>
 
-        <h3 className='mt-1 text-gray-500 text-base leading-5 font-normal'>
+        <h3 className='mt-1 text-gray-100 text-base leading-5 font-normal'>
           {input?.occupation}{' '}
           {input?.company ? "@" + input?.company : ""}
         </h3>
 
-        <h3 className='mt-1 text-gray-500 text-base leading-5 font-normal'>  
+        <h3 className='mt-1 text-gray-100 text-base leading-5 font-normal'>  
           {input?.location}
         </h3>
 

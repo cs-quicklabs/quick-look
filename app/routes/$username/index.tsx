@@ -16,6 +16,8 @@ import Template13 from '~/components/Templates/template13'
 import Template14 from '~/components/Templates/template14'
 import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
+import Template17 from '~/components/Templates/template17'
+import Template18 from '~/components/Templates/template18'
 
 export const loader: LoaderFunction = async ({ params }) => {
   const user = await getUserByUsername(params?.username!)
@@ -93,6 +95,22 @@ export default function ProfileView() {
         )
           : loaderData?.profileInfo?.templateNumber == '16' ? (
             <Template16
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+            />
+          )
+          : loaderData?.profileInfo?.templateNumber == '17' ? (
+            <Template17
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+            />
+          )
+          : loaderData?.profileInfo?.templateNumber == '18' ? (
+            <Template18
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
               input={input}
