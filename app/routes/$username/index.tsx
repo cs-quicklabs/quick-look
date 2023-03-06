@@ -18,6 +18,7 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
+import defaultImage from '../../../assets/images/profile.png'
 
 export const loader: LoaderFunction = async ({ params }) => {
   const user = await getUserByUsername(params?.username!)
@@ -30,7 +31,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 export const meta: MetaFunction = ({data}) => {
 
   const fullName = `${data?.firstname} ${data?.lastname}`
-  
+
   return {
     title: `${fullName} on QuickLook`,
     description:
@@ -40,20 +41,19 @@ export const meta: MetaFunction = ({data}) => {
     "og:title": `${fullName} on QuickLook`,
     "og:description": 
       `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
-    "og:image": data?.profileImage?.secondaryImage || "",
+    "og:image": data?.profileImage?.secondaryImage || "https://www.quicklook.me/build/_assets/profile-HAI7W636.png",
 
     "twitter:card": "summary_large_image",
     "twitter:url": `https://www.quicklook.me/${data?.username}`,
     "twitter:title": `${fullName} on QuickLook`,
     "twitter:description": `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
-    "twitter:image": data?.profileImage?.secondaryImage || ""
+    "twitter:image": data?.profileImage?.secondaryImage || "https://www.quicklook.me/build/_assets/profile-HAI7W636.png"
   };
 };
 
 export default function ProfileView() {
 
   const loaderData = useLoaderData()
-  console.log({loaderData})
   const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
   const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
   const [input, setinput] = useState({ description: loaderData?.profileInfo?.bio, location: loaderData?.profileInfo?.location, occupation: loaderData?.profileInfo?.occupation, company: loaderData?.profileInfo?.company, education: loaderData?.profileInfo?.education })
