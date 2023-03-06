@@ -34,22 +34,6 @@ export default function ProfileView() {
   const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
   const [input, setinput] = useState({ description: loaderData?.profileInfo?.bio, location: loaderData?.profileInfo?.location, occupation: loaderData?.profileInfo?.occupation, company: loaderData?.profileInfo?.company, education: loaderData?.profileInfo?.education })
   return (
-    <>
-    <head>
-        <meta name="title" content="Introduction made simple with just one link."/>
-        <meta name="description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://www.quicklook.me/"/>
-        <meta property="og:title" content="Introduction made simple with just one link."/>
-        <meta property="og:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-        
-        <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="https://www.quicklook.me/"/>
-        <meta property="twitter:title" content="Introduction made simple with just one link."/>
-        <meta property="twitter:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-      </head>
-    
     <div>
       {loaderData?.profileInfo?.templateNumber == '0' ?
         <Template0 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '2' ? <Template2 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '5' ? <Template5 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '7' ? <Template7 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '8' ? <Template8 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '10' ? (
@@ -134,6 +118,5 @@ export default function ProfileView() {
             />
           ) : null}
     </div>
-    </>
   )
 }

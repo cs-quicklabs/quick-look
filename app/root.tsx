@@ -57,6 +57,20 @@ function Document({ children }: any) {
         <script defer data-domain="quicklook.me" src="https://plausible.io/js/script.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="title" content="Introduction made simple with just one link."/>
+        <meta name="description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://www.quicklook.me/"/>
+        <meta property="og:title" content="Introduction made simple with just one link."/>
+        <meta property="og:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
+        <meta property="og:image" content="https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"/>
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content="https://www.quicklook.me/"/>
+        <meta property="twitter:title" content="Introduction made simple with just one link."/>
+        <meta property="twitter:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
+        <meta property="twitter:image" content="https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"/>
 
         <link
           rel='preconnect'

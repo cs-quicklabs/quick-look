@@ -90,21 +90,6 @@ const loaderData = useLoaderData();
 
    return (
     <>
-      <head>
-        <meta name="title" content="Introduction made simple with just one link."/>
-        <meta name="description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://www.quicklook.me/"/>
-        <meta property="og:title" content="Introduction made simple with just one link."/>
-        <meta property="og:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-        
-        <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="https://www.quicklook.me/"/>
-        <meta property="twitter:title" content="Introduction made simple with just one link."/>
-        <meta property="twitter:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-      </head>
-      
       <div className="flex flex-col min-h-screen items-center justify-center py-12 px-4 lg:px-8 bg-gray-50">
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
         {!actionData?.errors && loaderData?.message ? 
