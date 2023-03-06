@@ -6,11 +6,13 @@ import {
   useCatch,
   useLocation,
   useLoaderData,
+  Meta,
 } from '@remix-run/react'
 import ErrorHandler from './components/error'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 import LightGallery from './styles/lightgallery.css'
 import HeaderSecondary from './components/Common/Header'
+import type { MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node'
 export function links() {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl },
@@ -24,6 +26,26 @@ export async function loader() {
     },
   });
 }
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "QuickLook.me — Introduction made simple with just one link.",
+    description:
+      "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
+    "og:type": "website",
+    "og:url": "https://www.quicklook.me/",
+    "og:title": "QuickLook.me — Introduction made simple with just one link.",
+    "og:description": 
+      "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
+    "og:image": "	https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png",
+
+    "twitter:card": "summary_large_image",
+    "twitter:url": "https://www.quicklook.me/",
+    "twitter:title": "QuickLook.me — Introduction made simple with just one link.",
+    "twitter:description": "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
+    "twitter:image": "	https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"
+  };
+};
 
 export default function App() {
   const data = useLoaderData();
@@ -57,21 +79,8 @@ function Document({ children }: any) {
         <script defer data-domain="quicklook.me" src="https://plausible.io/js/script.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="title" content="Introduction made simple with just one link."/>
-        <meta name="description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://www.quicklook.me/"/>
-        <meta property="og:title" content="Introduction made simple with just one link."/>
-        <meta property="og:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-        <meta property="og:image" content="https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"/>
-
-        <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="https://www.quicklook.me/"/>
-        <meta property="twitter:title" content="Introduction made simple with just one link."/>
-        <meta property="twitter:description" content="Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together."/>
-        <meta property="twitter:image" content="https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"/>
-
+        <Meta/>
+        
         <link
           rel='preconnect'
           href='https://fonts.gstatic.com'
