@@ -47,7 +47,8 @@ export const meta: MetaFunction = ({data}) => {
     "twitter:url": `https://www.quicklook.me/${data?.username}`,
     "twitter:title": `${fullName} on QuickLook`,
     "twitter:description": `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
-    "twitter:image": data?.profileImage?.secondaryImage || "https://www.quicklook.me/build/_assets/profile-HAI7W636.png"
+    "twitter:image": data?.profileImage?.secondaryImage || "https://www.quicklook.me/build/_assets/profile-HAI7W636.png",
+    keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, quicklook, QuickLook.me, ${fullName}, ${data?.email}, ${data?.username}`
   };
 };
 
