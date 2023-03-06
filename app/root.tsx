@@ -37,13 +37,13 @@ export const meta: MetaFunction = () => {
     "og:title": "QuickLook.me — Introduction made simple with just one link.",
     "og:description": 
       "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
-    "og:image": "	https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png",
+    "og:image": "https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png",
 
     "twitter:card": "summary_large_image",
     "twitter:url": "https://www.quicklook.me/",
     "twitter:title": "QuickLook.me — Introduction made simple with just one link.",
     "twitter:description": "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
-    "twitter:image": "	https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"
+    "twitter:image": "https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png"
   };
 };
 
