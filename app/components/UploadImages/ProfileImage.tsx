@@ -66,6 +66,7 @@ function showCropAreaSecondary() {
   // states to change profile image
   const changeImageSubmitRef = useRef(null)
   const changeImageStateRef = useRef(false)
+  const [openEditor, setOpenEditor] = useState(false)
   const [changeImageResponse, setChangeImageResponse] = useState({ message: "", type: false })
 
   const handleChangeImage  = (event: any) => {
@@ -99,13 +100,15 @@ function showCropAreaSecondary() {
     }
   },[changeImageResponse])
 
-  // callback to open editor for cover image after changing
+  // callback to open editor for profile image after changing
   useEffect(()=>{
-
-    if(transition?.submission?.action.includes("change-profile-image") && !changeImageStateRef?.current)
+    const action = transition?.submission?.action || ""
+    
+    if((action.includes("change-profile-image") || action.includes("/account/add/SecImage")) && !changeImageStateRef?.current)
       changeImageStateRef.current = true
 
-    if(transition?.state === "idle" && changeImageStateRef?.current){
+    if(transition?.state === "idle" && changeImageStateRef?.current && openEditor){
+      
       changeImageStateRef.current = false
 
       setTimeout(()=>{
@@ -113,9 +116,11 @@ function showCropAreaSecondary() {
         setUrl('')
         setEdit2(true)
         setEdit(false)
-      },1500)
+      },1000)
     }
-  },[transition])
+
+    setOpenEditor(false)
+  },[transition, openEditor])
 
   const isUploading =
     (upload2 === "sec" &&
@@ -171,7 +176,10 @@ function showCropAreaSecondary() {
                                       : loaderData?.profileImage?.secondaryImage
                                   }
                                   alt=""
-                                  className="h-full w-full rounded-full object-cover"
+                                  onLoad={()=>{
+                                    setOpenEditor(true)
+                                  }}
+                                  className="h-full w-full rounded-full"
                                 />
                               )}
                               <Form
