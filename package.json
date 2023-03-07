@@ -31,7 +31,7 @@
     "axios": "^1.2.6",
     "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
-    "cropro": "^1.2.1",
+    "cropro": "^1.2.2",
     "cuid": "^2.1.8",
     "cypress": "^12.3.0",
     "cypress-xpath": "^2.0.1",
