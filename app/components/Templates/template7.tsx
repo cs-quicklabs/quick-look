@@ -32,7 +32,7 @@ export default function Template7 ({ mode,input, loaderData,primaryRestore,secon
 
       <div className='flex flex-col items-center justify-center'>
       {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`mb-3 w-60 h-60 rounded-full object-cover ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img loading="lazy" className={`mb-3 w-60 h-60 rounded-full object-cover ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''} ${nav? ' ' :''} `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='profile' /> : null}
 
         <h5 className={`mb-0 lg:mb-[0.375rem] text-gray-800 text-xl lg:text-[36px] leading-8 font-extrabold lg:leading-10 text-center lg:text-4xl`}>
           {loaderData?.firstname} {loaderData?.lastname}

@@ -45,7 +45,8 @@ export default function Template1({
                       ? bgimage
                       : loaderData?.profileImage?.primaryImage
                   }
-                  alt=""
+                  alt="cover"
+                  loading="lazy"
                 />
               ) : null}
             </div>
@@ -66,6 +67,8 @@ export default function Template1({
                       ? defaultimg
                       : loaderData?.profileImage?.secondaryImage
                   }
+                  alt="profile"
+                  loading="lazy"
                 />
               ) : null}
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}

@@ -29,7 +29,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`flex-shrink-0 h-full flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full' : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]' : 'lg:w-[18rem] lg:h-[18rem] mediumLaptop:w-[18rem] mediumLaptop:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img loading="lazy" className={`rounded-full object-cover w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]' : 'lg:w-[18rem] lg:h-[18rem] mediumLaptop:w-[18rem] mediumLaptop:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='profile' /> : null}
 
         <h4 className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}

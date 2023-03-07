@@ -38,7 +38,8 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
               className={`max-h-[277px] w-[100%] object-cover ${
                 mode === 'mobile' ? 'h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]' : 'absolute h-[13rem] md:h-[16rem] lg:h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]'
               }`}
-              alt=""
+              alt="cover"
+              loading="lazy"
             />
           ) : null}
         </div>
@@ -56,7 +57,12 @@ export default function Template14 ({ mode,input, loaderData,primaryRestore,seco
             ${nav ? '' : mode !='mobile' ? '' :''}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`rounded-lg object-cover w-[10rem] h-[10rem] md:w-[12rem] md:h-[12rem] ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[18rem] med:h-[20rem] med:w-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[29rem] largeLaptop:h-[29rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[30rem] xl:w-[23rem] mediumLaptop:w-[28rem] mediumLaptop:h-[35rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+              <img 
+                loading="lazy" 
+                className={`rounded-lg object-cover w-[10rem] h-[10rem] md:w-[12rem] md:h-[12rem] ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[18rem] med:h-[20rem] med:w-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[29rem] largeLaptop:h-[29rem]' : 'lg:w-[20rem] lg:h-[20rem] xl:h-[30rem] xl:w-[23rem] mediumLaptop:w-[28rem] mediumLaptop:h-[35rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} 
+                src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='profile' 
+              /> 
+            : null}
             
           </div>
         </div>

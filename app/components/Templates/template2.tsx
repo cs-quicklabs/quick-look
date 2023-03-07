@@ -31,7 +31,7 @@ export default function Template2 ({ mode,input, loaderData,primaryRestore,secon
       <div className={`pb-[1rem] flex-shrink-0 ${mode ==='mobile' ? 'xl:pl-[1rem]  xl:mt-[1.5em]' : 'xl:mt-[5.625rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-lg object-cover h-auto w-[16rem] sm:h-[20rem] sm:w-[20rem] md:h-[24rem] md:w-[22rem] ${mode ==='mobile' ? 'lg:w-[22rem] lg:h-[24rem] xl:h-[20rem] xl:w-[18rem] med:w-[25rem] med:h-[28rem] mediumLaptop:h-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[33rem] largeLaptop:h-[35rem]' : 'xl:h-[30rem] xl:w-[25rem] med:h-[38rem] med:w-[28rem] medium:h-[40rem] mediumLaptop:w-[35rem] largeLaptop:h-[40rem] largeLaptop:w-[35rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img loading="lazy" className={`rounded-lg object-cover h-auto w-[16rem] sm:h-[20rem] sm:w-[20rem] md:h-[24rem] md:w-[22rem] ${mode ==='mobile' ? 'lg:w-[22rem] lg:h-[24rem] xl:h-[20rem] xl:w-[18rem] med:w-[25rem] med:h-[28rem] mediumLaptop:h-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[33rem] largeLaptop:h-[35rem]' : 'xl:h-[30rem] xl:w-[25rem] med:h-[38rem] med:w-[28rem] medium:h-[40rem] mediumLaptop:w-[35rem] largeLaptop:h-[40rem] largeLaptop:w-[35rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
 
       </div>
 

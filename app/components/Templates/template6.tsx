@@ -59,7 +59,7 @@ const myStyle5={
       <div className={`my-4 flex-shrink-0 flex justify-center items-center   ${mode ==='mobile' ? '' : 'sm:mb-0 lg:items-start'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover border-4 border-blue-500 w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem]' : 'lg:w-[20rem] lg:h-[20rem] lg:p-4 mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img loading="lazy" className={`rounded-full object-cover border-4 border-blue-500 w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[20rem] lg:h-[20rem]' : 'lg:w-[20rem] lg:h-[20rem] lg:p-4 mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='profile' /> : null}
 
       </div>
 

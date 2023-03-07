@@ -39,7 +39,8 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                 (mode === 'mobile' && loaderData?.socialMedia?.facebookLink) || (mode === 'mobile' && loaderData?.socialMedia?.twitterLink) || (mode === 'mobile' && loaderData?.socialMedia?.youtubeLink) ? 'lg:h-[26rem] xl:h-[27rem]' : mode === 'mobile' ? 'lg:h-[23rem]' : ''
               }
               ${(mode !='mobile' && loaderData?.socialMedia?.facebookLink) || (mode !='mobile' &&loaderData?.socialMedia?.twitterLink) || (mode !='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'h-[20rem] lg:h-[26rem] xl:h-[16rem]' : mode !='mobile' ? 'h-[17rem] sm:h-[17rem] lg:h-[23rem] xl:h-[16rem]' : ''}`}
-              alt=""
+              alt="cover"
+              loading="lazy"
             />
           ) : null}
         </div>
@@ -56,7 +57,13 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
             } ${mode === 'mobile' ? '' : 'xl:bg-white xl:h-[40rem] xl:w-[20rem] xl:px-[1rem] xl:rounded-md xl:shadow-md'}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`rounded-full object-cover w-[7rem] h-[7rem] ${mode ==='mobile' ? 'lg:w-[11rem] lg:h-[11rem]' : 'lg:pt-[0rem] lg:w-[11rem] lg:h-[11rem] xl:mt-[-9rem] mediumLaptop:w-[11rem] mediumLaptop:h-[11rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+              <img 
+                loading="lazy"
+                className={`rounded-full object-cover w-[7rem] h-[7rem] ${mode ==='mobile' ? 'lg:w-[11rem] lg:h-[11rem]' : 'lg:pt-[0rem] lg:w-[11rem] lg:h-[11rem] xl:mt-[-9rem] mediumLaptop:w-[11rem] mediumLaptop:h-[11rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} 
+                src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} 
+                alt='profile' 
+              /> 
+            : null}
         
           <h4 className={`text-white text-center text-xl leading-8 font-semibold pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-black xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
               {loaderData?.firstname} {loaderData?.lastname}
