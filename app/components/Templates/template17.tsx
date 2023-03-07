@@ -35,6 +35,7 @@ export default function Template17({
               loaderData?.profileImage?.secondaryImage || defaultimg
           }
           alt="profilePic"
+          loading="lazy"
         />
 
         <h2 className='mt-4 text-2xl font-bold leading-8 text-gray-900'>

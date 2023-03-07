@@ -59,6 +59,8 @@ export default function Template9({
                       ? defaultimg
                       : loaderData?.profileImage?.secondaryImage
                   }
+                  alt="profile"
+                  loading="lazy"
                 />
               ) : null}
             </div>

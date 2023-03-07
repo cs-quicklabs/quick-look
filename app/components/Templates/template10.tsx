@@ -42,7 +42,8 @@ function Template10({
               className={`w-[100%] object-cover ${
                 mode === 'mobile' ? 'h-[15rem]' : 'h-[8rem] md:h-[14rem]'
               }`}
-              alt=""
+              alt="cover"
+              loading="lazy"
             />
           ) : null}
         </div>
@@ -72,7 +73,8 @@ function Template10({
                   ? defaultimg
                   : loaderData?.profileImage?.secondaryImage
               }
-              alt=""
+              alt="profile"
+              loading="lazy"
               className={`rounded-full h-[8rem] w-[8rem] md:w-[275px] md:h-[275px] ${
                 mode === 'mobile'
                   ? 'drop-shadow border-white lg:border-[10px] '
