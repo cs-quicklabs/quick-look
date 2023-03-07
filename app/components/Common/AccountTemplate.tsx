@@ -1,7 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
+// import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
+import thumbnail1 from '../../../assets/images/screenshots/Group 3.svg'
 import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import thumbnail3 from '../../../assets/images/screenshots/thumbnail3.png'
@@ -16,6 +17,8 @@ import template9 from '../../../assets/images/screenshots/template-9.png'
 import thumb13 from '../../../assets/images/screenshots/thumbnail13.png'
 import thumbnail14 from '../../../assets/images/screenshots/thumbnail14.png'
 import thumbnail16 from '../../../assets/images/screenshots/thumbnail16.png'
+import temp17 from '../../../assets/images/screenshots/temp17.png'
+import temp18 from '../../../assets/images/screenshots/temp18.png'
 import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
 
 export default function AccountTemplate({
@@ -689,6 +692,102 @@ export default function AccountTemplate({
                                 src={thumbnail16}
                                 alt=""
                                 className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </Form>
+                      
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="17" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template17')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template17' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={temp17}
+                                  alt=""
+                                  className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
+                              </div>
+                            ) : (
+                              <img
+                                src={temp17}
+                                alt=""
+                                className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                                  mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                }`}
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </Form>
+                      
+                      <Form
+                        replace={true}
+                        action={templateHandle}
+                        method="post"
+                      >
+                        <div>
+                          <input type="hidden" name="template" value="18" />
+                          <button
+                            type="submit"
+                            className="disabled:cursor-pointer"
+                            onClick={(e: any) => {
+                              setSelectTemplate('template18')
+                            }}
+                            disabled={transition?.state != 'idle'}
+                          >
+                            {selectTemplate === 'template18' &&
+                            transition?.submission?.action ==
+                              '/account/update/choose-template' ? (
+                              <div className="relative top-[-1rem]">
+                                <BeatLoader
+                                  color="#184fad"
+                                  className={`relative items-center ${
+                                    mode === 'mobile'
+                                      ? 'top-[6rem] xl:top-[8.5rem]'
+                                      : 'top-[8.5rem]'
+                                  }`}
+                                />
+                                <img
+                                  src={temp18}
+                                  alt=""
+                                  className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                    mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                                  }`}
+                                />
+                              </div>
+                            ) : (
+                              <img
+                                src={temp18}
+                                alt=""
+                                className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
                                   mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
                                 }`}
                               />
