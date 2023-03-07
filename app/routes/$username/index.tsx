@@ -1,24 +1,27 @@
-import { ActionFunction, json, LoaderFunction, MetaFunction, redirect } from '@remix-run/node'
+import type { LoaderFunction, MetaFunction} from '@remix-run/node';
+import { json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { useState } from 'react'
-import Template0 from '~/components/Templates/template0'
-import Template2 from '~/components/Templates/template2'
-import Template8 from '~/components/Templates/template8'
-import Template7 from '~/components/Templates/template7'
-import Template5 from '~/components/Templates/template5'
-import Template10 from '~/components/Templates/template10'
+import { lazy, Suspense, useMemo, useState } from 'react'
+import { ScaleLoader } from 'react-spinners';
 import { getUserByUsername } from "~/services/user.service.serevr";
-import Template3 from "~/components/Templates/template3";
-import Template4 from "~/components/Templates/template4";
-import Template6 from "~/components/Templates/template6";
-import Template9 from '~/components/Templates/template9'
-import Template13 from '~/components/Templates/template13'
-import Template14 from '~/components/Templates/template14'
-import Template16 from '~/components/Templates/template16'
-import Template11 from '~/components/Templates/template11'
-import Template17 from '~/components/Templates/template17'
-import Template18 from '~/components/Templates/template18'
-import defaultImage from '../../../assets/images/profile.png'
+
+// const Template0 = lazy(()=>new Promise((res)=>setTimeout(res, 5000)).then(()=>import('~/components/Templates/template0')));
+const Template0 = lazy(()=>import('~/components/Templates/template0'));
+const Template2 = lazy(()=>import('~/components/Templates/template2')); 
+const Template8 = lazy(()=>import('~/components/Templates/template8'));
+const Template7 = lazy(()=>import('~/components/Templates/template7'));
+const Template5 = lazy(()=>import('~/components/Templates/template5'));
+const Template10 = lazy(()=>import('~/components/Templates/template10'));
+const Template3 = lazy(()=>import("~/components/Templates/template3"));
+const Template4 = lazy(()=>import("~/components/Templates/template4"));
+const Template6 = lazy(()=>import("~/components/Templates/template6"));
+const Template9 = lazy(()=>import('~/components/Templates/template9'));
+const Template13 = lazy(()=>import('~/components/Templates/template13'));
+const Template14 = lazy(()=>import('~/components/Templates/template14'));
+const Template16 = lazy(()=>import('~/components/Templates/template16'));
+const Template11 = lazy(()=>import('~/components/Templates/template11'));
+const Template17 = lazy(()=>import('~/components/Templates/template17'));
+const Template18 = lazy(()=>import('~/components/Templates/template18'));
 
 export const loader: LoaderFunction = async ({ params }) => {
   const user = await getUserByUsername(params?.username!)
@@ -54,14 +57,57 @@ export const meta: MetaFunction = ({data}) => {
 
 export default function ProfileView() {
 
-  const loaderData = useLoaderData()
-  const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
-  const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
-  const [input, setinput] = useState({ description: loaderData?.profileInfo?.bio, location: loaderData?.profileInfo?.location, occupation: loaderData?.profileInfo?.occupation, company: loaderData?.profileInfo?.company, education: loaderData?.profileInfo?.education })
+  const loaderData = useLoaderData();
+
+  const primaryRestore = useMemo(()=>loaderData?.profileImage?.isUsingPrimaryDefault, 
+    [loaderData?.profileImage?.isUsingPrimaryDefault]
+  );
+
+  const secondaryRestore = useMemo(()=>loaderData?.profileImage?.isUsingSecondaryDefault,
+    [loaderData?.profileImage?.isUsingSecondaryDefault]
+  );
+
+  const [input] = useState({ description: loaderData?.profileInfo?.bio, location: loaderData?.profileInfo?.location, occupation: loaderData?.profileInfo?.occupation, company: loaderData?.profileInfo?.company, education: loaderData?.profileInfo?.education })
+  
   return (
-    <div>
-      {loaderData?.profileInfo?.templateNumber == '0' ?
-        <Template0 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '2' ? <Template2 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '5' ? <Template5 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '7' ? <Template7 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '8' ? <Template8 primaryRestore={primaryRestore} secondaryRestore={secondaryRestore} input={input} loaderData={loaderData} /> : loaderData?.profileInfo?.templateNumber == '10' ? (
+    <Suspense 
+      fallback={
+        <div className='h-screen flex items-center justify-center'>
+          <ScaleLoader color='rgb(79 70 229)'/>
+        </div>
+      }>
+      <div>
+        {loaderData?.profileInfo?.templateNumber == '0' ?
+          <Template0 
+            primaryRestore={primaryRestore} 
+            secondaryRestore={secondaryRestore} 
+            input={input} loaderData={loaderData} 
+          /> 
+        : loaderData?.profileInfo?.templateNumber == '2' ? 
+            <Template2 
+              primaryRestore={primaryRestore} 
+              secondaryRestore={secondaryRestore} 
+              input={input} loaderData={loaderData} 
+            /> 
+        : loaderData?.profileInfo?.templateNumber == '5' ?
+            <Template5 
+              primaryRestore={primaryRestore} 
+              secondaryRestore={secondaryRestore} 
+              input={input} loaderData={loaderData} 
+            /> 
+        : loaderData?.profileInfo?.templateNumber == '7' ? 
+            <Template7 
+              primaryRestore={primaryRestore} 
+              secondaryRestore={secondaryRestore} 
+              input={input} loaderData={loaderData} 
+            /> 
+        : loaderData?.profileInfo?.templateNumber == '8' ? 
+            <Template8 
+              primaryRestore={primaryRestore} 
+              secondaryRestore={secondaryRestore} 
+              input={input} loaderData={loaderData} 
+            /> 
+        : loaderData?.profileInfo?.templateNumber == '10' ? (
           <Template10
             primaryRestore={primaryRestore}
             secondaryRestore={secondaryRestore}
@@ -118,30 +164,31 @@ export default function ProfileView() {
             loaderData={loaderData}
           />
         )
-          : loaderData?.profileInfo?.templateNumber == '16' ? (
-            <Template16
-              primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-              input={input}
-              loaderData={loaderData}
-            />
-          )
-          : loaderData?.profileInfo?.templateNumber == '17' ? (
-            <Template17
-              primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-              input={input}
-              loaderData={loaderData}
-            />
-          )
-          : loaderData?.profileInfo?.templateNumber == '18' ? (
-            <Template18
-              primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-              input={input}
-              loaderData={loaderData}
-            />
-          ) : null}
-    </div>
+        : loaderData?.profileInfo?.templateNumber == '16' ? (
+          <Template16
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        )
+        : loaderData?.profileInfo?.templateNumber == '17' ? (
+          <Template17
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        )
+        : loaderData?.profileInfo?.templateNumber == '18' ? (
+          <Template18
+            primaryRestore={primaryRestore}
+            secondaryRestore={secondaryRestore}
+            input={input}
+            loaderData={loaderData}
+          />
+        ) : null}
+      </div>
+    </Suspense>
   )
 }
