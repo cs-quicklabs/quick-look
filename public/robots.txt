@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /account
+Disallow: /account/profile
+Disallow: /account/license
+Disallow: /account/settings
+Disallow: /auth/receive-email
+Disallow: /confirm/email
+Disallow: /auth/forgot-password
+
+
+Sitemap: https://www.quicklook.me/sitemap.xml

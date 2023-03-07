@@ -124,6 +124,16 @@ export async function getUserId(request: Request) {
   return userId
 }
 
+export async function getUsers() {
+  try{
+    const users = await db.user.findMany()
+    return users
+  }catch(err){
+    return
+  }
+}
+
+
 export async function getUser(request: Request) {
   const userId = await getUserId(request)
   if (typeof userId !== 'string') {

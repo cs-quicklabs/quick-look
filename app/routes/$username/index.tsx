@@ -1,4 +1,4 @@
-import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
+import { ActionFunction, json, LoaderFunction, MetaFunction, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { useState } from 'react'
 import Template0 from '~/components/Templates/template0'
@@ -18,6 +18,7 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
+import defaultImage from '../../../assets/images/profile.png'
 
 export const loader: LoaderFunction = async ({ params }) => {
   const user = await getUserByUsername(params?.username!)
@@ -26,6 +27,30 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
   return redirect('/auth/error')
 }
+
+export const meta: MetaFunction = ({data}) => {
+
+  const fullName = `${data?.firstname} ${data?.lastname}`
+
+  return {
+    title: `${fullName} on QuickLook`,
+    description:
+      `${fullName}'s profile on QuickLook. ${fullName}'s Introduction made simple with just one link.`,
+    "og:type": "website",
+    "og:url": `https://www.quicklook.me/${data?.username}`,
+    "og:title": `${fullName} on QuickLook`,
+    "og:description": 
+      `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
+    "og:image": data?.profileImage?.secondaryImage || "https://www.quicklook.me/build/_assets/profile-HAI7W636.png",
+
+    "twitter:card": "summary_large_image",
+    "twitter:url": `https://www.quicklook.me/${data?.username}`,
+    "twitter:title": `${fullName} on QuickLook`,
+    "twitter:description": `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
+    "twitter:image": data?.profileImage?.secondaryImage || "https://www.quicklook.me/build/_assets/profile-HAI7W636.png",
+    keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, quicklook, QuickLook.me, ${fullName}, ${data?.email}, ${data?.username}`
+  };
+};
 
 export default function ProfileView() {
 
