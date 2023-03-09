@@ -10,6 +10,7 @@ import BannerAddOn from './addOns/Banner'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
 import { useLocation } from '@remix-run/react'
+import PoweredBy from '../Common/PoweredBy'
 
 export default function Template1({
   input,
@@ -27,16 +28,16 @@ export default function Template1({
       {loaderData?.supportBanner?.toggleBanner && (
         <BannerAddOn mode={mode} loaderData={loaderData} />
       )}
-      <div className={`flex overflow-hidden w-[100vw] sm:w-full ${mode === 'mobile' ? 'lg:w-full' : 'w-full'}`} >
+      <div className={`flex w-full sm:w-full ${mode === 'mobile' ? 'lg:w-full' : 'w-full'}`} >
         <div className="flex-grow">
-          <div className="h-[10rem]">
+          <div className="h-44 relative">
             <div className="relative">
               {loaderData?.profileImage?.primaryImage || primaryRestore ? (
                 <img
                   className={`w-[100%] object-cover ${
                     loaderData?.profileImage?.primaryImage ||
                     primaryRestore === true
-                      ? 'h-[10rem]'
+                      ? 'h-44'
                       : ''
                   }`}
                   src={
@@ -44,22 +45,18 @@ export default function Template1({
                       ? bgimage
                       : loaderData?.profileImage?.primaryImage
                   }
-                  alt=""
+                  alt="cover"
+                  loading="lazy"
                 />
               ) : null}
             </div>
             <div
-              className={`relative pl-[1rem] sm:pl-[7rem] md:pl-[11rem] ${
-                loaderData?.profileImage?.primaryImage ||
-                primaryRestore === true
-                  ? 'top-[-4rem]'
-                  : 'top-[6rem]'
-              } ${mode === 'mobile' ? 'small:pl-[5.5rem] medium:pl-[8.5rem] mediumLaptop:pl-[14.5rem] largeLaptop:pl-[10.5rem]' : 'small:pl-[8.5rem]'}`}
+              className={`absolute md:left-40 top-[100px]`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <img
-                  className={`h-[9rem] w-[9rem] rounded-full shadow-lg  shadow-white md:h-[8rem] md:w-32 ${
+                  className={`h-32 w-32 rounded-full shadow-lg  shadow-white ${
                     loaderData?.profileImage?.secondaryImage ||
                     secondaryRestore === true
                       ? 'border-4 border-white'
@@ -70,12 +67,14 @@ export default function Template1({
                       ? defaultimg
                       : loaderData?.profileImage?.secondaryImage
                   }
+                  alt="profile"
+                  loading="lazy"
                 />
               ) : null}
               {/* src={secondaryRestore === true ? 'http://localhost:3000/build/_assets/profile-HAI7W636.png' : loaderData.profileImage.secondaryImage}  */}
             </div>
           </div>
-          <div className={`m-auto px-[10.5rem] pt-1 smallScreen:px-[16.5rem] mediumScreen:px-[19.5rem] ${mode === 'mobile' ? 'small:px-[14.5rem] medium:px-[17.5rem] mediumLaptop:px-[23.5rem] largeLaptop:px-[20.5rem]' : 'small:px-[17.5rem]'}`} >
+          <div className={`mt-14 sm:mt-0 sm:ml-32 md:ml-72 pl-4`} >
             <h1 className="w-max text-2xl font-bold leading-8 text-gray-900 ">
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
@@ -83,7 +82,7 @@ export default function Template1({
             input.occupation ||
             input.location ||
             loaderData?.profileInfo?.location ? (
-              <h3 className={`w-[130%] break-normal text-gray-500 sm:w-[215%] ${mode === 'mobile' ? 'lg:w-[185%]' : 'lg:w-[207%]'}`} >
+              <h3 className={`text-gray-500 text-base leading-5 mt-0.5 font-normal`} >
                 {input.occupation}{' '}
                 {input.location && input.occupation ? `in` : ''}{' '}
                 {input.location}
@@ -93,14 +92,15 @@ export default function Template1({
             )}
           </div>
 
-          <div
+          {/* <div
             className={`w-[100%] pl-[2rem] pr-[8.5rem] xs:pr-[5.5rem] smallScreen:pr-[5.5rem] mediumScreen:pr-[3.5rem]  ${
               mode === 'mobile'
                 ? 'small:w-[91%] small:pr-[5rem] med:w-[100%] med:pr-[2rem] largeLaptop:pr-[2rem]'
                 : 'SmMedium:flex-row'
             }
             ${nav ?'small:pl-[4rem] small:pr-[4rem]' : mode != 'mobile' ? 'small:pr-[7rem] SmMedium:pr-[2rem]' : '' }`}
-          >
+          > */}
+          <div className='max-w-2xl mx-auto px-8'>
             <div className="">
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <Spotlightbtn loaderData={loaderData} />
@@ -113,7 +113,7 @@ export default function Template1({
             )}
           </div>
 
-            <div className={`m-auto  flex flex-wrap ${loaderData?.spotlightButton?.toggleSpotlight ? 'pt-[1.5rem]' : 'pt-[2rem]'}`} >
+            <div className={`m-auto  flex flex-wrap mt-0.5 ${loaderData?.spotlightButton?.toggleSpotlight ? 'pt-[1.5rem]' : 'pt-11'}`} >
               <pre className="flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}
               </pre>
@@ -133,7 +133,7 @@ export default function Template1({
             
 
             <div className="flex flex-col justify-between">
-              <div className="flex  pt-[2rem] ">
+              <div className="flex  pt-[2rem] justify-between">
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className="flex flex-col">
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
@@ -151,7 +151,7 @@ export default function Template1({
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
                       EDUCATION
                     </h2>
-                    <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-normal">
+                    <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-words">
                       {input.education}
                     </h2>
                   </div>
@@ -187,6 +187,10 @@ export default function Template1({
                 </a>
               ) : null}
             </footer>
+            
+            <div className='-mt-10 pb-10'>
+              <PoweredBy/>
+            </div>
           </div>
         </div>
       </div>

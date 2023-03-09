@@ -10,6 +10,7 @@ import VideoAddOn from './addOns/video'
 import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
+import PoweredBy from '../Common/PoweredBy'
 export default function Template3 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
   const Location = useLocation()
@@ -25,10 +26,10 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
     <div className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${nav? '' :''}`} style={myStyle} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full' : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 h-full flex flex-col justify-center items-center bg-black py-[2rem] ${mode ==='mobile' ? 'w-full' : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`rounded-full object-cover w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[25rem] lg:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]' : 'lg:w-[25rem] lg:h-[25rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+        <img loading="lazy" className={`rounded-full object-cover w-[10rem] h-[10rem] ${mode ==='mobile' ? 'lg:w-[18rem] lg:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]' : 'lg:w-[18rem] lg:h-[18rem] mediumLaptop:w-[18rem] mediumLaptop:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='profile' /> : null}
 
         <h4 className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode ==='mobile' ? '' : ''}  ${nav ? '' : ''}`}>
           {loaderData?.firstname} {loaderData?.lastname}
@@ -39,7 +40,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
           </h3> : <span></span>}
 
-          <div className={`pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'} `}>
+          <div className={`px-4 pb-[1rem]  bg-black w-full px-[1rem] ${mode ==='mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'} `}>
             <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
@@ -64,7 +65,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
 
       </div>
 
-      <div className={`w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[14rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
+      <div className={`w-full px-[2rem] ${mode ==='mobile' ? '' : 'xl:pt-[6rem]'} ${nav ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]' : mode !='mobile' ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]' : ''}`}>
 
       <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 
@@ -84,7 +85,7 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             </pre>
           </div>
           <div className={`pb-[1rem]  bg-black w-full hidden ${mode ==='mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent xl:block'} `}>
-            <div className={`flex pt-4 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''}`} >
+            <div className={`flex pt-6 justify-between ${mode ==='mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''}`} >
               {loaderData?.profileInfo?.company || input.company ?
                 <div className={`flex flex-col lg:w-[50%] ${mode ==='mobile' ? '' : ''}`} >
                   <h2 className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${mode ==='mobile' ? '' : 'lg:leading-5 lg:font-medium lg:text-gray-600'}`} >
@@ -142,6 +143,9 @@ export default function Template3 ({ mode,input, loaderData,primaryRestore,secon
             
       </div>
     </div>
+      <div className='-mt-10'>
+        <PoweredBy/>
+      </div>
     </>
   )
 } 

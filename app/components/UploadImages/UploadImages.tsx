@@ -222,12 +222,15 @@ export default function NoImages({
 
 
   // callback to open editor for cover image after changing
+  const [openEditor, setOpenEditor] = useState(false)
+
   useEffect(()=>{
+    const action = transition?.submission?.action || ""
     
-    if(transition?.submission?.action.includes("change-image") && !changeImageStateRef?.current)
-      changeImageStateRef.current = true
+    if((action.includes("change-image") || action.includes("add/image")) && !changeImageStateRef?.current)
+    changeImageStateRef.current = true
     
-    if(transition?.state === "idle" && changeImageStateRef?.current){
+    if(transition?.state === "idle" && changeImageStateRef?.current && openEditor){
       changeImageStateRef.current = false
 
       setTimeout(()=>{
@@ -235,9 +238,10 @@ export default function NoImages({
         setUrlSec('')
         setEdit(true)
         setEdit2(false)
-      },1500)
+      },1000)
     }
-  },[transition])
+    setOpenEditor(false)
+  },[transition, openEditor])
 
 
   // for success alert
@@ -281,6 +285,12 @@ export default function NoImages({
       },4000)
     }
   },[apiResponse])
+
+
+  const isUploading =
+    (upload === "primary" && transition?.submission?.action === "/account/add/image") ||
+    (restore && transition?.submission?.action === "/account/update/restoreImage") ||
+    (drag && transition?.submission?.action == "/account/update/crop-image");
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -406,6 +416,9 @@ export default function NoImages({
                                   }
                                   alt=""
                                   className="h-full w-full object-cover"
+                                  onLoad={()=>{
+                                    setOpenEditor(true)
+                                  }}
                                 />
                               )}
                               <Form
@@ -495,13 +508,19 @@ export default function NoImages({
                           </label>
 
                           <div
-                            className="px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10"
+                            className="relative px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10"
                             onDragEnter={() => {
                               setDrag(true)
                               setDrag2(false)
                             }}
                           >
-                            <div className="text-center">
+                            {isUploading && 
+                              <div className='h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10'>
+                                <BeatLoader color="#184fad" className="mt-2" size={20}/>
+                              </div>
+                            }
+                            
+                            <div className={`text-center ${isUploading ? "invisible" : ""} ${transition.state !== 'idle' ? "pointer-events-none" : ""} `}>
                               <>
                                 <DropzonePrimary
                                   setPrimaryImageError={setPrimaryImageError}
@@ -512,19 +531,7 @@ export default function NoImages({
                                 >
                                   <div className="flex text-sm"></div>
                                 </DropzonePrimary>
-                                {(upload === 'primary' &&
-                                  transition?.submission?.action ===
-                                    '/account/add/image') ||
-                                (restore &&
-                                  transition?.submission?.action ===
-                                    '/account/update/restoreImage') ||
-                                (drag &&
-                                  transition?.submission?.action ==
-                                    '/account/update/crop-image') ? (
-                                  <div className="flex h-[5.8rem] items-center justify-center">
-                                    <BeatLoader color="#184fad" />
-                                  </div>
-                                ) : (
+                                
                                   <div className="flex flex-col items-center justify-center md:mx-12 lg:mx-20">
                                     <Form
                                       replace={true}
@@ -586,7 +593,7 @@ export default function NoImages({
                                       </button>
                                     </Form>
                                   </div>
-                                )}
+
                                 <div className="mt-2 text-sm text-red-500">
                                   {primaryImageError}
                                 </div>

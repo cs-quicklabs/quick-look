@@ -21,6 +21,8 @@ import Template13 from '~/components/Templates/template13'
 import Template14 from '~/components/Templates/template14'
 import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
+import Template17 from '~/components/Templates/template17'
+import Template18 from '~/components/Templates/template18'
 import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
 import TrialExpired from '~/components/TrialExpired'
 
@@ -378,7 +380,25 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          ) : null}
+          ) : loaderData?.profileInfo?.templateNumber == '17' ? (
+            <Template17
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          )
+           : loaderData?.profileInfo?.templateNumber == '18' ? (
+            <Template18
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          )
+          : null}
         </div>
       </div>
 
