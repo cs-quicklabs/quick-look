@@ -125,8 +125,8 @@ export default function Profile() {
   const [inputVideo, setInputVideo] = useState({
     videoLink: loaderData?.video?.videoLink,
   })
-  const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
-  const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
+  const primaryRestore = loaderData?.profileImage?.primaryImage ? loaderData?.profileImage?.isUsingPrimaryDefault : true;
+  const secondaryRestore = loaderData?.profileImage?.secondaryImage ? loaderData?.profileImage?.isUsingSecondaryDefault : true;
   const actionData = useActionData()
 
   useEffect(() => {
@@ -172,7 +172,7 @@ export default function Profile() {
     )
   }
   const disabledIcon =
-    loaderData?.profileImage?.primaryImage || primaryRestore
+    loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
       ? 'text-gray-700/20'
       : 'text-gray-700/40'
   return (
@@ -228,8 +228,8 @@ export default function Profile() {
             mode={mode}
             showBio={showBio}
             setshowBio={setshowBio}
-            primaryRestore={primaryRestore}
-            secondaryRestore={secondaryRestore}
+            primaryRestore={loaderData?.profileImage?.isUsingPrimaryDefault}
+            secondaryRestore={loaderData?.profileImage?.isUsingSecondaryDefault}
             showModal={showModal}
             setShowModal={setShowModal}
           />
@@ -385,7 +385,7 @@ export default function Profile() {
         className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${
           !showUserSetting ? 'z-40' : 'z-[60]'
         }  rounded-l-md rounded-r-md ${
-          loaderData?.profileImage?.primaryImage || primaryRestore
+          loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
         } ${
