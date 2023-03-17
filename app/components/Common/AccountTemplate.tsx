@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 // import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
@@ -20,6 +20,7 @@ import thumbnail16 from '../../../assets/images/screenshots/thumbnail16.png'
 import temp17 from '../../../assets/images/screenshots/temp17.png'
 import temp18 from '../../../assets/images/screenshots/temp18.png'
 import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
+import Modal from './Modal'
 
 export default function AccountTemplate({
   setshowTemplate,
@@ -41,7 +42,32 @@ export default function AccountTemplate({
     if (mode === 'mobile') {
     }
   }
+
+  const apiResponseRef = useRef(false)
+
+  useEffect(()=>{
+    if(transition?.submission?.action?.includes("/account/update/choose-template") && !apiResponseRef?.current)
+      apiResponseRef.current = true;
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setSelectTemplate("");
+      apiResponseRef.current = false;
+    }
+  },[transition])
+
   return (
+    <>
+    <Modal 
+      open={Boolean(selectTemplate)} 
+      handleCancel={()=>{setSelectTemplate("")}}
+      loading={transition?.submission?.action === '/account/update/choose-template'}
+      value={selectTemplate}
+      confirmButtonText="Change"
+      cancelButtonText='Cancel' 
+      header='Change Template'
+      description={"Are you sure you want to change your profile template?"}
+    />
+
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={() => {}}>
         {/* <div className="fixed inset-0" /> */}
@@ -92,23 +118,19 @@ export default function AccountTemplate({
                         </p>
                       </div>
                     </div>
+
                     <div className="grid grid-cols-1 gap-0">
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
                         <div className="mb-[-1rem]">
                           <input type="hidden" name="template" value="0" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template0')
+                              setSelectTemplate('0')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template0' &&
+                            {selectTemplate === '0' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem] ">
@@ -139,24 +161,19 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="2" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template2')
+                              setSelectTemplate('2')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template2' &&
+                            {selectTemplate === '2' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -187,24 +204,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="8" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template8')
+                              setSelectTemplate('8')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template8' &&
+                            {selectTemplate === '8' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -235,24 +248,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="7" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template7')
+                              setSelectTemplate('7')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template7' &&
+                            {selectTemplate === '7' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -283,24 +292,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="5" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template5')
+                              setSelectTemplate('5')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template5' &&
+                            {selectTemplate === '5' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -331,23 +336,19 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                     
+                      
                         <div>
                           <input type="hidden" name="template" value="10" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template10')
+                              setSelectTemplate('10')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template10' &&
+                            {selectTemplate === '10' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -378,23 +379,19 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                     
+                      
                         <div>
                           <input type="hidden" name="template" value="9" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template9')
+                              setSelectTemplate('9')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template9' &&
+                            {selectTemplate === '9' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -425,24 +422,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="3" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template3')
+                              setSelectTemplate('3')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template3' &&
+                            {selectTemplate === '3' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -473,24 +466,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="4" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template4')
+                              setSelectTemplate('4')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template4' &&
+                            {selectTemplate === '4' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -521,7 +510,7 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
                       
                       {/* <Form replace={true} action= {templateHandle} method='post'>
                       <div >
@@ -548,17 +537,17 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form> */}
-                      <Form replace={true} action= {templateHandle} method='post'>
+                      */}
+                      
                       <div >
                         <input type="hidden" name='template' value='11' />
                         <button 
                         type='submit'
                         className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template11') }}
+                        onClick={(e: any) => { setSelectTemplate('11') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template11' && transition?.submission?.action == "/account/update/choose-template" ? (
+                          {selectTemplate === '11' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumbnail11} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
@@ -574,18 +563,17 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form replace={true} action= {templateHandle} method='post'>
                       <div >
                         <input type="hidden" name='template' value='13' />
                         <button 
                         type='submit'
                         className='disabled:cursor-pointer'
-                        onClick={(e: any) => { setSelectTemplate('template13') }}
+                        onClick={(e: any) => { setSelectTemplate('13') }}
                         disabled={transition?.state != 'idle'}
                         >
-                          {selectTemplate === 'template13' && transition?.submission?.action == "/account/update/choose-template" ? (
+                          {selectTemplate === '13' && transition?.submission?.action == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumb13} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
@@ -601,24 +589,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="14" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template14')
+                              setSelectTemplate('14')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template14' &&
+                            {selectTemplate === '14' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -649,25 +633,21 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
                      
 
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="16" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template16')
+                              setSelectTemplate('16')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template16' &&
+                            {selectTemplate === '16' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -698,24 +678,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
                       
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="17" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template17')
+                              setSelectTemplate('17')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template17' &&
+                            {selectTemplate === '17' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -746,24 +722,20 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
                       
-                      <Form
-                        replace={true}
-                        action={templateHandle}
-                        method="post"
-                      >
+                      
                         <div>
                           <input type="hidden" name="template" value="18" />
                           <button
                             type="submit"
                             className="disabled:cursor-pointer"
                             onClick={(e: any) => {
-                              setSelectTemplate('template18')
+                              setSelectTemplate('18')
                             }}
                             disabled={transition?.state != 'idle'}
                           >
-                            {selectTemplate === 'template18' &&
+                            {selectTemplate === '18' &&
                             transition?.submission?.action ==
                               '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
@@ -794,7 +766,7 @@ export default function AccountTemplate({
                             )}
                           </button>
                         </div>
-                      </Form>
+                     
 
                      
 
@@ -807,5 +779,6 @@ export default function AccountTemplate({
         </div>
       </Dialog>
     </Transition.Root>
+    </>
   )
 }
