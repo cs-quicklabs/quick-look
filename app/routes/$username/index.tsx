@@ -59,12 +59,12 @@ export default function ProfileView() {
 
   const loaderData = useLoaderData();
 
-  const primaryRestore = useMemo(()=>loaderData?.profileImage?.isUsingPrimaryDefault, 
-    [loaderData?.profileImage?.isUsingPrimaryDefault]
+  const primaryRestore = useMemo(()=>loaderData?.profileImage?.primaryImage ? loaderData?.profileImage?.isUsingPrimaryDefault : true, 
+    [loaderData?.profileImage]
   );
 
-  const secondaryRestore = useMemo(()=>loaderData?.profileImage?.isUsingSecondaryDefault,
-    [loaderData?.profileImage?.isUsingSecondaryDefault]
+  const secondaryRestore = useMemo(()=>loaderData?.profileImage?.secondaryImage ? loaderData?.profileImage?.isUsingSecondaryDefault : true,
+    [loaderData?.profileImage]
   );
 
   const [input] = useState({ description: loaderData?.profileInfo?.bio, location: loaderData?.profileInfo?.location, occupation: loaderData?.profileInfo?.occupation, company: loaderData?.profileInfo?.company, education: loaderData?.profileInfo?.education })

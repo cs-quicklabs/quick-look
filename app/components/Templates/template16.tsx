@@ -16,7 +16,7 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
   
  const Location = useLocation()
  const nav = Location.pathname.includes(`${loaderData.username}`)
- console.log({nav})
+ 
   return(
     <>
       <div className=''>
