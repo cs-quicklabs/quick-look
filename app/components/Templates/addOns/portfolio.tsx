@@ -51,11 +51,12 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
         mode="lg-slide"
       >
         {/* <div  className='grid grid-cols-4  gap-4 items-center'> */}
-        {loaderData.portfolioImage.map((img: any) => (
+        {loaderData.portfolioImage.map((img: any, inx:number) => (
           <a
             data-lg-size="1406-1390"
             className="gallery-item"
             data-src={img.imageUrl}
+            key={inx}
           >
             <img
               draggable={false}
