@@ -4,7 +4,7 @@ import { LoginForm } from '~/types/loginForm.server'
 import { RegisterForm } from '~/types/regirsterForm.server'
 import { createUser } from './user.service.serevr'
 import bcrypt from 'bcryptjs'
-import { ServerResponse } from '~/types/response.server'
+import { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 if (!sessionSecret) {
@@ -31,6 +31,25 @@ export async function createUserSession(userId: string, redirectTo: string) {
       'Set-Cookie': await storage.commitSession(session),
     },
   })
+}
+
+
+export async function validateCoupon(code: string): Promise<ValidCouponServerResponse> {
+  const data = await db.coupon.findUnique({
+    where : {
+      code : code
+    }
+  })
+
+  if(data?.id){
+    const validEndDate = new Date(data?.endDate).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0)
+    const validStartDate = new Date(data?.startDate).setHours(0,0,0,0) <= new Date().setHours(0,0,0,0)
+    
+    if(validEndDate && validStartDate)
+    return {couponId: data?.id}
+    
+  }
+  return { error: "This coupon code is invalid or has expired"}
 }
 
 export async function register(user: RegisterForm): Promise<ServerResponse> {
@@ -105,6 +124,16 @@ export async function getUserId(request: Request) {
   return userId
 }
 
+export async function getUsers() {
+  try{
+    const users = await db.user.findMany()
+    return users
+  }catch(err){
+    return
+  }
+}
+
+
 export async function getUser(request: Request) {
   const userId = await getUserId(request)
   if (typeof userId !== 'string') {
@@ -115,6 +144,7 @@ export async function getUser(request: Request) {
         id: userId as string
       },
       include: {
+        coupon_code : true,
         profile : true,
         profileInfo : true,
         profileImage: true,

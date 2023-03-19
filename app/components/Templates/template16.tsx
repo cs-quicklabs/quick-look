@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
+import PoweredBy from '../Common/PoweredBy'
 export default function Template16 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
  const Location = useLocation()
@@ -22,12 +23,18 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} /> }
       </div>
     <div className={`relative flex overflow-auto scrollbar-hide font-inter bg-black justify-center items-center overflow-none pb-[3rem] ${nav ?'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} ${mode ==='mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'} 
-    ${nav ? 'xl:gap-[11rem] med:gap-[14rem] medium:gap-[15rem] largeLaptop:gap-[17rem]' : mode !='mobile' ? 'xl:gap-[4rem] med:gap-[9rem] medium:gap-[10rem] largeLaptop:gap-[12rem]' :''}`} >
+    ${nav ? 'xl:gap-[14rem] medium:gap-[15rem] largeLaptop:gap-[17rem]' : mode !='mobile' ? 'xl:gap-[2rem] med:gap-[5rem] medium:gap-[10rem] largeLaptop:gap-[12rem]' :''}`} >
 
-      <div className={`flex-shrink-0 flex flex-col justify-start items-start h-[25rem] ${mode ==='mobile' ? 'w-full lg:h-[30rem] largeLaptop:h-[40rem]' : 'w-full lg:h-[28rem] xl:pl-[4rem] xl:w-[24rem] xl:h-[100vh] med:pl-[5rem] medium:pl-[7rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem] largeLaptop:pl-[8rem]'} ${nav? '' :''}`} >
+      <div className={`flex-shrink-0 flex flex-col justify-start items-start h-[25rem] ${mode ==='mobile' ? 'w-full lg:h-[30rem] largeLaptop:h-[40rem]' : 'w-full lg:h-[28rem] xl:pl-20 xl:h-[100vh] xl:w-[30rem] largeLaptop:w-[34rem]'} ${nav? '' :''}`} >
 
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-        <img className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'lg:h-[30rem] largeLaptop:h-[40rem]' : 'lg:h-[28rem] xl:w-[20rem] xl:h-[100vh] med:w-[24rem] mediumLaptop:w-[25rem] largeLaptop:w-[32rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img 
+            loading="lazy"
+            className={`absolute object-cover w-full h-[25rem] ${mode ==='mobile' ? 'lg:h-[28rem]' : `lg:h-[28rem] ${nav? 'xl:w-[586px]' :'xl:w-[400px]'} xl:h-[100vh]`} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} 
+            src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} 
+            alt='profile' 
+          /> 
+        : null}
 
         {(loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) && 
         <div className={`relative rounded-lg flex flex-col bg-yellow-500 gap-4 lg:gap-8 px-[0.5rem] py-[0.75rem] lg:px-[1rem] lg:py-[1rem] mt-[8.5rem] ${mode ==='mobile' ? 'lg:mt-[12rem] med:mt-[13rem]' : 'xl:mt-[12.5rem] med:mt-[46vh]'}`}>
@@ -60,12 +67,19 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
 
             <div className={` ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && 
-            <Spotlightbtn loaderData={loaderData}/>}
+            <div className='flex'>
+              <Spotlightbtn loaderData={loaderData}/>
+            </div>
+            }
             </div>
           
 
           <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
-              { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
+              { loaderData?.spotlightButton?.toggleSpotlight && 
+                <div className='flex'>
+                  <AdditionalLinksAddOn loaderData={loaderData} />
+                </div>
+              }
             </div>
 
             <div className={`pb-[1rem] w-full ${mode ==='mobile' ? '' : 'lg:bg-transparent xl:hidden'} `}>
@@ -146,6 +160,9 @@ export default function Template16 ({ mode,input, loaderData,primaryRestore,seco
          
             
       </div>
+    </div>
+    <div className='bg-black -mt-0.5 pb-10'>
+      <PoweredBy textColor='text-white'/>
     </div>
     </>
   )

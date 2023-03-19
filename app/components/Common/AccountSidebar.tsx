@@ -89,16 +89,6 @@ export default function AccountSideBar({
       setshowImages(true)
     }
   }, [mode, showImages]);
-  let hamburger =
-    !sidebarOpen &&
-    !showSpotlight &&
-    !showPortfolio &&
-    !showAddVideo &&
-    !showTestimonial &&
-    !showSocialLinks &&
-    !showTemplate &&
-    !showImages &&
-    !showBio;
 
   const renderPublishStatus = () => {
     const { isPublished } = loaderData?.profile;
@@ -853,9 +843,7 @@ export default function AccountSideBar({
               }
             >
               <span className="sr-only">Open sidebar</span>
-              {hamburger ? (
-                <MenuIcon className="h-6 w-6 " aria-hidden="true" />
-              ) : null}
+                {!sidebarOpen && <MenuIcon className="h-6 w-6 " aria-hidden="true" />}
             </button>
           </div>
         </div>

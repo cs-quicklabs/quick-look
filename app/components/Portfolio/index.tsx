@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import Portfolioimage from './portfolioimage'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DropzonePortfolio from './DragandDrop'
+import { AlertSuccess } from '../Alert/Alert'
 
 export default function Portfolio({
   setShowPortfolio,
@@ -18,8 +19,10 @@ export default function Portfolio({
   const [image1, setimage1] = useState(null)
   const [error, setError] = useState('')
   const [errorDrag, setErrorDrag] = useState('')
-
+  const apiResponseRef = useRef("")
   const transition = useTransition()
+  const [apiResponse, setApiResponse] = useState({id: 0, message: ""})
+  const {id, message} = apiResponse
 
   // if(image1 && image1.includes)
   const [edit, setEdit] = useState(false)
@@ -101,6 +104,29 @@ export default function Portfolio({
     }
   }, [transition, error, errorDrag])
 
+  
+  const isUploading = (transition.state !== 'idle' && upload) ||
+    (transition?.submission?.action === '/account/add/drop-portfolio-image');
+  
+  useEffect(()=>{
+    const action = transition?.submission?.action || ""
+
+    if(action.includes("add/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your Portfolio Image added successfully."
+
+    if(action.includes("update/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your Portfolio Image has been updated successfully."
+
+    if(action.includes("delete/") && !apiResponseRef?.current)
+      apiResponseRef.current = "Your Portfolio Image has been deleted successfully."
+
+    if(transition?.state === "idle" && apiResponseRef?.current){
+      setApiResponse({message: apiResponseRef.current, id: apiResponse?.id+1})
+      apiResponseRef.current = ""
+    }
+
+  },[transition])
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40 " onClose={() => {}}>
@@ -162,13 +188,25 @@ export default function Portfolio({
                           </div>
                         </div>
                       </div>
+
+                      <div className='px-4 sm:px-6 my-2'>
+                        <AlertSuccess message={message} key={id} />
+                      </div>
+
                       <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
                         <label className="block text-sm font-medium leading-5 text-gray-700">
                           Portfolio Images
                         </label>
                         {loaderData.portfolioImage.length <= 19 ? (
-                          <div className="px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10">
-                            <div className="text-center">
+                          <div className="relative px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10">
+                            
+                            {isUploading && 
+                              <div className='h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10'>
+                                <BeatLoader color="#184fad" className="mt-2" size={20}/>
+                              </div>
+                            }
+                            
+                            <div className={`text-center ${isUploading ? "invisible" : ""}`}>
                               <DropzonePortfolio
                                 setErrorDrag={setErrorDrag}
                                 onDrop={onDrop}
@@ -191,11 +229,7 @@ export default function Portfolio({
                                 method="post"
                               >
                                 <div className="flex flex-col items-center justify-center md:mx-12 lg:mx-20">
-                                  {(transition.state != 'idle' && upload) ||
-                                  transition?.submission?.action ==
-                                    '/account/add/drop-portfolio-image' ? (
-                                    <BeatLoader color="#184fad" className="mt-2"/>
-                                  ) : (
+                                  
                                     <label
                                       htmlFor="photo"
                                       id="primaryUploadImage"
@@ -225,7 +259,7 @@ export default function Portfolio({
                                       </button>
                                       {/* <input type="file" name="photo" /> */}
                                     </label>
-                                  )}
+                                  
                                   <div className="mt-2 text-sm text-red-500">
                                     {errorDrag || error}
                                   </div>

@@ -12,6 +12,7 @@ import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import {BriefcaseIcon} from '@heroicons/react/outline'
 import {AcademicCapIcon} from '@heroicons/react/outline'
 import PortfolioAddon from './addOns/portfolio'
+import PoweredBy from '../Common/PoweredBy'
 
 export default function Template5 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
@@ -43,12 +44,12 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
           </h3> : <span></span>}
           
 
-          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`flex ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {loaderData?.spotlightButton?.toggleSpotlight && 
           <Spotlightbtn loaderData={loaderData}/>}
           </div>
 
-          <div className={`${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`flex ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
             { loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
           </div>
 
@@ -112,15 +113,19 @@ export default function Template5 ({ mode,input, loaderData,primaryRestore,secon
           </footer>
 
 
+
       </div>  
 
-        <div className={`flex py-[2rem] w-[24rem] sm:w-[33rem] md:w-[38rem] ${mode ==='mobile' ? 'lg:w-[28rem] xl:w-[26rem] med:w-[26rem] medium:w-[36rem] largeLaptop:w-[38rem]' : 'lg:w-[28rem] xl:h-[100vh] xl:pt-[4rem] xl:w-[26rem] medium:w-[31rem] mediumLaptop:w-[35rem] largeLaptop:w-[38rem]'} ${nav? 'xl:w-[33rem]' :''}`} style={myStyle}>
+        <div className={`flex py-[2rem] pr-4 sm:w-[33rem] md:w-[38rem] ${mode ==='mobile' ? 'lg:w-[28rem] xl:w-[26rem] med:w-[26rem] medium:w-[36rem] largeLaptop:w-[38rem]' : 'lg:w-[28rem] xl:h-[100vh] xl:pt-[4rem] xl:w-[26rem] medium:w-[31rem] mediumLaptop:w-[35rem] largeLaptop:w-[38rem]'} ${nav? 'xl:w-[33rem]' :''}`} style={myStyle}>
         {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`relative rounded-full shadow-xl object-cover h-[22rem] w-[22rem] sm:h-[30rem] sm:w-[30rem] md:h-[35rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:h-[35rem] largeLaptop:w-[35rem]' : ' lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]'} ${nav? 'SmMedium:w-[30rem] SmMedium:h-[30rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+          <img loading="lazy" className={`relative rounded-full shadow-xl object-cover h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem] md:h-[35rem] md:w-[35rem] ${mode ==='mobile' ? 'lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:h-[35rem] largeLaptop:w-[35rem]' : ' lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]'} ${nav? 'SmMedium:w-[30rem] SmMedium:h-[30rem]' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='profile' /> : null}
         </div>
 
       
     </div>  
+      <div className='py-5'>
+        <PoweredBy/>
+      </div>
     </>
   )
 }} 

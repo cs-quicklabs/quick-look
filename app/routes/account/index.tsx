@@ -21,7 +21,8 @@ import Template13 from '~/components/Templates/template13'
 import Template14 from '~/components/Templates/template14'
 import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
-
+import Template17 from '~/components/Templates/template17'
+import Template18 from '~/components/Templates/template18'
 import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
 export const action = ModalAction;
 
@@ -124,8 +125,8 @@ export default function Profile() {
   const [inputVideo, setInputVideo] = useState({
     videoLink: loaderData?.video?.videoLink,
   })
-  const primaryRestore = loaderData?.profileImage?.isUsingPrimaryDefault
-  const secondaryRestore = loaderData?.profileImage?.isUsingSecondaryDefault
+  const primaryRestore = loaderData?.profileImage?.primaryImage ? loaderData?.profileImage?.isUsingPrimaryDefault : true;
+  const secondaryRestore = loaderData?.profileImage?.secondaryImage ? loaderData?.profileImage?.isUsingSecondaryDefault : true;
   const actionData = useActionData()
 
   useEffect(() => {
@@ -171,7 +172,7 @@ export default function Profile() {
     )
   }
   const disabledIcon =
-    loaderData?.profileImage?.primaryImage || primaryRestore
+    loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
       ? 'text-gray-700/20'
       : 'text-gray-700/40'
   return (
@@ -227,8 +228,8 @@ export default function Profile() {
             mode={mode}
             showBio={showBio}
             setshowBio={setshowBio}
-            primaryRestore={primaryRestore}
-            secondaryRestore={secondaryRestore}
+            primaryRestore={loaderData?.profileImage?.isUsingPrimaryDefault}
+            secondaryRestore={loaderData?.profileImage?.isUsingSecondaryDefault}
             showModal={showModal}
             setShowModal={setShowModal}
           />
@@ -358,7 +359,25 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          ) : null}
+          ) : loaderData?.profileInfo?.templateNumber == '17' ? (
+            <Template17
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          )
+           : loaderData?.profileInfo?.templateNumber == '18' ? (
+            <Template18
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+              input={input}
+              loaderData={loaderData}
+              mode={mode}
+            />
+          )
+          : null}
         </div>
       </div>
 
@@ -366,7 +385,7 @@ export default function Profile() {
         className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${
           !showUserSetting ? 'z-40' : 'z-[60]'
         }  rounded-l-md rounded-r-md ${
-          loaderData?.profileImage?.primaryImage || primaryRestore
+          loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
         } ${

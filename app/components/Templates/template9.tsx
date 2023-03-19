@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom'
 import facebook from '../../../assets/images/socialIcons/fbIcon5.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon5.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'
+import PoweredBy from '../Common/PoweredBy'
 
 export default function Template9({
   input,
@@ -58,6 +59,8 @@ export default function Template9({
                       ? defaultimg
                       : loaderData?.profileImage?.secondaryImage
                   }
+                  alt="profile"
+                  loading="lazy"
                 />
               ) : null}
             </div>
@@ -70,8 +73,8 @@ export default function Template9({
               }`}
             >
               <h1
-                className={`w-fit px-4 font-bold leading-8 text-gray-100 ${
-                  mode == 'mobile' ? 'text-2xl' : 'text-2xl md:text-4xl'
+                className={`w-fit px-4 font-bold leading-8 text-gray-50 ${
+                  mode == 'mobile' ? 'text-2xl' : 'text-2xl md:text-4xl lg:leading-10 lg:font-extrabold'
                 }`}
               >
                 {loaderData?.firstname} {loaderData?.lastname}
@@ -81,10 +84,10 @@ export default function Template9({
               input.location ||
               loaderData?.profileInfo?.location ? (
                 <h3
-                  className={`break-normal text-gray-100 ${
+                  className={`break-normal mt-1 text-gray-50 ${
                     mode == 'mobile'
                       ? 'w-fit px-4 text-xl'
-                      : 'w-fit px-4 text-xl md:text-2xl'
+                      : 'w-fit px-4 text-xl md:text-2xl lg:leading-8 lg:font-medium'
                   }`}
                 >
                   {input.occupation}{' '}
@@ -146,7 +149,7 @@ export default function Template9({
               <div>
                 <PortfolioAddon mode={mode} loaderData={loaderData} />
               </div>
-              <div className="mt-[2rem] flex flex-col gap-4">
+              <div className="mt-[2rem] flex flex-col gap-6">
                 <div className="flex items-center justify-center gap-4">
                   {input.company && (
                     <BriefcaseIcon className="h-6 w-6 text-gray-100" />
@@ -196,7 +199,13 @@ export default function Template9({
                     <img src={youtube} alt="" className="h-auto w-9 md:w-11" />
                   </a>
                 ) : null}
-              </footer></div>
+              </footer>
+
+              <div className='py-5 -mt-4 text-gray-50'>
+                <PoweredBy/>
+              </div>
+
+              </div>
 
             </div>
           </div>

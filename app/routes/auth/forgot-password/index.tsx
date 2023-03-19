@@ -9,7 +9,7 @@ import { sendAccountVerificationMail, sendResetPasswordMail } from '~/services/m
 import { v4 as uuidv4 } from 'uuid'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import { requireUserId } from '~/services/auth.service.server'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/solid'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -32,6 +32,10 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (!user) { 
     return redirect('/confirm/password')
+  } else if (user?.profile?.isBlocked) {
+
+    return json({errors : {isBlocked : "Your profile is blocked, Please contact admin to continue."}}, { status: 400 })
+
   } else if (user.profile['isVerified'] == true ) {
     createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     await sendResetPasswordMail(email, url, generatedToken)
@@ -51,6 +55,17 @@ export default function Forgotpassword() {
     <>
       <div className='h-[calc(100vh-3rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 text-sm bg-gray-50 font-inter'>
         <div>
+          {actionData?.errors?.isBlocked && 
+            <div className="rounded-md bg-red-50 p-4 w-full max-w-md my-4" data-cy="alertError">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0">
+                  <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                </div>
+                <p className="text-sm font-medium text-red-800">{actionData?.errors?.isBlocked}</p>
+              </div>
+            </div>
+          }
+
           <div className='max-w-md w-full space-y-8'>
             <img src={logo} alt='' className='mx-auto h-20 w-20' />
             <h2 className='mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900'>

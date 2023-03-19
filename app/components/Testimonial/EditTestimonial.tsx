@@ -179,10 +179,10 @@ let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
                         <button
                           data-cy="editTestimonial"
                           type="submit"
-                          className="ml-4 mb-4 leading-5 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
+                          className="ml-4 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer" 
                           disabled={error || !testimonialText || error1 || !testimonialBy || transition?.state != "idle" ? true : false}
                         >
-                          {transition?.state != "idle"  ? <BeatLoader color="#ffffff" /> :
+                          {transition?.state != "idle"  ? <BeatLoader color="#ffffff" size={12} /> :
                         "Edit Testimonial"}
                         </button>
                       </div>

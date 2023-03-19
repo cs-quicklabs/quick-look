@@ -15,6 +15,7 @@ export async function createUser(userRegister: RegisterForm) {
             username: userRegister.username.toLocaleLowerCase(),
             email: userRegister.email.toLocaleLowerCase(),
             password,
+            couponId : userRegister?.couponId || null,
         }
     })
     await db.profile.create({
@@ -310,6 +311,23 @@ export async function updateUserTemplate(templateId: string, user: any) {
             templateNumber: templateId
         }
     })
+}
+
+export async function changePublishedStatus(profileId: string, data: boolean) {
+    try{
+        await db.profile.update({
+            where: {
+                id: profileId
+            },
+            data: {
+                isPublished: data
+            }
+        })
+        return true
+    }
+    catch(e){
+        return null
+    }
 }
 
 export async function getUserByUsername(username: string){

@@ -80,10 +80,18 @@ export const checkIncorrectCredentials = async (
     where: {
       email: lowerCasedEmail,
     },
+    include: {
+      profile: true
+    }
   })
+  
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return `Either email or password you entered was not correct. Please try again.`
   }
+  
+  if(user?.profile?.isBlocked)
+  return "Your profile is blocked, Please contact admin to continue."
+
   return undefined
 }
 

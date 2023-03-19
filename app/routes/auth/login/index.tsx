@@ -1,5 +1,6 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/solid'
-import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
+import type { ActionFunction, LoaderFunction, MetaFunction} from '@remix-run/node';
+import { json, redirect } from '@remix-run/node'
 import { Link } from 'react-router-dom'
 import { createUserSession, login } from '~/services/auth.service.server'
 import {
@@ -80,6 +81,27 @@ export const loader: LoaderFunction = async ({request}) => {
   );
 }
 
+export const meta: MetaFunction = () => {
+  return {
+    title: "QuickLook.me - Log In or Sign Up",
+    description:
+      "Create an account or log into QuickLook. Describe yourself with just one link which connects all your social profiles together.",
+    "og:type": "website",
+    "og:url": "https://www.quicklook.me/",
+    "og:title": "QuickLook.me — Introduction made simple with just one link.",
+    "og:description": 
+      "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
+    "og:image": "https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png",
+
+    "twitter:card": "summary_large_image",
+    "twitter:url": "https://www.quicklook.me/",
+    "twitter:title": "QuickLook.me — Introduction made simple with just one link.",
+    "twitter:description": "Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.",
+    "twitter:image": "https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png",    
+    keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`
+  };
+};
+
 export default function Login() {
   const transition = useTransition()
 const actionData = useActionData()
@@ -104,7 +126,7 @@ const loaderData = useLoaderData();
             </div>
           </div> : 
           <div className={` rounded-md ${actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ? 'bg-red-50 p-4 mb-4' : ''}`}>
-            <div className="flex">
+            <div className="flex items-center">
               {actionData?.errors['checkIncorrectCredentials'] && !actionData?.errors['email'] && !actionData?.errors['password'] ?  <div className="flex-shrink-0">
                 <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
               </div> : ''}

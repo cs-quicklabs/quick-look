@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import { ActionFunction, redirect } from "@remix-run/node";
 import { getUser } from "~/services/auth.service.server";
 import { uploadBlob } from "~/services/do.service.server";
-import { addPrimaryImage, addSecondaryImage} from "~/services/profileImage.service.server";
+import { addPrimaryImage, addSecondaryImage, removePrimaryImage, removeSecondaryImage} from "~/services/profileImage.service.server";
 
 
 export const action: ActionFunction = async ({ request }) => {
@@ -17,12 +17,14 @@ export const action: ActionFunction = async ({ request }) => {
         if(!url){
             return false
         }
+        await removePrimaryImage(user)
         await addPrimaryImage(url, user);
     } else{
         const url = await uploadBlob(secondaryImageEdit)
         if(!url){
             return false
         }
+        await removeSecondaryImage(user)
         await addSecondaryImage(url, user);
     }
 

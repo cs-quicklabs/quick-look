@@ -11,6 +11,7 @@ import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
 import DefaultCoverPicture from '../../../assets/images/temp9Cover.png'
+import PoweredBy from '../Common/PoweredBy'
 
 export default function Template11 ({ mode,input, loaderData,primaryRestore,secondaryRestore }: any) {
   
@@ -38,7 +39,8 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                 (mode === 'mobile' && loaderData?.socialMedia?.facebookLink) || (mode === 'mobile' && loaderData?.socialMedia?.twitterLink) || (mode === 'mobile' && loaderData?.socialMedia?.youtubeLink) ? 'lg:h-[26rem] xl:h-[27rem]' : mode === 'mobile' ? 'lg:h-[23rem]' : ''
               }
               ${(mode !='mobile' && loaderData?.socialMedia?.facebookLink) || (mode !='mobile' &&loaderData?.socialMedia?.twitterLink) || (mode !='mobile' && loaderData?.socialMedia?.youtubeLink) ? 'h-[20rem] lg:h-[26rem] xl:h-[16rem]' : mode !='mobile' ? 'h-[17rem] sm:h-[17rem] lg:h-[23rem] xl:h-[16rem]' : ''}`}
-              alt=""
+              alt="cover"
+              loading="lazy"
             />
           ) : null}
         </div>
@@ -49,20 +51,26 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                 ? ` ${
                     mode === 'mobile'
                       ? 'top-[1rem]'
-                      : 'top-[1rem] xl:top-[6rem] xl:left-[3rem] xl:pt-[11rem]'
+                      : 'top-[1rem] xl:top-[99px] xl:left-[60px] xl:pt-[11rem]'
                   }`
                 : 'bottom-[-11rem]'
-            } ${mode === 'mobile' ? '' : 'xl:bg-white xl:h-[35rem] xl:w-[14rem] xl:px-[1rem] xl:rounded-md xl:shadow-md'}`}
+            } ${mode === 'mobile' ? '' : 'xl:bg-white xl:h-[40rem] xl:w-[20rem] xl:px-[1rem] xl:rounded-md xl:shadow-md'}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ?
-          <img className={`rounded-full object-cover w-[7rem] h-[7rem] ${mode ==='mobile' ? 'lg:w-[12rem] lg:h-[12rem]' : 'lg:pt-[0rem] lg:w-[12rem] lg:h-[12rem] xl:mt-[-9rem] mediumLaptop:w-[12rem] mediumLaptop:h-[12rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} alt='' /> : null}
+              <img 
+                loading="lazy"
+                className={`rounded-full object-cover w-[7rem] h-[7rem] ${mode ==='mobile' ? 'lg:w-[11rem] lg:h-[11rem]' : 'lg:pt-[0rem] lg:w-[11rem] lg:h-[11rem] xl:mt-[-9rem] mediumLaptop:w-[11rem] mediumLaptop:h-[11rem]'} ${nav? '' :''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' :''}  `} 
+                src={secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage} 
+                alt='profile' 
+              /> 
+            : null}
         
           <h4 className={`text-white text-center text-xl leading-8 font-semibold pt-[1rem] ${mode ==='mobile' ? '' : 'xl:text-black xl:text-4xl xl:font-extrabold xl:leading-10 '}  ${nav ? '' : ''}`}>
               {loaderData?.firstname} {loaderData?.lastname}
             </h4>
 
             {loaderData?.profileInfo?.occupation || input.occupation ||input.location ||loaderData?.profileInfo?.location ?
-              <h3 className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-[14rem] xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-[0.5rem] xl:px-[0.75rem]'}  ${nav ? 'lg:w-full' : ''} `} >
+              <h3 className={`mt-1 text-white text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode ==='mobile' ? '' : 'xl:w-[14rem] xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-1 xl:px-[0.75rem]'}  ${nav ? 'lg:w-full' : ''} `} >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3> : <span></span>}
 
@@ -96,7 +104,7 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
                 </div>
               </div>
 
-              <footer className={`flex w-full gap-4 md:gap-8 justify-center pb-[3rem] xl:pt-[1rem] ${nav ? '' : ''} `}>
+              <footer className={`flex w-full gap-4 md:gap-8 justify-center pb-[3rem] xl:pt-6 ${nav ? '' : ''} `}>
                 {loaderData?.socialMedia?.facebookLink ?
                 <a href={`https://${loaderData?.socialMedia?.facebookLink}`} target='_blank'><img src={facebook} alt="" className="w-9 md:w-11 h-auto" /></a> : null}
                 {loaderData?.socialMedia?.twitterLink ?
@@ -120,16 +128,19 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
       <div className={`flex flex-col justify-center items-center w-full
       ${mode === 'mobile' ? '' : 'largeLaptop:w-[50rem]'}
       ${nav ? 'xl:w-[40rem] med:w-[45rem] medium:w-[45rem] mediumLaptop:w-[50rem] largeLaptop:w-[55rem]' : mode != 'mobile' ? 'xl:w-[35rem] med:w-[40rem] medium:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]' : '' } 
-      ${(mode === 'mobile') && (loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[28rem] xl:mt-[29rem]' : mode === 'mobile' ? 'lg:mt-[27rem]' : (mode != 'mobile' || loaderData?.socialMedia?.facebookLink) || (mode != 'mobile' || loaderData?.socialMedia?.twitterLink) || (mode != 'mobile' || loaderData?.socialMedia?.youtubeLink) ? 'mt-[21rem] lg:mt-[28rem] xl:mt-[16rem] xl:ml-[20rem]' : mode != 'mobile' ? 'mt-[21rem] lg:mt-[27rem] xl:mt-[16rem]' : '' } 
+      ${(mode === 'mobile') && (loaderData?.socialMedia?.facebookLink || loaderData?.socialMedia?.twitterLink || loaderData?.socialMedia?.youtubeLink) ? 'lg:mt-[28rem] xl:mt-[29rem]' : mode === 'mobile' ? 'lg:mt-[27rem]' : (mode != 'mobile' || loaderData?.socialMedia?.facebookLink) || (mode != 'mobile' || loaderData?.socialMedia?.twitterLink) || (mode != 'mobile' || loaderData?.socialMedia?.youtubeLink) ? 'mt-[21rem] lg:mt-[28rem] xl:mt-[16rem] xl:ml-[28rem]' : mode != 'mobile' ? 'mt-[21rem] lg:mt-[27rem] xl:mt-[16rem]' : '' } 
       `}>
 
         {loaderData?.spotlightButton?.toggleSpotlight && 
-        <Spotlightbtn loaderData={loaderData}/>}
+          <div className=''>
+            <Spotlightbtn loaderData={loaderData}/>
+          </div>
+        }
         
           {loaderData?.spotlightButton?.toggleSpotlight && <AdditionalLinksAddOn loaderData={loaderData} />}
 
           <div className={`px-[1rem] ${mode ==='mobile' ? 'lg:px-[2rem] xl:px-[3rem]' : 'lg:px-[2rem]'}`} >
-            <pre className={`text-gray-900 text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <pre className={`text-gray-700 text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base ${mode ==='mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 { input?.description?.trim()}
               </pre>
 
@@ -190,6 +201,10 @@ export default function Template11 ({ mode,input, loaderData,primaryRestore,seco
             
       </div>
 
+    </div>
+
+    <div className='pb-10'>
+      <PoweredBy/>
     </div>
         
      
