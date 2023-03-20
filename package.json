@@ -32,7 +32,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
     "cropro": "^1.2.2",
-    "cuid": "^2.1.8",
+    "cuid": "^3.0.0",
     "cypress": "^12.3.0",
     "cypress-xpath": "^2.0.1",
     "focus-visible": "^5.2.0",
