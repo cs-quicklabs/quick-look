@@ -1,7 +1,6 @@
 import { Menu } from '@headlessui/react'
 import { useState } from "react";
 import Modal from "~/components/Common/ConfirmModal";
-import { Link } from "react-router-dom";
 import logo from '../../../assets/images/logos/quicklook-icon.svg';
 import DefaultProfileIcon from '../../../assets/images/profile.png';
 import DropDown from "../DropDown/DropDown";

@@ -1,7 +1,6 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/solid'
 import type { ActionFunction, LoaderFunction, MetaFunction} from '@remix-run/node';
 import { json, redirect } from '@remix-run/node'
-import { Link } from 'react-router-dom'
 import { createUserSession, login } from '~/services/auth.service.server'
 import {
   checkIncorrectCredentials,

@@ -1,5 +1,5 @@
 
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from '@remix-run/react'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 
 
