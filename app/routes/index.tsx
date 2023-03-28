@@ -8,7 +8,7 @@ import { Testimonials } from '../components/Testimonials'
 import { Header } from '../components/Header'
 import { LoaderFunction, redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
-import { useLoaderData, useLocation } from '@remix-run/react'
+import { useLoaderData } from '@remix-run/react'
 import Pricing from '~/components/Pricing'
 
 export const loader: LoaderFunction = async ({ request }) => {
