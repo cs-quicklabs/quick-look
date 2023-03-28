@@ -18,7 +18,7 @@
     "@aws-sdk/lib-storage": "^3.267.0",
     "@headlessui/react": "^1.7.11",
     "@heroicons/react": "^1.0.6",
-    "@material-tailwind/react": "^1.2.5",
+    "@material-tailwind/react": "^1.4.2",
     "@prisma/client": "^4.10.1",
     "@remix-run/node": "^1.12.0",
     "@remix-run/react": "^1.14.0",
