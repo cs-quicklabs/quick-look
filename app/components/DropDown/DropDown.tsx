@@ -1,6 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
-import { Fragment, SVGProps, useEffect, useRef, useState } from 'react'
+import { Fragment } from 'react'
 import DefaultProfileIcon from '../../../assets/images/profile.png'
 
 export default function DropDown({ loaderData, setIsOpen }: any) {
@@ -21,6 +20,7 @@ export default function DropDown({ loaderData, setIsOpen }: any) {
                 ? DefaultProfileIcon
                 : loaderData?.profileImage?.secondaryImage
             }
+            alt="profile-pic"
             // onClick={() => toggleSetting()}
           />
         </Menu.Button>

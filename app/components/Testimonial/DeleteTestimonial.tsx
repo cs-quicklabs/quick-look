@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
@@ -49,16 +49,10 @@ export default function Delete({
               <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full sm:p-6">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <ExclamationIcon
-                      className="h-6 w-6 text-red-600"
-                      aria-hidden="true"
-                    />
+                    <ExclamationIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg leading-6 font-medium text-gray-900"
-                    >
+                    <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
                       Delete Testimonial
                     </Dialog.Title>
                     <div className="mt-2">
@@ -69,11 +63,7 @@ export default function Delete({
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
-                  <Form
-                    replace={true}
-                    action="delete/testimonial"
-                    method="post"
-                  >
+                  <Form replace={true} action="delete/testimonial" method="post">
                     {/* <input type="text" value="delete testimonial" hidden /> */}
                     <button
                       data-cy="deleteTestimonial"
@@ -89,11 +79,7 @@ export default function Delete({
                       disabled={transition?.state != 'idle' ? true : false}
                     >
                       {transition?.state != 'idle' ? (
-                        <BeatLoader
-                          color="#ffffff"
-                          size={12}
-                          className="px-0 py-0.5"
-                        />
+                        <BeatLoader color="#ffffff" size={12} className="px-0 py-0.5" />
                       ) : (
                         'Delete'
                       )}

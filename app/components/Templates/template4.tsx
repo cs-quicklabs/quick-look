@@ -22,16 +22,12 @@ export default function Template4({
 
   return (
     <>
-      {loaderData?.supportBanner?.toggleBanner && (
-        <BannerAddOn loaderData={loaderData} />
-      )}
+      {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
         className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide justify-center bg-no-repeat object-cover overflow-none bg-black pb-[3rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
         } ${
-          mode === 'mobile'
-            ? 'flex-col'
-            : 'flex-col lg:pt-[3rem] lg:flex-row lg:justify-around'
+          mode === 'mobile' ? 'flex-col' : 'flex-col lg:pt-[3rem] lg:flex-row lg:justify-around'
         } ${nav ? '' : ''}`}
       >
         <div
@@ -49,15 +45,10 @@ export default function Template4({
                   ? 'lg:w-[20rem] lg:h-[20rem] med:w-[23rem] med:h-[23rem] medium:w-[23rem] medium:h-[23rem] mediumLaptop:w-[23rem] mediumLaptop:h-[23rem] largeLaptop:w-[23rem] largeLaptop:h-[23rem]'
                   : 'small:w-[20rem] small:h-[20rem] xl:p-4 med:w-[23rem] med:h-[23rem] medium:w-[23rem] medium:h-[23rem] mediumLaptop:w-[23rem] mediumLaptop:h-[23rem] largeLaptop:w-[23rem] largeLaptop:h-[23rem]'
               } ${nav ? '' : ''} ${
-                loaderData?.profileImage?.secondaryImage ||
-                secondaryRestore === true
-                  ? ''
-                  : ''
+                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
               }  `}
               src={
-                secondaryRestore === true
-                  ? defaultimg
-                  : loaderData?.profileImage?.secondaryImage
+                secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }
               alt="profile"
             />
@@ -92,40 +83,27 @@ export default function Template4({
                 mode === 'mobile' ? '' : 'lg:text-start xl:w-full'
               }  ${nav ? 'xl:w-full' : ''} `}
             >
-              {input.occupation}{' '}
-              {input.location && input.occupation ? `in` : ''} {input.location}
+              {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3>
           ) : (
             <span></span>
           )}
 
           <div>
-            <div
-              className={`lg:flex text-center ${mode === 'mobile' ? '' : ''} ${
-                nav ? '' : ''
-              }`}
-            >
+            <div className={`lg:flex text-center ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <Spotlightbtn loaderData={loaderData} />
               )}
             </div>
           </div>
 
-          <div
-            className={`lg:flex ${mode === 'mobile' ? '' : ''} ${
-              nav ? '' : ''
-            }`}
-          >
+          <div className={`lg:flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <AdditionalLinksAddOn loaderData={loaderData} />
             )}
           </div>
 
-          <div
-            className={`flex flex-col-reverse ${
-              mode === 'mobile' ? '' : 'lg:flex-col'
-            }`}
-          >
+          <div className={`flex flex-col-reverse ${mode === 'mobile' ? '' : 'lg:flex-col'}`}>
             <div
               className={` ${
                 loaderData?.spotlightButton?.toggleSpotlight
@@ -142,22 +120,14 @@ export default function Template4({
               </pre>
             </div>
 
-            <div
-              className={`pt-8 ${
-                mode === 'mobile' ? 'xl:pb-[1rem]' : 'xl:pt-[2rem]'
-              } `}
-            >
+            <div className={`pt-8 ${mode === 'mobile' ? 'xl:pb-[1rem]' : 'xl:pt-[2rem]'} `}>
               <div
                 className={`flex flex-col ${
                   mode === 'mobile' ? 'flex-col' : 'xl:flex-row xl:gap-[5rem]'
                 } ${nav ? '' : ''}`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div
-                    className={`flex lg:w-[50%] ${
-                      mode === 'mobile' ? 'flex-col' : 'flex-col'
-                    }`}
-                  >
+                  <div className={`flex lg:w-[50%] ${mode === 'mobile' ? 'flex-col' : 'flex-col'}`}>
                     <h2
                       className={`text-white lg:text-gray-50 font-medium text-sm leading-5 w-max  ${
                         mode === 'mobile' ? '' : ''
@@ -200,11 +170,7 @@ export default function Template4({
             </div>
           </div>
 
-          <div
-            className={`mb-[2rem] ${mode === 'mobile' ? '' : ''} ${
-              nav ? '' : ''
-            }`}
-          >
+          <div className={`mb-[2rem] ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.testimonial?.testimonialText && (
               <TestimonialAddOn
                 testimonialText={loaderData?.testimonial?.testimonialText}
@@ -215,16 +181,9 @@ export default function Template4({
           </div>
 
           {loaderData?.video?.videoLink && (
-            <div
-              className={`border border-1 ${mode === 'mobile' ? '' : ''} ${
-                nav ? '' : ''
-              }`}
-            >
+            <div className={`border border-1 ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
           )}
@@ -234,14 +193,15 @@ export default function Template4({
           </div>
 
           <footer
-            className={`flex w-full gap-4 md:gap-8 justify-end  ${
-              nav ? '' : ''
-            } ${loaderData?.portfolioImage[0] ? 'pt-[1.5rem]' : 'pt-[0rem]'}`}
+            className={`flex w-full gap-4 md:gap-8 justify-end  ${nav ? '' : ''} ${
+              loaderData?.portfolioImage[0] ? 'pt-[1.5rem]' : 'pt-[0rem]'
+            }`}
           >
             {loaderData?.socialMedia?.facebookLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
               </a>
@@ -249,7 +209,8 @@ export default function Template4({
             {loaderData?.socialMedia?.twitterLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
               </a>
@@ -257,7 +218,8 @@ export default function Template4({
             {loaderData?.socialMedia?.youtubeLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
               </a>

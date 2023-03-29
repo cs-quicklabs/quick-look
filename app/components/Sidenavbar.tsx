@@ -12,8 +12,7 @@ const navigation: nav = [
   { name: 'Settings', icon: CogIcon, href: '#', current: false },
   {
     name: 'Support',
-    class:
-      'hover:bg-white text-gray-500 hover:text-gray-500 font-[600] text-[12px]',
+    class: 'hover:bg-white text-gray-500 hover:text-gray-500 font-[600] text-[12px]',
   },
   { name: 'Help Center', class: 'mt-0 pt-0', href: '#', current: false },
   { name: 'Terms of Use', class: 'mt-0 pt-0', href: '#', current: false },
@@ -34,10 +33,7 @@ export default function SideNav({ children }: any) {
             <h1>Account</h1>
           </div>
           <div className="mt-5 flex-grow flex flex-col w-[16rem]">
-            <nav
-              className="flex-1 px-2 bg-white space-y-1"
-              aria-label="Sidebar"
-            >
+            <nav className="flex-1 px-2 bg-white space-y-1" aria-label="Sidebar">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -54,9 +50,7 @@ export default function SideNav({ children }: any) {
                   {item?.icon ? (
                     <item.icon
                       className={classNames(
-                        item.current
-                          ? 'text-gray-500'
-                          : 'text-gray-400 group-hover:text-gray-500',
+                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
                         'mr-3 flex-shrink-0 h-6 w-6'
                       )}
                       aria-hidden="true"

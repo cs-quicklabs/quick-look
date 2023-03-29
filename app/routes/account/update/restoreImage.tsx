@@ -1,8 +1,5 @@
 import { getUser } from '~/services/auth.service.server'
-import {
-  restorePrimaryImage,
-  restoreSecondaryImage,
-} from '~/services/profileImage.service.server'
+import { restorePrimaryImage, restoreSecondaryImage } from '~/services/profileImage.service.server'
 import type { User } from '@prisma/client'
 import type { ActionFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'

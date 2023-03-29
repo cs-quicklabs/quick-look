@@ -22,10 +22,7 @@ export async function sendMail({ to, from, subject, text, html }: SendMail) {
       return true
     })
     .catch((error: any) => {
-      return json(
-        { success: false, message: 'Something unexpected happend!' },
-        { status: 500 }
-      )
+      return json({ success: false, message: 'Something unexpected happend!' }, { status: 500 })
     })
 }
 
@@ -46,11 +43,7 @@ export async function verifyEmail(token: string, userId: string) {
   }
 }
 
-export async function sendAccountVerificationMail(
-  to: string,
-  url: string,
-  generatedToken: string
-) {
+export async function sendAccountVerificationMail(to: string, url: string, generatedToken: string) {
   let userData = await findUserByEmail(to)
   try {
     const verificationHostUrl = await getHostUrl(url)
@@ -74,11 +67,7 @@ export async function sendAccountVerificationMail(
   }
 }
 
-export async function sendResetPasswordMail(
-  to: string,
-  url: string,
-  generatedToken: string
-) {
+export async function sendResetPasswordMail(to: string, url: string, generatedToken: string) {
   let userData = await findUserByEmail(to)
   const verificationHostUrl = await getHostUrl(url)
   try {

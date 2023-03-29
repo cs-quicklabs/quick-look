@@ -55,11 +55,8 @@ export default function CreateSpotlight({
 }: any) {
   const transition = useTransition()
 
-  const [selectedColor, setSelectedColor] = useState(
-    loaderData?.spotlightButton?.buttonColor || ''
-  )
+  const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
 
-  let isValid = false
   var _ = require('lodash')
   let selectedAction: { id: number; name: string }[] = []
 
@@ -69,9 +66,7 @@ export default function CreateSpotlight({
     )
   }
 
-  const [enabled, setEnabled] = useState(
-    loaderData?.spotlightButton?.toggleSpotlight
-  )
+  const [enabled, setEnabled] = useState(loaderData?.spotlightButton?.toggleSpotlight)
   const [selected, setSelected] = useState(people[3])
   const [val, setVal] = useState({
     buttonText: loaderData?.spotlightButton?.buttonText || '',
@@ -96,7 +91,7 @@ export default function CreateSpotlight({
 
   useEffect(() => {
     getSelectedAction()
-    selectedAction.length ? setSelected(selectedAction[0]) : null
+    selectedAction.length && setSelected(selectedAction[0])
   }, [loaderData?.spotlightButton?.buttonAction])
 
   const [error, setError] = useState('')
@@ -118,13 +113,7 @@ export default function CreateSpotlight({
   }, [val.hexcode, selectedColor])
 
   useEffect(() => {
-    if (
-      transition.state === 'loading' &&
-      !error &&
-      !errorLink &&
-      !errorHex &&
-      !errorColor
-    ) {
+    if (transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor) {
       showEditSpotlight && setShowEditSpotlight(false)
     }
   }, [transition])
@@ -177,12 +166,8 @@ export default function CreateSpotlight({
     if (mode === 'desktop') {
       setShowSpotlight(false)
     }
-    if (mode === 'mobile') {
-    }
-  }
-
-  const handleChange = () => {
-    setSelected
+    // if (mode === 'mobile') {
+    // }
   }
 
   const OnCancel = () => {
@@ -205,12 +190,7 @@ export default function CreateSpotlight({
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <Form
-                  replace={true}
-                  action="add/spotlight"
-                  method="post"
-                  className="h-screen"
-                >
+                <Form replace={true} action="add/spotlight" method="post" className="h-screen">
                   <div
                     className={`flex h-[95%] flex-col mt-12 divide-y divide-gray-200 bg-white font-inter border-r border-gray-200 ${
                       mode === 'mobile'
@@ -237,19 +217,14 @@ export default function CreateSpotlight({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XIcon
-                                onClick={OnCancel}
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
+                              <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                             </button>
                             {/* </Form> */}
                           </div>
                         </div>
                         <div className="mt-1">
                           <p className="text-sm text-gray-500 leading-5 font-normal">
-                            A spotlight button is an action button on your
-                            public profile
+                            A spotlight button is an action button on your public profile
                           </p>
                         </div>
                       </div>
@@ -284,11 +259,7 @@ export default function CreateSpotlight({
                                       : 'focus:border-indigo-500 focus:ring-indigo-500'
                                   }`}
                                 />
-                                {click && (
-                                  <div className="text-sm text-red-500">
-                                    {error}
-                                  </div>
-                                )}
+                                {click && <div className="text-sm text-red-500">{error}</div>}
                               </div>
                             </div>
 
@@ -317,20 +288,13 @@ export default function CreateSpotlight({
                                           className={({ active, checked }) =>
                                             classNames(
                                               color.selectedColor,
-                                              active && checked
-                                                ? 'ring ring-offset-1'
-                                                : '',
-                                              !active && checked
-                                                ? 'ring ring-offset-1'
-                                                : '',
+                                              active && checked ? 'ring ring-offset-1' : '',
+                                              !active && checked ? 'ring ring-offset-1' : '',
                                               '-m-0.5 relative  rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
                                             )
                                           }
                                         >
-                                          <RadioGroup.Label
-                                            as="span"
-                                            className="sr-only"
-                                          >
+                                          <RadioGroup.Label as="span" className="sr-only">
                                             {color.name}
                                           </RadioGroup.Label>
                                           <span
@@ -349,9 +313,7 @@ export default function CreateSpotlight({
 
                                 <div
                                   className={`w-[7.813rem] ${
-                                    mode === 'mobile'
-                                      ? 'mt-6 xl:mt-auto'
-                                      : 'mt-6 lg:mt-auto'
+                                    mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'
                                   }`}
                                 >
                                   <label
@@ -371,8 +333,7 @@ export default function CreateSpotlight({
                                       onChange={(event) => {
                                         setVal({
                                           ...val,
-                                          [event.target.name]:
-                                            event.target.value,
+                                          [event.target.name]: event.target.value,
                                         })
                                       }}
                                       className={`block w-full rounded-md shadow-sm sm:text-sm ${
@@ -387,9 +348,7 @@ export default function CreateSpotlight({
                                       </div>
                                     )}
                                     {click && (
-                                      <div className="text-[12px] text-red-500">
-                                        {errorHex}
-                                      </div>
+                                      <div className="text-[12px] text-red-500">{errorHex}</div>
                                     )}
                                   </div>
                                 </div>
@@ -397,9 +356,7 @@ export default function CreateSpotlight({
 
                               <div>
                                 {click && !errorHex && (
-                                  <div className="text-sm text-red-500">
-                                    {errorNoColor}
-                                  </div>
+                                  <div className="text-sm text-red-500">{errorNoColor}</div>
                                 )}
                               </div>
                             </div>
@@ -427,18 +384,14 @@ export default function CreateSpotlight({
                                   }}
                                   className={`block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm focus:border-indigo-500 focus:ring-indigo-500`}
                                 />
-                                {
-                                  <div className="text-sm text-indigo-500">
-                                    {errorIcon}
-                                  </div>
-                                }
+                                {<div className="text-sm text-indigo-500">{errorIcon}</div>}
                                 <p className="text-xs leading-5 font-normal text-gray-500 mt-1">
-                                  You can select any Hero icon to add to your
-                                  button. Please go{' '}
+                                  You can select any Hero icon to add to your button. Please go{' '}
                                   <a
                                     target="_blank"
                                     className="text-blue-800 underline"
-                                    href="https://heroicons.com/" rel="noreferrer"
+                                    href="https://heroicons.com/"
+                                    rel="noreferrer"
                                   >
                                     here
                                   </a>{' '}
@@ -450,7 +403,7 @@ export default function CreateSpotlight({
                             <div>
                               <Listbox
                                 value={selected.name}
-                                //ts-ignore
+                                //@ts-ignore
                                 onChange={setSelected}
                                 name="buttonAction"
                               >
@@ -464,9 +417,7 @@ export default function CreateSpotlight({
                                         data-cy="SelectAction"
                                         className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
                                       >
-                                        <span className="block truncate">
-                                          {selected.name}
-                                        </span>
+                                        <span className="block truncate">{selected.name}</span>
                                         <span className="cursor-pointer  absolute inset-y-0 right-0 flex items-center pr-2">
                                           <SelectorIcon
                                             className="h-5 w-5 text-gray-400"
@@ -502,9 +453,7 @@ export default function CreateSpotlight({
                                                 <>
                                                   <span
                                                     className={classNames(
-                                                      selected
-                                                        ? 'font-semibold'
-                                                        : 'font-normal',
+                                                      selected ? 'font-semibold' : 'font-normal',
                                                       'block truncate'
                                                     )}
                                                   >
@@ -514,9 +463,7 @@ export default function CreateSpotlight({
                                                   {selected ? (
                                                     <span
                                                       className={classNames(
-                                                        active
-                                                          ? 'text-white'
-                                                          : 'text-indigo-600',
+                                                        active ? 'text-white' : 'text-indigo-600',
                                                         'absolute inset-y-0 right-0 flex items-center pr-4'
                                                       )}
                                                     >
@@ -554,11 +501,9 @@ export default function CreateSpotlight({
                                   ? 'Enter the link you want visitors to visit'
                                   : selected.name === 'Let People call me'
                                   ? 'Enter your Phone number / Telephone number'
-                                  : selected.name ===
-                                    'Capture lead in google sheet'
+                                  : selected.name === 'Capture lead in google sheet'
                                   ? 'Enter link of your Google sheet'
-                                  : selected.name ===
-                                    'Allow people to book an appointment'
+                                  : selected.name === 'Allow people to book an appointment'
                                   ? ' Enter link for your Appointment'
                                   : null}
                               </label>
@@ -581,11 +526,7 @@ export default function CreateSpotlight({
                                       : 'focus:border-indigo-500 focus:ring-indigo-500'
                                   }`}
                                 />
-                                {click && (
-                                  <div className="text-sm text-red-500">
-                                    {errorLink}
-                                  </div>
-                                )}
+                                {click && <div className="text-sm text-red-500">{errorLink}</div>}
                               </div>
                             </div>
 
@@ -600,9 +541,8 @@ export default function CreateSpotlight({
 
                               <div className="flex">
                                 <p className="text-sm leading-5 font-normal text-gray-500">
-                                  Switching it off will not show spotlight
-                                  button to visitor. Although all settings of
-                                  button will be saved.
+                                  Switching it off will not show spotlight button to visitor.
+                                  Although all settings of button will be saved.
                                 </p>
 
                                 <Switch
@@ -620,9 +560,7 @@ export default function CreateSpotlight({
                                   <span
                                     aria-hidden="true"
                                     className={classNames(
-                                      enabled
-                                        ? 'translate-x-5'
-                                        : 'translate-x-0',
+                                      enabled ? 'translate-x-5' : 'translate-x-0',
                                       'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                     )}
                                   />
@@ -637,15 +575,9 @@ export default function CreateSpotlight({
                                 className="ml-4 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                                 onClick={(e: any) => {
                                   setClicked(true)
-                                  error &&
-                                    errorLink &&
-                                    errorHex &&
-                                    errorColor &&
-                                    e.preventDefault()
+                                  error && errorLink && errorHex && errorColor && e.preventDefault()
                                 }}
-                                disabled={
-                                  transition?.state != 'idle' ? true : false
-                                }
+                                disabled={transition?.state != 'idle' ? true : false}
                               >
                                 {transition?.state != 'idle' ? (
                                   <BeatLoader color="#ffffff" size={12} />

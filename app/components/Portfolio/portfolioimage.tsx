@@ -3,17 +3,9 @@ import React, { useEffect, useState } from 'react'
 import * as cropro from 'cropro'
 import { useRef } from 'react'
 import { Form, useTransition } from '@remix-run/react'
-import BeatLoader from 'react-spinners/BeatLoader'
 import DeletePortfolioImage from './deletePortfolioimage'
 
-export default function Portfolioimage({
-  img,
-  setUpload,
-  setEdit,
-  setDel,
-  del,
-  edit,
-}: any) {
+export default function Portfolioimage({ img, setUpload, setEdit, setDel, del, edit }: any) {
   const [show, setShow] = useState(false)
   const imageref = useRef(null)
   const btnref = useRef(null)

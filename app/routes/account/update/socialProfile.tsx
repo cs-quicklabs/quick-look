@@ -29,10 +29,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   await addUpdateSocialLink(socialProfile, link, user)
 
-  session.flash(
-    'successUpdateProfileMessage',
-    `Your profile has been updated successfully.`
-  )
+  session.flash('successUpdateProfileMessage', `Your profile has been updated successfully.`)
 
   return redirect('/account', {
     headers: {

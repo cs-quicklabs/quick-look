@@ -14,11 +14,7 @@ aws.config.update({
 
 const s3 = new aws.S3()
 
-export const awsUploadHandler: UploadHandler = async ({
-  name,
-  data,
-  filename,
-}) => {
+export const awsUploadHandler: UploadHandler = async ({ name, data, filename }) => {
   const urlKey = await randomName()
 
   const chunks = []

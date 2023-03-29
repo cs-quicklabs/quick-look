@@ -31,9 +31,7 @@ export default function Template7({
     }
     return (
       <>
-        {loaderData?.supportBanner?.toggleBanner && (
-          <BannerAddOn loaderData={loaderData} />
-        )}
+        {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
         <div
           className={`flex overflow-auto scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-center justify-center pt-[1rem] ${
             nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '
@@ -47,15 +45,10 @@ export default function Template7({
               <img
                 loading="lazy"
                 className={`mb-3 w-60 h-60 rounded-full object-cover ${
-                  loaderData?.profileImage?.secondaryImage ||
-                  secondaryRestore === true
-                    ? ''
-                    : ''
+                  loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
                 } ${nav ? ' ' : ''} `}
                 src={
-                  secondaryRestore === true
-                    ? defaultimg
-                    : loaderData?.profileImage?.secondaryImage
+                  secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
                 }
                 alt="profile"
               />
@@ -76,9 +69,7 @@ export default function Template7({
                   mode === 'mobile' ? '' : ''
                 } `}
               >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
@@ -104,11 +95,7 @@ export default function Template7({
               )}
             </div>
 
-            <div
-              className={`mt-[1.5rem] ${mode === 'mobile' ? '' : ''} ${
-                nav ? '' : ''
-              }`}
-            >
+            <div className={`mt-[1.5rem] ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <pre
                 className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${
                   mode === 'mobile' ? '' : ''
@@ -119,15 +106,11 @@ export default function Template7({
             </div>
 
             <div
-              className={`flex items-center justify-center  ${
-                mode === 'mobile' ? '' : ''
-              } ${nav ? '' : ''}`}
+              className={`flex items-center justify-center  ${mode === 'mobile' ? '' : ''} ${
+                nav ? '' : ''
+              }`}
             >
-              <div
-                className={`flex flex-col  items-center justify-center ${
-                  nav ? '' : ''
-                }`}
-              >
+              <div className={`flex flex-col  items-center justify-center ${nav ? '' : ''}`}>
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className="flex pt-[1.5rem]">
                     <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
@@ -166,10 +149,7 @@ export default function Template7({
 
             <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
 
@@ -180,14 +160,13 @@ export default function Template7({
             <footer
               className={`flex w-full gap-4 md:gap-8 items-center justify-center ${
                 mode === 'mobile' ? '' : ''
-              }  ${nav ? '' : ''} ${
-                loaderData?.portfolioImage[0] ? 'pt-[1.5rem]' : 'pt-[0rem]'
-              }`}
+              }  ${nav ? '' : ''} ${loaderData?.portfolioImage[0] ? 'pt-[1.5rem]' : 'pt-[0rem]'}`}
             >
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -195,7 +174,8 @@ export default function Template7({
               {loaderData?.socialMedia?.twitterLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -203,7 +183,8 @@ export default function Template7({
               {loaderData?.socialMedia?.youtubeLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
                 </a>

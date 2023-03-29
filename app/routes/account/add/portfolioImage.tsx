@@ -8,10 +8,7 @@ import { digitalOceanUploadHandler } from '~/utils/uploadHandler.server'
 export const action: ActionFunction = async ({ request }) => {
   const user = (await getUser(request)) as User
 
-  const form = await unstable_parseMultipartFormData(
-    request,
-    digitalOceanUploadHandler
-  )
+  const form = await unstable_parseMultipartFormData(request, digitalOceanUploadHandler)
 
   const portfolioImageUrl = form.get('portfolioImage') as string
 

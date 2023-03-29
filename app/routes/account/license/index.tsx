@@ -17,10 +17,7 @@ export default function License() {
   return (
     <>
       <div>
-        <DashboardHeader
-          username={loaderData?.username}
-          loaderData={loaderData}
-        />
+        <DashboardHeader username={loaderData?.username} loaderData={loaderData} />
       </div>
 
       <div className="lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap">
@@ -30,10 +27,7 @@ export default function License() {
 
         <div className="sm:px-6 md:w-3/5 lg:w-[90%] lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl py-6 px-4 sm:p-6">
           <div className="">
-            <h3
-              className="text-lg leading-6 font-medium text-gray-900"
-              data-cy="license-header"
-            >
+            <h3 className="text-lg leading-6 font-medium text-gray-900" data-cy="license-header">
               License
             </h3>
 

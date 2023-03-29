@@ -37,8 +37,6 @@ export default function NoVideo({
     if (mode === 'desktop') {
       setShowAddVideo(false)
     }
-    if (mode === 'mobile') {
-    }
   }
 
   useEffect(() => {
@@ -68,9 +66,7 @@ export default function NoVideo({
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${
-              mode === 'mobile'
-                ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96'
-                : 'lg:w-96'
+              mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'
             }`}
           >
             <Transition.Child
@@ -85,9 +81,7 @@ export default function NoVideo({
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <div
                   className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${
-                    mode === 'mobile'
-                      ? ' w-[16rem] xl:w-96'
-                      : 'md:w-[20rem] lg:w-96'
+                    mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
                   }`}
                 >
                   <div className="bg-gray-50 py-6 px-4">
@@ -106,18 +100,13 @@ export default function NoVideo({
                           onClick={OnCancel}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon
-                            onClick={Onclose}
-                            className="h-6 w-6"
-                            aria-hidden="true"
-                          />
+                          <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
                     <div className="pt-1 pr-2">
                       <p className="text-sm leading-5 font-normal text-gray-500">
-                        Please provide link of video you would like to show on
-                        profile
+                        Please provide link of video you would like to show on profile
                       </p>
                     </div>
                   </div>

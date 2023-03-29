@@ -16,11 +16,11 @@ export default function ExistingAdditionalSpotlightLink({
     id: any
     linkUrl: any
   }>({ linkText: '', id: '', linkUrl: '' })
+
   useEffect(() => {
-    loaderData?.additionalLinks?.length == 7
-      ? setOpenAdditionalLinkForm(false)
-      : null
+    loaderData?.additionalLinks?.length == 7 && setOpenAdditionalLinkForm(false)
   }, [loaderData])
+
   const [showEditAdditional, setShowEditAdditional] = useState(false)
 
   const toggleEditAdditionalLink = (additionalSpotlight: {
@@ -32,8 +32,7 @@ export default function ExistingAdditionalSpotlightLink({
     setShowEditAdditional(true)
   }
 
-  const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] =
-    useState(false)
+  const [openDeleteAdditionalLink, setOpenDeleteAdditionalLink] = useState(false)
 
   const [deleteAdditionalLink, setDeleteAdditionalLink] = useState({
     linkText: '',
@@ -43,11 +42,7 @@ export default function ExistingAdditionalSpotlightLink({
 
   return (
     <div
-      className={` ${
-        showEditAdditional
-          ? 'pl-3 pr-3.5'
-          : 'border-t border-gray-200 ml-0 mr-0'
-      }`}
+      className={` ${showEditAdditional ? 'pl-3 pr-3.5' : 'border-t border-gray-200 ml-0 mr-0'}`}
     >
       <ul>
         {loaderData?.additionalLinks.map(
@@ -65,23 +60,19 @@ export default function ExistingAdditionalSpotlightLink({
                     <div className="flex flex-col lg:w-screen">
                       <div
                         className={`flex ${
-                          showEditAdditional
-                            ? ''
-                            : 'border-b border-gray-200 ml-3 mr-2.5 lg:mr-3.5'
+                          showEditAdditional ? '' : 'border-b border-gray-200 ml-3 mr-2.5 lg:mr-3.5'
                         }`}
                       >
                         <div className="py-4 flex">
                           <div className="ml-3">
                             <p className="text-sm font-medium text-gray-900">
                               {additionalSpotlight.linkText?.length > 27
-                                ? additionalSpotlight.linkText?.slice(0, 27) +
-                                  '...'
+                                ? additionalSpotlight.linkText?.slice(0, 27) + '...'
                                 : additionalSpotlight.linkText}{' '}
                             </p>
                             <p className="w-52 text-sm text-gray-500 text-ellipsis overflow-hidden">
                               {additionalSpotlight?.linkUrl?.length > 22
-                                ? additionalSpotlight?.linkUrl?.slice(0, 22) +
-                                  '...'
+                                ? additionalSpotlight?.linkUrl?.slice(0, 22) + '...'
                                 : additionalSpotlight?.linkUrl}{' '}
                             </p>
                           </div>
@@ -93,8 +84,8 @@ export default function ExistingAdditionalSpotlightLink({
                               ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0'
                               : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'
                           } ${
-                            clickedAdditionalSpotlight.id ===
-                              additionalSpotlight.id && showEditAdditional
+                            clickedAdditionalSpotlight.id === additionalSpotlight.id &&
+                            showEditAdditional
                               ? 'hidden'
                               : 'block'
                           }`}
@@ -119,9 +110,7 @@ export default function ExistingAdditionalSpotlightLink({
                               setDeleteAdditionalLink(additionalSpotlight)
                             }}
                             className={`hover:text-red-600 text-[14px] ${
-                              mode === 'mobile'
-                                ? 'ml-[1.5rem] xl:ml-0'
-                                : 'lg:ml-0 ml-3'
+                              mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
                             }`}
                           >
                             Delete
@@ -129,9 +118,7 @@ export default function ExistingAdditionalSpotlightLink({
                           {openDeleteAdditionalLink && (
                             <DeleteAdditinalLink
                               additionalSpotlight={additionalSpotlight}
-                              setOpenDeleteAdditionalLink={
-                                setOpenDeleteAdditionalLink
-                              }
+                              setOpenDeleteAdditionalLink={setOpenDeleteAdditionalLink}
                               deleteAdditionalLink={deleteAdditionalLink}
                               onClose={() => setOpenDeleteAdditionalLink(false)}
                             />
@@ -141,13 +128,10 @@ export default function ExistingAdditionalSpotlightLink({
 
                       <div>
                         {showEditAdditional &&
-                          clickedAdditionalSpotlight.id ===
-                            additionalSpotlight.id && (
+                          clickedAdditionalSpotlight.id === additionalSpotlight.id && (
                             <EditAdditionalLink
                               id={additionalSpotlight.id}
-                              clickedAdditionalSpotlight={
-                                clickedAdditionalSpotlight
-                              }
+                              clickedAdditionalSpotlight={clickedAdditionalSpotlight}
                               showEditAdditional={showEditAdditional}
                               setShowEditAdditional={setShowEditAdditional}
                               loaderData={loaderData}

@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 // import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail1 from '../../../assets/images/screenshots/Group 3.svg'
-import { Form, useTransition } from '@remix-run/react'
+import { useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import thumbnail3 from '../../../assets/images/screenshots/thumbnail3.png'
 import thumbnail4 from '../../../assets/images/screenshots/thumbnail4.png'
@@ -12,7 +12,7 @@ import thumbnail6 from '../../../assets/images/screenshots/thumbnail6.png'
 import temp9 from '../../../assets/images/screenshots/temp9.png'
 import thumb3 from '../../../assets/images/screenshots/thumb3.png'
 import thumb4 from '../../../assets/images/screenshots/thumb4.png'
-import thumb6 from '../../../assets/images/screenshots/thumb6.png'
+// import thumb6 from '../../../assets/images/screenshots/thumb6.png'
 import template9 from '../../../assets/images/screenshots/template-9.png'
 import thumb13 from '../../../assets/images/screenshots/thumbnail13.png'
 import thumbnail14 from '../../../assets/images/screenshots/thumbnail14.png'
@@ -22,34 +22,28 @@ import temp18 from '../../../assets/images/screenshots/temp18.png'
 import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
 import Modal from './Modal'
 
-export default function AccountTemplate({
-  setshowTemplate,
-  mode,
-  setmode,
-}: any) {
+export default function AccountTemplate({ setshowTemplate, mode, setmode }: any) {
   const transition = useTransition()
 
   const [selectTemplate, setSelectTemplate] = useState('')
-  const templateHandle = 'update/choose-template'
+  // const templateHandle = 'update/choose-template'
   const OnCancel = () => {
     setshowTemplate(false)
     setmode('desktop')
   }
-  const Onclose = () => {
-    if (mode === 'desktop') {
-      setshowTemplate(false)
-    }
-    if (mode === 'mobile') {
-    }
-  }
+  // const Onclose = () => {
+  //   if (mode === 'desktop') {
+  //     setshowTemplate(false)
+  //   }
+  //   // if (mode === 'mobile') {
+  //   // }
+  // }
 
   const apiResponseRef = useRef(false)
 
   useEffect(() => {
     if (
-      transition?.submission?.action?.includes(
-        '/account/update/choose-template'
-      ) &&
+      transition?.submission?.action?.includes('/account/update/choose-template') &&
       !apiResponseRef?.current
     )
       apiResponseRef.current = true
@@ -67,9 +61,7 @@ export default function AccountTemplate({
         handleCancel={() => {
           setSelectTemplate('')
         }}
-        loading={
-          transition?.submission?.action === '/account/update/choose-template'
-        }
+        loading={transition?.submission?.action === '/account/update/choose-template'}
         value={selectTemplate}
         confirmButtonText="Change"
         cancelButtonText="Cancel"
@@ -85,9 +77,7 @@ export default function AccountTemplate({
             <div className="absolute inset-0 overflow-hidden">
               <div
                 className={`pointer-events-none fixed inset-y-0 left-0 mt-12  flex ${
-                  mode === 'mobile'
-                    ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                    : 'lg:w-96'
+                  mode === 'mobile' ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96' : 'lg:w-96'
                 }`}
               >
                 <Transition.Child
@@ -122,8 +112,8 @@ export default function AccountTemplate({
                         </div>
                         <div className="pt-1 pr-2">
                           <p className="text-sm font-normal leading-5 text-gray-500">
-                            Select how you want your profile to look like. Click
-                            on Toggle button to view in mobile and Desktop mode
+                            Select how you want your profile to look like. Click on Toggle button to
+                            view in mobile and Desktop mode
                           </p>
                         </div>
                       </div>
@@ -140,8 +130,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '0' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem] ">
                                 <BeatLoader
                                   color="#184fad"
@@ -182,8 +171,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '2' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -224,8 +212,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '8' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -266,8 +253,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '7' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -308,8 +294,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '5' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -350,8 +335,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '10' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -392,8 +376,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '9' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -434,8 +417,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '3' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -476,8 +458,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '4' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -545,8 +526,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '11' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -587,8 +567,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '13' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -629,8 +608,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '14' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -671,8 +649,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '16' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -713,8 +690,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '17' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -755,8 +731,7 @@ export default function AccountTemplate({
                             disabled={transition?.state != 'idle'}
                           >
                             {selectTemplate === '18' &&
-                            transition?.submission?.action ==
-                              '/account/update/choose-template' ? (
+                            transition?.submission?.action == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"

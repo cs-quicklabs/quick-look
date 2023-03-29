@@ -2,7 +2,6 @@ import facebook from '../../../assets/images/socialIcons/fbIcon3.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon3.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon3.png'
 import defaultimg from '../../../assets/images/profile.png'
-import Background3 from '../../../assets/images/templates/temp3.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import TestimonialAddOn from './addOns/testimonial'
@@ -24,9 +23,7 @@ export default function Template13({
 
   return (
     <>
-      {loaderData?.supportBanner?.toggleBanner && (
-        <BannerAddOn loaderData={loaderData} />
-      )}
+      {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
         className={`xl:ml-8 xl:gap-16 flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
@@ -51,15 +48,10 @@ export default function Template13({
                   ? 'lg:w-[20rem] lg:h-[20rem]'
                   : 'lg:w-[25rem] lg:h-[25rem] xl:w-[22rem] xl:h-[28rem] xl:rounded-lg med:h-[35rem] med:w-[25rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
               } ${nav ? '' : ''} ${
-                loaderData?.profileImage?.secondaryImage ||
-                secondaryRestore === true
-                  ? ''
-                  : ''
+                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
               }  `}
               src={
-                secondaryRestore === true
-                  ? defaultimg
-                  : loaderData?.profileImage?.secondaryImage
+                secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }
               alt="profile"
             />
@@ -106,9 +98,7 @@ export default function Template13({
                     : 'xl:text-left xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-6'
                 }  ${nav ? 'lg:w-full' : ''} `}
               >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
@@ -116,9 +106,7 @@ export default function Template13({
 
             <div
               className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] ${
-                mode === 'mobile'
-                  ? 'xl:mt-[-1rem]'
-                  : 'lg:bg-transparent xl:pl-[0rem] xl:hidden'
+                mode === 'mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem] xl:hidden'
               } `}
             >
               <div
@@ -150,9 +138,9 @@ export default function Template13({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex  ${
-                      mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'
-                    } ${nav ? '' : ''}`}
+                    className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                      nav ? '' : ''
+                    }`}
                   >
                     <h2
                       className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -179,21 +167,13 @@ export default function Template13({
           </div>
 
           <div className="mt-[1rem]">
-            <div
-              className={`text-center xl:flex ${mode === 'mobile' ? '' : ''} ${
-                nav ? '' : ''
-              }`}
-            >
+            <div className={`text-center xl:flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <Spotlightbtn loaderData={loaderData} />
               )}
             </div>
 
-            <div
-              className={`xl:flex ${mode === 'mobile' ? '' : ''} ${
-                nav ? '' : ''
-              }`}
-            >
+            <div className={`xl:flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <AdditionalLinksAddOn loaderData={loaderData} />
               )}
@@ -211,9 +191,7 @@ export default function Template13({
 
             <div
               className={`pb-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] hidden ${
-                mode === 'mobile'
-                  ? 'xl:mt-[-1rem]'
-                  : 'lg:bg-transparent xl:pl-[0rem] xl:block '
+                mode === 'mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem] xl:block '
               } `}
             >
               <div
@@ -245,9 +223,9 @@ export default function Template13({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex  ${
-                      mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'
-                    } ${nav ? '' : ''}`}
+                    className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                      nav ? '' : ''
+                    }`}
                   >
                     <h2
                       className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -273,9 +251,7 @@ export default function Template13({
             </div>
 
             <div className="">
-              <div
-                className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-              >
+              <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 {loaderData?.testimonial?.testimonialText && (
                   <TestimonialAddOn
                     testimonialText={loaderData?.testimonial?.testimonialText}
@@ -285,32 +261,26 @@ export default function Template13({
                 )}
               </div>
 
-              <div
-                className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-              >
+              <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 {loaderData?.video?.videoLink && (
-                  <VideoAddOn
-                    videoLink={loaderData?.video?.videoLink}
-                    loaderData={loaderData}
-                  />
+                  <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
                 )}
               </div>
 
-              <div
-                className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-              >
+              <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 <PortfolioAddon loaderData={loaderData} />
               </div>
 
               <footer
-                className={`flex w-full gap-4 md:gap-8  justify-start  ${
-                  nav ? '' : ''
-                } ${loaderData?.portfolioImage ? 'pt-[1rem]' : 'pt-[0rem]'}`}
+                className={`flex w-full gap-4 md:gap-8  justify-start  ${nav ? '' : ''} ${
+                  loaderData?.portfolioImage ? 'pt-[1rem]' : 'pt-[0rem]'
+                }`}
               >
                 {loaderData?.socialMedia?.facebookLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -318,7 +288,8 @@ export default function Template13({
                 {loaderData?.socialMedia?.twitterLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -326,7 +297,8 @@ export default function Template13({
                 {loaderData?.socialMedia?.youtubeLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
                   </a>

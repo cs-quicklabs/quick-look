@@ -8,9 +8,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   const user = await getUser(request)
 
-  const deleteAdditionalLinkId = (await formData.get(
-    'deleteAdditionalLink'
-  )) as string
+  const deleteAdditionalLinkId = (await formData.get('deleteAdditionalLink')) as string
 
   await deleteAdditionalLink(deleteAdditionalLinkId, user)
 

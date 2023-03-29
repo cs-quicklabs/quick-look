@@ -1,16 +1,11 @@
-import type { User } from '@prisma/client'
 import type { ActionFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
 import { uploadBlob } from '~/services/do.service.server'
 import { updatePortfolioImage } from '~/services/portfolioImage.server'
-import {
-  addPrimaryImage,
-  addSecondaryImage,
-} from '~/services/profileImage.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
-  const user = (await getUser(request)) as User
+  await getUser(request)
   const form = await request.formData()
   const imageIdData = form.get('updatePortfolioImage')
   const imageId = form.get('imageId') as string

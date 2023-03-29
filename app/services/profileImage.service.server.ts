@@ -52,9 +52,7 @@ export async function deleteImage(imageKey: string, user?: User) {
       },
     })
   } else if (imageKey === 'deleteSecondary') {
-    await removeFileFromSpace(
-      userProfileImagerecord?.secondaryImageKey as string
-    )
+    await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
     await db.profileImage.update({
       where: {
         userId: user?.id,
@@ -96,9 +94,7 @@ export async function restoreSecondaryImage(user: User) {
     },
   })
   if (userProfileImagerecord) {
-    await removeFileFromSpace(
-      userProfileImagerecord?.secondaryImageKey as string
-    )
+    await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
   }
   await db.profileImage.update({
     where: {
@@ -121,9 +117,7 @@ export async function removePrimaryImage(user: User) {
     })
 
     if (userProfileImagerecord) {
-      await removeFileFromSpace(
-        userProfileImagerecord?.primaryImageKey as string
-      )
+      await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
     }
     return true
   } catch (e) {
@@ -140,9 +134,7 @@ export async function removeSecondaryImage(user: User) {
     })
 
     if (userProfileImagerecord) {
-      await removeFileFromSpace(
-        userProfileImagerecord?.secondaryImageKey as string
-      )
+      await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
     }
     return true
   } catch (e) {

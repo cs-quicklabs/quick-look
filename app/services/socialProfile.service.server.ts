@@ -1,11 +1,7 @@
 import type { User } from '@prisma/client'
 import { db } from '~/database/connection.server'
 
-export async function addUpdateSocialLink(
-  socialProfile: string,
-  link: string,
-  user?: User
-) {
+export async function addUpdateSocialLink(socialProfile: string, link: string, user?: User) {
   try {
     const socialAccount = socialProfile.toLocaleLowerCase()
     if (socialAccount === 'facebook') {

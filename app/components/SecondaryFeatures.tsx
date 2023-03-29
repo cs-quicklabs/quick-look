@@ -109,12 +109,8 @@ function Feature({ feature, isActive, className, ...props }: any) {
       >
         {feature.name}
       </h3>
-      <p className="mt-2 font-display text-xl text-slate-900 outline-none">
-        {feature.summary}
-      </p>
-      <p className="mt-4 text-sm text-slate-600 outline-none">
-        {feature.description}
-      </p>
+      <p className="mt-2 font-display text-xl text-slate-900 outline-none">{feature.summary}</p>
+      <p className="mt-4 text-sm text-slate-600 outline-none">{feature.description}</p>
     </div>
   )
 }
@@ -205,8 +201,8 @@ export function SecondaryFeatures() {
             Simplify your internet presence.
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Because you’d probably be a little confused if we suggested you
-            complicate your internet presence instead.
+            Because you’d probably be a little confused if we suggested you complicate your internet
+            presence instead.
           </p>
         </div>
         <FeaturesMobile />

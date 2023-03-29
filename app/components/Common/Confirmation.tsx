@@ -18,9 +18,7 @@ export default function Confirmation() {
         </div>
         <div className="flex flex-col justify-center items-center  w-2/4 max-w-3xl h-auto shadow mt-7 gap-3 pb-6 bg-white rounded-lg">
           <div className="max-w-xl px-4">
-            <h1 className="text-lg leading-6 font-medium mt-6">
-              Check your Inbox
-            </h1>
+            <h1 className="text-lg leading-6 font-medium mt-6">Check your Inbox</h1>
             <p className="mt-2 text-sm leading-5 font-normal text-gray-500">
               {Location.pathname.includes('/confirm/email')
                 ? 'An confirmation email has been sent to you on your specified email Id.Please check your email and click on email confirmation link. You should be able to login into your account after confirming your email.'

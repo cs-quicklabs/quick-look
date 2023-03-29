@@ -1,11 +1,7 @@
-import {
-  EmojiHappyIcon,
-  CogIcon,
-  CreditCardIcon,
-} from '@heroicons/react/outline'
+import { EmojiHappyIcon, CogIcon, CreditCardIcon } from '@heroicons/react/outline'
 import { Fragment, useState } from 'react'
 import { useLocation } from '@remix-run/react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
 const navigation = [
@@ -32,11 +28,7 @@ export default function ProfileSetting() {
     <>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="relative z-40 md:hidden"
-            onClose={setSidebarOpen}
-          >
+          <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -82,9 +74,7 @@ export default function ProfileSetting() {
                   </Transition.Child>
                   <div className="mt-8 flex-1 h-0 overflow-y-auto bg-white">
                     <div className="flex items-center flex-shrink-0 px-4 mt-12">
-                      <h2 className="text-lg leading-6 font-medium text-gray-900">
-                        Account
-                      </h2>
+                      <h2 className="text-lg leading-6 font-medium text-gray-900">Account</h2>
                     </div>
                     <nav className="px-2 mt-3">
                       <div className="space-y-1 ml-2">
@@ -150,15 +140,10 @@ export default function ProfileSetting() {
         <div className="hidden md:flex md:w-64 md:flex-col md:inset-y-0">
           <div className="md:w-[11rem] lg:w-64 flex flex-col flex-grow border-r font-inter border-white mt-8 bg-white overflow-y-auto ml-0 lg:ml-10">
             <div className="flex items-center flex-shrink-0 px-4">
-              <h2 className="text-lg leading-6 font-medium text-gray-900">
-                Account
-              </h2>
+              <h2 className="text-lg leading-6 font-medium text-gray-900">Account</h2>
             </div>
             <div className="mt-3 flex-grow flex flex-col">
-              <nav
-                className="flex-1 px-2 space-y-8 bg-white"
-                aria-label="Sidebar"
-              >
+              <nav className="flex-1 px-2 space-y-8 bg-white" aria-label="Sidebar">
                 <div className="space-y-1 ml-2">
                   {navigation.map((item) => (
                     <a
@@ -191,11 +176,7 @@ export default function ProfileSetting() {
                   >
                     SUPPORT
                   </h3>
-                  <div
-                    className="space-y-1"
-                    role="group"
-                    aria-labelledby="projects-headline"
-                  >
+                  <div className="space-y-1" role="group" aria-labelledby="projects-headline">
                     {secondaryNavigation.map((item) => (
                       <a
                         key={item.name}

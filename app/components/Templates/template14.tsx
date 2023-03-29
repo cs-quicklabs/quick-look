@@ -25,9 +25,7 @@ export default function Template14({
 
   return (
     <>
-      {loaderData?.supportBanner?.toggleBanner && (
-        <BannerAddOn loaderData={loaderData} />
-      )}
+      {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
 
       <div
         className={`flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1rem] ${
@@ -35,18 +33,14 @@ export default function Template14({
         } ${mode === 'mobile' ? 'flex-col' : 'flex-col'} ${nav ? '' : ''}`}
       >
         <div
-          className={`relative flex flex-col ${
-            mode === 'mobile' ? 'w-full ' : ''
-          } ${nav ? '' : ''}`}
+          className={`relative flex flex-col ${mode === 'mobile' ? 'w-full ' : ''} ${
+            nav ? '' : ''
+          }`}
         >
           <div className="">
             {primaryRestore || loaderData?.profileImage?.primaryImage ? (
               <img
-                src={
-                  primaryRestore
-                    ? DefaultCoverPicture
-                    : loaderData?.profileImage?.primaryImage
-                }
+                src={primaryRestore ? DefaultCoverPicture : loaderData?.profileImage?.primaryImage}
                 className={`max-h-[277px] w-[100%] object-cover ${
                   mode === 'mobile'
                     ? 'h-[18rem] xl:h-[20rem] med:h-[22rem] medium:h-[24rem] mediumLaptop:h-[26rem] largeLaptop:h-[28rem]'
@@ -66,9 +60,7 @@ export default function Template14({
               className={`absolute ${
                 primaryRestore || loaderData?.profileImage?.primaryImage
                   ? ` ${
-                      mode === 'mobile'
-                        ? 'top-[5rem] md:top-[7rem]'
-                        : 'top-[5rem] md:top-[7rem]'
+                      mode === 'mobile' ? 'top-[5rem] md:top-[7rem]' : 'top-[5rem] md:top-[7rem]'
                     }`
                   : 'bottom-[-11rem]'
               } ${mode === 'mobile' ? 'bottom-[5rem]' : ''}
@@ -82,10 +74,7 @@ export default function Template14({
                       ? 'lg:w-[18rem] lg:h-[18rem] med:h-[20rem] med:w-[20rem] mediumLaptop:w-[25rem] mediumLaptop:h-[25rem] largeLaptop:w-[29rem] largeLaptop:h-[29rem]'
                       : 'lg:w-[20rem] lg:h-[20rem] xl:h-[30rem] xl:w-[23rem] mediumLaptop:w-[28rem] mediumLaptop:h-[35rem] largeLaptop:w-[30rem] largeLaptop:h-[41rem]'
                   } ${nav ? '' : ''} ${
-                    loaderData?.profileImage?.secondaryImage ||
-                    secondaryRestore === true
-                      ? ''
-                      : ''
+                    loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
                   }  `}
                   src={
                     secondaryRestore === true
@@ -114,16 +103,12 @@ export default function Template14({
         >
           <div
             className={`${
-              mode === 'mobile'
-                ? ''
-                : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'
+              mode === 'mobile' ? '' : 'xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'
             }`}
           >
             <h4
               className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${
-                mode === 'mobile'
-                  ? ''
-                  : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '
+                mode === 'mobile' ? '' : 'xl:text-left xl:text-4xl xl:font-extrabold xl:leading-10 '
               }  ${nav ? '' : ''}`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
@@ -140,9 +125,7 @@ export default function Template14({
                     : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'
                 }  ${nav ? 'lg:w-full' : ''} `}
               >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
@@ -183,9 +166,7 @@ export default function Template14({
               )}
               {loaderData?.profileInfo?.education || input.education ? (
                 <div
-                  className={`flex  ${
-                    mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'
-                  } ${nav ? '' : ''}`}
+                  className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${nav ? '' : ''}`}
                 >
                   <h2
                     className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -264,9 +245,7 @@ export default function Template14({
               )}
               {loaderData?.profileInfo?.education || input.education ? (
                 <div
-                  className={`flex  ${
-                    mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'
-                  } ${nav ? '' : ''}`}
+                  className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${nav ? '' : ''}`}
                 >
                   <h2
                     className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -304,29 +283,25 @@ export default function Template14({
 
             <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
 
             <div className="">
-              <div
-                className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-              >
+              <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                 <PortfolioAddon loaderData={loaderData} />
               </div>
 
               <footer
-                className={`flex w-full gap-4 md:gap-8 justify-start pb-[2rem] ${
-                  nav ? '' : ''
-                } ${loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}
+                className={`flex w-full gap-4 md:gap-8 justify-start pb-[2rem] ${nav ? '' : ''} ${
+                  loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'
+                }`}
               >
                 {loaderData?.socialMedia?.facebookLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -334,7 +309,8 @@ export default function Template14({
                 {loaderData?.socialMedia?.twitterLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -342,7 +318,8 @@ export default function Template14({
                 {loaderData?.socialMedia?.youtubeLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
                   </a>

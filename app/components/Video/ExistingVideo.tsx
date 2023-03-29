@@ -38,29 +38,19 @@ export default function ExistingVideo({
             {person.link ? (
               <div
                 className={`flex justify-between lg:items-center  border-b border-gray-200 ${
-                  mode === 'mobile'
-                    ? 'flex-col xl:flex-row items-center'
-                    : 'flex-col lg:flex-row'
+                  mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'
                 }`}
               >
                 <div className="py-4 flex">
-                  <img
-                    className="h-11 w-11 rounded-full"
-                    src={person.image}
-                    alt=""
-                  />
+                  <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">
-                      {person.name}
-                    </p>
+                    <p className="text-sm font-medium text-gray-900">{person.name}</p>
                     <p
                       className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${
                         mode === 'mobile' ? 'w-[9rem]' : 'w-52'
                       }`}
                     >
-                      {person.link.length > 35
-                        ? person.link.slice(0, 35) + '...'
-                        : person.link}
+                      {person.link.length > 35 ? person.link.slice(0, 35) + '...' : person.link}
                     </p>
                   </div>
                 </div>

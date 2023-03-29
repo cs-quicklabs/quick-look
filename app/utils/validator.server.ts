@@ -1,9 +1,7 @@
 import { db } from '~/database/connection.server'
 import bcrypt from 'bcryptjs'
 
-export const validateEmail = async (
-  email: string
-): Promise<string | undefined> => {
+export const validateEmail = async (email: string): Promise<string | undefined> => {
   if (!email) {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -39,10 +37,7 @@ export const updateValidatePassword = async (
 ): Promise<string | undefined> => {
   let whiteSpaceRegex = /^\S*$/
   let notContainsWhitespace = password.match(whiteSpaceRegex)
-  const isLastPasswordSame = await bcrypt.compare(
-    password,
-    user?.password as string
-  )
+  const isLastPasswordSame = await bcrypt.compare(password, user?.password as string)
   if (!password) {
     return 'New Password is required.'
   } else if (password.length > 18) {
@@ -56,9 +51,7 @@ export const updateValidatePassword = async (
   }
 }
 
-export const validatePassword = async (
-  password: string
-): Promise<string | undefined> => {
+export const validatePassword = async (password: string): Promise<string | undefined> => {
   let whiteSpaceRegex = /^\S*$/
   let notContainsWhitespace = password.match(whiteSpaceRegex)
 
@@ -73,10 +66,7 @@ export const validatePassword = async (
   }
 }
 
-export const checkIncorrectCredentials = async (
-  email: string,
-  password: string
-) => {
+export const checkIncorrectCredentials = async (email: string, password: string) => {
   let lowerCasedEmail = email.toLocaleLowerCase()
   const user = await db.user.findFirst({
     where: {
@@ -91,8 +81,7 @@ export const checkIncorrectCredentials = async (
     return `Either email or password you entered was not correct. Please try again.`
   }
 
-  if (user?.profile?.isBlocked)
-    return 'Your profile is blocked, Please contact admin to continue.'
+  if (user?.profile?.isBlocked) return 'Your profile is blocked, Please contact admin to continue.'
 
   return undefined
 }
@@ -112,9 +101,7 @@ export const validateComfirmPassword = async (
   }
 }
 
-export const validateFirstName = async (
-  name: any
-): Promise<string | undefined> => {
+export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
@@ -144,9 +131,7 @@ export const validateFirstName = async (
   }
 }
 
-export const validateLastName = async (
-  name: any
-): Promise<string | undefined> => {
+export const validateLastName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-zA-Z]+$/
   let whiteSpaceRegex = /^\S*$/
 
@@ -204,18 +189,11 @@ export const validateUsername = async (
   }
 }
 
-export async function validateOldPassword(
-  user: any,
-  newPassword: string,
-  oldpassword: string
-) {
+export async function validateOldPassword(user: any, newPassword: string, oldpassword: string) {
   if (!oldpassword) {
     return 'Old password is required.'
   }
-  const isoldPasswordMatch = await bcrypt.compare(
-    oldpassword,
-    user?.password as string
-  )
+  const isoldPasswordMatch = await bcrypt.compare(oldpassword, user?.password as string)
 
   if (!isoldPasswordMatch) {
     return 'Old password does not match.'
@@ -323,7 +301,7 @@ export async function validateFaIcon(faIcon: string) {
 
   const isValidFaIcon = faIcon.match(validFaIcon)
   if (!isValidFaIcon) {
-    ;`Not valid ${faIcon}`
+    return `Not valid ${faIcon}`
   }
 }
 

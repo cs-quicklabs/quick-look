@@ -18,14 +18,14 @@ export default function DashboardBio({
 }: any) {
   const transition = useTransition()
 
-  const Onclose = (e: any) => {
-    setinput(initialInput)
-    if (mode === 'desktop') {
-      setshowBio(false)
-    }
-    if (mode === 'mobile') {
-    }
-  }
+  // const Onclose = (e: any) => {
+  //   setinput(initialInput)
+  //   if (mode === 'desktop') {
+  //     setshowBio(false)
+  //   }
+  //   // if (mode === 'mobile') {
+  //   // }
+  // }
 
   const OnCancel = () => {
     setinput(initialInput)
@@ -48,12 +48,7 @@ export default function DashboardBio({
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <Form
-                  replace={true}
-                  action="update/bio"
-                  method="post"
-                  className="h-screen"
-                >
+                <Form replace={true} action="update/bio" method="post" className="h-screen">
                   <div
                     className={`font-inter mt-12 flex h-[95%] flex-col divide-y divide-gray-200 border-r border-gray-200 bg-white ${
                       mode === 'mobile'
@@ -79,18 +74,13 @@ export default function DashboardBio({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XIcon
-                                onClick={OnCancel}
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
+                              <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
                         <div className="mt-1">
                           <p className="text-sm font-normal leading-5 text-gray-500">
-                            Get started by filling in the information below to
-                            update your profile
+                            Get started by filling in the information below to update your profile
                           </p>
                         </div>
                       </div>
@@ -105,9 +95,7 @@ export default function DashboardBio({
                               />
                             </div>
                             <div className="ml-3">
-                              <p className="text-sm font-medium text-green-800">
-                                {bioMessage}
-                              </p>
+                              <p className="text-sm font-medium text-green-800">{bioMessage}</p>
                             </div>
                             <div className="ml-auto pl-3">
                               <div className="-mx-1.5 -my-1.5 pt-1">

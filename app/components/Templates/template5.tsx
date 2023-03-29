@@ -31,21 +31,13 @@ export default function Template5({
     }
     return (
       <>
-        <div
-          className={`relative ${mode === 'mobile' ? '' : ''} ${
-            nav ? '' : ' '
-          }`}
-        >
-          {loaderData?.supportBanner?.toggleBanner && (
-            <BannerAddOn loaderData={loaderData} />
-          )}
+        <div className={`relative ${mode === 'mobile' ? '' : ''} ${nav ? '' : ' '}`}>
+          {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
         </div>
 
         <div
           className={`flex flex-col-reverse items-end ml-[0.1rem] pb-[3rem] ${
-            mode === 'mobile'
-              ? ''
-              : 'xl:flex-row xl:items-start xl:justify-between'
+            mode === 'mobile' ? '' : 'xl:flex-row xl:items-start xl:justify-between'
           } ${nav ? '' : ' '}`}
         >
           <div
@@ -77,25 +69,19 @@ export default function Template5({
                   mode === 'mobile' ? '' : ''
                 }  ${nav ? '=' : ''} `}
               >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
             )}
 
-            <div
-              className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-            >
+            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <Spotlightbtn loaderData={loaderData} />
               )}
             </div>
 
-            <div
-              className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-            >
+            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <AdditionalLinksAddOn loaderData={loaderData} />
               )}
@@ -129,9 +115,7 @@ export default function Template5({
 
                     <h2
                       className={`text-gray-600 w-max text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${
-                        mode === 'mobile'
-                          ? ''
-                          : 'lg:mt-[-0.25rem] xl:w-[65%] largeLaptop:w-max'
+                        mode === 'mobile' ? '' : 'lg:mt-[-0.25rem] xl:w-[65%] largeLaptop:w-max'
                       }  ${nav ? '' : ''}`}
                     >
                       {input.company}
@@ -141,11 +125,7 @@ export default function Template5({
                   <span></span>
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
-                  <div
-                    className={`flex mt-[0.75rem] ${
-                      mode === 'mobile' ? '' : ' xl:mt-0'
-                    }`}
-                  >
+                  <div className={`flex mt-[0.75rem] ${mode === 'mobile' ? '' : ' xl:mt-0'}`}>
                     <h2
                       className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] lg:text-gray-800 ${
                         mode === 'mobile' ? '' : ''
@@ -179,10 +159,7 @@ export default function Template5({
 
             <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
 
@@ -191,14 +168,15 @@ export default function Template5({
             </div>
 
             <footer
-              className={`flex w-full gap-4 md:gap-8 justify-start  ${
-                nav ? '' : ''
-              } ${loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'}`}
+              className={`flex w-full gap-4 md:gap-8 justify-start  ${nav ? '' : ''} ${
+                loaderData?.portfolioImage[0] ? 'pt-[2rem]' : 'pt-[0rem]'
+              }`}
             >
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -206,7 +184,8 @@ export default function Template5({
               {loaderData?.socialMedia?.twitterLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -214,7 +193,8 @@ export default function Template5({
               {loaderData?.socialMedia?.youtubeLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -238,15 +218,10 @@ export default function Template5({
                     ? 'lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:h-[35rem] largeLaptop:w-[35rem]'
                     : ' lg:h-[25rem] lg:w-[25rem] xl:w-[23rem] xl:h-[23rem] medium:w-[28rem] medium:h-[28rem] mediumLaptop:w-[32rem] mediumLaptop:h-[32rem] largeLaptop:w-[35rem] largeLaptop:h-[35rem]'
                 } ${nav ? 'SmMedium:w-[30rem] SmMedium:h-[30rem]' : ''} ${
-                  loaderData?.profileImage?.secondaryImage ||
-                  secondaryRestore === true
-                    ? ''
-                    : ''
+                  loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
                 }  `}
                 src={
-                  secondaryRestore === true
-                    ? defaultimg
-                    : loaderData?.profileImage?.secondaryImage
+                  secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
                 }
                 alt="profile"
               />

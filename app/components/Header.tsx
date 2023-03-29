@@ -64,28 +64,28 @@ function MobileNavigation() {
               >
                 <li>
                   <Link to="#features">
-                    <a className="block w-full" onClick={() => close()}>
+                    <span className="block w-full" onClick={() => close()}>
                       Features
-                    </a>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link to="#testimonials">
-                    <a className="block w-full" onClick={() => close()}>
+                    <span className="block w-full" onClick={() => close()}>
                       Testimonials
-                    </a>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link to="#pricing">
-                    <a className="block w-full" onClick={() => close()}>
+                    <span className="block w-full" onClick={() => close()}>
                       Pricing
-                    </a>
+                    </span>
                   </Link>
                 </li>
                 <li className="border-t border-slate-300/40 pt-4">
                   <Link to="/auth/login">
-                    <a className="block w-full">Sign in</a>
+                    <span className="block w-full">Sign in</span>
                   </Link>
                 </li>
               </Popover.Panel>
@@ -148,11 +148,7 @@ export function Header({ isloggedin }: any) {
               </a>
             </li>
             <li className="ml-auto md:ml-8">
-              <ButtonLink
-                href="/auth/signup"
-                color="blue"
-                className={undefined}
-              >
+              <ButtonLink href="/auth/signup" color="blue" className={undefined}>
                 <span>
                   Get Started<span className="hidden lg:inline"> For Free</span>
                 </span>

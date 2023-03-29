@@ -24,39 +24,20 @@ const variantStyles = {
   },
 }
 
-export function Button({
-  variant = 'solid',
-  color = 'slate',
-  className,
-  ...props
-}) {
+export function Button({ variant = 'solid', color = 'slate', className, ...props }) {
   return (
     <button
-      className={clsx(
-        baseStyles[variant],
-        variantStyles[variant][color],
-        className
-      )}
+      className={clsx(baseStyles[variant], variantStyles[variant][color], className)}
       {...props}
     />
   )
 }
 
-export function ButtonLink({
-  variant = 'solid',
-  color = 'slate',
-  href,
-  className,
-  ...props
-}) {
+export function ButtonLink({ variant = 'solid', color = 'slate', href, className, ...props }) {
   return (
     <Link to={href}>
       <a
-        className={clsx(
-          baseStyles[variant],
-          variantStyles[variant][color],
-          className
-        )}
+        className={clsx(baseStyles[variant], variantStyles[variant][color], className)}
         {...props}
       />
     </Link>

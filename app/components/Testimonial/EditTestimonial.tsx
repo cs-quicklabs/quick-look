@@ -10,12 +10,8 @@ export default function EditSocialProfile({
   mode,
   setmode,
 }: any) {
-  const [testimonialBy, setTestimonialBy] = useState(
-    loaderData?.testimonial?.testimonialBy
-  )
-  const [testimonialText, setTestimonialText] = useState(
-    loaderData?.testimonial?.testimonialText
-  )
+  const [testimonialBy, setTestimonialBy] = useState(loaderData?.testimonial?.testimonialBy)
+  const [testimonialText, setTestimonialText] = useState(loaderData?.testimonial?.testimonialText)
 
   const [error, setError] = useState('')
   const [error1, setError1] = useState('')
@@ -25,14 +21,14 @@ export default function EditSocialProfile({
     transition.state === 'loading' && setShowEditTestimonial(false)
   }, [transition, testimonialText, testimonialText])
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
-  let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
-  let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
-  let singlewhitespace = /^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
-  let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
+  // let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
+  // let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+  // let singlewhitespace = /^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+  // let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
 
-  let validName = !firstAndMiddleNameRegex.test(testimonialBy)
-  let whiteSpaceRegex = /^\S*$/
-  let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
+  // let validName = !firstAndMiddleNameRegex.test(testimonialBy)
+  // let whiteSpaceRegex = /^\S*$/
+  // let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
 
   useEffect(() => {
     if (testimonialBy === '') {
@@ -66,8 +62,8 @@ export default function EditSocialProfile({
       // setShowTestimonial(true);
       setShowEditTestimonial(false)
     }
-    if (mode === 'mobile') {
-    }
+    // if (mode === 'mobile') {
+    // }
   }
 
   const OnCancel = () => {
@@ -82,9 +78,7 @@ export default function EditSocialProfile({
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${
-              mode === 'mobile'
-                ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96'
-                : 'lg:w-96'
+              mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'
             }`}
           >
             <Transition.Child
@@ -97,12 +91,7 @@ export default function EditSocialProfile({
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <Form
-                  replace={true}
-                  action="update/testimonial"
-                  method="post"
-                  className="h-screen"
-                >
+                <Form replace={true} action="update/testimonial" method="post" className="h-screen">
                   <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
                     <div className="bg-gray-50 py-6 px-4">
                       <div className="flex items-center justify-between">
@@ -120,11 +109,7 @@ export default function EditSocialProfile({
                             onClick={Onclose}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon
-                              onClick={OnCancel}
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
+                            <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>

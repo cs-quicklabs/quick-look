@@ -43,12 +43,10 @@ export const meta: MetaFunction = () => {
 
     'twitter:card': 'summary_large_image',
     'twitter:url': 'https://www.quicklook.me/',
-    'twitter:title':
-      'QuickLook.me — Introduction made simple with just one link.',
+    'twitter:title': 'QuickLook.me — Introduction made simple with just one link.',
     'twitter:description':
       'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
-    'twitter:image':
-      'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+    'twitter:image': 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
     keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
   }
 }
@@ -78,20 +76,12 @@ function Document({ children }: any) {
     >
       <head>
         <title>QuickLook.me</title>
-        <script
-          defer
-          data-domain="quicklook.me"
-          src="https://plausible.io/js/script.js"
-        ></script>
+        <script defer data-domain="quicklook.me" src="https://plausible.io/js/script.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
 
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -153,10 +143,7 @@ export function CatchBoundary() {
   if (caughtError.status) {
     return (
       <div>
-        <ErrorHandler
-          name={caughtError.statusText}
-          status={caughtError.status}
-        />
+        <ErrorHandler name={caughtError.statusText} status={caughtError.status} />
       </div>
     )
   }

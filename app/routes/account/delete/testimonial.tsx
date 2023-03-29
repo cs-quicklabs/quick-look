@@ -14,10 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
   if (toDelteTestimonial) {
     await deleteTestimonial(user)
   }
-  session.flash(
-    'DeleteTestimonialMessage',
-    `Testimonial has been deleted successfully.`
-  )
+  session.flash('DeleteTestimonialMessage', `Testimonial has been deleted successfully.`)
   return redirect('/account', {
     headers: {
       'Set-Cookie': await commitSession(session),

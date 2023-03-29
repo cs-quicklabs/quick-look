@@ -2,10 +2,7 @@ import { db } from '~/database/connection.server'
 import { addHoursToDate, differenceInHours } from '~/utils/date.server'
 import bcrypt from 'bcryptjs'
 
-export async function createUserVerificationToken(
-  userId: string,
-  token: string
-) {
+export async function createUserVerificationToken(userId: string, token: string) {
   const hashedToken = await bcrypt.hash(token, 10)
   await db.userVerification.upsert({
     where: {
@@ -49,17 +46,11 @@ export async function checkTokenValidation(userId: string, token: string) {
   if (!userVerification) {
     return false
   }
-  const isSameToken = await bcrypt.compare(
-    token,
-    userVerification?.uniqueString as string
-  )
+  const isSameToken = await bcrypt.compare(token, userVerification?.uniqueString as string)
   if (isSameToken) {
     if (
       userVerification &&
-      (await differenceInHours(
-        new Date(Date.now()),
-        userVerification?.expiresAt
-      )) <= 6
+      (await differenceInHours(new Date(Date.now()), userVerification?.expiresAt)) <= 6
     ) {
       return true
     }

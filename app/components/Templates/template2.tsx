@@ -44,9 +44,7 @@ export default function Template2({
         >
           <div
             className={`pb-[1rem] flex-shrink-0 ${
-              mode === 'mobile'
-                ? 'xl:pl-[1rem]  xl:mt-[1.5em]'
-                : 'xl:mt-[5.625rem]'
+              mode === 'mobile' ? 'xl:pl-[1rem]  xl:mt-[1.5em]' : 'xl:mt-[5.625rem]'
             } ${nav ? '' : ''}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
@@ -57,15 +55,10 @@ export default function Template2({
                     ? 'lg:w-[22rem] lg:h-[24rem] xl:h-[20rem] xl:w-[18rem] med:w-[25rem] med:h-[28rem] mediumLaptop:h-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[33rem] largeLaptop:h-[35rem]'
                     : 'xl:h-[30rem] xl:w-[25rem] med:h-[38rem] med:w-[28rem] medium:h-[40rem] mediumLaptop:w-[35rem] largeLaptop:h-[40rem] largeLaptop:w-[35rem]'
                 } ${nav ? '' : ''} ${
-                  loaderData?.profileImage?.secondaryImage ||
-                  secondaryRestore === true
-                    ? ''
-                    : ''
+                  loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
                 }  `}
                 src={
-                  secondaryRestore === true
-                    ? defaultimg
-                    : loaderData?.profileImage?.secondaryImage
+                  secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
                 }
                 alt=""
               />
@@ -103,29 +96,21 @@ export default function Template2({
                   mode === 'mobile' ? 'xl:text-base' : 'lg:text-base'
                 }  ${nav ? '' : ''} `}
               >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
             )}
 
             <div>
-              <div
-                className={`${mode === 'mobile' ? '' : ''}  ${nav ? '' : ''}`}
-              >
+              <div className={`${mode === 'mobile' ? '' : ''}  ${nav ? '' : ''}`}>
                 <div
                   className={`flex flex-col pt-4 ${
                     mode === 'mobile' ? '' : 'lg:flex-row lg:justify-between'
                   }`}
                 >
                   {loaderData?.profileInfo?.company || input.company ? (
-                    <div
-                      className={`flex ${
-                        mode === 'mobile' ? '' : 'xl:flex-col'
-                      }`}
-                    >
+                    <div className={`flex ${mode === 'mobile' ? '' : 'xl:flex-col'}`}>
                       <h2
                         className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
                           mode === 'mobile' ? '' : 'xl:hidden'
@@ -178,16 +163,12 @@ export default function Template2({
               </div>
 
               <div className={`${mode === 'mobile' ? '' : ''}`}>
-                <div
-                  className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-                >
+                <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                   {loaderData?.spotlightButton?.toggleSpotlight && (
                     <Spotlightbtn loaderData={loaderData} />
                   )}
                 </div>
-                <div
-                  className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-                >
+                <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                   {loaderData?.spotlightButton?.toggleSpotlight && (
                     <AdditionalLinksAddOn loaderData={loaderData} />
                   )}
@@ -196,11 +177,7 @@ export default function Template2({
             </div>
 
             <div
-              className={`${
-                loaderData?.spotlightButton?.toggleSpotlight
-                  ? 'mt-1'
-                  : 'mt-[1rem]'
-              }`}
+              className={`${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'}`}
             >
               <pre
                 className={`text-gray-500 text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${
@@ -222,10 +199,7 @@ export default function Template2({
 
             <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
 
@@ -234,14 +208,15 @@ export default function Template2({
             </div>
 
             <footer
-              className={`flex w-full gap-4 md:gap-8 justify-start ${
-                nav ? '' : ''
-              } ${loaderData?.portfolioImage ? 'pt-[1.5rem]' : ''}`}
+              className={`flex w-full gap-4 md:gap-8 justify-start ${nav ? '' : ''} ${
+                loaderData?.portfolioImage ? 'pt-[1.5rem]' : ''
+              }`}
             >
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -249,7 +224,8 @@ export default function Template2({
               {loaderData?.socialMedia?.twitterLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
                 </a>
@@ -257,7 +233,8 @@ export default function Template2({
               {loaderData?.socialMedia?.youtubeLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
                 </a>

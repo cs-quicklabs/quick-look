@@ -26,10 +26,7 @@ export const action: ActionFunction = async ({ request }) => {
     user,
   })
 
-  session.flash(
-    'successUpdateBioMessage',
-    `Your bio has been updated successfully.`
-  )
+  session.flash('successUpdateBioMessage', `Your bio has been updated successfully.`)
 
   if (isUpdated) {
     return redirect('/account', {

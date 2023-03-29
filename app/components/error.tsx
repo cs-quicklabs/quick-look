@@ -29,10 +29,7 @@ export default function ErrorHandler({ name, status }: customError) {
                 Sorry, we couldn’t find the page you’re looking for.
               </p>
               <div className="mt-6">
-                <a
-                  href="/"
-                  className="text-base font-medium text-indigo-600 hover:text-indigo-500"
-                >
+                <a href="/" className="text-base font-medium text-indigo-600 hover:text-indigo-500">
                   Try Again
                 </a>
               </div>

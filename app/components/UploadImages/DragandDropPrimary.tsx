@@ -1,23 +1,17 @@
 import { Form } from '@remix-run/react'
 import { useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
-function DropzonePrimary({
-  setImages1,
-  onDrop,
-  accept,
-  images1,
-  setPrimaryImageError,
-}: any) {
-  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+function DropzonePrimary({ setImages1, onDrop, accept, images1, setPrimaryImageError }: any) {
+  const { getRootProps } = useDropzone({
     accept,
     onDrop,
   })
 
-  const files = acceptedFiles.map((file: any) => file.path)
+  // const files = acceptedFiles.map((file: any) => file.path)
 
-  const onSubmit = () => {
-    setImages1(acceptedFiles[0])
-  }
+  // const onSubmit = () => {
+  //   setImages1(acceptedFiles[0])
+  // }
   const ref = useRef(null)
 
   useEffect(() => {
@@ -35,9 +29,7 @@ function DropzonePrimary({
     <div>
       <Form replace action="update/crop-image" method="post">
         <div {...getRootProps({ className: 'dropzone' })}>
-          <p className="text-xs leading-4 font-semibold tracking-wide">
-            NO IMAGE ADDED YET
-          </p>
+          <p className="text-xs leading-4 font-semibold tracking-wide">NO IMAGE ADDED YET</p>
           <div className="text-center">
             <p className="text-sm leading-4 tracking-wide">
               Drag and Drop an Image or click on button to upload

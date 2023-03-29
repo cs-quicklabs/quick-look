@@ -37,8 +37,8 @@ export default function NoTestimonial({
     if (mode === 'desktop') {
       setShowTestimonial(false)
     }
-    if (mode === 'mobile') {
-    }
+    // if (mode === 'mobile') {
+    // }
   }
 
   useEffect(() => {
@@ -68,9 +68,7 @@ export default function NoTestimonial({
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${
-              mode === 'mobile'
-                ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96'
-                : 'lg:w-96'
+              mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'
             }`}
           >
             <Transition.Child
@@ -85,9 +83,7 @@ export default function NoTestimonial({
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <div
                   className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${
-                    mode === 'mobile'
-                      ? ' w-[16rem] xl:w-96'
-                      : 'md:w-[20rem] lg:w-96'
+                    mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
                   }`}
                 >
                   <div className="bg-gray-50 py-6 px-4">
@@ -106,11 +102,7 @@ export default function NoTestimonial({
                           onClick={OnCancel}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon
-                            onClick={Onclose}
-                            className="h-6 w-6"
-                            aria-hidden="true"
-                          />
+                          <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>

@@ -2,7 +2,7 @@ import type { LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import DashboardHeader from '~/components/Common/DashboardHeader'
-import { useActionData, useLoaderData, useTransition } from '@remix-run/react'
+import { useActionData, useLoaderData } from '@remix-run/react'
 import { commitSession, getSession } from '~/services/session.service.server'
 
 import Template0 from '~/components/Templates/template0'
@@ -24,9 +24,7 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
-import Unpublish, {
-  action as ModalAction,
-} from '~/components/Common/unpublishModal'
+import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -37,8 +35,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const successMessage = session.get('successUpdateProfileMessage') || null
   const message = session.get('successUpdateSocialMedia') || null
   const bioMessage = session.get('successUpdateBioMessage') || null
-  const additionalLinkUpdateMessage =
-    session.get('successUpdateAdditionalLinkMessage') || null
+  const additionalLinkUpdateMessage = session.get('successUpdateAdditionalLinkMessage') || null
   return json(
     { message, successMessage, bioMessage, additionalLinkUpdateMessage, user },
     {
@@ -63,10 +60,7 @@ export default function Profile() {
   const loaderData = Data?.user
   const [message, setMessage] = useState('')
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('')
-  const [additionalLinkUpdateMessage, setAdditionalLinkUpdateMessage] =
-    useState('')
-
-  const transition = useTransition()
+  const [additionalLinkUpdateMessage, setAdditionalLinkUpdateMessage] = useState('')
 
   useEffect(() => {
     setMessage(Data?.message)
@@ -106,7 +100,7 @@ export default function Profile() {
   )
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false)
-  const [show, setshow] = useState(loaderData?.profileInfo?.templateNumber)
+  const [, setshow] = useState(loaderData?.profileInfo?.templateNumber)
   const [input, setinput] = useState({
     description: loaderData?.profileInfo?.bio,
     location: loaderData?.profileInfo?.location,
@@ -150,8 +144,7 @@ export default function Profile() {
     })
   }, [loaderData])
 
-  const viewMode1 =
-    typeof window !== 'undefined' && localStorage?.getItem('viewMode')
+  const viewMode1 = typeof window !== 'undefined' && localStorage?.getItem('viewMode')
 
   useEffect(() => {
     viewMode1 && setmode(viewMode1)
@@ -162,7 +155,7 @@ export default function Profile() {
     setmode('desktop')
   }
 
-  const [showUserSetting, setShowUserSetting] = useState(false)
+  const [showUserSetting] = useState(false)
   const togglemobile = () => {
     setmode('mobile')
     setshowTemplate(
@@ -179,8 +172,7 @@ export default function Profile() {
     )
   }
   const disabledIcon =
-    loaderData?.profileImage?.primaryImage ||
-    loaderData?.profileImage?.isUsingPrimaryDefault
+    loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
       ? 'text-gray-700/20'
       : 'text-gray-700/40'
   return (
@@ -193,9 +185,7 @@ export default function Profile() {
       />
       <div className="relative flex">
         <div
-          className={`w-[0%] md:w-0 ${
-            mode === 'mobile' ? 'lg:z-[50]' : 'lg:z-[21]'
-          }
+          className={`w-[0%] md:w-0 ${mode === 'mobile' ? 'lg:z-[50]' : 'lg:z-[21]'}
           `}
         >
           <AccountSidebar
@@ -390,15 +380,12 @@ export default function Profile() {
         className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${
           !showUserSetting ? 'z-40' : 'z-[60]'
         }  rounded-l-md rounded-r-md ${
-          loaderData?.profileImage?.primaryImage ||
-          loaderData?.profileImage?.isUsingPrimaryDefault
+          loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
-        } ${
-          loaderData?.profileInfo?.templateNumber == '1'
-            ? 'border border-gray-300'
-            : ''
-        } ${loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'} `}
+        } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${
+          loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
+        } `}
       >
         {/* <form action="" > */}
         <button
@@ -409,9 +396,7 @@ export default function Profile() {
           onClick={toggledesktop}
         >
           <DesktopComputerIcon
-            className={`h-[1.25rem] w-auto  ${
-              mode === 'desktop' ? 'text-black' : disabledIcon
-            } `}
+            className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon} `}
           />
         </button>
 
@@ -423,9 +408,7 @@ export default function Profile() {
           onClick={togglemobile}
         >
           <DeviceMobileIcon
-            className={`h-[1.25rem] w-auto  ${
-              mode === 'mobile' ? 'text-black' : disabledIcon
-            }`}
+            className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon}`}
           />
         </button>
         {/* </form> */}

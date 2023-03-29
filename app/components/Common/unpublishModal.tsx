@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
@@ -13,12 +13,7 @@ export async function action({ request }: ActionArgs) {
   return await publishToggle(user)
 }
 
-export default function Delete({
-  open,
-  onClose,
-  isPublished,
-  setopenModal,
-}: any) {
+export default function Delete({ open, onClose, isPublished, setopenModal }: any) {
   const transition = useTransition()
   const cancelButtonRef = useRef(null)
 
@@ -28,12 +23,7 @@ export default function Delete({
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-50"
-        initialFocus={cancelButtonRef}
-        onClose={() => {}}
-      >
+      <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -66,9 +56,7 @@ export default function Delete({
                       } sm:mx-0 sm:h-10 sm:w-10`}
                     >
                       <ExclamationIcon
-                        className={`h-6 w-6 ${
-                          isPublished ? 'text-red-600' : 'text-indigo-600'
-                        } `}
+                        className={`h-6 w-6 ${isPublished ? 'text-red-600' : 'text-indigo-600'} `}
                         aria-hidden="true"
                       />
                     </div>
@@ -76,10 +64,7 @@ export default function Delete({
                     ''
                   )}
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg leading-6 font-medium text-gray-900"
-                    >
+                    <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
                       {isPublished ? 'Unpublish Account' : 'Publish Account'}
                     </Dialog.Title>
                     <div className="mt-2">
@@ -92,9 +77,7 @@ export default function Delete({
                   </div>
                 </div>
                 <div
-                  className={`mt-5 sm:mt-4 sm:flex ${
-                    isPublished ? 'pl-[3.5rem]' : 'pl-[1rem]'
-                  }`}
+                  className={`mt-5 sm:mt-4 sm:flex ${isPublished ? 'pl-[3.5rem]' : 'pl-[1rem]'}`}
                 >
                   <Form method="patch">
                     <button
@@ -108,11 +91,7 @@ export default function Delete({
                       disabled={transition?.state === 'submitting'}
                     >
                       {transition?.state === 'submitting' ? (
-                        <BeatLoader
-                          color="#ffffff"
-                          size={12}
-                          className="px-0 py-0.5"
-                        />
+                        <BeatLoader color="#ffffff" size={12} className="px-0 py-0.5" />
                       ) : isPublished ? (
                         'Unpublish'
                       ) : (

@@ -22,8 +22,7 @@ export function CallToAction() {
               Get started today
             </h2>
             <p className="mt-4 text-lg tracking-tight text-white">
-              Create one link to connect all your social profiles and attract
-              more traffic.
+              Create one link to connect all your social profiles and attract more traffic.
             </p>
             <ButtonLink href="/auth/signup" color="white" className="mt-10">
               Get Started For Free

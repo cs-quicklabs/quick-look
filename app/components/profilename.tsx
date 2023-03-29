@@ -4,21 +4,15 @@ export default function Profile() {
       <div className=" divide-gray-200 sm:space-y-5">
         <div>
           <div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              Profile
-            </h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Profile</h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              This information will be displayed publicly so be careful what you
-              share.
+              This information will be displayed publicly so be careful what you share.
             </p>
           </div>
 
           <div className="flex flex-col gap-3 mt-4">
             <div className="">
-              <label
-                htmlFor="first-name"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                 First name
               </label>
               <input
@@ -30,10 +24,7 @@ export default function Profile() {
               />
             </div>
             <div className="col-span-1 sm:col-span-1">
-              <label
-                htmlFor="first-name"
-                className=" block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="first-name" className=" block text-sm font-medium text-gray-700">
                 Last name
               </label>
               <input

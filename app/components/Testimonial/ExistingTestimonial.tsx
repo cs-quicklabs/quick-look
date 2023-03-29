@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import fbIcon from '../../../assets/images/fb1.png'
-import { Testimonials } from '../Testimonials'
 import DeleteTestimonial from './DeleteTestimonial'
 import EditTestimonial from './EditTestimonial'
 
@@ -24,10 +22,7 @@ export default function ExistingTestimonial({
 
   const [showEditTestimonial, setShowEditTestimonial] = useState(false)
 
-  const toggleEditTestimonial = (person: {
-    name: string
-    description: string
-  }) => {
+  const toggleEditTestimonial = (person: { name: string; description: string }) => {
     setShowEditTestimonial(!showEditTestimonial)
   }
 
@@ -41,16 +36,12 @@ export default function ExistingTestimonial({
             {person.description ? (
               <div
                 className={`flex justify-between lg:items-center border-b border-gray-200 ${
-                  mode === 'mobile'
-                    ? 'flex-col xl:flex-row items-center'
-                    : 'flex-col lg:flex-row'
+                  mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'
                 }`}
               >
                 <div className="py-4 flex">
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">
-                      {person.name}
-                    </p>
+                    <p className="text-sm font-medium text-gray-900">{person.name}</p>
                     <p className="w-[15rem] text-sm text-gray-500 text-ellipsis overflow-hidden">
                       {person.description.length > 35
                         ? person.description?.slice(0, 35) + '...'

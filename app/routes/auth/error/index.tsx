@@ -17,12 +17,10 @@ export default function PublishAccount() {
         </div>
         <div className="text-center p-4">
           <h1 className="mt-2 text-3xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-            The account you are looking for has either been unpublished or
-            removed.
+            The account you are looking for has either been unpublished or removed.
           </h1>
           <h3 className="mt-2 text-xl text-gray-900 tracking-tight sm:text-xl">
-            If you are account owner, please login to your account and check
-            your settings.
+            If you are account owner, please login to your account and check your settings.
           </h3>
         </div>
         <ButtonLink href="/" color="blue" className="">
