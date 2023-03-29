@@ -1,145 +1,151 @@
-import { User } from "@prisma/client";
-import { db } from "~/database/connection.server";
-import { getImageKeyFromUrl } from "~/utils/url.server";
-import { removeFileFromSpace } from "./do.service.server";
+import type { User } from '@prisma/client'
+import { db } from '~/database/connection.server'
+import { getImageKeyFromUrl } from '~/utils/url.server'
+import { removeFileFromSpace } from './do.service.server'
 
-export async function addPrimaryImage(link: string, user: User){ 
-    const imageKey = await getImageKeyFromUrl(link)
-    await db.profileImage.update({
-        where: {
-            userId: user.id
-        },
-        data: {
-            primaryImage: link,
-            isUsingPrimaryDefault: false,
-            primaryImageKey: imageKey
-        }
-    })
-    return true;
-} 
+export async function addPrimaryImage(link: string, user: User) {
+  const imageKey = await getImageKeyFromUrl(link)
+  await db.profileImage.update({
+    where: {
+      userId: user.id,
+    },
+    data: {
+      primaryImage: link,
+      isUsingPrimaryDefault: false,
+      primaryImageKey: imageKey,
+    },
+  })
+  return true
+}
 
-export async function addSecondaryImage(link: string, user: User){
-    const imageKey = await getImageKeyFromUrl(link)
-    await db.profileImage.update({
-        where: {
-            userId: user.id
-        },
-        data: {
-            secondaryImage: link,
-            isUsingSecondaryDefault: false,
-            secondaryImageKey: imageKey
-        }
-    })
-    return true;
-} 
+export async function addSecondaryImage(link: string, user: User) {
+  const imageKey = await getImageKeyFromUrl(link)
+  await db.profileImage.update({
+    where: {
+      userId: user.id,
+    },
+    data: {
+      secondaryImage: link,
+      isUsingSecondaryDefault: false,
+      secondaryImageKey: imageKey,
+    },
+  })
+  return true
+}
 
 export async function deleteImage(imageKey: string, user?: User) {
-    const userProfileImagerecord = await db.profileImage.findFirst({
-        where: { 
-            userId : user?.id
-        }
-    })
-    if (imageKey === 'deletePrimary') {
-        await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
-        await db.profileImage.update({
-            where: {
-                userId: user?.id
-            },
-            data: {
-                primaryImage: '',
-                isUsingPrimaryDefault: false,
-                primaryImageKey: ''
-            }
-        })
-    } else if (imageKey === 'deleteSecondary') {
-        await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
-        await db.profileImage.update({
-            where: {
-                userId: user?.id
-            },
-            data: {
-                secondaryImage: '',
-                isUsingSecondaryDefault: false,
-                secondaryImageKey: ''
-            }
-        })
-    } 
-}
-
-export async function restorePrimaryImage(user: User){
-    const userProfileImagerecord = await db.profileImage.findFirst({
-        where: { 
-            userId : user?.id
-        }
-    })
-    if(userProfileImagerecord){
-        await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
-    }
+  const userProfileImagerecord = await db.profileImage.findFirst({
+    where: {
+      userId: user?.id,
+    },
+  })
+  if (imageKey === 'deletePrimary') {
+    await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
     await db.profileImage.update({
-        where:{
-            userId: user.id
-        },
-        data: {
-            isUsingPrimaryDefault: true,
-            primaryImage: '',
-            primaryImageKey: ''
-        }
+      where: {
+        userId: user?.id,
+      },
+      data: {
+        primaryImage: '',
+        isUsingPrimaryDefault: false,
+        primaryImageKey: '',
+      },
     })
-}
-
-export async function restoreSecondaryImage(user: User){
-    const userProfileImagerecord = await db.profileImage.findFirst({
-        where: { 
-            userId : user?.id
-        }
-    })
-    if(userProfileImagerecord){
-        await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
-    }
+  } else if (imageKey === 'deleteSecondary') {
+    await removeFileFromSpace(
+      userProfileImagerecord?.secondaryImageKey as string
+    )
     await db.profileImage.update({
-        where:{
-            userId: user.id
-        },
-        data: {
-            isUsingSecondaryDefault: true,
-            secondaryImage: '',
-            secondaryImageKey: ''
-        }
+      where: {
+        userId: user?.id,
+      },
+      data: {
+        secondaryImage: '',
+        isUsingSecondaryDefault: false,
+        secondaryImageKey: '',
+      },
     })
+  }
 }
 
-export async function removePrimaryImage(user: User){
-    try {
-        const userProfileImagerecord = await db.profileImage.findFirst({
-            where: { 
-                userId : user?.id
-            }
-        })
-        
-        if(userProfileImagerecord){
-            await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
-        }
-        return true
-    }
-    catch (e){
-        return null
-    }
+export async function restorePrimaryImage(user: User) {
+  const userProfileImagerecord = await db.profileImage.findFirst({
+    where: {
+      userId: user?.id,
+    },
+  })
+  if (userProfileImagerecord) {
+    await removeFileFromSpace(userProfileImagerecord?.primaryImageKey as string)
+  }
+  await db.profileImage.update({
+    where: {
+      userId: user.id,
+    },
+    data: {
+      isUsingPrimaryDefault: true,
+      primaryImage: '',
+      primaryImageKey: '',
+    },
+  })
 }
 
-export async function removeSecondaryImage(user: User){
-    try {
-        const userProfileImagerecord = await db.profileImage.findFirst({
-            where: {
-                userId : user?.id
-            }
-        })
-        
-        if(userProfileImagerecord){
-            await removeFileFromSpace(userProfileImagerecord?.secondaryImageKey as string)
-        }
-        return true
+export async function restoreSecondaryImage(user: User) {
+  const userProfileImagerecord = await db.profileImage.findFirst({
+    where: {
+      userId: user?.id,
+    },
+  })
+  if (userProfileImagerecord) {
+    await removeFileFromSpace(
+      userProfileImagerecord?.secondaryImageKey as string
+    )
+  }
+  await db.profileImage.update({
+    where: {
+      userId: user.id,
+    },
+    data: {
+      isUsingSecondaryDefault: true,
+      secondaryImage: '',
+      secondaryImageKey: '',
+    },
+  })
+}
+
+export async function removePrimaryImage(user: User) {
+  try {
+    const userProfileImagerecord = await db.profileImage.findFirst({
+      where: {
+        userId: user?.id,
+      },
+    })
+
+    if (userProfileImagerecord) {
+      await removeFileFromSpace(
+        userProfileImagerecord?.primaryImageKey as string
+      )
     }
-    catch (e){
-        return null
+    return true
+  } catch (e) {
+    return null
+  }
+}
+
+export async function removeSecondaryImage(user: User) {
+  try {
+    const userProfileImagerecord = await db.profileImage.findFirst({
+      where: {
+        userId: user?.id,
+      },
+    })
+
+    if (userProfileImagerecord) {
+      await removeFileFromSpace(
+        userProfileImagerecord?.secondaryImageKey as string
+      )
     }
+    return true
+  } catch (e) {
+    return null
+  }
 }

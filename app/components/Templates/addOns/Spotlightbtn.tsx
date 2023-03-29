@@ -1,25 +1,58 @@
-
 import React from 'react'
 import DynamicHeroIcon from './DynmaicIcon'
 
-
 export default function Spotlightbtn({ loaderData }: any) {
-  var _ = require('lodash');
+  var _ = require('lodash')
 
-  const iconName = _.startCase(_.camelCase(loaderData?.spotlightButton?.spotlightIcon)) + 'Icon'
-  const Name = _.replace(iconName, ' ', '');
-  const Final = Name.split(" ").join('')
+  const iconName =
+    _.startCase(_.camelCase(loaderData?.spotlightButton?.spotlightIcon)) +
+    'Icon'
+  const Name = _.replace(iconName, ' ', '')
+  const Final = Name.split(' ').join('')
 
-  const btnText = loaderData?.spotlightButton?.buttonText?.length > 30 ? `${loaderData?.spotlightButton?.buttonText.substring(0, 30)}...` : loaderData?.spotlightButton?.buttonText
-
+  const btnText =
+    loaderData?.spotlightButton?.buttonText?.length > 30
+      ? `${loaderData?.spotlightButton?.buttonText.substring(0, 30)}...`
+      : loaderData?.spotlightButton?.buttonText
 
   return (
-    <div className={`flex justify-center items-center mb-[2rem] ${loaderData?.profileInfo?.templateNumber == '2' || loaderData?.profileInfo?.templateNumber == '3' || loaderData?.profileInfo?.templateNumber == '4' || loaderData?.profileInfo?.templateNumber == '5' || loaderData?.profileInfo?.templateNumber == '7' || loaderData?.profileInfo?.templateNumber == '8' || loaderData?.profileInfo?.templateNumber == '11' || loaderData?.profileInfo?.templateNumber == '13' || loaderData?.profileInfo?.templateNumber == '14' || loaderData?.profileInfo?.templateNumber == '16' || loaderData?.profileInfo?.templateNumber == '10' || loaderData?.profileInfo?.templateNumber == '9' ? 'mt-[2rem]' : 'mt-9' }`} >
-      <a className='' href={loaderData?.spotlightButton?.buttonActionlink.includes('https') ? loaderData?.spotlightButton?.buttonActionlink : 'https://'+loaderData?.spotlightButton?.buttonActionlink} target="_blank">
-        <button style={{ 'backgroundColor': loaderData?.spotlightButton?.buttonhex, 'textShadow': '0px 1px black' }} className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px]  h-10 shadow-sm text-sm leading-5 font-medium text-white ${loaderData?.spotlightButton?.buttonColor} `}><DynamicHeroIcon icon={Final} Final={Final} /> {btnText}
+    <div
+      className={`flex justify-center items-center mb-[2rem] ${
+        loaderData?.profileInfo?.templateNumber == '2' ||
+        loaderData?.profileInfo?.templateNumber == '3' ||
+        loaderData?.profileInfo?.templateNumber == '4' ||
+        loaderData?.profileInfo?.templateNumber == '5' ||
+        loaderData?.profileInfo?.templateNumber == '7' ||
+        loaderData?.profileInfo?.templateNumber == '8' ||
+        loaderData?.profileInfo?.templateNumber == '11' ||
+        loaderData?.profileInfo?.templateNumber == '13' ||
+        loaderData?.profileInfo?.templateNumber == '14' ||
+        loaderData?.profileInfo?.templateNumber == '16' ||
+        loaderData?.profileInfo?.templateNumber == '10' ||
+        loaderData?.profileInfo?.templateNumber == '9'
+          ? 'mt-[2rem]'
+          : 'mt-9'
+      }`}
+    >
+      <a
+        className=""
+        href={
+          loaderData?.spotlightButton?.buttonActionlink.includes('https')
+            ? loaderData?.spotlightButton?.buttonActionlink
+            : 'https://' + loaderData?.spotlightButton?.buttonActionlink
+        }
+        target="_blank" rel="noreferrer"
+      >
+        <button
+          style={{
+            backgroundColor: loaderData?.spotlightButton?.buttonhex,
+            textShadow: '0px 1px black',
+          }}
+          className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px]  h-10 shadow-sm text-sm leading-5 font-medium text-white ${loaderData?.spotlightButton?.buttonColor} `}
+        >
+          <DynamicHeroIcon icon={Final} Final={Final} /> {btnText}
         </button>
       </a>
     </div>
   )
 }
-

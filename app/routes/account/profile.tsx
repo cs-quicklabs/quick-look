@@ -3,7 +3,8 @@ import {
   ExclamationCircleIcon,
   XIcon,
 } from '@heroicons/react/solid'
-import { ActionFunction, json, LoaderFunction, redirect } from '@remix-run/node'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
 import {
   Form,
   useActionData,
@@ -19,7 +20,7 @@ import { commitSession, getSession } from '~/services/session.service.server'
 import {
   updateUserProfileDetails,
   updateUsingOldPassword,
-} from '~/services/user.service.serevr'
+} from '~/services/user.service.server'
 import {
   updateValidatePassword,
   validateComfirmPassword,
@@ -178,7 +179,7 @@ export default function Profile() {
     }, 2000)
   }
   useEffect(() => {
-    transition.state == 'loading' 
+    transition.state == 'loading'
       ? SetPass({
           oldpassword: '',
           newpassword: '',

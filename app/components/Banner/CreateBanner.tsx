@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { Fragment, useEffect, useState } from 'react'
@@ -407,7 +407,7 @@ export default function CreateBanner({
                                   <a
                                     target="_blank"
                                     className="text-blue-800 underline"
-                                    href="https://heroicons.com/"
+                                    href="https://heroicons.com/" rel="noreferrer"
                                   >
                                     here
                                   </a>{' '}

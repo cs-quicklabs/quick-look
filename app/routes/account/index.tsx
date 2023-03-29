@@ -1,4 +1,5 @@
-import { json, LoaderFunction } from '@remix-run/node'
+import type { LoaderFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import { useActionData, useLoaderData, useTransition } from '@remix-run/react'
@@ -23,8 +24,10 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
-import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
-export const action = ModalAction;
+import Unpublish, {
+  action as ModalAction,
+} from '~/components/Common/unpublishModal'
+export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -54,7 +57,7 @@ export default function Profile() {
   const [showTestimonial, setShowTestimonial] = useState(false)
   const [showImages, setshowImages] = useState(false)
   const [showTemplate, setshowTemplate] = useState(false)
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   const Data = useLoaderData()
 
   const loaderData = Data?.user
@@ -125,8 +128,12 @@ export default function Profile() {
   const [inputVideo, setInputVideo] = useState({
     videoLink: loaderData?.video?.videoLink,
   })
-  const primaryRestore = loaderData?.profileImage?.primaryImage ? loaderData?.profileImage?.isUsingPrimaryDefault : true;
-  const secondaryRestore = loaderData?.profileImage?.secondaryImage ? loaderData?.profileImage?.isUsingSecondaryDefault : true;
+  const primaryRestore = loaderData?.profileImage?.primaryImage
+    ? loaderData?.profileImage?.isUsingPrimaryDefault
+    : true
+  const secondaryRestore = loaderData?.profileImage?.secondaryImage
+    ? loaderData?.profileImage?.isUsingSecondaryDefault
+    : true
   const actionData = useActionData()
 
   useEffect(() => {
@@ -172,7 +179,8 @@ export default function Profile() {
     )
   }
   const disabledIcon =
-    loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
+    loaderData?.profileImage?.primaryImage ||
+    loaderData?.profileImage?.isUsingPrimaryDefault
       ? 'text-gray-700/20'
       : 'text-gray-700/40'
   return (
@@ -239,11 +247,11 @@ export default function Profile() {
         <div
           className={`z-20 grow basis-[78%] 
           ${
-            mode === 'mobile' 
-            ? 'lg:ml-[32rem] xl:ml-[48rem]'
-            :  mode != 'mobile'
-            ? 'lg:ml-[24rem]'
-            : null
+            mode === 'mobile'
+              ? 'lg:ml-[32rem] xl:ml-[48rem]'
+              : mode != 'mobile'
+              ? 'lg:ml-[24rem]'
+              : null
           }
      `}
         >
@@ -326,7 +334,7 @@ export default function Profile() {
               input={input}
               loaderData={loaderData}
             />
-          ): loaderData?.profileInfo?.templateNumber == '11' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '11' ? (
             <Template11
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -350,8 +358,7 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          )
-          : loaderData?.profileInfo?.templateNumber == '16' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '16' ? (
             <Template16
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -367,8 +374,7 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          )
-           : loaderData?.profileInfo?.templateNumber == '18' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '18' ? (
             <Template18
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -376,8 +382,7 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          )
-          : null}
+          ) : null}
         </div>
       </div>
 
@@ -385,7 +390,8 @@ export default function Profile() {
         className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${
           !showUserSetting ? 'z-40' : 'z-[60]'
         }  rounded-l-md rounded-r-md ${
-          loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
+          loaderData?.profileImage?.primaryImage ||
+          loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
         } ${
@@ -424,7 +430,12 @@ export default function Profile() {
         </button>
         {/* </form> */}
       </div>
-      <Unpublish isPublished={loaderData?.profile?.isPublished} open={showModal} setopenModal={setShowModal} onClose={() => setShowModal(false)}/>
+      <Unpublish
+        isPublished={loaderData?.profile?.isPublished}
+        open={showModal}
+        setopenModal={setShowModal}
+        onClose={() => setShowModal(false)}
+      />
     </div>
   )
 }

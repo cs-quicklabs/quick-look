@@ -16,15 +16,19 @@ export default function BannerAddOn({ loaderData, mode }: any) {
         mode === 'mobile' ? 'z-0' : ''
       }
        
-       ${mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2' ? 'xl:w-[126%] medium:w-[104%]' : ''}`}
+       ${
+         mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'
+           ? 'xl:w-[126%] medium:w-[104%]'
+           : ''
+       }`}
     >
       <a
-      href={
-        loaderData?.supportBanner?.bannerlink.includes('https')
-          ? loaderData?.supportBanner?.bannerlink
-          : 'https://' + loaderData?.supportBanner?.bannerlink
-      }
-      target="_blank"
+        href={
+          loaderData?.supportBanner?.bannerlink.includes('https')
+            ? loaderData?.supportBanner?.bannerlink
+            : 'https://' + loaderData?.supportBanner?.bannerlink
+        }
+        target="_blank"
         style={{
           backgroundColor: loaderData?.supportBanner?.bannerHex,
           textShadow: '0px 1px black',

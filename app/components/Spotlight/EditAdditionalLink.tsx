@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Form, useTransition } from '@remix-run/react'

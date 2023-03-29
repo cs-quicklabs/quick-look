@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
@@ -133,11 +133,13 @@ export default function Banner({
                             <div className="flex py-4">
                               <div className="ml-3">
                                 <p className="text-sm font-medium text-gray-900">
-                                  {loaderData?.supportBanner?.bannerText?.length > 35 ?
-                                  loaderData?.supportBanner?.bannerText?.slice(
-                                    0,
-                                    35
-                                  ) + '...' : loaderData?.supportBanner?.bannerText}
+                                  {loaderData?.supportBanner?.bannerText
+                                    ?.length > 35
+                                    ? loaderData?.supportBanner?.bannerText?.slice(
+                                        0,
+                                        35
+                                      ) + '...'
+                                    : loaderData?.supportBanner?.bannerText}
                                 </p>
                                 <p
                                   className={` overflow-hidden text-ellipsis text-sm text-gray-500 ${

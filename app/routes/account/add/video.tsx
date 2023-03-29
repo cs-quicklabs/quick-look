@@ -1,27 +1,28 @@
-import { User } from "@prisma/client";
-import { ActionFunction, json, redirect } from "@remix-run/node";
-import { getUser } from "~/services/auth.service.server";
-import { addUpdateVideo } from "~/services/userVideo.service.server";
-import { getVideoSource } from "~/utils/url.server";
-import { validateVideo } from "~/utils/validator.server";
+import type { User } from '@prisma/client'
+import type { ActionFunction } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
+import { getUser } from '~/services/auth.service.server'
+import { addUpdateVideo } from '~/services/userVideo.service.server'
+import { getVideoSource } from '~/utils/url.server'
+import { validateVideo } from '~/utils/validator.server'
 
 export const action: ActionFunction = async ({ request }) => {
-    const user = await getUser(request) as User
+  const user = (await getUser(request)) as User
 
-    const form = await request.formData()
-    
-    let sourceKey;
-    const videoUrl = await form.get('videoLink') as string
-    const videoSource = await getVideoSource(videoUrl);
+  const form = await request.formData()
 
-    if(videoSource){
-      sourceKey = 'youtube'
-    } else {
-      sourceKey = 'facebook'
-    }
-    if(videoUrl){
-        await addUpdateVideo(videoUrl, sourceKey , user);
-    }
+  let sourceKey
+  const videoUrl = (await form.get('videoLink')) as string
+  const videoSource = await getVideoSource(videoUrl)
 
-    return redirect('/account') 
-};
+  if (videoSource) {
+    sourceKey = 'youtube'
+  } else {
+    sourceKey = 'facebook'
+  }
+  if (videoUrl) {
+    await addUpdateVideo(videoUrl, sourceKey, user)
+  }
+
+  return redirect('/account')
+}

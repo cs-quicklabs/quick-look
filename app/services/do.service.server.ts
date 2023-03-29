@@ -1,22 +1,23 @@
-import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { Upload } from "@aws-sdk/lib-storage";
-import { randomName } from "~/utils/randomName.server";
-import { base64ToBlob, dataURItoBlob } from '~/utils/blob.server'
-require('dotenv').config();
+import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import { Upload } from '@aws-sdk/lib-storage'
+import { randomName } from '~/utils/randomName.server'
+import { dataURItoBlob } from '~/utils/blob.server'
+require('dotenv').config()
 
-const { DO_ACCESS_KEY_ID, DO_SECRET, DO_ENDPOINT, DEFAULT_DO_REGION } = process.env;
+const { DO_ACCESS_KEY_ID, DO_SECRET, DO_ENDPOINT, DEFAULT_DO_REGION } =
+  process.env
 
 if (!DO_ACCESS_KEY_ID) {
-  throw new Error(`Digital Ocean access key id must be set.`);
+  throw new Error(`Digital Ocean access key id must be set.`)
 }
 if (!DO_SECRET) {
-  throw new Error(`Digital Ocean secret must be set.`);
+  throw new Error(`Digital Ocean secret must be set.`)
 }
 if (!DO_ENDPOINT) {
-  throw new Error(`Digital Ocean endpoint must be set.`);
+  throw new Error(`Digital Ocean endpoint must be set.`)
 }
 if (!DEFAULT_DO_REGION) {
-  throw new Error(`Digital Ocean region must be set.`);
+  throw new Error(`Digital Ocean region must be set.`)
 }
 
 const s3Client = new S3Client({
@@ -26,14 +27,10 @@ const s3Client = new S3Client({
     accessKeyId: DO_ACCESS_KEY_ID,
     secretAccessKey: DO_SECRET,
   },
-});
+})
 
-export async function uploadBlob(
-  dataUrl: any,
-  filename?: any
-) {
-
-  const randKey = await randomName();
+export async function uploadBlob(dataUrl: any, filename?: any) {
+  const randKey = await randomName()
   const buffer = await dataURItoBlob(dataUrl)
 
   const uploadedResponse = await new Upload({
@@ -46,30 +43,26 @@ export async function uploadBlob(
       ACL: 'public-read',
       ContentType: 'image/png',
     },
-  })
-    .done()
+  }).done()
   const response: any = Object.assign({}, uploadedResponse)
   return response['Location']
 }
 
-export async function uploadStreamToSpaces(
-  data: any,
-  filename: string,
-) {
+export async function uploadStreamToSpaces(data: any, filename: string) {
   const chunks = []
   for await (const chunk of data) {
     chunks.push(chunk)
   }
 
   const buffer = Buffer.concat(chunks)
-  const blob1 = new Blob(chunks, { type: 'image/png' });
-  const file = new File([blob1], filename as string, { type: 'image/png' });
+  const blob1 = new Blob(chunks, { type: 'image/png' })
+  const file = new File([blob1], filename as string, { type: 'image/png' })
 
   if (file.size < 1 || file.size === 0) {
-    return;
+    return
   }
 
-  const randKey = await randomName();
+  const randKey = await randomName()
 
   const uploadedResponse = await new Upload({
     client: s3Client,
@@ -81,20 +74,19 @@ export async function uploadStreamToSpaces(
       ACL: 'public-read',
       ContentType: 'image/png',
     },
-  })
-    .done()
+  }).done()
   const response: any = Object.assign({}, uploadedResponse)
   return response['Location']
 }
 
 export async function removeFileFromSpace(key: string) {
-  const bucketParams = { Bucket: "quicklook", Key: key };
+  const bucketParams = { Bucket: 'quicklook', Key: key }
   try {
-    const data = await s3Client.send(new DeleteObjectCommand(bucketParams));
-    return data;
+    const data = await s3Client.send(new DeleteObjectCommand(bucketParams))
+    return data
   } catch (err) {
-    console.log("Error", err);
+    console.log('Error', err)
   }
-};
+}
 
-export { s3Client };
+export { s3Client }

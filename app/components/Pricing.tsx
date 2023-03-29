@@ -10,7 +10,7 @@ const includedFeatures = [
 
 export default function Pricing() {
   return (
-    <div id='pricing' className="bg-blue-600">
+    <div id="pricing" className="bg-blue-600">
       <div className="pt-12 sm:pt-16 lg:pt-20">
         <div className="mx-auto max-w-3xl space-y-2 text-center lg:max-w-none">
           <h2 className="text-3xl font-semibold leading-6 text-gray-300">
@@ -36,7 +36,9 @@ export default function Pricing() {
                   {/* We offer unmatched feature for a unmatched price . You can
                   always signup for free and buy the memebrship later for the
                   premium features. */}
-                  Signup today and get 14 days free trial. No credit card required. If you like it, just do own time payment and own it forever.
+                  Signup today and get 14 days free trial. No credit card
+                  required. If you like it, just do own time payment and own it
+                  forever.
                 </p>
                 <div className="mt-8">
                   <div className="flex items-center">

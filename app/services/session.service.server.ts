@@ -1,9 +1,9 @@
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookieSessionStorage } from '@remix-run/node'
 
 const sessionSecret = process.env.SESSION_SECRET
 if (!sessionSecret) {
   throw new Error('SESSION_SECRET must be set')
-} 
+}
 const { getSession, commitSession, destroySession } =
   createCookieSessionStorage({
     cookie: {
@@ -15,6 +15,6 @@ const { getSession, commitSession, destroySession } =
       maxAge: 60 * 60 * 24 * 30,
       httpOnly: true,
     },
-  });
+  })
 
-export { getSession, commitSession, destroySession };
+export { getSession, commitSession, destroySession }

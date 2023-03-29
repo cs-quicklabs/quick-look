@@ -74,7 +74,9 @@ export default function Template9({
             >
               <h1
                 className={`w-fit px-4 font-bold leading-8 text-gray-50 ${
-                  mode == 'mobile' ? 'text-2xl' : 'text-2xl md:text-4xl lg:leading-10 lg:font-extrabold'
+                  mode == 'mobile'
+                    ? 'text-2xl'
+                    : 'text-2xl md:text-4xl lg:leading-10 lg:font-extrabold'
                 }`}
               >
                 {loaderData?.firstname} {loaderData?.lastname}
@@ -98,115 +100,121 @@ export default function Template9({
                 <span></span>
               )}
 
-              <div className={`${
-                  mode === 'mobile' ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]' : ''
-                }`}>
               <div
                 className={`${
-                  mode === 'mobile' ? '' : ''
+                  mode === 'mobile'
+                    ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]'
+                    : ''
                 }`}
               >
-                {loaderData?.spotlightButton?.toggleSpotlight && (
-                  <Spotlightbtn loaderData={loaderData} />
+                <div className={`${mode === 'mobile' ? '' : ''}`}>
+                  {loaderData?.spotlightButton?.toggleSpotlight && (
+                    <Spotlightbtn loaderData={loaderData} />
+                  )}
+                </div>
+                <div className={`${mode === 'mobile' ? '' : ''}`}>
+                  {loaderData?.spotlightButton?.toggleSpotlight && (
+                    <AdditionalLinksAddOn loaderData={loaderData} />
+                  )}
+                </div>
+                <div className="flex flex-wrap pt-[1rem]">
+                  {' '}
+                  <pre
+                    className={`flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-100 `}
+                  >
+                    {input?.description?.trim()}{' '}
+                  </pre>{' '}
+                </div>
+                <div className="]">
+                  {loaderData?.testimonial?.testimonialText && (
+                    <TestimonialAddOn
+                      loaderData={loaderData}
+                      testimonialText={loaderData?.testimonial?.testimonialText}
+                      testimonialBy={loaderData?.testimonial?.testimonialBy}
+                    />
+                  )}
+                </div>
+
+                {loaderData?.video?.videoLink && (
+                  <div className="">
+                    <VideoAddOn
+                      loaderData={loaderData}
+                      videoLink={loaderData?.video?.videoLink}
+                    />
+                  </div>
                 )}
-              </div>
-              <div
-                className={`${
-                  mode === 'mobile' ? '' : ''
-                }`}
-              >
-                {loaderData?.spotlightButton?.toggleSpotlight && (
-                  <AdditionalLinksAddOn loaderData={loaderData} />
-                )}
-              </div>
-              <div className="flex flex-wrap pt-[1rem]">
-                {' '}
-                <pre
-                  className={`flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-100 `}
+                {/* <div className="flex w-[20rem] items-center justify-center md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0"> */}
+                <div>
+                  <PortfolioAddon mode={mode} loaderData={loaderData} />
+                </div>
+                <div className="mt-[2rem] flex flex-col gap-6">
+                  <div className="flex items-center justify-center gap-4">
+                    {input.company && (
+                      <BriefcaseIcon className="h-6 w-6 text-gray-100" />
+                    )}
+                    <h2 className="w-max break-normal  text-base font-normal leading-5 text-gray-100">
+                      {input.company}{' '}
+                    </h2>
+                  </div>
+                  <div className="flex items-center justify-center gap-4">
+                    {input.education && (
+                      <AcademicCapIcon className="h-6 w-6 text-gray-100" />
+                    )}
+                    <h2 className="w-max break-normal text-base font-normal leading-5 text-gray-100">
+                      {input.education}{' '}
+                    </h2>
+                  </div>
+                </div>
+
+                <footer
+                  className={` flex w-full justify-center gap-4 pb-[5rem] pt-[2rem] md:gap-8   ${
+                    mode === 'mobile' ? '' : ''
+                  }  ${nav ? '' : ''} ${
+                    loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'
+                  }`}
                 >
-                  {input?.description?.trim()}{' '}
-                </pre>{' '}
-              </div>
-              <div className="]">
-                {loaderData?.testimonial?.testimonialText && (
-                  <TestimonialAddOn
-                    loaderData={loaderData}
-                    testimonialText={loaderData?.testimonial?.testimonialText}
-                    testimonialBy={loaderData?.testimonial?.testimonialBy}
-                  />
-                )}
-              </div>
+                  {loaderData?.socialMedia?.facebookLink ? (
+                    <a
+                      href={`https://${loaderData?.socialMedia?.facebookLink}`}
+                      target="_blank" rel="noreferrer"
+                    >
+                      <img
+                        src={facebook}
+                        alt=""
+                        className="h-auto w-9 md:w-11"
+                      />
+                    </a>
+                  ) : null}
+                  {loaderData?.socialMedia?.twitterLink ? (
+                    <a
+                      href={`https://${loaderData?.socialMedia?.twitterLink}`}
+                      target="_blank" rel="noreferrer"
+                    >
+                      <img
+                        src={twitter}
+                        alt=""
+                        className="h-auto w-9 md:w-11"
+                      />
+                    </a>
+                  ) : null}
+                  {loaderData?.socialMedia?.youtubeLink ? (
+                    <a
+                      href={`https://${loaderData?.socialMedia?.youtubeLink}`}
+                      target="_blank" rel="noreferrer"
+                    >
+                      <img
+                        src={youtube}
+                        alt=""
+                        className="h-auto w-9 md:w-11"
+                      />
+                    </a>
+                  ) : null}
+                </footer>
 
-              {loaderData?.video?.videoLink && (
-                <div className=''>
-                  <VideoAddOn
-                  loaderData={loaderData}
-                  videoLink={loaderData?.video?.videoLink}
-                />
+                <div className="py-5 -mt-4 text-gray-50">
+                  <PoweredBy />
                 </div>
-              )}
-              {/* <div className="flex w-[20rem] items-center justify-center md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0"> */}
-              <div>
-                <PortfolioAddon mode={mode} loaderData={loaderData} />
               </div>
-              <div className="mt-[2rem] flex flex-col gap-6">
-                <div className="flex items-center justify-center gap-4">
-                  {input.company && (
-                    <BriefcaseIcon className="h-6 w-6 text-gray-100" />
-                  )}
-                  <h2 className="w-max break-normal  text-base font-normal leading-5 text-gray-100">
-                    {input.company}{' '}
-                  </h2>
-                </div>
-                <div className="flex items-center justify-center gap-4">
-                  {input.education && (
-                    <AcademicCapIcon className="h-6 w-6 text-gray-100" />
-                  )}
-                  <h2 className="w-max break-normal text-base font-normal leading-5 text-gray-100">
-                    {input.education}{' '}
-                  </h2>
-                </div>
-              </div>
-
-              <footer
-                className={` flex w-full justify-center gap-4 pb-[5rem] pt-[2rem] md:gap-8   ${
-                  mode === 'mobile' ? '' : ''
-                }  ${nav ? '' : ''} ${
-                  loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'
-                }`}
-              >
-                {loaderData?.socialMedia?.facebookLink ? (
-                  <a
-                    href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                    target="_blank"
-                  >
-                    <img src={facebook} alt="" className="h-auto w-9 md:w-11" />
-                  </a>
-                ) : null}
-                {loaderData?.socialMedia?.twitterLink ? (
-                  <a
-                    href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                    target="_blank"
-                  >
-                    <img src={twitter} alt="" className="h-auto w-9 md:w-11" />
-                  </a>
-                ) : null}
-                {loaderData?.socialMedia?.youtubeLink ? (
-                  <a
-                    href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                    target="_blank"
-                  >
-                    <img src={youtube} alt="" className="h-auto w-9 md:w-11" />
-                  </a>
-                ) : null}
-              </footer>
-
-              <div className='py-5 -mt-4 text-gray-50'>
-                <PoweredBy/>
-              </div>
-
-              </div>
-
             </div>
           </div>
         </div>

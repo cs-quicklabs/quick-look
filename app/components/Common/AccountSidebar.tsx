@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { MenuIcon,XIcon } from '@heroicons/react/outline';
-import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid';
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid'
 import AccountBio from './AccountBio'
 import AccountTemplate from './AccountTemplate'
 import DefaultProfileIcon from '../../../assets/images/profile.png'
@@ -80,7 +80,7 @@ export default function AccountSideBar({
   showModal,
   setShowModal,
 }: any) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   // const [showImages, setshowImages] = useState(false);
   // const [showTemplate, setshowTemplate] = useState(false);
   // const [showSocialLinks, setshowSocialLinks] = useState(false);
@@ -88,23 +88,34 @@ export default function AccountSideBar({
     if (showImages && mode === 'mobile') {
       setshowImages(true)
     }
-  }, [mode, showImages]);
+  }, [mode, showImages])
 
   const renderPublishStatus = () => {
-    const { isPublished } = loaderData?.profile;
-    let PublishIcon = isPublished ? CheckCircleIcon : ExclamationIcon;
+    const { isPublished } = loaderData?.profile
+    let PublishIcon = isPublished ? CheckCircleIcon : ExclamationIcon
     return (
-      <div className={`w-full inline-flex rounded-md ${isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} text-sm mt-3 py-1 px-2`}>
-        <PublishIcon className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}/>
-        <span>{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
-        <span 
-          className="ml-2 font-medium" 
-          onClick={() => setShowModal(true)}
-        >
+      <div
+        className={`w-full inline-flex rounded-md ${
+          isPublished
+            ? 'bg-green-100 text-green-700'
+            : 'bg-yellow-100 text-yellow-700'
+        } text-sm mt-3 py-1 px-2`}
+      >
+        <PublishIcon
+          className={`mt-1 mr-2 h-4 w-4 ${
+            isPublished ? 'text-green-400' : 'text-yellow-400'
+          }`}
+        />
+        <span>
+          {isPublished
+            ? 'Your profile is live'
+            : 'Your profile needs publishing'}
+        </span>
+        <span className="ml-2 font-medium" onClick={() => setShowModal(true)}>
           {isPublished ? `Unpublish ->` : 'Publish ->'}
         </span>
-    </div>
-    );
+      </div>
+    )
   }
 
   return (
@@ -176,14 +187,15 @@ export default function AccountSideBar({
                               {loaderData?.firstname} {loaderData?.lastname}
                             </p>
                             <a
-                            href={`/${loaderData?.username}`}
-                            target="_blank"
-                            className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+                              href={`/${loaderData?.username}`}
+                              target="_blank"
+                              className="text-sm font-medium text-gray-500 group-hover:text-gray-700" rel="noreferrer"
+                            >
                               View profile
                             </a>
                           </div>
                         </div>
-                          {renderPublishStatus()}
+                        {renderPublishStatus()}
                       </a>
                     </div>
                     <div>
@@ -526,7 +538,7 @@ export default function AccountSideBar({
                       <a
                         href={`/${loaderData?.username}`}
                         target="_blank"
-                        className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700"
+                        className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700" rel="noreferrer"
                       >
                         View profile
                       </a>
@@ -843,7 +855,9 @@ export default function AccountSideBar({
               }
             >
               <span className="sr-only">Open sidebar</span>
-                {!sidebarOpen && <MenuIcon className="h-6 w-6 " aria-hidden="true" />}
+              {!sidebarOpen && (
+                <MenuIcon className="h-6 w-6 " aria-hidden="true" />
+              )}
             </button>
           </div>
         </div>

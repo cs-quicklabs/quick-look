@@ -20,8 +20,10 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
   return (
     <div className="img mt-8">
       <LightGallery
-         elementClassNames={`grid gap-4 ${
-          mode === 'mobile' ? 'grid-cols-2 w-[20rem] lg:w-full lg:grid-cols-3' : ''
+        elementClassNames={`grid gap-4 ${
+          mode === 'mobile'
+            ? 'grid-cols-2 w-[20rem] lg:w-full lg:grid-cols-3'
+            : ''
         } ${
           loaderData.portfolioImage.length == 1
             ? 'grid-cols-1'
@@ -36,10 +38,18 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
             : ''
         }
         ${
-          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10' ? 'grid-cols-2 w-[20rem] lg:w-full lg:w-full md:grid-cols-3'  : loaderData?.profileInfo?.templateNumber == '10' ? 'grid-cols-2 w-[20rem] lg:w-full md:grid-cols-3' : ''
+          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
+            ? 'grid-cols-2 w-[20rem] lg:w-full lg:w-full md:grid-cols-3'
+            : loaderData?.profileInfo?.templateNumber == '10'
+            ? 'grid-cols-2 w-[20rem] lg:w-full md:grid-cols-3'
+            : ''
         }
         ${
-          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14' ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full'  : loaderData?.profileInfo?.templateNumber == '14' ? 'w-[90%]' : ''
+          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14'
+            ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full'
+            : loaderData?.profileInfo?.templateNumber == '14'
+            ? 'w-[90%]'
+            : ''
         }`}
         counter
         animateThumb={false}
@@ -51,7 +61,7 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
         mode="lg-slide"
       >
         {/* <div  className='grid grid-cols-4  gap-4 items-center'> */}
-        {loaderData.portfolioImage.map((img: any, inx:number) => (
+        {loaderData.portfolioImage.map((img: any, inx: number) => (
           <a
             data-lg-size="1406-1390"
             className="gallery-item"
