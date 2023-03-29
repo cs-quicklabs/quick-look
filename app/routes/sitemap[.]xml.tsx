@@ -1,4 +1,3 @@
-import type { User } from "@prisma/client";
 import type { LoaderFunction} from "@remix-run/node";
 import { Response } from "@remix-run/node";
 import { getUsers } from "~/services/auth.service.server";
@@ -6,7 +5,7 @@ import { getUsers } from "~/services/auth.service.server";
 export const loader: LoaderFunction = async () => {
   const users = await getUsers();
 
-  return new Response(renderXML(users || []), {
+  return new Response(renderXML(), {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
       "x-content-type-options": "nosniff",
@@ -15,7 +14,7 @@ export const loader: LoaderFunction = async () => {
   });
 };
 
-const renderXML = (users: User[]) => {
+const renderXML = () => {
 
     const url = "https://www.quicklook.me/";
     const date = new Date().toISOString();
@@ -62,18 +61,6 @@ const renderXML = (users: User[]) => {
             <lastmod>${date}</lastmod>
             <priority>0.80</priority>
         </url>
-
-        ${users
-        .map(({username}) => {
-            return `
-            <url>
-                <loc>${`${url}${username}`}</loc>
-                <lastmod>${date}</lastmod>
-                <priority>1</priority>
-            </url>`;
-        })
-        .join("\n")}
-
     </urlset>`;
 
     return sitemap;
