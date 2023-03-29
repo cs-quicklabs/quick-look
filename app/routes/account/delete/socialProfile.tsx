@@ -17,10 +17,7 @@ export const action: ActionFunction = async ({ request }) => {
   const socialProfile = fbProfile ?? ytProfile ?? twitterProfile
   await deleteSocialLink(socialProfile, user)
 
-  session.flash(
-    'updateProfileMessage',
-    `Your profile has been updated successfully.`
-  )
+  session.flash('updateProfileMessage', `Your profile has been updated successfully.`)
   return redirect('/account', {
     headers: {
       'Set-Cookie': await commitSession(session),

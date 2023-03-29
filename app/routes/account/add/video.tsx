@@ -1,10 +1,9 @@
 import type { User } from '@prisma/client'
 import type { ActionFunction } from '@remix-run/node'
-import { json, redirect } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
 import { addUpdateVideo } from '~/services/userVideo.service.server'
 import { getVideoSource } from '~/utils/url.server'
-import { validateVideo } from '~/utils/validator.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const user = (await getUser(request)) as User

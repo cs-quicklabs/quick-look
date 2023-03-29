@@ -132,17 +132,12 @@ function ProfileImage({
     const action = transition?.submission?.action || ''
 
     if (
-      (action.includes('change-profile-image') ||
-        action.includes('/account/add/SecImage')) &&
+      (action.includes('change-profile-image') || action.includes('/account/add/SecImage')) &&
       !changeImageStateRef?.current
     )
       changeImageStateRef.current = true
 
-    if (
-      transition?.state === 'idle' &&
-      changeImageStateRef?.current &&
-      openEditor
-    ) {
+    if (transition?.state === 'idle' && changeImageStateRef?.current && openEditor) {
       changeImageStateRef.current = false
 
       setTimeout(() => {
@@ -157,10 +152,8 @@ function ProfileImage({
   }, [transition, openEditor])
 
   const isUploading =
-    (upload2 === 'sec' &&
-      transition?.submission?.action === '/account/add/SecImage') ||
-    (restore2 &&
-      transition?.submission?.action === '/account/update/restoreImage') ||
+    (upload2 === 'sec' && transition?.submission?.action === '/account/add/SecImage') ||
+    (restore2 && transition?.submission?.action === '/account/update/restoreImage') ||
     (drag2 && transition?.submission?.action == '/account/update/crop-image')
 
   return (
@@ -175,16 +168,10 @@ function ProfileImage({
             <div className="mt-3.5 flex h-[8rem] w-[8rem]  justify-center rounded-full">
               {(deleteImage === 'secondary' &&
                 transition?.submission?.action == '/account/delete/image') ||
-              (edit2 &&
-                transition?.submission?.action ==
-                  '/account/update/crop-image') ||
-              transition?.submission?.action ===
-                '/account/update/change-profile-image' ? (
+              (edit2 && transition?.submission?.action == '/account/update/crop-image') ||
+              transition?.submission?.action === '/account/update/change-profile-image' ? (
                 <div className="relative top-[-1.8rem]">
-                  <BeatLoader
-                    color="#184fad"
-                    className="relative top-20 left-[2.2rem]"
-                  />
+                  <BeatLoader color="#184fad" className="relative top-20 left-[2.2rem]" />
                   <img
                     src={
                       secondaryRestore
@@ -212,12 +199,7 @@ function ProfileImage({
                 />
               )}
               <Form replace action="update/crop-image" method="post">
-                <input
-                  name="editSecondaryImage"
-                  type="text"
-                  value={urlSec}
-                  hidden
-                />
+                <input name="editSecondaryImage" type="text" value={urlSec} hidden />
                 <button type="submit" ref={ref6} hidden>
                   Edit
                 </button>
@@ -360,8 +342,7 @@ function ProfileImage({
                     value="restoresecondaryImage"
                     className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
                     disabled={
-                      upload === 'sec' &&
-                      transition?.submission?.action == '/account/add/SecImage'
+                      upload === 'sec' && transition?.submission?.action == '/account/add/SecImage'
                     }
                     onClick={() => {
                       setRestore2((prev: any) => (prev = true))
@@ -373,12 +354,8 @@ function ProfileImage({
                 </Form>
               </div>
 
-              <div className="mt-2 text-sm text-red-500">
-                {secondaryImageError}
-              </div>
-              <h4 className="text-sm">
-                (Supported image .jpg .jpeg, and .png)
-              </h4>
+              <div className="mt-2 text-sm text-red-500">{secondaryImageError}</div>
+              <h4 className="text-sm">(Supported image .jpg .jpeg, and .png)</h4>
             </div>
           </div>
         </div>

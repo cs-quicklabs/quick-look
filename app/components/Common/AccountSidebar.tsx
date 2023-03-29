@@ -96,21 +96,13 @@ export default function AccountSideBar({
     return (
       <div
         className={`w-full inline-flex rounded-md ${
-          isPublished
-            ? 'bg-green-100 text-green-700'
-            : 'bg-yellow-100 text-yellow-700'
+          isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
         } text-sm mt-3 py-1 px-2`}
       >
         <PublishIcon
-          className={`mt-1 mr-2 h-4 w-4 ${
-            isPublished ? 'text-green-400' : 'text-yellow-400'
-          }`}
+          className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}
         />
-        <span>
-          {isPublished
-            ? 'Your profile is live'
-            : 'Your profile needs publishing'}
-        </span>
+        <span>{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
         <span className="ml-2 font-medium" onClick={() => setShowModal(true)}>
           {isPublished ? `Unpublish ->` : 'Publish ->'}
         </span>
@@ -122,11 +114,7 @@ export default function AccountSideBar({
     <>
       <div className="" onClick={(e) => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="relative z-50 lg:hidden"
-            onClose={setSidebarOpen}
-          >
+          <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -172,13 +160,17 @@ export default function AccountSideBar({
                   </Transition.Child>
                   <div className="mt-[1rem] h-0 flex-1 overflow-y-auto pb-4">
                     <div className="flex flex-shrink-0 px-2">
-                      <a href="#" className="group block flex-shrink-0">
+                      <div className="group block flex-shrink-0">
                         <div className="flex items-center">
                           <div>
                             <img
                               data-cy="profileImage"
                               className="inline-block h-10 w-10 rounded-full"
-                              src={DefaultProfileIcon}
+                              src={
+                                loaderData?.profileImage?.secondaryImage
+                                  ? loaderData?.profileImage?.secondaryImage
+                                  : DefaultProfileIcon
+                              }
                               alt=""
                             />
                           </div>
@@ -189,14 +181,15 @@ export default function AccountSideBar({
                             <a
                               href={`/${loaderData?.username}`}
                               target="_blank"
-                              className="text-sm font-medium text-gray-500 group-hover:text-gray-700" rel="noreferrer"
+                              className="text-sm font-medium text-gray-500 group-hover:text-gray-700"
+                              rel="noreferrer"
                             >
                               View profile
                             </a>
                           </div>
                         </div>
                         {renderPublishStatus()}
-                      </a>
+                      </div>
                     </div>
                     <div>
                       <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-4 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
@@ -363,7 +356,7 @@ export default function AccountSideBar({
 
                       <nav className="flex-1 bg-white ">
                         {navigationSecond.map((item) => (
-                          <a
+                          <div
                             key={item.name}
                             // href={item.href}
                             data-cy={`${item.name}`}
@@ -448,16 +441,12 @@ export default function AccountSideBar({
                                 </svg>
                               </div>
                             </div>
-                          </a>
+                          </div>
                         ))}
                         {showSpotlight ? (
                           <SpotlightButton
-                            setAdditionalLinkUpdateMessage={
-                              setAdditionalLinkUpdateMessage
-                            }
-                            additionalLinkUpdateMessage={
-                              additionalLinkUpdateMessage
-                            }
+                            setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
+                            additionalLinkUpdateMessage={additionalLinkUpdateMessage}
                             showSpotlight={showSpotlight}
                             setShowSpotlight={setShowSpotlight}
                             loaderData={loaderData}
@@ -517,7 +506,7 @@ export default function AccountSideBar({
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4">
               <div className="flex flex-shrink-0 px-6 pt-3 pb-2">
-                <a href="#" className="group block w-full flex-shrink-0">
+                <div className="group block w-full flex-shrink-0">
                   <div className="flex items-center">
                     <div>
                       <img
@@ -538,14 +527,15 @@ export default function AccountSideBar({
                       <a
                         href={`/${loaderData?.username}`}
                         target="_blank"
-                        className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700" rel="noreferrer"
+                        className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700"
+                        rel="noreferrer"
                       >
                         View profile
                       </a>
                     </div>
                   </div>
                   {renderPublishStatus()}
-                </a>
+                </div>
               </div>
               <div>
                 <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
@@ -796,9 +786,7 @@ export default function AccountSideBar({
                   ))}
                   {showSpotlight ? (
                     <SpotlightButton
-                      setAdditionalLinkUpdateMessage={
-                        setAdditionalLinkUpdateMessage
-                      }
+                      setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
                       additionalLinkUpdateMessage={additionalLinkUpdateMessage}
                       showSpotlight={showSpotlight}
                       setShowSpotlight={setShowSpotlight}
@@ -850,14 +838,10 @@ export default function AccountSideBar({
             <button
               type="button"
               className="hover:white -ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-white"
-              onClick={() =>
-                setSidebarOpen((prev) => (prev = sidebarOpen ? false : true))
-              }
+              onClick={() => setSidebarOpen((prev) => (prev = sidebarOpen ? false : true))}
             >
               <span className="sr-only">Open sidebar</span>
-              {!sidebarOpen && (
-                <MenuIcon className="h-6 w-6 " aria-hidden="true" />
-              )}
+              {!sidebarOpen && <MenuIcon className="h-6 w-6 " aria-hidden="true" />}
             </button>
           </div>
         </div>

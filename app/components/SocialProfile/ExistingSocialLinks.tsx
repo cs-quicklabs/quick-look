@@ -50,22 +50,14 @@ export default function ExistingSocialLinks({
     },
   ]
 
-  const toggleEdit = (person: {
-    name: string
-    email: string
-    image: string
-  }) => {
+  const toggleEdit = (person: { name: string; email: string; image: string }) => {
     setClickedLink((prev) => (prev = person))
     setopen(false)
     // setshowCreateProfile(false);
     setShowEditProfile(true)
   }
 
-  const toggleDel = (person: {
-    name: string
-    email: string
-    image: string
-  }) => {
+  const toggleDel = (person: { name: string; email: string; image: string }) => {
     setopen(true)
     setShowEditProfile(false)
     setDeleteLink(person)
@@ -80,9 +72,7 @@ export default function ExistingSocialLinks({
               <>
                 <div
                   className={`flex justify-between lg:items-center ${
-                    mode === 'mobile'
-                      ? 'flex-col xl:flex-row'
-                      : 'flex-col lg:flex-row'
+                    mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'
                   }`}
                 >
                   <div className={` ${mode === 'mobile' ? '' : ''}`}>
@@ -99,15 +89,9 @@ export default function ExistingSocialLinks({
                       } `}
                     >
                       <div className="py-4 flex">
-                        <img
-                          className="h-11 w-11 rounded-full"
-                          src={person.image}
-                          alt=""
-                        />
+                        <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                         <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-900">
-                            {person.name}
-                          </p>
+                          <p className="text-sm font-medium text-gray-900">{person.name}</p>
                           <p
                             className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${
                               mode === 'mobile' ? 'w-[8rem]' : 'w-52'
@@ -126,9 +110,7 @@ export default function ExistingSocialLinks({
                             ? 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] xl:ml-[8.2rem]'
                             : 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] py-0 lg:py-4'
                         } ${
-                          clickedLink.name === person.name && showEditProfile
-                            ? 'hidden'
-                            : 'block'
+                          clickedLink.name === person.name && showEditProfile ? 'hidden' : 'block'
                         }`}
                       >
                         <button
@@ -159,9 +141,7 @@ export default function ExistingSocialLinks({
                           clickedAdd={clickedAdd}
                           open={open}
                           person={person.name}
-                          onClose={() =>
-                            setDeleteLink({ name: '', email: '', image: '' })
-                          }
+                          onClose={() => setDeleteLink({ name: '', email: '', image: '' })}
                           deleteLink={deleteLink}
                         />
                       </div>

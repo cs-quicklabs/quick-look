@@ -2,7 +2,6 @@ import facebook from '../../../assets/images/fb1.png'
 import twitter from '../../../assets/images/twitter1.png'
 import youtube from '../../../assets/images/yt1.png'
 import defaultimg from '../../../assets/images/profile.png'
-import Background3 from '../../../assets/images/templates/temp3.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import TestimonialAddOn from './addOns/testimonial'
@@ -25,17 +24,13 @@ export default function Template16({
   return (
     <>
       <div className="">
-        {loaderData?.supportBanner?.toggleBanner && (
-          <BannerAddOn loaderData={loaderData} />
-        )}
+        {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       </div>
       <div
         className={`relative flex overflow-auto scrollbar-hide font-inter bg-black justify-center items-center overflow-none pb-[3rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
         } ${
-          mode === 'mobile'
-            ? 'flex-col'
-            : 'flex-col xl:flex-row xl:items-start xl:justify-start'
+          mode === 'mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:items-start xl:justify-start'
         } 
     ${
       nav
@@ -58,19 +53,12 @@ export default function Template16({
               className={`absolute object-cover w-full h-[25rem] ${
                 mode === 'mobile'
                   ? 'lg:h-[28rem]'
-                  : `lg:h-[28rem] ${
-                      nav ? 'xl:w-[586px]' : 'xl:w-[400px]'
-                    } xl:h-[100vh]`
+                  : `lg:h-[28rem] ${nav ? 'xl:w-[586px]' : 'xl:w-[400px]'} xl:h-[100vh]`
               } ${nav ? '' : ''} ${
-                loaderData?.profileImage?.secondaryImage ||
-                secondaryRestore === true
-                  ? ''
-                  : ''
+                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
               }  `}
               src={
-                secondaryRestore === true
-                  ? defaultimg
-                  : loaderData?.profileImage?.secondaryImage
+                secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }
               alt="profile"
             />
@@ -81,45 +69,34 @@ export default function Template16({
             loaderData?.socialMedia?.youtubeLink) && (
             <div
               className={`relative rounded-lg flex flex-col bg-yellow-500 gap-4 lg:gap-8 px-[0.5rem] py-[0.75rem] lg:px-[1rem] lg:py-[1rem] mt-[8.5rem] ${
-                mode === 'mobile'
-                  ? 'lg:mt-[12rem] med:mt-[13rem]'
-                  : 'xl:mt-[12.5rem] med:mt-[46vh]'
+                mode === 'mobile' ? 'lg:mt-[12rem] med:mt-[13rem]' : 'xl:mt-[12.5rem] med:mt-[46vh]'
               }`}
             >
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  <img
-                    src={facebook}
-                    alt=""
-                    className="w-6 sm:w-[2rem] lg:w-11 h-auto"
-                  />
+                  <img src={facebook} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
                 </a>
               ) : null}
               {loaderData?.socialMedia?.twitterLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  <img
-                    src={twitter}
-                    alt=""
-                    className="w-6 sm:w-[2rem] lg:w-11 h-auto"
-                  />
+                  <img src={twitter} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
                 </a>
               ) : null}
               {loaderData?.socialMedia?.youtubeLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  <img
-                    src={youtube}
-                    alt=""
-                    className="w-6 sm:w-[2rem] lg:w-11 h-auto"
-                  />
+                  <img src={youtube} alt="" className="w-6 sm:w-[2rem] lg:w-11 h-auto" />
                 </a>
               ) : null}
             </div>
@@ -137,11 +114,7 @@ export default function Template16({
               : ''
           }`}
         >
-          <div
-            className={`w-full ${
-              mode === 'mobile' ? '' : 'xl:rounded-none xl:shadow-none'
-            }`}
-          >
+          <div className={`w-full ${mode === 'mobile' ? '' : 'xl:rounded-none xl:shadow-none'}`}>
             <h4
               className={`text-white text-left text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${
                 mode === 'mobile'
@@ -163,9 +136,7 @@ export default function Template16({
                     : 'xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-[1rem]'
                 }  ${nav ? 'lg:w-full' : ''} `}
               >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
@@ -221,9 +192,9 @@ export default function Template16({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex mt-[1rem] ${
-                      mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'
-                    } ${nav ? '' : ''}`}
+                    className={`flex mt-[1rem] ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                      nav ? '' : ''
+                    }`}
                   >
                     <h2
                       className={`text-white font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -249,13 +220,7 @@ export default function Template16({
             </div>
           </div>
 
-          <div
-            className={`${
-              loaderData?.spotlightButton?.toggleSpotlight
-                ? 'mt-1'
-                : 'mt-[1rem]'
-            }`}
-          >
+          <div className={`${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'}`}>
             <pre
               className={`text-white text-base leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify ${
                 mode === 'mobile' ? '' : 'lg:text-gray-50'
@@ -299,9 +264,9 @@ export default function Template16({
               )}
               {loaderData?.profileInfo?.education || input.education ? (
                 <div
-                  className={`flex mt-[1rem] ${
-                    mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'
-                  } ${nav ? '' : ''}`}
+                  className={`flex mt-[1rem] ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                    nav ? '' : ''
+                  }`}
                 >
                   <h2
                     className={`text-white font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -312,9 +277,7 @@ export default function Template16({
                   </h2>
                   <h2
                     className={`text-gray-50 w-max text-xs leading-5 font-normal break-normal  ${
-                      mode === 'mobile'
-                        ? 'lg:text-sm'
-                        : 'lg:text-sm lg:text-white lg:mt-[-0.15rem]'
+                      mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-white lg:mt-[-0.15rem]'
                     }`}
                   >
                     {input.education}
@@ -339,15 +302,12 @@ export default function Template16({
 
             {loaderData?.video?.videoLink && (
               <div
-                className={`border border-1 mt-[2rem] ${
-                  mode === 'mobile' ? '' : ''
-                } ${nav ? '' : ''}`}
+                className={`border border-1 mt-[2rem] ${mode === 'mobile' ? '' : ''} ${
+                  nav ? '' : ''
+                }`}
               >
                 {loaderData?.video?.videoLink && (
-                  <VideoAddOn
-                    videoLink={loaderData?.video?.videoLink}
-                    loaderData={loaderData}
-                  />
+                  <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
                 )}
               </div>
             )}

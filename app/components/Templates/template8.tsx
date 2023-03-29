@@ -25,9 +25,7 @@ export default function Template8({
 
   return (
     <>
-      {loaderData?.supportBanner?.toggleBanner && (
-        <BannerAddOn loaderData={loaderData} />
-      )}
+      {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
         className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${
           mode === 'mobile'
@@ -54,9 +52,7 @@ export default function Template8({
           !input?.description ? (
             <h4
               className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${
-                mode === 'mobile'
-                  ? 'xl:text-[36px] xl:leading-10'
-                  : 'lg:text-[36px] lg:leading-10 '
+                mode === 'mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '
               } ${nav ? '' : ''}`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
@@ -64,9 +60,7 @@ export default function Template8({
           ) : (
             <h4
               className={`text-xl leading-8 font-extrabold  ${
-                mode === 'mobile'
-                  ? 'xl:text-[36px] xl:leading-10'
-                  : 'lg:text-[36px] lg:leading-10 '
+                mode === 'mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '
               } ${nav ? '' : ''}`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
@@ -84,26 +78,21 @@ export default function Template8({
                   : 'lg:leading-8 lg:text-gray-600 lg:mt-[0.375rem] lg:text-2xl'
               }  ${nav ? '' : ''} `}
             >
-              {input.occupation}{' '}
-              {input.location && input.occupation ? `in` : ''} {input.location}
+              {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3>
           ) : (
             <span></span>
           )}
 
           <div>
-            <div
-              className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-            >
+            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <Spotlightbtn loaderData={loaderData} />
               )}
             </div>
           </div>
 
-          <div
-            className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
-          >
+          <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <AdditionalLinksAddOn loaderData={loaderData} />
             )}
@@ -119,30 +108,20 @@ export default function Template8({
             </pre>
           </div>
 
-          <div
-            className={`flex flex-col ${mode === 'mobile' ? '' : ''} ${
-              nav ? '' : ''
-            }`}
-          >
+          <div className={`flex flex-col ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             <div
               className={`flex flex-col pt-[1.5rem] ${
                 mode === 'mobile' ? ' ' : 'xl:flex-row xl:justify-between'
               } ${nav ? '' : ''}`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
-                <div
-                  className={`flex ${mode === 'mobile' ? ' ' : ''} ${
-                    nav ? '' : ''
-                  }`}
-                >
+                <div className={`flex ${mode === 'mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
                   <h2
                     className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile'
-                        ? 'lg:mt-[-0.25rem] '
-                        : 'xl:mt-[-0.25rem] xl:w-[65%]'
+                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[65%]'
                     }`}
                   >
                     {input.company}
@@ -152,19 +131,13 @@ export default function Template8({
                 <span></span>
               )}
               {loaderData?.profileInfo?.education || input.education ? (
-                <div
-                  className={`flex mt-[2rem]  ${
-                    mode === 'mobile' ? ' ' : 'xl:mt-0 '
-                  }`}
-                >
+                <div className={`flex mt-[2rem]  ${mode === 'mobile' ? ' ' : 'xl:mt-0 '}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
                   <h2
                     className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile'
-                        ? ' lg:mt-[-0.25rem]'
-                        : 'xl:mt-[-0.25rem] '
+                      mode === 'mobile' ? ' lg:mt-[-0.25rem]' : 'xl:mt-[-0.25rem] '
                     }`}
                   >
                     {input.education}
@@ -197,24 +170,23 @@ export default function Template8({
           </div>
 
           <div
-            className={`${
-              loaderData?.portfolioImage[0] ? 'pt-[0rem]' : 'pt-[0rem]'
-            } ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}
+            className={`${loaderData?.portfolioImage[0] ? 'pt-[0rem]' : 'pt-[0rem]'} ${
+              mode === 'mobile' ? '' : ''
+            } ${nav ? '' : ''}`}
           >
             <PortfolioAddon loaderData={loaderData} />
           </div>
 
           <footer
-            className={`flex w-full gap-4 md:gap-8  justify-start ${
-              mode === 'mobile' ? '' : ''
-            }  ${nav ? '' : ''} ${
-              loaderData?.portfolioImage[0] ? 'pt-[1rem]' : 'pt-[0rem]'
-            }`}
+            className={`flex w-full gap-4 md:gap-8  justify-start ${mode === 'mobile' ? '' : ''}  ${
+              nav ? '' : ''
+            } ${loaderData?.portfolioImage[0] ? 'pt-[1rem]' : 'pt-[0rem]'}`}
           >
             {loaderData?.socialMedia?.facebookLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
               </a>
@@ -222,7 +194,8 @@ export default function Template8({
             {loaderData?.socialMedia?.twitterLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
               </a>
@@ -230,7 +203,8 @@ export default function Template8({
             {loaderData?.socialMedia?.youtubeLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
               </a>
@@ -238,11 +212,7 @@ export default function Template8({
           </footer>
         </div>
 
-        <div
-          className={`py-[2rem] ${mode === 'mobile' ? '' : ''} ${
-            nav ? '' : ''
-          }`}
-        >
+        <div className={`py-[2rem] ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
               loading="lazy"
@@ -251,19 +221,10 @@ export default function Template8({
                   ? 'lg:w-[25rem] lg:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
                   : 'xl:w-[25rem] xl:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
               } ${
-                loaderData?.profileImage?.secondaryImage ||
-                secondaryRestore === true
-                  ? ''
-                  : ''
-              } ${
-                nav
-                  ? 'SmMedium:w-[25rem] med:w-[30rem] med:h-[30rem] medium:w-[30rem]'
-                  : ''
-              } `}
+                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
+              } ${nav ? 'SmMedium:w-[25rem] med:w-[30rem] med:h-[30rem] medium:w-[30rem]' : ''} `}
               src={
-                secondaryRestore === true
-                  ? defaultimg
-                  : loaderData?.profileImage?.secondaryImage
+                secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }
               alt="profile"
             />

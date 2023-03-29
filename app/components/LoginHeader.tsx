@@ -15,15 +15,9 @@ export function LoginHeader() {
   return (
     <>
       <header className="h-[3rem] bg-gray-800">
-        <nav
-          className="flex items-center justify-between px-8"
-          aria-label="Global"
-        >
+        <nav className="flex items-center justify-between px-8" aria-label="Global">
           <div className="flex w-full items-center justify-between md:w-auto ">
-            <Link
-              to="/"
-              className="flex items-center justify-center gap-4 -mt-[12px]"
-            >
+            <Link to="/" className="flex items-center justify-center gap-4 -mt-[12px]">
               <img className="w-auto h-9 mt-[8px]" src={logo} alt="" />
 
               <span className="text-xl pt-5 pb-3 font-extrabold text-white">
@@ -53,17 +47,14 @@ export function LoginHeader() {
                   <div className="py-1">
                     <Menu.Item>
                       {({ active }) => (
-                        <a
-                          href="#"
+                        <span
                           className={classNames(
-                            active
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-700',
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                             'block px-4 py-2 text-sm'
                           )}
                         >
                           Profile Settings
-                        </a>
+                        </span>
                       )}
                     </Menu.Item>
 
@@ -72,9 +63,7 @@ export function LoginHeader() {
                         <button
                           type="submit"
                           className={classNames(
-                            active
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-700',
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                             'block w-full text-left px-4 py-2 text-sm'
                           )}
                           onClick={() => setIsOpen(true)}

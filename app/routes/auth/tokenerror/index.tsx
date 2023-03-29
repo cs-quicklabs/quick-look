@@ -25,8 +25,8 @@ const tokenerror = () => {
                 Invalid token.
               </h1>
               <p className="mt-2 text-base text-gray-500">
-                The verfication links seems invalid or it has expired.please
-                check the email for latest link and try again.
+                The verfication links seems invalid or it has expired.please check the email for
+                latest link and try again.
               </p>
               <div className="mt-6">
                 <a

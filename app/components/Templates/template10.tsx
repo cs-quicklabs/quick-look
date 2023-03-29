@@ -15,13 +15,7 @@ import VideoAddOn from './addOns/video'
 import PortfolioAddon from './addOns/portfolio'
 import PoweredBy from '../Common/PoweredBy'
 
-function Template10({
-  input,
-  loaderData,
-  primaryRestore,
-  secondaryRestore,
-  mode,
-}: any) {
+function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode }: any) {
   const Location = useLocation()
 
   const nav = Location.pathname.includes(`${loaderData.username}`)
@@ -34,11 +28,7 @@ function Template10({
       <div>
         {primaryRestore || loaderData?.profileImage?.primaryImage ? (
           <img
-            src={
-              primaryRestore
-                ? DefaultCoverPicture
-                : loaderData?.profileImage?.primaryImage
-            }
+            src={primaryRestore ? DefaultCoverPicture : loaderData?.profileImage?.primaryImage}
             className={`w-[100%] object-cover ${
               mode === 'mobile' ? 'h-[15rem]' : 'h-[8rem] md:h-[14rem]'
             }`}
@@ -60,20 +50,14 @@ function Template10({
             className={`relative flex justify-center  ${
               primaryRestore || loaderData?.profileImage?.primaryImage
                 ? ` ${
-                    mode === 'mobile'
-                      ? 'bottom-[5rem] right-0'
-                      : 'bottom-[4rem] md:bottom-[9rem]'
+                    mode === 'mobile' ? 'bottom-[5rem] right-0' : 'bottom-[4rem] md:bottom-[9rem]'
                   }`
                 : 'bottom-[-11rem]'
             } ${mode === 'mobile' ? 'bottom-[9rem]' : ''}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
               <img
-                src={
-                  secondaryRestore
-                    ? defaultimg
-                    : loaderData?.profileImage?.secondaryImage
-                }
+                src={secondaryRestore ? defaultimg : loaderData?.profileImage?.secondaryImage}
                 alt="profile"
                 loading="lazy"
                 className={`rounded-full h-[8rem] w-[8rem] md:w-[275px] md:h-[275px] ${
@@ -106,8 +90,7 @@ function Template10({
                 mode === 'mobile' ? '' : ''
               }`}
             >
-              {input.occupation}{' '}
-              {input.location && input.occupation ? `in` : ''} {input.location}
+              {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </div>
             <div className={` ${mode === 'mobile' ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
@@ -124,9 +107,7 @@ function Template10({
               {' '}
               <pre
                 className={`max-w-[472px] whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${
-                  loaderData?.spotlightButton?.toggleSpotlight
-                    ? 'mt-1'
-                    : 'mt-[1rem]'
+                  loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'
                 }`}
               >
                 {input?.description?.trim()}{' '}
@@ -141,14 +122,9 @@ function Template10({
               />
             )}
 
-            <div
-              className={`w-auto sm:w-[472px] ${mode === 'mobile' ? '' : ''}`}
-            >
+            <div className={`w-auto sm:w-[472px] ${mode === 'mobile' ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
             {/* <div className="flex w-[42rem] items-center justify-center pr-[4rem] md:pr-0 lg:px-0 lg:pl-0"> */}
@@ -187,7 +163,8 @@ function Template10({
             {loaderData?.socialMedia?.facebookLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={facebook} alt="" className="h-auto w-9 md:w-11" />
               </a>
@@ -195,7 +172,8 @@ function Template10({
             {loaderData?.socialMedia?.twitterLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={twitter} alt="" className="h-auto w-9 md:w-11" />
               </a>
@@ -203,7 +181,8 @@ function Template10({
             {loaderData?.socialMedia?.youtubeLink ? (
               <a
                 href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <img src={youtube} alt="" className="h-auto w-9 md:w-11" />
               </a>

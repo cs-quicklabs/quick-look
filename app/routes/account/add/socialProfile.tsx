@@ -28,10 +28,7 @@ export const action: ActionFunction = async ({ request }) => {
   const user = (await getUser(request)) || undefined
   await addUpdateSocialLink(selectedSocial, selectedSocialLink, user)
 
-  session.flash(
-    'successUpdateSocialMedia',
-    `Your Profile has been updated successfully.`
-  )
+  session.flash('successUpdateSocialMedia', `Your Profile has been updated successfully.`)
   return redirect('/account', {
     headers: {
       'Set-Cookie': await commitSession(session),

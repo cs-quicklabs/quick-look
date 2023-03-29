@@ -1,10 +1,4 @@
-export default function RedirectButton({
-  link,
-  text,
-}: {
-  link: string
-  text: string
-}) {
+export default function RedirectButton({ link, text }: { link: string; text: string }) {
   return (
     <div className="mt-6 bg-gray-800 flex justify items-center w-full rounded-lg hover:scale-105">
       <a

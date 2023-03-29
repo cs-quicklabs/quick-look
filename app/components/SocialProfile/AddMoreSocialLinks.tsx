@@ -38,7 +38,7 @@ export default function AddMoreSocialLinks({
   }, [message, successUpdateMessage])
 
   useEffect(() => {
-    transition.state === 'loading' ? setshowCreateProfile(false) : null
+    transition.state === 'loading' && setshowCreateProfile(false)
   }, [transition, showCreateProfile])
 
   const OnCancel = () => {
@@ -51,9 +51,7 @@ export default function AddMoreSocialLinks({
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${
-              mode === 'mobile'
-                ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-80'
-                : 'lg:w-80'
+              mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-80' : 'lg:w-80'
             }`}
           >
             <Transition.Child
@@ -68,9 +66,7 @@ export default function AddMoreSocialLinks({
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <div
                   className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${
-                    mode === 'mobile'
-                      ? ' w-[16rem] xl:w-96'
-                      : 'md:w-[20rem] lg:w-96'
+                    mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
                   }`}
                 >
                   <div className="bg-gray-50 py-6 px-4">
@@ -100,8 +96,7 @@ export default function AddMoreSocialLinks({
                     loaderData?.socialMedia?.youtubeLink ? null : (
                       <div className="pt-1 pr-2">
                         <p className="text-sm leading-5 font-normal text-gray-500">
-                          Select social profile links which you want to share on
-                          your profile
+                          Select social profile links which you want to share on your profile
                         </p>
                       </div>
                     )}
@@ -128,9 +123,7 @@ export default function AddMoreSocialLinks({
                         </p>
                         <button
                           data-cy="addSocialProfileButton"
-                          onClick={() =>
-                            setshowCreateProfile((prev) => (prev = true))
-                          }
+                          onClick={() => setshowCreateProfile((prev) => (prev = true))}
                           type="button"
                           className="inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium leading-5 rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                           disabled={text || text1 ? true : false}
@@ -160,15 +153,10 @@ export default function AddMoreSocialLinks({
                     <div className="rounded-md bg-green-50 p-4 mt-4">
                       <div className="flex  items-start justify-start">
                         <div className="flex-shrink-0 pt-1">
-                          <CheckCircleIcon
-                            className="h-5 w-5 text-green-400"
-                            aria-hidden="true"
-                          />
+                          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm font-medium text-green-800">
-                            {text || text1}
-                          </p>
+                          <p className="text-sm font-medium text-green-800">{text || text1}</p>
                         </div>
                         <div className="ml-auto pl-3">
                           <div className="-mx-1.5 -my-1.5 pt-1">
@@ -191,9 +179,7 @@ export default function AddMoreSocialLinks({
                       </div>
                     </div>
                   )}
-                  <div
-                    className={`${showCreateProfile ? 'mt-36 z-40' : 'mt-4'}`}
-                  >
+                  <div className={`${showCreateProfile ? 'mt-36 z-40' : 'mt-4'}`}>
                     <ExistingSocialLinks
                       successUpdateMessage={successUpdateMessage}
                       message={message}

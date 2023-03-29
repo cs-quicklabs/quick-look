@@ -1,5 +1,5 @@
 import { Form } from '@remix-run/react'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 function DropzonePortfolio({
   setErrorDrag,
@@ -12,12 +12,12 @@ function DropzonePortfolio({
   setDel,
   mode,
 }: any) {
-  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+  const { getRootProps } = useDropzone({
     accept,
     onDrop,
   })
 
-  const files = acceptedFiles.map((file: any) => file.path)
+  // const files = acceptedFiles.map((file: any) => file.path)
 
   const ref = useRef(null)
 
@@ -39,9 +39,7 @@ function DropzonePortfolio({
     <div>
       <Form replace action="add/drop-portfolio-image" method="post">
         <div {...getRootProps({ className: 'dropzone' })}>
-          <p className="text-xs font-semibold leading-4 tracking-wide">
-            ADD IMAGES
-          </p>
+          <p className="text-xs font-semibold leading-4 tracking-wide">ADD IMAGES</p>
           <div className="text-center">
             <p
               className={`text-sm leading-4 tracking-wide ${

@@ -26,10 +26,7 @@ export default function ExistingSpotlightLink({
 
   const [showEditSpotlight, setShowEditSpotlight] = useState(false)
 
-  const toggleEditSpotlight = (person: {
-    name: string
-    description: string
-  }) => {
+  const toggleEditSpotlight = (person: { name: string; description: string }) => {
     setShowEditSpotlight(!showEditSpotlight)
     setClickedSpotlight(person)
   }
@@ -93,9 +90,7 @@ export default function ExistingSpotlightLink({
                             setClickedSpotlight(person)
                           }}
                           className={`hover:text-red-600 text-[14px] ${
-                            mode === 'mobile'
-                              ? 'ml-[1.5rem] xl:ml-0'
-                              : 'lg:ml-0 ml-3'
+                            mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
                           }`}
                         >
                           Delete
@@ -109,18 +104,17 @@ export default function ExistingSpotlightLink({
                     </div>
 
                     <div>
-                      {showEditSpotlight &&
-                        clickedSpotlight.name === person.name && (
-                          <CreateSpotlight
-                            showEditSpotlight={showEditSpotlight}
-                            setShowEditSpotlight={setShowEditSpotlight}
-                            setShowSpotlight={setShowSpotlight}
-                            clickedSpotlight={clickedSpotlight}
-                            loaderData={loaderData}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        )}
+                      {showEditSpotlight && clickedSpotlight.name === person.name && (
+                        <CreateSpotlight
+                          showEditSpotlight={showEditSpotlight}
+                          setShowEditSpotlight={setShowEditSpotlight}
+                          setShowSpotlight={setShowSpotlight}
+                          clickedSpotlight={clickedSpotlight}
+                          loaderData={loaderData}
+                          mode={mode}
+                          setmode={setmode}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

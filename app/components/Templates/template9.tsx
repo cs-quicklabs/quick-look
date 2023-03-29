@@ -1,4 +1,3 @@
-import bgimage from '../../../assets/images/bg.png'
 import defaultimg from '../../../assets/images/profile.png'
 import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/video'
@@ -26,13 +25,9 @@ export default function Template9({
 
   return (
     <>
-      {loaderData?.supportBanner?.bannerText && (
-        <BannerAddOn mode={mode} loaderData={loaderData} />
-      )}
+      {loaderData?.supportBanner?.bannerText && <BannerAddOn mode={mode} loaderData={loaderData} />}
       <div
-        className={`mb-[3rem] flex h-full ${
-          nav ? 'w-screen' : ''
-        }  items-center justify-center`}
+        className={`mb-[3rem] flex h-full ${nav ? 'w-screen' : ''}  items-center justify-center`}
       >
         <div
           className={`mb-[5rem] flex items-center justify-center bg-gray-900 rounded-2xl px-[2rem] ${
@@ -66,8 +61,7 @@ export default function Template9({
             </div>
             <div
               className={`flex flex-col items-center justify-center ${
-                secondaryRestore == false &&
-                loaderData?.profileImage?.secondaryImage == ''
+                secondaryRestore == false && loaderData?.profileImage?.secondaryImage == ''
                   ? 'mt-[3rem]'
                   : 'mt-[-3rem]'
               }`}
@@ -92,8 +86,7 @@ export default function Template9({
                       : 'w-fit px-4 text-xl md:text-2xl lg:leading-8 lg:font-medium'
                   }`}
                 >
-                  {input.occupation}{' '}
-                  {input.location && input.occupation ? `in` : ''}{' '}
+                  {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
                   {input.location}
                 </h3>
               ) : (
@@ -102,9 +95,7 @@ export default function Template9({
 
               <div
                 className={`${
-                  mode === 'mobile'
-                    ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]'
-                    : ''
+                  mode === 'mobile' ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]' : ''
                 }`}
               >
                 <div className={`${mode === 'mobile' ? '' : ''}`}>
@@ -137,10 +128,7 @@ export default function Template9({
 
                 {loaderData?.video?.videoLink && (
                   <div className="">
-                    <VideoAddOn
-                      loaderData={loaderData}
-                      videoLink={loaderData?.video?.videoLink}
-                    />
+                    <VideoAddOn loaderData={loaderData} videoLink={loaderData?.video?.videoLink} />
                   </div>
                 )}
                 {/* <div className="flex w-[20rem] items-center justify-center md:w-[32rem] md:pr-0 lg:px-0 lg:pl-0"> */}
@@ -149,17 +137,13 @@ export default function Template9({
                 </div>
                 <div className="mt-[2rem] flex flex-col gap-6">
                   <div className="flex items-center justify-center gap-4">
-                    {input.company && (
-                      <BriefcaseIcon className="h-6 w-6 text-gray-100" />
-                    )}
+                    {input.company && <BriefcaseIcon className="h-6 w-6 text-gray-100" />}
                     <h2 className="w-max break-normal  text-base font-normal leading-5 text-gray-100">
                       {input.company}{' '}
                     </h2>
                   </div>
                   <div className="flex items-center justify-center gap-4">
-                    {input.education && (
-                      <AcademicCapIcon className="h-6 w-6 text-gray-100" />
-                    )}
+                    {input.education && <AcademicCapIcon className="h-6 w-6 text-gray-100" />}
                     <h2 className="w-max break-normal text-base font-normal leading-5 text-gray-100">
                       {input.education}{' '}
                     </h2>
@@ -169,44 +153,33 @@ export default function Template9({
                 <footer
                   className={` flex w-full justify-center gap-4 pb-[5rem] pt-[2rem] md:gap-8   ${
                     mode === 'mobile' ? '' : ''
-                  }  ${nav ? '' : ''} ${
-                    loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'
-                  }`}
+                  }  ${nav ? '' : ''} ${loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}
                 >
                   {loaderData?.socialMedia?.facebookLink ? (
                     <a
                       href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                      target="_blank" rel="noreferrer"
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      <img
-                        src={facebook}
-                        alt=""
-                        className="h-auto w-9 md:w-11"
-                      />
+                      <img src={facebook} alt="" className="h-auto w-9 md:w-11" />
                     </a>
                   ) : null}
                   {loaderData?.socialMedia?.twitterLink ? (
                     <a
                       href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                      target="_blank" rel="noreferrer"
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      <img
-                        src={twitter}
-                        alt=""
-                        className="h-auto w-9 md:w-11"
-                      />
+                      <img src={twitter} alt="" className="h-auto w-9 md:w-11" />
                     </a>
                   ) : null}
                   {loaderData?.socialMedia?.youtubeLink ? (
                     <a
                       href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                      target="_blank" rel="noreferrer"
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      <img
-                        src={youtube}
-                        alt=""
-                        className="h-auto w-9 md:w-11"
-                      />
+                      <img src={youtube} alt="" className="h-auto w-9 md:w-11" />
                     </a>
                   ) : null}
                 </footer>

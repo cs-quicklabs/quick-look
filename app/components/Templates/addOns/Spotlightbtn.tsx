@@ -4,9 +4,7 @@ import DynamicHeroIcon from './DynmaicIcon'
 export default function Spotlightbtn({ loaderData }: any) {
   var _ = require('lodash')
 
-  const iconName =
-    _.startCase(_.camelCase(loaderData?.spotlightButton?.spotlightIcon)) +
-    'Icon'
+  const iconName = _.startCase(_.camelCase(loaderData?.spotlightButton?.spotlightIcon)) + 'Icon'
   const Name = _.replace(iconName, ' ', '')
   const Final = Name.split(' ').join('')
 
@@ -41,7 +39,8 @@ export default function Spotlightbtn({ loaderData }: any) {
             ? loaderData?.spotlightButton?.buttonActionlink
             : 'https://' + loaderData?.spotlightButton?.buttonActionlink
         }
-        target="_blank" rel="noreferrer"
+        target="_blank"
+        rel="noreferrer"
       >
         <button
           style={{

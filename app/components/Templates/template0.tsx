@@ -9,7 +9,6 @@ import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
-import { useLocation } from '@remix-run/react'
 import PoweredBy from '../Common/PoweredBy'
 
 export default function Template1({
@@ -19,35 +18,24 @@ export default function Template1({
   secondaryRestore,
   mode,
 }: any) {
-  const Location = useLocation()
-  const nav = Location.pathname.includes(`${loaderData.username}`)
+  // const Location = useLocation()
+  // const nav = Location.pathname.includes(`${loaderData.username}`)
 
   return (
     <>
       {loaderData?.supportBanner?.toggleBanner && (
         <BannerAddOn mode={mode} loaderData={loaderData} />
       )}
-      <div
-        className={`flex w-full sm:w-full ${
-          mode === 'mobile' ? 'lg:w-full' : 'w-full'
-        }`}
-      >
+      <div className={`flex w-full sm:w-full ${mode === 'mobile' ? 'lg:w-full' : 'w-full'}`}>
         <div className="flex-grow">
           <div className="h-44 relative">
             <div className="relative">
               {loaderData?.profileImage?.primaryImage || primaryRestore ? (
                 <img
                   className={`w-[100%] object-cover ${
-                    loaderData?.profileImage?.primaryImage ||
-                    primaryRestore === true
-                      ? 'h-44'
-                      : ''
+                    loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-44' : ''
                   }`}
-                  src={
-                    primaryRestore === true
-                      ? bgimage
-                      : loaderData?.profileImage?.primaryImage
-                  }
+                  src={primaryRestore === true ? bgimage : loaderData?.profileImage?.primaryImage}
                   alt="cover"
                   loading="lazy"
                 />
@@ -58,8 +46,7 @@ export default function Template1({
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <img
                   className={`h-32 w-32 rounded-full shadow-lg  shadow-white ${
-                    loaderData?.profileImage?.secondaryImage ||
-                    secondaryRestore === true
+                    loaderData?.profileImage?.secondaryImage || secondaryRestore === true
                       ? 'border-4 border-white'
                       : ''
                   }`}
@@ -83,12 +70,8 @@ export default function Template1({
             input.occupation ||
             input.location ||
             loaderData?.profileInfo?.location ? (
-              <h3
-                className={`text-gray-500 text-base leading-5 mt-0.5 font-normal`}
-              >
-                {input.occupation}{' '}
-                {input.location && input.occupation ? `in` : ''}{' '}
-                {input.location}
+              <h3 className={`text-gray-500 text-base leading-5 mt-0.5 font-normal`}>
+                {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
             ) : (
               <span></span>
@@ -118,9 +101,7 @@ export default function Template1({
 
             <div
               className={`m-auto  flex flex-wrap mt-0.5 ${
-                loaderData?.spotlightButton?.toggleSpotlight
-                  ? 'pt-[1.5rem]'
-                  : 'pt-11'
+                loaderData?.spotlightButton?.toggleSpotlight ? 'pt-[1.5rem]' : 'pt-11'
               }`}
             >
               <pre className="flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
@@ -134,10 +115,7 @@ export default function Template1({
               />
             )}
             {loaderData?.video?.videoLink && (
-              <VideoAddOn
-                videoLink={loaderData?.video?.videoLink}
-                loaderData={loaderData}
-              />
+              <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
             )}
             <div className="">
               <PortfolioAddon loaderData={loaderData} mode={mode} />
@@ -147,9 +125,7 @@ export default function Template1({
               <div className="flex  pt-[2rem] justify-between">
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className="flex flex-col">
-                    <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
-                      WORK
-                    </h2>
+                    <h2 className="w-max text-sm font-medium leading-5 text-gray-500">WORK</h2>
                     <h2
                       className={`w-[65%] text-sm font-normal leading-5 text-gray-900 break-normal ${
                         mode === 'mobile' ? '' : ''
@@ -163,9 +139,7 @@ export default function Template1({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div className="flex flex-col">
-                    <h2 className="w-max text-sm font-medium leading-5 text-gray-500">
-                      EDUCATION
-                    </h2>
+                    <h2 className="w-max text-sm font-medium leading-5 text-gray-500">EDUCATION</h2>
                     <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-words">
                       {input.education}
                     </h2>
@@ -180,7 +154,8 @@ export default function Template1({
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={facebook} alt="" className="h-auto w-9 md:w-11" />
                 </a>
@@ -188,7 +163,8 @@ export default function Template1({
               {loaderData?.socialMedia?.twitterLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={twitter} alt="" className="h-auto w-9 md:w-11" />
                 </a>
@@ -196,7 +172,8 @@ export default function Template1({
               {loaderData?.socialMedia?.youtubeLink ? (
                 <a
                   href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={youtube} alt="" className="h-auto w-9 md:w-11" />
                 </a>

@@ -1,13 +1,7 @@
 import { useState, useEffect } from 'react'
-import { XIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon } from '@heroicons/react/solid'
 
-import { Form, useSubmit, useTransition } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
-
-function classNames(...classes: (string | boolean)[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 var socialLinks = [
   { id: 1, name: 'Facebook' },
@@ -46,11 +40,9 @@ export default function EditSocialProfile({
       : ''
   )
 
-  const [selectedEditSocialLinks, setSelectedEditSocialLinks] = useState(
+  const [selectedEditSocialLinks] = useState(
     socialLinks?.filter(
-      (link) =>
-        link?.name ===
-        (clickedLink?.name !== null ? clickedLink?.name : linkName)
+      (link) => link?.name === (clickedLink?.name !== null ? clickedLink?.name : linkName)
     )[0]
   )
 
@@ -85,46 +77,32 @@ export default function EditSocialProfile({
     regexCheck(fbRegEx, e.target.value, whiteSpaceRegex)
   }
 
-  useEffect(() => {
-    loaderData
-    // regexCheck(fbRegEx,val,whiteSpaceRegex)
-  }, [loaderData, selectedSocialLinks])
-
-  const Onclose = () => {
-    if (mode === 'desktop') {
-      setShowEditProfile(false)
-    }
-    if (mode === 'mobile') {
-      setShowEditProfile(false)
-    }
-  }
+  // const Onclose = () => {
+  //   if (mode === 'desktop') {
+  //     setShowEditProfile(false)
+  //   }
+  //   if (mode === 'mobile') {
+  //     setShowEditProfile(false)
+  //   }
+  // }
 
   return (
     <Form replace={true} action="/account/update/socialProfile" method="post">
       <div
         className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${
-          mode === 'mobile'
-            ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96'
-            : 'md:w-[20rem] lg:w-96'
+          mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'
         } `}
       >
         <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6 mt-[-1rem]">
             <div className="space-y-6 pb-1 border-b border-gray-200">
               <div className="mt-5">
-                <label
-                  htmlFor="project-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                   {' '}
                   Edit Link{' '}
                 </label>
                 <div className="">
-                  <input
-                    value={clickedLink.name}
-                    name="edit_social_links"
-                    hidden
-                  />
+                  <input value={clickedLink.name} name="edit_social_links" hidden />
                   <input
                     type="text"
                     data-cy={selectedEditSocialLinks.name + '-link'}
@@ -160,20 +138,10 @@ export default function EditSocialProfile({
                   id="updateSocialLink"
                   type="submit"
                   className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
-                  disabled={
-                    !val || transition?.state != 'idle'
-                      ? true
-                      : !error
-                      ? false
-                      : true
-                  }
+                  disabled={!val || transition?.state != 'idle' ? true : !error ? false : true}
                 >
                   {transition?.state != 'idle' ? (
-                    <BeatLoader
-                      color="#ffffff"
-                      className="px-0 py-0"
-                      size={12}
-                    />
+                    <BeatLoader color="#ffffff" className="px-0 py-0" size={12} />
                   ) : (
                     'Update'
                   )}

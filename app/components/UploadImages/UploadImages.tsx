@@ -2,12 +2,10 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import bg from '../../../assets/images/bg.png'
-import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DeleteImage from '../Common/DeleteImage'
-import { Form, useTransition, useSubmit } from '@remix-run/react'
+import { Form, useTransition } from '@remix-run/react'
 import * as cropro from 'cropro'
-import Dropzone from './DragandDrop'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
 import { CheckCircleIcon } from '@heroicons/react/solid'
@@ -23,7 +21,7 @@ export default function NoImages({
   loaderData,
 }: any) {
   const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
-  const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
+  // const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false)
   const [image, setimage] = useState(null)
 
@@ -41,18 +39,18 @@ export default function NoImages({
   const [drag, setDrag] = useState(false)
   const [drag2, setDrag2] = useState(false)
 
-  const onDrop = useCallback((acceptedFiles: any) => {
-    acceptedFiles.map((file: any) => {
-      const reader = new FileReader()
+  // const onDrop = useCallback((acceptedFiles: any) => {
+  //   acceptedFiles.map((file: any) => {
+  //     const reader = new FileReader()
 
-      reader.onload = function (e: any) {
-        // @ts-ignore
-        setImages(e.target.result)
-      }
-      reader.readAsDataURL(file)
-      return file
-    })
-  }, [])
+  //     reader.onload = function (e: any) {
+  //       // @ts-ignore
+  //       setImages(e.target.result)
+  //     }
+  //     reader.readAsDataURL(file)
+  //     return file
+  //   })
+  // }, [])
 
   const [images1, setImages1] = useState('')
   const onDrop1 = useCallback((acceptedFiles: any) => {
@@ -98,24 +96,24 @@ export default function NoImages({
     }
   }
 
-  function showCropAreaSecondary() {
-    if (ref5.current !== null) {
-      // create a CropArea
-      const cropArea = new cropro.CropArea(ref5.current)
-      cropArea.displayMode = 'popup'
-      // attach an event handler to assign cropped image back to our image element
-      cropArea.addRenderEventListener((dataUrl) => {
-        if (ref5.current) {
-          // @ts-ignore
-          ref5.current.src = dataUrl
-          // @ts-ignore
-          setUrlSec(ref5.current.src)
-        }
-      })
-      // launch CROPRO
-      cropArea.show()
-    }
-  }
+  // function showCropAreaSecondary() {
+  //   if (ref5.current !== null) {
+  //     // create a CropArea
+  //     const cropArea = new cropro.CropArea(ref5.current)
+  //     cropArea.displayMode = 'popup'
+  //     // attach an event handler to assign cropped image back to our image element
+  //     cropArea.addRenderEventListener((dataUrl) => {
+  //       if (ref5.current) {
+  //         // @ts-ignore
+  //         ref5.current.src = dataUrl
+  //         // @ts-ignore
+  //         setUrlSec(ref5.current.src)
+  //       }
+  //     })
+  //     // launch CROPRO
+  //     cropArea.show()
+  //   }
+  // }
 
   useEffect(() => {
     if (image) {
@@ -153,28 +151,28 @@ export default function NoImages({
       setPrimaryImageError('Image size can be upto 4mb.')
     }
   }
-  const handleChange2 = (e: any) => {
-    if (e.target.files[0].size / 1024 < 4300) {
-      if (
-        e.target.files[0].type.includes('image/jpeg') ||
-        e.target.files[0].type.includes('image/jpg') ||
-        e.target.files[0].type.includes('image/png')
-      ) {
-        setimage2(e.target.files[0])
-      } else {
-        setSecondaryImageError('Please upload image only')
-      }
-    } else {
-      setSecondaryImageError('Image size can be upto 4mb.')
-    }
-  }
+  // const handleChange2 = (e: any) => {
+  //   if (e.target.files[0].size / 1024 < 4300) {
+  //     if (
+  //       e.target.files[0].type.includes('image/jpeg') ||
+  //       e.target.files[0].type.includes('image/jpg') ||
+  //       e.target.files[0].type.includes('image/png')
+  //     ) {
+  //       setimage2(e.target.files[0])
+  //     } else {
+  //       setSecondaryImageError('Please upload image only')
+  //     }
+  //   } else {
+  //     setSecondaryImageError('Image size can be upto 4mb.')
+  //   }
+  // }
 
   const Onclose = (e: any) => {
     if (mode === 'desktop') {
       setshowImages(false)
     }
-    if (mode === 'mobile') {
-    }
+    // if (mode === 'mobile') {
+    // }
   }
 
   const OnCancel = () => {
@@ -234,11 +232,7 @@ export default function NoImages({
     )
       changeImageStateRef.current = true
 
-    if (
-      transition?.state === 'idle' &&
-      changeImageStateRef?.current &&
-      openEditor
-    ) {
+    if (transition?.state === 'idle' && changeImageStateRef?.current && openEditor) {
       changeImageStateRef.current = false
 
       setTimeout(() => {
@@ -254,7 +248,7 @@ export default function NoImages({
   // for success alert
   const apiResponseRef = useRef('')
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
-  const { id, message } = apiResponse
+  const { message } = apiResponse
   const timeOutRef = useRef('')
 
   useEffect(() => {
@@ -295,10 +289,8 @@ export default function NoImages({
   }, [apiResponse])
 
   const isUploading =
-    (upload === 'primary' &&
-      transition?.submission?.action === '/account/add/image') ||
-    (restore &&
-      transition?.submission?.action === '/account/update/restoreImage') ||
+    (upload === 'primary' && transition?.submission?.action === '/account/add/image') ||
+    (restore && transition?.submission?.action === '/account/update/restoreImage') ||
     (drag && transition?.submission?.action == '/account/update/crop-image')
 
   return (
@@ -339,11 +331,7 @@ export default function NoImages({
                             >
                               <span className="sr-only">Close panel</span>
                               <button>
-                                <XIcon
-                                  onClick={Onclose}
-                                  className="h-6 w-6"
-                                  aria-hidden="true"
-                                />
+                                <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                               </button>
                             </button>
                           </div>
@@ -368,9 +356,7 @@ export default function NoImages({
                               aria-hidden="true"
                             />
                           </div>
-                          <p className="text-sm font-medium text-green-800">
-                            {message}
-                          </p>
+                          <p className="text-sm font-medium text-green-800">{message}</p>
                         </div>
                       </div>
                     )}
@@ -384,29 +370,21 @@ export default function NoImages({
                         <div>
                           <div className="mt-3.5 flex  h-44 justify-center rounded-md">
                             {(deleteImage === 'primary' &&
-                              transition?.submission?.action ==
-                                '/account/delete/image') ||
+                              transition?.submission?.action == '/account/delete/image') ||
                             (edit &&
-                              transition?.submission?.action ==
-                                '/account/update/crop-image') ||
-                            transition?.submission?.action ===
-                              '/account/update/change-image' ? (
+                              transition?.submission?.action == '/account/update/crop-image') ||
+                            transition?.submission?.action === '/account/update/change-image' ? (
                               <div className="relative top-[-1rem] ">
                                 <BeatLoader
                                   color="#184fad"
                                   className="relative top-[6.5rem] left-[9rem]"
                                 />
                                 <img
-                                  src={
-                                    primaryRestore
-                                      ? bg
-                                      : loaderData?.profileImage?.primaryImage
-                                  }
+                                  src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
                                   alt=""
                                   className={`h-full w-[31.5rem] object-cover ${
                                     (deleteImage === 'primary' &&
-                                      transition?.submission?.action ==
-                                        '/account/delete/image') ||
+                                      transition?.submission?.action == '/account/delete/image') ||
                                     transition?.submission?.action ==
                                       '/account/update/crop-image' ||
                                     transition?.submission?.action ===
@@ -419,14 +397,8 @@ export default function NoImages({
                             ) : (
                               <img
                                 ref={ref4}
-                                crossOrigin={`${
-                                  primaryRestore ? '' : 'anonymous'
-                                }`}
-                                src={
-                                  primaryRestore
-                                    ? bg
-                                    : loaderData?.profileImage?.primaryImage
-                                }
+                                crossOrigin={`${primaryRestore ? '' : 'anonymous'}`}
+                                src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
                                 alt=""
                                 className="h-full w-full object-cover"
                                 onLoad={() => {
@@ -434,17 +406,8 @@ export default function NoImages({
                                 }}
                               />
                             )}
-                            <Form
-                              replace
-                              action="update/crop-image"
-                              method="post"
-                            >
-                              <input
-                                name="editPrimaryImage"
-                                type="text"
-                                value={url}
-                                hidden
-                              />
+                            <Form replace action="update/crop-image" method="post">
+                              <input name="editPrimaryImage" type="text" value={url} hidden />
                               <button type="submit" ref={ref3} hidden>
                                 Edit
                               </button>
@@ -486,11 +449,7 @@ export default function NoImages({
                                 value={''}
                               />
 
-                              <button
-                                type="submit"
-                                ref={changeImageSubmitRef}
-                                hidden
-                              />
+                              <button type="submit" ref={changeImageSubmitRef} hidden />
                             </Form>
 
                             <label
@@ -510,20 +469,18 @@ export default function NoImages({
                               className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
                               disabled={
                                 deleteImage === 'primary' &&
-                                transition?.submission?.action ==
-                                  '/account/delete/image'
+                                transition?.submission?.action == '/account/delete/image'
                               }
                             >
                               Delete
                             </button>
                           </div>
 
-                          {!changeImageResponse?.type &&
-                            changeImageResponse?.message && (
-                              <div className="flex justify-center mt-2 text-sm text-red-500">
-                                {changeImageResponse.message}
-                              </div>
-                            )}
+                          {!changeImageResponse?.type && changeImageResponse?.message && (
+                            <div className="flex justify-center mt-2 text-sm text-red-500">
+                              {changeImageResponse.message}
+                            </div>
+                          )}
                         </div>
                       </div>
                     ) : (
@@ -541,21 +498,13 @@ export default function NoImages({
                         >
                           {isUploading && (
                             <div className="h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10">
-                              <BeatLoader
-                                color="#184fad"
-                                className="mt-2"
-                                size={20}
-                              />
+                              <BeatLoader color="#184fad" className="mt-2" size={20} />
                             </div>
                           )}
 
                           <div
-                            className={`text-center ${
-                              isUploading ? 'invisible' : ''
-                            } ${
-                              transition.state !== 'idle'
-                                ? 'pointer-events-none'
-                                : ''
+                            className={`text-center ${isUploading ? 'invisible' : ''} ${
+                              transition.state !== 'idle' ? 'pointer-events-none' : ''
                             } `}
                           >
                             <>
@@ -588,40 +537,25 @@ export default function NoImages({
                                     <input
                                       type="file"
                                       className="hidden"
-                                      disabled={
-                                        transition.state !== 'idle'
-                                          ? true
-                                          : false
-                                      }
+                                      disabled={transition.state !== 'idle' ? true : false}
                                       id="photo"
                                       name="primaryImageUpload"
                                       accept="image/png, image/jpeg, image/jpg"
                                       onChange={handleChange}
                                     />
-                                    <button
-                                      type="submit"
-                                      ref={ref}
-                                      className="hidden"
-                                    >
+                                    <button type="submit" ref={ref} className="hidden">
                                       upload
                                     </button>
                                   </label>
                                 </Form>
 
-                                <Form
-                                  replace
-                                  action="update/restoreImage"
-                                  method="post"
-                                >
+                                <Form replace action="update/restoreImage" method="post">
                                   <button
                                     data-cy="restorePrimaryImage"
                                     name="restoreImage"
                                     value="restoreprimaryImage"
                                     className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
-                                    disabled={
-                                      upload === 'primary' &&
-                                      transition.state !== 'idle'
-                                    }
+                                    disabled={upload === 'primary' && transition.state !== 'idle'}
                                     onClick={() => {
                                       setRestore((prev) => (prev = true))
                                       setRestore2(false)
@@ -632,13 +566,9 @@ export default function NoImages({
                                 </Form>
                               </div>
 
-                              <div className="mt-2 text-sm text-red-500">
-                                {primaryImageError}
-                              </div>
+                              <div className="mt-2 text-sm text-red-500">{primaryImageError}</div>
                             </>
-                            <h4 className="text-sm">
-                              (Supported image .jpg .jpeg, and .png)
-                            </h4>
+                            <h4 className="text-sm">(Supported image .jpg .jpeg, and .png)</h4>
                           </div>
                         </div>
                       </div>

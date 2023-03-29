@@ -3,7 +3,7 @@ import React from 'react'
 export default function VideoAddOn({ videoLink, loaderData, mode }: any) {
   const link = videoLink
   let youtubeVideoId = link?.slice(link.indexOf('=') + 1)
-  let facebookVideoId = link
+  // let facebookVideoId = link
 
   // const ytfbVideo = videoLink.videoSourceKey === 'youtube' ? youtubeVideoId : facebookVideoId
 

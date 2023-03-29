@@ -1,35 +1,21 @@
-import {
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-  XIcon,
-} from '@heroicons/react/solid'
+import { CheckCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/solid'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import {
-  Form,
-  useActionData,
-  useLoaderData,
-  useTransition,
-} from '@remix-run/react'
+import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import ProfileSetting from '~/components/Common/ProfileSetting'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import { commitSession, getSession } from '~/services/session.service.server'
-import {
-  updateUserProfileDetails,
-  updateUsingOldPassword,
-} from '~/services/user.service.server'
+import { updateUserProfileDetails, updateUsingOldPassword } from '~/services/user.service.server'
 import {
   updateValidatePassword,
   validateComfirmPassword,
   validateFirstName,
   validateLastName,
   validateOldPassword,
-  validatePassword,
   validateUpdateUsername,
-  validateUsername,
 } from '~/utils/validator.server'
 
 export const action: ActionFunction = async ({ request }) => {
@@ -68,10 +54,7 @@ export const action: ActionFunction = async ({ request }) => {
       })
 
       if (isUpdated) {
-        session.flash(
-          'updateSuccessProfileMessage',
-          `Your profile has been updated successfully.`
-        )
+        session.flash('updateSuccessProfileMessage', `Your profile has been updated successfully.`)
         return redirect('/account/profile', {
           headers: {
             'Set-Cookie': await commitSession(session),
@@ -85,16 +68,9 @@ export const action: ActionFunction = async ({ request }) => {
     const confirmNewPassword = formData.get('confirmnewpassword') as string
 
     const errors = {
-      isOldPasswordSame: await validateOldPassword(
-        user,
-        newPassword,
-        oldPassword
-      ),
+      isOldPasswordSame: await validateOldPassword(user, newPassword, oldPassword),
       password: await updateValidatePassword(newPassword, user),
-      isPasswordSame: await validateComfirmPassword(
-        newPassword,
-        confirmNewPassword
-      ),
+      isPasswordSame: await validateComfirmPassword(newPassword, confirmNewPassword),
     }
     if (Object.values(errors).some(Boolean)) {
       return json(
@@ -107,10 +83,7 @@ export const action: ActionFunction = async ({ request }) => {
     } else {
       const isPasswordUpdated = await updateUsingOldPassword(user, newPassword)
       if (isPasswordUpdated) {
-        session.flash(
-          'updatePasswordMessage',
-          `Your password has been updated successfully.`
-        )
+        session.flash('updatePasswordMessage', `Your password has been updated successfully.`)
         return redirect('/account/profile', {
           headers: {
             'Set-Cookie': await commitSession(session),
@@ -125,8 +98,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
   const user = await getUser(request)
   const session = await getSession(request.headers.get('Cookie'))
-  const updateSuccessProfileMessage =
-    session.get('updateSuccessProfileMessage') || null
+  const updateSuccessProfileMessage = session.get('updateSuccessProfileMessage') || null
   const updatePasswordMessage = session.get('updatePasswordMessage') || null
   return json(
     { updateSuccessProfileMessage, updatePasswordMessage, user },
@@ -155,12 +127,8 @@ export default function Profile() {
     profileId: `${loaderData?.user?.username}`,
   })
 
-  const [profileMessage, setProfileMessage] = useState(
-    loaderData?.updateSuccessProfileMessage
-  )
-  const [passwordMessasge, setPasswordMessage] = useState(
-    loaderData?.updatePasswordMessage
-  )
+  const [profileMessage, setProfileMessage] = useState(loaderData?.updateSuccessProfileMessage)
+  const [passwordMessasge, setPasswordMessage] = useState(loaderData?.updatePasswordMessage)
 
   useEffect(() => {
     setProfileMessage(loaderData?.updateSuccessProfileMessage)
@@ -179,21 +147,17 @@ export default function Profile() {
     }, 2000)
   }
   useEffect(() => {
-    transition.state == 'loading'
-      ? SetPass({
-          oldpassword: '',
-          newpassword: '',
-          confirmnewpassword: '',
-        })
-      : null
+    transition.state == 'loading' &&
+      SetPass({
+        oldpassword: '',
+        newpassword: '',
+        confirmnewpassword: '',
+      })
   }, [transition, pass])
   return (
     <>
       <div>
-        <DashboardHeader
-          username={loaderData.user.username}
-          loaderData={loaderData.user}
-        />
+        <DashboardHeader username={loaderData.user.username} loaderData={loaderData.user} />
       </div>
       <div className="md:flex md:flex-wrap lg:grid lg:grid-cols-12 lg:gap-x-5 px-[1rem] md:px-[0rem]">
         <div className="md:w-[25%] lg:w-2/5 ">
@@ -209,15 +173,10 @@ export default function Profile() {
                   <div className="mt-[1.5rem] rounded-md bg-green-50  p-4 xl:mr-[1.5rem]">
                     <div className="flex">
                       <div className="flex-shrink-0">
-                        <CheckCircleIcon
-                          className="h-5 w-5 text-green-400"
-                          aria-hidden="true"
-                        />
+                        <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                       </div>
                       <div className="ml-3">
-                        <p className="w-max text-sm font-medium text-green-800">
-                          {profileMessage}
-                        </p>
+                        <p className="w-max text-sm font-medium text-green-800">{profileMessage}</p>
                       </div>
                       <div className="ml-auto pl-3">
                         <div className="-mx-1.5 -my-1.5">
@@ -242,12 +201,9 @@ export default function Profile() {
                   ''
                 )}
                 <div>
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Profile
-                  </h3>
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    This information will be displayed publicly so be careful
-                    what you share.
+                    This information will be displayed publicly so be careful what you share.
                   </p>
                 </div>
                 <div className="grid sm:max-w-[36rem] md:max-w-lg grid-cols-1  border-b border-gray-200">
@@ -287,9 +243,7 @@ export default function Profile() {
                       </label>
                       <input
                         className={`mt-1.5 box-border flex h-10 w-full  appearance-none items-center rounded-md border border-gray-300 px-2.5 py-3.5 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm ${
-                          actionData?.errors?.['lastname']
-                            ? 'border border-red-400'
-                            : 'first-line:'
+                          actionData?.errors?.['lastname'] ? 'border border-red-400' : 'first-line:'
                         }`}
                         name="lastname"
                         id="lastname"
@@ -395,9 +349,7 @@ export default function Profile() {
                             />
                           </div>
                           <div className="">
-                            <p className="text-sm font-medium text-green-800">
-                              {passwordMessasge}
-                            </p>
+                            <p className="text-sm font-medium text-green-800">{passwordMessasge}</p>
                           </div>
                           <div className="ml-auto pl-3">
                             <div className="-mx-1.5 -my-1.5">
@@ -542,8 +494,7 @@ export default function Profile() {
                           disabled={transition?.state != 'idle'}
                         >
                           {selectSave === 'passwordSaveButton' &&
-                          transition?.submission?.action ==
-                            '/account/profile' ? (
+                          transition?.submission?.action == '/account/profile' ? (
                             <BeatLoader color="#ffffff" size={12} />
                           ) : (
                             'Save'

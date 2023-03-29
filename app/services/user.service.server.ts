@@ -124,11 +124,7 @@ export async function checkUserVerificationStatus(email: string) {
   return false
 }
 
-export async function upateUserPassword(
-  userId: string,
-  password: string,
-  user?: any
-) {
+export async function upateUserPassword(userId: string, password: string, user?: any) {
   await db.user.update({
     where: {
       id: userId,

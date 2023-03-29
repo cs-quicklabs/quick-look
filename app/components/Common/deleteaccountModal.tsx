@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
@@ -10,12 +10,7 @@ export default function Delete({ open, onClose }: any) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        initialFocus={cancelButtonRef}
-        onClose={() => {}}
-      >
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -42,23 +37,16 @@ export default function Delete({ open, onClose }: any) {
               <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full sm:p-6">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <ExclamationIcon
-                      className="h-6 w-6 text-red-600"
-                      aria-hidden="true"
-                    />
+                    <ExclamationIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg leading-6 font-medium text-gray-900"
-                    >
+                    <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
                       Delete Account
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to delete your account? All of
-                        your data will be permanently removed from our servers
-                        forever. This action cannot be undone.
+                        Are you sure you want to delete your account? All of your data will be
+                        permanently removed from our servers forever. This action cannot be undone.
                       </p>
                     </div>
                   </div>
@@ -71,11 +59,7 @@ export default function Delete({ open, onClose }: any) {
                       disabled={transition?.state != 'idle'}
                     >
                       {transition?.state != 'idle' ? (
-                        <BeatLoader
-                          size={14}
-                          color="#ffffff"
-                          className="px-0 py-0.5"
-                        />
+                        <BeatLoader size={14} color="#ffffff" className="px-0 py-0.5" />
                       ) : (
                         'Delete'
                       )}

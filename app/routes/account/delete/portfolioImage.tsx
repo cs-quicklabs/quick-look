@@ -1,6 +1,5 @@
 import type { ActionFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
-import { getUser } from '~/services/auth.service.server'
 import { deletePortfolioImage } from '~/services/portfolioImage.server'
 
 export const action: ActionFunction = async ({ request }) => {

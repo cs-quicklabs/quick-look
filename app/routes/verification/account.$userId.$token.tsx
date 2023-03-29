@@ -15,10 +15,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   if (verified) {
     await deleteUserVerificationToken(user?.id as string)
-    session.flash(
-      'authMessage',
-      `Your email has been confirmed. Please login to continue.`
-    )
+    session.flash('authMessage', `Your email has been confirmed. Please login to continue.`)
 
     return redirect('/auth/login', {
       headers: {

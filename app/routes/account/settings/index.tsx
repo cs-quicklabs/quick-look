@@ -7,9 +7,7 @@ import ProfileSetting from '~/components/Common/ProfileSetting'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import { updateUserPreferences } from '~/services/user.service.server'
 
-import Unpublish, {
-  action as ModalAction,
-} from '~/components/Common/unpublishModal'
+import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -42,10 +40,7 @@ export default function Profile() {
     <>
       <div>
         <div>
-          <DashboardHeader
-            username={loaderData?.username}
-            loaderData={loaderData}
-          />
+          <DashboardHeader username={loaderData?.username} loaderData={loaderData} />
         </div>
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap">
           <div className="w-[20%] lg:w-2/5">
@@ -53,21 +48,16 @@ export default function Profile() {
           </div>
           <div className="sm:px-6 md:w-3/5 lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl py-6 px-4 sm:p-6">
             <div className="">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Notifications
-              </h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
               <p className="text-sm text-gray-500 max-w-lg">
-                We'll always let you know about important changes, but you pick
-                what else you want to hear about.
+                We'll always let you know about important changes, but you pick what else you want
+                to hear about.
               </p>
             </div>
             <div className="">
               <fieldset className="mt-6">
                 <legend className="sr-only">By Email</legend>
-                <div
-                  className="text-base font-medium text-gray-900"
-                  aria-hidden="true"
-                >
+                <div className="text-base font-medium text-gray-900" aria-hidden="true">
                   By Email
                 </div>
                 <form onChange={handleChange} method="get">
@@ -83,15 +73,11 @@ export default function Profile() {
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label
-                          htmlFor="productUpdate"
-                          className="font-medium text-gray-700"
-                        >
+                        <label htmlFor="productUpdate" className="font-medium text-gray-700">
                           Product Update
                         </label>
                         <p className="text-gray-500">
-                          Get notified when new features are releases in the
-                          project
+                          Get notified when new features are releases in the project
                         </p>
                       </div>
                     </div>
@@ -105,15 +91,12 @@ export default function Profile() {
                           className="mt-1 lg:mt-[0.5rem] xl:mt-[-1rem] h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         />
                         <div className="ml-3 mt-[3.2rem] md:mt-[3.25rem] lg:mt-[3.2rem] xl:mt-[1.7rem] 2xl:mt-[1.5rem] text-sm h-[4.4rem]">
-                          <label
-                            htmlFor="marketingUpdates"
-                            className="font-medium text-gray-700"
-                          >
+                          <label htmlFor="marketingUpdates" className="font-medium text-gray-700">
                             Marketing Updates
                           </label>
                           <p className="text-gray-500">
-                            Get notified when we share our marketing content
-                            such as blogs, announcements
+                            Get notified when we share our marketing content such as blogs,
+                            announcements
                           </p>
                         </div>
                       </div>
@@ -132,24 +115,18 @@ export default function Profile() {
                 {loaderData?.profile?.isPublished ? (
                   <span>
                     <span>
-                      Unpublishing your account will hide your account
-                      temporarily and no one should be able to visit your
-                      profile from the link
+                      Unpublishing your account will hide your account temporarily and no one should
+                      be able to visit your profile from the link
                     </span>
-                    <span className="font-[800]">
-                      {' '}
-                      quicklook.me/{loaderData?.username}.{' '}
-                    </span>
+                    <span className="font-[800]"> quicklook.me/{loaderData?.username}. </span>
                     <span>You can enable your profile anytime you want.</span>
                   </span>
                 ) : (
                   <span>
-                    Publishing your account will show your account and anyone
-                    should be able to visit your profile from the link{' '}
-                    <span className="font-[800]">
-                      quicklook.me/{loaderData?.username}
-                    </span>{' '}
-                    . You can disable your profile anytime you want.
+                    Publishing your account will show your account and anyone should be able to
+                    visit your profile from the link{' '}
+                    <span className="font-[800]">quicklook.me/{loaderData?.username}</span> . You
+                    can disable your profile anytime you want.
                   </span>
                 )}
               </p>
@@ -161,19 +138,14 @@ export default function Profile() {
                   className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300"
                   disabled={transition?.state != 'idle' ? true : false}
                 >
-                  {loaderData?.profile?.isPublished
-                    ? 'Unpublish my account'
-                    : 'Publish my account'}
+                  {loaderData?.profile?.isPublished ? 'Unpublish my account' : 'Publish my account'}
                 </button>
               </div>
             </div>
             <div className="my-6 bg-white py-4 px-[1.8rem] shadow rounded-lg flex flex-col max-w-xl">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Delete your account
-              </h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Delete your account</h3>
               <p className="text-sm text-gray-500 leading-5 max-w-lg">
-                Once you delete your account, you will lose all data associated
-                with it.
+                Once you delete your account, you will lose all data associated with it.
               </p>
               <div className="flex justify-start items-center">
                 <button

@@ -19,8 +19,7 @@ export function Hero() {
         with just one link.
       </h1>
       <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-        Describe yourself with just one link which connects all your social
-        profile together.
+        Describe yourself with just one link which connects all your social profile together.
       </p>
       <div className="mt-10 flex justify-center space-x-6">
         <ButtonLink href="/auth/signup" color="blue" className={undefined}>

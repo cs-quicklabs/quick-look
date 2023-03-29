@@ -1,4 +1,3 @@
-import { Menu } from '@headlessui/react'
 import { useState } from 'react'
 import Modal from '~/components/Common/ConfirmModal'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
@@ -7,24 +6,14 @@ import DropDown from '../DropDown/DropDown'
 
 export default function DashboardHeader({ username, loaderData }: any) {
   const [isOpen, setIsOpen] = useState(false)
-  const [showUserSetting, setShowUserSetting] = useState(false)
 
-  const toggleSetting = () => {
-    setShowUserSetting(!showUserSetting)
-  }
   return (
     <>
       <header className="h-[3rem] bg-gray-800 sticky top-0 z-50">
-        <nav
-          className="flex items-center justify-between px-3 md:px-8"
-          aria-label="Global"
-        >
+        <nav className="flex items-center justify-between px-3 md:px-8" aria-label="Global">
           <div className="flex flex-1 items-center">
             <div className="flex w-full items-center md:w-auto">
-              <a
-                href="/account"
-                className="flex items-center justify-center gap-4"
-              >
+              <a href="/account" className="flex items-center justify-center gap-4">
                 <img
                   className="hidden lg:block pb-0 lg:w-auto lg:h-9 md:mt-0 lg:pt-0 sm:pb-0"
                   src={logo}
@@ -34,11 +23,7 @@ export default function DashboardHeader({ username, loaderData }: any) {
                   Quicklook.me/{username}
                 </span>
               </a>
-              <a
-                className="cursor-pointer"
-                href={`/${username}`}
-                target="_blank" rel="noreferrer"
-              >
+              <a className="cursor-pointer" href={`/${username}`} target="_blank" rel="noreferrer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="block h-6 w-6 text-white ml-4 mb-2 mt-3"

@@ -5,10 +5,7 @@ type props = {
   data: any
   filename?: any
 }
-export const digitalOceanUploadHandler: UploadHandler = async ({
-  data,
-  filename,
-}: props) => {
+export const digitalOceanUploadHandler: UploadHandler = async ({ data, filename }: props) => {
   const uploaded = await uploadStreamToSpaces(data, filename as string)
   return uploaded
 }

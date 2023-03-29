@@ -1,10 +1,7 @@
 import { db } from '~/database/connection.server'
 import type { SpotlightFormType } from '~/types/spotlightForm.server'
 
-export async function addUpdateSpotlight(
-  spotlightForm: SpotlightFormType,
-  user: any
-) {
+export async function addUpdateSpotlight(spotlightForm: SpotlightFormType, user: any) {
   let {
     buttonAction,
     buttonActionlink,
@@ -22,10 +19,7 @@ export async function addUpdateSpotlight(
     if (buttonhex!.length > 0) {
       buttonColor = ''
     }
-    if (
-      !(buttonColor.length > 0) &&
-      !buttonhex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)
-    ) {
+    if (!(buttonColor.length > 0) && !buttonhex?.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
       return false
     }
     await db.spotlightButton.upsert({
@@ -44,14 +38,12 @@ export async function addUpdateSpotlight(
       },
       update: {
         buttonAction: buttonAction ?? user.spotlightButton.buttonAction,
-        buttonActionlink:
-          buttonActionlink ?? user.spotlightButton.buttonActionlink,
+        buttonActionlink: buttonActionlink ?? user.spotlightButton.buttonActionlink,
         buttonColor: buttonColor ?? user.spotlightButton.buttonColor,
         buttonhex: buttonhex ?? user.spotlightButton.buttonHex,
         buttonText: buttonText ?? user.spotlightButton.buttonText,
         spotlightIcon: spotlightIcon ?? user.spotlightButton.spotlightIcon,
-        toggleSpotlight:
-          (toggleSpotlight as boolean) ?? user.spotlightButton.toggleSpotlight,
+        toggleSpotlight: (toggleSpotlight as boolean) ?? user.spotlightButton.toggleSpotlight,
       },
     })
   }

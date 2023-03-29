@@ -1,14 +1,8 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import {
-  CheckCircleIcon,
-  XIcon,
-  CheckIcon,
-  SelectorIcon,
-} from '@heroicons/react/solid'
+import { XIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import { Form, useTransition } from '@remix-run/react'
-import ExistingSocialLinks from './ExistingSocialLinks'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 function classNames(...classes: (string | boolean)[]) {
@@ -78,10 +72,11 @@ export default function CreateSocialLinks({
     setValue(e.target.value)
     regexCheck(fbRegEx, e.target.value, whiteSpaceRegex)
   }
+
   useEffect(() => {
-    loaderData
     regexCheck(fbRegEx, value, whiteSpaceRegex)
   }, [loaderData, selectedSocialLinks])
+
   const [query, setQuery] = useState('')
 
   const filteredSelectedSocialLink =
@@ -141,16 +136,11 @@ export default function CreateSocialLinks({
                       </div>
                       <div className="pt-1 pr-2">
                         <p className="text-sm leading-5 font-normal text-gray-500">
-                          Select social profile links which you want to share on
-                          your profile
+                          Select social profile links which you want to share on your profile
                         </p>
                       </div>
                     </div>
-                    <Form
-                      replace={true}
-                      action="add/socialProfile"
-                      method="post"
-                    >
+                    <Form replace={true} action="add/socialProfile" method="post">
                       <div className="pl-2.5 pr-5 mt-6">
                         <Combobox
                           as="div"
@@ -184,9 +174,7 @@ export default function CreateSocialLinks({
                                     className={({ active }) =>
                                       classNames(
                                         'relative cursor-pointer select-none py-2 pl-3 pr-9',
-                                        active
-                                          ? 'bg-indigo-600 text-white'
-                                          : 'text-gray-900'
+                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900'
                                       )
                                     }
                                   >
@@ -205,15 +193,10 @@ export default function CreateSocialLinks({
                                           <span
                                             className={classNames(
                                               'absolute inset-y-0 right-0 flex items-center pr-4',
-                                              active
-                                                ? 'text-white'
-                                                : 'text-indigo-600'
+                                              active ? 'text-white' : 'text-indigo-600'
                                             )}
                                           >
-                                            <CheckIcon
-                                              className="h-5 w-5"
-                                              aria-hidden="true"
-                                            />
+                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                           </span>
                                         )}
                                       </>
@@ -248,11 +231,7 @@ export default function CreateSocialLinks({
                                   : 'focus:border-indigo-500 focus:ring-indigo-500'
                               }`}
                             />
-                            {click && (
-                              <div className={`text-red-600 text-sm`}>
-                                {error}
-                              </div>
-                            )}
+                            {click && <div className={`text-red-600 text-sm`}>{error}</div>}
                           </div>
                         </div>
                       </div>
@@ -276,11 +255,7 @@ export default function CreateSocialLinks({
                           type="submit"
                           className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                           disabled={
-                            !value || transition?.state != 'idle'
-                              ? true
-                              : !error
-                              ? false
-                              : true
+                            !value || transition?.state != 'idle' ? true : !error ? false : true
                           }
                           onClick={() => {
                             setClickedAdd(true)

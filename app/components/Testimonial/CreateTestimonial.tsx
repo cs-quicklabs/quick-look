@@ -30,14 +30,14 @@ export default function AccountTestimonial({
 
   useEffect(() => {
     let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
-    let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
-    let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
-    let singlewhitespace = /^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
-    let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
+    // let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
+    // let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+    // let singlewhitespace = /^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+    // let validsinglewhitespace = !singlewhitespace.test(testimonialBy)
 
-    let validName = !firstAndMiddleNameRegex.test(testimonialBy)
-    let whiteSpaceRegex = /^\S*$/
-    let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
+    // let validName = !firstAndMiddleNameRegex.test(testimonialBy)
+    // let whiteSpaceRegex = /^\S*$/
+    // let notContainsWhitespace = !whiteSpaceRegex.test(testimonialBy)
 
     if (testimonialBy.length === 0) {
       setError1('')
@@ -72,8 +72,8 @@ export default function AccountTestimonial({
     if (mode === 'desktop') {
       setShowCreateTestimonial(false)
     }
-    if (mode === 'mobile') {
-    }
+    // if (mode === 'mobile') {
+    // }
     OnCloseTestimonial()
   }
 
@@ -83,9 +83,7 @@ export default function AccountTestimonial({
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-[3rem]  ${
-              mode === 'mobile'
-                ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96'
-                : 'lg:w-96'
+              mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'
             }`}
           >
             <Transition.Child
@@ -122,11 +120,7 @@ export default function AccountTestimonial({
                               onClick={Onclose}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon
-                                onClick={Onclose}
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
+                              <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -165,11 +159,7 @@ export default function AccountTestimonial({
                               onClick={Onclose}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon
-                                onClick={OnCancel}
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
+                              <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>

@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { PencilIcon, TrashIcon, XIcon } from '@heroicons/react/outline'
+import { XIcon } from '@heroicons/react/outline'
 import { Form, useTransition } from '@remix-run/react'
 import { useEffect } from 'react'
 import Portfolioimage from './portfolioimage'
@@ -8,12 +8,7 @@ import BeatLoader from 'react-spinners/BeatLoader'
 import DropzonePortfolio from './DragandDrop'
 import { AlertSuccess } from '../Alert/Alert'
 
-export default function Portfolio({
-  setShowPortfolio,
-  mode,
-  setmode,
-  loaderData,
-}: any) {
+export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData }: any) {
   const [upload, setUpload] = useState(false)
   const [image, setimage] = useState(null)
   const [image1, setimage1] = useState(null)
@@ -49,20 +44,15 @@ export default function Portfolio({
   const calc =
     loaderData.portfolioImage.length == 20
       ? 'bottom-[31rem]'
-      : loaderData.portfolioImage.length > 16 &&
-        loaderData.portfolioImage.length < 20
+      : loaderData.portfolioImage.length > 16 && loaderData.portfolioImage.length < 20
       ? 'bottom-[18rem]'
-      : loaderData.portfolioImage.length > 12 &&
-        loaderData.portfolioImage.length <= 16
+      : loaderData.portfolioImage.length > 12 && loaderData.portfolioImage.length <= 16
       ? 'bottom-[14rem]'
-      : loaderData.portfolioImage.length > 8 &&
-        loaderData.portfolioImage.length <= 12
+      : loaderData.portfolioImage.length > 8 && loaderData.portfolioImage.length <= 12
       ? 'bottom-[10.5rem]'
-      : loaderData.portfolioImage.length > 4 &&
-        loaderData.portfolioImage.length <= 8
+      : loaderData.portfolioImage.length > 4 && loaderData.portfolioImage.length <= 8
       ? 'bottom-[7rem]'
-      : loaderData.portfolioImage.length >= 1 &&
-        loaderData.portfolioImage.length <= 4
+      : loaderData.portfolioImage.length >= 1 && loaderData.portfolioImage.length <= 4
       ? 'bottom-[4rem]'
       : ''
 
@@ -89,8 +79,8 @@ export default function Portfolio({
     if (mode === 'desktop') {
       setShowPortfolio(false)
     }
-    if (mode === 'mobile') {
-    }
+    // if (mode === 'mobile') {
+    // }
   }
 
   const OnCancel = () => {
@@ -115,12 +105,10 @@ export default function Portfolio({
       apiResponseRef.current = 'Your Portfolio Image added successfully.'
 
     if (action.includes('update/') && !apiResponseRef?.current)
-      apiResponseRef.current =
-        'Your Portfolio Image has been updated successfully.'
+      apiResponseRef.current = 'Your Portfolio Image has been updated successfully.'
 
     if (action.includes('delete/') && !apiResponseRef?.current)
-      apiResponseRef.current =
-        'Your Portfolio Image has been deleted successfully.'
+      apiResponseRef.current = 'Your Portfolio Image has been deleted successfully.'
 
     if (transition?.state === 'idle' && apiResponseRef?.current) {
       setApiResponse({
@@ -135,9 +123,7 @@ export default function Portfolio({
     <Transition.Root show={true} as={Fragment}>
       <Dialog as="div" className="relative z-40 " onClose={() => {}}>
         <div className="absolute inset-0 ">
-          <div
-            className={`pointer-events-none fixed inset-y-0 left-0 flex w-96`}
-          >
+          <div className={`pointer-events-none fixed inset-y-0 left-0 flex w-96`}>
             <Transition.Child
               as={Fragment}
               enter=""
@@ -151,9 +137,7 @@ export default function Portfolio({
                 <div className="h-screen">
                   <div
                     className={`font-inter mt-12 flex overflow-y-auto ${
-                      loaderData.portfolioImage.length <= 12
-                        ? 'h-full'
-                        : 'h-[100vh]'
+                      loaderData.portfolioImage.length <= 12 ? 'h-full' : 'h-[100vh]'
                     }   flex-col border-r border-gray-200 bg-white ${
                       mode === 'mobile'
                         ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
@@ -175,11 +159,7 @@ export default function Portfolio({
                             >
                               <span className="sr-only">Close panel</span>
                               <button>
-                                <XIcon
-                                  onClick={OnCancel}
-                                  className="h-6 w-6"
-                                  aria-hidden="true"
-                                />
+                                <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                               </button>
                             </button>
                           </div>
@@ -204,19 +184,11 @@ export default function Portfolio({
                         <div className="relative px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10">
                           {isUploading && (
                             <div className="h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10">
-                              <BeatLoader
-                                color="#184fad"
-                                className="mt-2"
-                                size={20}
-                              />
+                              <BeatLoader color="#184fad" className="mt-2" size={20} />
                             </div>
                           )}
 
-                          <div
-                            className={`text-center ${
-                              isUploading ? 'invisible' : ''
-                            }`}
-                          >
+                          <div className={`text-center ${isUploading ? 'invisible' : ''}`}>
                             <DropzonePortfolio
                               setErrorDrag={setErrorDrag}
                               onDrop={onDrop}
@@ -259,11 +231,7 @@ export default function Portfolio({
                                     accept="image/*"
                                     onChange={handleChange}
                                   />
-                                  <button
-                                    type="submit"
-                                    ref={ref}
-                                    className="hidden"
-                                  >
+                                  <button type="submit" ref={ref} className="hidden">
                                     upload
                                   </button>
                                   {/* <input type="file" name="photo" /> */}
@@ -272,9 +240,7 @@ export default function Portfolio({
                                 <div className="mt-2 text-sm text-red-500">
                                   {errorDrag || error}
                                 </div>
-                                <h4 className="text-sm">
-                                  (Supported image .jpg .jpeg, and .png)
-                                </h4>
+                                <h4 className="text-sm">(Supported image .jpg .jpeg, and .png)</h4>
                               </div>
                             </Form>
                           </div>
@@ -283,8 +249,7 @@ export default function Portfolio({
                     </div>
                     <div
                       className={`relative ${
-                        (transition.state != 'idle' && edit) ||
-                        (transition.state != 'idle' && del)
+                        (transition.state != 'idle' && edit) || (transition.state != 'idle' && del)
                           ? 'opacity-30'
                           : null
                       }`}
@@ -293,8 +258,9 @@ export default function Portfolio({
                         className="col-span-2 mx-6 mt-8 grid grid-cols-4 items-center gap-4 gap-y-4 hover:mb-4"
                         style={{ overflow: 'auto' }}
                       >
-                        {loaderData.portfolioImage.map((img: any) => (
+                        {loaderData.portfolioImage.map((img: any, inx: number) => (
                           <Portfolioimage
+                            key={inx}
                             setUpload={setUpload}
                             img={img}
                             setEdit={setEdit}
@@ -305,8 +271,7 @@ export default function Portfolio({
                         ))}
                       </ul>
                     </div>
-                    {(transition.state != 'idle' && edit) ||
-                    (transition.state != 'idle' && del) ? (
+                    {(transition.state != 'idle' && edit) || (transition.state != 'idle' && del) ? (
                       <div className={`relative ${calc} mx-auto`}>
                         <BeatLoader color="#184fad" />
                       </div>

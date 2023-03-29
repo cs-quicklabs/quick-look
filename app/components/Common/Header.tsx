@@ -7,20 +7,12 @@ export default function HeaderSecondary() {
   return (
     <>
       <header className="h-[3rem] bg-gray-800">
-        <nav
-          className="flex items-center justify-between px-8"
-          aria-label="Global"
-        >
+        <nav className="flex items-center justify-between px-8" aria-label="Global">
           <div className="flex w-full items-center justify-between md:w-auto ">
-            <a
-              href="/"
-              className="flex items-center justify-center gap-4 -mt-[12px]"
-            >
+            <a href="/" className="flex items-center justify-center gap-4 -mt-[12px]">
               <img className="w-auto h-9 mt-[8px]" src={logo} alt="" />
 
-              <span className="text-xl pt-5 pb-3 font-extrabold text-white">
-                QuickLook.me
-              </span>
+              <span className="text-xl pt-5 pb-3 font-extrabold text-white">QuickLook.me</span>
             </a>
           </div>
 

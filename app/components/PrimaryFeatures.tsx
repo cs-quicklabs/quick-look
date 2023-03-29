@@ -6,7 +6,6 @@ import screenshotPayroll from '../../assets/images/screenshots/template-desktop.
 import screenshotReporting from '../../assets/images/screenshots/spotlight.png'
 import screenshotVatReturns from '../../assets/images/screenshots/Social.png'
 import clsx from 'clsx'
-import { Container } from './Container'
 
 const features = [
   {
@@ -17,14 +16,12 @@ const features = [
   },
   {
     title: 'Templates',
-    description:
-      'We have got you covered with many high quality template to select from.',
+    description: 'We have got you covered with many high quality template to select from.',
     image: screenshotPayroll,
   },
   {
     title: 'Social Media',
-    description:
-      'Link your Facebook , Twitter and Youtube account with quicklook.',
+    description: 'Link your Facebook , Twitter and Youtube account with quicklook.',
     image: screenshotVatReturns,
   },
   {
@@ -92,18 +89,15 @@ export function PrimaryFeatures() {
                       className={clsx(
                         'group relative rounded-full py-1 px-4 outline-none lg:rounded-r-none lg:rounded-l-xl lg:p-6 ',
                         {
-                          'bg-white lg:bg-white/10 ':
-                            selectedIndex === featureIndex,
-                          'hover:bg-white/10 lg:hover:bg-white/5':
-                            selectedIndex !== featureIndex,
+                          'bg-white lg:bg-white/10 ': selectedIndex === featureIndex,
+                          'hover:bg-white/10 lg:hover:bg-white/5': selectedIndex !== featureIndex,
                         }
                       )}
                     >
                       <h3>
                         <Tab
                           className={clsx('font-display text-lg outline-none', {
-                            'text-blue-600 lg:text-white':
-                              selectedIndex === featureIndex,
+                            'text-blue-600 lg:text-white': selectedIndex === featureIndex,
                             'text-blue-100 hover:text-white lg:text-white':
                               selectedIndex !== featureIndex,
                           })}
@@ -115,8 +109,7 @@ export function PrimaryFeatures() {
                       <p
                         className={clsx('mt-2 hidden text-sm lg:block', {
                           'text-white': selectedIndex === featureIndex,
-                          'text-blue-100 group-hover:text-white':
-                            selectedIndex !== featureIndex,
+                          'text-blue-100 group-hover:text-white': selectedIndex !== featureIndex,
                         })}
                       >
                         {feature.description}

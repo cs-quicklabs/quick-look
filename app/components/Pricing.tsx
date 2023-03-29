@@ -13,13 +13,11 @@ export default function Pricing() {
     <div id="pricing" className="bg-blue-600">
       <div className="pt-12 sm:pt-16 lg:pt-20">
         <div className="mx-auto max-w-3xl space-y-2 text-center lg:max-w-none">
-          <h2 className="text-3xl font-semibold leading-6 text-gray-300">
-            Pricing
-          </h2>
+          <h2 className="text-3xl font-semibold leading-6 text-gray-300">Pricing</h2>
 
           <p className="text-xl text-gray-300">
-            Your Portfolio is your internet identitiy. Quicklook cost is not
-            more than a cup of coffee.
+            Your Portfolio is your internet identitiy. Quicklook cost is not more than a cup of
+            coffee.
           </p>
         </div>
       </div>
@@ -36,9 +34,8 @@ export default function Pricing() {
                   {/* We offer unmatched feature for a unmatched price . You can
                   always signup for free and buy the memebrship later for the
                   premium features. */}
-                  Signup today and get 14 days free trial. No credit card
-                  required. If you like it, just do own time payment and own it
-                  forever.
+                  Signup today and get 14 days free trial. No credit card required. If you like it,
+                  just do own time payment and own it forever.
                 </p>
                 <div className="mt-8">
                   <div className="flex items-center">
@@ -47,20 +44,11 @@ export default function Pricing() {
                     </h4>
                     <div className="flex-1 border-t-2 border-gray-200" />
                   </div>
-                  <ul
-                    role="list"
-                    className="mt-8 space-y-5 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5 lg:space-y-0"
-                  >
+                  <ul className="mt-8 space-y-5 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5 lg:space-y-0">
                     {includedFeatures.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-start lg:col-span-1"
-                      >
+                      <li key={feature} className="flex items-start lg:col-span-1">
                         <div className="flex-shrink-0">
-                          <CheckCircleIcon
-                            className="h-5 w-5 text-green-400"
-                            aria-hidden="true"
-                          />
+                          <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                         </div>
                         <p className="ml-3 text-sm text-gray-700">{feature}</p>
                       </li>
@@ -80,11 +68,7 @@ export default function Pricing() {
                 </div>
 
                 <div className="mt-6">
-                  <ButtonLink
-                    href="/auth/signup"
-                    color="blue"
-                    className={undefined}
-                  >
+                  <ButtonLink href="/auth/signup" color="blue" className={undefined}>
                     <span className="p-[0.3rem]">Get Free Access</span>
                   </ButtonLink>
                 </div>

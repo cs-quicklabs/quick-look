@@ -5,16 +5,13 @@ import DynamicHeroIcon from './DynmaicIcon'
 export default function BannerAddOn({ loaderData, mode }: any) {
   var _ = require('lodash')
 
-  const iconName =
-    _.startCase(_.camelCase(loaderData?.supportBanner?.bannerIcon)) + 'Icon'
+  const iconName = _.startCase(_.camelCase(loaderData?.supportBanner?.bannerIcon)) + 'Icon'
   const Name = _.replace(iconName, ' ', '')
   const Final = Name.split(' ').join('')
 
   return (
     <div
-      className={`flex items-center justify-center ${
-        mode === 'mobile' ? 'z-0' : ''
-      }
+      className={`flex items-center justify-center ${mode === 'mobile' ? 'z-0' : ''}
        
        ${
          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '2'

@@ -2,7 +2,6 @@ import type { ActionFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
-import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 import { validateEmail } from '~/utils/validator.server'
@@ -32,10 +31,7 @@ export const action: ActionFunction = async ({ request }) => {
   if (!user) {
     return redirect('/confirm/email')
   } else if (user && user.profile['isVerified'] == false) {
-    const createVerificationToken = await createUserVerificationToken(
-      user.id,
-      generatedToken
-    )
+    const createVerificationToken = await createUserVerificationToken(user.id, generatedToken)
     if (createVerificationToken.success) {
       await sendAccountVerificationMail(email, url, generatedToken)
     }
@@ -43,10 +39,7 @@ export const action: ActionFunction = async ({ request }) => {
   } else if (user && user.profile['isVerified'] == true) {
     const session = await getSession(request.headers.get('Cookie'))
 
-    session.flash(
-      'authMessage',
-      `Your email has been confirmed. Please login to continue.`
-    )
+    session.flash('authMessage', `Your email has been confirmed. Please login to continue.`)
 
     return redirect('/auth/login', {
       headers: {
@@ -58,7 +51,6 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Forgotpassword() {
   const actionData = useActionData()
-  const [val, setVal] = useState('')
 
   return (
     <>
@@ -73,16 +65,12 @@ export default function Forgotpassword() {
           <div className="max-w-md w-full space-y-8 font-inter">
             <div className="space-y-6">
               <p className="mt-4 flex items-center  justify-start text-sm leading-5 font-normal text-gray-500">
-                Please enter your email address to receive confirmation mail
-                link.
+                Please enter your email address to receive confirmation mail link.
               </p>
               <div className="rounded-md -space-y-px">
                 <Form className="space-y-4" method="post" noValidate>
                   <div className="relative">
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       Email address
                     </label>
                     <div className="mt-1">
@@ -90,9 +78,7 @@ export default function Forgotpassword() {
                         name="email"
                         type="email"
                         className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                          actionData?.errors['email']
-                            ? 'border border-red-400'
-                            : ''
+                          actionData?.errors['email'] ? 'border border-red-400' : ''
                         }`}
                       />
                       {actionData?.errors['email'] ? (
@@ -103,9 +89,7 @@ export default function Forgotpassword() {
                           />
                         </div>
                       ) : null}
-                      <div className={`text-red-600 text-sm`}>
-                        {actionData?.errors['email']}
-                      </div>
+                      <div className={`text-red-600 text-sm`}>{actionData?.errors['email']}</div>
                     </div>
                   </div>
                   <div className="mt-5">

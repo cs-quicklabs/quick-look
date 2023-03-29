@@ -4,10 +4,7 @@ import type { LoginForm } from '~/types/loginForm.server'
 import type { RegisterForm } from '~/types/regirsterForm.server'
 import { createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
-import type {
-  ServerResponse,
-  ValidCouponServerResponse,
-} from '~/types/response.server'
+import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 if (!sessionSecret) {
@@ -36,9 +33,7 @@ export async function createUserSession(userId: string, redirectTo: string) {
   })
 }
 
-export async function validateCoupon(
-  code: string
-): Promise<ValidCouponServerResponse> {
+export async function validateCoupon(code: string): Promise<ValidCouponServerResponse> {
   const data = await db.coupon.findUnique({
     where: {
       code: code,
@@ -47,11 +42,9 @@ export async function validateCoupon(
 
   if (data?.id) {
     const validEndDate =
-      new Date(data?.endDate).setHours(0, 0, 0, 0) >=
-      new Date().setHours(0, 0, 0, 0)
+      new Date(data?.endDate).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)
     const validStartDate =
-      new Date(data?.startDate).setHours(0, 0, 0, 0) <=
-      new Date().setHours(0, 0, 0, 0)
+      new Date(data?.startDate).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0)
 
     if (validEndDate && validStartDate) return { couponId: data?.id }
   }

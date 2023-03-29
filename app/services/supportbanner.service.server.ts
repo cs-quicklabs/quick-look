@@ -1,18 +1,9 @@
 import { db } from '~/database/connection.server'
 import type { SupportBannerForm } from '~/types/supportBanner.server.type'
 
-export async function addUpdateSupportBanner(
-  supportBannerForm: SupportBannerForm,
-  user: any
-) {
-  let {
-    bannerText,
-    bannerColor,
-    bannerIcon,
-    bannerLink,
-    bannerHex,
-    toggleBanner,
-  } = supportBannerForm
+export async function addUpdateSupportBanner(supportBannerForm: SupportBannerForm, user: any) {
+  let { bannerText, bannerColor, bannerIcon, bannerLink, bannerHex, toggleBanner } =
+    supportBannerForm
 
   toggleBanner = Boolean(toggleBanner)
   if (bannerText.length == 0 || bannerLink.length == 0) {
@@ -41,8 +32,7 @@ export async function addUpdateSupportBanner(
         bannerHex: bannerHex ?? user.supportBanner.bannerHex,
         bannerText: bannerText ?? user.supportBanner.bannerText,
         bannerIcon: bannerIcon ?? user.supportBanner.bannerIcon,
-        toggleBanner:
-          (toggleBanner as boolean) ?? user.supportBanner.toggleBanner,
+        toggleBanner: (toggleBanner as boolean) ?? user.supportBanner.toggleBanner,
       },
     })
   }

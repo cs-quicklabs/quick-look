@@ -3,11 +3,7 @@ import PoweredBy from '../Common/PoweredBy'
 import Background3 from '../../../assets/images/templates/temp3.png'
 import RedirectButton from './addOns/RedirectButton'
 
-export default function Template17({
-  input,
-  loaderData,
-  secondaryRestore,
-}: any) {
+export default function Template17({ input, loaderData, secondaryRestore }: any) {
   const spotText =
     loaderData?.spotlightButton?.buttonText?.length > 30
       ? `${loaderData?.spotlightButton?.buttonText.substring(0, 30)}...`
@@ -41,9 +37,7 @@ export default function Template17({
           {input?.occupation} {input?.company ? '@' + input?.company : ''}
         </h3>
 
-        <h3 className="mt-1 text-gray-500 text-base leading-5 font-normal">
-          {input?.location}
-        </h3>
+        <h3 className="mt-1 text-gray-500 text-base leading-5 font-normal">{input?.location}</h3>
 
         {/* <pre className="mt-4 whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
           {input?.description?.trim()}
@@ -57,17 +51,11 @@ export default function Template17({
         )}
 
         {loaderData?.socialMedia?.twitterLink && (
-          <RedirectButton
-            link={`https://${loaderData?.socialMedia?.twitterLink}`}
-            text="Twitter"
-          />
+          <RedirectButton link={`https://${loaderData?.socialMedia?.twitterLink}`} text="Twitter" />
         )}
 
         {loaderData?.socialMedia?.youtubeLink && (
-          <RedirectButton
-            link={`https://${loaderData?.socialMedia?.youtubeLink}`}
-            text="YouTube"
-          />
+          <RedirectButton link={`https://${loaderData?.socialMedia?.youtubeLink}`} text="YouTube" />
         )}
 
         {loaderData?.supportBanner?.toggleBanner && (
@@ -93,23 +81,21 @@ export default function Template17({
         )}
 
         {loaderData?.spotlightButton?.toggleSpotlight &&
-          loaderData?.additionalLinks?.map(
-            (additionalSpotlight: any, i: number) => (
-              <RedirectButton
-                key={i}
-                link={
-                  additionalSpotlight?.linkUrl?.includes('https')
-                    ? additionalSpotlight?.linkUrl
-                    : 'https://' + additionalSpotlight?.linkUrl
-                }
-                text={
-                  additionalSpotlight?.linkText?.length > 30
-                    ? `${additionalSpotlight?.linkText?.substring(0, 30)}...`
-                    : additionalSpotlight?.linkText
-                }
-              />
-            )
-          )}
+          loaderData?.additionalLinks?.map((additionalSpotlight: any, i: number) => (
+            <RedirectButton
+              key={i}
+              link={
+                additionalSpotlight?.linkUrl?.includes('https')
+                  ? additionalSpotlight?.linkUrl
+                  : 'https://' + additionalSpotlight?.linkUrl
+              }
+              text={
+                additionalSpotlight?.linkText?.length > 30
+                  ? `${additionalSpotlight?.linkText?.substring(0, 30)}...`
+                  : additionalSpotlight?.linkText
+              }
+            />
+          ))}
 
         {loaderData?.video?.videoLink && (
           <RedirectButton

@@ -4,8 +4,7 @@ import { randomName } from '~/utils/randomName.server'
 import { dataURItoBlob } from '~/utils/blob.server'
 require('dotenv').config()
 
-const { DO_ACCESS_KEY_ID, DO_SECRET, DO_ENDPOINT, DEFAULT_DO_REGION } =
-  process.env
+const { DO_ACCESS_KEY_ID, DO_SECRET, DO_ENDPOINT, DEFAULT_DO_REGION } = process.env
 
 if (!DO_ACCESS_KEY_ID) {
   throw new Error(`Digital Ocean access key id must be set.`)

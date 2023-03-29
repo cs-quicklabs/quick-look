@@ -25,33 +25,24 @@ export default function Template11({
 
   return (
     <>
-      {loaderData?.supportBanner?.toggleBanner && (
-        <BannerAddOn loaderData={loaderData} />
-      )}
+      {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
 
       <div
         className={`flex overflow-auto scrollbar-hide font-inter bg-white overflow-none pb-[3rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
-        } ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:gap-[4rem]'} ${
-          nav ? '' : ''
-        }`}
+        } ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:gap-[4rem]'} ${nav ? '' : ''}`}
       >
         <div
-          className={`flex-shrink-0 flex flex-col relative ${
-            mode === 'mobile' ? 'w-full ' : ''
-          } ${nav ? '' : ''}`}
+          className={`flex-shrink-0 flex flex-col relative ${mode === 'mobile' ? 'w-full ' : ''} ${
+            nav ? '' : ''
+          }`}
         >
           <div className="">
             {primaryRestore || loaderData?.profileImage?.primaryImage ? (
               <img
-                src={
-                  primaryRestore
-                    ? DefaultCoverPicture
-                    : loaderData?.profileImage?.primaryImage
-                }
+                src={primaryRestore ? DefaultCoverPicture : loaderData?.profileImage?.primaryImage}
                 className={`absolute w-[100%] object-cover ${
-                  (mode === 'mobile' &&
-                    loaderData?.socialMedia?.facebookLink) ||
+                  (mode === 'mobile' && loaderData?.socialMedia?.facebookLink) ||
                   (mode === 'mobile' && loaderData?.socialMedia?.twitterLink) ||
                   (mode === 'mobile' && loaderData?.socialMedia?.youtubeLink)
                     ? 'lg:h-[26rem] xl:h-[27rem]'
@@ -97,10 +88,7 @@ export default function Template11({
                       ? 'lg:w-[11rem] lg:h-[11rem]'
                       : 'lg:pt-[0rem] lg:w-[11rem] lg:h-[11rem] xl:mt-[-9rem] mediumLaptop:w-[11rem] mediumLaptop:h-[11rem]'
                   } ${nav ? '' : ''} ${
-                    loaderData?.profileImage?.secondaryImage ||
-                    secondaryRestore === true
-                      ? ''
-                      : ''
+                    loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
                   }  `}
                   src={
                     secondaryRestore === true
@@ -132,8 +120,7 @@ export default function Template11({
                       : 'xl:w-[14rem] xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-none xl:font-normal xl:mt-1 xl:px-[0.75rem]'
                   }  ${nav ? 'lg:w-full' : ''} `}
                 >
-                  {input.occupation}{' '}
-                  {input.location && input.occupation ? `in` : ''}{' '}
+                  {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
                   {input.location}
                 </h3>
               ) : (
@@ -142,24 +129,12 @@ export default function Template11({
 
               <div
                 className={`pb-[1rem] w-screen px-[1rem] ${
-                  mode === 'mobile'
-                    ? 'lg:px-[18rem] xl:px-[25rem] medium:px-[27rem]'
-                    : 'xl:hidden'
-                } ${
-                  nav ? 'lg:px-[2rem]' : mode != 'mobile' ? 'lg:px-[14rem]' : ''
-                }`}
+                  mode === 'mobile' ? 'lg:px-[18rem] xl:px-[25rem] medium:px-[27rem]' : 'xl:hidden'
+                } ${nav ? 'lg:px-[2rem]' : mode != 'mobile' ? 'lg:px-[14rem]' : ''}`}
               >
-                <div
-                  className={`flex pt-4 justify-between ${
-                    mode === 'mobile' ? '' : ''
-                  }`}
-                >
+                <div className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : ''}`}>
                   {loaderData?.profileInfo?.company || input.company ? (
-                    <div
-                      className={`flex flex-col ${
-                        mode === 'mobile' ? '' : 'xl:flex-row'
-                      }`}
-                    >
+                    <div className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'}`}>
                       <h2
                         className={`text-white text-xs leading-5 font-normal w-max ${
                           mode === 'mobile' ? '' : 'xl:hidden'
@@ -179,13 +154,7 @@ export default function Template11({
                           mode === 'mobile'
                             ? 'lg:text-sm'
                             : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem] '
-                        } ${
-                          nav
-                            ? 'med:w-max'
-                            : mode != 'mobile'
-                            ? 'med:w-[65%]'
-                            : ''
-                        } `}
+                        } ${nav ? 'med:w-max' : mode != 'mobile' ? 'med:w-[65%]' : ''} `}
                       >
                         {input.company}
                       </h2>
@@ -195,9 +164,9 @@ export default function Template11({
                   )}
                   {loaderData?.profileInfo?.education || input.education ? (
                     <div
-                      className={`flex flex-col ${
-                        mode === 'mobile' ? '' : 'xl:flex-row'
-                      } ${nav ? '' : ''}`}
+                      className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'} ${
+                        nav ? '' : ''
+                      }`}
                     >
                       <h2
                         className={`text-white text-xs leading-5 font-normal w-max  ${
@@ -237,7 +206,8 @@ export default function Template11({
                 {loaderData?.socialMedia?.facebookLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.facebookLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={facebook} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -245,7 +215,8 @@ export default function Template11({
                 {loaderData?.socialMedia?.twitterLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.twitterLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={twitter} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -253,7 +224,8 @@ export default function Template11({
                 {loaderData?.socialMedia?.youtubeLink ? (
                   <a
                     href={`https://${loaderData?.socialMedia?.youtubeLink}`}
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <img src={youtube} alt="" className="w-9 md:w-11 h-auto" />
                   </a>
@@ -325,16 +297,12 @@ export default function Template11({
               } `}
             >
               <div
-                className={`flex pt-4 justify-between ${
-                  mode === 'mobile' ? '' : ''
-                } ${nav ? '' : ''}`}
+                className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : ''} ${
+                  nav ? '' : ''
+                }`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div
-                    className={`flex flex-col ${
-                      mode === 'mobile' ? '' : 'xl:flex-row'
-                    }`}
-                  >
+                  <div className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'}`}>
                     <h2
                       className={`text-white text-xs leading-5 font-normal w-max ${
                         mode === 'mobile' ? '' : 'xl:hidden'
@@ -370,9 +338,9 @@ export default function Template11({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex flex-col ${
-                      mode === 'mobile' ? '' : 'xl:flex-row'
-                    } ${nav ? '' : ''}`}
+                    className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'} ${
+                      nav ? '' : ''
+                    }`}
                   >
                     <h2
                       className={`text-white text-xs leading-5 font-normal w-max  ${
@@ -416,10 +384,7 @@ export default function Template11({
 
             <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
-                <VideoAddOn
-                  videoLink={loaderData?.video?.videoLink}
-                  loaderData={loaderData}
-                />
+                <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
             </div>
 
