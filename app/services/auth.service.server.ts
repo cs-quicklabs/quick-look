@@ -33,6 +33,23 @@ export async function createUserSession(userId: string, redirectTo: string) {
   })
 }
 
+function getUserSession(request: Request) {
+  return storage.getSession(request.headers.get('Cookie'))
+}
+
+export async function getUserId(request: Request) {
+  const session = await getUserSession(request)
+  const userId = session.get('userId')
+  if (!userId || typeof userId !== 'string') return null
+  return userId
+}
+
+export async function getCurrentUser(request: Request) {
+  let userId = await getUserId(request);
+  if (!userId) return null;
+  return db.user.findUnique({ where: { id: userId } });
+}
+
 export async function validateCoupon(code: string): Promise<ValidCouponServerResponse> {
   const data = await db.coupon.findUnique({
     where: {
@@ -107,17 +124,6 @@ export async function requireUserId(
     const searchParams = new URLSearchParams([['redirectTo', redirectTo]])
     throw redirect(`/auth/login?${searchParams}`)
   }
-  return userId
-}
-
-function getUserSession(request: Request) {
-  return storage.getSession(request.headers.get('Cookie'))
-}
-
-export async function getUserId(request: Request) {
-  const session = await getUserSession(request)
-  const userId = session.get('userId')
-  if (!userId || typeof userId !== 'string') return null
   return userId
 }
 

@@ -5,6 +5,7 @@ import { nameCasing } from '~/utils/string.server'
 import type { UpdateProfileDetails } from '~/types/updateProfile.server'
 import type { UserPreferences } from '~/types/updateUserPreferences.server'
 import type { UpdateUserBioDetails } from '~/types/updateUserBioDetails.server'
+import { getUserId } from './auth.service.server'
 
 export async function createUser(userRegister: RegisterForm) {
   const password = await bcrypt.hash(userRegister.password, 10)
@@ -256,27 +257,14 @@ export async function deleteUser(user?: any) {
   ])
 }
 
-export async function publishToggle(user?: any) {
-  if (user?.profile?.isPublished === true) {
-    await db.profile.update({
-      where: {
-        userId: user.id,
-      },
-      data: {
-        isPublished: false,
-      },
-    })
-  } else if (user?.profile?.isPublished === false) {
-    await db.profile.update({
-      where: {
-        userId: user.id,
-      },
-      data: {
-        isPublished: true,
-      },
-    })
-  }
-  return 'Account unpublished successfully.'
+export async function publishToggle(request: Request) {
+  let userId = await getUserId(request);
+  if (!userId) return null;
+
+  let profile = await db.profile.findUnique({ where: { userId: userId } });
+  if (!profile) return null;
+
+  return await db.profile.update({ where: { userId: userId }, data: { isPublished: !profile.isPublished } });  
 }
 
 export async function updateUserPreferences({

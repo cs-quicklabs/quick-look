@@ -5,12 +5,10 @@ import { Form, useTransition } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 import type { ActionArgs } from '@remix-run/node' // or cloudflare/deno
-import { getUser } from '~/services/auth.service.server'
 import { publishToggle } from '~/services/user.service.server'
 
 export async function action({ request }: ActionArgs) {
-  const user = await getUser(request)
-  return await publishToggle(user)
+  return await publishToggle(request)
 }
 
 export default function Delete({ open, onClose, isPublished, setopenModal }: any) {
