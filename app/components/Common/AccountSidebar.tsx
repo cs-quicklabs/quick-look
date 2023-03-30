@@ -81,9 +81,6 @@ export default function AccountSideBar({
   setShowModal,
 }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  // const [showImages, setshowImages] = useState(false);
-  // const [showTemplate, setshowTemplate] = useState(false);
-  // const [showSocialLinks, setshowSocialLinks] = useState(false);
   useEffect(() => {
     if (showImages && mode === 'mobile') {
       setshowImages(true)
@@ -102,8 +99,8 @@ export default function AccountSideBar({
         <PublishIcon
           className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}
         />
-        <span>{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
-        <span className="ml-2 font-medium" onClick={() => setShowModal(true)}>
+        <span className="flex-1">{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
+        <span className="ml-2 cursor-pointer font-medium" onClick={() => setShowModal(true)}>
           {isPublished ? `Unpublish ->` : 'Publish ->'}
         </span>
       </div>
