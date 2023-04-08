@@ -2,14 +2,14 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import * as cropro from 'cropro'
 import { useRef } from 'react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import DeletePortfolioImage from './deletePortfolioimage'
 
 export default function Portfolioimage({ img, setUpload, setEdit, setDel, del, edit }: any) {
   const [show, setShow] = useState(false)
   const imageref = useRef(null)
   const btnref = useRef(null)
-  const transition = useTransition()
+  const transition = useNavigation()
   const [url, setUrl] = useState('')
   useEffect(() => {
     transition.state == 'loading' && setShow(false)

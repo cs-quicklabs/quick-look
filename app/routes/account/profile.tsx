@@ -1,7 +1,7 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/solid'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react'
+import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DashboardHeader from '~/components/Common/DashboardHeader'
@@ -113,7 +113,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
-  const transition = useTransition()
+  const transition = useNavigation()
   const [pass, SetPass] = useState({
     oldpassword: '',
     newpassword: '',

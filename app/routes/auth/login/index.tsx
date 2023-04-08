@@ -8,7 +8,7 @@ import {
   validatePassword,
 } from '~/utils/validator.server'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react'
+import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/react'
 import { useState } from 'react'
 import { checkUserVerificationStatus, findUserByEmail } from '~/services/user.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
@@ -96,7 +96,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Login() {
-  const transition = useTransition()
+  const transition = useNavigation()
   const actionData = useActionData()
 
   const loaderData = useLoaderData()

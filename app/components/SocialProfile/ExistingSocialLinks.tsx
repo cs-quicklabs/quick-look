@@ -4,7 +4,7 @@ import DeleteSocialLink from './DeleteSocialLink'
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
-import { useTransition } from '@remix-run/react'
+import { useNavigation } from '@remix-run/react'
 
 export default function ExistingSocialLinks({
   clickedAdd,
@@ -16,7 +16,7 @@ export default function ExistingSocialLinks({
   mode,
   setmode,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [open, setopen] = useState(false)
   const [clickedLink, setClickedLink] = useState<{

@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import CreateTestimonial from './CreateTestimonial'
 import ExistingTestimonial from './ExistingTestimonial'
 import { AlertSuccess } from '../Alert/Alert'
-import { useTransition } from '@remix-run/react'
+import { useNavigation } from '@remix-run/react'
 
 export default function NoTestimonial({
   inputTestimonial,
@@ -22,7 +22,7 @@ export default function NoTestimonial({
   const [showCreateTestimonial, setShowCreateTestimonial] = useState(false)
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
   const apiResponseRef = useRef('')
-  const transition = useTransition()
+  const transition = useNavigation()
   const { id, message } = apiResponse
 
   const toggleCreatetestimonial = () => {

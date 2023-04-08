@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import { BeatLoader } from 'react-spinners'
 
 export default function EditSpotlight({
@@ -31,7 +31,7 @@ export default function EditSpotlight({
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
   }
-  const transition = useTransition()
+  const transition = useNavigation()
 
   const [val, setVal] = useState({
     linkText: clickedAdditionalSpotlight?.linkText,

@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import { useEffect } from 'react'
 import Portfolioimage from './portfolioimage'
 import BeatLoader from 'react-spinners/BeatLoader'
@@ -15,7 +15,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
   const [error, setError] = useState('')
   const [errorDrag, setErrorDrag] = useState('')
   const apiResponseRef = useRef('')
-  const transition = useTransition()
+  const transition = useNavigation()
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
   const { id, message } = apiResponse
 

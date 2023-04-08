@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import * as HIcons from '@heroicons/react/outline'
 import BeatLoader from 'react-spinners/BeatLoader'
 
@@ -53,7 +53,7 @@ export default function CreateSpotlight({
   mode,
   setmode,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
 
   const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
 

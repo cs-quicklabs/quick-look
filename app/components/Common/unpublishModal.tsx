@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 import type { ActionArgs } from '@remix-run/node' // or cloudflare/deno
@@ -12,7 +12,7 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function Delete({ open, onClose, isPublished, setopenModal }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
   const cancelButtonRef = useRef(null)
 
   useEffect(() => {

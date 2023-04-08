@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import CreateVideoLink from './CreateVideoLink'
 import ExistingVideo from './ExistingVideo'
-import { useTransition } from '@remix-run/react'
+import { useNavigation } from '@remix-run/react'
 import { AlertSuccess } from '../Alert/Alert'
 
 export default function NoVideo({
@@ -21,7 +21,7 @@ export default function NoVideo({
 
   const [showCreateVideoLink, setShowCreateVideoLink] = useState(false)
   const apiResponseRef = useRef('')
-  const transition = useTransition()
+  const transition = useNavigation()
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
   const { id, message } = apiResponse
 

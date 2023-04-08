@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node'
-import { useLoaderData, useSubmit, useTransition } from '@remix-run/react'
+import { useLoaderData, useSubmit, useNavigation } from '@remix-run/react'
 import { useState } from 'react'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import Delete from '~/components/Common/deleteaccountModal'
@@ -29,7 +29,7 @@ export default function Profile() {
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const submit = useSubmit()
 
   function handleChange(event: any) {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import defaultProfileimage from '../../../assets/images/profile.png'
 import BeatLoader from 'react-spinners/BeatLoader'
 import Dropzone from './DragandDrop'
@@ -38,7 +38,7 @@ function ProfileImage({
   setUrlSec,
   setRestore,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const handleChange2 = (e: any) => {
     if (e.target.files[0].size / 1024 < 4300) {

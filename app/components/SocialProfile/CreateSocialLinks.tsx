@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 function classNames(...classes: (string | boolean)[]) {
@@ -24,7 +24,7 @@ export default function CreateSocialLinks({
     { id: 3, name: 'Youtube', link: loaderData?.socialMedia?.youtubeLink },
   ].filter((socialLink) => !socialLink.link)
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const [clickedAdd, setClickedAdd] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState('')

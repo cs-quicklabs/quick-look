@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { Fragment, useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import * as HIcons from '@heroicons/react/outline'
 import BeatLoader from 'react-spinners/BeatLoader'
 
@@ -38,7 +38,7 @@ export default function CreateBanner({
   mode,
   setmode,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
 
   const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
   const [enabled, setEnabled] = useState(loaderData?.supportBanner?.toggleBanner)

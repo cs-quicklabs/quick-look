@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function EditSocialProfile({
@@ -16,7 +16,7 @@ export default function EditSocialProfile({
   const [error, setError] = useState('')
   const [error1, setError1] = useState('')
 
-  const transition = useTransition()
+  const transition = useNavigation()
   useEffect(() => {
     transition.state === 'loading' && setShowEditTestimonial(false)
   }, [transition, testimonialText, testimonialText])

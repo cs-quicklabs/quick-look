@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function DashboardBio({
@@ -16,7 +16,7 @@ export default function DashboardBio({
   mode,
   setmode,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
 
   // const Onclose = (e: any) => {
   //   setinput(initialInput)

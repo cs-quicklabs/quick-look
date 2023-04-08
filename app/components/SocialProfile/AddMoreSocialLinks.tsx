@@ -5,7 +5,7 @@ import CreateSocialLinks from './CreateSocialLinks'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react'
 import ExistingSocialLinks from './ExistingSocialLinks'
-import { useTransition } from '@remix-run/react'
+import { useNavigation } from '@remix-run/react'
 
 export default function AddMoreSocialLinks({
   setMessage,
@@ -18,7 +18,7 @@ export default function AddMoreSocialLinks({
 }: any) {
   const [text, setText] = useState('')
   const [text1, setText1] = useState('')
-  const transition = useTransition()
+  const transition = useNavigation()
 
   const [showCreateProfile, setshowCreateProfile] = useState(false)
   useEffect(() => {

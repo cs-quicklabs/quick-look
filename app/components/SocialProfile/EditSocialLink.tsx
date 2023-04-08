@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 var socialLinks = [
@@ -18,7 +18,7 @@ export default function EditSocialProfile({
   mode,
 }: any) {
   const linkName = localStorage.getItem('LinkName')
-  const transition = useTransition()
+  const transition = useNavigation()
 
   useEffect(() => {
     transition.state === 'loading' && setShowEditProfile(false)

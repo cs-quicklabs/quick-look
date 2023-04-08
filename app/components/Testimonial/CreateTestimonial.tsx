@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import ExistingTestimonial from './ExistingTestimonial'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function AccountTestimonial({
@@ -15,7 +15,7 @@ export default function AccountTestimonial({
   setmode,
   setShowCreateTestimonial,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
   useEffect(() => {
     if (transition.state === 'loading') {
       setShowCreateTestimonial(false)

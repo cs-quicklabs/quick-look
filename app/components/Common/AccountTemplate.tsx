@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 // import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail1 from '../../../assets/images/screenshots/Group 3.svg'
-import { useTransition } from '@remix-run/react'
+import { useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import thumbnail3 from '../../../assets/images/screenshots/thumbnail3.png'
 import thumbnail4 from '../../../assets/images/screenshots/thumbnail4.png'
@@ -23,7 +23,7 @@ import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
 import Modal from './Modal'
 
 export default function AccountTemplate({ setshowTemplate, mode, setmode }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
 
   const [selectTemplate, setSelectTemplate] = useState('')
   // const templateHandle = 'update/choose-template'

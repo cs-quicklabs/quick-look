@@ -2,11 +2,11 @@ import React from 'react'
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function DeleteSpotlight({ openDeleteSpotlight, onClose }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
   const cancelButtonRef = useRef(null)
 
   return (

@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ExistingVideo from './ExistingVideo'
 import { XIcon } from '@heroicons/react/outline'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function CreateVideoLink({
@@ -16,7 +16,7 @@ export default function CreateVideoLink({
   setmode,
 }: any) {
   const [val, setVal] = useState('')
-  const transition = useTransition()
+  const transition = useNavigation()
   useEffect(() => {
     if (transition.state === 'loading') {
       setShowCreateVideoLink(false)

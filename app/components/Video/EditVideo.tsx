@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function EditSocialProfile({
@@ -14,7 +14,7 @@ export default function EditSocialProfile({
 }: any) {
   const [val, setVal] = useState(loaderData?.video?.videoLink)
 
-  const transition = useTransition()
+  const transition = useNavigation()
 
   const Onclose = () => {
     if (mode === 'desktop') {

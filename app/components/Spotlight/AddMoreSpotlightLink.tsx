@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { Fragment, useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import ExistingSpotlightLink from './ExistingSpotlightLink'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import ExistingAdditionalSpotlightLink from './ExistingAdditionalLinks'
 import { BeatLoader } from 'react-spinners'
 import { CheckCircleIcon } from '@heroicons/react/solid'
@@ -38,7 +38,7 @@ export default function AddMoreSpotlightLink({
   mode,
   setmode,
 }: any) {
-  const transition = useTransition()
+  const transition = useNavigation()
   const [openAdditionalLinkForm, setOpenAdditionalLinkForm] = useState(false)
   const [selectedColor, setSelectedColor] = useState('')
   const [click, setClick] = useState(false)

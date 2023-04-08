@@ -14,7 +14,7 @@ import {
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData, useTransition } from '@remix-run/react'
+import { Form, useActionData, useNavigation } from '@remix-run/react'
 import { useState } from 'react'
 import type { ServerResponse } from '~/types/response.server'
 import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
@@ -129,7 +129,7 @@ export const meta: MetaFunction = () => {
 
 export default function SignUp() {
   const captchaRef = useRef(null)
-  const transition = useTransition()
+  const transition = useNavigation()
   const Data = useLoaderData()
 
   const actionData = useActionData()

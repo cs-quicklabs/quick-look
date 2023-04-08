@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import bg from '../../../assets/images/bg.png'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DeleteImage from '../Common/DeleteImage'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import * as cropro from 'cropro'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
@@ -66,7 +66,7 @@ export default function NoImages({
     })
   }, [])
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const ref = useRef(null)
   const ref2 = useRef(null)
   const ref3 = useRef(null)
