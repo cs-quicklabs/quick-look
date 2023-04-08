@@ -1,4 +1,4 @@
-import { ExclamationCircleIcon, LockClosedIcon } from '@heroicons/react/solid'
+import { ExclamationCircleIcon, LockClosedIcon } from '@heroicons/react/24/solid'
 import type { ActionFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import { getUser, register, validateCoupon } from '~/services/auth.service.server'

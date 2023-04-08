@@ -8,7 +8,7 @@ import { validateEmail } from '~/utils/validator.server'
 import { findUserByEmail } from '~/services/user.service.server'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { commitSession, getSession } from '~/services/session.service.server'
 
 export const action: ActionFunction = async ({ request }) => {

@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
@@ -74,7 +74,7 @@ export default function DashboardBio({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                              <XCircleIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -104,7 +104,7 @@ export default function DashboardBio({
                                   className="inline-flex rounded-md bg-green-50 py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50"
                                 >
                                   <span className="sr-only">Dismiss</span>
-                                  <XIcon
+                                  <XCircleIcon
                                     className="h-5 w-5"
                                     aria-hidden="true"
                                     onClick={() => setBioMessage('')}

@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon } from '@heroicons/react/outline'
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
@@ -53,7 +53,7 @@ export default function Delete({ open, onClose, isPublished, setopenModal }: any
                         isPublished ? 'bg-red-100' : 'bg-indigo-100'
                       } sm:mx-0 sm:h-10 sm:w-10`}
                     >
-                      <ExclamationIcon
+                      <ExclamationCircleIcon
                         className={`h-6 w-6 ${isPublished ? 'text-red-600' : 'text-indigo-600'} `}
                         aria-hidden="true"
                       />

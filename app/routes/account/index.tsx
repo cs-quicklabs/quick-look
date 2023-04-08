@@ -7,7 +7,7 @@ import { commitSession, getSession } from '~/services/session.service.server'
 
 import Template0 from '~/components/Templates/template0'
 import { useEffect, useState } from 'react'
-import { DesktopComputerIcon, DeviceMobileIcon } from '@heroicons/react/outline'
+import { ComputerDesktopIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline'
 import AccountSidebar from '~/components/Common/AccountSidebar'
 import Template2 from '~/components/Templates/template2'
 import Template7 from '~/components/Templates/template7'
@@ -395,7 +395,7 @@ export default function Profile() {
           } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-l-md`}
           onClick={toggledesktop}
         >
-          <DesktopComputerIcon
+          <ComputerDesktopIcon
             className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon} `}
           />
         </button>
@@ -407,7 +407,7 @@ export default function Profile() {
           } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-r-md border-l`}
           onClick={togglemobile}
         >
-          <DeviceMobileIcon
+          <DevicePhoneMobileIcon
             className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon}`}
           />
         </button>

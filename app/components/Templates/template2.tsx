@@ -9,7 +9,7 @@ import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/video'
 import { useLocation } from '@remix-run/react'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
-import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
+import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/24/outline'
 import PortfolioAddon from './addOns/portfolio'
 import PoweredBy from '../Common/PoweredBy'
 export default function Template2({

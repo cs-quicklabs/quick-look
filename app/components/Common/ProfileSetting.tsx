@@ -1,8 +1,8 @@
-import { EmojiHappyIcon, CogIcon, CreditCardIcon } from '@heroicons/react/outline'
+import { EmojiHappyIcon, CogIcon, CreditCardIcon } from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 import { useLocation } from '@remix-run/react'
 import { Dialog, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Bars2Icon, XCircleIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Profile', icon: EmojiHappyIcon, href: '/account/profile' },
@@ -68,7 +68,7 @@ export default function ProfileSetting() {
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon className="h-6 w-6" aria-hidden="true" />
+                        <XCircleIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -200,7 +200,7 @@ export default function ProfileSetting() {
             onClick={() => setSidebarOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>
-            <MenuIcon className="h-6 w-6" aria-hidden="true" />
+            <Bars2Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
       </div>

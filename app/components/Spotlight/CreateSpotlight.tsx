@@ -1,12 +1,12 @@
 import React from 'react'
 import { Listbox, Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { CheckIcon, SelectorIcon } from '@heroicons/react/24/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
 import { Form, useNavigation } from '@remix-run/react'
-import * as HIcons from '@heroicons/react/outline'
+import * as HIcons from '@heroicons/react/24/outline'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 const colors = [
@@ -217,7 +217,7 @@ export default function CreateSpotlight({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                              <XCircleIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                             </button>
                             {/* </Form> */}
                           </div>

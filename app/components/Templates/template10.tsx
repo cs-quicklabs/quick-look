@@ -1,6 +1,6 @@
 import React from 'react'
-import { BriefcaseIcon } from '@heroicons/react/outline'
-import { AcademicCapIcon } from '@heroicons/react/outline'
+import { BriefcaseIcon } from '@heroicons/react/24/outline'
+import { AcademicCapIcon } from '@heroicons/react/24/outline'
 import facebook from '../../../assets/images/socialIcons/fbIcon5.png'
 import twitter from '../../../assets/images/socialIcons/twitterIcon5.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'

@@ -9,7 +9,7 @@ import VideoAddOn from './addOns/video'
 import { useLocation } from '@remix-run/react'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import PortfolioAddon from './addOns/portfolio'
-import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline'
+import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/24/outline'
 import DefaultCoverPicture from '../../../assets/images/temp9Cover.png'
 import PoweredBy from '../Common/PoweredBy'
 

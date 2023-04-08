@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Modal from '~/components/Common/ConfirmModal'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { BellIcon } from '@heroicons/react/outline'
+import { BellIcon } from '@heroicons/react/24/outline'
 
 import logo from '../../assets/images/logos/quicklook-icon.svg'
 

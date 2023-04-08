@@ -1,4 +1,4 @@
-import { EmojiHappyIcon, CogIcon } from '@heroicons/react/outline'
+import { EmojiHappyIcon, CogIcon } from '@heroicons/react/24/outline'
 
 type nav = {
   name: string

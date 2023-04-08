@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 // import thumbnail1 from '../../../assets/images/screenshots/thumbnail1.png'
 import thumbnail1 from '../../../assets/images/screenshots/Group 3.svg'
 import { useNavigation } from '@remix-run/react'
@@ -106,7 +106,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                               onClick={OnCancel}
                             >
                               <span className="sr-only">Close panel</span>
-                              <XIcon className="h-6 w-6" aria-hidden="true" />
+                              <XCircleIcon className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>

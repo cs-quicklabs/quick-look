@@ -1,4 +1,4 @@
-import { CheckCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/react'
@@ -185,7 +185,7 @@ export default function Profile() {
                             className="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50"
                           >
                             <span className="sr-only">Dismiss</span>
-                            <XIcon
+                            <XCircleIcon
                               className="h-5 w-5"
                               aria-hidden="true"
                               onClick={() => {
@@ -358,7 +358,7 @@ export default function Profile() {
                                 className="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50"
                               >
                                 <span className="sr-only">Dismiss</span>
-                                <XIcon
+                                <XCircleIcon
                                   className="h-5 w-5"
                                   aria-hidden="true"
                                   onClick={() => {

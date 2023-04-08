@@ -1,4 +1,4 @@
-import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useState } from 'react'
 import * as cropro from 'cropro'
 import { useRef } from 'react'

@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import CreateSocialLinks from './CreateSocialLinks'
-import { CheckCircleIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { useEffect } from 'react'
 import ExistingSocialLinks from './ExistingSocialLinks'
 import { useNavigation } from '@remix-run/react'
@@ -87,7 +87,7 @@ export default function AddMoreSocialLinks({
                           onClick={OnCancel}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon className="h-6 w-6" aria-hidden="true" />
+                          <XCircleIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -165,7 +165,7 @@ export default function AddMoreSocialLinks({
                               className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
                             >
                               <span className="sr-only">Dismiss</span>
-                              <XIcon
+                              <XCircleIcon
                                 className="h-5 w-5"
                                 aria-hidden="true"
                                 onClick={() => {

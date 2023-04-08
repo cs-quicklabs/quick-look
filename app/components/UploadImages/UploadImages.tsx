@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import bg from '../../../assets/images/bg.png'
 import BeatLoader from 'react-spinners/BeatLoader'
 import DeleteImage from '../Common/DeleteImage'
@@ -8,7 +8,7 @@ import { Form, useNavigation } from '@remix-run/react'
 import * as cropro from 'cropro'
 import DropzonePrimary from './DragandDropPrimary'
 import ProfileImage from './ProfileImage'
-import { CheckCircleIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
 let timeOut: string | number | NodeJS.Timeout | undefined
 
@@ -331,7 +331,7 @@ export default function NoImages({
                             >
                               <span className="sr-only">Close panel</span>
                               <button>
-                                <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                                <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                               </button>
                             </button>
                           </div>

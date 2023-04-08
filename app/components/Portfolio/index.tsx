@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Form, useNavigation } from '@remix-run/react'
 import { useEffect } from 'react'
 import Portfolioimage from './portfolioimage'
@@ -159,7 +159,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
                             >
                               <span className="sr-only">Close panel</span>
                               <button>
-                                <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                                <XCircleIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                               </button>
                             </button>
                           </div>

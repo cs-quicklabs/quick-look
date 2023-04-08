@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon, CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { XCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/24/solid'
 import { Combobox } from '@headlessui/react'
 import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
@@ -123,7 +123,7 @@ export default function CreateSocialLinks({
                             }}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon
+                            <XCircleIcon
                               onClick={() => {
                                 setshowCreateProfile(false)
                                 OnCloseSocial()

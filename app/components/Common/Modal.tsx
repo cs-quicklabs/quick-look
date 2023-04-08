@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon, BadgeCheckIcon } from '@heroicons/react/outline'
+import { ExclamationCircleIcon, BadgeCheckIcon } from '@heroicons/react/24/outline'
 import { BeatLoader } from 'react-spinners'
 import { Form } from '@remix-run/react'
 
@@ -63,7 +63,7 @@ const Modal = (props: propsType) => {
                   >
                     {props?.Icon ||
                       (props?.modalType === 'Negative' ? (
-                        <ExclamationIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                        <ExclamationCircleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                       ) : (
                         <BadgeCheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
                       ))}

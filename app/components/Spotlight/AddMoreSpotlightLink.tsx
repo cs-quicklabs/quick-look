@@ -1,13 +1,13 @@
 import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import ExistingSpotlightLink from './ExistingSpotlightLink'
 import { Form, useNavigation } from '@remix-run/react'
 import ExistingAdditionalSpotlightLink from './ExistingAdditionalLinks'
 import { BeatLoader } from 'react-spinners'
-import { CheckCircleIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -200,7 +200,7 @@ export default function AddMoreSpotlightLink({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                              <XCircleIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -455,7 +455,7 @@ export default function AddMoreSpotlightLink({
                                 className="inline-flex bg-green-50 rounded-md py-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
                               >
                                 <span className="sr-only">Dismiss</span>
-                                <XIcon
+                                <XCircleIcon
                                   className="h-5 w-5"
                                   aria-hidden="true"
                                   onClick={() => {

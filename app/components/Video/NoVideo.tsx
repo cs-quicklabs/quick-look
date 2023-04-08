@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import CreateVideoLink from './CreateVideoLink'
 import ExistingVideo from './ExistingVideo'
 import { useNavigation } from '@remix-run/react'
@@ -100,7 +100,7 @@ export default function NoVideo({
                           onClick={OnCancel}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                          <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>

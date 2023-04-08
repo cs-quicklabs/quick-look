@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import { useEffect } from 'react'
-import * as HIcons from '@heroicons/react/outline'
+import * as HIcons from '@heroicons/react/24/outline'
 import React from 'react'
 import { useMemo } from 'react'
 
@@ -26,7 +26,7 @@ const DynamicHeroIcon: FC<{ icon?: string; Final?: any }> = ({ icon, Final }: an
 export default DynamicHeroIcon
 
 // import { FC } from 'react'
-// import * as HIcons from '@heroicons/react/outline'
+// import * as HIcons from '@heroicons/react/24/outline'
 // import React from 'react'
 // import { useMemo } from 'react';
 

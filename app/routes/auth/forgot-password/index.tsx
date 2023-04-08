@@ -10,7 +10,7 @@ import { sendAccountVerificationMail, sendResetPasswordMail } from '~/services/m
 import { v4 as uuidv4 } from 'uuid'
 import { createUserVerificationToken } from '~/services/userVerification.service.server'
 
-import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/solid'
+import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()

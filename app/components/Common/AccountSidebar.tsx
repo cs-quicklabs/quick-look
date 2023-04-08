@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid'
+import { Bars2Icon, XCircleIcon } from '@heroicons/react/24/outline'
+import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import AccountBio from './AccountBio'
 import AccountTemplate from './AccountTemplate'
 import DefaultProfileIcon from '../../../assets/images/profile.png'
@@ -89,7 +89,7 @@ export default function AccountSideBar({
 
   const renderPublishStatus = () => {
     const { isPublished } = loaderData?.profile
-    let PublishIcon = isPublished ? CheckCircleIcon : ExclamationIcon
+    let PublishIcon = isPublished ? CheckCircleIcon : ExclamationCircleIcon
     return (
       <div
         className={`w-full inline-flex rounded-md ${
@@ -151,7 +151,7 @@ export default function AccountSideBar({
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon className="h-6 w-6" aria-hidden="true" />
+                        <XCircleIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -838,7 +838,7 @@ export default function AccountSideBar({
               onClick={() => setSidebarOpen((prev) => (prev = sidebarOpen ? false : true))}
             >
               <span className="sr-only">Open sidebar</span>
-              {!sidebarOpen && <MenuIcon className="h-6 w-6 " aria-hidden="true" />}
+              {!sidebarOpen && <Bars2Icon className="h-6 w-6 " aria-hidden="true" />}
             </button>
           </div>
         </div>

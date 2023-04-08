@@ -1,7 +1,7 @@
 import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import CreateBanner from './CreateBanner'
 import DeleteBanner from './Deletebanner'
 
@@ -65,7 +65,7 @@ export default function Banner({ setShowBanner, loaderData, mode, setmode }: any
                           onClick={OnCancel}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                          <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
