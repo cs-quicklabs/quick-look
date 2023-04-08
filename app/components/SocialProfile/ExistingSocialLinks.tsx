@@ -16,7 +16,7 @@ export default function ExistingSocialLinks({
   mode,
   setmode,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [open, setopen] = useState(false)
   const [clickedLink, setClickedLink] = useState<{
@@ -30,8 +30,8 @@ export default function ExistingSocialLinks({
     image: any
   }>({ name: '', email: '', image: '' })
   useEffect(() => {
-    transition.state === 'loading' && setShowEditProfile(false)
-  }, [transition, showEditProfile])
+    navigation.state === 'loading' && setShowEditProfile(false)
+  }, [navigation, showEditProfile])
   const people = [
     {
       name: 'Facebook',

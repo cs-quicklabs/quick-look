@@ -29,7 +29,7 @@ export default function Profile() {
   const [openModal, setopenModal] = useState(false)
   const loaderData = useLoaderData()
 
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const submit = useSubmit()
 
   function handleChange(event: any) {
@@ -136,7 +136,7 @@ export default function Profile() {
                     setopenModal(true)
                   }}
                   className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300"
-                  disabled={transition?.state != 'idle' ? true : false}
+                  disabled={navigation.state != 'idle' ? true : false}
                 >
                   {loaderData?.profile?.isPublished ? 'Unpublish my account' : 'Publish my account'}
                 </button>

@@ -12,12 +12,12 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function Delete({ open, onClose, isPublished, setopenModal }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const cancelButtonRef = useRef(null)
 
   useEffect(() => {
-    if (transition?.state === 'submitting') setopenModal(false)
-  }, [transition])
+    if (navigation.state === 'submitting') setopenModal(false)
+  }, [navigation])
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -86,9 +86,9 @@ export default function Delete({ open, onClose, isPublished, setopenModal }: any
                           ? 'bg-red-600 hover:bg-red-700'
                           : 'bg-indigo-600 hover:bg-indigo-700'
                       }  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
-                      disabled={transition?.state === 'submitting'}
+                      disabled={navigation.state === 'submitting'}
                     >
-                      {transition?.state === 'submitting' ? (
+                      {navigation.state === 'submitting' ? (
                         <BeatLoader color="#ffffff" size={12} className="px-0 py-0.5" />
                       ) : isPublished ? (
                         'Unpublish'
@@ -101,7 +101,7 @@ export default function Delete({ open, onClose, isPublished, setopenModal }: any
                     type="button"
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
                     onClick={onClose}
-                    disabled={transition?.state === 'submitting'}
+                    disabled={navigation.state === 'submitting'}
                   >
                     Cancel
                   </button>

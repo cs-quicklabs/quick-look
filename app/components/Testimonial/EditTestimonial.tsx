@@ -16,10 +16,10 @@ export default function EditSocialProfile({
   const [error, setError] = useState('')
   const [error1, setError1] = useState('')
 
-  const transition = useNavigation()
+  const navigation = useNavigation()
   useEffect(() => {
-    transition.state === 'loading' && setShowEditTestimonial(false)
-  }, [transition, testimonialText, testimonialText])
+    navigation.state === 'loading' && setShowEditTestimonial(false)
+  }, [navigation, testimonialText, testimonialText])
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   // let notContainsSymbols = !onlyAlphabetsRegex.test(testimonialBy)
   // let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
@@ -183,7 +183,7 @@ export default function EditSocialProfile({
                             type="button"
                             className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                             onClick={OnCancel}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             Cancel
                           </button>
@@ -198,12 +198,12 @@ export default function EditSocialProfile({
                             !testimonialText ||
                             error1 ||
                             !testimonialBy ||
-                            transition?.state != 'idle'
+                            navigation.state != 'idle'
                               ? true
                               : false
                           }
                         >
-                          {transition?.state != 'idle' ? (
+                          {navigation.state != 'idle' ? (
                             <BeatLoader color="#ffffff" size={12} />
                           ) : (
                             'Edit Testimonial'

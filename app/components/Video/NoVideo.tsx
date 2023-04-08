@@ -21,7 +21,7 @@ export default function NoVideo({
 
   const [showCreateVideoLink, setShowCreateVideoLink] = useState(false)
   const apiResponseRef = useRef('')
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
   const { id, message } = apiResponse
 
@@ -40,7 +40,7 @@ export default function NoVideo({
   }
 
   useEffect(() => {
-    const action = transition?.submission?.action || ''
+    const action = navigation.formAction || ''
 
     if (action.includes('add/video') && !apiResponseRef?.current)
       apiResponseRef.current = 'Your video link added successfully.'
@@ -51,14 +51,14 @@ export default function NoVideo({
     if (action.includes('delete/video') && !apiResponseRef?.current)
       apiResponseRef.current = 'Your video link has been deleted successfully.'
 
-    if (transition?.state === 'idle' && apiResponseRef?.current) {
+    if (navigation.state === 'idle' && apiResponseRef?.current) {
       setApiResponse({
         message: apiResponseRef.current,
         id: apiResponse?.id + 1,
       })
       apiResponseRef.current = ''
     }
-  }, [transition])
+  }, [navigation])
 
   return (
     <Transition.Root show={true} as={Fragment}>

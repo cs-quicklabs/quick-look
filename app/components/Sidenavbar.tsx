@@ -1,4 +1,4 @@
-import { EmojiHappyIcon, CogIcon } from '@heroicons/react/24/outline'
+import { FaceSmileIcon, CogIcon } from '@heroicons/react/24/outline'
 
 type nav = {
   name: string
@@ -8,7 +8,7 @@ type nav = {
   class?: any
 }[]
 const navigation: nav = [
-  { name: 'Profile', icon: EmojiHappyIcon, href: '#', current: true },
+  { name: 'Profile', icon: FaceSmileIcon, href: '#', current: true },
   { name: 'Settings', icon: CogIcon, href: '#', current: false },
   {
     name: 'Support',

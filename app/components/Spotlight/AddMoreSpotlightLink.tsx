@@ -38,7 +38,7 @@ export default function AddMoreSpotlightLink({
   mode,
   setmode,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [openAdditionalLinkForm, setOpenAdditionalLinkForm] = useState(false)
   const [selectedColor, setSelectedColor] = useState('')
   const [click, setClick] = useState(false)
@@ -55,8 +55,8 @@ export default function AddMoreSpotlightLink({
   const [text, setText] = useState('')
 
   useEffect(() => {
-    transition.state === 'loading' && setOpenAdditionalLinkForm(false)
-  }, [loaderData, transition])
+    navigation.state === 'loading' && setOpenAdditionalLinkForm(false)
+  }, [loaderData, navigation])
 
   useEffect(() => {
     if (additionalLinkUpdateMessage) {
@@ -72,7 +72,7 @@ export default function AddMoreSpotlightLink({
   }, [additionalLinkUpdateMessage])
 
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       if (loaderData?.profile?.additionalLinksHexCode) {
         setInput({
           linkHex: loaderData?.profile?.additionalLinksHexCode,
@@ -97,7 +97,7 @@ export default function AddMoreSpotlightLink({
       }
       setClick(false)
     }
-  }, [transition, loaderData])
+  }, [navigation, loaderData])
 
   useEffect(() => {
     setSelectedColor(loaderData?.profile?.additionalLinksColor)
@@ -384,9 +384,9 @@ export default function AddMoreSpotlightLink({
                                     if (errorUrl || errorLinkText || errorHex || errorNoColor)
                                       e.preventDefault()
                                   }}
-                                  disabled={transition?.state != 'idle' ? true : false}
+                                  disabled={navigation.state != 'idle' ? true : false}
                                 >
-                                  {transition?.submission?.action ===
+                                  {navigation.formAction ===
                                   '/account/add/additionalLink' ? (
                                     <BeatLoader color="#ffffff" size={12} />
                                   ) : (

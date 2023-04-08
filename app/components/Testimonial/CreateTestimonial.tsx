@@ -15,12 +15,12 @@ export default function AccountTestimonial({
   setmode,
   setShowCreateTestimonial,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setShowCreateTestimonial(false)
     }
-  }, [transition])
+  }, [navigation])
 
   const [testimonialBy, setTestimonialBy] = useState('')
   const [testimonialText, setTestimonialText] = useState('')
@@ -236,7 +236,7 @@ export default function AccountTestimonial({
                               type="button"
                               className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                               onClick={OnCancel}
-                              disabled={transition?.state != 'idle'}
+                              disabled={navigation.state != 'idle'}
                             >
                               Cancel
                             </button>
@@ -251,12 +251,12 @@ export default function AccountTestimonial({
                               !testimonialText ||
                               error1 ||
                               !testimonialBy ||
-                              transition?.state != 'idle'
+                              navigation.state != 'idle'
                                 ? true
                                 : false
                             }
                           >
-                            {transition?.state != 'idle' ? (
+                            {navigation.state != 'idle' ? (
                               <BeatLoader color="#ffffff" size={12} />
                             ) : (
                               'Add Testimonial'

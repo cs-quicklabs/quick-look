@@ -9,11 +9,11 @@ export default function Portfolioimage({ img, setUpload, setEdit, setDel, del, e
   const [show, setShow] = useState(false)
   const imageref = useRef(null)
   const btnref = useRef(null)
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [url, setUrl] = useState('')
   useEffect(() => {
-    transition.state == 'loading' && setShow(false)
-  }, [transition, del])
+    navigation.state == 'loading' && setShow(false)
+  }, [navigation, del])
   useEffect(() => {
     if (url) {
       //@ts-ignore
@@ -53,7 +53,7 @@ export default function Portfolioimage({ img, setUpload, setEdit, setDel, del, e
 
   return (
     <li key={img.id} className={`relative `}>
-      {/* {transition.state != 'idle' && show && edit || transition.state != 'idle' && show && del ?  */}
+      {/* {navigation.state != 'idle' && show && edit || navigation.state != 'idle' && show && del ?  */}
       {/* <BeatLoader color="#184fad" /> : */}
       <img
         draggable={false}

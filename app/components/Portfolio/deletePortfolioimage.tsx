@@ -4,7 +4,7 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Form } from '@remix-run/react'
 
 export default function DeletePortfolioImage({ open, onClose, id, setShow, del }: any) {
-  // const transition = useNavigation()
+  // const navigation = useNavigation()
   const cancelButtonRef = useRef(null)
 
   return (

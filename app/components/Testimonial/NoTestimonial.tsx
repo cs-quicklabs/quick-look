@@ -22,7 +22,7 @@ export default function NoTestimonial({
   const [showCreateTestimonial, setShowCreateTestimonial] = useState(false)
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
   const apiResponseRef = useRef('')
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const { id, message } = apiResponse
 
   const toggleCreatetestimonial = () => {
@@ -42,7 +42,7 @@ export default function NoTestimonial({
   }
 
   useEffect(() => {
-    const action = transition?.submission?.action || ''
+    const action = navigation.formAction || ''
 
     if (action.includes('add/testimonial') && !apiResponseRef?.current)
       apiResponseRef.current = 'Your testimonial added successfully.'
@@ -53,14 +53,14 @@ export default function NoTestimonial({
     if (action.includes('delete/testimonial') && !apiResponseRef?.current)
       apiResponseRef.current = 'Your testimonial has been deleted successfully.'
 
-    if (transition?.state === 'idle' && apiResponseRef?.current) {
+    if (navigation.state === 'idle' && apiResponseRef?.current) {
       setApiResponse({
         message: apiResponseRef.current,
         id: apiResponse?.id + 1,
       })
       apiResponseRef.current = ''
     }
-  }, [transition])
+  }, [navigation])
 
   return (
     <Transition.Root show={true} as={Fragment}>

@@ -1,11 +1,11 @@
-import { EmojiHappyIcon, CogIcon, CreditCardIcon } from '@heroicons/react/24/outline'
+import { FaceSmileIcon, CogIcon, CreditCardIcon } from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 import { useLocation } from '@remix-run/react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Bars2Icon, XCircleIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Profile', icon: EmojiHappyIcon, href: '/account/profile' },
+  { name: 'Profile', icon: FaceSmileIcon, href: '/account/profile' },
   { name: 'License', icon: CreditCardIcon, href: '/account/license' },
   { name: 'Settings', icon: CogIcon, href: '/account/settings' },
 ]

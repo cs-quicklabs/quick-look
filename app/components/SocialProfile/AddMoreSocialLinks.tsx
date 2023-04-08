@@ -18,7 +18,7 @@ export default function AddMoreSocialLinks({
 }: any) {
   const [text, setText] = useState('')
   const [text1, setText1] = useState('')
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   const [showCreateProfile, setshowCreateProfile] = useState(false)
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function AddMoreSocialLinks({
   }, [message, successUpdateMessage])
 
   useEffect(() => {
-    transition.state === 'loading' && setshowCreateProfile(false)
-  }, [transition, showCreateProfile])
+    navigation.state === 'loading' && setshowCreateProfile(false)
+  }, [navigation, showCreateProfile])
 
   const OnCancel = () => {
     setshowSocialLinks(false)

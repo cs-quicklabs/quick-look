@@ -15,7 +15,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
   const [error, setError] = useState('')
   const [errorDrag, setErrorDrag] = useState('')
   const apiResponseRef = useRef('')
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [apiResponse, setApiResponse] = useState({ id: 0, message: '' })
   const { id, message } = apiResponse
 
@@ -88,18 +88,18 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
     setmode('desktop')
   }
   useEffect(() => {
-    if (transition.state != 'idle') {
+    if (navigation.state != 'idle') {
       setError('')
       setErrorDrag('')
     }
-  }, [transition, error, errorDrag])
+  }, [navigation, error, errorDrag])
 
   const isUploading =
-    (transition.state !== 'idle' && upload) ||
-    transition?.submission?.action === '/account/add/drop-portfolio-image'
+    (navigation.state !== 'idle' && upload) ||
+    navigation.formAction === '/account/add/drop-portfolio-image'
 
   useEffect(() => {
-    const action = transition?.submission?.action || ''
+    const action = navigation.formAction || ''
 
     if (action.includes('add/') && !apiResponseRef?.current)
       apiResponseRef.current = 'Your Portfolio Image added successfully.'
@@ -110,14 +110,14 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
     if (action.includes('delete/') && !apiResponseRef?.current)
       apiResponseRef.current = 'Your Portfolio Image has been deleted successfully.'
 
-    if (transition?.state === 'idle' && apiResponseRef?.current) {
+    if (navigation.state === 'idle' && apiResponseRef?.current) {
       setApiResponse({
         message: apiResponseRef.current,
         id: apiResponse?.id + 1,
       })
       apiResponseRef.current = ''
     }
-  }, [transition])
+  }, [navigation])
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -249,7 +249,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
                     </div>
                     <div
                       className={`relative ${
-                        (transition.state != 'idle' && edit) || (transition.state != 'idle' && del)
+                        (navigation.state != 'idle' && edit) || (navigation.state != 'idle' && del)
                           ? 'opacity-30'
                           : null
                       }`}
@@ -271,7 +271,7 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
                         ))}
                       </ul>
                     </div>
-                    {(transition.state != 'idle' && edit) || (transition.state != 'idle' && del) ? (
+                    {(navigation.state != 'idle' && edit) || (navigation.state != 'idle' && del) ? (
                       <div className={`relative ${calc} mx-auto`}>
                         <BeatLoader color="#184fad" />
                       </div>

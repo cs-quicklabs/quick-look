@@ -18,11 +18,11 @@ export default function EditSocialProfile({
   mode,
 }: any) {
   const linkName = localStorage.getItem('LinkName')
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   useEffect(() => {
-    transition.state === 'loading' && setShowEditProfile(false)
-  }, [transition])
+    navigation.state === 'loading' && setShowEditProfile(false)
+  }, [navigation])
 
   useEffect(() => {
     localStorage.setItem('LinkName', clickedLink?.name)
@@ -128,7 +128,7 @@ export default function EditSocialProfile({
                     onClick={() => {
                       setShowEditProfile(false)
                     }}
-                    disabled={transition?.state != 'idle'}
+                    disabled={navigation.state != 'idle'}
                   >
                     Cancel
                   </button>
@@ -138,9 +138,9 @@ export default function EditSocialProfile({
                   id="updateSocialLink"
                   type="submit"
                   className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
-                  disabled={!val || transition?.state != 'idle' ? true : !error ? false : true}
+                  disabled={!val || navigation.state != 'idle' ? true : !error ? false : true}
                 >
-                  {transition?.state != 'idle' ? (
+                  {navigation.state != 'idle' ? (
                     <BeatLoader color="#ffffff" className="px-0 py-0" size={12} />
                   ) : (
                     'Update'

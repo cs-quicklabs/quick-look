@@ -6,6 +6,7 @@ import { Switch } from '@headlessui/react'
 import { Form, useNavigation } from '@remix-run/react'
 import * as HIcons from '@heroicons/react/24/outline'
 import BeatLoader from 'react-spinners/BeatLoader'
+import React from 'react'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -38,7 +39,7 @@ export default function CreateBanner({
   mode,
   setmode,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
   const [enabled, setEnabled] = useState(loaderData?.supportBanner?.toggleBanner)
@@ -58,7 +59,6 @@ export default function CreateBanner({
   const Name = _.replace(iconName, ' ', '')
   const Final = Name.split(' ').join('')
   const { ...icons } = HIcons
-  //@ts-ignore
   const TheIcon: any = React.useMemo(() => icons[Final] || null, [Final])
 
   const Onclose = (e: any) => {
@@ -83,10 +83,10 @@ export default function CreateBanner({
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setShowCreatebanner(false)
     }
-  }, [transition, error, errorLink, errorHex, errorColor])
+  }, [navigation, error, errorLink, errorHex, errorColor])
 
   useEffect(() => {
     if (value?.bannerHex?.length && !validRegex.test(value.bannerHex)) {
@@ -451,9 +451,9 @@ export default function CreateBanner({
                                   if (error || errorLink || errorHex || errorNoColor)
                                     e.preventDefault()
                                 }}
-                                disabled={transition?.state != 'idle' ? true : false}
+                                disabled={navigation.state != 'idle' ? true : false}
                               >
-                                {transition?.state != 'idle' &&
+                                {navigation.state != 'idle' &&
                                 !error &&
                                 !errorLink &&
                                 !errorHex &&

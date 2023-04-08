@@ -31,7 +31,7 @@ export default function EditSpotlight({
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
   }
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   const [val, setVal] = useState({
     linkText: clickedAdditionalSpotlight?.linkText,
@@ -52,11 +52,11 @@ export default function EditSpotlight({
     linkUrl: '',
   })
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setClicked(false)
       setShowEditAdditional(false)
     }
-  }, [transition])
+  }, [navigation])
 
   useEffect(() => {
     if (val?.linkText?.length === 0) {
@@ -264,7 +264,7 @@ export default function EditSpotlight({
                       onClick={() => {
                         setShowEditAdditional(false)
                       }}
-                      disabled={transition?.state != 'idle'}
+                      disabled={navigation.state != 'idle'}
                     >
                       Cancel
                     </button>
@@ -286,9 +286,9 @@ export default function EditSpotlight({
                       )
                         e.preventDefault()
                     }}
-                    disabled={transition?.state != 'idle' ? true : false}
+                    disabled={navigation.state != 'idle' ? true : false}
                   >
-                    {transition?.submission?.action === '/account/update/additionalLink' &&
+                    {navigation.formAction === '/account/update/additionalLink' &&
                     !errorUrl &&
                     !errorLinkText ? (
                       <BeatLoader color="#ffffff" size={12} />

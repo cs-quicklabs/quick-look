@@ -5,7 +5,7 @@ import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function DeleteVideo({ setVal, openDeleteVideoModal, onClose }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const cancelButtonRef = useRef(null)
 
   return (
@@ -66,9 +66,9 @@ export default function DeleteVideo({ setVal, openDeleteVideoModal, onClose }: a
                       onClick={() => {
                         setVal('')
                       }}
-                      disabled={transition?.state != 'idle' ? true : false}
+                      disabled={navigation.state != 'idle' ? true : false}
                     >
-                      {transition?.state != 'idle' ? (
+                      {navigation.state != 'idle' ? (
                         <BeatLoader color="#ffffff" className="px-0 py-0.5" size={12} />
                       ) : (
                         'Delete'
@@ -79,7 +79,7 @@ export default function DeleteVideo({ setVal, openDeleteVideoModal, onClose }: a
                     type="button"
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
                     onClick={onClose}
-                    disabled={transition?.state != 'idle'}
+                    disabled={navigation.state != 'idle'}
                   >
                     Cancel
                   </button>

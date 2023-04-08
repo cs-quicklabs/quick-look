@@ -129,7 +129,7 @@ export const meta: MetaFunction = () => {
 
 export default function SignUp() {
   const captchaRef = useRef(null)
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const Data = useLoaderData()
 
   const actionData = useActionData()
@@ -435,7 +435,7 @@ export default function SignUp() {
                     data-cy="createNewAccountButton"
                     type="submit"
                     className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white leading-5 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-8`}
-                    disabled={transition?.state != 'idle' ? true : false}
+                    disabled={navigation.state != 'idle' ? true : false}
                   >
                     <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                       <LockClosedIcon
@@ -443,7 +443,7 @@ export default function SignUp() {
                         aria-hidden="true"
                       />
                     </span>
-                    {transition?.state != 'idle' ? (
+                    {navigation.state != 'idle' ? (
                       <BeatLoader color="#ffffff" />
                     ) : (
                       'Create New Account'

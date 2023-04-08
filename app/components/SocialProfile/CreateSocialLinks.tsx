@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XCircleIcon, CheckIcon, SelectorIcon } from '@heroicons/react/24/solid'
+import { XCircleIcon, CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid'
 import { Combobox } from '@headlessui/react'
 import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
@@ -24,7 +24,7 @@ export default function CreateSocialLinks({
     { id: 3, name: 'Youtube', link: loaderData?.socialMedia?.youtubeLink },
   ].filter((socialLink) => !socialLink.link)
 
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [clickedAdd, setClickedAdd] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
@@ -33,8 +33,8 @@ export default function CreateSocialLinks({
   const [click, setClick] = useState(false)
 
   useEffect(() => {
-    transition.state === 'loading' && setshowCreateProfile(false)
-  }, [transition, showCreateProfile])
+    navigation.state === 'loading' && setshowCreateProfile(false)
+  }, [navigation, showCreateProfile])
   let fbRegEx: any =
     sociallink === 'facebook'
       ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm
@@ -63,10 +63,10 @@ export default function CreateSocialLinks({
   }, [loaderData])
 
   useEffect(() => {
-    if (transition?.state === 'idle') {
+    if (navigation.state === 'idle') {
       setClickedAdd(false)
     }
-  }, [transition?.state])
+  }, [navigation.state])
 
   const handleChange = (e: any) => {
     setValue(e.target.value)
@@ -158,7 +158,7 @@ export default function CreateSocialLinks({
                               name="select_social"
                             />
                             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-                              <SelectorIcon
+                              <ChevronUpDownIcon
                                 id="socialProfileBox"
                                 className="h-5 w-5 text-gray-400"
                                 aria-hidden="true"
@@ -244,7 +244,7 @@ export default function CreateSocialLinks({
                               setshowCreateProfile(false)
                               setshowSocialLinks(true)
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             Cancel
                           </button>
@@ -255,13 +255,13 @@ export default function CreateSocialLinks({
                           type="submit"
                           className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                           disabled={
-                            !value || transition?.state != 'idle' ? true : !error ? false : true
+                            !value || navigation.state != 'idle' ? true : !error ? false : true
                           }
                           onClick={() => {
                             setClickedAdd(true)
                           }}
                         >
-                          {transition?.state != 'idle' && clickedAdd ? (
+                          {navigation.state != 'idle' && clickedAdd ? (
                             <BeatLoader color="#ffffff" size={12} />
                           ) : (
                             'Add Profile'

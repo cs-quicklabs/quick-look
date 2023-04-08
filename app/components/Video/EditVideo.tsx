@@ -14,7 +14,7 @@ export default function EditSocialProfile({
 }: any) {
   const [val, setVal] = useState(loaderData?.video?.videoLink)
 
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   const Onclose = () => {
     if (mode === 'desktop') {
@@ -54,10 +54,10 @@ export default function EditSocialProfile({
   }, [val])
 
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setShowEditVideo(false)
     }
-  }, [transition])
+  }, [navigation])
 
   const handleURL = (event: any) => {
     const value = event.target.value
@@ -146,7 +146,7 @@ export default function EditSocialProfile({
                             type="button"
                             className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                             onClick={OnCancel}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             Cancel
                           </button>
@@ -157,12 +157,12 @@ export default function EditSocialProfile({
                           type="submit"
                           className="ml-4 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer disabled:cursor-pointer"
                           // @ts-ignore
-                          //  onClick={transition.state === 'loading' ? OnCancel : null}
+                          //  onClick={navigation.state === 'loading' ? OnCancel : null}
                           disabled={
-                            !val || transition?.state != 'idle' ? true : !error ? false : true
+                            !val || navigation.state != 'idle' ? true : !error ? false : true
                           }
                         >
-                          {transition?.state != 'idle' ? (
+                          {navigation.state != 'idle' ? (
                             <BeatLoader color="#ffffff" size={12} />
                           ) : (
                             'Edit Video'

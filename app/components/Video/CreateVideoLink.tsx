@@ -16,12 +16,12 @@ export default function CreateVideoLink({
   setmode,
 }: any) {
   const [val, setVal] = useState('')
-  const transition = useNavigation()
+  const navigation = useNavigation()
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setShowCreateVideoLink(false)
     }
-  }, [transition])
+  }, [navigation])
 
   const OnCancel = () => {
     setShowCreateVideoLink(false)
@@ -169,7 +169,7 @@ export default function CreateVideoLink({
                               type="button"
                               className="rounded-md mb-4 border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 leading-5 disabled:cursor-pointer"
                               onClick={OnCancel}
-                              disabled={transition?.state != 'idle'}
+                              disabled={navigation.state != 'idle'}
                             >
                               Cancel
                             </button>
@@ -180,10 +180,10 @@ export default function CreateVideoLink({
                             type="submit"
                             className="ml-4 mr-2 mb-4 leading-5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                             disabled={
-                              !val || transition?.state != 'idle' ? true : !error ? false : true
+                              !val || navigation.state != 'idle' ? true : !error ? false : true
                             }
                           >
-                            {transition?.state != 'idle' ? (
+                            {navigation.state != 'idle' ? (
                               <BeatLoader color="#ffffff" size={12} />
                             ) : (
                               'Add Video'

@@ -2,7 +2,7 @@ import React from 'react'
 import { Listbox, Dialog, Transition } from '@headlessui/react'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
 import { Form, useNavigation } from '@remix-run/react'
@@ -53,7 +53,7 @@ export default function CreateSpotlight({
   mode,
   setmode,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   const [selectedColor, setSelectedColor] = useState(loaderData?.spotlightButton?.buttonColor || '')
 
@@ -113,10 +113,10 @@ export default function CreateSpotlight({
   }, [val.hexcode, selectedColor])
 
   useEffect(() => {
-    if (transition.state === 'loading' && !error && !errorLink && !errorHex && !errorColor) {
+    if (navigation.state === 'loading' && !error && !errorLink && !errorHex && !errorColor) {
       showEditSpotlight && setShowEditSpotlight(false)
     }
-  }, [transition])
+  }, [navigation])
 
   const [click, setClicked] = useState(false)
 
@@ -419,7 +419,7 @@ export default function CreateSpotlight({
                                       >
                                         <span className="block truncate">{selected.name}</span>
                                         <span className="cursor-pointer  absolute inset-y-0 right-0 flex items-center pr-2">
-                                          <SelectorIcon
+                                          <ChevronUpDownIcon
                                             className="h-5 w-5 text-gray-400"
                                             aria-hidden="true"
                                           />
@@ -577,9 +577,9 @@ export default function CreateSpotlight({
                                   setClicked(true)
                                   error && errorLink && errorHex && errorColor && e.preventDefault()
                                 }}
-                                disabled={transition?.state != 'idle' ? true : false}
+                                disabled={navigation.state != 'idle' ? true : false}
                               >
-                                {transition?.state != 'idle' ? (
+                                {navigation.state != 'idle' ? (
                                   <BeatLoader color="#ffffff" size={12} />
                                 ) : loaderData?.spotlightButton?.buttonText ? (
                                   'Edit Spotlight Button'

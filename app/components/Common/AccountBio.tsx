@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline'
 import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
@@ -16,7 +16,7 @@ export default function DashboardBio({
   mode,
   setmode,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   // const Onclose = (e: any) => {
   //   setinput(initialInput)
@@ -247,16 +247,16 @@ export default function DashboardBio({
                         type="button"
                         className="mb-4 rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50 disabled:cursor-pointer"
                         onClick={OnCancel}
-                        disabled={transition?.state != 'idle'}
+                        disabled={navigation.state != 'idle'}
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         className="ml-4 mr-2 mb-4 inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
-                        disabled={transition?.state != 'idle' ? true : false}
+                        disabled={navigation.state != 'idle' ? true : false}
                       >
-                        {transition?.state != 'idle' ? (
+                        {navigation.state != 'idle' ? (
                           <BeatLoader color="#ffffff" size={10} />
                         ) : (
                           'Update'

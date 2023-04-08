@@ -96,7 +96,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Login() {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const actionData = useActionData()
 
   const loaderData = useLoaderData()
@@ -247,9 +247,9 @@ export default function Login() {
                     data-cy="loginButton"
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md  -sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    disabled={transition?.state != 'idle' ? true : false}
+                    disabled={navigation.state != 'idle' ? true : false}
                   >
-                    {transition?.state != 'idle' ? <BeatLoader color="#ffffff" /> : 'Sign in'}
+                    {navigation.state != 'idle' ? <BeatLoader color="#ffffff" /> : 'Sign in'}
                   </button>
                 </div>
                 <p className="mt-2 text-center text-sm">

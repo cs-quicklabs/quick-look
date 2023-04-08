@@ -23,7 +23,7 @@ import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
 import Modal from './Modal'
 
 export default function AccountTemplate({ setshowTemplate, mode, setmode }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
 
   const [selectTemplate, setSelectTemplate] = useState('')
   // const templateHandle = 'update/choose-template'
@@ -43,16 +43,16 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
 
   useEffect(() => {
     if (
-      transition?.submission?.action?.includes('/account/update/choose-template') &&
+      navigation.formAction?.includes('/account/update/choose-template') &&
       !apiResponseRef?.current
     )
       apiResponseRef.current = true
 
-    if (transition?.state === 'idle' && apiResponseRef?.current) {
+    if (navigation.state === 'idle' && apiResponseRef?.current) {
       setSelectTemplate('')
       apiResponseRef.current = false
     }
-  }, [transition])
+  }, [navigation])
 
   return (
     <>
@@ -61,7 +61,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
         handleCancel={() => {
           setSelectTemplate('')
         }}
-        loading={transition?.submission?.action === '/account/update/choose-template'}
+        loading={navigation.formAction === '/account/update/choose-template'}
         value={selectTemplate}
         confirmButtonText="Change"
         cancelButtonText="Cancel"
@@ -127,10 +127,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('0')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '0' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem] ">
                                 <BeatLoader
                                   color="#184fad"
@@ -168,10 +168,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('2')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '2' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -209,10 +209,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('8')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '8' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -250,10 +250,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('7')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '7' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -291,10 +291,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('5')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '5' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -332,10 +332,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('10')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '10' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -373,10 +373,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('9')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '9' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -414,10 +414,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('3')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '3' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -455,10 +455,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('4')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '4' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -495,9 +495,9 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         type='submit'
                         className='disabled:cursor-pointer'
                         onClick={(e: any) => { setSelectTemplate('template6') }}
-                        disabled={transition?.state != 'idle'}
+                        disabled={navigation.state != 'idle'}
                         >
-                          {selectTemplate === 'template6' && transition?.submission?.action == "/account/update/choose-template" ? (
+                          {selectTemplate === 'template6' && navigation.formAction == "/account/update/choose-template" ? (
                             <div className='relative top-[-1rem]'><BeatLoader color="#184fad" 
                             className={`relative items-center ${mode === 'mobile' ? "top-[6rem] xl:top-[8.5rem]" : "top-[8.5rem]"}`} />
                             <img src={thumb6} alt="" className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' :'h-[14rem]'}`} />
@@ -523,10 +523,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('11')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '11' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -564,10 +564,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('13')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '13' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -605,10 +605,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('14')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '14' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -646,10 +646,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('16')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '16' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -687,10 +687,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('17')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '17' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"
@@ -728,10 +728,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                             onClick={(e: any) => {
                               setSelectTemplate('18')
                             }}
-                            disabled={transition?.state != 'idle'}
+                            disabled={navigation.state != 'idle'}
                           >
                             {selectTemplate === '18' &&
-                            transition?.submission?.action == '/account/update/choose-template' ? (
+                            navigation.formAction == '/account/update/choose-template' ? (
                               <div className="relative top-[-1rem]">
                                 <BeatLoader
                                   color="#184fad"

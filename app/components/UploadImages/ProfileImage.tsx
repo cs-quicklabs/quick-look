@@ -38,7 +38,7 @@ function ProfileImage({
   setUrlSec,
   setRestore,
 }: any) {
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const handleChange2 = (e: any) => {
     if (e.target.files[0].size / 1024 < 4300) {
@@ -129,7 +129,7 @@ function ProfileImage({
 
   // callback to open editor for profile image after changing
   useEffect(() => {
-    const action = transition?.submission?.action || ''
+    const action = navigation.formAction || ''
 
     if (
       (action.includes('change-profile-image') || action.includes('/account/add/SecImage')) &&
@@ -137,7 +137,7 @@ function ProfileImage({
     )
       changeImageStateRef.current = true
 
-    if (transition?.state === 'idle' && changeImageStateRef?.current && openEditor) {
+    if (navigation.state === 'idle' && changeImageStateRef?.current && openEditor) {
       changeImageStateRef.current = false
 
       setTimeout(() => {
@@ -149,12 +149,12 @@ function ProfileImage({
     }
 
     setOpenEditor(false)
-  }, [transition, openEditor])
+  }, [navigation, openEditor])
 
   const isUploading =
-    (upload2 === 'sec' && transition?.submission?.action === '/account/add/SecImage') ||
-    (restore2 && transition?.submission?.action === '/account/update/restoreImage') ||
-    (drag2 && transition?.submission?.action == '/account/update/crop-image')
+    (upload2 === 'sec' && navigation.formAction === '/account/add/SecImage') ||
+    (restore2 && navigation.formAction === '/account/update/restoreImage') ||
+    (drag2 && navigation.formAction == '/account/update/crop-image')
 
   return (
     <>
@@ -167,9 +167,9 @@ function ProfileImage({
 
             <div className="mt-3.5 flex h-[8rem] w-[8rem]  justify-center rounded-full">
               {(deleteImage === 'secondary' &&
-                transition?.submission?.action == '/account/delete/image') ||
-              (edit2 && transition?.submission?.action == '/account/update/crop-image') ||
-              transition?.submission?.action === '/account/update/change-profile-image' ? (
+                navigation.formAction == '/account/delete/image') ||
+              (edit2 && navigation.formAction == '/account/update/crop-image') ||
+              navigation.formAction === '/account/update/change-profile-image' ? (
                 <div className="relative top-[-1.8rem]">
                   <BeatLoader color="#184fad" className="relative top-20 left-[2.2rem]" />
                   <img
@@ -209,7 +209,7 @@ function ProfileImage({
 
           <div
             className={`px-4 mt-3 flex items-center sm:px-6 ${
-              transition?.state === 'idle' ? '' : 'hidden'
+              navigation.state === 'idle' ? '' : 'hidden'
             }`}
           >
             <button
@@ -292,7 +292,7 @@ function ProfileImage({
 
             <div
               className={`text-center ${isUploading ? 'invisible' : ''} ${
-                transition.state !== 'idle' ? 'pointer-events-none' : ''
+                navigation.state !== 'idle' ? 'pointer-events-none' : ''
               } `}
             >
               <Dropzone
@@ -323,7 +323,7 @@ function ProfileImage({
                     Upload Image
                     <input
                       type="file"
-                      disabled={transition.state !== 'idle' ? true : false}
+                      disabled={navigation.state !== 'idle' ? true : false}
                       className="hidden"
                       id="photo2"
                       name="secondaryImageUpload"
@@ -342,7 +342,7 @@ function ProfileImage({
                     value="restoresecondaryImage"
                     className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
                     disabled={
-                      upload === 'sec' && transition?.submission?.action == '/account/add/SecImage'
+                      upload === 'sec' && navigation.formAction == '/account/add/SecImage'
                     }
                     onClick={() => {
                       setRestore2((prev: any) => (prev = true))

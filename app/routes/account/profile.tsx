@@ -113,7 +113,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Profile() {
   const actionData = useActionData()
   const loaderData = useLoaderData()
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const [pass, SetPass] = useState({
     oldpassword: '',
     newpassword: '',
@@ -147,13 +147,13 @@ export default function Profile() {
     }, 2000)
   }
   useEffect(() => {
-    transition.state == 'loading' &&
+    navigation.state == 'loading' &&
       SetPass({
         oldpassword: '',
         newpassword: '',
         confirmnewpassword: '',
       })
-  }, [transition, pass])
+  }, [navigation, pass])
   return (
     <>
       <div>
@@ -319,10 +319,10 @@ export default function Profile() {
                       onClick={(e: any) => {
                         setSelectSave('profileSaveButton')
                       }}
-                      disabled={transition?.state != 'idle'}
+                      disabled={navigation.state != 'idle'}
                     >
                       {selectSave === 'profileSaveButton' &&
-                      transition?.submission?.action == '/account/profile' ? (
+                      navigation.formAction == '/account/profile' ? (
                         <BeatLoader color="#ffffff" size={12} />
                       ) : (
                         'Save'
@@ -491,10 +491,10 @@ export default function Profile() {
                           onClick={(e: any) => {
                             setSelectSave('passwordSaveButton')
                           }}
-                          disabled={transition?.state != 'idle'}
+                          disabled={navigation.state != 'idle'}
                         >
                           {selectSave === 'passwordSaveButton' &&
-                          transition?.submission?.action == '/account/profile' ? (
+                          navigation.formAction == '/account/profile' ? (
                             <BeatLoader color="#ffffff" size={12} />
                           ) : (
                             'Save'

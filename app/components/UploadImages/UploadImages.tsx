@@ -66,7 +66,7 @@ export default function NoImages({
     })
   }, [])
 
-  const transition = useNavigation()
+  const navigation = useNavigation()
   const ref = useRef(null)
   const ref2 = useRef(null)
   const ref3 = useRef(null)
@@ -224,7 +224,7 @@ export default function NoImages({
   const [openEditor, setOpenEditor] = useState(false)
 
   useEffect(() => {
-    const action = transition?.submission?.action || ''
+    const action = navigation.formAction || ''
 
     if (
       (action.includes('change-image') || action.includes('add/image')) &&
@@ -232,7 +232,7 @@ export default function NoImages({
     )
       changeImageStateRef.current = true
 
-    if (transition?.state === 'idle' && changeImageStateRef?.current && openEditor) {
+    if (navigation.state === 'idle' && changeImageStateRef?.current && openEditor) {
       changeImageStateRef.current = false
 
       setTimeout(() => {
@@ -243,7 +243,7 @@ export default function NoImages({
       }, 1000)
     }
     setOpenEditor(false)
-  }, [transition, openEditor])
+  }, [navigation, openEditor])
 
   // for success alert
   const apiResponseRef = useRef('')
@@ -252,7 +252,7 @@ export default function NoImages({
   const timeOutRef = useRef('')
 
   useEffect(() => {
-    const action = transition?.submission?.action || ''
+    const action = navigation.formAction || ''
 
     if (action.includes('add/image') && !apiResponseRef?.current)
       apiResponseRef.current = 'Image added successfully.'
@@ -269,14 +269,14 @@ export default function NoImages({
     if (action.includes('delete/') && !apiResponseRef?.current)
       apiResponseRef.current = 'Image has been deleted successfully.'
 
-    if (transition?.state === 'idle' && apiResponseRef?.current) {
+    if (navigation.state === 'idle' && apiResponseRef?.current) {
       setApiResponse({
         message: apiResponseRef.current,
         id: apiResponse?.id + 1,
       })
       apiResponseRef.current = ''
     }
-  }, [transition])
+  }, [navigation])
 
   useEffect(() => {
     if (apiResponse?.message) {
@@ -289,9 +289,9 @@ export default function NoImages({
   }, [apiResponse])
 
   const isUploading =
-    (upload === 'primary' && transition?.submission?.action === '/account/add/image') ||
-    (restore && transition?.submission?.action === '/account/update/restoreImage') ||
-    (drag && transition?.submission?.action == '/account/update/crop-image')
+    (upload === 'primary' && navigation.formAction === '/account/add/image') ||
+    (restore && navigation.formAction === '/account/update/restoreImage') ||
+    (drag && navigation.formAction == '/account/update/crop-image')
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -370,10 +370,10 @@ export default function NoImages({
                         <div>
                           <div className="mt-3.5 flex  h-44 justify-center rounded-md">
                             {(deleteImage === 'primary' &&
-                              transition?.submission?.action == '/account/delete/image') ||
+                              navigation.formAction == '/account/delete/image') ||
                             (edit &&
-                              transition?.submission?.action == '/account/update/crop-image') ||
-                            transition?.submission?.action === '/account/update/change-image' ? (
+                              navigation.formAction == '/account/update/crop-image') ||
+                            navigation.formAction === '/account/update/change-image' ? (
                               <div className="relative top-[-1rem] ">
                                 <BeatLoader
                                   color="#184fad"
@@ -384,10 +384,10 @@ export default function NoImages({
                                   alt=""
                                   className={`h-full w-[31.5rem] object-cover ${
                                     (deleteImage === 'primary' &&
-                                      transition?.submission?.action == '/account/delete/image') ||
-                                    transition?.submission?.action ==
+                                      navigation.formAction == '/account/delete/image') ||
+                                    navigation.formAction ==
                                       '/account/update/crop-image' ||
-                                    transition?.submission?.action ===
+                                    navigation.formAction ===
                                       '/account/update/change-image'
                                       ? 'opacity-30'
                                       : ''
@@ -416,7 +416,7 @@ export default function NoImages({
 
                           <div
                             className={`mt-3 flex items-center justify-center ${
-                              transition?.state === 'idle' ? '' : 'hidden'
+                              navigation.state === 'idle' ? '' : 'hidden'
                             }`}
                           >
                             <button
@@ -469,7 +469,7 @@ export default function NoImages({
                               className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
                               disabled={
                                 deleteImage === 'primary' &&
-                                transition?.submission?.action == '/account/delete/image'
+                                navigation.formAction == '/account/delete/image'
                               }
                             >
                               Delete
@@ -504,7 +504,7 @@ export default function NoImages({
 
                           <div
                             className={`text-center ${isUploading ? 'invisible' : ''} ${
-                              transition.state !== 'idle' ? 'pointer-events-none' : ''
+                              navigation.state !== 'idle' ? 'pointer-events-none' : ''
                             } `}
                           >
                             <>
@@ -537,7 +537,7 @@ export default function NoImages({
                                     <input
                                       type="file"
                                       className="hidden"
-                                      disabled={transition.state !== 'idle' ? true : false}
+                                      disabled={navigation.state !== 'idle' ? true : false}
                                       id="photo"
                                       name="primaryImageUpload"
                                       accept="image/png, image/jpeg, image/jpg"
@@ -555,7 +555,7 @@ export default function NoImages({
                                     name="restoreImage"
                                     value="restoreprimaryImage"
                                     className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
-                                    disabled={upload === 'primary' && transition.state !== 'idle'}
+                                    disabled={upload === 'primary' && navigation.state !== 'idle'}
                                     onClick={() => {
                                       setRestore((prev) => (prev = true))
                                       setRestore2(false)
@@ -583,10 +583,10 @@ export default function NoImages({
 
                             <div className="mt-3.5 flex h-[8rem] w-[8rem]  justify-center rounded-full">
                               {(deleteImage === 'secondary' &&
-                                transition?.submission?.action ==
+                                navigation.formAction ==
                                   '/account/delete/image') ||
                               (edit2 &&
-                                transition?.submission?.action ==
+                                navigation.formAction ==
                                   '/account/update/crop-image') ? (
                                 <div className="relative top-[-1.8rem]">
                                   <BeatLoader
@@ -687,13 +687,13 @@ export default function NoImages({
                                 <div className="flex text-sm"></div>
                               </Dropzone>
                               {(upload2 === 'sec' &&
-                                transition?.submission?.action ===
+                                navigation.formAction ===
                                   '/account/add/image') ||
                               (restore2 &&
-                                transition?.submission?.action ===
+                                navigation.formAction ===
                                   '/account/update/restoreImage') ||
                               (drag2 &&
-                                transition?.submission?.action ==
+                                navigation.formAction ==
                                   '/account/update/crop-image') ? (
                                 <div className="flex h-[6rem] items-center justify-center">
                                   <BeatLoader color="#184fad" />
@@ -718,7 +718,7 @@ export default function NoImages({
                                       Upload Image
                                       <input
                                         type="file"
-                                        disabled={transition.state !== 'idle' ? true : false}
+                                        disabled={navigation.state !== 'idle' ? true : false}
                                         className="hidden"
                                         id="photo2"
                                         name="secondaryImageUpload"
@@ -746,7 +746,7 @@ export default function NoImages({
                                       className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
                                       disabled={
                                         upload === 'sec' &&
-                                        transition?.submission?.action ==
+                                        navigation.formAction ==
                                           '/account/add/image'
                                       }
                                       onClick={() => {
