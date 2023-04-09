@@ -1,14 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "es5",
-      "dom"
-    ],
-    "types": [
-      "cypress",
-      "cypress-xpath"
-    ]
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "cypress-xpath"]
   },
   "include": [
     "**/*.ts",

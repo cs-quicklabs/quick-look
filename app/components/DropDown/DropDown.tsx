@@ -1,33 +1,30 @@
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
-import { Fragment, SVGProps, useEffect, useRef, useState } from 'react'
-import DefaultProfileIcon from '../../../assets/images/profile.png';
+import { Fragment } from 'react'
+import DefaultProfileIcon from '../../../assets/images/profile.png'
 
-
-
-export default function DropDown({loaderData,setIsOpen}:any) {
-
- 
+export default function DropDown({ loaderData, setIsOpen }: any) {
   return (
-    <div >
+    <div>
       <Menu as="div">
-        
-          <Menu.Button as='div'>
-            <img
-                  width={32}
-                  height={32}
-                  id="OpenProfile"
-                  data-cy="profile-menu"
-                  
-                  title="Open Profile"
-                  loading="eager"
-                  className="w-8 h-8 rounded-full"
-                   src={!loaderData?.profileImage?.secondaryImage ? DefaultProfileIcon : loaderData?.profileImage?.secondaryImage}
-                  // onClick={() => toggleSetting()}
-                />
-            
-          </Menu.Button>
-        
+        <Menu.Button as="div">
+          <img
+            width={32}
+            height={32}
+            id="OpenProfile"
+            data-cy="profile-menu"
+            title="Open Profile"
+            loading="eager"
+            className="w-8 h-8 rounded-full"
+            src={
+              !loaderData?.profileImage?.secondaryImage
+                ? DefaultProfileIcon
+                : loaderData?.profileImage?.secondaryImage
+            }
+            alt="profile-pic"
+            // onClick={() => toggleSetting()}
+          />
+        </Menu.Button>
+
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -41,39 +38,33 @@ export default function DropDown({loaderData,setIsOpen}:any) {
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
-                  <a 
-                  href="/account/profile"
-
+                  <a
+                    href="/account/profile"
                     className={`${
                       active ? 'bg-gray-100 text-gray-700' : 'text-gray-700'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                  
-                   Profile Settings
+                    Profile Settings
                   </a>
                 )}
-                 
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <button  data-cy="sign-out"
-                  onClick={() => setIsOpen(true)}
-
-                     className={`${
+                  <button
+                    data-cy="sign-out"
+                    onClick={() => setIsOpen(true)}
+                    className={`${
                       active ? 'bg-gray-100 text-gray-700' : 'text-gray-700'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     Sign out
                   </button>
                 )}
-               
               </Menu.Item>
             </div>
-            
           </Menu.Items>
         </Transition>
       </Menu>
     </div>
   )
 }
-

@@ -1,4 +1,4 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
@@ -9,9 +9,7 @@ export default defineConfig({
     env: {
       commandDelay: 1000,
     },
-    specPattern: [
-      "cypress/integration/*.spec.ts",
-    ],
+    specPattern: ['cypress/integration/*.spec.ts'],
     chromeWebSecurity: false,
   },
-});
+})

@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon, BadgeCheckIcon } from '@heroicons/react/outline'
+import { ExclamationCircleIcon, CheckBadgeIcon } from '@heroicons/react/24/outline'
 import { BeatLoader } from 'react-spinners'
 import { Form } from '@remix-run/react'
 
@@ -23,10 +23,13 @@ interface propsType {
 const Modal = (props: propsType) => {
   return (
     <Transition.Root as={Fragment} show={props?.open}>
-      <Dialog as="div" className="relative z-50" onClose={()=>{
-        if(!props?.loading)
-        props?.handleCancel()
-      }}>
+      <Dialog
+        as="div"
+        className="relative z-50"
+        onClose={() => {
+          if (!props?.loading) props?.handleCancel()
+        }}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -51,27 +54,18 @@ const Modal = (props: propsType) => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
-
                 <div className="sm:flex sm:items-start">
                   <div
                     data-cy="modalIcon"
                     className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10  ${
-                      props?.modalType === 'Negative'
-                        ? 'bg-red-100'
-                        : 'bg-indigo-600'
+                      props?.modalType === 'Negative' ? 'bg-red-100' : 'bg-indigo-600'
                     }`}
                   >
                     {props?.Icon ||
                       (props?.modalType === 'Negative' ? (
-                        <ExclamationIcon
-                          className="h-6 w-6 text-red-600"
-                          aria-hidden="true"
-                        />
+                        <ExclamationCircleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                       ) : (
-                        <BadgeCheckIcon
-                          className="h-6 w-6 text-white"
-                          aria-hidden="true"
-                        />
+                        <CheckBadgeIcon className="h-6 w-6 text-white" aria-hidden="true" />
                       ))}
                   </div>
 
@@ -86,36 +80,34 @@ const Modal = (props: propsType) => {
 
                     {props?.description && (
                       <div className="mt-2" data-cy="modalDescription">
-                        <p className="text-sm text-gray-500">
-                          {props?.description}
-                        </p>
+                        <p className="text-sm text-gray-500">{props?.description}</p>
                       </div>
                     )}
                   </div>
                 </div>
 
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                  <Form replace={true} action='update/choose-template' method='post'>
-                    <input className='hidden' name="template" value={props?.value} />
+                  <Form replace={true} action="update/choose-template" method="post">
+                    <input className="hidden" name="template" value={props?.value} />
                     <button
                       data-cy="confirmBtn"
                       type="submit"
                       className={`w-full border-transparent text-base sm:ml-3 sm:w-auto sm:text-sm flex items-center justify-center rounded-md border px-4 py-2 font-medium text-white shadow-sm hover:font-bold focus:outline-none
                         ${
                           props?.modalType === 'Negative'
-                          ? ' bg-red-600 hover:border-red-600 hover:bg-red-700 '
-                          : ' bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-700 '
+                            ? ' bg-red-600 hover:border-red-600 hover:bg-red-700 '
+                            : ' bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-700 '
                         }
-                        ${props?.loading
-                          ? ' cursor-not-allowed'
-                          : ' cursor-pointer'
-                        }
+                        ${props?.loading ? ' cursor-not-allowed' : ' cursor-pointer'}
                       `}
-
                       onClick={props?.handleConfirm}
                       disabled={props?.loading}
                     >
-                      {props?.loading ? <BeatLoader color="#FFFFFF" size={14} className="px-0 py-0.5" /> : props?.confirmButtonText}
+                      {props?.loading ? (
+                        <BeatLoader color="#FFFFFF" size={14} className="px-0 py-0.5" />
+                      ) : (
+                        props?.confirmButtonText
+                      )}
                     </button>
                   </Form>
 
@@ -125,8 +117,7 @@ const Modal = (props: propsType) => {
                       className={`mt-3 w-full text-base sm:mt-0 sm:w-auto sm:text-sm flex items-center justify-center 
                         rounded-md border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 
                         shadow-sm hover:border-gray-400 hover:bg-gray-50 focus:outline-none 
-                        ${props?.loading ? 'cursor-not-allowed' : 'cursor-pointer'
-                      }`}
+                        ${props?.loading ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                       data-cy="cancelBtn"
                       disabled={props?.loading}
                       onClick={props?.handleCancel}

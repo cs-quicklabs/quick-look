@@ -1,10 +1,10 @@
 import { json, createCookieSessionStorage, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
-import { LoginForm } from '~/types/loginForm.server'
-import { RegisterForm } from '~/types/regirsterForm.server'
-import { createUser } from './user.service.serevr'
+import type { LoginForm } from '~/types/loginForm.server'
+import type { RegisterForm } from '~/types/regirsterForm.server'
+import { createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
-import { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
+import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 if (!sessionSecret) {
@@ -33,31 +33,46 @@ export async function createUserSession(userId: string, redirectTo: string) {
   })
 }
 
+function getUserSession(request: Request) {
+  return storage.getSession(request.headers.get('Cookie'))
+}
+
+export async function getUserId(request: Request) {
+  const session = await getUserSession(request)
+  const userId = session.get('userId')
+  if (!userId || typeof userId !== 'string') return null
+  return userId
+}
+
+export async function getCurrentUser(request: Request) {
+  let userId = await getUserId(request);
+  if (!userId) return null;
+  return db.user.findUnique({ where: { id: userId } });
+}
 
 export async function validateCoupon(code: string): Promise<ValidCouponServerResponse> {
   const data = await db.coupon.findUnique({
-    where : {
-      code : code
-    }
+    where: {
+      code: code,
+    },
   })
 
-  if(data?.id){
-    const validEndDate = new Date(data?.endDate).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0)
-    const validStartDate = new Date(data?.startDate).setHours(0,0,0,0) <= new Date().setHours(0,0,0,0)
-    
-    if(validEndDate && validStartDate)
-    return {couponId: data?.id}
-    
+  if (data?.id) {
+    const validEndDate =
+      new Date(data?.endDate).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)
+    const validStartDate =
+      new Date(data?.startDate).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0)
+
+    if (validEndDate && validStartDate) return { couponId: data?.id }
   }
-  return { error: "This coupon code is invalid or has expired"}
+  return { error: 'This coupon code is invalid or has expired' }
 }
 
 export async function register(user: RegisterForm): Promise<ServerResponse> {
-  let newUser; 
+  let newUser
   try {
     newUser = await createUser(user)
-  }
-  catch(error){
+  } catch (error) {
     throw json(
       {
         error: `Something went wrong trying to create a new user.`,
@@ -69,7 +84,7 @@ export async function register(user: RegisterForm): Promise<ServerResponse> {
   return {
     success: true,
     message: 'User created Successfully',
-    data: { userId: newUser.id }
+    data: { userId: newUser.id },
   }
 }
 
@@ -79,8 +94,8 @@ export async function login(loginForm: LoginForm) {
       email: loginForm.email,
     },
     include: {
-      profile: true
-    }
+      profile: true,
+    },
   })
 
   if (!user || !(await bcrypt.compare(loginForm.password, user.password))) {
@@ -103,7 +118,6 @@ export async function requireUserId(
   request: Request,
   redirectTo: string = new URL(request.url).pathname
 ) {
-
   const session = await getUserSession(request)
   const userId = session.get('userId')
   if (!userId || typeof userId !== 'string') {
@@ -113,58 +127,45 @@ export async function requireUserId(
   return userId
 }
 
-function getUserSession(request: Request) {
-  return storage.getSession(request.headers.get('Cookie'))
-}
-
-export async function getUserId(request: Request) {
-  const session = await getUserSession(request)
-  const userId = session.get('userId')
-  if (!userId || typeof userId !== 'string') return null
-  return userId
-}
-
 export async function getUsers() {
-  try{
+  try {
     const users = await db.user.findMany()
     return users
-  }catch(err){
+  } catch (err) {
     return
   }
 }
-
 
 export async function getUser(request: Request) {
   const userId = await getUserId(request)
   if (typeof userId !== 'string') {
     return null
   }
-    const user = await db.user.findFirst({
-      where: { 
-        id: userId as string
+  const user = await db.user.findFirst({
+    where: {
+      id: userId as string,
+    },
+    include: {
+      coupon_code: true,
+      profile: true,
+      profileInfo: true,
+      profileImage: true,
+      socialMedia: true,
+      marketingUpdates: true,
+      spotlightButton: true,
+      video: true,
+      testimonial: true,
+      portfolioImage: {
+        orderBy: { createdAt: 'asc' },
       },
-      include: {
-        coupon_code : true,
-        profile : true,
-        profileInfo : true,
-        profileImage: true,
-        socialMedia: true,
-        marketingUpdates: true,
-        spotlightButton: true,
-        video: true,
-        testimonial: true,
-        portfolioImage: {
-          orderBy: {createdAt: 'asc'}
-        },
-        supportBanner: true,
-        additionalLinks: {
-          orderBy: {createdAt: 'asc'}       
-        }
-      }
-      })
-    return user
-  } 
-
+      supportBanner: true,
+      additionalLinks: {
+        orderBy: { createdAt: 'asc' },
+      },
+    },
+  })
+  return user
+}
 
 export async function logout(request: Request) {
   const session = await getUserSession(request)

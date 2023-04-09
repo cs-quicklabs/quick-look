@@ -1,15 +1,19 @@
 describe('Login Test Cases', () => {
-
-  let userDetails: { invalid_credentials: { email: string; password: string; }; email: string; password: string; baseUrl: any; };
+  let userDetails: {
+    invalid_credentials: { email: string; password: string }
+    email: string
+    password: string
+    baseUrl: any
+  }
   before(function () {
-    cy.fixture("Data").then((user) => {
-      userDetails = user;
-    });
-  });
+    cy.fixture('Data').then((user) => {
+      userDetails = user
+    })
+  })
 
   before(() => {
-    cy.visit("/");
-  });
+    cy.visit('/')
+  })
 
   // it("verifies all the elements in the login page", () => {
   //   cy.get('[data-cy="signInHeader"]').should("exist");
@@ -25,16 +29,21 @@ describe('Login Test Cases', () => {
   // });
 
   it('User login case - invalid credentials', () => {
-    cy.login(userDetails.invalid_credentials.email, userDetails.invalid_credentials.password)
-    cy.get("input[name='email']").clear();
-    cy.get("input[name='password']").clear();
-    cy.contains("Either email or password you entered was not correct. Please try again.");
-  });
+    cy.login(
+      userDetails.invalid_credentials.email,
+      userDetails.invalid_credentials.password
+    )
+    cy.get("input[name='email']").clear()
+    cy.get("input[name='password']").clear()
+    cy.contains(
+      'Either email or password you entered was not correct. Please try again.'
+    )
+  })
 
   it('User Login case', () => {
-    cy.login(Cypress.env("email"), Cypress.env("password"));
-    cy.url().should('include', `${Cypress.env("baseUrl")}/account`);
-  });
+    cy.login(Cypress.env('email'), Cypress.env('password'))
+    cy.url().should('include', `${Cypress.env('baseUrl')}/account`)
+  })
 
   // it('Logout', () => {
   //   cy.get('[data-cy="profile-menu"]').click();
@@ -44,5 +53,4 @@ describe('Login Test Cases', () => {
   //   cy.get('[data-cy="signOut"]').click();
   //   cy.url().should('include', `${userDetails.baseUrl}/`);
   // });
-
-});
+})

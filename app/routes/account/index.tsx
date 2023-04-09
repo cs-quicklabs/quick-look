@@ -1,12 +1,13 @@
-import { json, LoaderFunction } from '@remix-run/node'
+import type { LoaderFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import DashboardHeader from '~/components/Common/DashboardHeader'
-import { useActionData, useLoaderData, useTransition } from '@remix-run/react'
+import { useActionData, useLoaderData } from '@remix-run/react'
 import { commitSession, getSession } from '~/services/session.service.server'
 
 import Template0 from '~/components/Templates/template0'
 import { useEffect, useState } from 'react'
-import { DesktopComputerIcon, DeviceMobileIcon } from '@heroicons/react/outline'
+import { ComputerDesktopIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline'
 import AccountSidebar from '~/components/Common/AccountSidebar'
 import Template2 from '~/components/Templates/template2'
 import Template7 from '~/components/Templates/template7'
@@ -23,8 +24,8 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
-import Unpublish, {action as ModalAction} from "~/components/Common/unpublishModal";
-export const action = ModalAction;
+import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
+export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requireUserId(request)
@@ -34,8 +35,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const successMessage = session.get('successUpdateProfileMessage') || null
   const message = session.get('successUpdateSocialMedia') || null
   const bioMessage = session.get('successUpdateBioMessage') || null
-  const additionalLinkUpdateMessage =
-    session.get('successUpdateAdditionalLinkMessage') || null
+  const additionalLinkUpdateMessage = session.get('successUpdateAdditionalLinkMessage') || null
   return json(
     { message, successMessage, bioMessage, additionalLinkUpdateMessage, user },
     {
@@ -54,16 +54,13 @@ export default function Profile() {
   const [showTestimonial, setShowTestimonial] = useState(false)
   const [showImages, setshowImages] = useState(false)
   const [showTemplate, setshowTemplate] = useState(false)
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   const Data = useLoaderData()
 
   const loaderData = Data?.user
   const [message, setMessage] = useState('')
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('')
-  const [additionalLinkUpdateMessage, setAdditionalLinkUpdateMessage] =
-    useState('')
-
-  const transition = useTransition()
+  const [additionalLinkUpdateMessage, setAdditionalLinkUpdateMessage] = useState('')
 
   useEffect(() => {
     setMessage(Data?.message)
@@ -103,7 +100,7 @@ export default function Profile() {
   )
   const [mode, setmode] = useState('desktop')
   const [showBio, setshowBio] = useState(false)
-  const [show, setshow] = useState(loaderData?.profileInfo?.templateNumber)
+  const [, setshow] = useState(loaderData?.profileInfo?.templateNumber)
   const [input, setinput] = useState({
     description: loaderData?.profileInfo?.bio,
     location: loaderData?.profileInfo?.location,
@@ -125,8 +122,12 @@ export default function Profile() {
   const [inputVideo, setInputVideo] = useState({
     videoLink: loaderData?.video?.videoLink,
   })
-  const primaryRestore = loaderData?.profileImage?.primaryImage ? loaderData?.profileImage?.isUsingPrimaryDefault : true;
-  const secondaryRestore = loaderData?.profileImage?.secondaryImage ? loaderData?.profileImage?.isUsingSecondaryDefault : true;
+  const primaryRestore = loaderData?.profileImage?.primaryImage
+    ? loaderData?.profileImage?.isUsingPrimaryDefault
+    : true
+  const secondaryRestore = loaderData?.profileImage?.secondaryImage
+    ? loaderData?.profileImage?.isUsingSecondaryDefault
+    : true
   const actionData = useActionData()
 
   useEffect(() => {
@@ -143,8 +144,7 @@ export default function Profile() {
     })
   }, [loaderData])
 
-  const viewMode1 =
-    typeof window !== 'undefined' && localStorage?.getItem('viewMode')
+  const viewMode1 = typeof window !== 'undefined' && localStorage?.getItem('viewMode')
 
   useEffect(() => {
     viewMode1 && setmode(viewMode1)
@@ -155,7 +155,7 @@ export default function Profile() {
     setmode('desktop')
   }
 
-  const [showUserSetting, setShowUserSetting] = useState(false)
+  const [showUserSetting] = useState(false)
   const togglemobile = () => {
     setmode('mobile')
     setshowTemplate(
@@ -185,9 +185,7 @@ export default function Profile() {
       />
       <div className="relative flex">
         <div
-          className={`w-[0%] md:w-0 ${
-            mode === 'mobile' ? 'lg:z-[50]' : 'lg:z-[21]'
-          }
+          className={`w-[0%] md:w-0 ${mode === 'mobile' ? 'lg:z-[50]' : 'lg:z-[21]'}
           `}
         >
           <AccountSidebar
@@ -239,11 +237,11 @@ export default function Profile() {
         <div
           className={`z-20 grow basis-[78%] 
           ${
-            mode === 'mobile' 
-            ? 'lg:ml-[32rem] xl:ml-[48rem]'
-            :  mode != 'mobile'
-            ? 'lg:ml-[24rem]'
-            : null
+            mode === 'mobile'
+              ? 'lg:ml-[32rem] xl:ml-[48rem]'
+              : mode != 'mobile'
+              ? 'lg:ml-[24rem]'
+              : null
           }
      `}
         >
@@ -326,7 +324,7 @@ export default function Profile() {
               input={input}
               loaderData={loaderData}
             />
-          ): loaderData?.profileInfo?.templateNumber == '11' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '11' ? (
             <Template11
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -350,8 +348,7 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          )
-          : loaderData?.profileInfo?.templateNumber == '16' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '16' ? (
             <Template16
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -367,8 +364,7 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          )
-           : loaderData?.profileInfo?.templateNumber == '18' ? (
+          ) : loaderData?.profileInfo?.templateNumber == '18' ? (
             <Template18
               primaryRestore={primaryRestore}
               secondaryRestore={secondaryRestore}
@@ -376,8 +372,7 @@ export default function Profile() {
               loaderData={loaderData}
               mode={mode}
             />
-          )
-          : null}
+          ) : null}
         </div>
       </div>
 
@@ -388,11 +383,9 @@ export default function Profile() {
           loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
-        } ${
-          loaderData?.profileInfo?.templateNumber == '1'
-            ? 'border border-gray-300'
-            : ''
-        } ${loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'} `}
+        } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${
+          loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
+        } `}
       >
         {/* <form action="" > */}
         <button
@@ -402,10 +395,8 @@ export default function Profile() {
           } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-l-md`}
           onClick={toggledesktop}
         >
-          <DesktopComputerIcon
-            className={`h-[1.25rem] w-auto  ${
-              mode === 'desktop' ? 'text-black' : disabledIcon
-            } `}
+          <ComputerDesktopIcon
+            className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon} `}
           />
         </button>
 
@@ -416,15 +407,18 @@ export default function Profile() {
           } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-r-md border-l`}
           onClick={togglemobile}
         >
-          <DeviceMobileIcon
-            className={`h-[1.25rem] w-auto  ${
-              mode === 'mobile' ? 'text-black' : disabledIcon
-            }`}
+          <DevicePhoneMobileIcon
+            className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon}`}
           />
         </button>
         {/* </form> */}
       </div>
-      <Unpublish isPublished={loaderData?.profile?.isPublished} open={showModal} setopenModal={setShowModal} onClose={() => setShowModal(false)}/>
+      <Unpublish
+        isPublished={loaderData?.profile?.isPublished}
+        open={showModal}
+        setopenModal={setShowModal}
+        onClose={() => setShowModal(false)}
+      />
     </div>
   )
 }

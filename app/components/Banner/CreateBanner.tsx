@@ -1,12 +1,12 @@
-import React from 'react';
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Switch } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react'
-import * as HIcons from '@heroicons/react/outline'
+import { Form, useNavigation } from '@remix-run/react'
+import * as HIcons from '@heroicons/react/24/outline'
 import BeatLoader from 'react-spinners/BeatLoader'
+import React from 'react'
 
 const colors = [
   { name: 'Red', bgColor: 'bg-red-600', selectedColor: 'ring-red-600' },
@@ -29,16 +29,6 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const people = [
-  { id: 1, name: 'Accept Payments' },
-  { id: 2, name: 'Redirect to another URL' },
-  { id: 3, name: 'Let people email me' },
-  { id: 4, name: 'Download a File' },
-  { id: 5, name: 'Let People call me' },
-  { id: 6, name: 'Capture lead in google sheet' },
-  { id: 7, name: 'Allow people to book an appointment' },
-]
-
 export default function CreateBanner({
   setOpenDeleteBanner,
   OncloseBanner,
@@ -49,14 +39,10 @@ export default function CreateBanner({
   mode,
   setmode,
 }: any) {
-  const transition = useTransition()
+  const navigation = useNavigation()
 
-  const [selectedColor, setSelectedColor] = useState(
-    loaderData?.supportBanner?.bannerColor
-  )
-  const [enabled, setEnabled] = useState(
-    loaderData?.supportBanner?.toggleBanner
-  )
+  const [selectedColor, setSelectedColor] = useState(loaderData?.supportBanner?.bannerColor)
+  const [enabled, setEnabled] = useState(loaderData?.supportBanner?.toggleBanner)
   const [click, setClicked] = useState(false)
 
   const [value, setValue] = useState({
@@ -73,14 +59,11 @@ export default function CreateBanner({
   const Name = _.replace(iconName, ' ', '')
   const Final = Name.split(' ').join('')
   const { ...icons } = HIcons
-  //@ts-ignore
   const TheIcon: any = React.useMemo(() => icons[Final] || null, [Final])
 
   const Onclose = (e: any) => {
     if (mode === 'desktop') {
       setShowCreatebanner(false)
-    }
-    if (mode === 'mobile') {
     }
     OncloseBanner()
   }
@@ -100,10 +83,10 @@ export default function CreateBanner({
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setShowCreatebanner(false)
     }
-  }, [transition, error, errorLink, errorHex, errorColor])
+  }, [navigation, error, errorLink, errorHex, errorColor])
 
   useEffect(() => {
     if (value?.bannerHex?.length && !validRegex.test(value.bannerHex)) {
@@ -178,12 +161,7 @@ export default function CreateBanner({
               leaveTo="translate-x-full"
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                <Form
-                  replace={true}
-                  action="add/supportBanner"
-                  method="post"
-                  className="h-screen"
-                >
+                <Form replace={true} action="add/supportBanner" method="post" className="h-screen">
                   <div
                     className={`font-inter mt-12 flex h-[95%] flex-col divide-y divide-gray-200 border-r border-gray-200 bg-white ${
                       mode === 'mobile'
@@ -195,10 +173,8 @@ export default function CreateBanner({
                       <div className="bg-gray-50 py-6 px-4 sm:px-6">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
-                            {loaderData?.supportBanner?.bannerText
-                              ? 'Edit'
-                              : 'Add'}{' '}
-                            support banner on your profile
+                            {loaderData?.supportBanner?.bannerText ? 'Edit' : 'Add'} support banner
+                            on your profile
                           </Dialog.Title>
                           <div className="ml-3 flex h-7 items-center">
                             <button
@@ -208,11 +184,7 @@ export default function CreateBanner({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XIcon
-                                onClick={Onclose}
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
+                              <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
@@ -253,11 +225,7 @@ export default function CreateBanner({
                                       : 'focus:border-indigo-500 focus:ring-indigo-500'
                                   }`}
                                 />
-                                {click && (
-                                  <div className="text-sm text-red-500">
-                                    {error}
-                                  </div>
-                                )}
+                                {click && <div className="text-sm text-red-500">{error}</div>}
                               </div>
                             </div>
 
@@ -286,20 +254,13 @@ export default function CreateBanner({
                                           className={({ active, checked }) =>
                                             classNames(
                                               color.selectedColor,
-                                              active && checked
-                                                ? 'ring ring-offset-1'
-                                                : '',
-                                              !active && checked
-                                                ? 'ring ring-offset-1'
-                                                : '',
+                                              active && checked ? 'ring ring-offset-1' : '',
+                                              !active && checked ? 'ring ring-offset-1' : '',
                                               'relative -m-0.5  flex cursor-pointer items-center justify-center rounded-full focus:outline-none'
                                             )
                                           }
                                         >
-                                          <RadioGroup.Label
-                                            as="span"
-                                            className="sr-only"
-                                          >
+                                          <RadioGroup.Label as="span" className="sr-only">
                                             {color.name}
                                           </RadioGroup.Label>
                                           <span
@@ -318,9 +279,7 @@ export default function CreateBanner({
 
                                 <div
                                   className={`w-[7.813rem] ${
-                                    mode === 'mobile'
-                                      ? 'mt-6 xl:mt-auto'
-                                      : 'mt-6 lg:mt-auto'
+                                    mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'
                                   }`}
                                 >
                                   <label
@@ -340,8 +299,7 @@ export default function CreateBanner({
                                       onChange={(event) => {
                                         setValue({
                                           ...value,
-                                          [event.target.name]:
-                                            event.target.value,
+                                          [event.target.name]: event.target.value,
                                         })
                                       }}
                                       className={`block w-full rounded-md text-gray-900 shadow-sm sm:text-sm ${
@@ -356,9 +314,7 @@ export default function CreateBanner({
                                       </div>
                                     )}
                                     {click && (
-                                      <div className="text-[12px] text-red-500">
-                                        {errorHex}
-                                      </div>
+                                      <div className="text-[12px] text-red-500">{errorHex}</div>
                                     )}
                                   </div>
                                 </div>
@@ -366,9 +322,7 @@ export default function CreateBanner({
 
                               <div>
                                 {click && !errorHex && (
-                                  <div className="text-sm text-red-500">
-                                    {errorNoColor}
-                                  </div>
+                                  <div className="text-sm text-red-500">{errorNoColor}</div>
                                 )}
                               </div>
                             </div>
@@ -396,18 +350,15 @@ export default function CreateBanner({
                                   }}
                                   className={`block w-full rounded-md border-gray-300 text-gray-900  shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm`}
                                 />
-                                {
-                                  <div className="text-sm text-indigo-500">
-                                    {errorIcon}
-                                  </div>
-                                }
+                                {<div className="text-sm text-indigo-500">{errorIcon}</div>}
                                 <p className="mt-1 text-xs font-normal leading-5 text-gray-500">
-                                  You can select any font awesome icon to add to
-                                  your button. Please go{' '}
+                                  You can select any font awesome icon to add to your button. Please
+                                  go{' '}
                                   <a
                                     target="_blank"
                                     className="text-blue-800 underline"
                                     href="https://heroicons.com/"
+                                    rel="noreferrer"
                                   >
                                     here
                                   </a>{' '}
@@ -443,14 +394,10 @@ export default function CreateBanner({
                                       : 'focus:border-indigo-500 focus:ring-indigo-500'
                                   }`}
                                 />
-                                {click && (
-                                  <div className="text-sm text-red-500">
-                                    {errorLink}
-                                  </div>
-                                )}
+                                {click && <div className="text-sm text-red-500">{errorLink}</div>}
                                 <p className="mt-1 text-xs font-normal leading-5 text-gray-500">
-                                  Visitors will be redirected to this link if
-                                  they click on your banner text
+                                  Visitors will be redirected to this link if they click on your
+                                  banner text
                                 </p>
                               </div>
                             </div>
@@ -466,9 +413,8 @@ export default function CreateBanner({
 
                               <div className="flex">
                                 <p className="text-sm font-normal leading-5 text-gray-500">
-                                  Switching it off will not show support banner
-                                  on top of your profile. Although all settings
-                                  will be saved.
+                                  Switching it off will not show support banner on top of your
+                                  profile. Although all settings will be saved.
                                 </p>
 
                                 <Switch
@@ -486,9 +432,7 @@ export default function CreateBanner({
                                   <span
                                     aria-hidden="true"
                                     className={classNames(
-                                      enabled
-                                        ? 'translate-x-5'
-                                        : 'translate-x-0',
+                                      enabled ? 'translate-x-5' : 'translate-x-0',
                                       'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                     )}
                                   />
@@ -503,20 +447,13 @@ export default function CreateBanner({
                                 className="ml-4 mb-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                                 onClick={(e: any) => {
                                   setClicked(true)
-                                  {
-                                    error ||
-                                    errorLink ||
-                                    errorHex ||
-                                    errorNoColor
-                                      ? e.preventDefault()
-                                      : null
-                                  }
+
+                                  if (error || errorLink || errorHex || errorNoColor)
+                                    e.preventDefault()
                                 }}
-                                disabled={
-                                  transition?.state != 'idle' ? true : false
-                                }
+                                disabled={navigation.state != 'idle' ? true : false}
                               >
-                                {transition?.state != 'idle' &&
+                                {navigation.state != 'idle' &&
                                 !error &&
                                 !errorLink &&
                                 !errorHex &&

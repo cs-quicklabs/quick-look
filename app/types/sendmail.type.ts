@@ -1,7 +1,7 @@
 export type SendMail = {
-    to: string
-    from: string
-    subject?: string
-    text?: string
-    html?: string
+  to: string
+  from: string
+  subject?: string
+  text?: string
+  html?: string
 }

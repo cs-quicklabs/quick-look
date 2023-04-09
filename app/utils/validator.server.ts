@@ -1,10 +1,7 @@
 import { db } from '~/database/connection.server'
 import bcrypt from 'bcryptjs'
 
-
-export const validateEmail = async (
-  email: string
-): Promise<string | undefined> => {
+export const validateEmail = async (email: string): Promise<string | undefined> => {
   if (!email) {
     return 'Email is required.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -13,7 +10,7 @@ export const validateEmail = async (
 }
 
 export const validateSignupEmail = async (email: string) => {
-  let lowerCasedEmail = email.toLocaleLowerCase();
+  let lowerCasedEmail = email.toLocaleLowerCase()
   let nosymbolregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
   let notContainsSymbols = email.match(nosymbolregex)
@@ -54,9 +51,7 @@ export const updateValidatePassword = async (
   }
 }
 
-export const validatePassword = async (
-  password: string
-): Promise<string | undefined> => {
+export const validatePassword = async (password: string): Promise<string | undefined> => {
   let whiteSpaceRegex = /^\S*$/
   let notContainsWhitespace = password.match(whiteSpaceRegex)
 
@@ -71,41 +66,36 @@ export const validatePassword = async (
   }
 }
 
-export const checkIncorrectCredentials = async (
-  email: string,
-  password: string
-) => {
-  let lowerCasedEmail = email.toLocaleLowerCase();
+export const checkIncorrectCredentials = async (email: string, password: string) => {
+  let lowerCasedEmail = email.toLocaleLowerCase()
   const user = await db.user.findFirst({
     where: {
       email: lowerCasedEmail,
     },
     include: {
-      profile: true
-    }
+      profile: true,
+    },
   })
-  
+
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return `Either email or password you entered was not correct. Please try again.`
   }
-  
-  if(user?.profile?.isBlocked)
-  return "Your profile is blocked, Please contact admin to continue."
+
+  if (user?.profile?.isBlocked) return 'Your profile is blocked, Please contact admin to continue.'
 
   return undefined
 }
 
 export const validateComfirmPassword = async (
   password: string,
-  confirmPassword: string,
+  confirmPassword: string
 ): Promise<string | undefined> => {
   if (confirmPassword.length == 0) {
     return 'Confirm password is required.'
   } else if (password.length > 0) {
     if (confirmPassword.length == 0) {
       return 'Confirm password is required.'
-    }
-    else if (confirmPassword.length !== 0 && password !== confirmPassword) {
+    } else if (confirmPassword.length !== 0 && password !== confirmPassword) {
       return 'Password does not match.'
     }
   }
@@ -115,7 +105,7 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
   let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
- let singlewhitespace =/^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+  let singlewhitespace = /^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
   let validsinglewhitespace = name.match(singlewhitespace)
 
   let validName = name.match(firstAndMiddleNameRegex)
@@ -132,19 +122,16 @@ export const validateFirstName = async (name: any): Promise<string | undefined> 
     return `First Name must be less than 18 characters.`
   } else if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
-  }else if(!validsinglewhitespace){
-  return 'Single whitespace allowed.'
-  } 
-  else if (!notContainsWhitespace) {
+  } else if (!validsinglewhitespace) {
+    return 'Single whitespace allowed.'
+  } else if (!notContainsWhitespace) {
     if (!validName) {
       return 'Single whitespace allowed.'
     }
   }
 }
 
-export const validateLastName = async (
-  name: any
-): Promise<string | undefined> => {
+export const validateLastName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-zA-Z]+$/
   let whiteSpaceRegex = /^\S*$/
 
@@ -161,12 +148,14 @@ export const validateLastName = async (
     return `Last Name must be at least 3 characters long.`
   } else if (name.length > 12) {
     return `Last Name must be less than 12 characters.`
-  } if (!notContainsSymbols) {
+  }
+  if (!notContainsSymbols) {
     return 'Only alphabets allowed.'
   }
 }
 export const validateUsername = async (
-  username: string, forUpdate?: Boolean
+  username: string,
+  forUpdate?: Boolean
 ): Promise<String | undefined> => {
   let whiteSpaceRegex = /^\S*$/
   let notcontainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
@@ -175,7 +164,7 @@ export const validateUsername = async (
   let notOnlyNumber = username.match(notOnlyNumberRegex)
   let notContainsWhitespace = username.match(whiteSpaceRegex)
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
-  let lowerCasedUserName = username.toLocaleLowerCase();
+  let lowerCasedUserName = username.toLocaleLowerCase()
 
   const usernameExist = await db.user.count({
     where: {
@@ -219,15 +208,15 @@ export async function validateUpdateUsername(username: string, user: any) {
   let notOnlyNumber = username.match(notOnlyNumberRegex)
   let notContainsWhitespace = username.match(whiteSpaceRegex)
   let notcontainSymbol = username.match(notcontainSymbolsRegex)
-  let lowerCasedUserName = username.toLocaleLowerCase();
+  let lowerCasedUserName = username.toLocaleLowerCase()
 
   let usernameExist = await db.user.count({
     where: {
       username: lowerCasedUserName,
       NOT: {
-        id: user.id
-      }
-    }
+        id: user.id,
+      },
+    },
   })
 
   if (!username) {
@@ -245,14 +234,12 @@ export async function validateUpdateUsername(username: string, user: any) {
   } else if (usernameExist) {
     return 'This ID has already been taken. Please choose another.'
   }
-
 }
 
 export async function validateFacebookUrl(url: string) {
   let whiteSpaceRegex = /^\S*$/
   let fbRegEx = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
   let notContainsWhitespace = url.match(whiteSpaceRegex)
-
 
   let matchesFbRegex = url.match(fbRegEx)
   if (!url) {
@@ -291,58 +278,58 @@ export async function validateYoutubeUrl(url: string) {
   }
 }
 
-export async function spotlightButtonTextValidation(text:  string){
-  if(!text){
+export async function spotlightButtonTextValidation(text: string) {
+  if (!text) {
     return 'Button text is required.'
   }
-  if(text.length > 32){
+  if (text.length > 32) {
     return 'Button text should not exceed 32 characters.'
   }
 }
 
-export async function validateHexCode(hexCode: string){
+export async function validateHexCode(hexCode: string) {
   const validRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   const isValid = hexCode.match(validRegex)
-  if(!isValid){
+  if (!isValid) {
     return 'Not valid Hex code.'
   }
 }
 
-export async function validateFaIcon(faIcon: string){
+export async function validateFaIcon(faIcon: string) {
   const validFaIcon = /$([a-z])\w-([a-z])\w\w-([^\s]+)/
 
-  const isValidFaIcon = faIcon.match(validFaIcon);
-  if(!isValidFaIcon){
-    `Not valid ${faIcon}`
+  const isValidFaIcon = faIcon.match(validFaIcon)
+  if (!isValidFaIcon) {
+    return `Not valid ${faIcon}`
   }
 }
 
-export async function validateVideo(url: string){
+export async function validateVideo(url: string) {
   let isValidYoutubeUrl = validateYoutubeUrl(url)
   let isValidFacebookUrl = validateFacebookUrl(url)
-  if(!isValidFacebookUrl && !isValidYoutubeUrl){
+  if (!isValidFacebookUrl && !isValidYoutubeUrl) {
     return 'Url is not correct.'
   }
 }
 
-export async function validateTestimonial(text: string){
-  if(!text){
+export async function validateTestimonial(text: string) {
+  if (!text) {
     return 'Testimonial is required.'
   }
-  if(text.length > 120){
+  if (text.length > 120) {
     return 'Testimonial length should not exceed 120 characters.'
   }
-  if(text.length < 12){
+  if (text.length < 12) {
     return 'Testimonial should be atleast 12 characters long.'
   }
 }
 
-export async function validateTestimonialBy(name: string){
-  if(!name){
+export async function validateTestimonialBy(name: string) {
+  if (!name) {
     return 'Name is required'
   }
-  if(name.length < 3){
+  if (name.length < 3) {
     return 'Name should be atleast 3 characters long.'
   }
 }

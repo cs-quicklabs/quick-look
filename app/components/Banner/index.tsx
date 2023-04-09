@@ -1,16 +1,11 @@
-import React from 'react';
+import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import CreateBanner from './CreateBanner'
 import DeleteBanner from './Deletebanner'
 
-export default function Banner({
-  setShowBanner,
-  loaderData,
-  mode,
-  setmode,
-}: any) {
+export default function Banner({ setShowBanner, loaderData, mode, setmode }: any) {
   const [showCreatebanner, setShowCreatebanner] = useState(false)
   const [openDeleteBanner, setOpenDeleteBanner] = useState(false)
 
@@ -27,8 +22,8 @@ export default function Banner({
     if (mode === 'desktop') {
       setShowBanner(false)
     }
-    if (mode === 'mobile') {
-    }
+    // if (mode === 'mobile') {
+    // }
   }
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -39,9 +34,7 @@ export default function Banner({
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`pointer-events-none fixed inset-y-0 left-0 mt-12  flex  ${
-              mode === 'mobile'
-                ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                : 'lg:w-96'
+              mode === 'mobile' ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96' : 'lg:w-96'
             }`}
           >
             <Transition.Child
@@ -56,16 +49,14 @@ export default function Banner({
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <div
                   className={`flex h-full flex-col overflow-y-auto border-r border-gray-200 bg-white ${
-                    mode === 'mobile'
-                      ? ' w-[16rem] xl:w-96'
-                      : 'md:w-[20rem] lg:w-96'
+                    mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
                   }`}
                 >
                   <div className="bg-gray-50 py-6 px-4">
                     <div className="flex items-center justify-between">
                       <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
-                        {loaderData?.supportBanner?.bannerText ? 'Edit' : 'Add'}{' '}
-                        support banner on your profile
+                        {loaderData?.supportBanner?.bannerText ? 'Edit' : 'Add'} support banner on
+                        your profile
                       </Dialog.Title>
                       <div className="ml-3 flex h-7 items-center">
                         <button
@@ -74,11 +65,7 @@ export default function Banner({
                           onClick={OnCancel}
                         >
                           <span className="sr-only">Close panel</span>
-                          <XIcon
-                            onClick={Onclose}
-                            className="h-6 w-6"
-                            aria-hidden="true"
-                          />
+                          <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -133,23 +120,17 @@ export default function Banner({
                             <div className="flex py-4">
                               <div className="ml-3">
                                 <p className="text-sm font-medium text-gray-900">
-                                  {loaderData?.supportBanner?.bannerText?.length > 35 ?
-                                  loaderData?.supportBanner?.bannerText?.slice(
-                                    0,
-                                    35
-                                  ) + '...' : loaderData?.supportBanner?.bannerText}
+                                  {loaderData?.supportBanner?.bannerText?.length > 35
+                                    ? loaderData?.supportBanner?.bannerText?.slice(0, 35) + '...'
+                                    : loaderData?.supportBanner?.bannerText}
                                 </p>
                                 <p
                                   className={` overflow-hidden text-ellipsis text-sm text-gray-500 ${
                                     mode === 'mobile' ? 'w-[9rem]' : 'w-52'
                                   }`}
                                 >
-                                  {loaderData?.supportBanner?.bannerlink
-                                    ?.length > 25
-                                    ? loaderData?.supportBanner?.bannerlink.slice(
-                                        0,
-                                        25
-                                      ) + '...'
+                                  {loaderData?.supportBanner?.bannerlink?.length > 25
+                                    ? loaderData?.supportBanner?.bannerlink.slice(0, 25) + '...'
                                     : loaderData?.supportBanner?.bannerlink}
                                 </p>
                               </div>
@@ -189,9 +170,7 @@ export default function Banner({
                                   setOpenDeleteBanner(true)
                                 }}
                                 className={`text-[14px] hover:text-red-600 ${
-                                  mode === 'mobile'
-                                    ? 'ml-[1.5rem] xl:ml-0'
-                                    : 'ml-3 lg:ml-0'
+                                  mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'ml-3 lg:ml-0'
                                 }`}
                               >
                                 Delete

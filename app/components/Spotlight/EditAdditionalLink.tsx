@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Form, useTransition } from '@remix-run/react'
+import { Form, useNavigation } from '@remix-run/react'
 import { BeatLoader } from 'react-spinners'
 
 export default function EditSpotlight({
@@ -31,7 +31,7 @@ export default function EditSpotlight({
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
   }
-  const transition = useTransition()
+  const navigation = useNavigation()
 
   const [val, setVal] = useState({
     linkText: clickedAdditionalSpotlight?.linkText,
@@ -52,11 +52,11 @@ export default function EditSpotlight({
     linkUrl: '',
   })
   useEffect(() => {
-    if (transition.state === 'loading') {
+    if (navigation.state === 'loading') {
       setClicked(false)
       setShowEditAdditional(false)
     }
-  }, [transition])
+  }, [navigation])
 
   useEffect(() => {
     if (val?.linkText?.length === 0) {
@@ -113,10 +113,7 @@ export default function EditSpotlight({
           <div className="divide-y divide-gray-200 px-4 sm:px-6">
             <div className="space-y-6 border-b border-gray-200 pt-2 pb-1">
               <div className="">
-                <label
-                  htmlFor="project-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                   {' '}
                   Edit Link Text{' '}
                 </label>
@@ -139,17 +136,12 @@ export default function EditSpotlight({
                         : 'focus:border-indigo-500 focus:ring-indigo-500'
                     }`}
                   />
-                  {click && (
-                    <div className="text-sm text-red-500">{errorLinkText}</div>
-                  )}
+                  {click && <div className="text-sm text-red-500">{errorLinkText}</div>}
                 </div>
               </div>
 
               <div>
-                <label
-                  htmlFor="project-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="project-name" className="block text-sm font-medium text-gray-700">
                   {' '}
                   Edit Link URL{' '}
                 </label>
@@ -172,9 +164,7 @@ export default function EditSpotlight({
                         : 'focus:border-indigo-500 focus:ring-indigo-500'
                     }`}
                   />
-                  {click && (
-                    <div className="text-sm text-red-500">{errorUrl}</div>
-                  )}
+                  {click && <div className="text-sm text-red-500">{errorUrl}</div>}
                 </div>
               </div>
               <div className="flex flex-col">
@@ -186,11 +176,7 @@ export default function EditSpotlight({
                   }`}
                 >
                   <div className="">
-                    <RadioGroup
-                      name="linkColor"
-                      value={selectedColor}
-                      onChange={setSelectedColor}
-                    >
+                    <RadioGroup name="linkColor" value={selectedColor} onChange={setSelectedColor}>
                       <RadioGroup.Label className="block text-sm font-medium text-gray-700">
                         Select Color For Button
                       </RadioGroup.Label>
@@ -253,22 +239,14 @@ export default function EditSpotlight({
                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                       {selectedColor && !errorHex && (
-                        <div className="text-[12px] text-indigo-500">
-                          {errorColor}
-                        </div>
+                        <div className="text-[12px] text-indigo-500">{errorColor}</div>
                       )}
-                      {click && (
-                        <div className="text-[12px] text-red-500">
-                          {errorHex}
-                        </div>
-                      )}
+                      {click && <div className="text-[12px] text-red-500">{errorHex}</div>}
                     </div>
                   </div>
                 </div>
                 <div>
-                  {click && !errorHex && (
-                    <div className="text-sm text-red-500">{errorNoColor}</div>
-                  )}
+                  {click && !errorHex && <div className="text-sm text-red-500">{errorNoColor}</div>}
                 </div>
               </div>
               <div className="mt-7 flex flex-shrink-0 justify-end">
@@ -286,7 +264,7 @@ export default function EditSpotlight({
                       onClick={() => {
                         setShowEditAdditional(false)
                       }}
-                      disabled={transition?.state != 'idle'}
+                      disabled={navigation.state != 'idle'}
                     >
                       Cancel
                     </button>
@@ -298,19 +276,19 @@ export default function EditSpotlight({
                     className="ml-4 mb-4 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 disabled:cursor-pointer"
                     onClick={(e: any) => {
                       setClicked(true)
-                      val.linkText === '' ||
-                      val.linkUrl === '' ||
-                      errorUrl ||
-                      errorLinkText ||
-                      errorHex ||
-                      errorNoColor
-                        ? e.preventDefault()
-                        : null
+                      if (
+                        val.linkText === '' ||
+                        val.linkUrl === '' ||
+                        errorUrl ||
+                        errorLinkText ||
+                        errorHex ||
+                        errorNoColor
+                      )
+                        e.preventDefault()
                     }}
-                    disabled={transition?.state != 'idle' ? true : false}
+                    disabled={navigation.state != 'idle' ? true : false}
                   >
-                    {transition?.submission?.action ===
-                      '/account/update/additionalLink' &&
+                    {navigation.formAction === '/account/update/additionalLink' &&
                     !errorUrl &&
                     !errorLinkText ? (
                       <BeatLoader color="#ffffff" size={12} />

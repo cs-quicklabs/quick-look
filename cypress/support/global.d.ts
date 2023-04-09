@@ -4,11 +4,11 @@
 
 declare namespace Cypress {
   interface Chainable {
-    login(email: string, password: string): void;
+    login(email: string, password: string): void
 
-    commonLogin(): void;
+    commonLogin(): void
 
-    commonLogout(): void;
+    commonLogout(): void
 
     signup(
       firstName: string,
@@ -17,8 +17,7 @@ declare namespace Cypress {
       email: string,
       password: string,
       confirmPassword: string,
-      couponCode: string,
-    ): void;
-
+      couponCode: string
+    ): void
   }
 }
