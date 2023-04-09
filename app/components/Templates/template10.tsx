@@ -85,11 +85,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             >
               {loaderData?.firstname} {loaderData?.lastname}
             </div>
-            <div
-              className={`text-xs font-medium md:leading-8 md:text-2xl mt-1 ${
-                mode === 'mobile' ? '' : ''
-              }`}
-            >
+            <div className={`text-xs font-medium md:leading-8 md:text-2xl`}>
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </div>
             <div className={` ${mode === 'mobile' ? '' : ''}`}>
@@ -137,7 +133,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
                 mode === 'mobile' ? '' : ''
               }`}
             >
-              <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
+              <div className="flex w-max items-center justify-center gap-1 text-xs leading-6 md:text-base md:font-normal">
                 {input.company && (
                   <div className="w-[18px] ">
                     <BriefcaseIcon />
@@ -145,7 +141,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
                 )}
                 <div className="w-max">{input.company}</div>
               </div>
-              <div className="flex w-max items-center justify-center gap-4 text-xs leading-6 md:text-base md:font-normal">
+              <div className="flex w-max items-center justify-center gap-1 text-xs leading-6 md:text-base md:font-normal">
                 {input.education && (
                   <div className="w-[20px] ">
                     <AcademicCapIcon />
