@@ -15,7 +15,7 @@ export default function Spotlightbtn({ loaderData }: any) {
 
   return (
     <div
-      className={`flex justify-center items-center mb-[2rem] ${
+      className={`flex justify-center items-center mb-4 ${
         loaderData?.profileInfo?.templateNumber == '2' ||
         loaderData?.profileInfo?.templateNumber == '3' ||
         loaderData?.profileInfo?.templateNumber == '4' ||
