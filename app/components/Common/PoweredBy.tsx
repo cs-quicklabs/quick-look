@@ -5,7 +5,7 @@ const PoweredBy = ({ textColor }: { textColor?: string }) => {
         <a
           href={`/`}
           target="_blank"
-          className={`text-sm font-normal hover:font-semibold ${
+          className={`text-sm font-normal hover:font-semibold hover:underline ${
             textColor ? textColor : 'text-gray-500'
           } cursor-pointer`}
           rel="noreferrer"

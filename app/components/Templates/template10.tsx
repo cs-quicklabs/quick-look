@@ -133,7 +133,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             </div>
 
             <div
-              className={`mt-5 flex w-[20rem] items-center gap-6 md:w-full flex-col ${
+              className={`mt-5 flex w-[20rem] items-center gap-2 md:w-full flex-col ${
                 mode === 'mobile' ? '' : ''
               }`}
             >
@@ -189,7 +189,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             ) : null}
           </footer>
 
-          <div className="py-5 mt-5">
+          <div className="py-5">
             <PoweredBy />
           </div>
         </div>
