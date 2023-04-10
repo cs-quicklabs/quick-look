@@ -26,25 +26,11 @@ export default function BannerAddOn({ loaderData, mode }: any) {
             : 'https://' + loaderData?.supportBanner?.bannerlink
         }
         target="_blank"
-        style={{
-          backgroundColor: loaderData?.supportBanner?.bannerHex,
-          textShadow: '0px 1px black',
-        }}
-        className={`flex h-10 cursor-pointer items-center justify-center text-sm font-medium leading-5 text-white shadow-sm w-full
+        className={`flex h-10 cursor-pointer items-center justify-center text-sm font-medium leading-5 text-white shadow-sm w-full bg-[#${loaderData?.supportBanner?.bannerHex}]
         ${loaderData?.supportBanner?.bannerColor}`}
       >
         <DynamicHeroIcon icon={Final} Final={Final} />
-        <a
-          href={
-            loaderData?.supportBanner?.bannerlink.includes('https')
-              ? loaderData?.supportBanner?.bannerlink
-              : 'https://' + loaderData?.supportBanner?.bannerlink
-          }
-          target="_blank"
-          className="text-sm font-semibold leading-5 hover:underline"
-        >
-          {loaderData?.supportBanner?.bannerText}{' '}
-        </a>
+        {loaderData?.supportBanner?.bannerText}{' '}
       </a>
     </div>
   )

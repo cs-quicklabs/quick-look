@@ -1,22 +1,8 @@
-import React from 'react'
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
 import lgVideo from 'lightgallery/plugins/video'
-// import '../../../styles/tailwind.css'
 
 export default function PortfolioAddon({ loaderData, mode }: any) {
-  // const images = loaderData?.portfolioImage.map((img: any) => ({
-  //   original: img.imageUrl,
-  // }))
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   initialSlide: 2,
-  // }
-  // grid-cols-3 md:grid-cols-5
   return (
     <div className="img">
       <LightGallery

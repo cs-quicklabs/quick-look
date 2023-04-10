@@ -15,16 +15,12 @@ export default function AdditionalLinksAddOn({ loaderData }: any) {
           // eslint-disable-next-line react/jsx-key
           <div key={index} className={`flex justify-center items-center mb-4`}>
             <a
-              className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px] h-10 shadow-sm text-sm leading-5 font-medium text-white ${loaderData?.profile?.additionalLinksColor}`}
+              className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px] h-10 shadow-sm text-sm leading-5 font-medium text-white bg-[#${loaderData?.profile?.additionalLinksHexCode}] ${loaderData?.profile?.additionalLinksColor}`}
               href={
                 additionalSpotlight?.linkUrl.includes('https')
                   ? additionalSpotlight?.linkUrl
                   : 'https://' + additionalSpotlight?.linkUrl
               }
-              style={{
-                backgroundColor: loaderData?.profile?.additionalLinksHexCode,
-                textShadow: '0px 1px black',
-              }}
               target="_blank"
             >
               {additionalSpotlight?.linkText?.length > 30

@@ -1,4 +1,3 @@
-import React from 'react'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
 import { AcademicCapIcon } from '@heroicons/react/24/outline'
 import facebook from '../../../assets/images/socialIcons/fbIcon5.png'
