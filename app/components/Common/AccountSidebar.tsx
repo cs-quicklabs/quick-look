@@ -18,17 +18,11 @@ const navigationFirst = [
   { name: 'Bio', subheading: 'Introduction, Work and Education Details' },
   { name: 'Social Links', subheading: 'Links to Social Profile' },
   { name: 'Images', subheading: 'Update Images in your templates' },
-  {
-    name: 'Support Banner',
-    subheading: 'Add a support banner on top of your profile',
-  },
+  { name: 'Support Banner', subheading: 'Add a support banner on top of your profile' },
 ]
 
 const navigationSecond = [
-  {
-    name: 'Spotlight Button',
-    subheading: 'Add a call to action button on profile',
-  },
+  { name: 'Spotlight Button', subheading: 'Add a call to action button on profile' },
   { name: 'Add Video', subheading: 'Add a video link to your profile' },
   { name: 'Add Testimonials', subheading: 'Add testimonials to your profile' },
   { name: 'Add Portfolio', subheading: 'Add Portfolio to your Profile' },
@@ -99,12 +93,57 @@ export default function AccountSideBar({
         <PublishIcon
           className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}
         />
-        <span className="flex-1">{isPublished ? 'Your profile is live' : 'Your profile needs publishing'}</span>
+        <span className="flex-1">
+          {isPublished ? 'Your profile is live' : 'Your profile needs publishing'}
+        </span>
         <span className="ml-2 cursor-pointer font-medium" onClick={() => setShowModal(true)}>
           {isPublished ? `Unpublish ->` : 'Publish ->'}
         </span>
       </div>
     )
+  }
+
+  const closeAllSidebars = () => {
+    setShowSpotlight(false)
+    setShowPortfolio(false)
+    setShowAddVideo(false)
+    setShowTestimonial(false)
+    setSidebarOpen(false)
+    setshowImages(false)
+    setshowSocialLinks(false)
+    setshowTemplate(false)
+    setshowBio(false)
+    setShowBanner(false)
+  }
+
+  const openSidebar = (item: string) => {
+    if (item === 'Bio') {
+      setshowBio(true)
+    }
+    if (item === 'Design Templates') {
+      setshowTemplate(true)
+    }
+    if (item === 'Social Links') {
+      setshowSocialLinks(true)
+    }
+    if (item === 'Images') {
+      setshowImages(true)
+    }
+    if (item === 'Support Banner') {
+      setShowBanner(true)
+    }
+    if (item === 'Spotlight Button') {
+      setShowSpotlight(true)
+    }
+    if (item === 'Add Testimonials') {
+      setShowTestimonial(true)
+    }
+    if (item === 'Add Video') {
+      setShowAddVideo(true)
+    }
+    if (item === 'Add Portfolio') {
+      setShowPortfolio(true)
+    }
   }
 
   return (
@@ -197,66 +236,8 @@ export default function AccountSideBar({
                           <div
                             key={item.name}
                             onClick={() => {
-                              if (item.name === 'Bio') {
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(true)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Design Templates') {
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(true)
-                                setshowBio(false)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Social Links') {
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(true)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Images') {
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(true)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Support Banner') {
-                                setShowBanner(true)
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                              }
+                              closeAllSidebars()
+                              openSidebar(item.name)
                             }}
                             className={classNames('')}
                           >
@@ -358,59 +339,9 @@ export default function AccountSideBar({
                             // href={item.href}
                             data-cy={`${item.name}`}
                             onClick={() => {
-                              if (item.name === 'Spotlight Button') {
-                                setShowSpotlight(true)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Add Testimonials') {
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(false)
-                                setShowTestimonial(true)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Add Video') {
-                                setShowSpotlight(false)
-                                setShowPortfolio(false)
-                                setShowAddVideo(true)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                                setShowBanner(false)
-                              }
-                              if (item.name === 'Add Portfolio') {
-                                setShowPortfolio(true)
-                                setShowAddVideo(false)
-                                setShowTestimonial(false)
-                                setSidebarOpen(false)
-                                setshowImages(false)
-                                setshowSocialLinks(false)
-                                setshowTemplate(false)
-                                setshowBio(false)
-                                setShowSpotlight(false)
-                                setShowBanner(false)
-                              }
+                              closeAllSidebars()
+                              openSidebar(item.name)
                             }}
-                            // className={classNames(
-                            //   Location.pathname.includes(item.href) ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:text-gray-600',
-                            //   ''
-                            // )}
                             className={classNames('hover:bg-gray-50')}
                           >
                             <div className="flex cursor-pointer justify-between border-t border-gray-200 px-2 py-4 ">
@@ -544,66 +475,8 @@ export default function AccountSideBar({
                       key={item.name}
                       data-cy={`${item.name}`}
                       onClick={() => {
-                        if (item.name === 'Bio') {
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(true)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Design Templates') {
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(true)
-                          setshowBio(false)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Social Links') {
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(true)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Images') {
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(true)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Support Banner') {
-                          setShowBanner(true)
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                        }
+                        closeAllSidebars()
+                        openSidebar(item.name)
                       }}
                       className={classNames('hover:bg-gray-50')}
                     >
@@ -703,54 +576,8 @@ export default function AccountSideBar({
                       key={item.name}
                       data-cy={`${item.name}`}
                       onClick={() => {
-                        if (item.name === 'Spotlight Button') {
-                          setShowSpotlight(true)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Add Testimonials') {
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(false)
-                          setShowTestimonial(true)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Add Video') {
-                          setShowSpotlight(false)
-                          setShowPortfolio(false)
-                          setShowAddVideo(true)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                          setShowBanner(false)
-                        }
-                        if (item.name === 'Add Portfolio') {
-                          setShowPortfolio(true)
-                          setShowAddVideo(false)
-                          setShowTestimonial(false)
-                          setSidebarOpen(false)
-                          setshowImages(false)
-                          setshowSocialLinks(false)
-                          setshowTemplate(false)
-                          setshowBio(false)
-                          setShowSpotlight(false)
-                          setShowBanner(false)
-                        }
+                        closeAllSidebars()
+                        openSidebar(item.name)
                       }}
                       className={classNames('hover:bg-gray-50')}
                     >

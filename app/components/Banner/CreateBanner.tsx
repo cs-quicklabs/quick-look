@@ -184,7 +184,11 @@ export default function CreateBanner({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                              <XCircleIcon
+                                onClick={Onclose}
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                              />
                             </button>
                           </div>
                         </div>
