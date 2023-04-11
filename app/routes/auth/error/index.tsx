@@ -1,10 +1,10 @@
-import tailwindStylesheetUrl from '../../../styles/tailwind.css'
+import tailwindcss from '../../../styles/tailwind.css'
 import { Links } from '@remix-run/react'
 import { ButtonLink } from '../../../components/Button'
-
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
+
 export function links() {
-  return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
+  return [{ rel: 'stylesheet', href: tailwindcss }]
 }
 
 export default function PublishAccount() {

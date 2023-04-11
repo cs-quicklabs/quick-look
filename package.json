@@ -4,7 +4,7 @@
   "scripts": {
     "build": "npm run build:css && remix build && npx prisma migrate deploy && npx prisma generate",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
-    "build:css": "tailwindcss -o ./app/styles/tailwind.css",
+    "build:css": "tailwindcss -o ./app/styles/tailwind.css --minify",
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css --watch",
     "start": "remix-serve build",
     "css": "tailwindcss -w -i app/styles/input.css -o app/styles/tailwind.css --watch",
