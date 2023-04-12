@@ -18,15 +18,6 @@ export default function DashboardBio({
 }: any) {
   const navigation = useNavigation()
 
-  // const Onclose = (e: any) => {
-  //   setinput(initialInput)
-  //   if (mode === 'desktop') {
-  //     setshowBio(false)
-  //   }
-  //   // if (mode === 'mobile') {
-  //   // }
-  // }
-
   const OnCancel = () => {
     setinput(initialInput)
     setshowBio(false)
@@ -74,7 +65,11 @@ export default function DashboardBio({
                             >
                               <span className="sr-only">Close panel</span>
 
-                              <XCircleIcon onClick={OnCancel} className="h-6 w-6" aria-hidden="true" />
+                              <XCircleIcon
+                                onClick={OnCancel}
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                              />
                             </button>
                           </div>
                         </div>

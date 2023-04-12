@@ -9,14 +9,14 @@ import {
   Meta,
 } from '@remix-run/react'
 import ErrorHandler from './components/error'
-import tailwindStylesheetUrl from './styles/tailwind.css'
+import tailwindcss from './styles/tailwind.css'
 import LightGallery from './styles/lightgallery.css'
 import HeaderSecondary from './components/Common/Header'
 import type { MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 export function links() {
   return [
-    { rel: 'stylesheet', href: tailwindStylesheetUrl },
+    { rel: 'stylesheet', href: tailwindcss },
     { rel: 'stylesheet', href: LightGallery },
   ]
 }
