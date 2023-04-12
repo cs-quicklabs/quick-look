@@ -86,9 +86,8 @@ export default function AccountSideBar({
     let PublishIcon = isPublished ? CheckCircleIcon : ExclamationCircleIcon
     return (
       <div
-        className={`w-full inline-flex rounded-md ${
-          isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-        } text-sm mt-3 py-1 px-2`}
+        className={`w-full inline-flex rounded-md ${isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+          } text-sm mt-3 py-1 px-2`}
       >
         <PublishIcon
           className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}
@@ -99,6 +98,36 @@ export default function AccountSideBar({
         <span className="ml-2 cursor-pointer font-medium" onClick={() => setShowModal(true)}>
           {isPublished ? `Unpublish ->` : 'Publish ->'}
         </span>
+      </div>
+    )
+  }
+
+  const renderSideBarMenuItem = (title: String, subtitle: String) => {
+    return (
+      <div className="flex cursor-pointer justify-between border-t border-gray-200 px-2 py-4">
+        <div className="">
+          <p className="group flex items-center rounded-md px-2 text-sm font-medium leading-5">
+            {title}
+          </p>
+
+          <p className="px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700">
+            {subtitle}
+          </p>
+        </div>
+        <div className="flex items-center text-gray-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
       </div>
     )
   }
@@ -151,6 +180,8 @@ export default function AccountSideBar({
       <div className="" onClick={(e) => e.stopPropagation()}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
+            <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -241,31 +272,7 @@ export default function AccountSideBar({
                             }}
                             className={classNames('')}
                           >
-                            <div className="flex cursor-pointer justify-between border-t border-gray-200 px-2 py-4">
-                              <div className="">
-                                <p className="group flex items-center rounded-md bg-white px-2 text-sm font-medium leading-5">
-                                  {item.name}
-                                </p>
-
-                                <p className="px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                                  {item.subheading}
-                                </p>
-                              </div>
-                              <div className="flex items-center text-gray-400">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
+                            {renderSideBarMenuItem(item.name, item.subheading)}
                           </div>
                         ))}
                       </nav>
@@ -344,31 +351,7 @@ export default function AccountSideBar({
                             }}
                             className={classNames('hover:bg-gray-50')}
                           >
-                            <div className="flex cursor-pointer justify-between border-t border-gray-200 px-2 py-4 ">
-                              <div className="">
-                                <p className="group flex items-center rounded-md bg-white px-2 text-sm font-medium">
-                                  {item.name}
-                                </p>
-
-                                <p className="px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                                  {item.subheading}
-                                </p>
-                              </div>
-                              <div className="flex items-center text-gray-400">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
+                            {renderSideBarMenuItem(item.name, item.subheading)}
                           </div>
                         ))}
                         {showSpotlight ? (
@@ -425,11 +408,10 @@ export default function AccountSideBar({
         </Transition.Root>
 
         {/* static desktop  */}
-        {}
+        { }
         <div
-          className={`hidden lg:flex grow ${
-            mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'
-          }  font-inter mt-12 md:fixed md:inset-y-0 md:flex-col`}
+          className={`hidden lg:flex grow ${mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'
+            }  font-inter mt-12 md:fixed md:inset-y-0 md:flex-col`}
         >
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4">
@@ -480,31 +462,7 @@ export default function AccountSideBar({
                       }}
                       className={classNames('hover:bg-gray-50')}
                     >
-                      <div className="flex cursor-pointer justify-between border-t border-gray-200 px-5 py-4">
-                        <div className="">
-                          <p className="group flex  items-center rounded-md px-2 text-sm font-medium leading-5 text-gray-900">
-                            {item.name}
-                          </p>
-
-                          <p className="px-2 text-sm font-normal leading-5 text-gray-500 group-hover:text-gray-700">
-                            {item.subheading}
-                          </p>
-                        </div>
-                        <div className="flex  items-center text-gray-400">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                      </div>
+                      {renderSideBarMenuItem(item.name, item.subheading)}
                     </div>
                   ))}
                 </nav>
@@ -581,31 +539,7 @@ export default function AccountSideBar({
                       }}
                       className={classNames('hover:bg-gray-50')}
                     >
-                      <div className="flex cursor-pointer justify-between border-t border-gray-200 px-5 py-4">
-                        <div className="">
-                          <p className="group flex  items-center rounded-md px-2 text-sm font-medium text-gray-900">
-                            {item.name}
-                          </p>
-
-                          <p className="px-2 text-sm font-normal text-gray-500 group-hover:text-gray-700">
-                            {item.subheading}
-                          </p>
-                        </div>
-                        <div className="flex items-center text-gray-400">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                      </div>
+                      {renderSideBarMenuItem(item.name, item.subheading)}
                     </div>
                   ))}
                   {showSpotlight ? (
