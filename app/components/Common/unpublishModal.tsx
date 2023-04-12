@@ -24,7 +24,7 @@ export default function Delete({ open, onClose, isPublished, setopenModal }: any
     description: isPublished ? 'Are you sure you want to unpublish your account? Your profile will be hidden and will not be available to those who already have your profile link. Although you can publish your profile if you wish to anytime.' : 'Are you sure you want to publish your account? Your profile will be Shown and will be available to anyone who already have your profile link. Although you can unpublish your profile if you wish to anytime.',
     iconColor: isPublished ? 'text-red-600' : 'text-indgo-600',
     actionButton: isPublished ? 'Unpublish' : 'Publish',
-    buttonColor: isPublished ? 'bg-red-600 hover:bg-red-700' : 'bg-indgo-600 hover:bg-indgo-700',
+    buttonColor: isPublished ? 'bg-red-600 hover:bg-red-700' : 'bg-indigo-600 hover:bg-indigo-700',
   }
 
   return (
