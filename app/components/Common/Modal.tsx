@@ -57,9 +57,8 @@ const Modal = (props: propsType) => {
                 <div className="sm:flex sm:items-start">
                   <div
                     data-cy="modalIcon"
-                    className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10  ${
-                      props?.modalType === 'Negative' ? 'bg-red-100' : 'bg-indigo-600'
-                    }`}
+                    className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10  ${props?.modalType === 'Negative' ? 'bg-red-100' : 'bg-indigo-600'
+                      }`}
                   >
                     {props?.Icon ||
                       (props?.modalType === 'Negative' ? (
@@ -93,10 +92,9 @@ const Modal = (props: propsType) => {
                       data-cy="confirmBtn"
                       type="submit"
                       className={`w-full border-transparent text-base sm:ml-3 sm:w-auto sm:text-sm flex items-center justify-center rounded-md border px-4 py-2 font-medium text-white shadow-sm hover:font-bold focus:outline-none
-                        ${
-                          props?.modalType === 'Negative'
-                            ? ' bg-red-600 hover:border-red-600 hover:bg-red-700 '
-                            : ' bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-700 '
+                        ${props?.modalType === 'Negative'
+                          ? ' bg-red-600 hover:border-red-600 hover:bg-red-700 '
+                          : ' bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-700 '
                         }
                         ${props?.loading ? ' cursor-not-allowed' : ' cursor-pointer'}
                       `}

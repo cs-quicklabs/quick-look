@@ -1,5 +1,5 @@
 import { Form } from '@remix-run/react'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 function Dropzone({ setSecondaryImageError, setImages, onDrop, accept, images }: any) {
   const { getRootProps } = useDropzone({
@@ -7,11 +7,6 @@ function Dropzone({ setSecondaryImageError, setImages, onDrop, accept, images }:
     onDrop,
   })
 
-  // const files = acceptedFiles.map((file: any) => file.path)
-
-  // const onSubmit = () => {
-  //   setImages(acceptedFiles[0])
-  // }
   const ref = useRef(null)
 
   useEffect(() => {
@@ -37,8 +32,6 @@ function Dropzone({ setSecondaryImageError, setImages, onDrop, accept, images }:
           </div>
         </div>
         <input
-          // type='text'
-          // className="hidden"
           name="editSecondaryImage"
           type="text"
           value={images}

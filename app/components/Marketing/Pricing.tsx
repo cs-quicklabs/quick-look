@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
-import { ButtonLink } from './Button'
+import { ButtonLink } from '../Button'
 
 const includedFeatures = [
   'Your personal Portfolio',

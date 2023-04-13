@@ -1,6 +1,6 @@
-import backgroundImage from '../../assets/images/background-call-to-action.jpg'
-import { ButtonLink } from './Button'
-import { Container } from './Container'
+import backgroundImage from '../../../assets/images/background-call-to-action.jpg'
+import { ButtonLink } from '../Button'
+import { Container } from '../Container'
 
 export function CallToAction() {
   return (

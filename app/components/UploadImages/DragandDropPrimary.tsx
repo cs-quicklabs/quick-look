@@ -1,17 +1,12 @@
 import { Form } from '@remix-run/react'
 import { useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
+
 function DropzonePrimary({ setImages1, onDrop, accept, images1, setPrimaryImageError }: any) {
   const { getRootProps } = useDropzone({
     accept,
     onDrop,
   })
-
-  // const files = acceptedFiles.map((file: any) => file.path)
-
-  // const onSubmit = () => {
-  //   setImages1(acceptedFiles[0])
-  // }
   const ref = useRef(null)
 
   useEffect(() => {
@@ -37,8 +32,6 @@ function DropzonePrimary({ setImages1, onDrop, accept, images1, setPrimaryImageE
           </div>
         </div>
         <input
-          // type='text'
-          // className="hidden"
           name="editPrimaryImage"
           type="text"
           value={images1}

@@ -1,5 +1,5 @@
-import { Footer } from '../../../components/Footer'
-import { CallToAction } from '~/components/CallToAction'
+import { Footer } from '../../../components/Marketing/Footer'
+import { CallToAction } from '~/components/Marketing/CallToAction'
 import HeaderSecondary from '~/components/Common/Header'
 import type { LoaderFunction } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'

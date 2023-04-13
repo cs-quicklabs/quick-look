@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import bg from '../../../assets/images/bg.png'
 import BeatLoader from 'react-spinners/BeatLoader'
-import DeleteImage from '../Common/DeleteImage'
+import DeleteImage from '../Common/DeleteImageModal'
 import { Form, useNavigation } from '@remix-run/react'
 import * as cropro from 'cropro'
 import DropzonePrimary from './DragandDropPrimary'
@@ -295,7 +295,7 @@ export default function NoImages({
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-40" onClose={() => {}}>
+      <Dialog as="div" className="relative z-40" onClose={() => { }}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">
             <Transition.Child
@@ -310,11 +310,10 @@ export default function NoImages({
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <div className="h-screen">
                   <div
-                    className={`font-inter mt-12 flex h-[95%]  flex-col overflow-y-auto border-r border-gray-200 bg-white pb-[2rem] ${
-                      mode === 'mobile'
+                    className={`font-inter mt-12 flex h-[95%]  flex-col overflow-y-auto border-r border-gray-200 bg-white pb-[2rem] ${mode === 'mobile'
                         ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
                         : 'w-[100vw] md:w-[20rem] lg:w-96'
-                    } `}
+                      } `}
                   >
                     <div className="">
                       <div className="bg-gray-50 py-6 px-4 sm:px-6">
@@ -371,9 +370,9 @@ export default function NoImages({
                           <div className="mt-3.5 flex  h-44 justify-center rounded-md">
                             {(deleteImage === 'primary' &&
                               navigation.formAction == '/account/delete/image') ||
-                            (edit &&
-                              navigation.formAction == '/account/update/crop-image') ||
-                            navigation.formAction === '/account/update/change-image' ? (
+                              (edit &&
+                                navigation.formAction == '/account/update/crop-image') ||
+                              navigation.formAction === '/account/update/change-image' ? (
                               <div className="relative top-[-1rem] ">
                                 <BeatLoader
                                   color="#184fad"
@@ -382,16 +381,15 @@ export default function NoImages({
                                 <img
                                   src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
                                   alt=""
-                                  className={`h-full w-[31.5rem] object-cover ${
-                                    (deleteImage === 'primary' &&
+                                  className={`h-full w-[31.5rem] object-cover ${(deleteImage === 'primary' &&
                                       navigation.formAction == '/account/delete/image') ||
-                                    navigation.formAction ==
+                                      navigation.formAction ==
                                       '/account/update/crop-image' ||
-                                    navigation.formAction ===
+                                      navigation.formAction ===
                                       '/account/update/change-image'
                                       ? 'opacity-30'
                                       : ''
-                                  }`}
+                                    }`}
                                 />
                               </div>
                             ) : (
@@ -415,9 +413,8 @@ export default function NoImages({
                           </div>
 
                           <div
-                            className={`mt-3 flex items-center justify-center ${
-                              navigation.state === 'idle' ? '' : 'hidden'
-                            }`}
+                            className={`mt-3 flex items-center justify-center ${navigation.state === 'idle' ? '' : 'hidden'
+                              }`}
                           >
                             <button
                               onClick={() => {
@@ -503,9 +500,8 @@ export default function NoImages({
                           )}
 
                           <div
-                            className={`text-center ${isUploading ? 'invisible' : ''} ${
-                              navigation.state !== 'idle' ? 'pointer-events-none' : ''
-                            } `}
+                            className={`text-center ${isUploading ? 'invisible' : ''} ${navigation.state !== 'idle' ? 'pointer-events-none' : ''
+                              } `}
                           >
                             <>
                               <DropzonePrimary

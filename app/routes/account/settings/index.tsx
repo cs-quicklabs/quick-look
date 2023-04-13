@@ -2,12 +2,12 @@ import type { LoaderFunction } from '@remix-run/node'
 import { useLoaderData, useSubmit, useNavigation } from '@remix-run/react'
 import { useState } from 'react'
 import DashboardHeader from '~/components/Common/DashboardHeader'
-import Delete from '~/components/Common/deleteaccountModal'
+import Delete from '~/components/Common/DeleteAccountModal'
 import ProfileSetting from '~/components/Common/ProfileSetting'
 import { getUser, requireUserId } from '~/services/auth.service.server'
 import { updateUserPreferences } from '~/services/user.service.server'
 
-import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
+import Unpublish, { action as ModalAction } from '~/components/Common/UnpublishModal'
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request, params }) => {

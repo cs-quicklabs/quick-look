@@ -1,6 +1,6 @@
-import logo from '../../assets/images/logos/quicklook-icon.svg'
+import logo from '../../../assets/images/logos/quicklook-icon.svg'
 
-import { Container } from '../components/Container'
+import { Container } from '../Container'
 
 export function Footer() {
   return (

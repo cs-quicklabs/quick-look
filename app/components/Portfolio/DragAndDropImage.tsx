@@ -16,9 +16,6 @@ function DropzonePortfolio({
     accept,
     onDrop,
   })
-
-  // const files = acceptedFiles.map((file: any) => file.path)
-
   const ref = useRef(null)
 
   useEffect(() => {
@@ -42,23 +39,20 @@ function DropzonePortfolio({
           <p className="text-xs font-semibold leading-4 tracking-wide">ADD IMAGES</p>
           <div className="text-center">
             <p
-              className={`text-sm leading-4 tracking-wide ${
-                mode === 'mobile' ? 'px-0 lg:px-[4rem] xl:px-0' : ''
-              }`}
+              className={`text-sm leading-4 tracking-wide ${mode === 'mobile' ? 'px-0 lg:px-[4rem] xl:px-0' : ''
+                }`}
             >
               Drag and Drop an Image or click on button to upload
             </p>
           </div>
         </div>
         <input
-          // type='text'
-          // className="hidden"
           name="addPortfolioImage"
           type="text"
           value={image1}
           hidden
         />
-        {/* <input hidden  name='imageId'  value={img.id} type="text" /> */}
+
         <button type="submit" hidden ref={ref}>
           upload
         </button>

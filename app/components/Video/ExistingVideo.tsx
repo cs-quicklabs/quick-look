@@ -37,18 +37,16 @@ export default function ExistingVideo({
           <li key={person.name} className="">
             {person.link ? (
               <div
-                className={`flex justify-between lg:items-center  border-b border-gray-200 ${
-                  mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'
-                }`}
+                className={`flex justify-between lg:items-center  border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'
+                  }`}
               >
                 <div className="py-4 flex">
                   <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">{person.name}</p>
                     <p
-                      className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${
-                        mode === 'mobile' ? 'w-[9rem]' : 'w-52'
-                      }`}
+                      className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile' ? 'w-[9rem]' : 'w-52'
+                        }`}
                     >
                       {person.link.length > 35 ? person.link.slice(0, 35) + '...' : person.link}
                     </p>
@@ -56,11 +54,10 @@ export default function ExistingVideo({
                 </div>
 
                 <div
-                  className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${
-                    mode === 'mobile'
-                      ? 'mr-[6.5rem] xl:mr-0 flex-row xl:flex-col'
-                      : 'flex-row lg:flex-col  lg:ml-[3.2rem] ml-4 py-0 lg:py-4'
-                  }`}
+                  className={`flex  items-start  mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile'
+                    ? 'mr-[6.5rem] xl:mr-0 flex-row xl:flex-col'
+                    : 'flex-row lg:flex-col  lg:ml-[3.2rem] ml-4 py-0 lg:py-4'
+                    }`}
                 >
                   <button
                     data-cy="editVideoButton"
@@ -88,9 +85,8 @@ export default function ExistingVideo({
                       e.preventDefault()
                       setOpenDeleteVideoModal(true)
                     }}
-                    className={`hover:text-red-600 text-[14px] ${
-                      mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
-                    }`}
+                    className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
+                      }`}
                   >
                     Delete
                   </button>

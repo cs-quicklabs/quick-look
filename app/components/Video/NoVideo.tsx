@@ -14,10 +14,6 @@ export default function NoVideo({
   loaderData,
   setmode,
 }: any) {
-  // const [text, setText] = useState('')
-  // useEffect(() => {
-  //   setText(successUpdateMessage)
-  // }, [successUpdateMessage])
 
   const [showCreateVideoLink, setShowCreateVideoLink] = useState(false)
   const apiResponseRef = useRef('')
@@ -62,12 +58,11 @@ export default function NoVideo({
 
   return (
     <Transition.Root show={true} as={Fragment}>
-      <Dialog as="div" className="relative z-40" onClose={() => {}}>
+      <Dialog as="div" className="relative z-40" onClose={() => { }}>
         <div className="absolute inset-0 overflow-hidden">
           <div
-            className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${
-              mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'
-            }`}
+            className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96' : 'lg:w-96'
+              }`}
           >
             <Transition.Child
               as={Fragment}
@@ -80,18 +75,16 @@ export default function NoVideo({
             >
               <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                 <div
-                  className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${
-                    mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
-                  }`}
+                  className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
+                    }`}
                 >
                   <div className="bg-gray-50 py-6 px-4">
                     <div className="flex items-center justify-between">
                       <Dialog.Title className="text-lg font-medium leading-7 text-gray-900">
-                        {`${
-                          loaderData?.video?.videoLink
+                        {`${loaderData?.video?.videoLink
                             ? 'Edit Video Link on your profile'
                             : 'Add Video Link to your profile'
-                        } `}
+                          } `}
                       </Dialog.Title>
                       <div className="ml-3 flex h-7 items-center">
                         <button
@@ -121,9 +114,8 @@ export default function NoVideo({
                         NO LINK ADDED YET
                       </p>
                       <p
-                        className={`text-sm leading-5 font-normal text-gray-500 px-12  text-center  ${
-                          mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'
-                        }`}
+                        className={`text-sm leading-5 font-normal text-gray-500 px-12  text-center  ${mode === 'mobile' ? 'lg:px-4' : 'lg:px-0'
+                          }`}
                       >
                         Please add video link by clicking on button below
                       </p>

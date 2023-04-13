@@ -1,9 +1,9 @@
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as cropro from 'cropro'
 import { useRef } from 'react'
 import { Form, useNavigation } from '@remix-run/react'
-import DeletePortfolioImage from './deletePortfolioimage'
+import DeletePortfolioImage from './DeletePortfolioImageModal'
 
 export default function Portfolioimage({ img, setUpload, setEdit, setDel, del, edit }: any) {
   const [show, setShow] = useState(false)

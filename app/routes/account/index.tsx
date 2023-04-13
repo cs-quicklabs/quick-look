@@ -24,7 +24,7 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
-import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
+import Unpublish, { action as ModalAction } from '~/components/Common/UnpublishModal'
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -236,13 +236,12 @@ export default function Profile() {
         {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
         <div
           className={`z-20 grow basis-[78%] 
-          ${
-            mode === 'mobile'
+          ${mode === 'mobile'
               ? 'lg:ml-[32rem] xl:ml-[48rem]'
               : mode != 'mobile'
-              ? 'lg:ml-[24rem]'
-              : null
-          }
+                ? 'lg:ml-[24rem]'
+                : null
+            }
      `}
         >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
@@ -377,22 +376,18 @@ export default function Profile() {
       </div>
 
       <div
-        className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${
-          !showUserSetting ? 'z-40' : 'z-[60]'
-        }  rounded-l-md rounded-r-md ${
-          loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
+        className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${!showUserSetting ? 'z-40' : 'z-[60]'
+          }  rounded-l-md rounded-r-md ${loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
-        } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${
-          loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
-        } `}
+          } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
+          } `}
       >
         {/* <form action="" > */}
         <button
           id="desktopButton"
-          className={`${
-            mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'
-          } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-l-md`}
+          className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'
+            } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-l-md`}
           onClick={toggledesktop}
         >
           <ComputerDesktopIcon
@@ -402,9 +397,8 @@ export default function Profile() {
 
         <button
           id="mobileButton"
-          className={`${
-            mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'
-          } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-r-md border-l`}
+          className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'
+            } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-r-md border-l`}
           onClick={togglemobile}
         >
           <DevicePhoneMobileIcon

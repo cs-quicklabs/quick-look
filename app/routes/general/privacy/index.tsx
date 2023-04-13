@@ -1,7 +1,7 @@
 import type { LoaderFunction } from '@remix-run/node'
-import { CallToAction } from '~/components/CallToAction'
+import { CallToAction } from '~/components/Marketing/CallToAction'
 import HeaderSecondary from '~/components/Common/Header'
-import { Footer } from '~/components/Footer'
+import { Footer } from '~/components/Marketing/Footer'
 import { getUser } from '~/services/auth.service.server'
 
 export const loader: LoaderFunction = async ({ request }) => {

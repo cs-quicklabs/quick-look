@@ -1,14 +1,14 @@
-import { CallToAction } from '../components/CallToAction'
-import { Footer } from '../components/Footer'
-import { Hero } from '../components/Hero'
-import { PrimaryFeatures } from '../components/PrimaryFeatures'
-import { SecondaryFeatures } from '../components/SecondaryFeatures'
-import { Header } from '../components/Header'
+import { CallToAction } from '../components/Marketing/CallToAction'
+import { Footer } from '../components/Marketing/Footer'
+import { Hero } from '../components/Marketing/Hero'
+import { PrimaryFeatures } from '../components/Marketing/PrimaryFeatures'
+import { SecondaryFeatures } from '../components/Marketing/SecondaryFeatures'
+import { Header } from '../components/Marketing/Header'
 import type { LoaderFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
 import { useLoaderData } from '@remix-run/react'
-import Pricing from '~/components/Pricing'
+import Pricing from '~/components/Marketing/Pricing'
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await getUser(request)

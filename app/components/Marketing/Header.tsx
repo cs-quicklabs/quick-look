@@ -1,12 +1,12 @@
-import logo from '../../assets/images/logos/quicklook-icon.svg'
+import logo from '../../../assets/images/logos/quicklook-icon.svg'
 
 import { Fragment } from 'react'
 
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { ButtonLink } from '../components/Button'
-import { Container } from '../components/Container'
+import { ButtonLink } from '../Button'
+import { Container } from '../Container'
 import { Link } from '@remix-run/react'
 
 function MobileNavigation() {

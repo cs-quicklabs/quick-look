@@ -1,7 +1,7 @@
 import { Tab } from '@headlessui/react'
-import screenshotContacts from '../../assets/images/screenshots/Template.png'
-import screenshotInventory from '../../assets/images/screenshots/Portfolio.png'
-import screenshotProfitLoss from '../../assets/images/screenshots/Menus.png'
+import screenshotContacts from '../../../assets/images/screenshots/Template.png'
+import screenshotInventory from '../../../assets/images/screenshots/Portfolio.png'
+import screenshotProfitLoss from '../../../assets/images/screenshots/Menus.png'
 import clsx from 'clsx'
 
 const features = [

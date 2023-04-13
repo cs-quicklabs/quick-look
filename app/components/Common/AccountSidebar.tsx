@@ -1,6 +1,5 @@
-import { Fragment, useEffect, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { Bars2Icon, XCircleIcon } from '@heroicons/react/24/outline'
+import { useEffect, useState } from 'react'
+import { Bars2Icon } from '@heroicons/react/24/outline'
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import AccountBio from './AccountBio'
 import AccountTemplate from './AccountTemplate'
@@ -76,7 +75,7 @@ export default function AccountSideBar({
 }: any) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   useEffect(() => {
-    if (showImages && mode === 'mobile') {
+    if (showImages) {
       setshowImages(true)
     }
   }, [mode, showImages])
@@ -357,40 +356,8 @@ export default function AccountSideBar({
   return (
     <>
       <div className="" onClick={(e) => e.stopPropagation()}>
-        <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
-            <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-
-
-            <div className="fixed inset-0 z-10 flex overflow-y-auto">
-
-              <Dialog.Panel className="absolute flex h-screen w-full flex-1 flex-col bg-white md:max-w-xs lg:max-w-md">
-
-                <div className="absolute top-0 right-0 mt-[1.3rem]">
-                  <button
-                    type="button"
-                    className="mr-1 flex h-10 w-10 items-center justify-center rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <span className="sr-only">Close sidebar</span>
-                    <XCircleIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-                {renderSideBar()}
-
-              </Dialog.Panel>
-              <div className="w-14 flex-shrink-0">
-                {/* Force sidebar to shrink to fit close icon */}
-              </div>
-            </div>
-          </Dialog>
-        </Transition.Root>
-
-        {/* static desktop  */}
-        { }
         <div
-          className={`hidden lg:flex grow ${mode === 'mobile' ? 'w-[16rem] xl:w-96' : 'lg:w-96'
-            }  font-inter mt-12 md:fixed md:inset-y-0 md:flex-col`}
+          className={`hidden lg:flex grow w-96  font-inter mt-12 md:fixed md:inset-y-0 md:flex-col`}
         >
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             {renderSideBar()}

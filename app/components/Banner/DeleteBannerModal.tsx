@@ -1,4 +1,3 @@
-import React from 'react'
 import { Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
@@ -21,7 +20,7 @@ export default function DeleteBanner({ openDeleteBanner, setOpenDeleteBanner, on
         as="div"
         className="relative z-[999]"
         initialFocus={cancelButtonRef}
-        onClose={() => {}}
+        onClose={() => { }}
       >
         <Transition.Child
           as={Fragment}
@@ -71,9 +70,6 @@ export default function DeleteBanner({ openDeleteBanner, setOpenDeleteBanner, on
                       value="delete Spotlight"
                       type="submit"
                       className="inline-flex justify-center items-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:w-auto sm:text-sm disabled:cursor-pointer"
-                      // onClick={() => {
-                      //   setOpenDeleteBanner(false)
-                      // }}
                       disabled={navigation.state != 'idle' ? true : false}
                     >
                       {navigation.state != 'idle' ? (

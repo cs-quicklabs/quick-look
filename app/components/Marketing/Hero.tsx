@@ -1,4 +1,4 @@
-import { ButtonLink } from './Button'
+import { ButtonLink } from '../Button'
 
 export function Hero() {
   return (
