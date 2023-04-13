@@ -5,6 +5,7 @@ import BeatLoader from 'react-spinners/BeatLoader'
 
 import type { ActionArgs } from '@remix-run/node' // or cloudflare/deno
 import { publishToggle } from '~/services/user.service.server'
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
 export async function action({ request }: ActionArgs) {
   return await publishToggle(request)
@@ -54,6 +55,16 @@ export default function Delete({ open, onClose, isPublished, setopenModal }: any
             >
               <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full sm:p-6">
                 <div className="sm:flex sm:items-start">
+                  <div
+                    className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${isPublished ? 'bg-red-100' : 'bg-indigo-100'
+                      } sm:mx-0 sm:h-10 sm:w-10`}
+                  >
+                    <ExclamationCircleIcon
+                      className={`h-6 w-6 ${isPublished ? 'text-red-600' : 'text-indigo-600'} `}
+                      aria-hidden="true"
+                    />
+                  </div>
+
 
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
@@ -64,32 +75,33 @@ export default function Delete({ open, onClose, isPublished, setopenModal }: any
                         {modalProps.description}
                       </p>
                     </div>
+                    <div
+                      className={`mt-5 sm:mt-4 sm:flex pl-8`}
+                    >
+                      <Form method="patch">
+                        <button
+                          type="submit"
+                          className={`inline-flex justify-center items-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 disabled:cursor-pointer ${modalProps.buttonColor
+                            }  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
+                          disabled={navigation.state === 'submitting'}
+                        >
+                          {navigation.state === 'submitting' ? (
+                            <BeatLoader color="#ffffff" size={12} className="px-0 py-0.5" />
+                          ) : modalProps.actionButton}
+                        </button>
+                      </Form>
+                      <button
+                        type="button"
+                        className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
+                        onClick={onClose}
+                        disabled={navigation.state === 'submitting'}
+                      >
+                        Cancel
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div
-                  className={`mt-5 sm:mt-4 sm:flex pl-4`}
-                >
-                  <Form method="patch">
-                    <button
-                      type="submit"
-                      className={`inline-flex justify-center items-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 disabled:cursor-pointer ${modalProps.buttonColor
-                        }  text-base font-medium text-white  focus:outline-none sm:w-auto sm:text-sm`}
-                      disabled={navigation.state === 'submitting'}
-                    >
-                      {navigation.state === 'submitting' ? (
-                        <BeatLoader color="#ffffff" size={12} className="px-0 py-0.5" />
-                      ) : modalProps.actionButton}
-                    </button>
-                  </Form>
-                  <button
-                    type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:cursor-pointer"
-                    onClick={onClose}
-                    disabled={navigation.state === 'submitting'}
-                  >
-                    Cancel
-                  </button>
-                </div>
+
               </Dialog.Panel>
             </Transition.Child>
           </div>
