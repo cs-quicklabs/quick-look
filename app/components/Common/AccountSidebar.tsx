@@ -175,6 +175,185 @@ export default function AccountSideBar({
     }
   }
 
+  function renderSideBar() {
+    return (
+      <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4">
+        <div className="flex flex-shrink-0 px-6 pt-3 pb-2">
+          <div className="group block w-full flex-shrink-0">
+            <div className="flex items-center">
+              <div>
+                <img
+                  data-cy="profileImage"
+                  className="inline-block h-9 w-9 rounded-full"
+                  src={
+                    loaderData?.profileImage?.secondaryImage
+                      ? loaderData?.profileImage?.secondaryImage
+                      : DefaultProfileIcon
+                  }
+                  alt=""
+                />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">
+                  {loaderData?.firstname} {loaderData?.lastname}
+                </p>
+                <a
+                  href={`/${loaderData?.username}`}
+                  target="_blank"
+                  className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700"
+                  rel="noreferrer"
+                >
+                  View profile
+                </a>
+              </div>
+            </div>
+            {renderPublishStatus()}
+          </div>
+        </div>
+        <div>
+          <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
+            Basic Profile
+          </div>
+          <nav className="flex-1 bg-white">
+            {navigationFirst.map((item) => (
+              <div
+                key={item.name}
+                data-cy={`${item.name}`}
+                onClick={() => {
+                  closeAllSidebars()
+                  openSidebar(item.name)
+                }}
+                className={classNames('hover:bg-gray-50')}
+              >
+                {renderSideBarMenuItem(item.name, item.subheading)}
+              </div>
+            ))}
+          </nav>
+          {showBio ? (
+            <AccountBio
+              initialInput={initialInput}
+              bioMessage={bioMessage}
+              setBioMessage={setBioMessage}
+              setshowBio={setshowBio}
+              occupation={loaderData?.profileInfo?.occupation}
+              company={loaderData?.profileInfo?.company}
+              education={loaderData?.profileInfo?.education}
+              bio={loaderData?.profileInfo?.bio}
+              location={loaderData?.profileInfo?.location}
+              input={input}
+              setinput={setinput}
+              mode={mode}
+              setmode={setmode}
+            />
+          ) : null}
+          {showTemplate ? (
+            <AccountTemplate
+              setshowTemplate={setshowTemplate}
+              setshow={setshow}
+              mode={mode}
+              setmode={setmode}
+            />
+          ) : null}
+          {showSocialLinks ? (
+            <SocialProfile
+              setMessage={setMessage}
+              successUpdateMessage={successUpdateMessage}
+              message={message}
+              setshowSocialLinks={setshowSocialLinks}
+              loaderData={loaderData}
+              mode={mode}
+              setmode={setmode}
+            />
+          ) : null}
+          {showImages ? (
+            <UploadImages
+              setshowImages={setshowImages}
+              loaderData={loaderData}
+              mode={mode}
+              setmode={setmode}
+              primaryRestore={primaryRestore}
+              secondaryRestore={secondaryRestore}
+            />
+          ) : null}
+          {showBanner ? (
+            <Banner
+              showBanner={showBanner}
+              setShowBanner={setShowBanner}
+              loaderData={loaderData}
+              mode={mode}
+              setmode={setmode}
+            />
+          ) : null}
+        </div>
+
+        <div>
+          <div className="mt-0 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
+            Advanced Features
+          </div>
+
+          <nav className="flex-1 bg-white ">
+            {navigationSecond.map((item) => (
+              <div
+                key={item.name}
+                data-cy={`${item.name}`}
+                onClick={() => {
+                  closeAllSidebars()
+                  openSidebar(item.name)
+                }}
+                className={classNames('hover:bg-gray-50')}
+              >
+                {renderSideBarMenuItem(item.name, item.subheading)}
+              </div>
+            ))}
+            {showSpotlight ? (
+              <SpotlightButton
+                setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
+                additionalLinkUpdateMessage={additionalLinkUpdateMessage}
+                showSpotlight={showSpotlight}
+                setShowSpotlight={setShowSpotlight}
+                loaderData={loaderData}
+                input={input}
+                setinput={setinput}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+            {showTestimonial ? (
+              <NoTestimonial
+                inputTestimonial={inputTestimonial}
+                setInputTestimonial={setInputTestimonial}
+                setShowTestimonial={setShowTestimonial}
+                loaderData={loaderData}
+                input={input}
+                setinput={setinput}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+            {showAddVideo ? (
+              <NoVideo
+                inputVideo={inputVideo}
+                setInputVideo={setInputVideo}
+                setShowAddVideo={setShowAddVideo}
+                loaderData={loaderData}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+            {showPortfolio ? (
+              <Portfolio
+                loaderData={loaderData}
+                setShowPortfolio={setShowPortfolio}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+          </nav>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <>
       <div className="" onClick={(e) => e.stopPropagation()}>
@@ -182,224 +361,24 @@ export default function AccountSideBar({
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-0" />
-            </Transition.Child>
 
             <div className="fixed inset-0 z-10 flex overflow-y-auto">
-              <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              >
-                <Dialog.Panel className="absolute flex h-screen w-full flex-1 flex-col bg-white md:max-w-xs lg:max-w-md">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-in-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-300"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
+
+              <Dialog.Panel className="absolute flex h-screen w-full flex-1 flex-col bg-white md:max-w-xs lg:max-w-md">
+
+                <div className="absolute top-0 right-0 mt-[1.3rem]">
+                  <button
+                    type="button"
+                    className="mr-1 flex h-10 w-10 items-center justify-center rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+                    onClick={() => setSidebarOpen(false)}
                   >
-                    <div className="absolute top-0 right-0 mt-[1.3rem]">
-                      <button
-                        type="button"
-                        className="mr-1 flex h-10 w-10 items-center justify-center rounded-md bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setSidebarOpen(false)}
-                      >
-                        <span className="sr-only">Close sidebar</span>
-                        <XCircleIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-                    </div>
-                  </Transition.Child>
-                  <div className="mt-[1rem] h-0 flex-1 overflow-y-auto pb-4">
-                    <div className="flex flex-shrink-0 px-2">
-                      <div className="group block flex-shrink-0">
-                        <div className="flex items-center">
-                          <div>
-                            <img
-                              data-cy="profileImage"
-                              className="inline-block h-10 w-10 rounded-full"
-                              src={
-                                loaderData?.profileImage?.secondaryImage
-                                  ? loaderData?.profileImage?.secondaryImage
-                                  : DefaultProfileIcon
-                              }
-                              alt=""
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                              {loaderData?.firstname} {loaderData?.lastname}
-                            </p>
-                            <a
-                              href={`/${loaderData?.username}`}
-                              target="_blank"
-                              className="text-sm font-medium text-gray-500 group-hover:text-gray-700"
-                              rel="noreferrer"
-                            >
-                              View profile
-                            </a>
-                          </div>
-                        </div>
-                        {renderPublishStatus()}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-4 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
-                        Basic Profile
-                      </div>
-                      <nav className="flex-1 bg-white ">
-                        {navigationFirst.map((item) => (
-                          <div
-                            key={item.name}
-                            onClick={() => {
-                              closeAllSidebars()
-                              openSidebar(item.name)
-                            }}
-                            className={classNames('')}
-                          >
-                            {renderSideBarMenuItem(item.name, item.subheading)}
-                          </div>
-                        ))}
-                      </nav>
-                      <div className="z-0">
-                        {showBio ? (
-                          <AccountBio
-                            bioMessage={bioMessage}
-                            setBioMessage={setBioMessage}
-                            setshowBio={setshowBio}
-                            occupation={loaderData?.profileInfo?.occupation}
-                            company={loaderData?.profileInfo?.company}
-                            education={loaderData?.profileInfo?.education}
-                            bio={loaderData?.profileInfo?.bio}
-                            location={loaderData?.profileInfo?.location}
-                            input={input}
-                            setinput={setinput}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                        {showTemplate ? (
-                          <AccountTemplate
-                            setshowTemplate={setshowTemplate}
-                            setshow={setshow}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                        {showSocialLinks ? (
-                          <SocialProfile
-                            setMessage={setMessage}
-                            successUpdateMessage={successUpdateMessage}
-                            message={message}
-                            setshowSocialLinks={setshowSocialLinks}
-                            loaderData={loaderData}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                        {showImages ? (
-                          <UploadImages
-                            setshowImages={setshowImages}
-                            mode={mode}
-                            loaderData={loaderData}
-                            setmode={setmode}
-                            primaryRestore={primaryRestore}
-                            secondaryRestore={secondaryRestore}
-                          />
-                        ) : null}
-                        {showBanner ? (
-                          <Banner
-                            showBanner={showBanner}
-                            setShowBanner={setShowBanner}
-                            loaderData={loaderData}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                      </div>
-                    </div>
+                    <span className="sr-only">Close sidebar</span>
+                    <XCircleIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </div>
+                {renderSideBar()}
 
-                    <div>
-                      <div className="mt-0 w-full border-t border-gray-200 bg-gray-50 pl-4 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
-                        Advanced Features
-                      </div>
-
-                      <nav className="flex-1 bg-white ">
-                        {navigationSecond.map((item) => (
-                          <div
-                            key={item.name}
-                            // href={item.href}
-                            data-cy={`${item.name}`}
-                            onClick={() => {
-                              closeAllSidebars()
-                              openSidebar(item.name)
-                            }}
-                            className={classNames('hover:bg-gray-50')}
-                          >
-                            {renderSideBarMenuItem(item.name, item.subheading)}
-                          </div>
-                        ))}
-                        {showSpotlight ? (
-                          <SpotlightButton
-                            setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
-                            additionalLinkUpdateMessage={additionalLinkUpdateMessage}
-                            showSpotlight={showSpotlight}
-                            setShowSpotlight={setShowSpotlight}
-                            loaderData={loaderData}
-                            input={input}
-                            setinput={setinput}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                        {showTestimonial ? (
-                          <NoTestimonial
-                            setShowTestimonial={setShowTestimonial}
-                            loaderData={loaderData}
-                            input={input}
-                            setinput={setinput}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                        {showAddVideo ? (
-                          <NoVideo
-                            inputVideo={inputVideo}
-                            setInputVideo={setInputVideo}
-                            setShowAddVideo={setShowAddVideo}
-                            loaderData={loaderData}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                        {showPortfolio ? (
-                          <Portfolio
-                            setShowPortfolio={setShowPortfolio}
-                            loaderData={loaderData}
-                            mode={mode}
-                            setmode={setmode}
-                          />
-                        ) : null}
-                      </nav>
-                    </div>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
+              </Dialog.Panel>
               <div className="w-14 flex-shrink-0">
                 {/* Force sidebar to shrink to fit close icon */}
               </div>
@@ -414,180 +393,7 @@ export default function AccountSideBar({
             }  font-inter mt-12 md:fixed md:inset-y-0 md:flex-col`}
         >
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
-            <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4">
-              <div className="flex flex-shrink-0 px-6 pt-3 pb-2">
-                <div className="group block w-full flex-shrink-0">
-                  <div className="flex items-center">
-                    <div>
-                      <img
-                        data-cy="profileImage"
-                        className="inline-block h-9 w-9 rounded-full"
-                        src={
-                          loaderData?.profileImage?.secondaryImage
-                            ? loaderData?.profileImage?.secondaryImage
-                            : DefaultProfileIcon
-                        }
-                        alt=""
-                      />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">
-                        {loaderData?.firstname} {loaderData?.lastname}
-                      </p>
-                      <a
-                        href={`/${loaderData?.username}`}
-                        target="_blank"
-                        className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700"
-                        rel="noreferrer"
-                      >
-                        View profile
-                      </a>
-                    </div>
-                  </div>
-                  {renderPublishStatus()}
-                </div>
-              </div>
-              <div>
-                <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
-                  Basic Profile
-                </div>
-                <nav className="flex-1 bg-white">
-                  {navigationFirst.map((item) => (
-                    <div
-                      key={item.name}
-                      data-cy={`${item.name}`}
-                      onClick={() => {
-                        closeAllSidebars()
-                        openSidebar(item.name)
-                      }}
-                      className={classNames('hover:bg-gray-50')}
-                    >
-                      {renderSideBarMenuItem(item.name, item.subheading)}
-                    </div>
-                  ))}
-                </nav>
-                {showBio ? (
-                  <AccountBio
-                    initialInput={initialInput}
-                    bioMessage={bioMessage}
-                    setBioMessage={setBioMessage}
-                    setshowBio={setshowBio}
-                    occupation={loaderData?.profileInfo?.occupation}
-                    company={loaderData?.profileInfo?.company}
-                    education={loaderData?.profileInfo?.education}
-                    bio={loaderData?.profileInfo?.bio}
-                    location={loaderData?.profileInfo?.location}
-                    input={input}
-                    setinput={setinput}
-                    mode={mode}
-                    setmode={setmode}
-                  />
-                ) : null}
-                {showTemplate ? (
-                  <AccountTemplate
-                    setshowTemplate={setshowTemplate}
-                    setshow={setshow}
-                    mode={mode}
-                    setmode={setmode}
-                  />
-                ) : null}
-                {showSocialLinks ? (
-                  <SocialProfile
-                    setMessage={setMessage}
-                    successUpdateMessage={successUpdateMessage}
-                    message={message}
-                    setshowSocialLinks={setshowSocialLinks}
-                    loaderData={loaderData}
-                    mode={mode}
-                    setmode={setmode}
-                  />
-                ) : null}
-                {showImages ? (
-                  <UploadImages
-                    setshowImages={setshowImages}
-                    loaderData={loaderData}
-                    mode={mode}
-                    setmode={setmode}
-                    primaryRestore={primaryRestore}
-                    secondaryRestore={secondaryRestore}
-                  />
-                ) : null}
-                {showBanner ? (
-                  <Banner
-                    showBanner={showBanner}
-                    setShowBanner={setShowBanner}
-                    loaderData={loaderData}
-                    mode={mode}
-                    setmode={setmode}
-                  />
-                ) : null}
-              </div>
-
-              <div>
-                <div className="mt-0 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
-                  Advanced Features
-                </div>
-
-                <nav className="flex-1 bg-white ">
-                  {navigationSecond.map((item) => (
-                    <div
-                      key={item.name}
-                      data-cy={`${item.name}`}
-                      onClick={() => {
-                        closeAllSidebars()
-                        openSidebar(item.name)
-                      }}
-                      className={classNames('hover:bg-gray-50')}
-                    >
-                      {renderSideBarMenuItem(item.name, item.subheading)}
-                    </div>
-                  ))}
-                  {showSpotlight ? (
-                    <SpotlightButton
-                      setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
-                      additionalLinkUpdateMessage={additionalLinkUpdateMessage}
-                      showSpotlight={showSpotlight}
-                      setShowSpotlight={setShowSpotlight}
-                      loaderData={loaderData}
-                      input={input}
-                      setinput={setinput}
-                      mode={mode}
-                      setmode={setmode}
-                    />
-                  ) : null}
-                  {showTestimonial ? (
-                    <NoTestimonial
-                      inputTestimonial={inputTestimonial}
-                      setInputTestimonial={setInputTestimonial}
-                      setShowTestimonial={setShowTestimonial}
-                      loaderData={loaderData}
-                      input={input}
-                      setinput={setinput}
-                      mode={mode}
-                      setmode={setmode}
-                    />
-                  ) : null}
-                  {showAddVideo ? (
-                    <NoVideo
-                      inputVideo={inputVideo}
-                      setInputVideo={setInputVideo}
-                      setShowAddVideo={setShowAddVideo}
-                      loaderData={loaderData}
-                      mode={mode}
-                      setmode={setmode}
-                    />
-                  ) : null}
-                  {showPortfolio ? (
-                    <Portfolio
-                      loaderData={loaderData}
-                      setShowPortfolio={setShowPortfolio}
-                      mode={mode}
-                      setmode={setmode}
-                    />
-                  ) : null}
-                </nav>
-              </div>
-            </div>
+            {renderSideBar()}
           </div>
         </div>
 
