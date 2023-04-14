@@ -4,13 +4,13 @@ import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'
 import defaultimg from '../../../assets/images/profile.png'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
-import TestimonialAddOn from './addOns/testimonial'
-import VideoAddOn from './addOns/video'
+import TestimonialAddOn from './addOns/Testimonial'
+import VideoAddOn from './addOns/Video'
 import { useLocation } from '@remix-run/react'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
 import { AcademicCapIcon } from '@heroicons/react/24/outline'
-import PortfolioAddon from './addOns/portfolio'
+import PortfolioAddon from './addOns/Portfolio'
 import PoweredBy from '../Common/PoweredBy'
 
 export default function Template8({
@@ -27,56 +27,50 @@ export default function Template8({
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
-        className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${
-          mode === 'mobile'
-            ? '  flex-col'
-            : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '
-        } ${
-          nav
+        className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${mode === 'mobile'
+          ? '  flex-col'
+          : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '
+          } ${nav
             ? 'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start'
             : 'min-h-[calc(95.5vh+50px)] '
-        } `}
+          } `}
       >
         <div
-          className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${
-            mode === 'mobile'
-              ? ''
-              : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'
-          } ${nav ? 'SmMedium:w-[35rem] med:w-[40rem]' : ''}`}
+          className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${mode === 'mobile'
+            ? ''
+            : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'
+            } ${nav ? 'SmMedium:w-[35rem] med:w-[40rem]' : ''}`}
         >
           {loaderData?.profileInfo?.occupation === '' &&
-          !loaderData?.spotlightButton &&
-          !loaderData?.portfolioImage[0] &&
-          loaderData?.testimonial?.testimonialText === '' &&
-          loaderData?.video?.videoLink === '' &&
-          !input?.description ? (
+            !loaderData?.spotlightButton &&
+            !loaderData?.portfolioImage[0] &&
+            loaderData?.testimonial?.testimonialText === '' &&
+            loaderData?.video?.videoLink === '' &&
+            !input?.description ? (
             <h4
-              className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${
-                mode === 'mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '
-              } ${nav ? '' : ''}`}
+              className={`text-xl leading-8 font-extrabold sm:ml-[-7rem]  ${mode === 'mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '
+                } ${nav ? '' : ''}`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
             </h4>
           ) : (
             <h4
-              className={`text-xl leading-8 font-extrabold  ${
-                mode === 'mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '
-              } ${nav ? '' : ''}`}
+              className={`text-xl leading-8 font-extrabold  ${mode === 'mobile' ? 'xl:text-[36px] xl:leading-10' : 'lg:text-[36px] lg:leading-10 '
+                } ${nav ? '' : ''}`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
             </h4>
           )}
 
           {loaderData?.profileInfo?.occupation ||
-          input.occupation ||
-          input.location ||
-          loaderData?.profileInfo?.location ? (
+            input.occupation ||
+            input.location ||
+            loaderData?.profileInfo?.location ? (
             <h3
-              className={` text-gray-500 break-normal text-xs leading-5 font-medium ${
-                mode === 'mobile'
-                  ? 'xl:leading-8 xl:text-gray-600 xl:text-2xl lg:mt-[0.375rem]'
-                  : 'lg:leading-8 lg:text-gray-600 lg:mt-[0.375rem] lg:text-2xl'
-              }  ${nav ? '' : ''} `}
+              className={` text-gray-500 break-normal text-xs leading-5 font-medium ${mode === 'mobile'
+                ? 'xl:leading-8 xl:text-gray-600 xl:text-2xl lg:mt-[0.375rem]'
+                : 'lg:leading-8 lg:text-gray-600 lg:mt-[0.375rem] lg:text-2xl'
+                }  ${nav ? '' : ''} `}
             >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3>
@@ -100,9 +94,8 @@ export default function Template8({
 
           <div className="mt-[1rem]">
             <pre
-              className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${
-                mode === 'mobile' ? '' : ''
-              } ${nav ? '' : ''}`}
+              className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode === 'mobile' ? '' : ''
+                } ${nav ? '' : ''}`}
             >
               {input?.description?.trim()}
             </pre>
@@ -110,9 +103,8 @@ export default function Template8({
 
           <div className={`flex flex-col ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             <div
-              className={`flex flex-col pt-[1.5rem] ${
-                mode === 'mobile' ? ' ' : 'xl:flex-row xl:justify-between'
-              } ${nav ? '' : ''}`}
+              className={`flex flex-col pt-[1.5rem] ${mode === 'mobile' ? ' ' : 'xl:flex-row xl:justify-between'
+                } ${nav ? '' : ''}`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
                 <div className={`flex ${mode === 'mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
@@ -120,9 +112,8 @@ export default function Template8({
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[65%]'
-                    }`}
+                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[65%]'
+                      }`}
                   >
                     {input.company}
                   </h2>
@@ -136,9 +127,8 @@ export default function Template8({
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile' ? ' lg:mt-[-0.25rem]' : 'xl:mt-[-0.25rem] '
-                    }`}
+                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${mode === 'mobile' ? ' lg:mt-[-0.25rem]' : 'xl:mt-[-0.25rem] '
+                      }`}
                   >
                     {input.education}
                   </h2>
@@ -170,17 +160,15 @@ export default function Template8({
           </div>
 
           <div
-            className={`${loaderData?.portfolioImage[0] ? 'pt-[0rem]' : 'pt-[0rem]'} ${
-              mode === 'mobile' ? '' : ''
-            } ${nav ? '' : ''}`}
+            className={`${loaderData?.portfolioImage[0] ? 'pt-[0rem]' : 'pt-[0rem]'} ${mode === 'mobile' ? '' : ''
+              } ${nav ? '' : ''}`}
           >
             <PortfolioAddon loaderData={loaderData} />
           </div>
 
           <footer
-            className={`flex w-full gap-4 md:gap-8  justify-start ${mode === 'mobile' ? '' : ''}  ${
-              nav ? '' : ''
-            } ${loaderData?.portfolioImage[0] ? 'pt-[1rem]' : 'pt-[0rem]'}`}
+            className={`flex w-full gap-4 md:gap-8  justify-start ${mode === 'mobile' ? '' : ''}  ${nav ? '' : ''
+              } ${loaderData?.portfolioImage[0] ? 'pt-[1rem]' : 'pt-[0rem]'}`}
           >
             {loaderData?.socialMedia?.facebookLink ? (
               <a
@@ -216,13 +204,11 @@ export default function Template8({
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
               loading="lazy"
-              className={`rounded-lg object-cover w-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] ${
-                mode === 'mobile'
-                  ? 'lg:w-[25rem] lg:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
-                  : 'xl:w-[25rem] xl:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
-              } ${
-                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
-              } ${nav ? 'SmMedium:w-[25rem] med:w-[30rem] med:h-[30rem] medium:w-[30rem]' : ''} `}
+              className={`rounded-lg object-cover w-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] ${mode === 'mobile'
+                ? 'lg:w-[25rem] lg:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
+                : 'xl:w-[25rem] xl:h-[25rem] medium:w-[30rem] medium:h-[35rem] mediumLaptop:w-[30rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
+                } ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
+                } ${nav ? 'SmMedium:w-[25rem] med:w-[30rem] med:h-[30rem] medium:w-[30rem]' : ''} `}
               src={
                 secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }

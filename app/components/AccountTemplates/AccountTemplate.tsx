@@ -17,7 +17,7 @@ import thumbnail16 from '../../../assets/images/screenshots/thumbnail16.png'
 import temp17 from '../../../assets/images/screenshots/temp17.png'
 import temp18 from '../../../assets/images/screenshots/temp18.png'
 import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
-import Modal from './Modal'
+import Modal from '../Common/Modal'
 
 export default function AccountTemplate({ setshowTemplate, mode, setmode }: any) {
   const navigation = useNavigation()

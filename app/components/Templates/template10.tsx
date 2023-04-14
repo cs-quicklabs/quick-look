@@ -9,9 +9,9 @@ import { useLocation } from '@remix-run/react'
 import BannerAddOn from './addOns/Banner'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
-import TestimonialAddOn from './addOns/testimonial'
-import VideoAddOn from './addOns/video'
-import PortfolioAddon from './addOns/portfolio'
+import TestimonialAddOn from './addOns/Testimonial'
+import VideoAddOn from './addOns/Video'
+import PortfolioAddon from './addOns/Portfolio'
 import PoweredBy from '../Common/PoweredBy'
 
 function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode }: any) {
@@ -28,9 +28,8 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
         {primaryRestore || loaderData?.profileImage?.primaryImage ? (
           <img
             src={primaryRestore ? DefaultCoverPicture : loaderData?.profileImage?.primaryImage}
-            className={`w-[100%] object-cover ${
-              mode === 'mobile' ? 'h-[15rem]' : 'h-[8rem] md:h-[14rem]'
-            }`}
+            className={`w-[100%] object-cover ${mode === 'mobile' ? 'h-[15rem]' : 'h-[8rem] md:h-[14rem]'
+              }`}
             alt="cover"
             loading="lazy"
           />
@@ -39,48 +38,42 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
 
       <div className="xl:flex xl:flex-col xl:items-center ">
         <div
-          className={`flex flex-col ${mode === 'mobile' ? '' : ''}  ${
-            mode === 'mobile'
-              ? 'h-[9rem] largeLaptop:h-[20vh]'
-              : 'h-[4rem] md:h-[7rem] largeLaptop:h-[9rem]'
-          }`}
+          className={`flex flex-col ${mode === 'mobile' ? '' : ''}  ${mode === 'mobile'
+            ? 'h-[9rem] largeLaptop:h-[20vh]'
+            : 'h-[4rem] md:h-[7rem] largeLaptop:h-[9rem]'
+            }`}
         >
           <div
-            className={`relative flex justify-center  ${
-              primaryRestore || loaderData?.profileImage?.primaryImage
-                ? ` ${
-                    mode === 'mobile' ? 'bottom-[5rem] right-0' : 'bottom-[4rem] md:bottom-[9rem]'
-                  }`
-                : 'bottom-[-11rem]'
-            } ${mode === 'mobile' ? 'bottom-[9rem]' : ''}`}
+            className={`relative flex justify-center  ${primaryRestore || loaderData?.profileImage?.primaryImage
+              ? ` ${mode === 'mobile' ? 'bottom-[5rem] right-0' : 'bottom-[4rem] md:bottom-[9rem]'
+              }`
+              : 'bottom-[-11rem]'
+              } ${mode === 'mobile' ? 'bottom-[9rem]' : ''}`}
           >
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
               <img
                 src={secondaryRestore ? defaultimg : loaderData?.profileImage?.secondaryImage}
                 alt="profile"
                 loading="lazy"
-                className={`rounded-full h-[8rem] w-[8rem] md:w-[275px] md:h-[275px] ${
-                  mode === 'mobile'
-                    ? 'drop-shadow border-white lg:border-[10px] '
-                    : 'border-[7px] border-white drop-shadow md:border-[10px]'
-                }  `}
+                className={`rounded-full h-[8rem] w-[8rem] md:w-[275px] md:h-[275px] ${mode === 'mobile'
+                  ? 'drop-shadow border-white lg:border-[10px] '
+                  : 'border-[7px] border-white drop-shadow md:border-[10px]'
+                  }  `}
               />
             ) : null}
           </div>
         </div>
 
         <div
-          className={`w-[100%] px-[1rem] pb-[3rem] sm:pt-[3rem] md:pt-[2rem] ${
-            mode === 'mobile'
-              ? 'lg:px-[2rem] lg:pt-[0rem]'
-              : 'lg:px-[2rem] xl:px-[0rem] xl:w-[40rem] medium:w-[45rem] largeLaptop:w-[50rem] largeLaptop:pt-[0rem]'
-          }`}
+          className={`w-[100%] px-[1rem] pb-[3rem] sm:pt-[3rem] md:pt-[2rem] ${mode === 'mobile'
+            ? 'lg:px-[2rem] lg:pt-[0rem]'
+            : 'lg:px-[2rem] xl:px-[0rem] xl:w-[40rem] medium:w-[45rem] largeLaptop:w-[50rem] largeLaptop:pt-[0rem]'
+            }`}
         >
           <div className="flex flex-col items-center justify-center">
             <div
-              className={`font-extrabold leading-10 md:mt-0 lg:mt-4 xl:mt-0 ${
-                mode === 'mobile' ? 'lg:text-4xl' : 'text-xl md:text-4xl'
-              }`}
+              className={`font-extrabold leading-10 md:mt-0 lg:mt-4 xl:mt-0 ${mode === 'mobile' ? 'lg:text-4xl' : 'text-xl md:text-4xl'
+                }`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
             </div>
@@ -101,9 +94,8 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             <div className={`flex flex-wrap ${mode === 'mobile' ? '' : ''}`}>
               {' '}
               <pre
-                className={`max-w-[472px] whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${
-                  loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'
-                }`}
+                className={`max-w-[472px] whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'
+                  }`}
               >
                 {input?.description?.trim()}{' '}
               </pre>{' '}
@@ -128,9 +120,8 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             </div>
 
             <div
-              className={`mt-5 flex w-[20rem] items-center gap-2 md:w-full flex-col ${
-                mode === 'mobile' ? '' : ''
-              }`}
+              className={`mt-5 flex w-[20rem] items-center gap-2 md:w-full flex-col ${mode === 'mobile' ? '' : ''
+                }`}
             >
               <div className="flex w-max items-center justify-center gap-1 text-xs leading-6 md:text-base md:font-normal">
                 {input.company && (
@@ -151,9 +142,8 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             </div>
           </div>
           <footer
-            className={`flex w-full items-center justify-center gap-4 md:gap-8 pt-[2rem] ${
-              mode === 'mobile' ? '' : ''
-            } ${nav ? '' : ''} `}
+            className={`flex w-full items-center justify-center gap-4 md:gap-8 pt-[2rem] ${mode === 'mobile' ? '' : ''
+              } ${nav ? '' : ''} `}
           >
             {loaderData?.socialMedia?.facebookLink ? (
               <a

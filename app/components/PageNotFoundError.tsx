@@ -1,9 +1,9 @@
 import type { customError } from '~/types/error.server'
-import tailwindStylesheetUrl from '../styles/tailwind.css'
+import tailswindcss from '../styles/tailwind.css'
 import { Link, Links } from '@remix-run/react'
 
 export function links() {
-  return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
+  return [{ rel: 'stylesheet', href: tailswindcss }]
 }
 
 export default function ErrorHandler({ name, status }: customError) {

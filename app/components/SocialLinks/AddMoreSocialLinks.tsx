@@ -1,7 +1,6 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { useState } from 'react'
 import { XCircleIcon } from '@heroicons/react/24/outline'
-import CreateSocialLinks from './CreateSocialLinks'
+import CreateSocialLinks from './CreateSocialLinksForm'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { useEffect } from 'react'
 import ExistingSocialLinks from './ExistingSocialLinks'
@@ -46,7 +45,7 @@ export default function AddMoreSocialLinks({
     setmode('desktop')
   }
   return (
-    <div className="relative z-40" onClose={() => { }}>
+    <div className="relative z-40">
       <div className="absolute inset-0 overflow-hidden">
         <div
           className={`pointer-events-none fixed inset-y-0 left-0 flex  mt-12  ${mode === 'mobile' ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-80' : 'lg:w-80'
@@ -176,7 +175,6 @@ export default function AddMoreSocialLinks({
                 />
               </div>
 
-              {/* <div className={`${loaderData?.socialMedia?.facebookLink && loaderData?.socialMedia?.twitterLink && loaderData?.socialMedia?.youtubeLink ? 'mt-3' : 'mt-6'}`}> */}
             </div>
           </div>
         </div>

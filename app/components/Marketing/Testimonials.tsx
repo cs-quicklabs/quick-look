@@ -3,7 +3,7 @@ import avatarImage2 from '../../../assets/images/avatars/avatar-2.png'
 import avatarImage3 from '../../../assets/images/avatars/avatar-3.png'
 import avatarImage4 from '../../../assets/images/avatars/avatar-4.png'
 import avatarImage5 from '../../../assets/images/avatars/avatar-5.png'
-import { Container } from '../Container'
+import { Container } from '../Atoms/Container'
 
 const testimonials = [
   [

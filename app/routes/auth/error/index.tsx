@@ -1,6 +1,6 @@
 import tailwindcss from '../../../styles/tailwind.css'
 import { Links } from '@remix-run/react'
-import { ButtonLink } from '../../../components/Button'
+import { ButtonLink } from '../../../components/Atoms/Button'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
 
 export function links() {

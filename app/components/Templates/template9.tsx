@@ -1,10 +1,10 @@
 import defaultimg from '../../../assets/images/profile.png'
-import TestimonialAddOn from './addOns/testimonial'
-import VideoAddOn from './addOns/video'
+import TestimonialAddOn from './addOns/Testimonial'
+import VideoAddOn from './addOns/Video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
-import PortfolioAddon from './addOns/portfolio'
+import PortfolioAddon from './addOns/Portfolio'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
 import { AcademicCapIcon } from '@heroicons/react/24/outline'
 import { useLocation } from '@remix-run/react'
@@ -30,25 +30,22 @@ export default function Template9({
         className={`mb-[3rem] flex h-full ${nav ? 'w-screen' : ''}  items-center justify-center`}
       >
         <div
-          className={`mb-[5rem] flex items-center justify-center bg-gray-900 rounded-2xl px-[2rem] ${
-            mode == 'mobile'
-              ? 'lg:w-[28rem] medium:w-[32rem] mediumLaptop:w-[38rem]'
-              : 'w-[90%] md:w-[40rem] lg:w-[35rem] medium:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]'
-          } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
+          className={`mb-[5rem] flex items-center justify-center bg-gray-900 rounded-2xl px-[2rem] ${mode == 'mobile'
+            ? 'lg:w-[28rem] medium:w-[32rem] mediumLaptop:w-[38rem]'
+            : 'w-[90%] md:w-[40rem] lg:w-[35rem] medium:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]'
+            } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
           <div className="flex flex-col">
             <div
-              className={`relative flex items-center justify-center ${
-                mode == 'mobile' ? 'top-[-3rem]' : 'top-[-5rem]'
-              }`}
+              className={`relative flex items-center justify-center ${mode == 'mobile' ? 'top-[-3rem]' : 'top-[-5rem]'
+                }`}
             >
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 <img
-                  className={`rounded-full object-cover ${
-                    mode == 'mobile'
-                      ? 'h-[10rem] w-[10rem]'
-                      : 'h-[10rem] w-[10rem] md:h-[14rem] md:w-[14rem]'
-                  }`}
+                  className={`rounded-full object-cover ${mode == 'mobile'
+                    ? 'h-[10rem] w-[10rem]'
+                    : 'h-[10rem] w-[10rem] md:h-[14rem] md:w-[14rem]'
+                    }`}
                   src={
                     secondaryRestore === true
                       ? defaultimg
@@ -60,31 +57,28 @@ export default function Template9({
               ) : null}
             </div>
             <div
-              className={`flex flex-col items-center justify-center ${
-                secondaryRestore == false && loaderData?.profileImage?.secondaryImage == ''
-                  ? 'mt-[3rem]'
-                  : 'mt-[-3rem]'
-              }`}
+              className={`flex flex-col items-center justify-center ${secondaryRestore == false && loaderData?.profileImage?.secondaryImage == ''
+                ? 'mt-[3rem]'
+                : 'mt-[-3rem]'
+                }`}
             >
               <h1
-                className={`w-fit px-4 font-bold leading-8 text-gray-50 ${
-                  mode == 'mobile'
-                    ? 'text-2xl'
-                    : 'text-2xl md:text-4xl lg:leading-10 lg:font-extrabold'
-                }`}
+                className={`w-fit px-4 font-bold leading-8 text-gray-50 ${mode == 'mobile'
+                  ? 'text-2xl'
+                  : 'text-2xl md:text-4xl lg:leading-10 lg:font-extrabold'
+                  }`}
               >
                 {loaderData?.firstname} {loaderData?.lastname}
               </h1>
               {loaderData?.profileInfo?.occupation ||
-              input.occupation ||
-              input.location ||
-              loaderData?.profileInfo?.location ? (
+                input.occupation ||
+                input.location ||
+                loaderData?.profileInfo?.location ? (
                 <h3
-                  className={`break-normal mt-1 text-gray-50 ${
-                    mode == 'mobile'
-                      ? 'w-fit px-4 text-xl'
-                      : 'w-fit px-4 text-xl md:text-2xl lg:leading-8 lg:font-medium'
-                  }`}
+                  className={`break-normal mt-1 text-gray-50 ${mode == 'mobile'
+                    ? 'w-fit px-4 text-xl'
+                    : 'w-fit px-4 text-xl md:text-2xl lg:leading-8 lg:font-medium'
+                    }`}
                 >
                   {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
                   {input.location}
@@ -94,9 +88,8 @@ export default function Template9({
               )}
 
               <div
-                className={`${
-                  mode === 'mobile' ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]' : ''
-                }`}
+                className={`${mode === 'mobile' ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]' : ''
+                  }`}
               >
                 <div className={`${mode === 'mobile' ? '' : ''}`}>
                   {loaderData?.spotlightButton?.toggleSpotlight && (
@@ -151,9 +144,8 @@ export default function Template9({
                 </div>
 
                 <footer
-                  className={` flex w-full justify-center gap-4 pb-[5rem] pt-[2rem] md:gap-8   ${
-                    mode === 'mobile' ? '' : ''
-                  }  ${nav ? '' : ''} ${loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}
+                  className={` flex w-full justify-center gap-4 pb-[5rem] pt-[2rem] md:gap-8   ${mode === 'mobile' ? '' : ''
+                    }  ${nav ? '' : ''} ${loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'}`}
                 >
                   {loaderData?.socialMedia?.facebookLink ? (
                     <a

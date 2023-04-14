@@ -3,12 +3,12 @@ import twitter from '../../../assets/images/twitter1.png'
 import youtube from '../../../assets/images/yt1.png'
 import bgimage from '../../../assets/images/bg.png'
 import defaultimg from '../../../assets/images/profile.png'
-import TestimonialAddOn from './addOns/testimonial'
-import VideoAddOn from './addOns/video'
+import TestimonialAddOn from './addOns/Testimonial'
+import VideoAddOn from './addOns/Video'
 import Spotlightbtn from './addOns/Spotlightbtn'
 import BannerAddOn from './addOns/Banner'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
-import PortfolioAddon from './addOns/portfolio'
+import PortfolioAddon from './addOns/Portfolio'
 import PoweredBy from '../Common/PoweredBy'
 
 export default function Template1({
@@ -32,9 +32,8 @@ export default function Template1({
             <div className="relative">
               {loaderData?.profileImage?.primaryImage || primaryRestore ? (
                 <img
-                  className={`w-[100%] object-cover ${
-                    loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-44' : ''
-                  }`}
+                  className={`w-[100%] object-cover ${loaderData?.profileImage?.primaryImage || primaryRestore === true ? 'h-44' : ''
+                    }`}
                   src={primaryRestore === true ? bgimage : loaderData?.profileImage?.primaryImage}
                   alt="cover"
                   loading="lazy"
@@ -45,11 +44,10 @@ export default function Template1({
               {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <img
-                  className={`h-32 w-32 rounded-full shadow-lg  shadow-white ${
-                    loaderData?.profileImage?.secondaryImage || secondaryRestore === true
-                      ? 'border-4 border-white'
-                      : ''
-                  }`}
+                  className={`h-32 w-32 rounded-full shadow-lg  shadow-white ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true
+                    ? 'border-4 border-white'
+                    : ''
+                    }`}
                   src={
                     secondaryRestore === true
                       ? defaultimg
@@ -67,9 +65,9 @@ export default function Template1({
               {loaderData?.firstname} {loaderData?.lastname}
             </h1>
             {loaderData?.profileInfo?.occupation ||
-            input.occupation ||
-            input.location ||
-            loaderData?.profileInfo?.location ? (
+              input.occupation ||
+              input.location ||
+              loaderData?.profileInfo?.location ? (
               <h3 className={`text-gray-500 text-base leading-5 mt-0.5 font-normal`}>
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
@@ -100,9 +98,8 @@ export default function Template1({
             </div>
 
             <div
-              className={`m-auto  flex flex-wrap mt-0.5 ${
-                loaderData?.spotlightButton?.toggleSpotlight ? 'pt-[1.5rem]' : 'pt-11'
-              }`}
+              className={`m-auto  flex flex-wrap mt-0.5 ${loaderData?.spotlightButton?.toggleSpotlight ? 'pt-[1.5rem]' : 'pt-11'
+                }`}
             >
               <pre className="flex whitespace-pre-wrap break-normal font-sans text-base font-normal leading-5 text-gray-500">
                 {input?.description?.trim()}
@@ -127,9 +124,8 @@ export default function Template1({
                   <div className="flex flex-col">
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">WORK</h2>
                     <h2
-                      className={`w-[65%] text-sm font-normal leading-5 text-gray-900 break-normal ${
-                        mode === 'mobile' ? '' : ''
-                      }`}
+                      className={`w-[65%] text-sm font-normal leading-5 text-gray-900 break-normal ${mode === 'mobile' ? '' : ''
+                        }`}
                     >
                       {input.company}
                     </h2>

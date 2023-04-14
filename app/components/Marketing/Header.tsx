@@ -5,8 +5,8 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { ButtonLink } from '../Button'
-import { Container } from '../Container'
+import { ButtonLink } from '../Atoms/Button'
+import { Container } from '../Atoms/Container'
 import { Link } from '@remix-run/react'
 
 function MobileNavigation() {
