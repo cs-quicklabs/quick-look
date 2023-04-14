@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { Form, useNavigation } from '@remix-run/react'
 import DeletePortfolioImage from './DeletePortfolioImageModal'
 
-export default function Portfolioimage({ img, setUpload, setEdit, setDel, del, edit }: any) {
+export default function PortfolioImage({ img, setUpload, setEdit, setDel, del, edit }: any) {
   const [show, setShow] = useState(false)
   const imageref = useRef(null)
   const btnref = useRef(null)

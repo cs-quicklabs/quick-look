@@ -4,13 +4,13 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Form, useNavigation } from '@remix-run/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export default function Delete({ open, onClose }: any) {
+export default function DeleteAccountModal({ open, onClose }: any) {
   const navigation = useNavigation()
   const cancelButtonRef = useRef(null)
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {}}>
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => { }}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

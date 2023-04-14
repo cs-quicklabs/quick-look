@@ -11,7 +11,7 @@ export async function action({ request }: ActionArgs) {
   return await publishToggle(request)
 }
 
-export default function Delete({ open, onClose, isPublished, setopenModal }: any) {
+export default function UnpublishModal({ open, onClose, isPublished, setopenModal }: any) {
   const navigation = useNavigation()
   const cancelButtonRef = useRef(null)
 
