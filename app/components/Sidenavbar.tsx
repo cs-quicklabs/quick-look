@@ -42,8 +42,8 @@ export default function SideNav({ children }: any) {
                     item.current
                       ? 'bg-gray-100 text-gray-900'
                       : item.class
-                      ? item.class
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                        ? item.class
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                     'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                   )}
                 >

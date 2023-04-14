@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Bars2Icon } from '@heroicons/react/24/outline'
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid'
-import AccountBio from './AccountBio'
+import AccountBio from './AccountBioForm'
 import AccountTemplate from './AccountTemplate'
 import DefaultProfileIcon from '../../../assets/images/profile.png'
 import UploadImages from '../UploadImages/UploadImages'

@@ -34,10 +34,10 @@ export default function EditSocialProfile({
     clickedLink?.name === 'Facebook'
       ? loaderData?.socialMedia?.facebookLink
       : clickedLink?.name === 'Twitter'
-      ? loaderData?.socialMedia?.twitterLink
-      : clickedLink?.name === 'Youtube'
-      ? loaderData?.socialMedia?.youtubeLink
-      : ''
+        ? loaderData?.socialMedia?.twitterLink
+        : clickedLink?.name === 'Youtube'
+          ? loaderData?.socialMedia?.youtubeLink
+          : ''
   )
 
   const [selectedEditSocialLinks] = useState(
@@ -53,10 +53,10 @@ export default function EditSocialProfile({
     sociallink === 'facebook'
       ? /^(https?:\/\/)?((w{3}\.)?)facebook.com\/./gm
       : sociallink === 'twitter'
-      ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm
-      : sociallink === 'youtube'
-      ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm
-      : ''
+        ? /^(https?:\/\/)?((w{3}\.)?)twitter.com\/./gm
+        : sociallink === 'youtube'
+          ? /^(https?:\/\/)?((w{3}\.)?)youtube.com\/./gm
+          : ''
   let whiteSpaceRegex = /^\S*$/
 
   const regexCheck = (fbRegEx: any, val: any, whiteSpaceRegex: any) => {
@@ -77,21 +77,11 @@ export default function EditSocialProfile({
     regexCheck(fbRegEx, e.target.value, whiteSpaceRegex)
   }
 
-  // const Onclose = () => {
-  //   if (mode === 'desktop') {
-  //     setShowEditProfile(false)
-  //   }
-  //   if (mode === 'mobile') {
-  //     setShowEditProfile(false)
-  //   }
-  // }
-
   return (
     <Form replace={true} action="/account/update/socialProfile" method="post">
       <div
-        className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${
-          mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'
-        } `}
+        className={`flex flex-col ml-[-1rem] divide-y divide-gray-200 bg-white font-inter ${mode === 'mobile' ? 'lg:ml-[-1rem] w-[16rem] lg:w-max xl:w-96' : 'md:w-[20rem] lg:w-96'
+          } `}
       >
         <div className="flex flex-1 flex-col justify-between">
           <div className="divide-y divide-gray-200 px-4 sm:px-6 mt-[-1rem]">
@@ -110,11 +100,10 @@ export default function EditSocialProfile({
                     onChange={handleChange}
                     name="editlink"
                     id="editlink"
-                    className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900 ${
-                      error
+                    className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900 ${error
                         ? 'border border-red-600 focus:border-red-500 focus:ring-red-500'
                         : 'focus:border-indigo-500 focus:ring-indigo-500'
-                    }`}
+                      }`}
                   />
                   <div className={`text-red-600 text-sm`}>{error}</div>
                 </div>

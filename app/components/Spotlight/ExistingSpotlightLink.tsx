@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import CreateSpotlight from './CreateSpotlight'
-import DeleteSpotlight from './DeleteSpotlight'
+import CreateSpotlight from './CreateSpotlightForm'
+import DeleteSpotlight from './DeleteSpotlightModal'
 
 export default function ExistingSpotlightLink({
   setShowSpotlight,
@@ -13,10 +13,6 @@ export default function ExistingSpotlightLink({
       name: loaderData?.spotlightButton?.buttonText,
       description: loaderData?.spotlightButton?.buttonActionlink,
     },
-    // {
-    //   name: 'loaderData?.spotlightButton?.buttonText',
-    //   description: 'loaderData?.spotlightButton?.buttonActionlink',
-    // },
   ]
 
   const [clickedSpotlight, setClickedSpotlight] = useState<{
@@ -41,11 +37,10 @@ export default function ExistingSpotlightLink({
             {person.name ? (
               <>
                 <div
-                  className={`flex justify-between lg:items-center ${
-                    mode === 'mobile'
-                      ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]'
-                      : 'flex-col lg:flex-row'
-                  }`}
+                  className={`flex justify-between lg:items-center ${mode === 'mobile'
+                    ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]'
+                    : 'flex-col lg:flex-row'
+                    }`}
                 >
                   <div className="flex flex-col lg:w-screen">
                     <div className="flex">
@@ -65,11 +60,10 @@ export default function ExistingSpotlightLink({
                       </div>
 
                       <div
-                        className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${
-                          mode === 'mobile'
-                            ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0'
-                            : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'
-                        }`}
+                        className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile'
+                          ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0'
+                          : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'
+                          }`}
                       >
                         <button
                           data-cy="editExistingSpotlight"
@@ -89,9 +83,8 @@ export default function ExistingSpotlightLink({
                             setOpenDeleteSpotlight(true)
                             setClickedSpotlight(person)
                           }}
-                          className={`hover:text-red-600 text-[14px] ${
-                            mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
-                          }`}
+                          className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
+                            }`}
                         >
                           Delete
                         </button>

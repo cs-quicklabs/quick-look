@@ -74,11 +74,15 @@ export default function Portfolio({ setShowPortfolio, mode, setmode, loaderData 
   }
 
   const Onclose = (e: any) => {
+    if (mode === 'desktop') {
+      setShowPortfolio(false)
+    }
     setShowPortfolio(false)
   }
 
   const OnCancel = () => {
     setShowPortfolio(false)
+    setmode('desktop')
   }
 
   useEffect(() => {

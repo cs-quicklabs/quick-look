@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { XCircleIcon } from '@heroicons/react/24/outline'
-import CreateBanner from './CreateBanner'
+import CreateBanner from './CreateBannerForm'
 import DeleteBanner from './DeleteBannerModal'
 
 export default function Banner({ setShowBanner, loaderData, mode, setmode }: any) {
@@ -13,11 +13,16 @@ export default function Banner({ setShowBanner, loaderData, mode, setmode }: any
 
   const OnCancel = () => {
     setShowBanner(false)
+    setmode('desktop')
   }
 
   const Onclose = () => {
+    if (mode === 'desktop') {
+      setShowBanner(false)
+    }
     setShowBanner(false)
   }
+
   return (
     <div className="relative z-40">
       <div className="absolute inset-0 overflow-hidden">

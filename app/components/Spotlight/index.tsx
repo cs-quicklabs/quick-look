@@ -1,5 +1,5 @@
 import AddMoreSpotlightLink from './AddMoreSpotlightLink'
-import CreateSpotlight from './CreateSpotlight'
+import CreateSpotlight from './CreateSpotlightForm'
 
 export default function Spotlight({
   setAdditionalLinkUpdateMessage,

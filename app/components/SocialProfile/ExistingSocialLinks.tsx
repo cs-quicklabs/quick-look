@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import EditSocialLink from './EditSocialLink'
-import DeleteSocialLink from './DeleteSocialLink'
+import EditSocialLink from './EditSocialLinkForm'
+import DeleteSocialLink from './DeleteSocialLinkModal'
 import fbIcon from '../../../assets/images/fb1.png'
 import twitterIcon from '../../../assets/images/twitter1.png'
 import ytIcon from '../../../assets/images/yt1.png'
@@ -71,31 +71,27 @@ export default function ExistingSocialLinks({
             {person.email ? (
               <>
                 <div
-                  className={`flex justify-between lg:items-center ${
-                    mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'
-                  }`}
+                  className={`flex justify-between lg:items-center ${mode === 'mobile' ? 'flex-col xl:flex-row' : 'flex-col lg:flex-row'
+                    }`}
                 >
                   <div className={` ${mode === 'mobile' ? '' : ''}`}>
                     {/* <div className={`flex justify-between ${mode === 'mobile' ? 'gap-[1.8rem] lg:gap-[3.2rem] xl:gap-[5.2rem]' : 'gap-[3.2rem]'} ${showEditProfile && clickedLink.name === person.name  ? 'border-transparent' : 'border-b border-gray-200'} `}> */}
                     <div
-                      className={`${
-                        mode === 'mobile'
-                          ? 'lg:flex lg:justify-between lg:items-center'
-                          : 'lg:flex lg:justify-between'
-                      } ${
-                        showEditProfile && clickedLink.name === person.name
+                      className={`${mode === 'mobile'
+                        ? 'lg:flex lg:justify-between lg:items-center'
+                        : 'lg:flex lg:justify-between'
+                        } ${showEditProfile && clickedLink.name === person.name
                           ? 'border-transparent'
                           : 'border-b border-gray-200'
-                      } `}
+                        } `}
                     >
                       <div className="py-4 flex">
                         <img className="h-11 w-11 rounded-full" src={person.image} alt="" />
                         <div className="ml-3">
                           <p className="text-sm font-medium text-gray-900">{person.name}</p>
                           <p
-                            className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${
-                              mode === 'mobile' ? 'w-[8rem]' : 'w-52'
-                            }`}
+                            className={` text-sm text-gray-500 text-ellipsis overflow-hidden ${mode === 'mobile' ? 'w-[8rem]' : 'w-52'
+                              }`}
                           >
                             {person.email.length > 25
                               ? person.email.slice(0, 25) + '...'
@@ -105,13 +101,11 @@ export default function ExistingSocialLinks({
                       </div>
 
                       <div
-                        className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${
-                          mode === 'mobile'
-                            ? 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] xl:ml-[8.2rem]'
-                            : 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] py-0 lg:py-4'
-                        } ${
-                          clickedLink.name === person.name && showEditProfile ? 'hidden' : 'block'
-                        }`}
+                        className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile'
+                          ? 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] xl:ml-[8.2rem]'
+                          : 'flex-row lg:flex-col ml-[3.5rem] lg:ml-[3.2rem] py-0 lg:py-4'
+                          } ${clickedLink.name === person.name && showEditProfile ? 'hidden' : 'block'
+                          }`}
                       >
                         <button
                           data-cy="editSocialButton"
@@ -130,9 +124,8 @@ export default function ExistingSocialLinks({
                             e.preventDefault()
                             toggleDel(person)
                           }}
-                          className={`hover:text-red-600 text-[14px] ${
-                            mode === 'mobile' ? 'ml-3 lg:ml-0' : 'lg:ml-0 ml-3'
-                          }`}
+                          className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-3 lg:ml-0' : 'lg:ml-0 ml-3'
+                            }`}
                         >
                           Delete
                         </button>

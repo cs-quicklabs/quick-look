@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import DeleteTestimonial from './DeleteTestimonial'
-import EditTestimonial from './EditTestimonial'
+import DeleteTestimonial from './DeleteTestimonialModal'
+import EditTestimonial from './EditTestimonialForm'
 
 export default function ExistingTestimonial({
   setShowCreateTestimonial,
@@ -35,9 +35,8 @@ export default function ExistingTestimonial({
           <li key={person.name} className="">
             {person.description ? (
               <div
-                className={`flex justify-between lg:items-center border-b border-gray-200 ${
-                  mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'
-                }`}
+                className={`flex justify-between lg:items-center border-b border-gray-200 ${mode === 'mobile' ? 'flex-col xl:flex-row items-center' : 'flex-col lg:flex-row'
+                  }`}
               >
                 <div className="py-4 flex">
                   <div className="ml-3">
@@ -51,11 +50,10 @@ export default function ExistingTestimonial({
                 </div>
 
                 <div
-                  className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${
-                    mode === 'mobile'
+                  className={`flex items-start mb-2 lg:mb-0 text-gray-400 ${mode === 'mobile'
                       ? 'mr-[6.5rem] xl:mr-0 flex-row xl:flex-col'
                       : 'flex-row lg:flex-col lg:ml-[3.2rem] ml-[0.8rem] py-0 lg:py-4'
-                  }`}
+                    }`}
                 >
                   <button
                     data-cy="editTestimonialButton"
@@ -86,9 +84,8 @@ export default function ExistingTestimonial({
                       e.preventDefault()
                       setOpenDeleteTestimonial(true)
                     }}
-                    className={`hover:text-red-600 text-[14px] ${
-                      mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
-                    }`}
+                    className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
+                      }`}
                   >
                     Delete
                   </button>

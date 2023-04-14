@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import DeleteAdditinalLink from './DeleteAdditionalLink'
-import EditAdditionalLink from './EditAdditionalLink'
+import EditAdditionalLink from './EditAdditionalLinkForm'
 
 export default function ExistingAdditionalSpotlightLink({
   setOpenAdditionalLinkForm,
@@ -51,17 +51,15 @@ export default function ExistingAdditionalSpotlightLink({
               {additionalSpotlight.linkText ? (
                 <>
                   <div
-                    className={`flex justify-between lg:items-center ${
-                      mode === 'mobile'
+                    className={`flex justify-between lg:items-center ${mode === 'mobile'
                         ? 'flex-col xl:flex-row items-center ml-[24rem] lg:ml-[32rem] xl:ml-[0]'
                         : 'flex-col lg:flex-row'
-                    }`}
+                      }`}
                   >
                     <div className="flex flex-col lg:w-screen">
                       <div
-                        className={`flex ${
-                          showEditAdditional ? '' : 'border-b border-gray-200 ml-3 mr-2.5 lg:mr-3.5'
-                        }`}
+                        className={`flex ${showEditAdditional ? '' : 'border-b border-gray-200 ml-3 mr-2.5 lg:mr-3.5'
+                          }`}
                       >
                         <div className="py-4 flex">
                           <div className="ml-3">
@@ -79,16 +77,14 @@ export default function ExistingAdditionalSpotlightLink({
                         </div>
 
                         <div
-                          className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${
-                            mode === 'mobile'
+                          className={`flex justify-center items-start text-gray-400 mb-2 lg:mb-0   ${mode === 'mobile'
                               ? ' flex-row xl:flex-col ml-[-13rem] lg:ml-[-13rem] xl:ml-[4rem] mt-[5rem]  lg:mt-[5rem] xl:mt-0'
                               : 'flex-row lg:flex-col py-0 lg:py-4 ml-[-13rem] mt-[5rem] lg:ml-[5.2rem] lg:mt-0'
-                          } ${
-                            clickedAdditionalSpotlight.id === additionalSpotlight.id &&
-                            showEditAdditional
+                            } ${clickedAdditionalSpotlight.id === additionalSpotlight.id &&
+                              showEditAdditional
                               ? 'hidden'
                               : 'block'
-                          }`}
+                            }`}
                         >
                           <button
                             data-cy="editExistingAdditionalLink"
@@ -109,9 +105,8 @@ export default function ExistingAdditionalSpotlightLink({
                               setOpenDeleteAdditionalLink(true)
                               setDeleteAdditionalLink(additionalSpotlight)
                             }}
-                            className={`hover:text-red-600 text-[14px] ${
-                              mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
-                            }`}
+                            className={`hover:text-red-600 text-[14px] ${mode === 'mobile' ? 'ml-[1.5rem] xl:ml-0' : 'lg:ml-0 ml-3'
+                              }`}
                           >
                             Delete
                           </button>

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import fbIcon from '../../../assets/images/fb1.png'
 import ytIcon from '../../../assets/images/yt1.png'
-import DeleteVideo from './DeleteVideo'
-import EditVideo from './EditVideo'
+import DeleteVideo from './DeleteVideoModal'
+import EditVideo from './EditVideoForm'
 
 export default function ExistingVideo({
   setVal,
