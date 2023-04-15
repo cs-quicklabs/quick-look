@@ -20,6 +20,7 @@ export default function DashboardBio({
     setmode('desktop')
   }
   return (
+
     <div className="relative z-40">
       {/* <div className="fixed inset-0 overflow-hidden"> */}
       <div className="absolute inset-0 overflow-hidden">

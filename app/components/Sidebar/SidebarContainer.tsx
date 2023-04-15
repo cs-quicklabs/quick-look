@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Bars2Icon } from '@heroicons/react/24/outline'
-import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import AccountBio from '../AccountBio/AccountBioForm'
 import AccountTemplate from '../AccountTemplates/AccountTemplate'
-import DefaultProfileIcon from '../../../assets/images/profile.png'
-import UploadImages from '../UploadImages/UploadImages'
+import UploadImages from '../ProfilePictures/UploadImages'
 import SocialProfile from '../SocialLinks/AddMoreSocialLinks'
 import NoTestimonial from '../AddTestimonial/NoTestimonial'
 import NoVideo from '../AddVideos/NoVideo'
 import Portfolio from '../AddPortfolio'
 import SpotlightButton from '../SpotlightButton'
 import Banner from '../SupportBanner'
+import SidebarItem from './SidebarItem'
+import SidebarHeader from './SidebarHeader'
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template' },
   { name: 'Bio', subheading: 'Introduction, Work and Education Details' },
   { name: 'Social Links', subheading: 'Links to Social Profile' },
-  { name: 'Images', subheading: 'Update Images in your templates' },
+  { name: 'Profile Pictures', subheading: 'Update Images in your templates' },
   { name: 'Support Banner', subheading: 'Add a support banner on top of your profile' },
 ]
 
@@ -80,56 +80,6 @@ export default function AccountSideBar({
     }
   }, [mode, showImages])
 
-  const renderPublishStatus = () => {
-    const { isPublished } = loaderData?.profile
-    let PublishIcon = isPublished ? CheckCircleIcon : ExclamationCircleIcon
-    return (
-      <div
-        className={`w-full inline-flex rounded-md ${isPublished ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-          } text-sm mt-3 py-1 px-2`}
-      >
-        <PublishIcon
-          className={`mt-1 mr-2 h-4 w-4 ${isPublished ? 'text-green-400' : 'text-yellow-400'}`}
-        />
-        <span className="flex-1">
-          {isPublished ? 'Your profile is live' : 'Your profile needs publishing'}
-        </span>
-        <span className="ml-2 cursor-pointer font-medium" onClick={() => setShowModal(true)}>
-          {isPublished ? `Unpublish ->` : 'Publish ->'}
-        </span>
-      </div>
-    )
-  }
-
-  const renderSideBarMenuItem = (title: String, subtitle: String) => {
-    return (
-      <div className="flex cursor-pointer justify-between border-t border-gray-200 px-2 py-4">
-        <div className="">
-          <p className="group flex items-center rounded-md px-2 text-sm font-medium leading-5">
-            {title}
-          </p>
-
-          <p className="px-2 text-sm font-medium text-gray-500 group-hover:text-gray-700">
-            {subtitle}
-          </p>
-        </div>
-        <div className="flex items-center text-gray-400">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
-      </div>
-    )
-  }
 
   const closeAllSidebars = () => {
     setShowSpotlight(false)
@@ -177,38 +127,7 @@ export default function AccountSideBar({
   function renderSideBar() {
     return (
       <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4">
-        <div className="flex flex-shrink-0 px-6 pt-3 pb-2">
-          <div className="group block w-full flex-shrink-0">
-            <div className="flex items-center">
-              <div>
-                <img
-                  data-cy="profileImage"
-                  className="inline-block h-9 w-9 rounded-full"
-                  src={
-                    loaderData?.profileImage?.secondaryImage
-                      ? loaderData?.profileImage?.secondaryImage
-                      : DefaultProfileIcon
-                  }
-                  alt=""
-                />
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium leading-5 text-gray-700 group-hover:text-gray-900">
-                  {loaderData?.firstname} {loaderData?.lastname}
-                </p>
-                <a
-                  href={`/${loaderData?.username}`}
-                  target="_blank"
-                  className="text-xs font-medium leading-4 text-gray-500 group-hover:text-gray-700"
-                  rel="noreferrer"
-                >
-                  View profile
-                </a>
-              </div>
-            </div>
-            {renderPublishStatus()}
-          </div>
-        </div>
+        <SidebarHeader loaderData={loaderData} setShowModal={setShowModal} />
         <div>
           <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
             Basic Profile
@@ -224,8 +143,9 @@ export default function AccountSideBar({
                 }}
                 className={classNames('hover:bg-gray-50')}
               >
-                {renderSideBarMenuItem(item.name, item.subheading)}
+                <SidebarItem title={item.name} subtitle={item.subheading} />
               </div>
+
             ))}
           </nav>
           {showBio ? (
@@ -301,7 +221,7 @@ export default function AccountSideBar({
                 }}
                 className={classNames('hover:bg-gray-50')}
               >
-                {renderSideBarMenuItem(item.name, item.subheading)}
+                <SidebarItem title={item.name} subtitle={item.subheading} />
               </div>
             ))}
             {showSpotlight ? (
