@@ -72,7 +72,7 @@
     "webpack": "^5.76.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=19"
   },
   "resolutions": {
     "//": "See https://github.com/facebook/create-react-app/issues/11773",
