@@ -47,7 +47,7 @@ export default function AddMoreSocialLinks({
   return (
     <SidebarDetailContainer mode={mode}>
       <div
-        className={`flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${
+        className={`mt-12 flex h-full flex-col bg-white border-r border-gray-200 overflow-y-auto ${
           mode === 'mobile' ? ' w-[16rem] xl:w-96' : 'md:w-[20rem] lg:w-96'
         }`}
       >

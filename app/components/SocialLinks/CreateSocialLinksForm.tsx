@@ -89,7 +89,7 @@ export default function CreateSocialLinks({
     <SidebarDetailContainer mode={mode}>
       <div>
         <div
-          className={`flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 overflow-y-auto ${
+          className={`mt-12 flex h-[95%] flex-col mt-12 bg-white font-inter border-r border-gray-200 overflow-y-auto ${
             mode === 'mobile'
               ? 'lg:ml-[16rem] xl:ml-[24rem] w-[16rem] xl:w-96'
               : 'md:w-[20rem] lg:w-96'

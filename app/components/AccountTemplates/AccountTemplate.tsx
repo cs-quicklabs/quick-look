@@ -60,7 +60,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
       />
 
       <SidebarDetailContainer mode={mode}>
-        <div className="flex h-full flex-col overflow-auto border-r border-gray-200 bg-white">
+        <div className="flex h-full mt-12 flex-col overflow-auto border-r border-gray-200 bg-white">
           <div className="bg-gray-50 py-6 px-4 sm:px-6">
             <div className="flex items-center justify-between">
               <div className="text-lg font-medium leading-7 text-gray-900">Select Template </div>
