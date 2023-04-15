@@ -59,15 +59,13 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
       />
 
       <div className="relative z-40">
-        {/* <div className="fixed inset-0" /> */}
-
         <div className=" inset-0 ">
           <div className="absolute inset-0 overflow-hidden">
             <div
-              className={`pointer-events-none fixed inset-y-0 left-0 mt-12  flex ${mode === 'mobile' ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96' : 'lg:w-96'
-                }`}
+              className={`pointer-events-none fixed inset-y-0 left-0 mt-12  flex ${
+                mode === 'mobile' ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96' : 'lg:w-96'
+              }`}
             >
-
               <div
                 data-cy="accountTemplate"
                 className="pointer-events-auto w-full md:max-w-xs lg:max-w-md"
@@ -109,28 +107,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '0' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem] ">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail1}
                               alt=""
-                              className={` w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail1}
                             alt=""
-                            className={` w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -147,28 +146,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '2' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail3}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail3}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -185,28 +185,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '8' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail4}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail4}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -223,28 +224,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '7' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail5}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail5}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -261,28 +263,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '5' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail6}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail6}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -299,28 +302,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '10' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={temp9}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={temp9}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -337,28 +341,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '9' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={template9}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={template9}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -375,28 +380,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '3' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumb3}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumb3}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -413,28 +419,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '4' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumb4}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumb4}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -451,28 +458,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '11' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail11}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail11}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -489,28 +497,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '13' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumb13}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumb13}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -527,28 +536,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '14' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail14}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail14}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -565,28 +575,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '16' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={thumbnail16}
                               alt=""
-                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={thumbnail16}
                             alt=""
-                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={` mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -603,28 +614,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '17' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={temp17}
                               alt=""
-                              className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={temp17}
                             alt=""
-                            className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -641,28 +653,29 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                         disabled={navigation.state != 'idle'}
                       >
                         {selectTemplate === '18' &&
-                          navigation.formAction == '/account/update/choose-template' ? (
+                        navigation.formAction == '/account/update/choose-template' ? (
                           <div className="relative top-[-1rem]">
                             <BeatLoader
                               color="#184fad"
-                              className={`relative items-center ${mode === 'mobile'
-                                ? 'top-[6rem] xl:top-[8.5rem]'
-                                : 'top-[8.5rem]'
-                                }`}
+                              className={`relative items-center ${
+                                mode === 'mobile' ? 'top-[6rem] xl:top-[8.5rem]' : 'top-[8.5rem]'
+                              }`}
                             />
                             <img
                               src={temp18}
                               alt=""
-                              className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                                }`}
+                              className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 opacity-30 ${
+                                mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                              }`}
                             />
                           </div>
                         ) : (
                           <img
                             src={temp18}
                             alt=""
-                            className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
-                              }`}
+                            className={`mt-[-1rem] w-[27.5rem] cursor-pointer border-8 border-gray-200 ${
+                              mode === 'mobile' ? 'h-auto' : 'h-[14rem]'
+                            }`}
                           />
                         )}
                       </button>
@@ -673,7 +686,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
             </div>
           </div>
         </div>
-      </div >
+      </div>
     </>
   )
 }

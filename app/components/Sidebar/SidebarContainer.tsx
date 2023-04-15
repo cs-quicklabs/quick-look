@@ -11,6 +11,7 @@ import SpotlightButton from '../SpotlightButton'
 import Banner from '../SupportBanner'
 import SidebarItem from './SidebarItem'
 import SidebarHeader from './SidebarHeader'
+import SidebarSection from './SidebarSection'
 
 const navigationFirst = [
   { name: 'Design Templates', subheading: 'Pick your design Template' },
@@ -80,7 +81,6 @@ export default function AccountSideBar({
     }
   }, [mode, showImages])
 
-
   const closeAllSidebars = () => {
     setShowSpotlight(false)
     setShowPortfolio(false)
@@ -128,146 +128,128 @@ export default function AccountSideBar({
     return (
       <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4">
         <SidebarHeader loaderData={loaderData} setShowModal={setShowModal} />
-        <div>
-          <div className="mt-2 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
-            Basic Profile
-          </div>
-          <nav className="flex-1 bg-white">
-            {navigationFirst.map((item) => (
-              <div
-                key={item.name}
-                data-cy={`${item.name}`}
-                onClick={() => {
-                  closeAllSidebars()
-                  openSidebar(item.name)
-                }}
-                className={classNames('hover:bg-gray-50')}
-              >
-                <SidebarItem title={item.name} subtitle={item.subheading} />
-              </div>
 
-            ))}
-          </nav>
-          {showBio ? (
-            <AccountBio
-              initialInput={initialInput}
-              bioMessage={bioMessage}
-              setBioMessage={setBioMessage}
-              setshowBio={setshowBio}
-              occupation={loaderData?.profileInfo?.occupation}
-              company={loaderData?.profileInfo?.company}
-              education={loaderData?.profileInfo?.education}
-              bio={loaderData?.profileInfo?.bio}
-              location={loaderData?.profileInfo?.location}
+        <div>
+          <SidebarSection
+            title="Basic Features"
+            sectionItems={navigationFirst}
+            onClick={(name: string) => {
+              closeAllSidebars()
+              openSidebar(name)
+            }}
+          />
+          <div>
+            {showBio ? (
+              <AccountBio
+                initialInput={initialInput}
+                bioMessage={bioMessage}
+                setBioMessage={setBioMessage}
+                setshowBio={setshowBio}
+                occupation={loaderData?.profileInfo?.occupation}
+                company={loaderData?.profileInfo?.company}
+                education={loaderData?.profileInfo?.education}
+                bio={loaderData?.profileInfo?.bio}
+                location={loaderData?.profileInfo?.location}
+                input={input}
+                setinput={setinput}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+            {showTemplate ? (
+              <AccountTemplate
+                setshowTemplate={setshowTemplate}
+                setshow={setshow}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+            {showSocialLinks ? (
+              <SocialProfile
+                setMessage={setMessage}
+                successUpdateMessage={successUpdateMessage}
+                message={message}
+                setshowSocialLinks={setshowSocialLinks}
+                loaderData={loaderData}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+            {showImages ? (
+              <UploadImages
+                setshowImages={setshowImages}
+                loaderData={loaderData}
+                mode={mode}
+                setmode={setmode}
+                primaryRestore={primaryRestore}
+                secondaryRestore={secondaryRestore}
+              />
+            ) : null}
+            {showBanner ? (
+              <Banner
+                showBanner={showBanner}
+                setShowBanner={setShowBanner}
+                loaderData={loaderData}
+                mode={mode}
+                setmode={setmode}
+              />
+            ) : null}
+          </div>
+        </div>
+
+        <div>
+          <SidebarSection
+            title="Advanced Features"
+            sectionItems={navigationSecond}
+            onClick={(name: string) => {
+              closeAllSidebars()
+              openSidebar(name)
+            }}
+          />
+
+          {showSpotlight ? (
+            <SpotlightButton
+              setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
+              additionalLinkUpdateMessage={additionalLinkUpdateMessage}
+              showSpotlight={showSpotlight}
+              setShowSpotlight={setShowSpotlight}
+              loaderData={loaderData}
               input={input}
               setinput={setinput}
               mode={mode}
               setmode={setmode}
             />
           ) : null}
-          {showTemplate ? (
-            <AccountTemplate
-              setshowTemplate={setshowTemplate}
-              setshow={setshow}
+          {showTestimonial ? (
+            <NoTestimonial
+              inputTestimonial={inputTestimonial}
+              setInputTestimonial={setInputTestimonial}
+              setShowTestimonial={setShowTestimonial}
+              loaderData={loaderData}
+              input={input}
+              setinput={setinput}
               mode={mode}
               setmode={setmode}
             />
           ) : null}
-          {showSocialLinks ? (
-            <SocialProfile
-              setMessage={setMessage}
-              successUpdateMessage={successUpdateMessage}
-              message={message}
-              setshowSocialLinks={setshowSocialLinks}
+          {showAddVideo ? (
+            <NoVideo
+              inputVideo={inputVideo}
+              setInputVideo={setInputVideo}
+              setShowAddVideo={setShowAddVideo}
               loaderData={loaderData}
               mode={mode}
               setmode={setmode}
             />
           ) : null}
-          {showImages ? (
-            <UploadImages
-              setshowImages={setshowImages}
+          {showPortfolio ? (
+            <Portfolio
               loaderData={loaderData}
-              mode={mode}
-              setmode={setmode}
-              primaryRestore={primaryRestore}
-              secondaryRestore={secondaryRestore}
-            />
-          ) : null}
-          {showBanner ? (
-            <Banner
-              showBanner={showBanner}
-              setShowBanner={setShowBanner}
-              loaderData={loaderData}
+              setShowPortfolio={setShowPortfolio}
               mode={mode}
               setmode={setmode}
             />
           ) : null}
-        </div>
-
-        <div>
-          <div className="mt-0 w-full border-t border-gray-200 bg-gray-50 pl-7 text-xs font-medium leading-5 text-gray-500 group-hover:text-gray-700">
-            Advanced Features
-          </div>
-
-          <nav className="flex-1 bg-white ">
-            {navigationSecond.map((item) => (
-              <div
-                key={item.name}
-                data-cy={`${item.name}`}
-                onClick={() => {
-                  closeAllSidebars()
-                  openSidebar(item.name)
-                }}
-                className={classNames('hover:bg-gray-50')}
-              >
-                <SidebarItem title={item.name} subtitle={item.subheading} />
-              </div>
-            ))}
-            {showSpotlight ? (
-              <SpotlightButton
-                setAdditionalLinkUpdateMessage={setAdditionalLinkUpdateMessage}
-                additionalLinkUpdateMessage={additionalLinkUpdateMessage}
-                showSpotlight={showSpotlight}
-                setShowSpotlight={setShowSpotlight}
-                loaderData={loaderData}
-                input={input}
-                setinput={setinput}
-                mode={mode}
-                setmode={setmode}
-              />
-            ) : null}
-            {showTestimonial ? (
-              <NoTestimonial
-                inputTestimonial={inputTestimonial}
-                setInputTestimonial={setInputTestimonial}
-                setShowTestimonial={setShowTestimonial}
-                loaderData={loaderData}
-                input={input}
-                setinput={setinput}
-                mode={mode}
-                setmode={setmode}
-              />
-            ) : null}
-            {showAddVideo ? (
-              <NoVideo
-                inputVideo={inputVideo}
-                setInputVideo={setInputVideo}
-                setShowAddVideo={setShowAddVideo}
-                loaderData={loaderData}
-                mode={mode}
-                setmode={setmode}
-              />
-            ) : null}
-            {showPortfolio ? (
-              <Portfolio
-                loaderData={loaderData}
-                setShowPortfolio={setShowPortfolio}
-                mode={mode}
-                setmode={setmode}
-              />
-            ) : null}
-          </nav>
         </div>
       </div>
     )

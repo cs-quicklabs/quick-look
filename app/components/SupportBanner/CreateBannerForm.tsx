@@ -152,17 +152,18 @@ export default function CreateBanner({
           <div className="pointer-events-auto w-screen max-w-md">
             <Form replace={true} action="add/supportBanner" method="post" className="h-screen">
               <div
-                className={`font-inter mt-12 flex h-[95%] flex-col divide-y divide-gray-200 border-r border-gray-200 bg-white ${mode === 'mobile'
-                  ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                  : 'md:w-[20rem] lg:w-96'
-                  } `}
+                className={`font-inter mt-12 flex h-[95%] flex-col divide-y divide-gray-200 border-r border-gray-200 bg-white ${
+                  mode === 'mobile'
+                    ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
+                    : 'md:w-[20rem] lg:w-96'
+                } `}
               >
                 <div className="h-0 flex-1 overflow-y-auto">
                   <div className="bg-gray-50 py-6 px-4 sm:px-6">
                     <div className="flex items-center justify-between">
                       <div className="text-lg font-medium leading-7 text-gray-900">
-                        {loaderData?.supportBanner?.bannerText ? 'Edit' : 'Add'} support banner
-                        on your profile
+                        {loaderData?.supportBanner?.bannerText ? 'Edit' : 'Add'} support banner on
+                        your profile
                       </div>
                       <div className="ml-3 flex h-7 items-center">
                         <button
@@ -172,11 +173,7 @@ export default function CreateBanner({
                         >
                           <span className="sr-only">Close panel</span>
 
-                          <XCircleIcon
-                            onClick={Onclose}
-                            className="h-6 w-6"
-                            aria-hidden="true"
-                          />
+                          <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -211,10 +208,11 @@ export default function CreateBanner({
                                   [event.target.name]: event.target.value,
                                 })
                               }}
-                              className={`block w-full rounded-md border-gray-300 text-gray-900  shadow-sm sm:text-sm ${click && error
-                                ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                                : 'focus:border-indigo-500 focus:ring-indigo-500'
-                                }`}
+                              className={`block w-full rounded-md border-gray-300 text-gray-900  shadow-sm sm:text-sm ${
+                                click && error
+                                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                  : 'focus:border-indigo-500 focus:ring-indigo-500'
+                              }`}
                             />
                             {click && <div className="text-sm text-red-500">{error}</div>}
                           </div>
@@ -222,10 +220,11 @@ export default function CreateBanner({
 
                         <div className="flex flex-col">
                           <div
-                            className={`flex ${mode === 'mobile'
-                              ? 'flex-col xl:flex-row xl:justify-between'
-                              : 'flex-col lg:flex-row lg:justify-between'
-                              }`}
+                            className={`flex ${
+                              mode === 'mobile'
+                                ? 'flex-col xl:flex-row xl:justify-between'
+                                : 'flex-col lg:flex-row lg:justify-between'
+                            }`}
                           >
                             <div className="">
                               <RadioGroup
@@ -268,8 +267,9 @@ export default function CreateBanner({
                             </div>
 
                             <div
-                              className={`w-[7.813rem] ${mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'
-                                }`}
+                              className={`w-[7.813rem] ${
+                                mode === 'mobile' ? 'mt-6 xl:mt-auto' : 'mt-6 lg:mt-auto'
+                              }`}
                             >
                               <label
                                 htmlFor="project-name"
@@ -291,15 +291,14 @@ export default function CreateBanner({
                                       [event.target.name]: event.target.value,
                                     })
                                   }}
-                                  className={`block w-full rounded-md text-gray-900 shadow-sm sm:text-sm ${click && errorHex
-                                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                                    : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-                                    } `}
+                                  className={`block w-full rounded-md text-gray-900 shadow-sm sm:text-sm ${
+                                    click && errorHex
+                                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                                      : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
+                                  } `}
                                 />
                                 {selectedColor && !errorHex && (
-                                  <div className="text-[12px] text-indigo-500">
-                                    {errorColor}
-                                  </div>
+                                  <div className="text-[12px] text-indigo-500">{errorColor}</div>
                                 )}
                                 {click && (
                                   <div className="text-[12px] text-red-500">{errorHex}</div>
@@ -340,8 +339,7 @@ export default function CreateBanner({
                             />
                             {<div className="text-sm text-indigo-500">{errorIcon}</div>}
                             <p className="mt-1 text-xs font-normal leading-5 text-gray-500">
-                              You can select any font awesome icon to add to your button. Please
-                              go{' '}
+                              You can select any font awesome icon to add to your button. Please go{' '}
                               <a
                                 target="_blank"
                                 className="text-blue-800 underline"
@@ -376,15 +374,16 @@ export default function CreateBanner({
                                   [event.target.name]: event.target.value,
                                 })
                               }}
-                              className={`block w-full rounded-md border-gray-300 text-gray-900 shadow-sm  sm:text-sm ${click && errorLink
-                                ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                                : 'focus:border-indigo-500 focus:ring-indigo-500'
-                                }`}
+                              className={`block w-full rounded-md border-gray-300 text-gray-900 shadow-sm  sm:text-sm ${
+                                click && errorLink
+                                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                  : 'focus:border-indigo-500 focus:ring-indigo-500'
+                              }`}
                             />
                             {click && <div className="text-sm text-red-500">{errorLink}</div>}
                             <p className="mt-1 text-xs font-normal leading-5 text-gray-500">
-                              Visitors will be redirected to this link if they click on your
-                              banner text
+                              Visitors will be redirected to this link if they click on your banner
+                              text
                             </p>
                           </div>
                         </div>
@@ -400,8 +399,8 @@ export default function CreateBanner({
 
                           <div className="flex">
                             <p className="text-sm font-normal leading-5 text-gray-500">
-                              Switching it off will not show support banner on top of your
-                              profile. Although all settings will be saved.
+                              Switching it off will not show support banner on top of your profile.
+                              Although all settings will be saved.
                             </p>
 
                             <Switch
@@ -435,16 +434,15 @@ export default function CreateBanner({
                             onClick={(e: any) => {
                               setClicked(true)
 
-                              if (error || errorLink || errorHex || errorNoColor)
-                                e.preventDefault()
+                              if (error || errorLink || errorHex || errorNoColor) e.preventDefault()
                             }}
                             disabled={navigation.state != 'idle' ? true : false}
                           >
                             {navigation.state != 'idle' &&
-                              !error &&
-                              !errorLink &&
-                              !errorHex &&
-                              !errorColor ? (
+                            !error &&
+                            !errorLink &&
+                            !errorHex &&
+                            !errorColor ? (
                               <BeatLoader color="#ffffff" />
                             ) : loaderData?.supportBanner?.bannerText ? (
                               'Edit Support Banner'
@@ -462,6 +460,6 @@ export default function CreateBanner({
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
