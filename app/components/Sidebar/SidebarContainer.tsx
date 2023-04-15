@@ -9,7 +9,6 @@ import NoVideo from '../AddVideos/NoVideo'
 import Portfolio from '../AddPortfolio'
 import SpotlightButton from '../SpotlightButton'
 import Banner from '../SupportBanner'
-import SidebarItem from './SidebarItem'
 import SidebarHeader from './SidebarHeader'
 import SidebarSection from './SidebarSection'
 

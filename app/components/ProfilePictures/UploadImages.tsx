@@ -8,6 +8,7 @@ import * as cropro from 'cropro'
 import DropzonePrimary from './DragAndDropPrimaryForm'
 import ProfileImage from './ProfileImage'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import SidebarDetailContainer from '../Sidebar/SidebarDetailContainer'
 
 let timeOut: string | number | NodeJS.Timeout | undefined
 
@@ -20,7 +21,6 @@ export default function NoImages({
   loaderData,
 }: any) {
   const bgimageAlreadyuploaded = loaderData?.profileImage?.primaryImage
-  // const profileimageAlreadyuploaded = loaderData?.profileImage?.secondaryImage
   const [open, setopen] = useState(false)
   const [image, setimage] = useState(null)
 
@@ -244,314 +244,299 @@ export default function NoImages({
     (drag && navigation.formAction == '/account/update/crop-image')
 
   return (
-    <div className="relative z-40">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="pointer-events-none fixed inset-y-0 left-0 flex w-96">
-          <div className="pointer-events-auto w-screen max-w-md">
-            <div className="h-screen">
-              <div
-                className={`font-inter mt-12 flex h-[95%]  flex-col overflow-y-auto border-r border-gray-200 bg-white pb-[2rem] ${mode === 'mobile'
-                  ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
-                  : 'w-[100vw] md:w-[20rem] lg:w-96'
-                  } `}
-              >
-                <div className="">
-                  <div className="bg-gray-50 py-6 px-4 sm:px-6">
-                    <div className="flex items-center justify-between">
-                      <div className="text-lg font-medium leading-7 text-gray-900">
-                        {' '}
-                        Update Profile Pictures
-                      </div>
-                      <div className="ml-3 flex h-7 items-center">
-                        <button
-                          type="button"
-                          className="rounded-md bg-white text-sm leading-3 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white "
-                          onClick={OnCancel}
-                        >
-                          <span className="sr-only">Close panel</span>
-                          <button>
-                            <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
-                          </button>
-                        </button>
-                      </div>
-                    </div>
-                    <div className="mt-1">
-                      <p className="text-sm font-normal leading-5 text-gray-500">
-                        Please update pictures shown in template
-                      </p>
-                    </div>
-                  </div>
+    <SidebarDetailContainer mode={mode}>
+      <div className="h-screen">
+        <div
+          className={`font-inter mt-12 flex h-[95%]  flex-col overflow-y-auto border-r border-gray-200 bg-white pb-[2rem] ${
+            mode === 'mobile'
+              ? 'w-[16rem] lg:ml-[16rem] xl:ml-[24rem] xl:w-96'
+              : 'w-[100vw] md:w-[20rem] lg:w-96'
+          } `}
+        >
+          <div className="">
+            <div className="bg-gray-50 py-6 px-4 sm:px-6">
+              <div className="flex items-center justify-between">
+                <div className="text-lg font-medium leading-7 text-gray-900">
+                  {' '}
+                  Update Profile Pictures
                 </div>
-
-                {message && (
-                  <div
-                    className="rounded-md bg-green-50 p-4 mx-4 sm:mx-6 my-2"
-                    data-cy="alertSuccess"
+                <div className="ml-3 flex h-7 items-center">
+                  <button
+                    type="button"
+                    className="rounded-md bg-white text-sm leading-3 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white "
+                    onClick={OnCancel}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="flex-shrink-0">
-                        <CheckCircleIcon
-                          className="h-5 w-5 text-green-400"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <p className="text-sm font-medium text-green-800">{message}</p>
-                    </div>
-                  </div>
-                )}
-
-                {bgimageAlreadyuploaded || primaryRestore ? (
-                  <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
-                    <label className="block text-sm font-medium leading-5 text-gray-700">
-                      Cover Image
-                    </label>
-
-                    <div>
-                      <div className="mt-3.5 flex  h-44 justify-center rounded-md">
-                        {(deleteImage === 'primary' &&
-                          navigation.formAction == '/account/delete/image') ||
-                          (edit &&
-                            navigation.formAction == '/account/update/crop-image') ||
-                          navigation.formAction === '/account/update/change-image' ? (
-                          <div className="relative top-[-1rem] ">
-                            <BeatLoader
-                              color="#184fad"
-                              className="relative top-[6.5rem] left-[9rem]"
-                            />
-                            <img
-                              src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
-                              alt=""
-                              className={`h-full w-[31.5rem] object-cover ${(deleteImage === 'primary' &&
-                                navigation.formAction == '/account/delete/image') ||
-                                navigation.formAction ==
-                                '/account/update/crop-image' ||
-                                navigation.formAction ===
-                                '/account/update/change-image'
-                                ? 'opacity-30'
-                                : ''
-                                }`}
-                            />
-                          </div>
-                        ) : (
-                          <img
-                            ref={ref4}
-                            crossOrigin={`${primaryRestore ? '' : 'anonymous'}`}
-                            src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
-                            alt=""
-                            className="h-full w-full object-cover"
-                            onLoad={() => {
-                              setOpenEditor(true)
-                            }}
-                          />
-                        )}
-                        <Form replace action="update/crop-image" method="post">
-                          <input name="editPrimaryImage" type="text" value={url} hidden />
-                          <button type="submit" ref={ref3} hidden>
-                            Edit
-                          </button>
-                        </Form>
-                      </div>
-
-                      <div
-                        className={`mt-3 flex items-center justify-center ${navigation.state === 'idle' ? '' : 'hidden'
-                          }`}
-                      >
-                        <button
-                          onClick={() => {
-                            showCropArea()
-                            setUrlSec('')
-                            setEdit(true)
-                            setEdit2(false)
-                          }}
-                          id="primaryEditImage"
-                          className=" cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
-                        >
-                          Edit
-                        </button>
-
-                        {/* to change image */}
-                        <Form
-                          replace
-                          action="update/change-image"
-                          method="post"
-                          encType="multipart/form-data"
-                        >
-                          <input
-                            name={'changePrimaryImage'}
-                            id="changePrimaryImage"
-                            type="file"
-                            className="hidden"
-                            onChange={handleChangeImage}
-                            accept="image/*"
-                            value={''}
-                          />
-
-                          <button type="submit" ref={changeImageSubmitRef} hidden />
-                        </Form>
-
-                        <label
-                          htmlFor="changePrimaryImage"
-                          className="mx-4 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
-                        >
-                          Change
-                        </label>
-
-                        <button
-                          id="primaryDeleteButton"
-                          onClick={(e: any) => {
-                            e.preventDefault()
-                            setopen(true)
-                            setDeleteImage('primary')
-                          }}
-                          className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
-                          disabled={
-                            deleteImage === 'primary' &&
-                            navigation.formAction == '/account/delete/image'
-                          }
-                        >
-                          Delete
-                        </button>
-                      </div>
-
-                      {!changeImageResponse?.type && changeImageResponse?.message && (
-                        <div className="flex justify-center mt-2 text-sm text-red-500">
-                          {changeImageResponse.message}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
-                    <label className="block text-sm font-medium leading-5 text-gray-700">
-                      Cover Image
-                    </label>
-
-                    <div
-                      className="relative px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10"
-                      onDragEnter={() => {
-                        setDrag(true)
-                        setDrag2(false)
-                      }}
-                    >
-                      {isUploading && (
-                        <div className="h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10">
-                          <BeatLoader color="#184fad" className="mt-2" size={20} />
-                        </div>
-                      )}
-
-                      <div
-                        className={`text-center ${isUploading ? 'invisible' : ''} ${navigation.state !== 'idle' ? 'pointer-events-none' : ''
-                          } `}
-                      >
-                        <>
-                          <DropzonePrimary
-                            setPrimaryImageError={setPrimaryImageError}
-                            images1={images1}
-                            setImages1={setImages1}
-                            accept={'image/*'}
-                            onDrop={onDrop1}
-                          >
-                            <div className="flex text-sm"></div>
-                          </DropzonePrimary>
-
-                          <div className="flex flex-col items-center justify-center md:mx-12 lg:mx-20">
-                            <Form
-                              replace={true}
-                              method="post"
-                              action="add/image"
-                              encType="multipart/form-data"
-                            >
-                              <label
-                                onClick={() => {
-                                  setUpload((prev) => (prev = 'primary'))
-                                  setUpload2('')
-                                }}
-                                id="primaryUploadImage"
-                                className="mx-4 mt-4 inline-flex w-max cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
-                              >
-                                Upload Image
-                                <input
-                                  type="file"
-                                  className="hidden"
-                                  disabled={navigation.state !== 'idle' ? true : false}
-                                  id="photo"
-                                  name="primaryImageUpload"
-                                  accept="image/png, image/jpeg, image/jpg"
-                                  onChange={handleChange}
-                                />
-                                <button type="submit" ref={ref} className="hidden">
-                                  upload
-                                </button>
-                              </label>
-                            </Form>
-
-                            <Form replace action="update/restoreImage" method="post">
-                              <button
-                                data-cy="restorePrimaryImage"
-                                name="restoreImage"
-                                value="restoreprimaryImage"
-                                className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
-                                disabled={upload === 'primary' && navigation.state !== 'idle'}
-                                onClick={() => {
-                                  setRestore((prev) => (prev = true))
-                                  setRestore2(false)
-                                }}
-                              >
-                                Restore Default Image
-                              </button>
-                            </Form>
-                          </div>
-
-                          <div className="mt-2 text-sm text-red-500">{primaryImageError}</div>
-                        </>
-                        <h4 className="text-sm">(Supported image .jpg .jpeg, and .png)</h4>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <ProfileImage
-                  secondaryRestore={secondaryRestore}
-                  loaderData={loaderData}
-                  deleteImage={deleteImage}
-                  edit2={edit2}
-                  ref5={ref5}
-                  urlSec={urlSec}
-                  ref6={ref6}
-                  setUrl={setUrl}
-                  setUrlSec={setUrlSec}
-                  setEdit2={setEdit2}
-                  setEdit={setEdit}
-                  setopen={setopen}
-                  setDeleteImage={setDeleteImage}
-                  setDrag={setDrag}
-                  setDrag2={setDrag2}
-                  setSecondaryImageError={setSecondaryImageError}
-                  setImages={setImages}
-                  images={images}
-                  upload2={upload2}
-                  restore2={restore2}
-                  drag2={drag2}
-                  setUpload2={setUpload2}
-                  setUpload={setUpload}
-                  ref2={ref2}
-                  setimage2={setimage2}
-                  upload={upload}
-                  setRestore2={setRestore2}
-                  secondaryImageError={secondaryImageError}
-                  setRestore={setRestore}
-                />
-                <DeleteImage
-                  open={open}
-                  onClose={() => setopen(false)}
-                  mode={mode}
-                  deleteImage={deleteImage}
-                />
+                    <span className="sr-only">Close panel</span>
+                    <button>
+                      <XCircleIcon onClick={Onclose} className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </button>
+                </div>
+              </div>
+              <div className="mt-1">
+                <p className="text-sm font-normal leading-5 text-gray-500">
+                  Please update pictures shown in template
+                </p>
               </div>
             </div>
           </div>
+
+          {message && (
+            <div className="rounded-md bg-green-50 p-4 mx-4 sm:mx-6 my-2" data-cy="alertSuccess">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0">
+                  <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                </div>
+                <p className="text-sm font-medium text-green-800">{message}</p>
+              </div>
+            </div>
+          )}
+
+          {bgimageAlreadyuploaded || primaryRestore ? (
+            <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
+              <label className="block text-sm font-medium leading-5 text-gray-700">
+                Cover Image
+              </label>
+
+              <div>
+                <div className="mt-3.5 flex  h-44 justify-center rounded-md">
+                  {(deleteImage === 'primary' &&
+                    navigation.formAction == '/account/delete/image') ||
+                  (edit && navigation.formAction == '/account/update/crop-image') ||
+                  navigation.formAction === '/account/update/change-image' ? (
+                    <div className="relative top-[-1rem] ">
+                      <BeatLoader color="#184fad" className="relative top-[6.5rem] left-[9rem]" />
+                      <img
+                        src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
+                        alt=""
+                        className={`h-full w-[31.5rem] object-cover ${
+                          (deleteImage === 'primary' &&
+                            navigation.formAction == '/account/delete/image') ||
+                          navigation.formAction == '/account/update/crop-image' ||
+                          navigation.formAction === '/account/update/change-image'
+                            ? 'opacity-30'
+                            : ''
+                        }`}
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      ref={ref4}
+                      crossOrigin={`${primaryRestore ? '' : 'anonymous'}`}
+                      src={primaryRestore ? bg : loaderData?.profileImage?.primaryImage}
+                      alt=""
+                      className="h-full w-full object-cover"
+                      onLoad={() => {
+                        setOpenEditor(true)
+                      }}
+                    />
+                  )}
+                  <Form replace action="update/crop-image" method="post">
+                    <input name="editPrimaryImage" type="text" value={url} hidden />
+                    <button type="submit" ref={ref3} hidden>
+                      Edit
+                    </button>
+                  </Form>
+                </div>
+
+                <div
+                  className={`mt-3 flex items-center justify-center ${
+                    navigation.state === 'idle' ? '' : 'hidden'
+                  }`}
+                >
+                  <button
+                    onClick={() => {
+                      showCropArea()
+                      setUrlSec('')
+                      setEdit(true)
+                      setEdit2(false)
+                    }}
+                    id="primaryEditImage"
+                    className=" cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
+                  >
+                    Edit
+                  </button>
+
+                  {/* to change image */}
+                  <Form
+                    replace
+                    action="update/change-image"
+                    method="post"
+                    encType="multipart/form-data"
+                  >
+                    <input
+                      name={'changePrimaryImage'}
+                      id="changePrimaryImage"
+                      type="file"
+                      className="hidden"
+                      onChange={handleChangeImage}
+                      accept="image/*"
+                      value={''}
+                    />
+
+                    <button type="submit" ref={changeImageSubmitRef} hidden />
+                  </Form>
+
+                  <label
+                    htmlFor="changePrimaryImage"
+                    className="mx-4 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-indigo-600"
+                  >
+                    Change
+                  </label>
+
+                  <button
+                    id="primaryDeleteButton"
+                    onClick={(e: any) => {
+                      e.preventDefault()
+                      setopen(true)
+                      setDeleteImage('primary')
+                    }}
+                    className="cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-red-600"
+                    disabled={
+                      deleteImage === 'primary' && navigation.formAction == '/account/delete/image'
+                    }
+                  >
+                    Delete
+                  </button>
+                </div>
+
+                {!changeImageResponse?.type && changeImageResponse?.message && (
+                  <div className="flex justify-center mt-2 text-sm text-red-500">
+                    {changeImageResponse.message}
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="mt-3.5 px-4 sm:col-span-6 sm:px-6">
+              <label className="block text-sm font-medium leading-5 text-gray-700">
+                Cover Image
+              </label>
+
+              <div
+                className="relative px-auto mt-3.5 flex justify-center rounded-md border border-dashed border-gray-300 pb-2.5 md:pt-6 lg:pt-10"
+                onDragEnter={() => {
+                  setDrag(true)
+                  setDrag2(false)
+                }}
+              >
+                {isUploading && (
+                  <div className="h-full absolute w-full flex justify-center items-center -mb-2.5 md:-mt-6 lg:-mt-10">
+                    <BeatLoader color="#184fad" className="mt-2" size={20} />
+                  </div>
+                )}
+
+                <div
+                  className={`text-center ${isUploading ? 'invisible' : ''} ${
+                    navigation.state !== 'idle' ? 'pointer-events-none' : ''
+                  } `}
+                >
+                  <>
+                    <DropzonePrimary
+                      setPrimaryImageError={setPrimaryImageError}
+                      images1={images1}
+                      setImages1={setImages1}
+                      accept={'image/*'}
+                      onDrop={onDrop1}
+                    >
+                      <div className="flex text-sm"></div>
+                    </DropzonePrimary>
+
+                    <div className="flex flex-col items-center justify-center md:mx-12 lg:mx-20">
+                      <Form
+                        replace={true}
+                        method="post"
+                        action="add/image"
+                        encType="multipart/form-data"
+                      >
+                        <label
+                          onClick={() => {
+                            setUpload((prev) => (prev = 'primary'))
+                            setUpload2('')
+                          }}
+                          id="primaryUploadImage"
+                          className="mx-4 mt-4 inline-flex w-max cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-sm font-medium leading-5 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
+                        >
+                          Upload Image
+                          <input
+                            type="file"
+                            className="hidden"
+                            disabled={navigation.state !== 'idle' ? true : false}
+                            id="photo"
+                            name="primaryImageUpload"
+                            accept="image/png, image/jpeg, image/jpg"
+                            onChange={handleChange}
+                          />
+                          <button type="submit" ref={ref} className="hidden">
+                            upload
+                          </button>
+                        </label>
+                      </Form>
+
+                      <Form replace action="update/restoreImage" method="post">
+                        <button
+                          data-cy="restorePrimaryImage"
+                          name="restoreImage"
+                          value="restoreprimaryImage"
+                          className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
+                          disabled={upload === 'primary' && navigation.state !== 'idle'}
+                          onClick={() => {
+                            setRestore((prev) => (prev = true))
+                            setRestore2(false)
+                          }}
+                        >
+                          Restore Default Image
+                        </button>
+                      </Form>
+                    </div>
+
+                    <div className="mt-2 text-sm text-red-500">{primaryImageError}</div>
+                  </>
+                  <h4 className="text-sm">(Supported image .jpg .jpeg, and .png)</h4>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <ProfileImage
+            secondaryRestore={secondaryRestore}
+            loaderData={loaderData}
+            deleteImage={deleteImage}
+            edit2={edit2}
+            ref5={ref5}
+            urlSec={urlSec}
+            ref6={ref6}
+            setUrl={setUrl}
+            setUrlSec={setUrlSec}
+            setEdit2={setEdit2}
+            setEdit={setEdit}
+            setopen={setopen}
+            setDeleteImage={setDeleteImage}
+            setDrag={setDrag}
+            setDrag2={setDrag2}
+            setSecondaryImageError={setSecondaryImageError}
+            setImages={setImages}
+            images={images}
+            upload2={upload2}
+            restore2={restore2}
+            drag2={drag2}
+            setUpload2={setUpload2}
+            setUpload={setUpload}
+            ref2={ref2}
+            setimage2={setimage2}
+            upload={upload}
+            setRestore2={setRestore2}
+            secondaryImageError={secondaryImageError}
+            setRestore={setRestore}
+          />
+          <DeleteImage
+            open={open}
+            onClose={() => setopen(false)}
+            mode={mode}
+            deleteImage={deleteImage}
+          />
         </div>
       </div>
-    </div >
+    </SidebarDetailContainer>
   )
 }
