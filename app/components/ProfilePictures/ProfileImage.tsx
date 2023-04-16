@@ -166,8 +166,7 @@ function ProfileImage({
             </label>
 
             <div className="mt-3.5 flex h-[8rem] w-[8rem]  justify-center rounded-full">
-              {(deleteImage === 'secondary' &&
-                navigation.formAction == '/account/delete/image') ||
+              {(deleteImage === 'secondary' && navigation.formAction == '/account/delete/image') ||
               (edit2 && navigation.formAction == '/account/update/crop-image') ||
               navigation.formAction === '/account/update/change-profile-image' ? (
                 <div className="relative top-[-1.8rem]">
@@ -341,9 +340,7 @@ function ProfileImage({
                     name="restoreImage"
                     value="restoresecondaryImage"
                     className="mt-2.5 cursor-pointer text-sm font-normal leading-5 text-gray-400 hover:text-gray-600"
-                    disabled={
-                      upload === 'sec' && navigation.formAction == '/account/add/SecImage'
-                    }
+                    disabled={upload === 'sec' && navigation.formAction == '/account/add/SecImage'}
                     onClick={() => {
                       setRestore2((prev: any) => (prev = true))
                       setRestore(false)

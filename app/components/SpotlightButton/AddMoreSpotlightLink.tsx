@@ -389,12 +389,12 @@ export default function AddMoreSpotlightLink({
                   }`}
                 >
                   You can add more than one link to your profile.
-                  <p className="text-indigo-400">
+                  <span className="text-indigo-400">
                     {' '}
                     {loaderData?.additionalLinks?.length < 7
                       ? 'All the Additional links will be of same color.'
                       : null}
-                  </p>
+                  </span>
                 </p>
                 <button
                   data-cy="addAdditionalLinkButton"

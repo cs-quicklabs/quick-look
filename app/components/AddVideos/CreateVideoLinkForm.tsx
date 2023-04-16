@@ -65,7 +65,7 @@ export default function CreateVideoLink({
   return (
     <SidebarDetailContainer mode={mode}>
       <Form replace={true} action="add/video" method="post" className="h-screen">
-        <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
+        <div className="flex mt-12 h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
           <div className="bg-gray-50 py-6 px-4">
             <div className="flex items-center justify-between">
               <div className="text-lg font-medium leading-7 text-gray-900">

@@ -72,7 +72,7 @@ export default function AccountTestimonial({
     <SidebarDetailContainer mode={mode}>
       <Form replace={true} action="add/testimonial" method="post" className="h-screen font-inter">
         {loaderData?.testimonial?.testimonialBy ? (
-          <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
+          <div className="mt-12 flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
             <div className="bg-gray-50 py-6 px-4">
               <div className="flex items-center justify-between">
                 <div className="text-lg font-medium leading-7 text-gray-900">
@@ -115,7 +115,7 @@ export default function AccountTestimonial({
             />
           </div>
         ) : (
-          <div className="flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
+          <div className="mt-12 flex h-full flex-col bg-white border-r w-full md:max-w-xs lg:max-w-md border-gray-200 overflow-y-auto">
             <div className="bg-gray-50 py-6 px-4">
               <div className="flex items-center justify-between">
                 <div className="text-lg font-medium leading-7 text-gray-900">
