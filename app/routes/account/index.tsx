@@ -8,7 +8,7 @@ import { commitSession, getSession } from '~/services/session.service.server'
 import Template0 from '~/components/Templates/template0'
 import { useEffect, useState } from 'react'
 import { ComputerDesktopIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline'
-import AccountSidebar from '~/components/Common/AccountSidebar'
+import AccountSidebar from '~/components/Sidebar/SidebarContainer'
 import Template2 from '~/components/Templates/template2'
 import Template7 from '~/components/Templates/template7'
 import Template8 from '~/components/Templates/template8'
@@ -157,7 +157,7 @@ export default function Profile() {
 
   const [showUserSetting] = useState(false)
   const togglemobile = () => {
-    setmode('mobile')
+    setmode('desktop')
     setshowTemplate(
       !showSocialLinks &&
         !showImages &&
@@ -386,33 +386,7 @@ export default function Profile() {
         } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${
           loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
         } `}
-      >
-        {/* <form action="" > */}
-        <button
-          id="desktopButton"
-          className={`${
-            mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'
-          } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-l-md`}
-          onClick={toggledesktop}
-        >
-          <ComputerDesktopIcon
-            className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon} `}
-          />
-        </button>
-
-        <button
-          id="mobileButton"
-          className={`${
-            mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'
-          } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-r-md border-l`}
-          onClick={togglemobile}
-        >
-          <DevicePhoneMobileIcon
-            className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon}`}
-          />
-        </button>
-        {/* </form> */}
-      </div>
+      ></div>
       <Unpublish
         isPublished={loaderData?.profile?.isPublished}
         open={showModal}

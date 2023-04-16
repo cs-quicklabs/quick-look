@@ -8,15 +8,15 @@ import {
   useLoaderData,
   Meta,
 } from '@remix-run/react'
-import ErrorHandler from './components/error'
-import tailwindStylesheetUrl from './styles/tailwind.css'
+import ErrorHandler from './components/PageNotFoundError'
+import tailwindcss from './styles/tailwind.css'
 import LightGallery from './styles/lightgallery.css'
 import HeaderSecondary from './components/Common/Header'
 import type { MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 export function links() {
   return [
-    { rel: 'stylesheet', href: tailwindStylesheetUrl },
+    { rel: 'stylesheet', href: tailwindcss },
     { rel: 'stylesheet', href: LightGallery },
   ]
 }
@@ -107,29 +107,28 @@ function Layout({ children }: any) {
   return (
     <>
       {Location.pathname.includes('/auth/login') ||
-      Location.pathname.includes('/auth/signup') ||
-      Location.pathname.includes('/auth/forgot-password') ||
-      Location.pathname.includes('successlogin') ||
-      Location.pathname.includes('/auth/password') ||
-      Location.pathname.includes('/confirm/password') ||
-      Location.pathname.includes('/auth/receive-email') ||
-      Location.pathname.includes('/confirm/email') ? (
+        Location.pathname.includes('/auth/signup') ||
+        Location.pathname.includes('/auth/forgot-password') ||
+        Location.pathname.includes('successlogin') ||
+        Location.pathname.includes('/auth/password') ||
+        Location.pathname.includes('/confirm/password') ||
+        Location.pathname.includes('/auth/receive-email') ||
+        Location.pathname.includes('/confirm/email') ? (
         <HeaderSecondary />
       ) : (
         <></>
       )}
       <div
-        className={`${
-          Location.pathname.includes('/forgot-password') ||
-          Location.pathname.includes('/successlogin') ||
-          Location.pathname.includes('/auth/password') ||
-          Location.pathname.includes('/auth/tokenerror') ||
-          Location.pathname.includes('/confirm/password') ||
-          Location.pathname.includes('/auth/receive-email') ||
-          Location.pathname.includes('/confirm/email')
+        className={`${Location.pathname.includes('/forgot-password') ||
+            Location.pathname.includes('/successlogin') ||
+            Location.pathname.includes('/auth/password') ||
+            Location.pathname.includes('/auth/tokenerror') ||
+            Location.pathname.includes('/confirm/password') ||
+            Location.pathname.includes('/auth/receive-email') ||
+            Location.pathname.includes('/confirm/email')
             ? 'overflow-hidden'
             : 'overflow-x-hidden'
-        } `}
+          } `}
       >
         {children}
       </div>

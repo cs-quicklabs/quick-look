@@ -1,4 +1,3 @@
-import React from 'react'
 import DynamicHeroIcon from './DynmaicIcon'
 
 export default function Spotlightbtn({ loaderData }: any) {
@@ -14,24 +13,7 @@ export default function Spotlightbtn({ loaderData }: any) {
       : loaderData?.spotlightButton?.buttonText
 
   return (
-    <div
-      className={`flex justify-center items-center mb-4 ${
-        loaderData?.profileInfo?.templateNumber == '2' ||
-        loaderData?.profileInfo?.templateNumber == '3' ||
-        loaderData?.profileInfo?.templateNumber == '4' ||
-        loaderData?.profileInfo?.templateNumber == '5' ||
-        loaderData?.profileInfo?.templateNumber == '7' ||
-        loaderData?.profileInfo?.templateNumber == '8' ||
-        loaderData?.profileInfo?.templateNumber == '11' ||
-        loaderData?.profileInfo?.templateNumber == '13' ||
-        loaderData?.profileInfo?.templateNumber == '14' ||
-        loaderData?.profileInfo?.templateNumber == '16' ||
-        loaderData?.profileInfo?.templateNumber == '10' ||
-        loaderData?.profileInfo?.templateNumber == '9'
-          ? 'mt-[2rem]'
-          : 'mt-9'
-      }`}
-    >
+    <div className={`flex justify-center items-center mb-4 mt-4`}>
       <a
         className=""
         href={
@@ -43,11 +25,7 @@ export default function Spotlightbtn({ loaderData }: any) {
         rel="noreferrer"
       >
         <button
-          style={{
-            backgroundColor: loaderData?.spotlightButton?.buttonhex,
-            textShadow: '0px 1px black',
-          }}
-          className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px]  h-10 shadow-sm text-sm leading-5 font-medium text-white ${loaderData?.spotlightButton?.buttonColor} `}
+          className={`flex justify-center rounded-md items-center w-[299px] sm:w-[399px]  h-10 shadow-sm text-sm leading-5 font-medium text-white bg-[#${loaderData?.spotlightButton?.buttonhex}] ${loaderData?.spotlightButton?.buttonColor} `}
         >
           <DynamicHeroIcon icon={Final} Final={Final} /> {btnText}
         </button>

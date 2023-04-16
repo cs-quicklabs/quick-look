@@ -4,7 +4,8 @@
   "scripts": {
     "build": "npm run build:css && remix build && npx prisma migrate deploy && npx prisma generate",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
-    "build:css": "tailwindcss -o ./app/styles/tailwind.css",
+    "remix": "remix dev",
+    "build:css": "tailwindcss -o ./app/styles/tailwind.css --minify",
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css --watch",
     "start": "remix-serve build",
     "css": "tailwindcss -w -i app/styles/input.css -o app/styles/tailwind.css --watch",
@@ -16,11 +17,11 @@
     "format:lint": "npm run lint -- --fix && prettier --write ./app"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.306.0",
-    "@aws-sdk/lib-storage": "^3.301.0",
+    "@aws-sdk/client-s3": "^3.310.0",
+    "@aws-sdk/lib-storage": "^3.310.0",
     "@headlessui/react": "^1.7.11",
     "@heroicons/react": "^2.0.17",
-    "@prisma/client": "^4.10.1",
+    "@prisma/client": "^4.12.0",
     "@remix-run/node": "^1.15.0",
     "@remix-run/react": "^1.15.0",
     "@remix-run/serve": "^1.15.0",
@@ -28,7 +29,7 @@
     "@sendgrid/mail": "^7.7.0",
     "@tailwindcss/forms": "^0.5.3",
     "@vercel/node": "^2.8.16",
-    "aws-sdk": "^2.1345.0",
+    "aws-sdk": "^2.1354.0",
     "axios": "^1.3.5",
     "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
@@ -58,7 +59,7 @@
     "concurrently": "^8.0.1",
     "cypress": "^12.3.0",
     "cypress-xpath": "^2.0.1",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
@@ -71,7 +72,7 @@
     "webpack": "^5.76.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "resolutions": {
     "//": "See https://github.com/facebook/create-react-app/issues/11773",

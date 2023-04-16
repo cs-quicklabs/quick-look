@@ -8,7 +8,7 @@ export default function Modal({ open, onClose }: any) {
   const [signout, setSignout] = useState(false)
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-[100] font-inter" onClose={() => {}}>
+      <Dialog as="div" className="relative z-[100] font-inter" onClose={() => { }}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

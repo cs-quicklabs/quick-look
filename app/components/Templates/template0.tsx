@@ -18,9 +18,6 @@ export default function Template1({
   secondaryRestore,
   mode,
 }: any) {
-  // const Location = useLocation()
-  // const nav = Location.pathname.includes(`${loaderData.username}`)
-
   return (
     <>
       {loaderData?.supportBanner?.toggleBanner && (

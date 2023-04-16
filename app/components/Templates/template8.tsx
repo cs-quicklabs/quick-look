@@ -27,7 +27,7 @@ export default function Template8({
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
-        className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 ml-[0.1rem] justify-center items-center bg-no-repeat object-cover overflow-none ${
+        className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 justify-center items-center bg-no-repeat object-cover overflow-none ${
           mode === 'mobile'
             ? '  flex-col'
             : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '

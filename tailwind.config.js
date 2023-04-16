@@ -1,56 +1,18 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-/** @type {import('tailwindcss').Config} */
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: process.env.NODE_ENV ? 'jit' : undefined,
   content: ['./app/**/*.{ts,tsx,jsx,js}'],
   theme: {
-    fontSize: {
-      xs: ['0.75rem', { lineHeight: '1rem' }],
-      sm: ['0.875rem', { lineHeight: '1.5rem' }],
-      base: ['1rem', { lineHeight: '1.75rem' }],
-      lg: ['1.125rem', { lineHeight: '2rem' }],
-      xl: ['1.25rem', { lineHeight: '2rem' }],
-      '2xl': ['1.5rem', { lineHeight: '2rem' }],
-      '3xl': ['2rem', { lineHeight: '2.5rem' }],
-      '4xl': ['2.5rem', { lineHeight: '3.5rem' }],
-      '5xl': ['3rem', { lineHeight: '3.5rem' }],
-      '6xl': ['3.75rem', { lineHeight: '1' }],
-      '7xl': ['4.5rem', { lineHeight: '1.1' }],
-      '8xl': ['6rem', { lineHeight: '1' }],
-      '9xl': ['8rem', { lineHeight: '1' }],
-    },
-    extend: {
-      borderRadius: {
-        '4xl': '2rem',
-      },
-      screens: {
-        xs: '425px',
-        xxs: '375px',
-        smallScreen: '640px',
-        mediumScreen: '768px',
-        small: '1024px',
-        smRes: '1176px',
-        SmMedium: '1280px',
-        MdRes: '1366px',
-        med: '1440px',
-        medium: '1518px',
-        medScreen: '1600px',
-        mediumLaptop: '1700px',
-        largeLaptop: '1920px',
-        large: '2560px',
-        Smheight: { raw: '(max-height: 1234px)' },
-      },
+    fontFamily: {
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      display: ['Lexend', ...defaultTheme.fontFamily.sans],
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        display: ['Lexend', ...defaultTheme.fontFamily.sans],
-        fontFamily: {
-          inter: ['Inter'],
-        },
-      },
-      maxWidth: {
-        '2xl': '40rem',
+        inter: ['Inter'],
       },
     },
+    extend: {},
   },
   plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar-hide')],
 }
