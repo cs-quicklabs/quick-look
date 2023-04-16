@@ -1,6 +1,6 @@
 import defaultimg from '../../../assets/images/profile.png'
 import PoweredBy from '../Common/PoweredBy'
-import RedirectButton from './addOns/RedirectButton'
+import RedirectButton from './addOns/redirectButton'
 
 export default function Template18({ input, loaderData, secondaryRestore }: any) {
   const spotText =

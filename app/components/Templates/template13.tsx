@@ -3,12 +3,12 @@ import twitter from '../../../assets/images/socialIcons/twitterIcon3.png'
 import youtube from '../../../assets/images/socialIcons/youtubeIcon3.png'
 import defaultimg from '../../../assets/images/profile.png'
 import BannerAddOn from './addOns/Banner'
-import Spotlightbtn from './addOns/Spotlightbtn'
-import TestimonialAddOn from './addOns/Testimonial'
+import Spotlightbtn from './addOns/spotlightbtn'
+import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/Video'
 import { useLocation } from '@remix-run/react'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
-import PortfolioAddon from './addOns/Portfolio'
+import PortfolioAddon from './addOns/portfolio'
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/24/outline'
 import PoweredBy from '../Common/PoweredBy'
 export default function Template13({
@@ -25,26 +25,31 @@ export default function Template13({
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
-        className={`xl:ml-8 xl:gap-16 flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
-          } ${mode === 'mobile'
+        className={`xl:ml-8 xl:gap-16 flex overflow-auto scrollbar-hide font-inter bg-[#F1F6FF] justify-center items-center overflow-none pb-[3rem] ${
+          nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
+        } ${
+          mode === 'mobile'
             ? 'flex-col'
             : 'flex-col xl:flex-row xl:items-start xl:justify-start xl:px-[1rem] xl:bg-white mediumLaptop:px-[4rem] largeLaptop:px-[6rem]'
-          } ${nav ? '' : mode != 'mobile' ? '' : ''}`}
+        } ${nav ? '' : mode != 'mobile' ? '' : ''}`}
       >
         <div
-          className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${mode === 'mobile'
-            ? 'w-full '
-            : 'w-full lg:items-center lg:pt-[5rem] lg:pb-[10rem] xl:w-[22rem] xl:items-start med:w-[25rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'
-            } ${nav ? '' : mode != 'mobile' ? '' : ''}`}
+          className={`flex-shrink-0 flex flex-col justify-center items-center py-[2rem] ${
+            mode === 'mobile'
+              ? 'w-full '
+              : 'w-full lg:items-center lg:pt-[5rem] lg:pb-[10rem] xl:w-[22rem] xl:items-start med:w-[25rem] mediumLaptop:w-[35rem] largeLaptop:w-[40rem]'
+          } ${nav ? '' : mode != 'mobile' ? '' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
               loading="lazy"
-              className={`rounded-t-lg object-cover w-[15rem] h-[15rem]  ${mode === 'mobile'
-                ? 'lg:w-[20rem] lg:h-[20rem]'
-                : 'lg:w-[25rem] lg:h-[25rem] xl:w-[22rem] xl:h-[28rem] xl:rounded-lg med:h-[35rem] med:w-[25rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
-                } ${nav ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
-                }  `}
+              className={`rounded-t-lg object-cover w-[15rem] h-[15rem]  ${
+                mode === 'mobile'
+                  ? 'lg:w-[20rem] lg:h-[20rem]'
+                  : 'lg:w-[25rem] lg:h-[25rem] xl:w-[22rem] xl:h-[28rem] xl:rounded-lg med:h-[35rem] med:w-[25rem] mediumLaptop:w-[30rem] mediumLaptop:h-[35rem] largeLaptop:w-[35rem] largeLaptop:h-[40rem]'
+              } ${nav ? '' : ''} ${
+                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
+              }  `}
               src={
                 secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }
@@ -54,39 +59,44 @@ export default function Template13({
         </div>
 
         <div
-          className={`xl:ml-1.5 flex flex-col justify-center items-center w-full px-[2rem] ${mode === 'mobile' ? '' : 'xl:pt-[23rem] xl:px-[0rem]'
-            } 
-      ${nav
-              ? 'lg:w-[45rem] xl:w-[32rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]'
-              : mode != 'mobile'
-                ? 'lg:w-[35rem] xl:w-[20rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]'
-                : ''
-            }`}
+          className={`xl:ml-1.5 flex flex-col justify-center items-center w-full px-[2rem] ${
+            mode === 'mobile' ? '' : 'xl:pt-[23rem] xl:px-[0rem]'
+          } 
+      ${
+        nav
+          ? 'lg:w-[45rem] xl:w-[32rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]'
+          : mode != 'mobile'
+          ? 'lg:w-[35rem] xl:w-[20rem] med:w-[30rem] mediumLaptop:w-[35rem] largeLaptop:w-[43rem]'
+          : ''
+      }`}
         >
           <div
-            className={`max-w-[320px] sm:max-w-[400px] lg:max-w-[450px] shadow-lg rounded-lg bg-white mt-[-2rem] w-full ${mode === 'mobile'
-              ? ''
-              : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full'
-              }`}
+            className={`max-w-[320px] sm:max-w-[400px] lg:max-w-[450px] shadow-lg rounded-lg bg-white mt-[-2rem] w-full ${
+              mode === 'mobile'
+                ? ''
+                : 'lg:mt-[-10rem] med:mt-[-14rem] xl:rounded-none xl:shadow-none xl:w-full'
+            }`}
           >
             <h4
-              className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] break-keep ${mode === 'mobile'
-                ? ''
-                : 'xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'
-                }  ${nav ? '' : ''}`}
+              className={`text-black text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] break-keep ${
+                mode === 'mobile'
+                  ? ''
+                  : 'xl:w-[50%] xl:text-left xl:text-6xl xl:font-extrabold xl:leading-none xl:border-b-[1px] xl:border-gray-300 xl:pb-[1rem]'
+              }  ${nav ? '' : ''}`}
             >
               {loaderData?.firstname} {loaderData?.lastname}
             </h4>
 
             {loaderData?.profileInfo?.occupation ||
-              input.occupation ||
-              input.location ||
-              loaderData?.profileInfo?.location ? (
+            input.occupation ||
+            input.location ||
+            loaderData?.profileInfo?.location ? (
               <h3
-                className={`mt-1 text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${mode === 'mobile'
-                  ? ''
-                  : 'xl:text-left xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-6'
-                  }  ${nav ? 'lg:w-full' : ''} `}
+                className={`mt-1 text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${
+                  mode === 'mobile'
+                    ? ''
+                    : 'xl:text-left xl:w-full mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-6'
+                }  ${nav ? 'lg:w-full' : ''} `}
               >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
@@ -95,26 +105,30 @@ export default function Template13({
             )}
 
             <div
-              className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] ${mode === 'mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem] xl:hidden'
-                } `}
+              className={`pb-[1rem] pl-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] ${
+                mode === 'mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem] xl:hidden'
+              } `}
             >
               <div
-                className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'
-                  } ${nav ? '' : ''}`}
+                className={`flex pt-4 justify-between ${
+                  mode === 'mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'
+                } ${nav ? '' : ''}`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className={`flex ${mode === 'mobile' ? '' : ''}`}>
                     <h2
-                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode === 'mobile' ? '' : ''
-                        }`}
+                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
+                        mode === 'mobile' ? '' : ''
+                      }`}
                     >
                       <BriefcaseIcon />
                     </h2>
                     <h2
-                      className={`text-gray-800 w-[70%] sm:w-max text-xs leading-5 font-normal break-normal mt-[-0.15rem] lg:w-[65%] ${mode === 'mobile'
-                        ? 'lg:text-sm xl:w-max'
-                        : 'lg:text-sm lg:text-black lg:mt-[-0.15rem] xl:w-max'
-                        }`}
+                      className={`text-gray-800 w-[70%] sm:w-max text-xs leading-5 font-normal break-normal mt-[-0.15rem] lg:w-[65%] ${
+                        mode === 'mobile'
+                          ? 'lg:text-sm xl:w-max'
+                          : 'lg:text-sm lg:text-black lg:mt-[-0.15rem] xl:w-max'
+                      }`}
                     >
                       {input.company}
                     </h2>
@@ -124,20 +138,23 @@ export default function Template13({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${nav ? '' : ''
-                      }`}
+                    className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                      nav ? '' : ''
+                    }`}
                   >
                     <h2
-                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode === 'mobile' ? '' : ''
-                        }`}
+                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
+                        mode === 'mobile' ? '' : ''
+                      }`}
                     >
                       <AcademicCapIcon />
                     </h2>
                     <h2
-                      className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${mode === 'mobile'
-                        ? 'lg:text-sm'
-                        : 'lg:text-sm lg:text-black lg:mt-[-0.15rem]'
-                        }`}
+                      className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${
+                        mode === 'mobile'
+                          ? 'lg:text-sm'
+                          : 'lg:text-sm lg:text-black lg:mt-[-0.15rem]'
+                      }`}
                     >
                       {input.education}
                     </h2>
@@ -164,34 +181,39 @@ export default function Template13({
 
             <div className="mt-1">
               <pre
-                className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode === 'mobile' ? '' : ''
-                  } ${nav ? '' : ''}`}
+                className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${
+                  mode === 'mobile' ? '' : ''
+                } ${nav ? '' : ''}`}
               >
                 {input?.description?.trim()}
               </pre>
             </div>
 
             <div
-              className={`pb-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] hidden ${mode === 'mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem] xl:block '
-                } `}
+              className={`pb-[1rem] pr-[1.5rem] w-full lg:pl-[2rem] hidden ${
+                mode === 'mobile' ? 'xl:mt-[-1rem]' : 'lg:bg-transparent xl:pl-[0rem] xl:block '
+              } `}
             >
               <div
-                className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'
-                  } ${nav ? '' : ''}`}
+                className={`flex pt-4 justify-between ${
+                  mode === 'mobile' ? '' : 'xl:flex-col xl:pt-[1.5rem]'
+                } ${nav ? '' : ''}`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className={`flex ${mode === 'mobile' ? '' : ''}`}>
                     <h2
-                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode === 'mobile' ? '' : ''
-                        }`}
+                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
+                        mode === 'mobile' ? '' : ''
+                      }`}
                     >
                       <BriefcaseIcon />
                     </h2>
                     <h2
-                      className={`text-gray-800 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal   ${mode === 'mobile'
-                        ? 'lg:text-sm'
-                        : 'lg:text-sm lg:text-black lg:mt-[-0.15rem] xl:w-max'
-                        }`}
+                      className={`text-gray-800 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal   ${
+                        mode === 'mobile'
+                          ? 'lg:text-sm'
+                          : 'lg:text-sm lg:text-black lg:mt-[-0.15rem] xl:w-max'
+                      }`}
                     >
                       {input.company}
                     </h2>
@@ -201,20 +223,23 @@ export default function Template13({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${nav ? '' : ''
-                      }`}
+                    className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                      nav ? '' : ''
+                    }`}
                   >
                     <h2
-                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${mode === 'mobile' ? '' : ''
-                        }`}
+                      className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
+                        mode === 'mobile' ? '' : ''
+                      }`}
                     >
                       <AcademicCapIcon />
                     </h2>
                     <h2
-                      className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${mode === 'mobile'
-                        ? 'lg:text-sm'
-                        : 'lg:text-sm lg:text-black lg:mt-[-0.15rem]'
-                        }`}
+                      className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${
+                        mode === 'mobile'
+                          ? 'lg:text-sm'
+                          : 'lg:text-sm lg:text-black lg:mt-[-0.15rem]'
+                      }`}
                     >
                       {input.education}
                     </h2>
@@ -247,8 +272,9 @@ export default function Template13({
               </div>
 
               <footer
-                className={`flex w-full gap-4 md:gap-8  justify-start  ${nav ? '' : ''} ${loaderData?.portfolioImage ? 'pt-[1rem]' : 'pt-[0rem]'
-                  }`}
+                className={`flex w-full gap-4 md:gap-8  justify-start  ${nav ? '' : ''} ${
+                  loaderData?.portfolioImage ? 'pt-[1rem]' : 'pt-[0rem]'
+                }`}
               >
                 {loaderData?.socialMedia?.facebookLink ? (
                   <a

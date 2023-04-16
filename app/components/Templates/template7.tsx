@@ -4,14 +4,14 @@ import youtube from '../../../assets/images/socialIcons/youtubeIcon5.png'
 import Background5 from '../../../assets/images/templates/template5.png'
 import defaultimg from '../../../assets/images/profile.png'
 import BannerAddOn from './addOns/Banner'
-import Spotlightbtn from './addOns/Spotlightbtn'
-import TestimonialAddOn from './addOns/Testimonial'
+import Spotlightbtn from './addOns/spotlightbtn'
+import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/Video'
 import { useLocation } from '@remix-run/react'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
 import { AcademicCapIcon } from '@heroicons/react/24/outline'
-import PortfolioAddon from './addOns/Portfolio'
+import PortfolioAddon from './addOns/portfolio'
 import PoweredBy from '../Common/PoweredBy'
 
 export default function Template7({
@@ -33,17 +33,20 @@ export default function Template7({
       <>
         {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
         <div
-          className={`flex overflow-auto scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-center justify-center pt-[1rem] ${nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '
-            } ${mode === 'mobile' ? 'lg:w-full]' : 'lg:pt-[6rem]'
-            }  justify-center bg-no-repeat object-cover overflow-none`}
+          className={`flex overflow-auto scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-center justify-center pt-[1rem] ${
+            nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '
+          } ${
+            mode === 'mobile' ? 'lg:w-full]' : 'lg:pt-[6rem]'
+          }  justify-center bg-no-repeat object-cover overflow-none`}
           style={myStyle}
         >
           <div className="flex flex-col items-center justify-center">
             {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
               <img
                 loading="lazy"
-                className={`mb-3 w-60 h-60 rounded-full object-cover ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
-                  } ${nav ? ' ' : ''} `}
+                className={`mb-3 w-60 h-60 rounded-full object-cover ${
+                  loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
+                } ${nav ? ' ' : ''} `}
                 src={
                   secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
                 }
@@ -58,12 +61,13 @@ export default function Template7({
             </h5>
 
             {loaderData?.profileInfo?.occupation ||
-              input.occupation ||
-              input.location ||
-              loaderData?.profileInfo?.location ? (
+            input.occupation ||
+            input.location ||
+            loaderData?.profileInfo?.location ? (
               <h3
-                className={`text-xs leading-5 lg:text-2xl lg:leading-8 font-normal text-gray-600 w-max break-normal text-center ${mode === 'mobile' ? '' : ''
-                  } `}
+                className={`text-xs leading-5 lg:text-2xl lg:leading-8 font-normal text-gray-600 w-max break-normal text-center ${
+                  mode === 'mobile' ? '' : ''
+                } `}
               >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
@@ -73,10 +77,11 @@ export default function Template7({
           </div>
 
           <div
-            className={`w-[21rem] sm:w-[32rem] ${mode === 'mobile'
-              ? 'lg:w-[25rem] med:w-[32rem] mediumLaptop:w-[38rem] largeLaptop:w-[45rem]'
-              : 'xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[50rem] largeLaptop:w-[55rem]'
-              } ${nav ? '' : ''}`}
+            className={`w-[21rem] sm:w-[32rem] ${
+              mode === 'mobile'
+                ? 'lg:w-[25rem] med:w-[32rem] mediumLaptop:w-[38rem] largeLaptop:w-[45rem]'
+                : 'xl:w-[35rem] med:w-[40rem] medium:w-[45rem] mediumLaptop:w-[50rem] largeLaptop:w-[55rem]'
+            } ${nav ? '' : ''}`}
           >
             <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
@@ -92,16 +97,18 @@ export default function Template7({
 
             <div className={`mt-[1.5rem] ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               <pre
-                className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${mode === 'mobile' ? '' : ''
-                  } ${nav ? '' : ''}`}
+                className={`text-gray-700 text-base leading-5 font-normal font-sans flex items-center justify-center text-center whitespace-pre-wrap ${
+                  mode === 'mobile' ? '' : ''
+                } ${nav ? '' : ''}`}
               >
                 {input?.description?.trim()}
               </pre>
             </div>
 
             <div
-              className={`flex items-center justify-center  ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''
-                }`}
+              className={`flex items-center justify-center  ${mode === 'mobile' ? '' : ''} ${
+                nav ? '' : ''
+              }`}
             >
               <div className={`flex flex-col  items-center justify-center ${nav ? '' : ''}`}>
                 {loaderData?.profileInfo?.company || input.company ? (
@@ -151,8 +158,9 @@ export default function Template7({
             </div>
 
             <footer
-              className={`flex w-full gap-4 md:gap-8 items-center justify-center ${mode === 'mobile' ? '' : ''
-                }  ${nav ? '' : ''} ${loaderData?.portfolioImage[0] ? 'pt-[1.5rem]' : 'pt-[0rem]'}`}
+              className={`flex w-full gap-4 md:gap-8 items-center justify-center ${
+                mode === 'mobile' ? '' : ''
+              }  ${nav ? '' : ''} ${loaderData?.portfolioImage[0] ? 'pt-[1.5rem]' : 'pt-[0rem]'}`}
             >
               {loaderData?.socialMedia?.facebookLink ? (
                 <a

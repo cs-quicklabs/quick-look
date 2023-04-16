@@ -1,4 +1,3 @@
-import React from 'react'
 import DynamicHeroIcon from './DynmaicIcon'
 
 export default function Spotlightbtn({ loaderData }: any) {

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function TestimonialAddOn({ testimonialText, testimonialBy, loaderData }: any) {
   return (
     <section className="mt-[1rem] overflow-hidden">

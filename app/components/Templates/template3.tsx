@@ -4,12 +4,12 @@ import youtube from '../../../assets/images/socialIcons/youtubeIcon3.png'
 import defaultimg from '../../../assets/images/profile.png'
 import Background3 from '../../../assets/images/templates/temp3.png'
 import BannerAddOn from './addOns/Banner'
-import Spotlightbtn from './addOns/Spotlightbtn'
-import TestimonialAddOn from './addOns/Testimonial'
+import Spotlightbtn from './addOns/spotlightbtn'
+import TestimonialAddOn from './addOns/testimonial'
 import VideoAddOn from './addOns/Video'
 import { useLocation } from '@remix-run/react'
 import AdditionalLinksAddOn from './addOns/AddtionalLinks'
-import PortfolioAddon from './addOns/Portfolio'
+import PortfolioAddon from './addOns/portfolio'
 import PoweredBy from '../Common/PoweredBy'
 export default function Template3({
   mode,
@@ -29,25 +29,30 @@ export default function Template3({
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
-        className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
-          } ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${nav ? '' : ''
-          }`}
+        className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${
+          nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
+        } ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${
+          nav ? '' : ''
+        }`}
         style={myStyle}
       >
         <div
-          className={`flex-shrink-0 h-full flex flex-col justify-center items-center bg-black py-[2rem] ${mode === 'mobile'
-            ? 'w-full'
-            : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'
-            } ${nav ? '' : ''}`}
+          className={`flex-shrink-0 h-full flex flex-col justify-center items-center bg-black py-[2rem] ${
+            mode === 'mobile'
+              ? 'w-full'
+              : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'
+          } ${nav ? '' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
               loading="lazy"
-              className={`rounded-full object-cover w-[10rem] h-[10rem] ${mode === 'mobile'
-                ? 'lg:w-[18rem] lg:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'
-                : 'lg:w-[18rem] lg:h-[18rem] mediumLaptop:w-[18rem] mediumLaptop:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'
-                } ${nav ? '' : ''} ${loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
-                }  `}
+              className={`rounded-full object-cover w-[10rem] h-[10rem] ${
+                mode === 'mobile'
+                  ? 'lg:w-[18rem] lg:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'
+                  : 'lg:w-[18rem] lg:h-[18rem] mediumLaptop:w-[18rem] mediumLaptop:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'
+              } ${nav ? '' : ''} ${
+                loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
+              }  `}
               src={
                 secondaryRestore === true ? defaultimg : loaderData?.profileImage?.secondaryImage
               }
@@ -56,19 +61,21 @@ export default function Template3({
           ) : null}
 
           <h4
-            className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${mode === 'mobile' ? '' : ''
-              }  ${nav ? '' : ''}`}
+            className={`text-white text-center text-2xl leading-8 font-bold ml-[0rem] sm:ml-0 pt-[1rem] ${
+              mode === 'mobile' ? '' : ''
+            }  ${nav ? '' : ''}`}
           >
             {loaderData?.firstname} {loaderData?.lastname}
           </h4>
 
           {loaderData?.profileInfo?.occupation ||
-            input.occupation ||
-            input.location ||
-            loaderData?.profileInfo?.location ? (
+          input.occupation ||
+          input.location ||
+          loaderData?.profileInfo?.location ? (
             <h3
-              className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${mode === 'mobile' ? '' : 'lg:w-max mediumLaptop:w-full'
-                }  ${nav ? 'lg:w-full' : ''} `}
+              className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${
+                mode === 'mobile' ? '' : 'lg:w-max mediumLaptop:w-full'
+              }  ${nav ? 'lg:w-full' : ''} `}
             >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
             </h3>
@@ -77,24 +84,28 @@ export default function Template3({
           )}
 
           <div
-            className={`px-4 pb-[1rem]  bg-black w-full px-[1rem] ${mode === 'mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'
-              } `}
+            className={`px-4 pb-[1rem]  bg-black w-full px-[1rem] ${
+              mode === 'mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'
+            } `}
           >
             <div
-              className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''
-                }`}
+              className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : ''} ${
+                nav ? '' : ''
+              }`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
                 <div className={`flex flex-col lg:w-[50%] ${mode === 'mobile' ? '' : ''}`}>
                   <h2
-                    className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${mode === 'mobile' ? '' : 'xl:leading-5 xl:font-medium xl:text-gray-600'
-                      }`}
+                    className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${
+                      mode === 'mobile' ? '' : 'xl:leading-5 xl:font-medium xl:text-gray-600'
+                    }`}
                   >
                     WORK
                   </h2>
                   <h2
-                    className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${mode === 'mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'
-                      }`}
+                    className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${
+                      mode === 'mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'
+                    }`}
                   >
                     {input.company}
                   </h2>
@@ -105,16 +116,18 @@ export default function Template3({
               {loaderData?.profileInfo?.education || input.education ? (
                 <div className={`flex flex-col  ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                   <h2
-                    className={`text-white w-max text-xs leading-5 font-normal  ${mode === 'mobile'
-                      ? 'xl:text-sm'
-                      : 'xl:text-sm xl:leading-5 xl:font-medium xl:text-gray-600'
-                      }`}
+                    className={`text-white w-max text-xs leading-5 font-normal  ${
+                      mode === 'mobile'
+                        ? 'xl:text-sm'
+                        : 'xl:text-sm xl:leading-5 xl:font-medium xl:text-gray-600'
+                    }`}
                   >
                     EDUCATION
                   </h2>
                   <h2
-                    className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${mode === 'mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'
-                      }`}
+                    className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${
+                      mode === 'mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'
+                    }`}
                   >
                     {input.education}
                   </h2>
@@ -127,12 +140,13 @@ export default function Template3({
         </div>
 
         <div
-          className={`w-full px-[2rem] ${mode === 'mobile' ? '' : 'xl:pt-[6rem]'} ${nav
-            ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]'
-            : mode != 'mobile'
+          className={`w-full px-[2rem] ${mode === 'mobile' ? '' : 'xl:pt-[6rem]'} ${
+            nav
+              ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]'
+              : mode != 'mobile'
               ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'
               : ''
-            }`}
+          }`}
         >
           <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             {loaderData?.spotlightButton?.toggleSpotlight && (
@@ -147,39 +161,46 @@ export default function Template3({
           </div>
 
           <div
-            className={`flex ${mode === 'mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'
-              }`}
+            className={`flex ${
+              mode === 'mobile' ? 'flex-col-reverse' : 'flex-col-reverse lg:flex-col'
+            }`}
           >
             <div
-              className={`${loaderData?.spotlightButton?.toggleSpotlight ? 'mt-[1rem] xl:mt-1' : 'mt-[2rem]'
-                }`}
+              className={`${
+                loaderData?.spotlightButton?.toggleSpotlight ? 'mt-[1rem] xl:mt-1' : 'mt-[2rem]'
+              }`}
             >
               <pre
-                className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${mode === 'mobile' ? '' : ''
-                  } ${nav ? '' : ''}`}
+                className={`text-gray-700 text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${
+                  mode === 'mobile' ? '' : ''
+                } ${nav ? '' : ''}`}
               >
                 {input?.description?.trim()}
               </pre>
             </div>
             <div
-              className={`pb-[1rem]  bg-black w-full hidden ${mode === 'mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent xl:block'
-                } `}
+              className={`pb-[1rem]  bg-black w-full hidden ${
+                mode === 'mobile' ? 'lg:mt-[-1rem]' : 'lg:bg-transparent xl:block'
+              } `}
             >
               <div
-                className={`flex pt-6 justify-between ${mode === 'mobile' ? '' : ''} ${nav ? 'lg:gap-[10rem]' : ''
-                  }`}
+                className={`flex pt-6 justify-between ${mode === 'mobile' ? '' : ''} ${
+                  nav ? 'lg:gap-[10rem]' : ''
+                }`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className={`flex flex-col lg:w-[50%] ${mode === 'mobile' ? '' : ''}`}>
                     <h2
-                      className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${mode === 'mobile' ? '' : 'lg:leading-5 lg:font-medium lg:text-gray-600'
-                        }`}
+                      className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${
+                        mode === 'mobile' ? '' : 'lg:leading-5 lg:font-medium lg:text-gray-600'
+                      }`}
                     >
                       WORK
                     </h2>
                     <h2
-                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
-                        }`}
+                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${
+                        mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
+                      }`}
                     >
                       {input.company}
                     </h2>
@@ -190,16 +211,18 @@ export default function Template3({
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div className={`flex flex-col  ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                     <h2
-                      className={`text-white w-max text-xs leading-5 font-normal  ${mode === 'mobile'
-                        ? 'lg:text-sm'
-                        : 'lg:text-sm lg:leading-5 lg:font-medium lg:text-gray-600'
-                        }`}
+                      className={`text-white w-max text-xs leading-5 font-normal  ${
+                        mode === 'mobile'
+                          ? 'lg:text-sm'
+                          : 'lg:text-sm lg:leading-5 lg:font-medium lg:text-gray-600'
+                      }`}
                     >
                       EDUCATION
                     </h2>
                     <h2
-                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
-                        }`}
+                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${
+                        mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
+                      }`}
                     >
                       {input.education}
                     </h2>
@@ -233,8 +256,9 @@ export default function Template3({
             </div>
 
             <footer
-              className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? '' : ''} ${loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'
-                }`}
+              className={`flex w-full gap-4 md:gap-8  justify-start pb-[5rem]  ${nav ? '' : ''} ${
+                loaderData?.portfolioImage ? 'pt-[2rem]' : 'pt-[0rem]'
+              }`}
             >
               {loaderData?.socialMedia?.facebookLink ? (
                 <a
