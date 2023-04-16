@@ -103,7 +103,7 @@ export default function AccountSideBar({
     if (item === 'Social Links') {
       setshowSocialLinks(true)
     }
-    if (item === 'Images') {
+    if (item === 'Profile Pictures') {
       setshowImages(true)
     }
     if (item === 'Support Banner') {

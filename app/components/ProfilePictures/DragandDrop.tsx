@@ -31,12 +31,7 @@ function Dropzone({ setSecondaryImageError, setImages, onDrop, accept, images }:
             </p>
           </div>
         </div>
-        <input
-          name="editSecondaryImage"
-          type="text"
-          value={images}
-          hidden
-        />
+        <input name="editSecondaryImage" type="text" value={images} hidden />
         <button type="submit" hidden ref={ref}>
           upload
         </button>

@@ -73,7 +73,7 @@ function ProfileImage({
       cropArea.show()
     }
   }
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: any[]) => {
     acceptedFiles.map((file: any) => {
       const reader = new FileReader()
 
