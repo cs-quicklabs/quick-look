@@ -157,7 +157,7 @@ export default function Profile() {
 
   const [showUserSetting] = useState(false)
   const togglemobile = () => {
-    setmode('mobile')
+    setmode('desktop')
     setshowTemplate(
       !showSocialLinks &&
         !showImages &&
@@ -236,12 +236,13 @@ export default function Profile() {
         {/* <div className={`flex-1 grow z-30  ${mode === 'mobile' ? 'lg:ml-[12rem] xl:ml-[24rem]' : 'lg:ml-[5rem] xl:ml-[0rem]'}`}> */}
         <div
           className={`z-20 grow basis-[78%] 
-          ${mode === 'mobile'
+          ${
+            mode === 'mobile'
               ? 'lg:ml-[32rem] xl:ml-[48rem]'
               : mode != 'mobile'
-                ? 'lg:ml-[24rem]'
-                : null
-            }
+              ? 'lg:ml-[24rem]'
+              : null
+          }
      `}
         >
           {loaderData?.profileInfo?.templateNumber == '0' ? (
@@ -376,37 +377,16 @@ export default function Profile() {
       </div>
 
       <div
-        className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${!showUserSetting ? 'z-40' : 'z-[60]'
-          }  rounded-l-md rounded-r-md ${loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
+        className={`absolute top-[4.5rem] right-[2rem] hidden w-[80px] lg:flex ${
+          !showUserSetting ? 'z-40' : 'z-[60]'
+        }  rounded-l-md rounded-r-md ${
+          loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
             ? ''
             : 'border border-gray-300'
-          } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
-          } `}
-      >
-        {/* <form action="" > */}
-        <button
-          id="desktopButton"
-          className={`${mode === 'desktop' ? 'bg-white/90' : 'bg-white/70 text-white'
-            } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-l-md`}
-          onClick={toggledesktop}
-        >
-          <ComputerDesktopIcon
-            className={`h-[1.25rem] w-auto  ${mode === 'desktop' ? 'text-black' : disabledIcon} `}
-          />
-        </button>
-
-        <button
-          id="mobileButton"
-          className={`${mode === 'mobile' ? 'bg-white/90' : 'bg-white/70 text-white'
-            } flex h-[2.5rem] w-[3rem] items-center justify-center rounded-r-md border-l`}
-          onClick={togglemobile}
-        >
-          <DevicePhoneMobileIcon
-            className={`h-[1.25rem] w-auto  ${mode === 'mobile' ? 'text-black' : disabledIcon}`}
-          />
-        </button>
-        {/* </form> */}
-      </div>
+        } ${loaderData?.profileInfo?.templateNumber == '1' ? 'border border-gray-300' : ''} ${
+          loaderData?.supportBanner?.toggleBanner && 'mt-[3rem]'
+        } `}
+      ></div>
       <Unpublish
         isPublished={loaderData?.profile?.isPublished}
         open={showModal}
