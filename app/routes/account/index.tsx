@@ -24,7 +24,7 @@ import Template16 from '~/components/Templates/template16'
 import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
-import Unpublish, { action as ModalAction } from '~/components/Common/UnpublishModal'
+import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request }) => {
