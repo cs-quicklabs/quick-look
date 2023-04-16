@@ -29,9 +29,6 @@ export default function Home() {
       <Hero />
       <PrimaryFeatures />
       <SecondaryFeatures />
-      {/* <Testimonials /> */}
-      <Pricing />
-      {/* <Faqs /> */}
       <CallToAction />
       <Footer />
     </>

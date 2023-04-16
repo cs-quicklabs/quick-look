@@ -76,13 +76,6 @@ function MobileNavigation() {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link to="#pricing">
-                    <span className="block w-full" onClick={() => close()}>
-                      Pricing
-                    </span>
-                  </Link>
-                </li>
                 <li className="border-t border-slate-300/40 pt-4">
                   <Link to="/auth/login">
                     <span className="block w-full">Sign in</span>
@@ -120,22 +113,7 @@ export function Header({ isloggedin }: any) {
                 Features
               </a>
             </li>
-            {/* <li className='ml-6 hidden md:block'>
-              <a
-                href='#testimonials'
-                className='rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
-              >
-                Testimonials
-              </a>
-            </li> */}
-            <li className="ml-6 hidden md:block">
-              <a
-                href="#pricing"
-                className="rounded-lg py-1 px-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900"
-              >
-                Pricing
-              </a>
-            </li>
+
             <li className="ml-auto hidden md:block">
               <a href="/auth/login">
                 {isloggedin ? (
