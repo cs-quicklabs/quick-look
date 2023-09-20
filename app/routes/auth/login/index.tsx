@@ -74,25 +74,46 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export const meta: MetaFunction = () => {
-  return {
-    title: 'QuickLook.me - Log In or Sign Up',
-    description:
-      'Create an account or log into QuickLook. Describe yourself with just one link which connects all your social profiles together.',
-    'og:type': 'website',
-    'og:url': 'https://www.quicklook.me/',
-    'og:title': 'QuickLook.me — Introduction made simple with just one link.',
-    'og:description':
-      'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
-    'og:image': 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+  return [
+    { title: 'QuickLook.me - Log In or Sign Up' },
+    {
+      name: 'description',
+      content:
+        'Create an account or log into QuickLook. Describe yourself with just one link which connects all your social profiles together.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://www.quicklook.me/' },
+    {
+      property: 'og:title',
+      content: 'QuickLook.me — Introduction made simple with just one link.',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
+    },
+    { property: 'og:image', content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png' },
 
-    'twitter:card': 'summary_large_image',
-    'twitter:url': 'https://www.quicklook.me/',
-    'twitter:title': 'QuickLook.me — Introduction made simple with just one link.',
-    'twitter:description':
-      'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
-    'twitter:image': 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
-    keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
-  }
+    { property: 'twitter:card', content: 'summary_large_image' },
+    { property: 'twitter:url', content: 'https://www.quicklook.me/' },
+    {
+      property: 'twitter:title',
+      content: 'QuickLook.me — Introduction made simple with just one link.',
+    },
+    {
+      property: 'twitter:description',
+      content:
+        'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
+    },
+    {
+      property: 'twitter:image',
+      content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+    },
+    {
+      property: 'keywords',
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
+    },
+  ]
 }
 
 export default function Login() {
