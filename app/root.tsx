@@ -3,11 +3,13 @@ import {
   LiveReload,
   Scripts,
   Links,
-  useCatch,
   useLocation,
   useLoaderData,
   Meta,
+  useRouteError,
+  isRouteErrorResponse,
 } from '@remix-run/react'
+
 import ErrorHandler from './components/PageNotFoundError'
 import tailwindcss from './styles/tailwind.css'
 import LightGallery from './styles/lightgallery.css'
@@ -158,26 +160,26 @@ function Layout({ children }: any) {
   )
 }
 
-export function CatchBoundary() {
-  const caughtError = useCatch()
+export function ErrorBoundary() {
+  const error = useRouteError()
 
-  if (caughtError.status) {
+  if (isRouteErrorResponse(error)) {
     return (
       <div>
-        <ErrorHandler name={caughtError.statusText} status={caughtError.status} />
+        <ErrorHandler name={error?.data?.message} status={error?.status} />
       </div>
     )
   }
-  throw new Error('Not Found!')
-}
 
-export function ErrorBoundary({ error }: any) {
+  // @ts-ignore
+  const errorMessage = (error?.message || 'Unknown error') as string
+
   return (
     <Document>
       <Layout>
         <div className="bg-red-200">
           <h1 className="text-5xl">Error</h1>
-          <p className="font-sans text-xl">{error.message}</p>
+          <p className="font-sans text-xl">{errorMessage}</p>
         </div>
       </Layout>
     </Document>
