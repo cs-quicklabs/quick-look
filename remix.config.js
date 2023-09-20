@@ -1,3 +1,4 @@
+const { createRoutesFromFolders } = require('@remix-run/v1-route-convention')
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
   serverBuildTarget: 'vercel',
@@ -10,7 +11,12 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "api/index.js",
   // publicPath: "/build/",
-  serverDependenciesToBundle: [
-    /^axios.*/,
-  ],
+  serverDependenciesToBundle: [/^axios.*/],
+  future: {
+    v2_dev: true,
+    v2_routeConvention: true,
+  },
+  routes(defineRoutes) {
+    return createRoutesFromFolders(defineRoutes)
+  },
 }
