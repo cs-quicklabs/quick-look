@@ -163,23 +163,25 @@ function Layout({ children }: any) {
 export function ErrorBoundary() {
   const error = useRouteError()
 
-  if (isRouteErrorResponse(error)) {
+  if (isRouteErrorResponse(error))
     return (
       <div>
-        <ErrorHandler name={error?.data?.message} status={error?.status} />
+        <ErrorHandler name={error?.statusText} status={error?.status} />
       </div>
     )
-  }
-
-  // @ts-ignore
-  const errorMessage = (error?.message || 'Unknown error') as string
 
   return (
     <Document>
       <Layout>
         <div className="bg-red-200">
-          <h1 className="text-5xl">Error</h1>
-          <p className="font-sans text-xl">{errorMessage}</p>
+          {error instanceof Error ? (
+            <>
+              <h1 className="text-5xl">Error</h1>
+              <p className="font-sans text-xl">{error.message}</p>
+            </>
+          ) : (
+            <h1>Unknown Error</h1>
+          )}
         </div>
       </Layout>
     </Document>
