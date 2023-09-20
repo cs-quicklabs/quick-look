@@ -60,7 +60,7 @@
     "cypress": "^13.2.0",
     "cypress-xpath": "^2.0.1",
     "eslint": "^8.38.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^9.0.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "prisma": "^4.12.0",
