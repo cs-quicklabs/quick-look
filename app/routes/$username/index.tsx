@@ -34,26 +34,44 @@ export const loader: LoaderFunction = async ({ params }) => {
 export const meta: MetaFunction = ({ data }) => {
   const fullName = `${data?.firstname} ${data?.lastname}`
 
-  return {
-    title: `${fullName} on QuickLook`,
-    description: `${fullName}'s profile on QuickLook. ${fullName}'s Introduction made simple with just one link.`,
-    'og:type': 'website',
-    'og:url': `https://www.quicklook.me/${data?.username}`,
-    'og:title': `${fullName} on QuickLook`,
-    'og:description': `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
-    'og:image':
-      data?.profileImage?.secondaryImage ||
-      'https://www.quicklook.me/build/_assets/profile-HAI7W636.png',
+  return [
+    { title: `${fullName} on QuickLook` },
+    {
+      name: 'description',
+      content: `${fullName}'s profile on QuickLook. ${fullName}'s Introduction made simple with just one link.`,
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `https://www.quicklook.me/${data?.username}` },
+    { property: 'og:title', content: `${fullName} on QuickLook` },
+    {
+      property: 'og:description',
+      content: `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
+    },
+    {
+      property: 'og:image',
+      content:
+        data?.profileImage?.secondaryImage ||
+        'https://www.quicklook.me/build/_assets/profile-HAI7W636.png',
+    },
 
-    'twitter:card': 'summary_large_image',
-    'twitter:url': `https://www.quicklook.me/${data?.username}`,
-    'twitter:title': `${fullName} on QuickLook`,
-    'twitter:description': `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
-    'twitter:image':
-      data?.profileImage?.secondaryImage ||
-      'https://www.quicklook.me/build/_assets/profile-HAI7W636.png',
-    keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, quicklook, QuickLook.me, ${fullName}, ${data?.email}, ${data?.username}`,
-  }
+    { property: 'twitter:card', content: 'summary_large_image' },
+    { property: 'twitter:url', content: `https://www.quicklook.me/${data?.username}` },
+    { property: 'twitter:title', content: `${fullName} on QuickLook` },
+    {
+      property: 'twitter:description',
+      content: `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
+    },
+    {
+      property: 'twitter:image',
+      content:
+        data?.profileImage?.secondaryImage ||
+        'https://www.quicklook.me/build/_assets/profile-HAI7W636.png',
+    },
+    {
+      property: 'keywords',
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, quicklook, QuickLook.me, ${fullName}, ${data?.email}, ${data?.username}`,
+    },
+  ]
 }
 
 export default function ProfileView() {

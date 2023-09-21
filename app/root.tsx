@@ -3,11 +3,13 @@ import {
   LiveReload,
   Scripts,
   Links,
-  useCatch,
   useLocation,
   useLoaderData,
   Meta,
+  useRouteError,
+  isRouteErrorResponse,
 } from '@remix-run/react'
+
 import ErrorHandler from './components/PageNotFoundError'
 import tailwindcss from './styles/tailwind.css'
 import LightGallery from './styles/lightgallery.css'
@@ -30,25 +32,46 @@ export async function loader() {
 }
 
 export const meta: MetaFunction = () => {
-  return {
-    title: 'QuickLook.me — Introduction made simple with just one link.',
-    description:
-      'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
-    'og:type': 'website',
-    'og:url': 'https://www.quicklook.me/',
-    'og:title': 'QuickLook.me — Introduction made simple with just one link.',
-    'og:description':
-      'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
-    'og:image': 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+  return [
+    { title: 'QuickLook.me — Introduction made simple with just one link.' },
+    {
+      name: 'description',
+      content:
+        'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://www.quicklook.me/' },
+    {
+      property: 'og:title',
+      content: 'QuickLook.me — Introduction made simple with just one link.',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
+    },
+    { property: 'og:image', content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png' },
 
-    'twitter:card': 'summary_large_image',
-    'twitter:url': 'https://www.quicklook.me/',
-    'twitter:title': 'QuickLook.me — Introduction made simple with just one link.',
-    'twitter:description':
-      'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
-    'twitter:image': 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
-    keywords: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
-  }
+    { property: 'twitter:card', content: 'summary_large_image' },
+    { property: 'twitter:url', content: 'https://www.quicklook.me/' },
+    {
+      property: 'twitter:title',
+      content: 'QuickLook.me — Introduction made simple with just one link.',
+    },
+    {
+      property: 'twitter:description',
+      content:
+        'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
+    },
+    {
+      property: 'twitter:image',
+      content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+    },
+    {
+      property: 'keywords',
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
+    },
+  ]
 }
 
 export default function App() {
@@ -107,28 +130,29 @@ function Layout({ children }: any) {
   return (
     <>
       {Location.pathname.includes('/auth/login') ||
-        Location.pathname.includes('/auth/signup') ||
-        Location.pathname.includes('/auth/forgot-password') ||
-        Location.pathname.includes('successlogin') ||
-        Location.pathname.includes('/auth/password') ||
-        Location.pathname.includes('/confirm/password') ||
-        Location.pathname.includes('/auth/receive-email') ||
-        Location.pathname.includes('/confirm/email') ? (
+      Location.pathname.includes('/auth/signup') ||
+      Location.pathname.includes('/auth/forgot-password') ||
+      Location.pathname.includes('successlogin') ||
+      Location.pathname.includes('/auth/password') ||
+      Location.pathname.includes('/confirm/password') ||
+      Location.pathname.includes('/auth/receive-email') ||
+      Location.pathname.includes('/confirm/email') ? (
         <HeaderSecondary />
       ) : (
         <></>
       )}
       <div
-        className={`${Location.pathname.includes('/forgot-password') ||
-            Location.pathname.includes('/successlogin') ||
-            Location.pathname.includes('/auth/password') ||
-            Location.pathname.includes('/auth/tokenerror') ||
-            Location.pathname.includes('/confirm/password') ||
-            Location.pathname.includes('/auth/receive-email') ||
-            Location.pathname.includes('/confirm/email')
+        className={`${
+          Location.pathname.includes('/forgot-password') ||
+          Location.pathname.includes('/successlogin') ||
+          Location.pathname.includes('/auth/password') ||
+          Location.pathname.includes('/auth/tokenerror') ||
+          Location.pathname.includes('/confirm/password') ||
+          Location.pathname.includes('/auth/receive-email') ||
+          Location.pathname.includes('/confirm/email')
             ? 'overflow-hidden'
             : 'overflow-x-hidden'
-          } `}
+        } `}
       >
         {children}
       </div>
@@ -136,26 +160,28 @@ function Layout({ children }: any) {
   )
 }
 
-export function CatchBoundary() {
-  const caughtError = useCatch()
+export function ErrorBoundary() {
+  const error = useRouteError()
 
-  if (caughtError.status) {
+  if (isRouteErrorResponse(error))
     return (
       <div>
-        <ErrorHandler name={caughtError.statusText} status={caughtError.status} />
+        <ErrorHandler name={error?.statusText} status={error?.status} />
       </div>
     )
-  }
-  throw new Error('Not Found!')
-}
 
-export function ErrorBoundary({ error }: any) {
   return (
     <Document>
       <Layout>
         <div className="bg-red-200">
-          <h1 className="text-5xl">Error</h1>
-          <p className="font-sans text-xl">{error.message}</p>
+          {error instanceof Error ? (
+            <>
+              <h1 className="text-5xl">Error</h1>
+              <p className="font-sans text-xl">{error.message}</p>
+            </>
+          ) : (
+            <h1>Unknown Error</h1>
+          )}
         </div>
       </Layout>
     </Document>
