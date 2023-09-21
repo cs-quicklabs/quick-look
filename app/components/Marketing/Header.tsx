@@ -77,7 +77,7 @@ function MobileNavigation() {
                   </Link>
                 </li>
                 <li className="border-t border-slate-300/40 pt-4">
-                  <Link to="/auth/login">
+                  <Link to="/">
                     <span className="block w-full">Sign in</span>
                   </Link>
                 </li>
@@ -115,7 +115,7 @@ export function Header({ isloggedin }: any) {
             </li>
 
             <li className="ml-auto hidden md:block">
-              <a href="/auth/login">
+              <a href="/">
                 {isloggedin ? (
                   <span></span>
                 ) : (

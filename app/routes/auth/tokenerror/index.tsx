@@ -29,10 +29,7 @@ const tokenerror = () => {
                 latest link and try again.
               </p>
               <div className="mt-6">
-                <a
-                  href="/auth/login"
-                  className="text-base font-medium text-indigo-600 hover:text-indigo-500"
-                >
+                <a href="/" className="text-base font-medium text-indigo-600 hover:text-indigo-500">
                   Try Again
                 </a>
               </div>

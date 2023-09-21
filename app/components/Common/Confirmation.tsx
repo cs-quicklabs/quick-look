@@ -12,8 +12,8 @@ export default function Confirmation() {
             {Location.pathname.includes('/confirm/email')
               ? 'Confirm your email'
               : Location.pathname.includes('/confirm/password')
-                ? 'Reset Your Password'
-                : ''}
+              ? 'Reset Your Password'
+              : ''}
           </p>
         </div>
         <div className="flex flex-col justify-center items-center  w-2/4 max-w-3xl h-auto shadow mt-7 gap-3 pb-6 bg-white rounded-lg">
@@ -23,12 +23,12 @@ export default function Confirmation() {
               {Location.pathname.includes('/confirm/email')
                 ? 'An confirmation email has been sent to you on your specified email Id.Please check your email and click on email confirmation link. You should be able to login into your account after confirming your email.'
                 : Location.pathname.includes('/confirm/password')
-                  ? 'A password reset email has been sent to you on your specified email ID if it exists. Please check your email and click on reset password link. You should be able to login into your account after resetting your password.'
-                  : ''}
+                ? 'A password reset email has been sent to you on your specified email ID if it exists. Please check your email and click on reset password link. You should be able to login into your account after resetting your password.'
+                : ''}
             </p>
             <div className="mt-3">
               <a
-                href="/auth/login"
+                href="/"
                 className="text-indigo-600 flex items-center cursor-pointer font-medium text-sm"
               >
                 Go to Login Page
