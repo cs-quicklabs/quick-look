@@ -1,7 +1,7 @@
 import type { User } from '@prisma/client'
 import type { LoaderFunction } from '@remix-run/node'
-import { Response } from '@remix-run/node'
 import { getUsers } from '~/services/auth.service.server'
+import { REACT_APP_DOMAIN } from '~/utils/constants'
 
 export const loader: LoaderFunction = async () => {
   const users = await getUsers()
@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async () => {
 }
 
 const renderXML = (users: User[]) => {
-  const url = 'https://www.quicklook.me/'
+  const url = REACT_APP_DOMAIN
   const date = new Date().toISOString()
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -27,37 +27,31 @@ const renderXML = (users: User[]) => {
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
     >
         <url>
-            <loc>https://www.quicklook.me/</loc>
+            <loc>${url}/</loc>
             <lastmod>${date}</lastmod>
             <priority>1.00</priority>
         </url>
 
         <url>
-            <loc>https://www.quicklook.me/auth/login</loc>
+            <loc>${url}/auth/signup</loc>
             <lastmod>${date}</lastmod>
             <priority>0.80</priority>
         </url>
 
         <url>
-            <loc>https://www.quicklook.me/auth/signup</loc>
+            <loc>${url}/general/terms</loc>
             <lastmod>${date}</lastmod>
             <priority>0.80</priority>
         </url>
 
         <url>
-            <loc>https://www.quicklook.me/general/terms</loc>
+            <loc>${url}/general/privacy</loc>
             <lastmod>${date}</lastmod>
             <priority>0.80</priority>
         </url>
 
         <url>
-            <loc>https://www.quicklook.me/general/privacy</loc>
-            <lastmod>${date}</lastmod>
-            <priority>0.80</priority>
-        </url>
-
-        <url>
-            <loc>https://www.quicklook.me/general/refund-policy</loc>
+            <loc>${url}/general/refund-policy</loc>
             <lastmod>${date}</lastmod>
             <priority>0.80</priority>
         </url>
@@ -66,7 +60,7 @@ const renderXML = (users: User[]) => {
           .map(({ username }) => {
             return `
             <url>
-                <loc>${`${url}${username}`}</loc>
+                <loc>${`${url}/${username}`}</loc>
                 <lastmod>${date}</lastmod>
                 <priority>1</priority>
             </url>`

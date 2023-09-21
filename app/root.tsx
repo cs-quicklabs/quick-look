@@ -9,6 +9,7 @@ import {
   useRouteError,
   isRouteErrorResponse,
 } from '@remix-run/react'
+import { REACT_APP_DOMAIN } from '~/utils/constants'
 
 import ErrorHandler from './components/PageNotFoundError'
 import tailwindcss from './styles/tailwind.css'
@@ -40,7 +41,7 @@ export const meta: MetaFunction = () => {
         'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
     },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://www.quicklook.me/' },
+    { property: 'og:url', content: `${REACT_APP_DOMAIN}` },
     {
       property: 'og:title',
       content: 'QuickLook.me — Introduction made simple with just one link.',
@@ -50,10 +51,10 @@ export const meta: MetaFunction = () => {
       content:
         'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
     },
-    { property: 'og:image', content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png' },
+    { property: 'og:image', content: `${REACT_APP_DOMAIN}/build/_assets/Menus-NEYOTUUT.png` },
 
     { property: 'twitter:card', content: 'summary_large_image' },
-    { property: 'twitter:url', content: 'https://www.quicklook.me/' },
+    { property: 'twitter:url', content: `${REACT_APP_DOMAIN}/` },
     {
       property: 'twitter:title',
       content: 'QuickLook.me — Introduction made simple with just one link.',
@@ -65,7 +66,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'twitter:image',
-      content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+      content: `${REACT_APP_DOMAIN}/build/_assets/Menus-NEYOTUUT.png`,
     },
     {
       property: 'keywords',
@@ -91,6 +92,7 @@ export default function App() {
     </Document>
   )
 }
+
 function Document({ children }: any) {
   return (
     <html
@@ -129,8 +131,7 @@ function Layout({ children }: any) {
 
   return (
     <>
-      {Location.pathname.includes('/auth/login') ||
-      Location.pathname.includes('/auth/signup') ||
+      {Location.pathname.includes('/auth/signup') ||
       Location.pathname.includes('/auth/forgot-password') ||
       Location.pathname.includes('successlogin') ||
       Location.pathname.includes('/auth/password') ||

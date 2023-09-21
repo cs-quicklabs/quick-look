@@ -3,6 +3,7 @@ import HeaderSecondary from '~/components/Common/Header'
 import { Footer } from '~/components/Marketing/Footer'
 import type { LoaderFunction } from '@remix-run/node'
 import { getUser } from '~/services/auth.service.server'
+import { REACT_APP_DOMAIN } from '~/utils/constants'
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await getUser(request)
@@ -355,15 +356,15 @@ export default function terms() {
                       13. Privacy Policy
                     </h2>
                     <p className="mt-2 text-slate-600 text-[14px]">
-                      We care about data privacy and security. Please review our Privacy Policy:
-                      https://www.quicklook.me/privacy. By using the Site, you agree to be bound by
+                      {`We care about data privacy and security. Please review our Privacy Policy:
+                      ${REACT_APP_DOMAIN}/privacy. By using the Site, you agree to be bound by
                       our Privacy Policy, which is incorporated into these Terms of Use. Please be
                       advised the Site is hosted on Render. If you access the Site from any other
                       region of the world with laws or other requirements governing personal data
                       collection, use, or disclosure that differ from applicable laws in the
                       Netherlands, then through your continued use of the Site, you are transferring
                       your data to the Render, and you agree to have your data transferred to and
-                      processed via Render.
+                      processed via Render.`}
                     </p>
                     <h2 className="text-2xl font-semibold text-gray-800 mt-6 ">
                       {' '}
