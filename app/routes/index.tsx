@@ -1,7 +1,7 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import type { ActionFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import { createUserSession, login } from '~/services/auth.service.server'
+import { createUserSession, getUser, login } from '~/services/auth.service.server'
 import {
   checkIncorrectCredentials,
   validateEmail,
@@ -65,6 +65,11 @@ export const action: ActionFunction = async ({ request }) => {
 export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))
   const message = session.get('authMessage') || null
+
+  const user = await getUser(request)
+  if (user) {
+    return redirect('/account')
+  }
 
   return json(
     { message },

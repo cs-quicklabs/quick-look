@@ -1,8 +1,15 @@
-import { FaceSmileIcon, CogIcon, CreditCardIcon } from '@heroicons/react/24/outline'
+import {
+  FaceSmileIcon,
+  CogIcon,
+  CreditCardIcon,
+  Bars2Icon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 import { useLocation } from '@remix-run/react'
 import { Dialog, Transition } from '@headlessui/react'
-import { Bars2Icon, XCircleIcon } from '@heroicons/react/24/outline'
+
+import { QUICKLABS_DOMAIN } from '~/utils/constants'
 
 const navigation = [
   { name: 'Profile', icon: FaceSmileIcon, href: '/account/profile' },
@@ -10,10 +17,11 @@ const navigation = [
   { name: 'Settings', icon: CogIcon, href: '/account/settings' },
 ]
 const secondaryNavigation = [
-  { name: 'Help Center', href: '#' },
-  { name: 'Terms of Use', href: '/general/terms', target: '_blank' },
-  { name: 'Privacy Policy', href: '/general/privacy', target: '_blank' },
-  { name: 'Refund Policy', href: '/general/refund-policy', target: '_blank' },
+  { name: 'Know More', href: `${QUICKLABS_DOMAIN}`, target: '_blank' },
+  { name: 'Help Center', href: `${QUICKLABS_DOMAIN}/#faqs`, target: '_blank' },
+  { name: 'Terms of Use', href: `${QUICKLABS_DOMAIN}/terms-of-use`, target: '_blank' },
+  { name: 'Privacy Policy', href: `${QUICKLABS_DOMAIN}/privacy-Policy`, target: '_blank' },
+  { name: 'Refund Policy', href: `${QUICKLABS_DOMAIN}/refund-policy`, target: '_blank' },
 ]
 
 function classNames(...classes: string[]) {

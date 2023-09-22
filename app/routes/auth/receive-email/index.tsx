@@ -1,4 +1,4 @@
-import type { ActionFunction } from '@remix-run/node'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
@@ -10,6 +10,7 @@ import { createUserVerificationToken } from '~/services/userVerification.service
 import { sendAccountVerificationMail } from '~/services/mail.service.server'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { commitSession, getSession } from '~/services/session.service.server'
+import { getUser } from '~/services/auth.service.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
@@ -47,6 +48,14 @@ export const action: ActionFunction = async ({ request }) => {
       },
     })
   }
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await getUser(request)
+  if (user) {
+    return redirect('/account')
+  }
+  return null
 }
 
 export default function Forgotpassword() {
