@@ -1,5 +1,16 @@
 import { Link } from '@remix-run/react'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
+import type { LoaderFunction } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
+import { getUser } from '~/services/auth.service.server'
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await getUser(request)
+  if (user) {
+    return redirect('/account')
+  }
+  return null
+}
 
 const tokenerror = () => {
   return (

@@ -1,13 +1,13 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
-import type { ActionFunction } from '@remix-run/node'
-import { redirect } from '@remix-run/node'
-import { json } from '@remix-run/node'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { redirect, json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
 import { commitSession, getSession } from '~/services/session.service.server'
 import { getUserById, upateUserPassword } from '~/services/user.service.server'
 import { validateComfirmPassword, validatePassword } from '~/utils/validator.server'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
+import { getUser } from '~/services/auth.service.server'
 
 export const action: ActionFunction = async ({ request, params }) => {
   const user = await getUserById(params.userId as string)
@@ -38,6 +38,14 @@ export const action: ActionFunction = async ({ request, params }) => {
       'Set-Cookie': await commitSession(session),
     },
   })
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await getUser(request)
+  if (user) {
+    return redirect('/account')
+  }
+  return null
 }
 
 export default function Password() {
