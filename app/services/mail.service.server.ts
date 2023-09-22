@@ -50,7 +50,7 @@ export async function sendAccountVerificationMail(to: string, url: string, gener
     await sendMail({
       to,
       from: process.env.SENDGRID_EMAIL as string,
-      subject: 'Email Verification',
+      subject: 'Quick Bio: Email Verification',
       text: `${verificationHostUrl}verification/account/${userData.id}/${generatedToken}`,
       html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${
         userData?.firstname + ' ' + userData?.lastname
@@ -74,7 +74,7 @@ export async function sendResetPasswordMail(to: string, url: string, generatedTo
     await sendMail({
       to,
       from: process.env.SENDGRID_EMAIL as string,
-      subject: 'Reset Password',
+      subject: 'Quick Bio: Reset Password',
       text: `${verificationHostUrl}verification/reset-password/${userData.id}/${generatedToken}`,
       html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${
         userData?.firstname + ' ' + userData?.lastname

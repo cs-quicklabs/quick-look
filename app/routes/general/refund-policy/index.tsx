@@ -70,10 +70,10 @@ export default function Refund() {
                       </p>
                       <ul className="list-disc list-inside ml-5 mt-5 mb-5 ">
                         <li className="mt-2 text-[14px] text-slate-600">
-                          Email address associated with your quicklook.me page
+                          Email address associated with your bio.quicklabs.in page
                         </li>
                         <li className="mt-2 text-[14px] text-slate-600">
-                          Link to your quicklook.me page (quicklook.me/yourusername)
+                          Link to your bio.quicklabs.in page (bio.quicklabs.in/yourusername)
                         </li>
                         <li className="mt-2 text-[14px] text-slate-600">
                           Date of purchase or renewal (if you have a screenshot of the receipt, even

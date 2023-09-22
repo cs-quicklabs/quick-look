@@ -118,15 +118,15 @@ export default function Profile() {
                       Unpublishing your account will hide your account temporarily and no one should
                       be able to visit your profile from the link
                     </span>
-                    <span className="font-[800]"> quicklook.me/{loaderData?.username}. </span>
+                    <span className="font-[800]"> bio.quicklabs.in/{loaderData?.username}. </span>
                     <span>You can enable your profile anytime you want.</span>
                   </span>
                 ) : (
                   <span>
                     Publishing your account will show your account and anyone should be able to
                     visit your profile from the link{' '}
-                    <span className="font-[800]">quicklook.me/{loaderData?.username}</span> . You
-                    can disable your profile anytime you want.
+                    <span className="font-[800]">bio.quicklabs.in/{loaderData?.username}</span> .
+                    You can disable your profile anytime you want.
                   </span>
                 )}
               </p>

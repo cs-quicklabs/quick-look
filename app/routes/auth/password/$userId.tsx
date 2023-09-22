@@ -33,7 +33,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     session.flash('authMessage', `Your password has been updated successfully.`)
   }
 
-  return redirect('/auth/login', {
+  return redirect('/', {
     headers: {
       'Set-Cookie': await commitSession(session),
     },

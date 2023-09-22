@@ -47,7 +47,7 @@ export default function privacy() {
                   <div className="text-sm text-slate-600 outline-none">
                     <h2 className="text-2xl font-semibold text-gray-800 mt-6 ">1. Introduction</h2>
                     <p className="mt-2 text-slate-600 text-[14px]">
-                      Quicklook, registered at New Delhi (India) takes your privacy seriously and
+                      Quick Bio, registered at New Delhi (India) takes your privacy seriously and
                       considers it important for your personal data (hereafter “your data”) to be
                       treated with the necessary care and confidentiality at all times.
                       <p className="text-slate-600 text-[14px]">
@@ -62,7 +62,7 @@ export default function privacy() {
                         Registeration Personal data added by Account owners about employees
                       </p>
                       <p className="text-slate-600 text-[14px]">
-                        Website visitors: persons who visit our marketing landing page quicklook is
+                        Website visitors: persons who visit our marketing landing page quick Bio is
                         a provider of this service, and not the owner of the collected data. The
                         creator (the person who sends out a form) is responsible for the data he/she
                         collects and thus data controller of respondent data
@@ -115,10 +115,10 @@ export default function privacy() {
                       5. Data retention
                     </h2>
                     <p className="mt-5 text-slate-600 text-[14px]">
-                      If you are a quicklook user we do not delete the data in your account. You are
+                      If you are a quick Bio user we do not delete the data in your account. You are
                       responsible for the time period for which you store the data. You can delete
-                      data in your quicklook account. If you are a respondent, you will need to ask
-                      the creator how long your responses will be stored in quicklook. We honor all
+                      data in your quick Bio account. If you are a respondent, you will need to ask
+                      the creator how long your responses will be stored in quick Bio. We honor all
                       deletions, If you wish to delete all records from our server, just write as an
                       email and everything will be deleted.
                     </p>
@@ -127,8 +127,8 @@ export default function privacy() {
                     </h2>
                     <p className="mt-2 text-slate-600 text-[14px]">
                       As our Privacy Policy states, if you’ve submitted your personal data through
-                      quicklook web app, the creator of that record is responsible for this data.
-                      Quicklook only processes this data on the creator’s behalf. Quicklook creators
+                      quick Bio web app, the creator of that record is responsible for this data.
+                      Quick Bio only processes this data on the creator’s behalf. Quick Bio creators
                       can exercise their rights directly with us, but respondents should contact the
                       person or organization which created the records. If this isn't possible,
                       please contact us. We'll help in any way we can.
@@ -137,15 +137,15 @@ export default function privacy() {
                     <p className="mt-2 text-slate-600 text-[14px]">
                       We would like to send you information about products and services of ours that
                       we think you might like. If you have agreed to receive marketing, you may
-                      always op out at a later date. You have the right at any time to stop
-                      quicklook from contacting you for marketing purposes.
+                      always op out at a later date. You have the right at any time to stop quick
+                      Bio from contacting you for marketing purposes.
                     </p>
                     <h2 className="text-2xl font-semibold text-gray-800 mt-6">8. Cookies</h2>
                     <p className="mt-2 text-slate-600 text-[14px]">
                       Cookies are a small text files that are placed on your computer or mobile
                       device by websites you visit. They are widely used in order to make a website
                       work, or work more efficiently, as well as to provide information to the
-                      owners of the site. Quicklook uses cookies to improve your experience on our
+                      owners of the site. Quick Bio uses cookies to improve your experience on our
                       website and with our product.
                     </p>
                     <h2 className="text-2xl font-semibold text-gray-800 mt-6">

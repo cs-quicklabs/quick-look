@@ -16,7 +16,7 @@ export default function Pricing() {
           <h2 className="text-3xl font-semibold leading-6 text-gray-300">Pricing</h2>
 
           <p className="text-xl text-gray-300">
-            Your Portfolio is your internet identitiy. Quicklook cost is not more than a cup of
+            Your Portfolio is your internet identitiy. Quick Bio cost is not more than a cup of
             coffee.
           </p>
         </div>

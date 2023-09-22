@@ -4,6 +4,7 @@ import { useLoaderData } from '@remix-run/react'
 import { lazy, Suspense, useMemo, useState } from 'react'
 import { ScaleLoader } from 'react-spinners'
 import { getUserByUsername } from '~/services/user.service.server'
+import { REACT_APP_DOMAIN } from '~/utils/constants'
 
 // const Template0 = lazy(()=>new Promise((res)=>setTimeout(res, 5000)).then(()=>import('~/components/Templates/template0')));
 const Template0 = lazy(() => import('~/components/Templates/template0'))
@@ -35,14 +36,14 @@ export const meta: MetaFunction = ({ data }) => {
   const fullName = `${data?.firstname} ${data?.lastname}`
 
   return [
-    { title: `${fullName} on QuickLook` },
+    { title: `${fullName} on Quick Bio` },
     {
       name: 'description',
-      content: `${fullName}'s profile on QuickLook. ${fullName}'s Introduction made simple with just one link.`,
+      content: `${fullName}'s profile on Quick Bio. ${fullName}'s Introduction made simple with just one link.`,
     },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: `https://www.quicklook.me/${data?.username}` },
-    { property: 'og:title', content: `${fullName} on QuickLook` },
+    { property: 'og:url', content: `${REACT_APP_DOMAIN}/${data?.username}` },
+    { property: 'og:title', content: `${fullName} on Quick Bio` },
     {
       property: 'og:description',
       content: `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
@@ -51,12 +52,12 @@ export const meta: MetaFunction = ({ data }) => {
       property: 'og:image',
       content:
         data?.profileImage?.secondaryImage ||
-        'https://www.quicklook.me/build/_assets/profile-HAI7W636.png',
+        `${REACT_APP_DOMAIN}/build/_assets/profile-HAI7W636.png`,
     },
 
     { property: 'twitter:card', content: 'summary_large_image' },
-    { property: 'twitter:url', content: `https://www.quicklook.me/${data?.username}` },
-    { property: 'twitter:title', content: `${fullName} on QuickLook` },
+    { property: 'twitter:url', content: `${REACT_APP_DOMAIN}/${data?.username}` },
+    { property: 'twitter:title', content: `${fullName} on Quick Bio` },
     {
       property: 'twitter:description',
       content: `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
@@ -65,11 +66,11 @@ export const meta: MetaFunction = ({ data }) => {
       property: 'twitter:image',
       content:
         data?.profileImage?.secondaryImage ||
-        'https://www.quicklook.me/build/_assets/profile-HAI7W636.png',
+        `${REACT_APP_DOMAIN}/build/_assets/profile-HAI7W636.png`,
     },
     {
       property: 'keywords',
-      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, quicklook, QuickLook.me, ${fullName}, ${data?.email}, ${data?.username}`,
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, QuickBio , Quick Bio, ${fullName}, ${data?.email}, ${data?.username}`,
     },
   ]
 }
