@@ -1,4 +1,4 @@
-import { Footer } from '../../../components/Marketing/Footer'
+import { Footer } from '~/components/Marketing/Footer'
 import { CallToAction } from '~/components/Marketing/CallToAction'
 import HeaderSecondary from '~/components/Common/Header'
 import type { LoaderFunction } from '@remix-run/node'
