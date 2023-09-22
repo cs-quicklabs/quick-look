@@ -78,17 +78,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'QuickLook.me - Log In or Sign Up' },
+    { title: 'Quick Bio - Log In or Sign Up' },
     {
       name: 'description',
       content:
-        'Create an account or log into QuickLook. Describe yourself with just one link which connects all your social profiles together.',
+        'Create an account or log into Quick Bio. Describe yourself with just one link which connects all your social profiles together.',
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: `${REACT_APP_DOMAIN}/` },
     {
       property: 'og:title',
-      content: 'QuickLook.me — Introduction made simple with just one link.',
+      content: 'Quick Bio — Introduction made simple with just one link.',
     },
     {
       property: 'og:description',
@@ -101,7 +101,7 @@ export const meta: MetaFunction = () => {
     { property: 'twitter:url', content: `${REACT_APP_DOMAIN}/` },
     {
       property: 'twitter:title',
-      content: 'QuickLook.me — Introduction made simple with just one link.',
+      content: 'Quick Bio — Introduction made simple with just one link.',
     },
     {
       property: 'twitter:description',
@@ -114,7 +114,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'keywords',
-      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile QuickBio, QuickBio sign in, QuickBio login, QuickBio signup`,
     },
   ]
 }

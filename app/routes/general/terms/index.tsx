@@ -50,10 +50,10 @@ export default function terms() {
                       1. Agreement to terms
                     </h2>
                     <p className="mt-2 text-slate-600 text-[14px]">
-                      These Terms of Use constitute a legally binding agreement made between you,
+                      {`These Terms of Use constitute a legally binding agreement made between you,
                       whether personally or on behalf of an entity (“you”) and Crownstack
                       ("Company", “we”, “us”, or “our”), concerning your access to and use of the
-                      https://quicklook.me website as well as any other media form, media channel,
+                      ${REACT_APP_DOMAIN} website as well as any other media form, media channel,
                       mobile website or mobile application related, linked, or otherwise connected
                       thereto (collectively, the “Site”). You agree that by accessing the Site, you
                       have read, understood, and agree to be bound by all of these Terms of Use. IF
@@ -82,7 +82,7 @@ export default function terms() {
                       subjected to such laws, you may not use this Site. You may not use the Site in
                       a way that would violate the Gramm-Leach-Bliley Act (GLBA). The Site is
                       intended for users who are at least 18 years old. Persons under the age of 18
-                      are not permitted to use or register for the Site.
+                      are not permitted to use or register for the Site.`}
                     </p>
                     <h2 className="text-2xl font-semibold text-gray-800 mt-6 ">
                       2. Intellectual property rights
@@ -419,7 +419,7 @@ export default function terms() {
                       International Sale of Goods is expressly excluded. If your habitual residence
                       is in the EU, and you are a consumer, you additionally possess the protection
                       provided to you by obligatory provisions of the law of your country of
-                      residence. Quicklook and yourself both agree to submit to the non-exclusive
+                      residence. Quick Bio and yourself both agree to submit to the non-exclusive
                       jurisdiction of the courts of New Delhi, which means that you may make a claim
                       to defend your consumer protection rights in regards to these Conditions of
                       Use in Belgium, or in the EU country in which you reside.

@@ -7,7 +7,7 @@ import clsx from 'clsx'
 const features = [
   {
     name: 'Features',
-    summary: 'Stay on top of internet with Quicklook.',
+    summary: 'Stay on top of internet with Quick Bio.',
     description:
       'Making a feature-full website was never this easy. Chose from number of templates, link your social media, add testimonals and much more. ',
     image: screenshotProfitLoss,
@@ -34,7 +34,7 @@ const features = [
   },
   {
     name: 'Portfolio',
-    summary: 'Show off your projects with Quicklook.',
+    summary: 'Show off your projects with Quick Bio.',
     description:
       'A premium and a must have feature to show your work to everyone on the internet . Add upto 20 images in your gallery.',
     image: screenshotInventory,

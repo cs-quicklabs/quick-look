@@ -34,7 +34,7 @@ export async function loader() {
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'QuickLook.me — Introduction made simple with just one link.' },
+    { title: 'Quick Bio — Introduction made simple with just one link.' },
     {
       name: 'description',
       content:
@@ -44,7 +44,7 @@ export const meta: MetaFunction = () => {
     { property: 'og:url', content: `${REACT_APP_DOMAIN}` },
     {
       property: 'og:title',
-      content: 'QuickLook.me — Introduction made simple with just one link.',
+      content: 'Quick Bio — Introduction made simple with just one link.',
     },
     {
       property: 'og:description',
@@ -57,7 +57,7 @@ export const meta: MetaFunction = () => {
     { property: 'twitter:url', content: `${REACT_APP_DOMAIN}/` },
     {
       property: 'twitter:title',
-      content: 'QuickLook.me — Introduction made simple with just one link.',
+      content: 'Quick Bio — Introduction made simple with just one link.',
     },
     {
       property: 'twitter:description',
@@ -70,7 +70,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'keywords',
-      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quickbio, quickbio sign in, quickbio login, quickbio signup`,
     },
   ]
 }
@@ -100,8 +100,12 @@ function Document({ children }: any) {
       lang="en"
     >
       <head>
-        <title>QuickLook.me</title>
-        <script defer data-domain="quicklook.me" src="https://plausible.io/js/script.js"></script>
+        <title>Quick Bio</title>
+        <script
+          defer
+          data-domain="bio.quicklabs.in"
+          src="https://plausible.io/js/script.js"
+        ></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />

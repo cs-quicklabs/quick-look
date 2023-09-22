@@ -12,7 +12,7 @@ export default function HeaderSecondary() {
             <a href="/" className="flex items-center justify-center gap-4 -mt-[12px]">
               <img className="w-auto h-9 mt-[8px]" src={logo} alt="" />
 
-              <span className="text-xl pt-5 pb-3 font-extrabold text-white">QuickLook.me</span>
+              <span className="text-xl pt-5 pb-3 font-extrabold text-white">Quick Bio</span>
             </a>
           </div>
 

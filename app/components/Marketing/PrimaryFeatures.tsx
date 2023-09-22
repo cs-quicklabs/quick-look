@@ -21,7 +21,7 @@ const features = [
   },
   {
     title: 'Social Media',
-    description: 'Link your Facebook , Twitter and Youtube account with quicklook.',
+    description: 'Link your Facebook , Twitter and Youtube account with Quick Bio.',
     image: screenshotVatReturns,
   },
   {
@@ -71,7 +71,7 @@ export function PrimaryFeatures() {
             id="features-title"
             className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl"
           >
-            Everything you will get with Quicklook.
+            Everything you will get with Quick Bio.
           </h2>
         </div>
         <Tab.Group

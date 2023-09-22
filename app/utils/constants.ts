@@ -1,1 +1,1 @@
-export const REACT_APP_DOMAIN = 'https://www.quicklook.me'
+export const REACT_APP_DOMAIN = 'http://bio.quicklabs.in'

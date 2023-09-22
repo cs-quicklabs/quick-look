@@ -36,14 +36,14 @@ export const meta: MetaFunction = ({ data }) => {
   const fullName = `${data?.firstname} ${data?.lastname}`
 
   return [
-    { title: `${fullName} on QuickLook` },
+    { title: `${fullName} on Quick Bio` },
     {
       name: 'description',
-      content: `${fullName}'s profile on QuickLook. ${fullName}'s Introduction made simple with just one link.`,
+      content: `${fullName}'s profile on Quick Bio. ${fullName}'s Introduction made simple with just one link.`,
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: `${REACT_APP_DOMAIN}/${data?.username}` },
-    { property: 'og:title', content: `${fullName} on QuickLook` },
+    { property: 'og:title', content: `${fullName} on Quick Bio` },
     {
       property: 'og:description',
       content: `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
@@ -57,7 +57,7 @@ export const meta: MetaFunction = ({ data }) => {
 
     { property: 'twitter:card', content: 'summary_large_image' },
     { property: 'twitter:url', content: `${REACT_APP_DOMAIN}/${data?.username}` },
-    { property: 'twitter:title', content: `${fullName} on QuickLook` },
+    { property: 'twitter:title', content: `${fullName} on Quick Bio` },
     {
       property: 'twitter:description',
       content: `${fullName}'s Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.`,
@@ -70,7 +70,7 @@ export const meta: MetaFunction = ({ data }) => {
     },
     {
       property: 'keywords',
-      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, quicklook, QuickLook.me, ${fullName}, ${data?.email}, ${data?.username}`,
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile, QuickBio , Quick Bio, ${fullName}, ${data?.email}, ${data?.username}`,
     },
   ]
 }
