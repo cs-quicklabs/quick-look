@@ -8,4 +8,4 @@ Disallow: /confirm/email
 Disallow: /auth/forgot-password
 
 
-Sitemap: https://www.quicklook.me/sitemap.xml
+Sitemap: http://bio.quicklabs.in/sitemap.xml

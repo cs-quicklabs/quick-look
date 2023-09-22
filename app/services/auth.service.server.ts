@@ -45,9 +45,9 @@ export async function getUserId(request: Request) {
 }
 
 export async function getCurrentUser(request: Request) {
-  let userId = await getUserId(request);
-  if (!userId) return null;
-  return db.user.findUnique({ where: { id: userId } });
+  let userId = await getUserId(request)
+  if (!userId) return null
+  return db.user.findUnique({ where: { id: userId } })
 }
 
 export async function validateCoupon(code: string): Promise<ValidCouponServerResponse> {
@@ -122,7 +122,7 @@ export async function requireUserId(
   const userId = session.get('userId')
   if (!userId || typeof userId !== 'string') {
     const searchParams = new URLSearchParams([['redirectTo', redirectTo]])
-    throw redirect(`/auth/login?${searchParams}`)
+    throw redirect(`/?${searchParams}`)
   }
   return userId
 }

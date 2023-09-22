@@ -280,7 +280,7 @@ export default function Profile() {
                               : 'first-line:'
                           }`}
                         >
-                          quicklook.me/
+                          bio.quicklabs.in
                         </span>
                         <input
                           type="text"

@@ -41,7 +41,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     session.flash('authMessage', `Your email has been confirmed. Please login to continue.`)
 
-    return redirect('/auth/login', {
+    return redirect('/', {
       headers: {
         'Set-Cookie': await commitSession(session),
       },
