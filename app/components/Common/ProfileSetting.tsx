@@ -18,7 +18,7 @@ const navigation = [
 ]
 const secondaryNavigation = [
   { name: 'Know More', href: `${QUICKLABS_DOMAIN}`, target: '_blank' },
-  { name: 'Help Center', href: `${QUICKLABS_DOMAIN}/help-center`, target: '_blank' },
+  { name: 'Help Center', href: `${QUICKLABS_DOMAIN}/#faqs`, target: '_blank' },
   { name: 'Terms of Use', href: `${QUICKLABS_DOMAIN}/terms-of-use`, target: '_blank' },
   { name: 'Privacy Policy', href: `${QUICKLABS_DOMAIN}/privacy-Policy`, target: '_blank' },
   { name: 'Refund Policy', href: `${QUICKLABS_DOMAIN}/refund-policy`, target: '_blank' },
