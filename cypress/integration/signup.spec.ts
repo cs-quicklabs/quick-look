@@ -89,10 +89,20 @@ describe('Signup test', function () {
 
   it('should signup with valid credentials ', () => {
     cy.visit('/auth/signup')
+    cy.fixture('valid-signup.json').then((user) => {
+      cy.signup(
+        user.firstName,
+        user.lastName,
+        user.profileId,
+        user.email,
+        user.password,
+        user.confirmPassword,
+        user.couponCode
+      )
+    })
 
     cy.xpath('//input[@name="firstName"]')
       .should('be.visible')
-      .clear()
       .type(signupDetails.fname)
     cy.xpath('//input[@name="lastName"]')
       .should('be.visible')
@@ -119,7 +129,7 @@ describe('Signup test', function () {
       .should('be.visible')
       .clear()
       .scrollIntoView()
-      .type('TESTCODE')
+      .type('CS100')
     cy.get('[data-cy="createNewAccountButton"]').click()
 
     cy.writeFile('cypress/fixtures/signUpDetails.json', {

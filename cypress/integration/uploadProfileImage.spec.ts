@@ -1,7 +1,7 @@
 describe('Upload Image Test Cases', () => {
   beforeEach(() => {
     cy.commonLogin()
-    cy.get('[data-cy="Images"]').click()
+    cy.get('[data-cy="Profile Pictures"]').click()
   })
 
   // it('Should be able to upload an image using Edit Button for Primary Image', () => {

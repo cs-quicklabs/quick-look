@@ -47,7 +47,11 @@ Cypress.Commands.add('commonLogout', () => {
 
 Cypress.Commands.add('commonLogin', () => {
   cy.login(Cypress.env('email'), Cypress.env('password'))
-  cy.url().should('include', '/account')
+  // cy.wait(4000)
+  // cy.url().should('include','/account')
+  cy.url().should('include', '/account').debug()
+  // cy.url().should('include',`${Cypress.env('baseUrl')}/account`)
+  // cy.visit(`${Cypress.env('baseUrl')}/account`)
 })
 
 Cypress.Commands.add(
