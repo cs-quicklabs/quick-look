@@ -14,15 +14,14 @@ import {
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
-import { Form, useActionData, useNavigation } from '@remix-run/react'
-import { useState } from 'react'
+import { Form, useActionData, useNavigation, useLoaderData } from '@remix-run/react'
+import { useState, useRef } from 'react'
 import type { ServerResponse } from '~/types/response.server'
 import { SignUpFormGenerator } from '~/utils/form/signupForm.server'
 import { BeatLoader } from 'react-spinners'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useRef } from 'react'
 import axios from 'axios'
-import { useLoaderData } from '@remix-run/react'
+import { REACT_APP_DOMAIN } from '~/utils/constants'
 
 export const action: ActionFunction = async ({ request }) => {
   const {
@@ -107,30 +106,30 @@ export const loader: LoaderFunction = async ({ request, context }) => {
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'QuickLook.me - Log In or Sign Up' },
+    { title: 'Quick Bio - Log In or Sign Up' },
     {
       name: 'description',
       content:
-        'Create an account or log into QuickLook. Describe yourself with just one link which connects all your social profiles together.',
+        'Create an account or log into Quick Bio. Describe yourself with just one link which connects all your social profiles together.',
     },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://www.quicklook.me/' },
+    { property: 'og:url', content: `${REACT_APP_DOMAIN}/` },
     {
       property: 'og:title',
-      content: 'QuickLook.me — Introduction made simple with just one link.',
+      content: 'Quick Bio — Introduction made simple with just one link.',
     },
     {
       property: 'og:description',
       content:
         'Introduction made simple with just one link. Describe yourself with just one link which connects all your social profiles together.',
     },
-    { property: 'og:image', content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png' },
+    { property: 'og:image', content: `${REACT_APP_DOMAIN}/build/_assets/Menus-NEYOTUUT.png` },
 
     { property: 'twitter:card', content: 'summary_large_image' },
-    { property: 'twitter:url', content: 'https://www.quicklook.me/' },
+    { property: 'twitter:url', content: `${REACT_APP_DOMAIN}/` },
     {
       property: 'twitter:title',
-      content: 'QuickLook.me — Introduction made simple with just one link.',
+      content: 'Quick Bio — Introduction made simple with just one link.',
     },
     {
       property: 'twitter:description',
@@ -139,11 +138,11 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'twitter:image',
-      content: 'https://www.quicklook.me/build/_assets/Menus-NEYOTUUT.png',
+      content: `${REACT_APP_DOMAIN}/build/_assets/Menus-NEYOTUUT.png`,
     },
     {
       property: 'keywords',
-      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile quicklook, quicklook sign in, quicklook login, quicklook signup, QuickLook.me`,
+      content: `twitter profile, linkTree, facebook profile, linkedIn profile, one link profile, social profile QuickBio, QuickBio sign in, QuickBio login, QuickBio signup`,
     },
   ]
 }
@@ -284,7 +283,7 @@ export default function SignUp() {
                             : 'first-line:'
                         }`}
                       >
-                        quicklook.me/
+                        bio.quicklabs.in/
                       </span>
                       <input
                         data-cy="profileId"

@@ -1,5 +1,16 @@
 import { Link } from '@remix-run/react'
 import logo from '../../../../assets/images/logos/quicklook-icon.svg'
+import type { LoaderFunction } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
+import { getUser } from '~/services/auth.service.server'
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await getUser(request)
+  if (user) {
+    return redirect('/account')
+  }
+  return null
+}
 
 const tokenerror = () => {
   return (
@@ -8,7 +19,7 @@ const tokenerror = () => {
         <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex-shrink-0 flex justify-center">
             <Link to="/" className="inline-flex">
-              <span className="sr-only">Quicklook</span>
+              <span className="sr-only">Quick Bio</span>
             </Link>
           </div>
           <div className="py-16">
@@ -29,10 +40,7 @@ const tokenerror = () => {
                 latest link and try again.
               </p>
               <div className="mt-6">
-                <a
-                  href="/auth/login"
-                  className="text-base font-medium text-indigo-600 hover:text-indigo-500"
-                >
+                <a href="/" className="text-base font-medium text-indigo-600 hover:text-indigo-500">
                   Try Again
                 </a>
               </div>

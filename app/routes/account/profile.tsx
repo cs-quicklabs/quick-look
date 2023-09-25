@@ -1,4 +1,5 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
+import { User } from '@prisma/client'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/react'
@@ -112,7 +113,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Profile() {
   const actionData = useActionData()
-  const loaderData = useLoaderData()
+  const loaderData = useLoaderData<{
+    user: null | User
+    updatePasswordMessage: null | string
+    updateSuccessProfileMessage: null | string
+  }>()
   const navigation = useNavigation()
   const [pass, SetPass] = useState({
     oldpassword: '',
@@ -135,17 +140,20 @@ export default function Profile() {
     setPasswordMessage(loaderData?.updatePasswordMessage)
   }, [loaderData])
 
-  if (profileMessage) {
-    setTimeout(() => {
-      setProfileMessage('')
-    }, 2000)
-  }
+  useEffect(() => {
+    if (profileMessage) {
+      setTimeout(() => {
+        setProfileMessage('')
+      }, 2000)
+    }
 
-  if (passwordMessasge) {
-    setTimeout(() => {
-      setPasswordMessage('')
-    }, 2000)
-  }
+    if (passwordMessasge) {
+      setTimeout(() => {
+        setPasswordMessage('')
+      }, 2000)
+    }
+  }, [profileMessage, passwordMessasge])
+
   useEffect(() => {
     navigation.state == 'loading' &&
       SetPass({
@@ -153,11 +161,12 @@ export default function Profile() {
         newpassword: '',
         confirmnewpassword: '',
       })
-  }, [navigation, pass])
+  }, [navigation])
+
   return (
     <>
       <div>
-        <DashboardHeader username={loaderData.user.username} loaderData={loaderData.user} />
+        <DashboardHeader username={loaderData?.user?.username} loaderData={loaderData?.user} />
       </div>
       <div className="md:flex md:flex-wrap lg:grid lg:grid-cols-12 lg:gap-x-5 px-[1rem] md:px-[0rem]">
         <div className="md:w-[25%] lg:w-2/5 ">
@@ -280,7 +289,7 @@ export default function Profile() {
                               : 'first-line:'
                           }`}
                         >
-                          quicklook.me/
+                          bio.quicklabs.in
                         </span>
                         <input
                           type="text"
