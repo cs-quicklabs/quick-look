@@ -31,9 +31,7 @@ describe('Add SpotLight button test cases', function () {
         // Click the "Unpublish" button
         cy.contains('Unpublish my account').click()
         cy.get('form > .inline-flex').click()
-      } else if (currentState === 'Unpublished') {
-        // Click the "Publish" button
-        cy.get('.publish-button').click();
+      
       } else {
       cy.contains('Settings').click()
         cy.contains('Publish my account').click()

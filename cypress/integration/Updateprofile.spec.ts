@@ -7,7 +7,7 @@ describe('Update profile Test Cases', () => {
     it('CLick and Update on Profile',()=>{
         cy.contains('Profile Settings').click()
         cy.get('#lastname').clear().type('Singh')
-        cy.get('#profileId').clear().type('divanshu21')
+        cy.get('#profileId').clear().type(`${Cypress.env('renameuser')}`)
         cy.get('.mb-8 > .inline-flex').click()
         
     })
