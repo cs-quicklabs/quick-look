@@ -1,6 +1,6 @@
 import { invoke } from "cypress/types/lodash"
 
-describe('Add Porfolio', () => {
+describe('Add template', () => {
     beforeEach(() => {
       cy.commonLogin()
       cy.get('[data-cy="Design Templates"]').click()

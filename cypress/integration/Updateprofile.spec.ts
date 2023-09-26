@@ -1,4 +1,4 @@
-describe('Social Links Test Cases', () => {
+describe('Update profile Test Cases', () => {
     beforeEach(() => {
       cy.commonLogin()
       cy.get('[data-cy="profile-menu"]').click()

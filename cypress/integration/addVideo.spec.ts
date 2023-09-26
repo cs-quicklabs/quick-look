@@ -1,4 +1,4 @@
-describe('Add testimonial test cases', function () {
+describe('Add video test cases', function () {
   beforeEach(() => {
     cy.commonLogin()
     cy.get('[data-cy="Add Video"]').click()

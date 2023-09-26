@@ -21,7 +21,7 @@ describe('Add SpotLight button test cases', function () {
     cy.get('[data-cy="addSpotlightButton"]').click()
   })
 
-  it('validate additional link', () => {
+  it('validate additional link and add additional link', () => {
     cy.contains('Add Spotlight Button to your profile')
     cy.contains('What do you want your spotlight button to say?')
     cy.get('[data-cy="addSpotlightText"]').type('SpotLight')
@@ -52,16 +52,7 @@ describe('Add SpotLight button test cases', function () {
     
   })
 
-  // it('Should be able to add additional link', () => {
-  //   cy.get('[data-cy="addAdditionalLinkButton"]').click()
-  //   cy.contains('Select Color For Button')
-  //   cy.get('.bg-gray-600').click()
-  //   cy.contains('What do you want link to say')
-  //   cy.get('[data-cy="linkText"]').type('My Portfolio')
-  //   cy.contains('Add Button link')
-  //   cy.get('[data-cy="linkUrl"]').type('www.portfolio.com')
-  //   cy.get('[data-cy="addAdditionalLink"]').click()
-  // })
+  
 
   it('Should be able to edit additional link', () => {
     cy.get('[data-cy="editExistingAdditionalLink"]').click()

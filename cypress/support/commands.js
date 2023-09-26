@@ -31,7 +31,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('/auth/login')
+  cy.visit('/')
   cy.get("input[name='email']").type(email)
   cy.get("input[name='password']").type(password)
   cy.get('[data-cy="loginButton"]').click()

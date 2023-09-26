@@ -1,7 +1,7 @@
-describe('Add SpotLight button test cases', function () {
+describe('Add Profile test cases', function () {
     beforeEach(() => {
       cy.commonLogin()
-      cy.get('[data-cy="Bio"]').click()
+      cy.get('[data-cy="Bio"]').click({force:true})
     })
     it('Validate Content on Bio Page ',()=>{
       cy.contains('Update Your')
