@@ -63,7 +63,7 @@ Cypress.Commands.add(
     email,
     password,
     confirmPassword,
-    couponCode
+    // couponCode
   ) => {
     cy.get('[data-cy="firstName"]').type(firstName)
     cy.get('[data-cy="lastName"]').type(lastName)
@@ -71,7 +71,7 @@ Cypress.Commands.add(
     cy.get('[data-cy="email"]').type(email)
     cy.get('[data-cy="password"]').type(password)
     cy.get('[data-cy="confirmPassword"]').type(confirmPassword)
-    cy.get('[data-cy="coupon_code"]').type(couponCode)
+    // cy.get('[data-cy="coupon_code"]').type(couponCode)
     cy.get('[data-cy="createNewAccountButton"]').click()
   }
 )

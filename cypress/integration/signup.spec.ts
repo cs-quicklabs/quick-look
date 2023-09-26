@@ -67,7 +67,7 @@ describe('Signup test', function () {
         user.email,
         user.password,
         user.confirmPassword,
-        user.couponCode
+        
       )
     })
     cy.contains('First Name must be less than 18 characters.').should(
@@ -82,9 +82,7 @@ describe('Signup test', function () {
     cy.contains('Password does not match.')
       .scrollIntoView()
       .should('be.visible')
-    cy.contains('This coupon code is invalid or has expired')
-      .scrollIntoView()
-      .should('be.visible')
+   
   })
 
   it('should signup with valid credentials ', () => {
@@ -97,7 +95,7 @@ describe('Signup test', function () {
         user.email,
         user.password,
         user.confirmPassword,
-        user.couponCode
+        
       )
     })
 
@@ -136,7 +134,7 @@ describe('Signup test', function () {
       email: signupDetails.email,
     })
   })
-
+//Verify Email not working because for next email not getting
   it('validate verify account', () => {
     //visiting yopmail to verify account.
     cy.visit('www.yopmail.com')
@@ -156,33 +154,42 @@ describe('Signup test', function () {
       })
     })
   })
+// Because of capcha error message not able to get proper error message
+  it("should not sign up with already taken profile id", () => {
+    cy.visit('/auth/signup');
+    cy.fixture("valid-signup.json").then((user) => {
+      cy.signup(
+        user.firstName,
+        user.lastName,
+        user.profileId,
+        user.email,
+        user.password,
+        user.confirmPassword,
+        
+      )
+      cy.contains("This ID has already been taken. Please choose another.").should('be.visible');
+    });
+  cy.contains("This ID has already been taken. Please choose another.").should('be.visible');
+    
+    
+   });
 
-  // it("should not sign up with already taken profile id", () => {
-  //   cy.visit('/auth/signup');
-  //   cy.fixture("valid-signup.json").then((user) => {
-  //     cy.signup(
-  //       user.firstName,
-  //       user.lastName,
-  //       user.profileId,
-  //       user.email,
-  //       user.password,
-  //       user.confirmPassword
-  //     );
-  //   });
-  //   cy.contains("This ID has already been taken. Please choose another.");
-  // });
-
-  // it("should not sign up with already taken email address", () => {
-  //   cy.fixture("valid-signup.json").then((user) => {
-  //     cy.signup(
-  //       user.firstName,
-  //       user.lastName,
-  //       user.profileId,
-  //       user.email,
-  //       user.password,
-  //       user.confirmPassword
-  //     );
-  //   });
-  //   cy.contains("Email already exists.");
-  // });
+  it("should not sign up with already taken email address", () => {
+    cy.visit('/auth/signup');
+    cy.fixture("valid-signup.json").then((user) => {
+      cy.signup(
+        user.firstName,
+        user.lastName,
+        user.profileId,
+        user.email,
+        user.password,
+        user.confirmPassword,
+        
+      );
+      
+    })
+  cy.contains("Email already exists.").should('be.visible');
+    
+  })
 })
+
