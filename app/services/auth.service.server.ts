@@ -2,7 +2,7 @@ import { json, createCookieSessionStorage, redirect } from '@remix-run/node'
 import { db } from '~/database/connection.server'
 import type { LoginForm } from '~/types/loginForm.server'
 import type { RegisterForm } from '~/types/regirsterForm.server'
-import { createUser } from './user.service.server'
+import { createStripeCustomer, createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
 import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 
@@ -68,6 +68,18 @@ export async function validateCoupon(code: string): Promise<ValidCouponServerRes
   return { error: 'This coupon code is invalid or has expired' }
 }
 
+export const isTrialExpired = (args: { startDate: Date; trialDays: number }) => {
+  const { startDate, trialDays } = args
+
+  const currentDate = new Date().getTime()
+  const trialExpireDate = new Date(
+    new Date(startDate).getTime() + 86400 * 1000 * trialDays
+  ).getTime()
+
+  if (currentDate > trialExpireDate) return true
+  return false
+}
+
 export async function register(user: RegisterForm): Promise<ServerResponse> {
   let newUser
   try {
@@ -91,10 +103,11 @@ export async function register(user: RegisterForm): Promise<ServerResponse> {
 export async function login(loginForm: LoginForm) {
   const user = await db.user.findFirst({
     where: {
-      email: loginForm.email,
+      email: loginForm.email.toLowerCase().trim(),
     },
     include: {
       profile: true,
+      paymentStatus: true,
     },
   })
 
@@ -109,6 +122,10 @@ export async function login(loginForm: LoginForm) {
 
   if (user.profile?.isVerified == false) {
     throw json({ error: 'Account Not verified' }, { status: 401 })
+  }
+
+  if (!user?.paymentStatus?.customerId) {
+    await createStripeCustomer(user?.id)
   }
 
   return { id: user.id, email: loginForm.email }
@@ -138,15 +155,18 @@ export async function getUsers() {
 
 export async function getUser(request: Request) {
   const userId = await getUserId(request)
+
   if (typeof userId !== 'string') {
     return null
   }
+
   const user = await db.user.findFirst({
     where: {
       id: userId as string,
     },
     include: {
       coupon_code: true,
+      paymentStatus: true,
       profile: true,
       profileInfo: true,
       profileImage: true,
@@ -164,6 +184,59 @@ export async function getUser(request: Request) {
       },
     },
   })
+
+  // To check if free trial has expired
+  if (
+    user &&
+    !user.needPaymentToContinue &&
+    !user.allowed_free_access &&
+    !user.coupon_code?.id &&
+    user.paymentStatus?.paymentStatus !== 'paid' &&
+    isTrialExpired({ startDate: user.createdAt, trialDays: 14 })
+  ) {
+    await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        needPaymentToContinue: true,
+        profile: {
+          update: {
+            isPublished: false,
+          },
+        },
+      },
+    })
+
+    return {
+      ...user,
+      needPaymentToContinue: true,
+      profile: { ...user?.profile, isPublished: false },
+    }
+  }
+
+  /*
+  To check if user has already paid or has been given free access
+  then update "needPaymentToContinue" to false
+  **/
+  if (
+    user?.needPaymentToContinue &&
+    (user.allowed_free_access ||
+      user.coupon_code?.id ||
+      user.paymentStatus?.paymentStatus === 'paid')
+  ) {
+    await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        needPaymentToContinue: false,
+      },
+    })
+
+    return { ...user, needPaymentToContinue: false }
+  }
+
   return user
 }
 

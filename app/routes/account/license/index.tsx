@@ -1,18 +1,87 @@
-import type { LoaderFunction } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
+import { Form, useLoaderData } from '@remix-run/react'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import ProfileSetting from '~/components/Common/ProfileSetting'
-import { getUser, requireUserId } from '~/services/auth.service.server'
+import { getUser } from '~/services/auth.service.server'
+import Stripe from 'stripe'
+import dayjs from 'dayjs'
+import type { Prisma } from '@prisma/client'
+import { QUICKLABS_EMAIL } from '~/utils/constants'
+import { useEffect, useState } from 'react'
 
-export const loader: LoaderFunction = async ({ request, params }) => {
-  await requireUserId(request)
-  const user = await getUser(request)
+export const action: ActionFunction = async ({ request }) => {
+  try {
+    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || '', { apiVersion: '2023-08-16' })
+    const user = await getUser(request)
+    const metadata = {
+      email: user?.email || '',
+      userId: user?.id || '',
+    }
 
-  return user
+    if (user?.paymentStatus?.paymentIntentId && user?.paymentStatus?.paymentStatus === 'paid')
+      throw 'User has already purchased the license'
+
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      line_items: [
+        {
+          price: process.env.STRIPE_PRICE_ID,
+          quantity: 1,
+        },
+      ],
+      metadata,
+      customer: user?.paymentStatus?.customerId,
+      success_url: `${process.env.REACT_APP_DOMAIN}/account/license?success=true`,
+      cancel_url: `${process.env.REACT_APP_DOMAIN}/account/license?canceled=true`,
+    })
+
+    if (session.url) return redirect(session.url)
+    else throw 'Something went wrong, Please try again!'
+  } catch (err) {
+    return json({ errors: err || 'Something went wrong, Please try again!' }, { status: 400 })
+  }
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  try {
+    const user = await getUser(request)
+    return json({ ...user })
+  } catch (error) {
+    return json({ error }, { status: 400 })
+  }
 }
 
 export default function License() {
-  const loaderData = useLoaderData()
+  const [message, setMessage] = useState('')
+  const loaderData = useLoaderData<
+    Prisma.UserGetPayload<{
+      include: {
+        coupon_code: true
+        paymentStatus: true
+      }
+    }>
+  >()
+
+  const trialExpireAt = dayjs(
+    new Date(new Date(loaderData?.createdAt).getTime() + 86400 * 1000 * 14)
+  ).format('MMMM DD, YYYY')
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search)
+
+    if (query.get('success')) setMessage('Payment Successful')
+
+    if (query.get('canceled'))
+      setMessage("Order canceled -- continue to shop around and checkout when you're ready.")
+  }, [])
+
+  useEffect(() => {
+    console.log({ message })
+    // setTimeout(() => {
+    //   setMessage('')
+    // }, 2000)
+  }, [message])
 
   return (
     <>
@@ -31,13 +100,41 @@ export default function License() {
               License
             </h3>
 
-            {(loaderData?.couponId || loaderData?.allowed_free_access) && (
-              <p className="text-sm text-gray-500 mt-2" data-cy="license-text">
-                {loaderData?.couponId
-                  ? `You have signed up with coupon code ${loaderData?.coupon_code?.code} which allowed you free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me`
-                  : 'You have been given free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at admin@quicklook.me'}
-              </p>
-            )}
+            <div
+              className="text-sm leading-5 font-normal text-gray-500 pt-1"
+              data-cy="license-text"
+            >
+              {loaderData?.couponId ? (
+                `You have signed up with coupon code ${loaderData?.coupon_code?.code} which allowed you free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at ${QUICKLABS_EMAIL}`
+              ) : loaderData?.allowed_free_access ? (
+                `You have been given free access and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at ${QUICKLABS_EMAIL}`
+              ) : loaderData?.paymentStatus?.paymentStatus === 'paid' ? (
+                `You have purchased the license with one time payment and you can use the product without restriction. You will receive all future updates for free. For more queries please write us at ${QUICKLABS_EMAIL}`
+              ) : (
+                <>
+                  {loaderData?.needPaymentToContinue ? (
+                    <>
+                      Your 14 days trial period expired on {trialExpireAt}. Please buy license for
+                      USD 19 to continue using Quick Bio.
+                    </>
+                  ) : (
+                    <>
+                      Your account is under trial period which will expire on {trialExpireAt}.
+                      Please buy a license to keep using the product.
+                    </>
+                  )}
+
+                  <Form replace={false} method="post" noValidate>
+                    <button
+                      type="submit"
+                      className="mt-6 flex items-center justify-center bg-indigo-600 py-2 px-4 shadow-sm rounded-md text-sm leading-5 font-medium text-white hover:font-semibold"
+                    >
+                      Buy License for $19
+                    </button>
+                  </Form>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

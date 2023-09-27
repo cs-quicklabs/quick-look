@@ -7,7 +7,6 @@ import { commitSession, getSession } from '~/services/session.service.server'
 
 import Template0 from '~/components/Templates/template0'
 import { useEffect, useState } from 'react'
-import { ComputerDesktopIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline'
 import AccountSidebar from '~/components/Sidebar/SidebarContainer'
 import Template2 from '~/components/Templates/template2'
 import Template7 from '~/components/Templates/template7'
@@ -25,6 +24,8 @@ import Template11 from '~/components/Templates/template11'
 import Template17 from '~/components/Templates/template17'
 import Template18 from '~/components/Templates/template18'
 import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
+import TrialExpired from '~/components/TrialExpired'
+
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -151,10 +152,6 @@ export default function Profile() {
     viewMode1 === 'mobile' && togglemobile()
   }, [])
 
-  const toggledesktop = () => {
-    setmode('desktop')
-  }
-
   const [showUserSetting] = useState(false)
   const togglemobile = () => {
     setmode('desktop')
@@ -171,10 +168,22 @@ export default function Profile() {
         : false
     )
   }
-  const disabledIcon =
-    loaderData?.profileImage?.primaryImage || loaderData?.profileImage?.isUsingPrimaryDefault
-      ? 'text-gray-700/20'
-      : 'text-gray-700/40'
+
+  if (loaderData?.needPaymentToContinue)
+    return (
+      <div className="h-screen">
+        <DashboardHeader
+          username={loaderData?.username}
+          loaderData={loaderData}
+          noHamburger={true}
+        />
+
+        <div className="mt-24 md:mt-52">
+          <TrialExpired trialStartDate={loaderData.createdAt} />
+        </div>
+      </div>
+    )
+
   return (
     <div className="h-100vw ">
       <DashboardHeader

@@ -3,6 +3,7 @@ import Modal from '~/components/Common/ConfirmModal'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
 import DefaultProfileIcon from '../../../assets/images/profile.png'
 import DropDown from '../DropDown/DropDown'
+import TrialStatus from './TrialStatus'
 
 export default function DashboardHeader({ username, loaderData }: any) {
   const [isOpen, setIsOpen] = useState(false)
@@ -23,6 +24,7 @@ export default function DashboardHeader({ username, loaderData }: any) {
                   bio.quicklabs.in/{username}
                 </span>
               </a>
+
               <a className="cursor-pointer" href={`/${username}`} target="_blank" rel="noreferrer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +43,11 @@ export default function DashboardHeader({ username, loaderData }: any) {
               </a>
             </div>
           </div>
+
+          <div className="hidden md:flex justify-center items-center">
+            <TrialStatus userData={loaderData} />
+          </div>
+
           <div className="hidden lg:flex lg:justify-center lg:items-center lg:mr-7">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +64,7 @@ export default function DashboardHeader({ username, loaderData }: any) {
               />
             </svg>
           </div>
+
           <div>
             <div>
               <button
@@ -79,6 +87,10 @@ export default function DashboardHeader({ username, loaderData }: any) {
             </div>
           </div>
         </nav>
+
+        <div className="flex md:hidden justify-center">
+          <TrialStatus userData={loaderData} />
+        </div>
       </header>
     </>
   )
