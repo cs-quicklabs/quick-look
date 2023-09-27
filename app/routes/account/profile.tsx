@@ -1,5 +1,5 @@
 import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/react'

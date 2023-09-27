@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node'
-import { useLoaderData, useSubmit, useNavigation } from '@remix-run/react'
+import { useLoaderData, useSubmit, useNavigation, useNavigate } from '@remix-run/react'
 import { useState } from 'react'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import Delete from '~/components/Common/deleteaccountModal'
@@ -8,6 +8,7 @@ import { getUser, requireUserId } from '~/services/auth.service.server'
 import { updateUserPreferences } from '~/services/user.service.server'
 
 import Unpublish, { action as ModalAction } from '~/components/Common/unpublishModal'
+import type { Prisma } from '@prisma/client'
 export const action = ModalAction
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -27,7 +28,14 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 export default function Profile() {
   const [open, setopen] = useState(false)
   const [openModal, setopenModal] = useState(false)
-  const loaderData = useLoaderData()
+  const loaderData = useLoaderData<
+    Prisma.UserGetPayload<{
+      include: {
+        profile: true
+      }
+    }>
+  >()
+  const navigate = useNavigate()
 
   const navigation = useNavigation()
   const submit = useSubmit()
@@ -133,6 +141,10 @@ export default function Profile() {
               <div className="flex justify-start ml-1 items-center">
                 <button
                   onClick={() => {
+                    if (loaderData?.needPaymentToContinue) {
+                      navigate('/account')
+                      return
+                    }
                     setopenModal(true)
                   }}
                   className="mt-3.5 rounded-md bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm leading-5 py-2 px-4 border border-gray-300"

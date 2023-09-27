@@ -5,7 +5,71 @@ import { nameCasing } from '~/utils/string.server'
 import type { UpdateProfileDetails } from '~/types/updateProfile.server'
 import type { UserPreferences } from '~/types/updateUserPreferences.server'
 import type { UpdateUserBioDetails } from '~/types/updateUserBioDetails.server'
-import { getUserId } from './auth.service.server'
+import { getUserId, isTrialExpired } from './auth.service.server'
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || '', { apiVersion: '2023-08-16' })
+
+type PaymentStatus = {
+  userId: string
+  customerId: string
+  paymentIntentId: string
+  paymentStatus: string
+}
+
+export async function updatePaymentStatus(args: PaymentStatus) {
+  try {
+    const { customerId, paymentIntentId, paymentStatus } = args
+    await db.payment.update({
+      where: {
+        customerId,
+      },
+      data: {
+        paymentIntentId,
+        paymentStatus,
+      },
+    })
+  } catch (err) {
+    throw 'Something went wrong, Please try again!'
+  }
+}
+
+export async function createStripeCustomer(userId: string) {
+  try {
+    const user = await db.user.findFirst({
+      where: {
+        id: userId,
+      },
+      include: {
+        paymentStatus: true,
+      },
+    })
+
+    if (!user) return null
+
+    if (user.paymentStatus?.customerId) return
+
+    const customer = await stripe.customers.create({
+      name: `${user.firstname} ${user.lastname}`,
+      email: user.email,
+      metadata: {
+        userId,
+        email: user.email || '',
+      },
+    })
+
+    await db.payment.create({
+      data: {
+        userId,
+        customerId: customer?.id,
+      },
+    })
+
+    return true
+  } catch (err) {
+    return null
+  }
+}
 
 export async function createUser(userRegister: RegisterForm) {
   const password = await bcrypt.hash(userRegister.password, 10)
@@ -19,6 +83,9 @@ export async function createUser(userRegister: RegisterForm) {
       couponId: userRegister?.couponId || null,
     },
   })
+
+  await createStripeCustomer(user?.id)
+
   await db.profile
     .create({
       data: {
@@ -156,7 +223,7 @@ export async function updateUsingOldPassword(user: any, newPassword: string) {
     await upateUserPassword(user.id, newPassword, user)
     return true
   } catch (error) {
-    throw 'Something unexpected happend.'
+    throw 'Something unexpected happened.' // spell fix
   }
 }
 
@@ -241,6 +308,12 @@ export async function deleteUser(user?: any) {
     },
   })
 
+  const deletePayment = db.payment.delete({
+    where: {
+      userId: user.id,
+    },
+  })
+
   await db.$transaction([
     deleteUserProfile,
     deleteProfileImage,
@@ -253,18 +326,22 @@ export async function deleteUser(user?: any) {
     deletespotlightButton,
     deletetestimonial,
     deleteVideo,
+    deletePayment,
     deleteuser,
   ])
 }
 
 export async function publishToggle(request: Request) {
-  let userId = await getUserId(request);
-  if (!userId) return null;
+  let userId = await getUserId(request)
+  if (!userId) return null
 
-  let profile = await db.profile.findUnique({ where: { userId: userId } });
-  if (!profile) return null;
+  let profile = await db.profile.findUnique({ where: { userId: userId } })
+  if (!profile) return null
 
-  return await db.profile.update({ where: { userId: userId }, data: { isPublished: !profile.isPublished } });  
+  return await db.profile.update({
+    where: { userId: userId },
+    data: { isPublished: !profile.isPublished },
+  })
 }
 
 export async function updateUserPreferences({
@@ -354,6 +431,8 @@ export async function getUserByUsername(username: string) {
     },
     include: {
       profile: true,
+      coupon_code: true,
+      paymentStatus: true,
       profileInfo: true,
       profileImage: true,
       socialMedia: true,
@@ -368,8 +447,38 @@ export async function getUserByUsername(username: string) {
       },
     },
   })
-  if (!user) {
-    return undefined
+
+  if (!user) return null
+
+  if (user.needPaymentToContinue || user.profile?.isBlocked || !user.profile?.isPublished)
+    return null
+
+  /*
+  To check if free trial has expired
+  and if the user has paid for this service or not
+  **/
+  if (
+    !user.allowed_free_access &&
+    !user.coupon_code?.id &&
+    user.paymentStatus?.paymentStatus !== 'paid' &&
+    isTrialExpired({ startDate: user.createdAt, trialDays: 14 })
+  ) {
+    await db.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        needPaymentToContinue: true,
+        profile: {
+          update: {
+            isPublished: false,
+          },
+        },
+      },
+    })
+
+    return null
   }
+
   return user
 }
