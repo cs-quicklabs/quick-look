@@ -15,8 +15,8 @@ describe('Update profile Test Cases', () => {
     it('change Password',()=>{
         cy.contains('Profile Settings').click()
         cy.get('input[name=oldpassword]').type(Cypress.env('password'))
-        cy.get('input[name=newpassword]').type("Divanshu@2020")
-        cy.get('input[name=confirmnewpassword]').type("Divanshu@2020")
+        cy.get('input[name=newpassword]').type(`${Cypress.env('newpassowrd')}`)
+        cy.get('input[name=confirmnewpassword]').type(`${Cypress.env('newpassowrd')}`)
         cy.get('.py-9 > .inline-flex').click()
         
 

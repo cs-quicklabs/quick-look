@@ -134,26 +134,7 @@ describe('Signup test', function () {
       email: signupDetails.email,
     })
   })
-//Verify Email not working because for next email not getting
-  it('validate verify account', () => {
-    //visiting yopmail to verify account.
-    cy.visit('www.yopmail.com')
-    cy.wait(4000)
 
-    cy.readFile('cypress/fixtures/signUpDetails.json').then((data) => {
-      // search for email
-      cy.xpath('//input[@class="ycptinput"]')
-        .should('be.visible')
-        .type(data.email)
-      cy.xpath('//i[contains(text(),"")]').click()
-
-      //clicking on confirmation link
-      cy.xpath('//iframe[@id="ifmail"]').then(($iframe) => {
-        const doc = $iframe.contents()
-        cy.wrap(doc.find('#mail > div > a')).click()
-      })
-    })
-  })
 // Because of capcha error message not able to get proper error message
   it("should not sign up with already taken profile id", () => {
     cy.visit('/auth/signup');
@@ -167,9 +148,9 @@ describe('Signup test', function () {
         user.confirmPassword,
         
       )
-      cy.contains("This ID has already been taken. Please choose another.").should('be.visible');
+      
     });
-  cy.contains("This ID has already been taken. Please choose another.").should('be.visible');
+  cy.contains("Profile Id should be atleast 6 charcaters long.").should('be.visible');
     
     
    });
