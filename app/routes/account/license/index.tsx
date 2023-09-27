@@ -115,7 +115,7 @@ export default function License() {
                   {loaderData?.needPaymentToContinue ? (
                     <>
                       Your 14 days trial period expired on {trialExpireAt}. Please buy license for
-                      USD 9 to continue using Quick Bio.
+                      USD 19 to continue using Quick Bio.
                     </>
                   ) : (
                     <>
@@ -129,7 +129,7 @@ export default function License() {
                       type="submit"
                       className="mt-6 flex items-center justify-center bg-indigo-600 py-2 px-4 shadow-sm rounded-md text-sm leading-5 font-medium text-white hover:font-semibold"
                     >
-                      Buy License for $9
+                      Buy License for $19
                     </button>
                   </Form>
                 </>
