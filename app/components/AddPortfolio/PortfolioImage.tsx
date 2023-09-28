@@ -94,6 +94,7 @@ export default function PortfolioImage({ img, setUpload, setEdit, setDel, del, e
           <PencilIcon
             onMouseOver={() => setShow(true)}
             id={img.id}
+            data-cy="Edit-portfolio"
             onMouseEnter={handleMouseOver}
             className="absolute  top-6 left-[2.3rem] h-5 cursor-pointer rounded-r-md bg-white text-indigo-600 opacity-60"
             onClick={() => {
