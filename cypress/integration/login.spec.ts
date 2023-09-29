@@ -15,23 +15,24 @@ describe('Login Test Cases', () => {
     cy.visit('/')
   })
 
-  // it("verifies all the elements in the login page", () => {
-  //   cy.get('[data-cy="signInHeader"]').should("exist");
-  //   cy.contains("Sign in to your account");
-  //   cy.contains("Email address");
-  //   cy.get('[data-cy="loginEmail"]').should("exist");
-  //   cy.contains('Password');
-  //   cy.get('[data-cy="loginPassword"]').should("exist");
-  //   cy.get('button[type="submit"]')
-  //     .contains("Sign in")
-  //     .should("exist")
-  //     .should("be.enabled");
-  // });
+  it("verifies all the elements in the login page", () => {
+    // cy.get('[data-cy="signInHeader"]').should("exist");
+    cy.contains("Sign in").click()
+    cy.contains("Sign in to your account");
+    cy.contains("Email address");
+    // cy.get('[data-cy="loginEmail"]').should("exist");
+    cy.contains('Password');
+    // cy.get('[data-cy="loginPassword"]').should("exist");
+    cy.get('button[type="submit"]')
+      .contains("Sign in")
+      .should("exist")
+      .should("be.enabled");
+  });
 
   it('User login case - invalid credentials', () => {
     cy.login(
       userDetails.invalid_credentials.email,
-      userDetails.invalid_credentials.password
+      userDetails.invalid_credentials.password,
     )
     cy.get("input[name='email']").clear()
     cy.get("input[name='password']").clear()
@@ -42,15 +43,11 @@ describe('Login Test Cases', () => {
 
   it('User Login case', () => {
     cy.login(Cypress.env('email'), Cypress.env('password'))
-    cy.url().should('include', `${Cypress.env('baseUrl')}/account`)
+    cy.url().should('include',`${Cypress.env('baseUrl')}/account`)
+     
+    
   })
 
-  // it('Logout', () => {
-  //   cy.get('[data-cy="profile-menu"]').click();
-  //   cy.get('[data-cy="sign-out"]').click();
-  //   cy.wait(2000);
-  //   cy.get('[data-cy="signOutModal"]').should('be.visible');
-  //   cy.get('[data-cy="signOut"]').click();
-  //   cy.url().should('include', `${userDetails.baseUrl}/`);
-  // });
+  
 })
+

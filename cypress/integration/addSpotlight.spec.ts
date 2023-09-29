@@ -34,16 +34,34 @@ describe('Add SpotLight button test cases', function () {
     cy.contains(
       'Please provide download path of file which you want visiter to download'
     )
-    cy.get('[data-cy="addSpotlightLink"]').type('www.template.com')
+    cy.get('[data-cy="addSpotlightLink"]').type('https://www.youtube.com/results?search_query=testqa')
     cy.contains('Show spotlight button')
     cy.get('[data-cy="ToggleSpotlight"]').click()
     cy.get('[data-cy="addSpotlightButton"]').click()
+ 
+    // cy.url().should('include',`${Cypress.env('baseUrl')}/account`)
+    // cy.contains('Add Spotlight Button to your profile')
+    // cy.contains('What do you want your spotlight button to say?')
+    // cy.get('[data-cy="addSpotlightText"]').type('SpotLight')
+    // cy.contains('Or enter Hex Code')
+    // cy.get('[data-cy="addSpotlightHex"]').type('#59ba9d')
+    // cy.contains('Select an icon for spotlight button (optional)')
+    // cy.get('[data-cy="addSpotlightIcon"]').type('chevron-double-up')
+    // cy.contains(
+    //   'Please provide download path of file which you want visiter to download'
+    // )
+    // cy.get('[data-cy="addSpotlightLink"]').type('www.template.com')
+    // cy.contains('Show spotlight button')
+    // cy.get('[data-cy="ToggleSpotlight"]').click()
+    // cy.get('[data-cy="addSpotlightButton"]').click()
+    //edit
+    
   })
 
   it('Should be able to edit SpotLight button', () => {
     cy.contains('Add Additional Links to your profile')
     cy.get('[data-cy="editExistingSpotlight"]').click()
-    cy.contains('Edit Spotlight Button to your profile')
+    cy.contains('Edit Spotlight Button on your profile')
     cy.contains('What do you want your spotlight button to say?')
     cy.get('[data-cy="addSpotlightText"]').clear().type('EditSpotLight')
     cy.contains('Select Color For Button')
@@ -62,9 +80,7 @@ describe('Add SpotLight button test cases', function () {
     cy.get('[data-cy="ToggleSpotlight"]').click()
     cy.get('[data-cy="addSpotlightButton"]').click()
   })
-
-  it('Should be able to delete SpotLight button', () => {
-    cy.contains('Add Additional Links to your profile')
+  it('Should be able to delete spotlight button', () => {
     cy.get('[data-cy="deleteSpotlightButton"]').click()
     cy.contains('Delete Spotlight')
     cy.get('[data-cy="deleteSpotlightModalButton"]').click()

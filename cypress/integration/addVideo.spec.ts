@@ -1,4 +1,4 @@
-describe('Add testimonial test cases', function () {
+describe('Add video test cases', function () {
   beforeEach(() => {
     cy.commonLogin()
     cy.get('[data-cy="Add Video"]').click()
@@ -33,7 +33,7 @@ describe('Add testimonial test cases', function () {
   })
 
   it('Should be able to edit Video Link', () => {
-    cy.contains('Edit Video Link to your profile')
+    cy.contains('Edit Video Link on your profile')
     cy.contains(
       'Please provide link of video you would like to show on profile'
     )
@@ -47,7 +47,7 @@ describe('Add testimonial test cases', function () {
   })
 
   it('Should be able to delete Video Link', () => {
-    cy.contains('Edit Video Link to your profile')
+    cy.contains('Edit Video Link on your profile')
     cy.contains(
       'Please provide link of video you would like to show on profile'
     )

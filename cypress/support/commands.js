@@ -31,7 +31,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('/auth/login')
+  cy.visit('/')
   cy.get("input[name='email']").type(email)
   cy.get("input[name='password']").type(password)
   cy.get('[data-cy="loginButton"]').click()
@@ -47,7 +47,11 @@ Cypress.Commands.add('commonLogout', () => {
 
 Cypress.Commands.add('commonLogin', () => {
   cy.login(Cypress.env('email'), Cypress.env('password'))
-  cy.url().should('include', '/account')
+  // cy.wait(4000)
+  // cy.url().should('include','/account')
+  cy.url().should('include', '/account').debug()
+  // cy.url().should('include',`${Cypress.env('baseUrl')}/account`)
+  // cy.visit(`${Cypress.env('baseUrl')}/account`)
 })
 
 Cypress.Commands.add(
@@ -59,7 +63,7 @@ Cypress.Commands.add(
     email,
     password,
     confirmPassword,
-    couponCode
+    // couponCode
   ) => {
     cy.get('[data-cy="firstName"]').type(firstName)
     cy.get('[data-cy="lastName"]').type(lastName)
@@ -67,7 +71,7 @@ Cypress.Commands.add(
     cy.get('[data-cy="email"]').type(email)
     cy.get('[data-cy="password"]').type(password)
     cy.get('[data-cy="confirmPassword"]').type(confirmPassword)
-    cy.get('[data-cy="coupon_code"]').type(couponCode)
+    // cy.get('[data-cy="coupon_code"]').type(couponCode)
     cy.get('[data-cy="createNewAccountButton"]').click()
   }
 )

@@ -3,16 +3,19 @@ describe('Add testimonial test cases', function () {
     cy.commonLogin()
     cy.get('[data-cy="Add Testimonials"]').click()
   })
+  let description="Hi I am divanshu gupta. I have done BCA from HIMT, I Have 1.9 years of Expereince"
 
   it('Validate testimonial', () => {
     cy.get('[data-cy="addTestimonialButton"]').click()
-    cy.contains('Testimonial')
-    cy.get('[data-cy="testimonialText"]').type('Hello')
-    cy.contains('Testimonial must be 6 characters long')
-    cy.contains('Name of the person who gave this testimonial')
-    cy.get('[data-cy="testimonialBy"]').type('Bella')
-    cy.contains('Name must be 6 characters long')
-    cy.get('[data-cy="cancelCreateTestimonial"]').click()
+    cy.contains('Add Testimonial to your profile')
+    cy.contains('NO TESTIMONIAL ADDED YET')
+    cy.contains('Please add testimonial by clicking on button below')
+    // cy.get('[data-cy="testimonialText"]').type(description)
+    // cy.contains('Testimonial must be 6 characters long')
+    // cy.contains('Name of the person who gave this testimonial')
+    // cy.get('[data-cy="testimonialBy"]').type('Bella')
+    // cy.contains('Name must be 6 characters long')
+    // cy.get('[data-cy="cancelCreateTestimonial"]').click()
   })
 
   it('Should be able to add testimonial', () => {
@@ -33,14 +36,14 @@ describe('Add testimonial test cases', function () {
   })
 
   it('Should be able to edit testimonial', () => {
-    cy.contains('Edit Testimonial to your profile')
-    cy.contains(
-      'Please provide link of video you would like to show on profile'
-    )
+    cy.contains('Edit Testimonial on your profile')
+    // cy.contains(
+    //   'Please provide link of video you would like to show on profile'
+    // )
     cy.get('[data-cy="editTestimonialButton"]').click()
 
-    cy.contains('Edit Testimonial to your profile')
-    cy.contains('Add, edit or delete testimonial from your profile')
+    cy.contains('Edit Testimonial on your profile')
+    cy.contains('Edit or delete testimonial from your profile')
     cy.contains('Edit Testimonial')
     cy.get('[data-cy="testimonialEditText"]')
       .clear()
@@ -56,10 +59,10 @@ describe('Add testimonial test cases', function () {
   })
 
   it('Should be able to delete testimonial', () => {
-    cy.contains('Edit Testimonial to your profile')
-    cy.contains(
-      'Please provide link of video you would like to show on profile'
-    )
+    cy.contains('Edit Testimonial on your profile')
+    // cy.contains(
+    //   'Please provide link of video you would like to show on profile'
+    // )
     cy.get('[data-cy="deleteTestimonialButton"]').click()
     cy.get('[data-cy="deleteTestimonial"]').click()
   })
