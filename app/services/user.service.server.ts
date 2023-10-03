@@ -247,17 +247,17 @@ export async function updateUserProfileDetails({
 }
 
 export async function deleteUser(user?: any) {
-  const deleteUserProfile = db.profile.delete({
+  const deleteUserProfile = db.profile.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteProfileImage = db.profileImage.delete({
+  const deleteProfileImage = db.profileImage.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteSupportBanner = db.supportBanner.delete({
+  const deleteSupportBanner = db.supportBanner.deleteMany({
     where: {
       userId: user.id,
     },
@@ -272,45 +272,51 @@ export async function deleteUser(user?: any) {
       userId: user.id,
     },
   })
-  const deletespotlightButton = db.spotlightButton.delete({
+  const deletespotlightButton = db.spotlightButton.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deletetestimonial = db.testimonial.delete({
+  const deletetestimonial = db.testimonial.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteProfileInformation = db.profileInformation.delete({
+  const deleteProfileInformation = db.profileInformation.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteSocialMedia = db.socialMedia.delete({
+  const deleteSocialMedia = db.socialMedia.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deletemarketingUpdates = db.marketingUpdates.delete({
+  const deletemarketingUpdates = db.marketingUpdates.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteVideo = db.video.delete({
+  const deleteVideo = db.video.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteuser = db.user.delete({
+  const deleteUserVerification = db.userVerification.deleteMany({
     where: {
-      id: user.id,
+      userId: user.id,
     },
   })
 
-  const deletePayment = db.payment.delete({
+  const deletePayment = db.payment.deleteMany({
     where: {
       userId: user.id,
+    },
+  })
+
+  const deleteuser = db.user.delete({
+    where: {
+      id: user.id,
     },
   })
 
@@ -327,6 +333,7 @@ export async function deleteUser(user?: any) {
     deletetestimonial,
     deleteVideo,
     deletePayment,
+    deleteUserVerification,
     deleteuser,
   ])
 }

@@ -36,9 +36,9 @@ export const action: ActionFunction = async ({ request }) => {
     coupon_code,
   } = await SignUpFormGenerator(request)
 
-  // const res = await axios.post(
-  //   `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${captchaToken}`
-  // )
+  const res = await axios.post(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${captchaToken}`
+  )
 
   let coupon_code_error = ''
   let couponId = ''
@@ -56,9 +56,9 @@ export const action: ActionFunction = async ({ request }) => {
     lastname: await validateLastName(lastname),
     username: await validateUsername(username, false),
     isPasswordSame: await validateComfirmPassword(password, confirmPassword),
-    // captchaTokenError: captchaToken ? undefined : 'Incorrect Captcha',
-    // captchaError: res.status == 200 ? undefined : 'Incorrect Captcha',
-    // coupon_code: coupon_code_error,
+    captchaTokenError: captchaToken ? undefined : 'Incorrect Captcha',
+    captchaError: res.status == 200 ? undefined : 'Incorrect Captcha',
+    coupon_code: coupon_code_error,
   }
 
   if (Object.values(errors).some(Boolean)) {
