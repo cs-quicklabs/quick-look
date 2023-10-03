@@ -17,7 +17,7 @@
     "format:lint": "npm run lint -- --fix && prettier --write ./app"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.310.0",
+    "@aws-sdk/client-s3": "^3.423.0",
     "@aws-sdk/lib-storage": "^3.423.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.17",
