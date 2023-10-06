@@ -8,6 +8,7 @@ import {
   Meta,
   useRouteError,
   isRouteErrorResponse,
+  useNavigation,
 } from '@remix-run/react'
 import { REACT_APP_DOMAIN } from '~/utils/constants'
 
@@ -132,6 +133,7 @@ function Document({ children }: any) {
 }
 function Layout({ children }: any) {
   const Location = useLocation()
+  const navigation = useNavigation()
 
   return (
     <>
@@ -159,6 +161,14 @@ function Layout({ children }: any) {
             : 'overflow-x-hidden'
         } `}
       >
+        {navigation?.state !== 'idle' &&
+        (navigation.formAction === '/account/license' || Location.pathname.includes('/license')) ? (
+          <div className="fixed top-0 z-50 bg-white items-center h-screen w-full flex justify-center">
+            <div className="font-medium text-gray-500 text-lg">
+              You're almost there! Heading to the payment page...
+            </div>
+          </div>
+        ) : null}
         {children}
       </div>
     </>
