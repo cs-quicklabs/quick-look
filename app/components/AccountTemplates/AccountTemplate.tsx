@@ -84,11 +84,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
           </div>
 
           <div className="grid grid-cols-1 gap-0">
-            <div className="mb-[-1rem]">
+            <div className="mb-[-1rem] relative">
               <input type="hidden" name="template" value="0" />
               <button
                 type="submit"
                 className="disabled:cursor-pointer"
+                // className="disabled:cursor-pointer relative"
                 onClick={(e: any) => {
                   setSelectTemplate('0')
                 }}
@@ -121,9 +122,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 1
+              </button>
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="2" />
               <button
                 type="submit"
@@ -160,9 +164,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 2
+              </button>
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="8" />
               <button
                 type="submit"
@@ -199,9 +206,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 3
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="7" />
               <button
                 type="submit"
@@ -238,9 +248,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 4
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="5" />
               <button
                 type="submit"
@@ -277,9 +290,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 5
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="10" />
               <button
                 type="submit"
@@ -316,9 +332,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 6
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="9" />
               <button
                 type="submit"
@@ -355,9 +374,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 7
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="3" />
               <button
                 type="submit"
@@ -394,9 +416,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 8
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="4" />
               <button
                 type="submit"
@@ -433,9 +458,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 9
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="11" />
               <button
                 type="submit"
@@ -472,9 +500,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 10
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="13" />
               <button
                 type="submit"
@@ -511,9 +542,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 11
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="14" />
               <button
                 type="submit"
@@ -550,9 +584,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 12
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="16" />
               <button
                 type="submit"
@@ -589,9 +626,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 13
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="17" />
               <button
                 type="submit"
@@ -628,9 +668,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 14
+              </button>
             </div>
 
-            <div>
+            <div className='relative'>
               <input type="hidden" name="template" value="18" />
               <button
                 type="submit"
@@ -666,6 +709,9 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                     }`}
                   />
                 )}
+              </button>
+              <button className="bg-black text-white right-2 -top-2 p-2 text-xs absolute rounded-sm opacity-70">
+                Template 15
               </button>
             </div>
           </div>
