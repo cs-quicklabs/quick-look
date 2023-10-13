@@ -27,24 +27,34 @@ export default function Template4({
         className={`lg:pl-[0.1rem] flex overflow-auto scrollbar-hide justify-center bg-no-repeat object-cover overflow-none bg-black pb-[3rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
         } ${
-          mode === 'mobile' ? 'flex-col' : 'flex-col lg:pt-[3rem] lg:flex-row lg:justify-around'
+          mode === 'mobile' ? 'flex-col' : 'flex-col lg:flex-row lg:justify-around'
         } ${nav ? '' : ''}`}
       >
+
+        {/*  */}
         <div
-          className={`pt-[1rem] pb-[0.5rem] flex-shrink-0 flex justify-center items-center ${
+          // className={`pt-[1rem] pb-[0.5rem] flex-shrink-0 flex justify-center items-center ${
+          //   mode === 'mobile'
+          //     ? 'lg:pb-[0rem] lg:pt-[1.5rem]'
+          //     : 'sm:mb-0 lg:pb-[0rem] lg:pt-[1.5rem] lg:items-start'
+          // } ${nav ? '' : ''}`}
+          className={`flex-shrink-0 flex justify-center items-center ${
             mode === 'mobile'
-              ? 'lg:pb-[0rem] lg:pt-[1.5rem]'
-              : 'sm:mb-0 lg:pb-[0rem] lg:pt-[1.5rem] lg:items-start'
+              ? ''
+              : ''
           } ${nav ? '' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
               loading="lazy"
-              className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem] sm:w-[13rem] sm:h-[13rem] ${
-                mode === 'mobile'
-                  ? 'lg:w-[20rem] lg:h-[20rem] med:w-[23rem] med:h-[23rem] medium:w-[23rem] medium:h-[23rem] mediumLaptop:w-[23rem] mediumLaptop:h-[23rem] largeLaptop:w-[23rem] largeLaptop:h-[23rem]'
-                  : 'small:w-[20rem] small:h-[20rem] xl:p-4 med:w-[23rem] med:h-[23rem] medium:w-[23rem] medium:h-[23rem] mediumLaptop:w-[23rem] mediumLaptop:h-[23rem] largeLaptop:w-[23rem] largeLaptop:h-[23rem]'
-              } ${nav ? '' : ''} ${
+              // className={`rounded-full object-cover border-[0.3rem] border-white w-[10rem] h-[10rem] sm:w-[13rem] sm:h-[13rem] ${
+              //   mode === 'mobile'
+              //     ? 'lg:w-[20rem] lg:h-[20rem] med:w-[23rem] med:h-[23rem] medium:w-[23rem] medium:h-[23rem] mediumLaptop:w-[23rem] mediumLaptop:h-[23rem] largeLaptop:w-[23rem] largeLaptop:h-[23rem]'
+              //     : 'small:w-[20rem] small:h-[20rem] xl:p-4 med:w-[23rem] med:h-[23rem] medium:w-[23rem] medium:h-[23rem] mediumLaptop:w-[23rem] mediumLaptop:h-[23rem] largeLaptop:w-[23rem] largeLaptop:h-[23rem]'
+              // } ${nav ? '' : ''} ${
+              //   loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
+              // }  `}
+              className={` rounded-full border-[0.3rem] border-white w-80 h-80 object-cover ${nav ? '' : ''} ${
                 loaderData?.profileImage?.secondaryImage || secondaryRestore === true ? '' : ''
               }  `}
               src={
@@ -54,10 +64,10 @@ export default function Template4({
             />
           ) : null}
         </div>
-
+        {/*  */}
         <div
-          className={`lg:mt-[1.5rem] px-[2rem] w-full ${
-            mode === 'mobile' ? '' : 'xl:pr-0 xl:pl-0 xl:w-[25rem]'
+          className={`lg:mt-[1.5rem] px-[2rem] flex flex-col text-center justify-center w-full ${
+            mode === 'mobile' ? '' : 'xl:pr-0 xl:pl-0 xl:w-1/2'
           } ${
             nav
               ? 'SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[41rem] largeLaptop:w-[48rem]'
