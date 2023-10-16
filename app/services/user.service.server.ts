@@ -5,7 +5,8 @@ import { nameCasing } from '~/utils/string.server'
 import type { UpdateProfileDetails } from '~/types/updateProfile.server'
 import type { UserPreferences } from '~/types/updateUserPreferences.server'
 import type { UpdateUserBioDetails } from '~/types/updateUserBioDetails.server'
-import { getUserId, isTrialExpired } from './auth.service.server'
+import { encryptSecretKey, getUserId, isTrialExpired } from './auth.service.server'
+import generateApiKey from 'generate-api-key'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || '', { apiVersion: '2023-08-16' })
@@ -488,4 +489,22 @@ export async function getUserByUsername(username: string) {
   }
 
   return user
+}
+
+export const createConnectAppAccount = async (userId: string) => {
+  const secretKey = generateApiKey({ method: 'string', prefix: 'quick-bio', min: 40, max: 50 })
+  const encryptedKey = encryptSecretKey(secretKey as string)
+
+  await db.connectAppAccount.upsert({
+    where: {
+      userId,
+    },
+    create: {
+      secretKey: encryptedKey,
+      userId,
+    },
+    update: {},
+  })
+
+  return true
 }
