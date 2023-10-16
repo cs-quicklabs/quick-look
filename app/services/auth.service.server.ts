@@ -271,6 +271,55 @@ export async function logout(request: Request) {
   })
 }
 
+export async function validateSecretKeyAndAppId(args: { secretKey: string; appId: string }) {
+  const { secretKey, appId } = args
+
+  if (!secretKey || !appId)
+    throw json(
+      {
+        error: `Either app_Id or secret_key is missing.`,
+      },
+      { status: 400 }
+    )
+
+  const appData = await db.connectedApp
+    .findUnique({
+      where: {
+        id: appId,
+      },
+      include: {
+        account: true,
+      },
+    })
+    .catch(() => {
+      throw json(
+        {
+          error: `Internal Server Error`,
+        },
+        { status: 500 }
+      )
+    })
+
+  if (!appData || decryptEncryptedKey(appData.account.secretKey) !== secretKey) {
+    throw json(
+      {
+        error: `Either app_Id or secret_key is invalid.`,
+      },
+      { status: 401 }
+    )
+  }
+
+  if (appData.isBlocked || appData.account.isBlocked)
+    throw json(
+      {
+        error: 'This app is blocked. Please contact support for assistance.',
+      },
+      { status: 403 }
+    )
+
+  return true
+}
+
 // Encrypt
 export const encryptSecretKey = (secretKey: string) => {
   return CryptoJs.AES.encrypt(secretKey, apiSecret).toString()
