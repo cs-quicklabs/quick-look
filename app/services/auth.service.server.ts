@@ -5,10 +5,17 @@ import type { RegisterForm } from '~/types/regirsterForm.server'
 import { createStripeCustomer, createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
 import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
+import CryptoJs from 'crypto-js'
 
 const sessionSecret = process.env.SESSION_SECRET
+const apiSecret = process.env.CONNECT_APP_SECRET
+
 if (!sessionSecret) {
   throw new Error('SESSION_SECRET must be set')
+}
+
+if (!apiSecret) {
+  throw new Error('CONNECT_APP_SECRET must be set')
 }
 
 const storage = createCookieSessionStorage({
@@ -262,4 +269,15 @@ export async function logout(request: Request) {
       'Set-Cookie': await storage.destroySession(session),
     },
   })
+}
+
+// Encrypt
+export const encryptSecretKey = (secretKey: string) => {
+  return CryptoJs.AES.encrypt(secretKey, apiSecret).toString()
+}
+
+// Decrypt
+export const decryptEncryptedKey = (encryptedKey: string) => {
+  const bytes = CryptoJs.AES.decrypt(encryptedKey, apiSecret)
+  return bytes.toString(CryptoJs.enc.Utf8)
 }
