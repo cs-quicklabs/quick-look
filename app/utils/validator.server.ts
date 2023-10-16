@@ -188,6 +188,38 @@ export const validateUsername = async (
     return 'This ID has already been taken. Please choose another.'
   }
 }
+export const validateUserName = async (username: string): Promise<String | undefined> => {
+  let whiteSpaceRegex = /^\S*$/
+  let notContainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let notOnlyNumberRegex = /(?!^\d+$)^.+$/
+
+  let notOnlyNumber = username.match(notOnlyNumberRegex)
+  let notContainsWhitespace = username.match(whiteSpaceRegex)
+  let notContainSymbol = username.match(notContainSymbolsRegex)
+  let lowerCasedUserName = username.toLocaleLowerCase()
+
+  const alreadyExist = await db.user.count({
+    where: {
+      username: lowerCasedUserName,
+    },
+  })
+
+  if (!username) {
+    return 'userName is required.'
+  } else if (username.length > 20) {
+    return 'userName can not be greater than 20 characters.'
+  } else if (!notContainSymbol) {
+    return 'Only alphabets, numbers and - sign is allowed.'
+  } else if (username.length < 6) {
+    return 'userName should be atleast 6 characters long.'
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if (!notOnlyNumber) {
+    return 'Only Numbers are not allowed. '
+  } else if (alreadyExist) {
+    return 'userName has already been taken. Please choose another.'
+  }
+}
 
 export async function validateOldPassword(user: any, newPassword: string, oldpassword: string) {
   if (!oldpassword) {
