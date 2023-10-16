@@ -508,3 +508,32 @@ export const createConnectAppAccount = async (userId: string) => {
 
   return true
 }
+
+export type RegisterNewAppType = {
+  userId: string
+  appName: string
+  selectedTemplate: string
+}
+
+export const registerNewApp = async (args: RegisterNewAppType) => {
+  const { appName, userId, selectedTemplate } = args
+
+  const appData = await db.connectAppAccount.update({
+    where: {
+      userId,
+    },
+    data: {
+      connectedApps: {
+        create: {
+          appName: appName.trim(),
+          defaultTemplate: selectedTemplate,
+        },
+      },
+    },
+    select: {
+      connectedApps: true,
+    },
+  })
+
+  return appData
+}

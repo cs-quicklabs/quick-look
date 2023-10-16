@@ -153,7 +153,7 @@ export async function getUsers() {
   }
 }
 
-export async function getUser(request: Request) {
+export async function getUser(request: Request, appAccount?: boolean) {
   const userId = await getUserId(request)
 
   if (typeof userId !== 'string') {
@@ -182,6 +182,21 @@ export async function getUser(request: Request) {
       additionalLinks: {
         orderBy: { createdAt: 'asc' },
       },
+      ...(appAccount && {
+        connectAppAccount: {
+          include: {
+            connectedApps: {
+              include: {
+                users: {
+                  select: {
+                    firstname: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      }),
     },
   })
 
