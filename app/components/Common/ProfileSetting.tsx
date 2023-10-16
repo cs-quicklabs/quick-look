@@ -4,6 +4,7 @@ import {
   CreditCardIcon,
   Bars2Icon,
   XCircleIcon,
+  ArrowPathIcon,
 } from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 import { useLocation } from '@remix-run/react'
@@ -15,6 +16,7 @@ const navigation = [
   { name: 'Profile', icon: FaceSmileIcon, href: '/account/profile' },
   { name: 'License', icon: CreditCardIcon, href: '/account/license' },
   { name: 'Settings', icon: CogIcon, href: '/account/settings' },
+  { name: 'Connect Apps', icon: ArrowPathIcon, href: '/account/connect-apps' },
 ]
 const secondaryNavigation = [
   { name: 'Know More', href: `${QUICKLABS_DOMAIN}`, target: '_blank' },
