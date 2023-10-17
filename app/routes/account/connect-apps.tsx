@@ -145,57 +145,59 @@ export default function Profile() {
             </div>
 
             {/* Connected Apps */}
-            <div className="mt-8 flow-root">
-              <div className="overflow-x-auto">
-                <div className="inline-block min-w-full py-2 align-middle sm:px-2">
-                  <table className="min-w-full divide-y divide-gray-300">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
-                        >
-                          App Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          App ID (For API)
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          Users
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white">
-                      {loaderData?.connectAppAccount?.connectedApps?.map((data) => (
-                        <tr key={data.id} className="border-b">
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 capitalize">
-                            {data.appName.toLowerCase()}
-                          </td>
-
-                          <td className="text-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            <CopyTooltip
-                              content={`${data.id.slice(0, 5)}...`}
-                              copyContent={data.id}
-                              position="right"
-                            />
-                          </td>
-
-                          <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
-                            {data?.users?.length}
-                          </td>
+            {loaderData?.connectAppAccount?.connectedApps?.length ? (
+              <div className="mt-8 flow-root">
+                <div className="overflow-x-auto">
+                  <div className="inline-block min-w-full py-2 align-middle sm:px-2">
+                    <table className="min-w-full divide-y divide-gray-300">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                          >
+                            App Name
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            App ID (For API)
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Users
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="bg-white">
+                        {loaderData?.connectAppAccount?.connectedApps?.map((data) => (
+                          <tr key={data.id} className="border-b">
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 capitalize">
+                              {data.appName.toLowerCase()}
+                            </td>
+
+                            <td className="text-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <CopyTooltip
+                                content={`${data.id.slice(0, 5)}...`}
+                                copyContent={data.id}
+                                position="right"
+                              />
+                            </td>
+
+                            <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
+                              {data?.users?.length}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>
