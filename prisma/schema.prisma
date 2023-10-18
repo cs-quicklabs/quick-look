@@ -10,7 +10,7 @@ datasource db {
 model ConnectAppAccount {
   id            String         @id @unique @default(uuid())
   userId        String         @unique
-  user          User           @relation(fields: [userId], references: [id])
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   connectedApps ConnectedApp[]
   secretKey     String
   isBlocked     Boolean        @default(false)
@@ -23,7 +23,7 @@ model ConnectAppAccount {
 model ConnectedApp {
   id              String            @id @unique @default(uuid())
   accountId       String
-  account         ConnectAppAccount @relation(fields: [accountId], references: [id])
+  account         ConnectAppAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
   appName         String
   defaultTemplate String            @default("0")
   users           User[]
