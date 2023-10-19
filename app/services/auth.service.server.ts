@@ -346,21 +346,7 @@ export type connectAppSignUpType = {
     lastName: string
     email: string
     userName?: string
-    // image?: string //URL,
-    // label?: string // Occupation
-    // summary?: string //Intro,
-    // location?: {
-    //   city: string
-    //   countryCode?: string
-    // }
   }
-  // education?: string
-  // references?: [
-  //   {
-  //     reference: string
-  //     name: string
-  //   },
-  // ]
 }
 
 export const validateConnectAppSignUpRequest = async (args: connectAppSignUpType) => {
