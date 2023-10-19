@@ -487,3 +487,22 @@ export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppI
     )
   }
 }
+
+// Verify Token
+export const validateToken = async (args: { userId: string; token: string }) => {
+  const { userId, token } = args
+
+  const hashedToken = await db.userVerification.findFirst({
+    where: {
+      userId,
+    },
+    select: {
+      uniqueString: true,
+    },
+  })
+
+  if (!hashedToken) return false
+
+  const tokenVerified = await bcrypt.compare(token, hashedToken.uniqueString)
+  return tokenVerified
+}
