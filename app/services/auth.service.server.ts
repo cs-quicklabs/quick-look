@@ -6,6 +6,7 @@ import { createStripeCustomer, createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
 import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 import CryptoJs from 'crypto-js'
+import { validateFirstName, validateLastName, validateSignupEmail } from '~/utils/validator.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 const apiSecret = process.env.CONNECT_APP_SECRET
@@ -329,4 +330,47 @@ export const encryptSecretKey = (secretKey: string) => {
 export const decryptEncryptedKey = (encryptedKey: string) => {
   const bytes = CryptoJs.AES.decrypt(encryptedKey, apiSecret)
   return bytes.toString(CryptoJs.enc.Utf8)
+}
+
+export type connectAppSignUpType = {
+  basics: {
+    firstName: string
+    lastName: string
+    email: string
+    userName?: string
+    // image?: string //URL,
+    // label?: string // Occupation
+    // summary?: string //Intro,
+    // location?: {
+    //   city: string
+    //   countryCode?: string
+    // }
+  }
+  // education?: string
+  // references?: [
+  //   {
+  //     reference: string
+  //     name: string
+  //   },
+  // ]
+}
+
+export const validateConnectAppSignUpRequest = async (args: connectAppSignUpType) => {
+  const { basics } = args || {}
+
+  const errors = {
+    email: await validateSignupEmail(basics?.email || ''),
+    firstName: await validateFirstName(basics?.firstName || ''),
+    lastName: await validateLastName(basics?.lastName || ''),
+  }
+
+  if (Object.values(errors).some(Boolean))
+    throw json(
+      {
+        errors,
+      },
+      { status: 400 }
+    )
+
+  return
 }

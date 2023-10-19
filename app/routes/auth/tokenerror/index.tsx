@@ -33,7 +33,7 @@ const tokenerror = () => {
             </div>
             <div className="text-center">
               <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-                Invalid token.
+                Invalid Token.
               </h1>
               <p className="mt-2 text-base text-gray-500">
                 The verification link seems invalid or it has expired. Please check the email for
