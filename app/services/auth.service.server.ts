@@ -6,7 +6,12 @@ import { createStripeCustomer, createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
 import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 import CryptoJs from 'crypto-js'
-import { validateFirstName, validateLastName, validateSignupEmail } from '~/utils/validator.server'
+import {
+  validateFirstName,
+  validateLastName,
+  validateSignupEmail,
+  validateUserName,
+} from '~/utils/validator.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 const apiSecret = process.env.CONNECT_APP_SECRET
@@ -373,4 +378,90 @@ export const validateConnectAppSignUpRequest = async (args: connectAppSignUpType
     )
 
   return
+}
+
+// Connect App Signup
+export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppId: string) => {
+  const { basics } = args || {}
+
+  try {
+    await db.$transaction(async (db) => {
+      const user = await db.user.create({
+        data: {
+          firstname: basics.firstName,
+          lastname: basics.lastName,
+          email: basics.email,
+          password: 'password@123',
+          createdByAppId,
+          ...(basics.userName &&
+            !(await validateUserName(basics.userName)) && { username: basics.userName }),
+        },
+        select: {
+          id: true,
+          email: true,
+          firstname: true,
+          lastname: true,
+          createdBy: {
+            select: {
+              appName: true,
+              defaultTemplate: true,
+            },
+          },
+        },
+      })
+
+      const data = {
+        userId: user.id,
+      }
+
+      await Promise.all([
+        db.profile.create({
+          data: { ...data, isVerified: true },
+        }),
+
+        db.profileInformation.create({
+          data: { ...data, templateNumber: user.createdBy?.defaultTemplate },
+        }),
+
+        db.profileImage.create({
+          data,
+        }),
+
+        db.marketingUpdates.create({
+          data,
+        }),
+
+        db.testimonial.create({
+          data,
+        }),
+
+        db.socialMedia.create({
+          data,
+        }),
+
+        db.supportBanner.create({
+          data,
+        }),
+
+        db.video.create({
+          data,
+        }),
+
+        db.spotlightButton.create({
+          data,
+        }),
+      ])
+
+      return user
+    })
+
+    return true
+  } catch (e) {
+    throw json(
+      {
+        error: `Something went wrong, Please try again`,
+      },
+      { status: 500 }
+    )
+  }
 }
