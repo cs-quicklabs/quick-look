@@ -1,6 +1,21 @@
+import type { LoaderFunction } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
-
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
+import { getUserId, validateToken } from '~/services/auth.service.server'
+
+export const loader: LoaderFunction = async ({ request, params }) => {
+  const isLoggedIn = await getUserId(request)
+  if (isLoggedIn) return redirect('/account')
+
+  const token = params?.token as string
+  const userId = params?.userId as string
+
+  const isValidToken = await validateToken({ token, userId })
+  if (!isValidToken) return redirect('/auth/tokenerror')
+
+  return null
+}
 
 export default function Password() {
   const actionData = useActionData()
