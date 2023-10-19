@@ -506,3 +506,28 @@ export const validateToken = async (args: { userId: string; token: string }) => 
   const tokenVerified = await bcrypt.compare(token, hashedToken.uniqueString)
   return tokenVerified
 }
+
+export const setNewPassword = async (args: { userId: string; password: string }) => {
+  const { userId, password } = args
+
+  const response = await db.$transaction(async (db) => {
+    await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        password: await bcrypt.hash(password, 10),
+      },
+    })
+
+    await db.userVerification.delete({
+      where: {
+        userId,
+      },
+    })
+
+    return true
+  })
+
+  return response
+}
