@@ -12,6 +12,9 @@ import {
   validateSignupEmail,
   validateUserName,
 } from '~/utils/validator.server'
+import { v4 as uuidv4 } from 'uuid'
+import { addHoursToDate } from '~/utils/date.server'
+import { sendSetPasswordMail } from './mail.service.server'
 
 const sessionSecret = process.env.SESSION_SECRET
 const apiSecret = process.env.CONNECT_APP_SECRET
@@ -451,6 +454,25 @@ export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppI
           data,
         }),
       ])
+
+      // Generate verification token for setting-up new password
+      const generatedToken = uuidv4()
+      const hashedToken = await bcrypt.hash(generatedToken, 10)
+
+      await db.userVerification.create({
+        data: {
+          ...data,
+          uniqueString: hashedToken,
+          expiresAt: await addHoursToDate(new Date(Date.now()), 720),
+        },
+      })
+
+      // Send set-password email to created user
+      const appName = user.createdBy?.appName
+      await sendSetPasswordMail({
+        userData: { ...user, createdBy: appName! },
+        generatedToken,
+      })
 
       return user
     })
