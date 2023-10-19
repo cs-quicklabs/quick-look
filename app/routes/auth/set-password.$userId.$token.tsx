@@ -1,8 +1,46 @@
-import type { LoaderFunction } from '@remix-run/node'
-import { redirect } from '@remix-run/node'
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { redirect, json } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
+import { commitSession, getSession } from '~/services/session.service.server'
+import {
+  validateComfirmPassword as validateConfirmPassword,
+  validatePassword,
+} from '~/utils/validator.server'
 import logo from '../../../assets/images/logos/quicklook-icon.svg'
-import { getUserId, validateToken } from '~/services/auth.service.server'
+import { getUserId, setNewPassword, validateToken } from '~/services/auth.service.server'
+
+export const action: ActionFunction = async ({ request, params }) => {
+  try {
+    const userId = params.userId || ''
+    const formData = await request.formData()
+    const password = formData.get('password') as string
+    const confirmPassword = formData.get('confirmPassword') as string
+
+    const errors = {
+      password: await validatePassword(password),
+      confirmPassword: await validateConfirmPassword(password, confirmPassword),
+    }
+
+    if (Object.values(errors).some(Boolean)) return json({ errors, form: action }, { status: 400 })
+
+    await setNewPassword({ userId, password })
+    const session = await getSession(request.headers.get('Cookie'))
+    session.flash('authMessage', `Your password has been created successfully.`)
+
+    return redirect('/', {
+      headers: {
+        'Set-Cookie': await commitSession(session),
+      },
+    })
+  } catch (e) {
+    return json(
+      {
+        error: `Internal Server Error`,
+      },
+      { status: 500 }
+    )
+  }
+}
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const isLoggedIn = await getUserId(request)
