@@ -30,7 +30,7 @@ export const CopyTooltip = (props: {
       <span>{props.content}</span>
       <DocumentDuplicateIcon className="h-5 font-bold" />
       <div
-        className={`w-full min-w-[120px] opacity-0 bg-black text-white text-xs font-medium rounded-md py-3 px-2 absolute z-10 group-hover:opacity-100 ${positionCSS} transform -translate-x-1/2 translate-y-2 transition-all duration-300 ease-in-out`}
+        className={`w-full min-w-[120px] hidden bg-black text-white text-xs font-medium rounded-md py-3 px-2 absolute z-10 group-hover:block ${positionCSS} transform -translate-x-1/2 translate-y-2 transition-all duration-300 ease-in-out`}
       >
         {copied ? (
           <>

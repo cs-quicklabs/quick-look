@@ -1,3 +1,4 @@
+import { ArrowDownTrayIcon, ArrowUpTrayIcon, PlusIcon } from '@heroicons/react/24/outline'
 import type { Prisma } from '@prisma/client'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
@@ -14,6 +15,7 @@ import {
   requireUserId,
 } from '~/services/auth.service.server'
 import { createConnectAppAccount, registerNewApp } from '~/services/user.service.server'
+import { validateConnectAppName } from '~/utils/validator.server'
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await getUserId(request)
@@ -24,11 +26,11 @@ export const action: ActionFunction = async ({ request }) => {
   const template = formData.get('template') as string
 
   const errors = {
-    appName: appName?.trim() ? null : 'App Name is Required',
-    template: template ? null : 'Template selection is Required',
+    appName: validateConnectAppName(appName),
+    template: template ? null : 'Default Profile Template is Required',
   }
 
-  if (Object.values(errors).some(Boolean)) {
+  if (Object.values(errors).some(Boolean))
     return json(
       {
         errors,
@@ -36,7 +38,6 @@ export const action: ActionFunction = async ({ request }) => {
       },
       { status: 400 }
     )
-  }
 
   try {
     await registerNewApp({
@@ -69,6 +70,17 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 }
 
+const getCSVTemplate = () => {
+  try {
+    const CSVHeaders = ['First Name', 'Last Name', 'Email', 'User ID (Unique)']
+
+    let csvContent = CSVHeaders.join() + '\n'
+    csvContent = 'data:text/csv;charset=utf-8,' + csvContent
+    const encodedURI = encodeURI(csvContent)
+    window.open(encodedURI)
+  } catch (error) {}
+}
+
 export default function Profile() {
   const [openModal, setOpenModal] = useState(false)
   const loaderData = useLoaderData<
@@ -86,8 +98,7 @@ export default function Profile() {
       }
     }> & { secretKey: string }
   >()
-
-  console.log({ loaderData })
+  const connectedApps = loaderData?.connectAppAccount?.connectedApps || []
 
   return (
     <>
@@ -97,15 +108,13 @@ export default function Profile() {
         <DashboardHeader username={loaderData?.username} loaderData={loaderData} />
       </div>
 
-      <div className="lg:grid lg:grid-cols-12 lg:gap-x-5 md:flex md:flex-wrap relative">
-        <div className="w-[20%] lg:w-2/5">
-          <ProfileSetting />
-        </div>
+      <div className="flex">
+        <ProfileSetting />
 
-        <div className="sm:px-6 md:w-3/5 lg:w-[99%] lg:px-0 lg:col-span-9 lg:ml-64 xl:ml-60 2xl:ml-44 mt-2 font-inter max-w-3xl py-6 px-4 sm:p-6">
-          <div>
+        <div className="ml-0 md:-ml-12 lg:ml-10 mt-8 font-inter px-2">
+          <div className="max-w-3xl">
             {/* Header and description */}
-            <div>
+            <div className="">
               <h3
                 className="text-lg leading-6 font-medium text-gray-900"
                 data-cy="connect-app-header"
@@ -128,54 +137,84 @@ export default function Profile() {
             </div>
 
             {/* Connect App Button and Secret Key UI */}
-            <div className="mt-6 flex items-center justify-between">
-              <button
-                data-cy="connect-app-btn"
-                onClick={() => setOpenModal(true)}
-                className="flex items-center justify-center bg-indigo-600 py-2 px-4 shadow-sm rounded-md text-sm leading-5 font-medium text-white hover:font-semibold"
-              >
-                Connect Your App
-              </button>
-
+            <div className="mt-6 flex items-center justify-end">
               <div className="flex items-center justify-center font-medium text-gray-600 gap-3">
                 <span className="font-semibold text-sm text-gray-700">Secret Key</span>
-
-                <CopyTooltip content="••••••••••••" copyContent={loaderData?.secretKey} />
+                <span className="bg-white shadow-lg rounded-lg border border-gray-200 p-1.5">
+                  <CopyTooltip content="••••••••••••" copyContent={loaderData?.secretKey} />
+                </span>
               </div>
             </div>
 
-            {/* Connected Apps */}
-            {loaderData?.connectAppAccount?.connectedApps?.length ? (
-              <div className="mt-8 flow-root">
-                <div className="overflow-x-auto">
-                  <div className="inline-block min-w-full py-2 align-middle sm:px-2">
-                    <table className="min-w-full divide-y divide-gray-300">
-                      <thead>
-                        <tr>
-                          <th
-                            scope="col"
-                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
-                          >
-                            App Name
-                          </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                          >
-                            App ID (For API)
-                          </th>
-                          <th
-                            scope="col"
-                            className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                          >
-                            Users
-                          </th>
-                        </tr>
-                      </thead>
+            {/* Connected Apps List */}
+            <div className="mt-8 flow-root">
+              <div className="overflow-x-auto">
+                <div className="inline-block min-w-full py-2 align-middle sm:px-2 border border-gray-200 shadow-lg rounded-lg">
+                  {/* <!-- Header --> */}
+                  <div className="px-2 py-3 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+                    <div>
+                      <h2 className="text-normal font-semibold text-gray-800">Connected Apps</h2>
+                    </div>
+
+                    <div>
+                      <div className="inline-flex items-center gap-x-2">
+                        <button
+                          data-cy="csv-template-btn"
+                          onClick={getCSVTemplate}
+                          className="flex gap-1 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                        >
+                          <ArrowDownTrayIcon className="h-4 font-bold text-white" />
+                          <span>CSV Template</span>
+                        </button>
+
+                        <button
+                          data-cy="connect-app-btn"
+                          onClick={() => setOpenModal(true)}
+                          className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                        >
+                          <PlusIcon className="h-4 font-bold text-white" />
+                          <span>Connect App</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <!-- End Header --> */}
+
+                  <table className="min-w-full divide-y divide-gray-300">
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                        >
+                          App Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        >
+                          App ID (For API)
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        >
+                          Users
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        >
+                          Upload CSV
+                        </th>
+                      </tr>
+                    </thead>
+
+                    {connectedApps.length ? (
                       <tbody className="bg-white">
-                        {loaderData?.connectAppAccount?.connectedApps?.map((data) => (
+                        {connectedApps.map((data) => (
                           <tr key={data.id} className="border-b">
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 capitalize">
+                            <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 capitalize">
                               {data.appName.toLowerCase()}
                             </td>
 
@@ -190,14 +229,33 @@ export default function Profile() {
                             <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
                               {data?.users?.length}
                             </td>
+
+                            <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
+                              <div className="flex justify-center">
+                                <button
+                                  data-cy="upload-csv-btn"
+                                  onClick={() => {}}
+                                  className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                                >
+                                  <ArrowUpTrayIcon className="h-4 font-bold text-white" />
+                                  <span>Upload CSV</span>
+                                </button>
+                              </div>
+                            </td>
                           </tr>
                         ))}
                       </tbody>
-                    </table>
-                  </div>
+                    ) : null}
+                  </table>
+
+                  {!connectedApps.length ? (
+                    <div className="italic text-center font-semibold text-xs text-gray-500 border-t py-2">
+                      No App connected yet.
+                    </div>
+                  ) : null}
                 </div>
               </div>
-            ) : null}
+            </div>
           </div>
         </div>
       </div>

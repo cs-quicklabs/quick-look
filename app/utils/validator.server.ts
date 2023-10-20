@@ -101,6 +101,18 @@ export const validateComfirmPassword = async (
   }
 }
 
+export const validateConnectAppName = (appName: string) => {
+  const isValidAppName = /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(appName.trim())
+  let appNameError = ''
+
+  if (!appName.trim()) appNameError = 'App Name is Required'
+  else if (appName.trim().length > 20) appNameError = 'App Name must be less than 20 characters.'
+  else if (!isValidAppName)
+    appNameError = 'Only letters, numbers and single space between words are allowed.'
+
+  return appNameError
+}
+
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)

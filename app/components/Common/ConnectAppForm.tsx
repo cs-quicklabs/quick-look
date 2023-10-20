@@ -93,12 +93,12 @@ export default function ConnectAppModal({ open, onClose }: { open: boolean; onCl
                           ) : null}
                         </div>
 
-                        <div className="w-full">
+                        <div className="w-full mt-2">
                           <label
                             className="text-gray-700 font-medium leading-5 text-sm"
                             htmlFor="template"
                           >
-                            Select Default Template
+                            Default Profile Template
                           </label>
 
                           <select
