@@ -512,3 +512,18 @@ export const setNewPassword = async (args: { userId: string; password: string })
 
   return response
 }
+
+export const isExistingUser = async (email: string) => {
+  email = email.toLowerCase().trim()
+
+  const user = await db.user.findFirst({
+    where: {
+      email,
+    },
+    select: {
+      email: true,
+    },
+  })
+
+  return Boolean(user)
+}

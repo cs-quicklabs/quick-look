@@ -4,7 +4,6 @@ import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { useState } from 'react'
-import ConnectAppModal from '~/components/Common/ConnectAppForm'
 import { CopyTooltip } from '~/components/Common/CopyTooltip'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import ProfileSetting from '~/components/Common/ProfileSetting'
@@ -13,15 +12,59 @@ import {
   getUser,
   getUserId,
   requireUserId,
+  validateConnectAppSignUpRequest as isInvalidRequest,
+  isExistingUser,
+  connectAppSignUp,
+  type connectAppSignUpType,
 } from '~/services/auth.service.server'
 import { createConnectAppAccount, registerNewApp } from '~/services/user.service.server'
 import { validateConnectAppName } from '~/utils/validator.server'
+import { CSVHeaders } from '~/utils/constants'
+import ConnectAppModal from '~/components/ConnectApp/ConnectAppForm'
+import UploadCSVModal from '~/components/ConnectApp/UploadCSVModal'
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await getUserId(request)
   if (!userId) throw json({ error: 'Unauthorized' }, { status: 401 })
 
   const formData = await request.formData()
+  const csvData = formData.get('csvData') as string
+  const appId = formData.get('appId') as string
+
+  if (csvData) {
+    try {
+      let csvJsonData = JSON.parse(csvData) as (connectAppSignUpType & { rowNumber: number })[]
+
+      const created: number[] = []
+      const duplicate: number[] = []
+      const invalid: number[] = []
+      const failed: number[] = []
+
+      for (const user of csvJsonData) {
+        const { rowNumber } = user
+
+        if (await isExistingUser(user.basics.email)) duplicate.push(rowNumber)
+        else if (await isInvalidRequest(user)) invalid.push(rowNumber)
+        else
+          await connectAppSignUp(user, appId)
+            .then((res) => res && created.push(rowNumber))
+            .catch((e) => {
+              failed.push(rowNumber)
+              return false
+            })
+      }
+
+      return json({ success: true, invalid, failed, created, duplicate })
+    } catch {
+      return json(
+        {
+          error: `Something went wrong, Please try again.`,
+        },
+        { status: 500 }
+      )
+    }
+  }
+
   const appName = formData.get('appName') as string
   const template = formData.get('template') as string
 
@@ -50,7 +93,7 @@ export const action: ActionFunction = async ({ request }) => {
   } catch (e) {
     return json(
       {
-        error: `Internal Server Error`,
+        error: `Something went wrong, Please try again.`,
       },
       { status: 500 }
     )
@@ -72,8 +115,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 const getCSVTemplate = () => {
   try {
-    const CSVHeaders = ['First Name', 'Last Name', 'Email', 'User ID (Unique)']
-
     let csvContent = CSVHeaders.join() + '\n'
     csvContent = 'data:text/csv;charset=utf-8,' + csvContent
     const encodedURI = encodeURI(csvContent)
@@ -82,7 +123,8 @@ const getCSVTemplate = () => {
 }
 
 export default function Profile() {
-  const [openModal, setOpenModal] = useState(false)
+  const [openConnectAppModal, setOpenConnectAppModal] = useState(false)
+  const [csvModalAppId, setCsvModalAppId] = useState('')
   const loaderData = useLoaderData<
     Prisma.UserGetPayload<{
       include: {
@@ -99,10 +141,24 @@ export default function Profile() {
     }> & { secretKey: string }
   >()
   const connectedApps = loaderData?.connectAppAccount?.connectedApps || []
+  const isSelectedAppBlocked =
+    loaderData?.connectAppAccount?.isBlocked ||
+    connectedApps.find((v) => v.id === csvModalAppId)?.isBlocked
 
   return (
     <>
-      <ConnectAppModal onClose={() => setOpenModal(false)} open={openModal} />
+      <ConnectAppModal
+        key={openConnectAppModal ? 1 : 0}
+        onClose={() => setOpenConnectAppModal(false)}
+        open={openConnectAppModal}
+      />
+      <UploadCSVModal
+        key={csvModalAppId}
+        onClose={() => setCsvModalAppId('')}
+        open={Boolean(csvModalAppId)}
+        appId={csvModalAppId}
+        isBlocked={isSelectedAppBlocked}
+      />
 
       <div>
         <DashboardHeader username={loaderData?.username} loaderData={loaderData} />
@@ -169,7 +225,7 @@ export default function Profile() {
 
                         <button
                           data-cy="connect-app-btn"
-                          onClick={() => setOpenModal(true)}
+                          onClick={() => setOpenConnectAppModal(true)}
                           className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
                         >
                           <PlusIcon className="h-4 font-bold text-white" />
@@ -234,7 +290,7 @@ export default function Profile() {
                               <div className="flex justify-center">
                                 <button
                                   data-cy="upload-csv-btn"
-                                  onClick={() => {}}
+                                  onClick={() => setCsvModalAppId(data.id)}
                                   className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
                                 >
                                   <ArrowUpTrayIcon className="h-4 font-bold text-white" />
