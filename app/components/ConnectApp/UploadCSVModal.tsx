@@ -101,11 +101,11 @@ export default function UploadCSVModal({
         // Skip if column is blank
         if (!columnName) return
 
-        if (requiredColumns.includes(columnName) && !currentRowData[index]) {
-          missingRowsData.push(`Row ${i + 1}: ${columnName} is missing`)
-          hasMissingData = true
-          return
-        }
+        // if (requiredColumns.includes(columnName) && !currentRowData[index]) {
+        //   missingRowsData.push(`Row ${i + 1}: ${columnName} is missing`)
+        //   hasMissingData = true
+        //   return
+        // }
 
         userData = {
           ...userData,
@@ -163,6 +163,7 @@ export default function UploadCSVModal({
     reader.readAsText(file)
   }
 
+  const isLoading = fetcher.state !== 'idle'
   // @ts-ignore
   const failed = (fetcher?.data?.failed || []) as number[]
   // @ts-ignore
@@ -210,12 +211,14 @@ export default function UploadCSVModal({
                       Upload CSV File
                     </div>
 
-                    <span
-                      className="rounded-full shadow hover:shadow bg-gray-100 p-2 cursor-pointer"
-                      onClick={onClose}
-                    >
-                      <XMarkIcon className="h-5 text-black font-bold" />
-                    </span>
+                    {isLoading ? null : (
+                      <span
+                        className="rounded-full shadow hover:shadow bg-gray-100 p-2 cursor-pointer"
+                        onClick={onClose}
+                      >
+                        <XMarkIcon className="h-5 text-black font-bold" />
+                      </span>
+                    )}
                   </div>
 
                   <div
@@ -276,115 +279,117 @@ export default function UploadCSVModal({
                   )}
 
                   {/* Errors and Messages */}
-                  <div className="space-y-3">
-                    {CSVUploadState.MISSING_COLUMN_NAMES.length ? (
-                      <div className="bg-red-50 shadow rounded-md p-3 text-xs font-medium text-red-700">
-                        <div className="flex items-center gap-3 pb-2">
-                          <div className="flex-shrink-0">
-                            <XCircleIcon className="h-5 text-red-400" />
+                  {isLoading ? null : (
+                    <div className="space-y-3">
+                      {CSVUploadState.MISSING_COLUMN_NAMES.length ? (
+                        <div className="bg-red-50 shadow rounded-md p-3 text-xs font-medium text-red-700">
+                          <div className="flex items-center gap-3 pb-2">
+                            <div className="flex-shrink-0">
+                              <XCircleIcon className="h-5 text-red-400" />
+                            </div>
+
+                            <div className="font-semibold">These required columns are missing:</div>
                           </div>
 
-                          <div className="font-semibold">These required columns are missing:</div>
-                        </div>
-
-                        <div className="pl-2">
-                          {CSVUploadState.MISSING_COLUMN_NAMES.map((missingColumn, i) => (
-                            <li key={missingColumn + i}>{missingColumn}</li>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
-
-                    {CSVUploadState.ERROR || error || blockedMessage ? (
-                      <div className={`bg-red-50 shadow rounded-md p-3`}>
-                        <div className="flex items-center gap-3">
-                          <div className="flex-shrink-0">
-                            <XCircleIcon className="h-5 text-red-400" />
-                          </div>
-
-                          <p className="text-xs font-semibold text-red-700">
-                            {CSVUploadState.ERROR || error || blockedMessage}
-                          </p>
-                        </div>
-                      </div>
-                    ) : null}
-
-                    {created?.length ? (
-                      <div className="bg-green-50 shadow rounded-md p-3">
-                        <div className="flex items-center gap-3">
-                          <div className="flex-shrink-0">
-                            <CheckCircleIcon className="h-5 text-green-400" />
-                          </div>
-
-                          <p className="text-xs font-semibold text-green-800">
-                            {created.length} {`${created.length > 1 ? 'records' : 'record'}`}{' '}
-                            created successfully.
-                          </p>
-                        </div>
-                      </div>
-                    ) : null}
-
-                    {duplicate?.length ? (
-                      <div className="bg-amber-100 shadow rounded-md p-3 text-xs font-medium text-amber-500">
-                        <div className="flex items-center gap-3 pb-2">
-                          <div className="flex-shrink-0">
-                            <DocumentDuplicateIcon className="h-5" />
-                          </div>
-
-                          <div className="font-semibold text-amber-600">
-                            The following records already exist:
+                          <div className="pl-2">
+                            {CSVUploadState.MISSING_COLUMN_NAMES.map((missingColumn, i) => (
+                              <li key={missingColumn + i}>{missingColumn}</li>
+                            ))}
                           </div>
                         </div>
+                      ) : null}
 
-                        <div className="pl-2">
-                          {duplicate.map((rowNumber, i) => (
-                            <li key={i}>Row No. {rowNumber}</li>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
+                      {CSVUploadState.ERROR || error || blockedMessage ? (
+                        <div className={`bg-red-50 shadow rounded-md p-3`}>
+                          <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                              <XCircleIcon className="h-5 text-red-400" />
+                            </div>
 
-                    {invalid?.length ? (
-                      <div className="bg-orange-50 shadow rounded-md p-3 text-xs font-medium text-orange-500">
-                        <div className="flex items-center gap-3 pb-2">
-                          <div className="flex-shrink-0">
-                            <ExclamationTriangleIcon className="h-5" />
-                          </div>
-
-                          <div className="font-semibold text-orange-600">
-                            The following rows contain invalid data:
+                            <p className="text-xs font-semibold text-red-700">
+                              {CSVUploadState.ERROR || error || blockedMessage}
+                            </p>
                           </div>
                         </div>
+                      ) : null}
 
-                        <div className="pl-2">
-                          {invalid.map((rowNumber, i) => (
-                            <li key={i}>Row No. {rowNumber}</li>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
+                      {created?.length ? (
+                        <div className="bg-green-50 shadow rounded-md p-3">
+                          <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                              <CheckCircleIcon className="h-5 text-green-400" />
+                            </div>
 
-                    {failed?.length ? (
-                      <div className="bg-red-50 shadow rounded-md p-3 text-xs font-medium text-red-700">
-                        <div className="flex items-center gap-3 pb-2">
-                          <div className="flex-shrink-0">
-                            <XCircleIcon className="h-5 text-red-400" />
-                          </div>
-
-                          <div className="font-semibold">
-                            We encountered some errors while processing the following records.
-                            Please review and try again:
+                            <p className="text-xs font-semibold text-green-800">
+                              {created.length} {`${created.length > 1 ? 'records' : 'record'}`}{' '}
+                              created successfully.
+                            </p>
                           </div>
                         </div>
+                      ) : null}
 
-                        <div className="pl-2">
-                          {failed.map((rowNumber, i) => (
-                            <li key={i}>Row No. {rowNumber}</li>
-                          ))}
+                      {duplicate?.length ? (
+                        <div className="bg-amber-100 shadow rounded-md p-3 text-xs font-medium text-amber-500">
+                          <div className="flex items-center gap-3 pb-2">
+                            <div className="flex-shrink-0">
+                              <DocumentDuplicateIcon className="h-5" />
+                            </div>
+
+                            <div className="font-semibold text-amber-600">
+                              The following records already exist:
+                            </div>
+                          </div>
+
+                          <div className="pl-2">
+                            {duplicate.map((rowNumber, i) => (
+                              <li key={i}>Row No. {rowNumber}</li>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ) : null}
-                  </div>
+                      ) : null}
+
+                      {invalid?.length ? (
+                        <div className="bg-orange-50 shadow rounded-md p-3 text-xs font-medium text-orange-500">
+                          <div className="flex items-center gap-3 pb-2">
+                            <div className="flex-shrink-0">
+                              <ExclamationTriangleIcon className="h-5" />
+                            </div>
+
+                            <div className="font-semibold text-orange-600">
+                              The following rows contain invalid data:
+                            </div>
+                          </div>
+
+                          <div className="pl-2">
+                            {invalid.map((rowNumber, i) => (
+                              <li key={i}>Row No. {rowNumber}</li>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {failed?.length ? (
+                        <div className="bg-red-50 shadow rounded-md p-3 text-xs font-medium text-red-700">
+                          <div className="flex items-center gap-3 pb-2">
+                            <div className="flex-shrink-0">
+                              <XCircleIcon className="h-5 text-red-400" />
+                            </div>
+
+                            <div className="font-semibold">
+                              We encountered some errors while processing the following records.
+                              Please review and try again:
+                            </div>
+                          </div>
+
+                          <div className="pl-2">
+                            {failed.map((rowNumber, i) => (
+                              <li key={i}>Row No. {rowNumber}</li>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
 
                   {/* Upload Button UI */}
                   {isBlocked ? null : (
@@ -395,7 +400,7 @@ export default function UploadCSVModal({
                         onClick={() => {}}
                         className="flex gap-0.5 cursor-pointer items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
                       >
-                        {fetcher.state != 'idle' ? (
+                        {isLoading ? (
                           <BeatLoader size={12} color="#ffffff" className="px-0 py-0.5" />
                         ) : (
                           <>
@@ -413,7 +418,7 @@ export default function UploadCSVModal({
                         type="file"
                         accept=".csv"
                         onChange={handleCSVInputChange}
-                        disabled={fetcher.state != 'idle'}
+                        disabled={isLoading}
                       />
                     </div>
                   )}
