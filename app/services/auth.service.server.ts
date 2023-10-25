@@ -7,9 +7,9 @@ import bcrypt from 'bcryptjs'
 import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
 import CryptoJs from 'crypto-js'
 import {
-  validateFirstName,
-  validateLastName,
-  validateSignupEmail,
+  validateConnectAppFirstName,
+  validateConnectAppLastName,
+  validateConnectAppEmail,
   validateUserName,
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
@@ -353,19 +353,12 @@ export const validateConnectAppSignUpRequest = async (args: connectAppSignUpType
   const { basics } = args || {}
 
   const errors = {
-    email: await validateSignupEmail(basics?.email || ''),
-    firstName: await validateFirstName(basics?.firstName || ''),
-    lastName: await validateLastName(basics?.lastName || ''),
+    email: await validateConnectAppEmail(basics?.email || ''),
+    firstName: validateConnectAppFirstName(basics?.firstName || ''),
+    lastName: validateConnectAppLastName(basics?.lastName || ''),
   }
 
-  if (Object.values(errors).some(Boolean))
-    throw json(
-      {
-        errors,
-      },
-      { status: 400 }
-    )
-
+  if (Object.values(errors).some(Boolean)) return errors
   return
 }
 
@@ -377,13 +370,15 @@ export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppI
     await db.$transaction(async (db) => {
       const user = await db.user.create({
         data: {
-          firstname: basics.firstName,
-          lastname: basics.lastName,
-          email: basics.email,
+          firstname: basics.firstName.trim(),
+          lastname: basics.lastName.trim(),
+          email: basics.email.toLowerCase().trim(),
           password: 'password@123',
           createdByAppId,
           ...(basics.userName &&
-            !(await validateUserName(basics.userName)) && { username: basics.userName }),
+            !(await validateUserName(basics.userName.trim())) && {
+              username: basics.userName.trim(),
+            }),
         },
         select: {
           id: true,

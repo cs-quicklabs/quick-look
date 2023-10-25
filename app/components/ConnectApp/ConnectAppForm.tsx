@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import { useFetcher } from '@remix-run/react'
@@ -7,25 +7,16 @@ import { AlertError, AlertSuccess } from '../Alert/Alert'
 
 export default function ConnectAppModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const fetcher = useFetcher()
-  const hasMounted = useRef(false)
 
   // @ts-ignore
-  const errors = hasMounted.current && fetcher?.data?.errors
+  const errors = fetcher?.data?.errors
   // @ts-ignore
-  const error = hasMounted.current && fetcher?.data?.error
+  const error = fetcher?.data?.error
   // @ts-ignore
-  const success = hasMounted.current && fetcher?.data?.success
+  const success = fetcher?.data?.success
 
   useEffect(() => {
-    if (fetcher.state !== 'idle') hasMounted.current = true
-  }, [fetcher.state])
-
-  useEffect(() => {
-    if (!open) hasMounted.current = false
-  }, [open])
-
-  useEffect(() => {
-    if (success) setTimeout(onClose, 3900)
+    if (success) setTimeout(onClose, 2900)
   }, [success, onClose])
 
   return (
@@ -63,7 +54,7 @@ export default function ConnectAppModal({ open, onClose }: { open: boolean; onCl
 
                 {success ? (
                   <>
-                    <AlertSuccess message={'App connected successfully.'} />
+                    <AlertSuccess message={'App connected successfully.'} autoClose={3000} />
                   </>
                 ) : (
                   <div className="">

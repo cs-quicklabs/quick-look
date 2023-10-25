@@ -26,13 +26,21 @@ export const action: ActionFunction = async ({ request }) => {
     .catch(() => {
       throw json(
         {
-          error: 'Invalid request. JSON data is missing or empty.',
+          error: 'Invalid request. Expected payload is missing or empty.',
         },
         { status: 400 }
       )
     })
 
-  await validateConnectAppSignUpRequest(payload)
+  const hasError = await validateConnectAppSignUpRequest(payload)
+  if (hasError)
+    throw json(
+      {
+        errors: hasError,
+      },
+      { status: 400 }
+    )
+
   await connectAppSignUp(payload, appId)
 
   return json(

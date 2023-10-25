@@ -64,3 +64,6 @@ export const templateOptions = [
     value: '18',
   },
 ] as const
+
+export const requiredCSVHeaders = ['First Name', 'Last Name', 'Email']
+export const CSVHeaders = [...requiredCSVHeaders, 'User Name']
