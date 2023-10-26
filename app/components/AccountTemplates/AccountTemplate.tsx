@@ -20,6 +20,12 @@ import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
 import Modal from '../Common/Modal'
 import SidebarDetailContainer from '../Sidebar/SidebarDetailContainer'
 
+const TemplateUI = ({ template }: { template: number }) => (
+  <div className="cursor-pointer bg-black text-white right-2 -top-2 p-1.5 text-xs absolute rounded-sm opacity-90">
+    Template {template}
+  </div>
+)
+
 export default function AccountTemplate({ setshowTemplate, mode, setmode }: any) {
   const navigation = useNavigation()
 
@@ -84,7 +90,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
           </div>
 
           <div className="grid grid-cols-1 gap-0">
-            <div className="mb-[-1rem]">
+            <div className="mb-[-1rem] relative">
               <input type="hidden" name="template" value="0" />
               <button
                 type="submit"
@@ -121,9 +127,12 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <button className="bg-black text-white right-2 top-2 p-1.5 text-xs absolute rounded-sm opacity-90">
+                Template 1
+              </button>
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="2" />
               <button
                 type="submit"
@@ -160,9 +169,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={2} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="8" />
               <button
                 type="submit"
@@ -199,9 +209,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={3} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="7" />
               <button
                 type="submit"
@@ -238,9 +249,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={4} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="5" />
               <button
                 type="submit"
@@ -277,9 +289,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={5} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="10" />
               <button
                 type="submit"
@@ -316,9 +329,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={6} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="9" />
               <button
                 type="submit"
@@ -355,9 +369,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={7} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="3" />
               <button
                 type="submit"
@@ -394,9 +409,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={8} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="4" />
               <button
                 type="submit"
@@ -433,9 +449,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={9} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="11" />
               <button
                 type="submit"
@@ -472,9 +489,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={10} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="13" />
               <button
                 type="submit"
@@ -511,9 +529,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={11} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="14" />
               <button
                 type="submit"
@@ -550,9 +569,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={12} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="16" />
               <button
                 type="submit"
@@ -589,9 +609,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={13} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="17" />
               <button
                 type="submit"
@@ -628,9 +649,10 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={14} />
             </div>
 
-            <div>
+            <div className="relative">
               <input type="hidden" name="template" value="18" />
               <button
                 type="submit"
@@ -667,6 +689,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
+              <TemplateUI template={15} />
             </div>
           </div>
         </div>
