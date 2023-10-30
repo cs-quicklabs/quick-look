@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CopyTooltip } from '~/components/Common/CopyTooltip'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import ProfileSetting from '~/components/Common/ProfileSetting'
@@ -127,6 +127,7 @@ const getCSVTemplate = () => {
 export default function Profile() {
   const [openConnectAppModal, setOpenConnectAppModal] = useState(false)
   const [csvModalAppId, setCsvModalAppId] = useState('')
+  const [successPopUp, setSuccessPopUp] = useState('')
   const [tab, setTab] = useState(1)
   const loaderData = useLoaderData<
     Prisma.UserGetPayload<{
@@ -148,11 +149,22 @@ export default function Profile() {
     loaderData?.connectAppAccount?.isBlocked ||
     connectedApps.find((v) => v.id === csvModalAppId)?.isBlocked
 
+  useEffect(() => {
+    if (openConnectAppModal && successPopUp) return setSuccessPopUp('')
+
+    let id: any
+    if (successPopUp) id = setTimeout(() => setSuccessPopUp(''), 3000)
+    return () => id && clearTimeout(id)
+  }, [successPopUp, openConnectAppModal])
+
   return (
     <>
       <ConnectAppModal
         key={openConnectAppModal ? 1 : 0}
-        onClose={() => setOpenConnectAppModal(false)}
+        onClose={(isSuccess?: boolean) => {
+          setOpenConnectAppModal(false)
+          if (isSuccess) setSuccessPopUp('App connected successfully.')
+        }}
         open={openConnectAppModal}
       />
       <UploadCSVModal
@@ -239,7 +251,21 @@ export default function Profile() {
 
             {/* Connected Apps List */}
             {tab === 1 ? (
-              <div className="mt-8 flow-root">
+              <div className="mt-8 flow-root relative">
+                {successPopUp ? (
+                  <div className="absolute z-50 -top-12 w-full flex justify-center">
+                    <div className="bg-green-50 shadow rounded-md p-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex-shrink-0">
+                          <CheckCircleIcon className="h-5 text-green-500" />
+                        </div>
+
+                        <p className="text-xs font-semibold text-green-800">{successPopUp}</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+
                 <div className="overflow-x-auto">
                   <div className="inline-block min-w-full py-2 align-middle sm:px-2 border border-gray-200 shadow-lg rounded-lg">
                     {/* <!-- Header --> */}
@@ -337,7 +363,7 @@ export default function Profile() {
                                     </span>
                                   ) : (
                                     <span className="w-20 inline-flex items-center justify-center gap-1.5 py-1 px-2 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                      <CheckCircleIcon className="h-4 text-green-400" />
+                                      <CheckCircleIcon className="h-4 text-green-500" />
                                       Active
                                     </span>
                                   )}

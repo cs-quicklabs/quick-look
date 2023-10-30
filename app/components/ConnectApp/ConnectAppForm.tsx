@@ -5,7 +5,13 @@ import { useFetcher } from '@remix-run/react'
 import { templateOptions } from '~/utils/constants'
 import { AlertError, AlertSuccess } from '../Alert/Alert'
 
-export default function ConnectAppModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function ConnectAppModal({
+  open,
+  onClose,
+}: {
+  open: boolean
+  onClose: (v?: boolean) => void
+}) {
   const fetcher = useFetcher()
 
   // @ts-ignore
@@ -16,7 +22,7 @@ export default function ConnectAppModal({ open, onClose }: { open: boolean; onCl
   const success = fetcher?.data?.success
 
   useEffect(() => {
-    if (success) setTimeout(onClose, 2900)
+    if (success) onClose(true)
   }, [success, onClose])
 
   return (
@@ -110,7 +116,7 @@ export default function ConnectAppModal({ open, onClose }: { open: boolean; onCl
                         <button
                           type="button"
                           className="w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:text-sm disabled:cursor-pointer"
-                          onClick={onClose}
+                          onClick={() => onClose()}
                           disabled={fetcher.state != 'idle'}
                         >
                           Cancel

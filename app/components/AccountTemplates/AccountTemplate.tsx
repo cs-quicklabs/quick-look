@@ -21,7 +21,7 @@ import Modal from '../Common/Modal'
 import SidebarDetailContainer from '../Sidebar/SidebarDetailContainer'
 
 const TemplateUI = ({ template }: { template: number }) => (
-  <div className="cursor-pointer bg-black text-white right-2 -top-2 p-1.5 text-xs absolute rounded-sm opacity-90">
+  <div className="cursor-pointer bg-black text-white right-2 -top-2 p-1.5 text-xs absolute rounded-sm opacity-90 z-50">
     Template {template}
   </div>
 )
@@ -127,7 +127,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
                   />
                 )}
               </button>
-              <button className="bg-black text-white right-2 top-2 p-1.5 text-xs absolute rounded-sm opacity-90">
+              <button className="bg-black text-white right-2 top-2 p-1.5 text-xs absolute z-50 rounded-sm opacity-90">
                 Template 1
               </button>
             </div>
