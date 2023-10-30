@@ -14,11 +14,11 @@ const dummyJSON = {
 export default function APIDoc() {
   return (
     <>
-      <div className="p-3 bg-gray-200 text-sm space-y-6 my-5 rounded-md shadow">
-        <div className="flex items-center p-2 rounded-md shadow bg-gray-800 text-white gap-2">
-          <span className="p-2 border-r font-bold ">POST</span>
+      <div className="p-1 sm:p-3 bg-gray-200 text-sm space-y-6 my-5 rounded-md shadow">
+        <div className="flex items-center p-2 rounded-md shadow bg-gray-800 text-white gap-1 sm:gap-2">
+          <span className="p-2 border-r font-bold shrink-0">POST</span>
 
-          <div className="font-semibold text-sm flex-grow">
+          <div className="font-semibold text-sm flex-grow shrink">
             {REACT_APP_DOMAIN}/api/connect-app-signup
           </div>
 

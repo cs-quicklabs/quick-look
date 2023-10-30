@@ -23,6 +23,7 @@ import { CSVHeaders } from '~/utils/constants'
 import ConnectAppModal from '~/components/ConnectApp/ConnectAppForm'
 import UploadCSVModal from '~/components/ConnectApp/UploadCSVModal'
 import APIDoc from '~/components/ConnectApp/APIDoc'
+import { CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await getUserId(request)
@@ -166,7 +167,7 @@ export default function Profile() {
         <DashboardHeader username={loaderData?.username} loaderData={loaderData} />
       </div>
 
-      <div className="flex">
+      <div className="sm:flex">
         <ProfileSetting />
 
         <div className="ml-0 md:-ml-12 lg:ml-10 mt-8 font-inter px-2">
@@ -204,7 +205,7 @@ export default function Profile() {
             </div>
 
             {/* Connect App Button and Secret Key UI */}
-            <div className="mt-6 flex items-center justify-between">
+            <div className="mt-6 flex flex-wrap items-center gap-2 justify-between">
               <div className="flex items-center justify-center font-medium text-gray-600 gap-2 bg-gray-100 p-1 shadow rounded">
                 <div
                   className={`${
@@ -296,6 +297,12 @@ export default function Profile() {
                             scope="col"
                             className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
+                            Status
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
                             Upload CSV
                           </th>
                         </tr>
@@ -319,6 +326,22 @@ export default function Profile() {
 
                               <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
                                 {data?.users?.length}
+                              </td>
+
+                              <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
+                                <div className="px-6 py-3">
+                                  {loaderData?.connectAppAccount?.isBlocked || data.isBlocked ? (
+                                    <span className="w-20 inline-flex items-center justify-center gap-1.5 py-1 px-2 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                      <ExclamationTriangleIcon className="h-4 text-red-400" />
+                                      Blocked
+                                    </span>
+                                  ) : (
+                                    <span className="w-20 inline-flex items-center justify-center gap-1.5 py-1 px-2 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                      <CheckCircleIcon className="h-4 text-green-400" />
+                                      Active
+                                    </span>
+                                  )}
+                                </div>
                               </td>
 
                               <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
