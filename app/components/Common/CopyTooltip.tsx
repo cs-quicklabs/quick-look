@@ -3,9 +3,10 @@ import { DocumentDuplicateIcon } from '@heroicons/react/24/outline'
 import { CheckCircleIcon, ClipboardIcon } from '@heroicons/react/24/solid'
 
 export const CopyTooltip = (props: {
-  content: string
-  copyContent: string
+  content: string | JSX.Element
+  copyContent: any
   position?: 'top' | 'right'
+  hideIcon?: boolean
 }) => {
   const [copied, setCopied] = useState(false)
 
@@ -28,7 +29,7 @@ export const CopyTooltip = (props: {
       onClick={copySecretKey}
     >
       <span>{props.content}</span>
-      <DocumentDuplicateIcon className="h-5 font-bold" />
+      {props.hideIcon ? null : <DocumentDuplicateIcon className="h-5 font-bold" />}
       <div
         className={`w-full min-w-[120px] hidden bg-black text-white text-xs font-medium rounded-md py-3 px-2 absolute z-10 group-hover:block ${positionCSS} transform -translate-x-1/2 translate-y-2 transition-all duration-300 ease-in-out`}
       >

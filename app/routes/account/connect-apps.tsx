@@ -22,6 +22,7 @@ import { validateConnectAppName } from '~/utils/validator.server'
 import { CSVHeaders } from '~/utils/constants'
 import ConnectAppModal from '~/components/ConnectApp/ConnectAppForm'
 import UploadCSVModal from '~/components/ConnectApp/UploadCSVModal'
+import APIDoc from '~/components/ConnectApp/APIDoc'
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await getUserId(request)
@@ -125,6 +126,7 @@ const getCSVTemplate = () => {
 export default function Profile() {
   const [openConnectAppModal, setOpenConnectAppModal] = useState(false)
   const [csvModalAppId, setCsvModalAppId] = useState('')
+  const [tab, setTab] = useState(1)
   const loaderData = useLoaderData<
     Prisma.UserGetPayload<{
       include: {
@@ -182,18 +184,50 @@ export default function Profile() {
                 className="text-sm leading-5 font-normal text-gray-500 pt-1"
                 data-cy="connect-app-description"
               >
-                Unlock the potential to seamlessly integrate your products, or applications, with{' '}
+                Unlock the potential to seamlessly integrate your products or applications with{' '}
                 <span className="font-bold text-gray-600">Quick Bio.</span> Our platform offers a
                 dedicated API designed to empower your connected applications. By seamlessly
                 integrating this API into your products, you can effortlessly facilitate the
                 creation of user profiles on{' '}
                 <span className="font-bold text-gray-600">Quick Bio,</span> enhancing your users'
                 experience and expanding your product's functionality.
+                <div className="mt-1">
+                  For complete technical information and guidelines, please refer to our{' '}
+                  <span
+                    className="text-blue-500 font-semibold hover:underline cursor-pointer"
+                    onClick={() => setTab(2)}
+                  >
+                    API Reference documentation.
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* Connect App Button and Secret Key UI */}
-            <div className="mt-6 flex items-center justify-end">
+            <div className="mt-6 flex items-center justify-between">
+              <div className="flex items-center justify-center font-medium text-gray-600 gap-2 bg-gray-100 p-1 shadow rounded">
+                <div
+                  className={`${
+                    tab === 1 ? 'bg-white rounded-lg shadow' : 'hover:shadow-lg'
+                  } text-black cursor-pointer p-1.5 text-sm text-center w-16`}
+                  onClick={() => {
+                    setTab(1)
+                  }}
+                >
+                  Apps
+                </div>
+                <div
+                  className={`${
+                    tab === 2 ? 'bg-white rounded-lg shadow' : 'hover:shadow-lg'
+                  } text-black cursor-pointer p-1.5 text-sm text-center w-16`}
+                  onClick={() => {
+                    setTab(2)
+                  }}
+                >
+                  API
+                </div>
+              </div>
+
               <div className="flex items-center justify-center font-medium text-gray-600 gap-3">
                 <span className="font-semibold text-sm text-gray-700">Secret Key</span>
                 <span className="bg-white shadow-lg rounded-lg border border-gray-200 p-1.5">
@@ -203,115 +237,119 @@ export default function Profile() {
             </div>
 
             {/* Connected Apps List */}
-            <div className="mt-8 flow-root">
-              <div className="overflow-x-auto">
-                <div className="inline-block min-w-full py-2 align-middle sm:px-2 border border-gray-200 shadow-lg rounded-lg">
-                  {/* <!-- Header --> */}
-                  <div className="px-2 py-3 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
-                    <div>
-                      <h2 className="text-normal font-semibold text-gray-800">Connected Apps</h2>
-                    </div>
+            {tab === 1 ? (
+              <div className="mt-8 flow-root">
+                <div className="overflow-x-auto">
+                  <div className="inline-block min-w-full py-2 align-middle sm:px-2 border border-gray-200 shadow-lg rounded-lg">
+                    {/* <!-- Header --> */}
+                    <div className="px-2 py-3 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+                      <div>
+                        <h2 className="text-normal font-semibold text-gray-800">Connected Apps</h2>
+                      </div>
 
-                    <div>
-                      <div className="inline-flex items-center gap-x-2">
-                        <button
-                          data-cy="csv-template-btn"
-                          onClick={getCSVTemplate}
-                          className="flex gap-1 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
-                        >
-                          <ArrowDownTrayIcon className="h-4 font-bold text-white" />
-                          <span>CSV Template</span>
-                        </button>
+                      <div>
+                        <div className="inline-flex items-center gap-x-2">
+                          <button
+                            data-cy="csv-template-btn"
+                            onClick={getCSVTemplate}
+                            className="flex gap-1 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                          >
+                            <ArrowDownTrayIcon className="h-4 font-bold text-white" />
+                            <span>CSV Template</span>
+                          </button>
 
-                        <button
-                          data-cy="connect-app-btn"
-                          onClick={() => setOpenConnectAppModal(true)}
-                          className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
-                        >
-                          <PlusIcon className="h-4 font-bold text-white" />
-                          <span>Connect App</span>
-                        </button>
+                          <button
+                            data-cy="connect-app-btn"
+                            onClick={() => setOpenConnectAppModal(true)}
+                            className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                          >
+                            <PlusIcon className="h-4 font-bold text-white" />
+                            <span>Connect App</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <!-- End Header --> */}
+                    {/* <!-- End Header --> */}
 
-                  <table className="min-w-full divide-y divide-gray-300">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
-                        >
-                          App Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          App ID (For API)
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          Users
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          Upload CSV
-                        </th>
-                      </tr>
-                    </thead>
+                    <table className="min-w-full divide-y divide-gray-300">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                          >
+                            App Name
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            App ID (For API)
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Users
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Upload CSV
+                          </th>
+                        </tr>
+                      </thead>
 
-                    {connectedApps.length ? (
-                      <tbody className="bg-white">
-                        {connectedApps.map((data) => (
-                          <tr key={data.id} className="border-b">
-                            <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 capitalize">
-                              {data.appName.toLowerCase()}
-                            </td>
+                      {connectedApps.length ? (
+                        <tbody className="bg-white">
+                          {connectedApps.map((data) => (
+                            <tr key={data.id} className="border-b">
+                              <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 capitalize">
+                                {data.appName.toLowerCase()}
+                              </td>
 
-                            <td className="text-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              <CopyTooltip
-                                content={`${data.id.slice(0, 5)}...`}
-                                copyContent={data.id}
-                                position="right"
-                              />
-                            </td>
+                              <td className="text-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <CopyTooltip
+                                  content={`${data.id.slice(0, 5)}...`}
+                                  copyContent={data.id}
+                                  position="right"
+                                />
+                              </td>
 
-                            <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
-                              {data?.users?.length}
-                            </td>
+                              <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
+                                {data?.users?.length}
+                              </td>
 
-                            <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
-                              <div className="flex justify-center">
-                                <button
-                                  data-cy="upload-csv-btn"
-                                  onClick={() => setCsvModalAppId(data.id)}
-                                  className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
-                                >
-                                  <ArrowUpTrayIcon className="h-4 font-bold text-white" />
-                                  <span>Upload CSV</span>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
+                              <td className="text-center whitespace-nowrap px-3 py-4 font-medium text-sm text-gray-700">
+                                <div className="flex justify-center">
+                                  <button
+                                    data-cy="upload-csv-btn"
+                                    onClick={() => setCsvModalAppId(data.id)}
+                                    className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                                  >
+                                    <ArrowUpTrayIcon className="h-4 font-bold text-white" />
+                                    <span>Upload CSV</span>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      ) : null}
+                    </table>
+
+                    {!connectedApps.length ? (
+                      <div className="italic text-center font-semibold text-xs text-gray-500 border-t py-2">
+                        No App connected yet.
+                      </div>
                     ) : null}
-                  </table>
-
-                  {!connectedApps.length ? (
-                    <div className="italic text-center font-semibold text-xs text-gray-500 border-t py-2">
-                      No App connected yet.
-                    </div>
-                  ) : null}
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : null}
+
+            {tab === 2 ? <APIDoc /> : null}
           </div>
         </div>
       </div>
