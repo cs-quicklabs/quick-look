@@ -11,7 +11,8 @@ export const action: ActionFunction = async ({ request }) => {
   if (request.method.toLowerCase() !== 'post')
     throw json(
       {
-        error: 'Bad Request',
+        message: 'Bad Request',
+        success: false,
       },
       { status: 400 }
     )
@@ -26,7 +27,8 @@ export const action: ActionFunction = async ({ request }) => {
     .catch(() => {
       throw json(
         {
-          error: 'Invalid request. Expected payload is missing or empty.',
+          message: 'Invalid request. Expected payload is missing or empty.',
+          success: false,
         },
         { status: 400 }
       )
@@ -36,7 +38,11 @@ export const action: ActionFunction = async ({ request }) => {
   if (hasError)
     throw json(
       {
-        errors: hasError,
+        message: Object.entries(hasError)
+          .map(([key, v]) => (v ? key + ' - ' + v.replace('.', '') : null))
+          .filter(Boolean)
+          .join(', '),
+        success: false,
       },
       { status: 400 }
     )
@@ -45,6 +51,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   return json(
     {
+      message: 'User profile created successfully.',
       success: true,
     },
     { status: 201 }
@@ -54,7 +61,8 @@ export const action: ActionFunction = async ({ request }) => {
 export const loader: LoaderFunction = async () => {
   throw json(
     {
-      error: 'Bad Request',
+      message: 'Bad Request',
+      success: false,
     },
     { status: 400 }
   )

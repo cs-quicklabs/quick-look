@@ -286,7 +286,8 @@ export async function validateSecretKeyAndAppId(args: { secretKey: string; appId
   if (!secretKey || !appId)
     throw json(
       {
-        error: `Either app_Id or secret_key is missing.`,
+        message: `Either app_Id or secret_key is missing.`,
+        success: false,
       },
       { status: 400 }
     )
@@ -303,7 +304,8 @@ export async function validateSecretKeyAndAppId(args: { secretKey: string; appId
     .catch(() => {
       throw json(
         {
-          error: `Internal Server Error`,
+          message: `Internal Server Error`,
+          success: false,
         },
         { status: 500 }
       )
@@ -312,7 +314,8 @@ export async function validateSecretKeyAndAppId(args: { secretKey: string; appId
   if (!appData || decryptEncryptedKey(appData.account.secretKey) !== secretKey) {
     throw json(
       {
-        error: `Either app_Id or secret_key is invalid.`,
+        message: `Either app_Id or secret_key is invalid.`,
+        success: false,
       },
       { status: 401 }
     )
@@ -321,7 +324,8 @@ export async function validateSecretKeyAndAppId(args: { secretKey: string; appId
   if (appData.isBlocked || appData.account.isBlocked)
     throw json(
       {
-        error: 'This app is blocked. Please contact support for assistance.',
+        message: 'This app is blocked. Please contact support for assistance.',
+        success: false,
       },
       { status: 403 }
     )
@@ -462,7 +466,8 @@ export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppI
   } catch (e) {
     throw json(
       {
-        error: `Something went wrong, Please try again`,
+        message: `Something went wrong, Please try again`,
+        success: false,
       },
       { status: 500 }
     )
