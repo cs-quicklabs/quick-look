@@ -260,9 +260,7 @@ export default function UploadCSVModal({
                       <div className="mt-3">User Name (Optional)</div>
                       <div className="ml-3 my-1 text-xs font-medium">
                         <li>Should be unique for each row (user).</li>
-                        <li>
-                          Must consist of alphabetic characters, numbers, and hyphens (-) only.
-                        </li>
+                        <li>Can contain alphabetic characters, numbers, and hyphens (-) only.</li>
                         <li>No spaces or special characters are allowed.</li>
                         <li>Should not exceed 20 characters in length.</li>
                         <li>

@@ -51,7 +51,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   return json(
     {
-      message: 'User profile created successfully.',
+      message: 'User profile created successfully. An email has also been shared with the user.',
       success: true,
     },
     { status: 201 }

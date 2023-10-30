@@ -447,3 +447,31 @@ export const validateConnectAppEmail = async (email: string) => {
     return 'Invalid email address.'
   }
 }
+
+export const validateConnectAppUserName = async (userName: string) => {
+  try {
+    userName = userName.trim()
+    let isValid = /^[a-zA-Z0-9-]*$/.test(userName)
+    if (isValid) isValid = /.*[a-zA-Z].*/.test(userName)
+
+    const alreadyExist = await db.user.count({
+      where: {
+        username: userName.toLowerCase(),
+      },
+    })
+
+    if (alreadyExist) return 'userName already exists.'
+
+    if (!userName) {
+      return 'userName is required.'
+    } else if (userName.length < 5) {
+      return 'userName Should be at least 5 characters in length.'
+    } else if (userName.length > 20) {
+      return 'userName Should not exceed 20 characters in length.'
+    } else if (!isValid) {
+      return 'Only alphabets, numbers and - sign is allowed.'
+    } else return undefined
+  } catch {
+    return 'Only alphabets, numbers and - sign is allowed.'
+  }
+}

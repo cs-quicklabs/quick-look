@@ -358,12 +358,12 @@ export default function Profile() {
                                 <div className="px-6 py-3">
                                   {loaderData?.connectAppAccount?.isBlocked || data.isBlocked ? (
                                     <span className="w-20 inline-flex items-center justify-center gap-1.5 py-1 px-2 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                      <ExclamationTriangleIcon className="h-4 text-red-400" />
+                                      <ExclamationTriangleIcon className="h-5 text-red-400" />
                                       Blocked
                                     </span>
                                   ) : (
                                     <span className="w-20 inline-flex items-center justify-center gap-1.5 py-1 px-2 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                      <CheckCircleIcon className="h-4 text-green-500" />
+                                      <CheckCircleIcon className="h-5 text-green-400" />
                                       Active
                                     </span>
                                   )}

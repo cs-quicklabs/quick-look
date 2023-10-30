@@ -10,11 +10,12 @@ import {
   validateConnectAppFirstName,
   validateConnectAppLastName,
   validateConnectAppEmail,
-  validateUserName,
+  validateConnectAppUserName,
 } from '~/utils/validator.server'
 import { v4 as uuidv4 } from 'uuid'
 import { addHoursToDate } from '~/utils/date.server'
 import { sendSetPasswordMail } from './mail.service.server'
+import generateId from 'generate-api-key'
 
 const sessionSecret = process.env.SESSION_SECRET
 const apiSecret = process.env.CONNECT_APP_SECRET
@@ -371,6 +372,10 @@ export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppI
   const { basics } = args || {}
 
   try {
+    let userName = basics.userName?.trim() || ''
+    let isUserNameNotValid = await validateConnectAppUserName(userName)
+    if (isUserNameNotValid) userName = await generateUserName(basics.firstName, basics.lastName)
+
     await db.$transaction(async (db) => {
       const user = await db.user.create({
         data: {
@@ -379,10 +384,11 @@ export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppI
           email: basics.email.toLowerCase().trim(),
           password: 'password@123',
           createdByAppId,
-          ...(basics.userName &&
-            !(await validateUserName(basics.userName.trim())) && {
-              username: basics.userName.trim(),
-            }),
+          ...(userName
+            ? null
+            : {
+                username: userName,
+              }),
         },
         select: {
           id: true,
@@ -531,4 +537,40 @@ export const isExistingUser = async (email: string) => {
   })
 
   return Boolean(user)
+}
+
+export const generateUniqueId = (prefix: string) =>
+  `${prefix}-` + generateId({ method: 'uuidv4', length: 5 }).slice(0, 5)
+
+export const generateUserName = async (firstName: string, lastName: string) => {
+  firstName = firstName.trim()
+  lastName = lastName.trim()
+  let userName = `${firstName}-${lastName}`
+
+  const userNames = await db.user.findMany({
+    where: {
+      OR: [
+        { username: { contains: userName } },
+        { username: { contains: userName.toLowerCase() } },
+      ],
+    },
+    select: {
+      username: true,
+    },
+  })
+
+  if (userNames.length < 1) return userName
+
+  let newUserName = generateUniqueId(userName)
+  let i = true
+  do {
+    const isExisting = userNames.some(
+      // eslint-disable-next-line no-loop-func
+      (user) => user.username.toLowerCase() === newUserName.toLowerCase()
+    )
+    if (isExisting) newUserName = generateUniqueId(userName)
+    else i = false
+  } while (i)
+
+  return newUserName
 }
