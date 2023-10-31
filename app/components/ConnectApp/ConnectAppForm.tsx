@@ -1,9 +1,87 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import { useFetcher } from '@remix-run/react'
 import { templateOptions } from '~/utils/constants'
 import { AlertError, AlertSuccess } from '../Alert/Alert'
+import thumbnail1 from '../../../assets/images/screenshots/Group 3.svg'
+import thumbnail3 from '../../../assets/images/screenshots/thumbnail3.png'
+import thumbnail4 from '../../../assets/images/screenshots/thumbnail4.png'
+import thumbnail5 from '../../../assets/images/screenshots/thumbnail5.png'
+import thumbnail6 from '../../../assets/images/screenshots/thumbnail6.png'
+import temp9 from '../../../assets/images/screenshots/temp9.png'
+import thumb3 from '../../../assets/images/screenshots/thumb3.png'
+import thumb4 from '../../../assets/images/screenshots/thumb4.png'
+import template9 from '../../../assets/images/screenshots/template-9.png'
+import thumb13 from '../../../assets/images/screenshots/thumbnail13.png'
+import thumbnail14 from '../../../assets/images/screenshots/thumbnail14.png'
+import thumbnail16 from '../../../assets/images/screenshots/thumbnail16.png'
+import temp17 from '../../../assets/images/screenshots/temp17.png'
+import temp18 from '../../../assets/images/screenshots/temp18.png'
+import thumbnail11 from '../../../assets/images/screenshots/thumbnail11.png'
+
+export const imagePreview = [
+  {
+    imgUrl: thumbnail1,
+    value: '0',
+  },
+  {
+    imgUrl: thumbnail3,
+    value: '2',
+  },
+  {
+    imgUrl: thumbnail4,
+    value: '8',
+  },
+  {
+    imgUrl: thumbnail5,
+    value: '7',
+  },
+  {
+    imgUrl: thumbnail6,
+    value: '5',
+  },
+  {
+    imgUrl: temp9,
+    value: '10',
+  },
+  {
+    imgUrl: template9,
+    value: '9',
+  },
+  {
+    imgUrl: thumb3,
+    value: '3',
+  },
+  {
+    imgUrl: thumb4,
+    value: '4',
+  },
+  {
+    imgUrl: thumbnail11,
+    value: '11',
+  },
+  {
+    imgUrl: thumb13,
+    value: '13',
+  },
+  {
+    imgUrl: thumbnail14,
+    value: '14',
+  },
+  {
+    imgUrl: thumbnail16,
+    value: '16',
+  },
+  {
+    imgUrl: temp17,
+    value: '17',
+  },
+  {
+    imgUrl: temp18,
+    value: '18',
+  },
+]
 
 export default function ConnectAppModal({
   open,
@@ -13,6 +91,7 @@ export default function ConnectAppModal({
   onClose: (v?: boolean) => void
 }) {
   const fetcher = useFetcher()
+  const [imageURL, setImageURL] = useState(thumbnail1)
 
   // @ts-ignore
   const errors = fetcher?.data?.errors
@@ -102,6 +181,11 @@ export default function ConnectAppModal({
                             name="template"
                             id="template"
                             className="border border-gray-300 rounded-md shadow-sm h-10 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1.5"
+                            onChange={(e) => {
+                              setImageURL(
+                                imagePreview.find((v) => v.value === e.target.value)?.imgUrl || ''
+                              )
+                            }}
                           >
                             {templateOptions.map((v, i) => (
                               <option key={v.label + i} value={v.value}>
@@ -110,6 +194,16 @@ export default function ConnectAppModal({
                             ))}
                           </select>
                         </div>
+                      </div>
+
+                      <div className="flex justify-center">
+                        <img
+                          src={imageURL}
+                          alt="template"
+                          className={`w-auto sm:w-[27rem] border-2 border-gray-200 h-[16rem] ${
+                            imageURL === thumbnail1 ? 'pb-1' : ''
+                          }`}
+                        />
                       </div>
 
                       <div className="flex items-center justify-center gap-4">
