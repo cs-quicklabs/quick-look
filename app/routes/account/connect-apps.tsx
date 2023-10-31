@@ -266,7 +266,7 @@ export default function Profile() {
                   </div>
                 ) : null}
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto mb-8">
                   <div className="inline-block min-w-full py-2 align-middle sm:px-2 border border-gray-200 shadow-lg rounded-lg">
                     {/* <!-- Header --> */}
                     <div className="px-2 py-3 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
@@ -288,7 +288,7 @@ export default function Profile() {
                           <button
                             data-cy="connect-app-btn"
                             onClick={() => setOpenConnectAppModal(true)}
-                            className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                            className="flex gap-1 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
                           >
                             <PlusIcon className="h-4 font-bold text-white" />
                             <span>Connect App</span>
@@ -375,7 +375,7 @@ export default function Profile() {
                                   <button
                                     data-cy="upload-csv-btn"
                                     onClick={() => setCsvModalAppId(data.id)}
-                                    className="flex gap-0.5 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                                    className="flex gap-1 items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
                                   >
                                     <ArrowUpTrayIcon className="h-4 font-bold text-white" />
                                     <span>Upload CSV</span>

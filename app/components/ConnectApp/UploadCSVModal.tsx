@@ -2,7 +2,12 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import BeatLoader from 'react-spinners/BeatLoader'
 import { requiredCSVHeaders } from '~/utils/constants'
-import { ArrowUpTrayIcon, ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowDownTrayIcon,
+  ArrowUpTrayIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/24/outline'
 import {
   CheckCircleIcon,
   DocumentDuplicateIcon,
@@ -174,9 +179,46 @@ export default function UploadCSVModal({
   const duplicate = (fetcher?.data?.duplicate || []) as number[]
   // @ts-ignore
   const error = fetcher?.data?.error
+  // @ts-ignore
+  const success = fetcher?.data?.success
+
+  const reuploadCSV = invalid.length > 0 || failed.length > 0 || duplicate.length > 0
+
   const blockedMessage = isBlocked
     ? 'This app is blocked. Please contact support for assistance.'
     : ''
+
+  const getUploadReport = () => {
+    try {
+      // Headers
+      let csvContent = ['Row Number', '', 'Status'].join() + '\n'
+
+      // Add Row number and status
+      created.forEach(function (row) {
+        csvContent += `Row No. ${row},"",Successful`
+        csvContent += '\n'
+      })
+
+      duplicate.forEach(function (row) {
+        csvContent += `Row No. ${row},"",Duplicate`
+        csvContent += '\n'
+      })
+
+      invalid.forEach(function (row) {
+        csvContent += `Row No. ${row},"",Invalid`
+        csvContent += '\n'
+      })
+
+      failed.forEach(function (row) {
+        csvContent += `Row No. ${row},"",Failed`
+        csvContent += '\n'
+      })
+
+      csvContent = 'data:text/csv;charset=utf-8,' + csvContent
+      const encodedURI = encodeURI(csvContent)
+      window.open(encodedURI)
+    } catch (error) {}
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -391,19 +433,19 @@ export default function UploadCSVModal({
 
                   {/* Upload Button UI */}
                   {isBlocked ? null : (
-                    <div className="flex justify-center">
+                    <div className="flex justify-center gap-4">
                       <label
                         htmlFor="upload-csv"
                         data-cy="upload-csv-btn"
                         onClick={() => {}}
-                        className="flex gap-0.5 cursor-pointer items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
+                        className="flex gap-2 cursor-pointer items-center justify-center bg-indigo-600 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-white hover:font-semibold"
                       >
                         {isLoading ? (
                           <BeatLoader size={12} color="#ffffff" className="px-0 py-0.5" />
                         ) : (
                           <>
                             <ArrowUpTrayIcon className="h-4 font-bold text-white" />
-                            <span>Upload CSV</span>
+                            <span>{reuploadCSV ? 'Reupload' : 'Upload'} CSV</span>
                           </>
                         )}
                       </label>
@@ -418,6 +460,17 @@ export default function UploadCSVModal({
                         onChange={handleCSVInputChange}
                         disabled={isLoading}
                       />
+
+                      {success ? (
+                        <button
+                          data-cy="report-csv-btn"
+                          onClick={getUploadReport}
+                          className="flex gap-1 items-center justify-center bg-gray-100 py-2 px-2 shadow-sm rounded-md text-xs leading-5 font-semibold text-gray-800 hover:font-bold border-2 border-dashed hover:border-solid border-gray-300"
+                        >
+                          <ArrowDownTrayIcon className="h-4 font-bold text-black" />
+                          <span>Download Report</span>
+                        </button>
+                      ) : null}
                     </div>
                   )}
                 </div>
