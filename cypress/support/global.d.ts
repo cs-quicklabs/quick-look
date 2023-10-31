@@ -17,7 +17,7 @@ declare namespace Cypress {
       email: string,
       password: string,
       confirmPassword: string,
-      couponCode: string
+      // couponCode: string
     ): void
   }
 }

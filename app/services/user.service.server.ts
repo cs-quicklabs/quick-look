@@ -5,7 +5,8 @@ import { nameCasing } from '~/utils/string.server'
 import type { UpdateProfileDetails } from '~/types/updateProfile.server'
 import type { UserPreferences } from '~/types/updateUserPreferences.server'
 import type { UpdateUserBioDetails } from '~/types/updateUserBioDetails.server'
-import { getUserId, isTrialExpired } from './auth.service.server'
+import { encryptSecretKey, getUserId, isTrialExpired } from './auth.service.server'
+import generateApiKey from 'generate-api-key'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || '', { apiVersion: '2023-08-16' })
@@ -247,17 +248,17 @@ export async function updateUserProfileDetails({
 }
 
 export async function deleteUser(user?: any) {
-  const deleteUserProfile = db.profile.delete({
+  const deleteUserProfile = db.profile.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteProfileImage = db.profileImage.delete({
+  const deleteProfileImage = db.profileImage.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteSupportBanner = db.supportBanner.delete({
+  const deleteSupportBanner = db.supportBanner.deleteMany({
     where: {
       userId: user.id,
     },
@@ -272,45 +273,51 @@ export async function deleteUser(user?: any) {
       userId: user.id,
     },
   })
-  const deletespotlightButton = db.spotlightButton.delete({
+  const deletespotlightButton = db.spotlightButton.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deletetestimonial = db.testimonial.delete({
+  const deletetestimonial = db.testimonial.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteProfileInformation = db.profileInformation.delete({
+  const deleteProfileInformation = db.profileInformation.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteSocialMedia = db.socialMedia.delete({
+  const deleteSocialMedia = db.socialMedia.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deletemarketingUpdates = db.marketingUpdates.delete({
+  const deletemarketingUpdates = db.marketingUpdates.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteVideo = db.video.delete({
+  const deleteVideo = db.video.deleteMany({
     where: {
       userId: user.id,
     },
   })
-  const deleteuser = db.user.delete({
+  const deleteUserVerification = db.userVerification.deleteMany({
     where: {
-      id: user.id,
+      userId: user.id,
     },
   })
 
-  const deletePayment = db.payment.delete({
+  const deletePayment = db.payment.deleteMany({
     where: {
       userId: user.id,
+    },
+  })
+
+  const deleteuser = db.user.delete({
+    where: {
+      id: user.id,
     },
   })
 
@@ -327,6 +334,7 @@ export async function deleteUser(user?: any) {
     deletetestimonial,
     deleteVideo,
     deletePayment,
+    deleteUserVerification,
     deleteuser,
   ])
 }
@@ -481,4 +489,51 @@ export async function getUserByUsername(username: string) {
   }
 
   return user
+}
+
+export const createConnectAppAccount = async (userId: string) => {
+  const secretKey = generateApiKey({ method: 'string', prefix: 'quick-bio', min: 40, max: 50 })
+  const encryptedKey = encryptSecretKey(secretKey as string)
+
+  await db.connectAppAccount.upsert({
+    where: {
+      userId,
+    },
+    create: {
+      secretKey: encryptedKey,
+      userId,
+    },
+    update: {},
+  })
+
+  return true
+}
+
+export type RegisterNewAppType = {
+  userId: string
+  appName: string
+  selectedTemplate: string
+}
+
+export const registerNewApp = async (args: RegisterNewAppType) => {
+  const { appName, userId, selectedTemplate } = args
+
+  const appData = await db.connectAppAccount.update({
+    where: {
+      userId,
+    },
+    data: {
+      connectedApps: {
+        create: {
+          appName: appName.trim(),
+          defaultTemplate: selectedTemplate,
+        },
+      },
+    },
+    select: {
+      connectedApps: true,
+    },
+  })
+
+  return appData
 }

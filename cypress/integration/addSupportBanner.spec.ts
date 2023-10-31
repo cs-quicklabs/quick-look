@@ -1,4 +1,4 @@
-describe('Add SpotLight button test cases', function () {
+describe('Add Banner test cases', function () {
   beforeEach(() => {
     cy.commonLogin()
     cy.get('[data-cy="Support Banner"]').click()

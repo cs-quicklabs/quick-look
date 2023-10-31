@@ -19,3 +19,8 @@ package-lock.json
 # LOCAL PLAN 
 roadmap.txt
 
+/cypress/videos
+/cypress/screenshots
+
+
+

@@ -270,7 +270,6 @@ export default function AccountSideBar({
             <button
               type="button"
               className="hover:white -ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-white"
-              // onClick={() => setSidebarOpen((prev) => (prev = sidebarOpen ? false : true))}
               onClick={() => setSidebarOpen((prev) => (prev ? false : true))}
             >
               <span className="sr-only">Open sidebar</span>

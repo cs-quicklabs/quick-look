@@ -18,27 +18,32 @@ describe('Social Links Test Cases', () => {
       'Select social profile links which you want to share on your profile'
     )
     cy.contains('Select Social Profile')
-    cy.get('[data-cy="socialProfileBox"]').click()
-    cy.get('[data-cy="socialProfile-Facebook"]').click()
-    cy.contains('Add Link')
-    cy.get('[data-cy="addLink"]').type('facebook.com/fb-username')
+    cy.get('#addlink').click({force:true}).type(`facebook.com/,${Cypress.env('user')}`)
     cy.get('[data-cy="addProfileButton"]').click()
-  })
-
-  it('Edit social link', () => {
     cy.get('[data-cy="editSocialButton"]').click()
-    cy.get('#editlink').should('have.value', 'facebook.com/fb-username')
-    cy.contains('Edit Link')
-    cy.get('[data-cy="Facebook-link"]')
-      .type('{backspace}')
-      .type('{backspace}')
-      .type('{backspace}')
-      .type('{backspace}')
+    cy.get('[data-cy="Facebook-link"]').should('have.value',`facebook.com/,${Cypress.env('user')}`)
+    cy.get('[data-cy="Facebook-link"]').clear().type('facebook.com/Raj')
     cy.get('[data-cy="updateSocialLink"]').click()
-  })
-
-  it('Delete Social Link', () => {
+      
     cy.get('[data-cy="deleteSocialButton"]').click()
     cy.get('[data-cy="deleteSocialLink"]').click()
+    
+    // cy.get('#headlessui-combobox-input-\:r3\:').click()
+    // cy.get('[data-cy="socialProfile-Facebook"]').click()
+    // cy.contains('Add Link')
+    // cy.get('[data-cy="addLink"]').type('facebook.com/fb-username')
+    // cy.get('[data-cy="addProfileButton"]').click()
   })
+
+  // it('Edit social link', () => {
+  //   cy.get('[data-cy="editSocialButton"]').click()
+  //   cy.get('#editlink').should('have.value', 'facebook.com/fb-username')
+  //   cy.contains('Edit Link')
+  //   cy.get('[data-cy="Facebook-link"]')
+  //     .type('{backspace}')
+  //     .type('{backspace}')
+  //     .type('{backspace}')
+  //     .type('{backspace}')
+  //   cy.get('[data-cy="updateSocialLink"]').click()
+  // })
 })

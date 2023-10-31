@@ -25,7 +25,7 @@ export default function TrialExpired({ trialStartDate }: { trialStartDate: strin
 
       <div className="text-sm sm:text-lg leading-8 font-normal mt-3">
         Your 14 days trial period expired on {trialExpiredAt}. Please buy license for USD 19 to
-        continue using quicklook.
+        continue using QuickBio.
       </div>
 
       <div className="text-sm sm:text-lg leading-8 font-normal">

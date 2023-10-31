@@ -28,15 +28,15 @@ const tokenerror = () => {
                 <img src={logo} alt="" className="mx-auto h-16 w-auto"></img>
               </a>
               <a href="/" className="text-lg font-[600]">
-                Quick<span className="text-indigo-600">Look</span>
+                Quick<span className="text-indigo-600">Bio</span>
               </a>
             </div>
             <div className="text-center">
               <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-                Invalid token.
+                Invalid Token.
               </h1>
               <p className="mt-2 text-base text-gray-500">
-                The verfication links seems invalid or it has expired.please check the email for
+                The verification link seems invalid or it has expired. Please check the email for
                 latest link and try again.
               </p>
               <div className="mt-6">

@@ -97,3 +97,38 @@ export async function sendResetPasswordMail(to: string, url: string, generatedTo
     )
   }
 }
+
+export type userDataType = {
+  id: string
+  firstname: string
+  lastname: string
+  email: string
+  createdBy: string
+}
+
+export async function sendSetPasswordMail(args: {
+  userData: userDataType
+  generatedToken: string
+}) {
+  const { userData, generatedToken } = args
+  const verificationHostUrl = process.env.REACT_APP_DOMAIN
+
+  await sendMail({
+    to: userData.email,
+    from: process.env.SENDGRID_EMAIL as string,
+    subject: 'Quick Bio: Account Verification and Password Setup',
+    text: `${verificationHostUrl}/auth/set-password/${userData.id}/${generatedToken}`,
+    html: `<p style=" font-family: Arial, Helvetica, sans-serif; ">Hello  ${
+      userData?.firstname + ' ' + userData?.lastname
+    },</p>
+      <p>We are pleased to inform you that your account on QuickBio, created via ${
+        userData.createdBy
+      }, is now active and ready for use. To complete the setup process, please follow the link below to verify your account and set your password.</p>
+      
+      <a href=${verificationHostUrl}/auth/set-password/${
+        userData.id
+      }/${generatedToken} style=" font-family: Arial, Helvetica, sans-serif; color:blue; "> Verify my account</a>`,
+  })
+
+  return true
+}
