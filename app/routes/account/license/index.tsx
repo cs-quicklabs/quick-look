@@ -3,7 +3,7 @@ import { json, redirect } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import DashboardHeader from '~/components/Common/DashboardHeader'
 import ProfileSetting from '~/components/Common/ProfileSetting'
-import { getUser } from '~/services/auth.service.server'
+import { getUser, requireUserId } from '~/services/auth.service.server'
 import Stripe from 'stripe'
 import dayjs from 'dayjs'
 import type { Prisma } from '@prisma/client'
@@ -45,6 +45,7 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
+  await requireUserId(request)
   try {
     const user = await getUser(request)
     return json({ ...user })

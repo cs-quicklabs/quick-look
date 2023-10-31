@@ -5,10 +5,27 @@ import type { RegisterForm } from '~/types/regirsterForm.server'
 import { createStripeCustomer, createUser } from './user.service.server'
 import bcrypt from 'bcryptjs'
 import type { ServerResponse, ValidCouponServerResponse } from '~/types/response.server'
+import CryptoJs from 'crypto-js'
+import {
+  validateConnectAppFirstName,
+  validateConnectAppLastName,
+  validateConnectAppEmail,
+  validateConnectAppUserName,
+} from '~/utils/validator.server'
+import { v4 as uuidv4 } from 'uuid'
+import { addHoursToDate } from '~/utils/date.server'
+import { sendSetPasswordMail } from './mail.service.server'
+import generateId from 'generate-api-key'
 
 const sessionSecret = process.env.SESSION_SECRET
+const apiSecret = process.env.CONNECT_APP_SECRET
+
 if (!sessionSecret) {
   throw new Error('SESSION_SECRET must be set')
+}
+
+if (!apiSecret) {
+  throw new Error('CONNECT_APP_SECRET must be set')
 }
 
 const storage = createCookieSessionStorage({
@@ -153,7 +170,7 @@ export async function getUsers() {
   }
 }
 
-export async function getUser(request: Request) {
+export async function getUser(request: Request, appAccount?: boolean) {
   const userId = await getUserId(request)
 
   if (typeof userId !== 'string') {
@@ -182,6 +199,21 @@ export async function getUser(request: Request) {
       additionalLinks: {
         orderBy: { createdAt: 'asc' },
       },
+      ...(appAccount && {
+        connectAppAccount: {
+          include: {
+            connectedApps: {
+              include: {
+                users: {
+                  select: {
+                    firstname: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      }),
     },
   })
 
@@ -247,4 +279,298 @@ export async function logout(request: Request) {
       'Set-Cookie': await storage.destroySession(session),
     },
   })
+}
+
+export async function validateSecretKeyAndAppId(args: { secretKey: string; appId: string }) {
+  const { secretKey, appId } = args
+
+  if (!secretKey || !appId)
+    throw json(
+      {
+        message: `Either app_Id or secret_key is missing.`,
+        success: false,
+      },
+      { status: 400 }
+    )
+
+  const appData = await db.connectedApp
+    .findUnique({
+      where: {
+        id: appId,
+      },
+      include: {
+        account: true,
+      },
+    })
+    .catch(() => {
+      throw json(
+        {
+          message: `Internal Server Error`,
+          success: false,
+        },
+        { status: 500 }
+      )
+    })
+
+  if (!appData || decryptEncryptedKey(appData.account.secretKey) !== secretKey) {
+    throw json(
+      {
+        message: `Either app_Id or secret_key is invalid.`,
+        success: false,
+      },
+      { status: 401 }
+    )
+  }
+
+  if (appData.isBlocked || appData.account.isBlocked)
+    throw json(
+      {
+        message: 'This app is blocked. Please contact support for assistance.',
+        success: false,
+      },
+      { status: 403 }
+    )
+
+  return true
+}
+
+// Encrypt
+export const encryptSecretKey = (secretKey: string) => {
+  return CryptoJs.AES.encrypt(secretKey, apiSecret).toString()
+}
+
+// Decrypt
+export const decryptEncryptedKey = (encryptedKey: string) => {
+  const bytes = CryptoJs.AES.decrypt(encryptedKey, apiSecret)
+  return bytes.toString(CryptoJs.enc.Utf8)
+}
+
+export type connectAppSignUpType = {
+  basics: {
+    firstName: string
+    lastName: string
+    email: string
+    userName?: string
+  }
+}
+
+export const validateConnectAppSignUpRequest = async (args: connectAppSignUpType) => {
+  const { basics } = args || {}
+
+  const errors = {
+    email: await validateConnectAppEmail(basics?.email || ''),
+    firstName: validateConnectAppFirstName(basics?.firstName || ''),
+    lastName: validateConnectAppLastName(basics?.lastName || ''),
+  }
+
+  if (Object.values(errors).some(Boolean)) return errors
+  return
+}
+
+// Connect App Signup
+export const connectAppSignUp = async (args: connectAppSignUpType, createdByAppId: string) => {
+  const { basics } = args || {}
+
+  try {
+    let userName = basics.userName?.trim() || ''
+    let isUserNameNotValid = await validateConnectAppUserName(userName)
+    if (isUserNameNotValid) userName = await generateUserName(basics.firstName, basics.lastName)
+
+    await db.$transaction(async (db) => {
+      const user = await db.user.create({
+        data: {
+          firstname: basics.firstName.trim(),
+          lastname: basics.lastName.trim(),
+          email: basics.email.toLowerCase().trim(),
+          password: 'password@123',
+          createdByAppId,
+          ...(userName
+            ? null
+            : {
+                username: userName,
+              }),
+        },
+        select: {
+          id: true,
+          email: true,
+          firstname: true,
+          lastname: true,
+          createdBy: {
+            select: {
+              appName: true,
+              defaultTemplate: true,
+            },
+          },
+        },
+      })
+
+      const data = {
+        userId: user.id,
+      }
+
+      await Promise.all([
+        db.profile.create({
+          data: { ...data, isVerified: true },
+        }),
+
+        db.profileInformation.create({
+          data: { ...data, templateNumber: user.createdBy?.defaultTemplate },
+        }),
+
+        db.profileImage.create({
+          data,
+        }),
+
+        db.marketingUpdates.create({
+          data,
+        }),
+
+        db.testimonial.create({
+          data,
+        }),
+
+        db.socialMedia.create({
+          data,
+        }),
+
+        db.supportBanner.create({
+          data,
+        }),
+
+        db.video.create({
+          data,
+        }),
+
+        db.spotlightButton.create({
+          data,
+        }),
+      ])
+
+      // Generate verification token for setting-up new password
+      const generatedToken = uuidv4()
+      const hashedToken = await bcrypt.hash(generatedToken, 10)
+
+      await db.userVerification.create({
+        data: {
+          ...data,
+          uniqueString: hashedToken,
+          expiresAt: await addHoursToDate(new Date(Date.now()), 720),
+        },
+      })
+
+      // Send set-password email to created user
+      const appName = user.createdBy?.appName
+      await sendSetPasswordMail({
+        userData: { ...user, createdBy: appName! },
+        generatedToken,
+      })
+
+      return user
+    })
+
+    return true
+  } catch (e) {
+    throw json(
+      {
+        message: `Something went wrong, Please try again`,
+        success: false,
+      },
+      { status: 500 }
+    )
+  }
+}
+
+// Verify Token
+export const validateToken = async (args: { userId: string; token: string }) => {
+  const { userId, token } = args
+
+  const hashedToken = await db.userVerification.findFirst({
+    where: {
+      userId,
+    },
+    select: {
+      uniqueString: true,
+    },
+  })
+
+  if (!hashedToken) return false
+
+  const tokenVerified = await bcrypt.compare(token, hashedToken.uniqueString)
+  return tokenVerified
+}
+
+export const setNewPassword = async (args: { userId: string; password: string }) => {
+  const { userId, password } = args
+
+  const response = await db.$transaction(async (db) => {
+    await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        password: await bcrypt.hash(password, 10),
+      },
+    })
+
+    await db.userVerification.delete({
+      where: {
+        userId,
+      },
+    })
+
+    return true
+  })
+
+  return response
+}
+
+export const isExistingUser = async (email: string) => {
+  email = email.toLowerCase().trim()
+
+  const user = await db.user.findFirst({
+    where: {
+      email,
+    },
+    select: {
+      email: true,
+    },
+  })
+
+  return Boolean(user)
+}
+
+export const generateUniqueId = (prefix: string) =>
+  `${prefix}-` + generateId({ method: 'uuidv4', length: 5 }).slice(0, 5)
+
+export const generateUserName = async (firstName: string, lastName: string) => {
+  firstName = firstName.trim()
+  lastName = lastName.trim()
+  let userName = `${firstName}-${lastName}`
+
+  const userNames = await db.user.findMany({
+    where: {
+      OR: [
+        { username: { contains: userName } },
+        { username: { contains: userName.toLowerCase() } },
+      ],
+    },
+    select: {
+      username: true,
+    },
+  })
+
+  if (userNames.length < 1) return userName
+
+  let newUserName = generateUniqueId(userName)
+  let i = true
+  do {
+    const isExisting = userNames.some(
+      // eslint-disable-next-line no-loop-func
+      (user) => user.username.toLowerCase() === newUserName.toLowerCase()
+    )
+    if (isExisting) newUserName = generateUniqueId(userName)
+    else i = false
+  } while (i)
+
+  return newUserName
 }

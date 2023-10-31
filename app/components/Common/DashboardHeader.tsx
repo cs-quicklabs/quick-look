@@ -21,7 +21,7 @@ export default function DashboardHeader({ username, loaderData }: any) {
                   alt=""
                 />
                 <span className="w-max block font-base md:ml-3 lg:ml-0 sm:text-xl pt-2 pl-9 md:pl-0 sm:pt-2 sm:pb-1.5 sm:font-extrabold text-white">
-                  bio.quicklabs.in/{username}
+                  bio.quicklabs.in/{username?.slice(0, 15)}
                 </span>
               </a>
 

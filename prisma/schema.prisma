@@ -7,6 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model ConnectAppAccount {
+  id            String         @id @unique @default(uuid())
+  userId        String         @unique
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  connectedApps ConnectedApp[]
+  secretKey     String
+  isBlocked     Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@map("connectAppAccount")
+}
+
+model ConnectedApp {
+  id              String            @id @unique @default(uuid())
+  accountId       String
+  account         ConnectAppAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  appName         String
+  defaultTemplate String            @default("0")
+  users           User[]
+  isBlocked       Boolean           @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@map("connectedApp")
+}
+
 model Coupon {
   id        String   @id @unique @default(uuid())
   createdAt DateTime @default(now())
@@ -23,8 +50,8 @@ model User {
   id                    String              @id @unique @default(uuid())
   firstname             String
   lastname              String
-  email                 String
-  username              String              @unique
+  email                 String              @unique
+  username              String              @unique @default(uuid())
   password              String
   createdAt             DateTime            @default(now())
   updatedAt             DateTime            @updatedAt
@@ -45,6 +72,9 @@ model User {
   paymentStatus         Payment?
   allowed_free_access   Boolean?            @default(false)
   needPaymentToContinue Boolean?            @default(false)
+  createdByAppId        String?
+  createdBy             ConnectedApp?       @relation(fields: [createdByAppId], references: [id])
+  connectAppAccount     ConnectAppAccount?
 
   @@map("user")
 }

@@ -101,6 +101,18 @@ export const validateComfirmPassword = async (
   }
 }
 
+export const validateConnectAppName = (appName: string) => {
+  const isValidAppName = /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(appName.trim())
+  let appNameError = ''
+
+  if (!appName.trim()) appNameError = 'App Name is Required'
+  else if (appName.trim().length > 20) appNameError = 'App Name must be less than 20 characters.'
+  else if (!isValidAppName)
+    appNameError = 'Only letters, numbers and single space between words are allowed.'
+
+  return appNameError
+}
+
 export const validateFirstName = async (name: any): Promise<string | undefined> => {
   let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
   let notContainsSymbols = name.match(onlyAlphabetsRegex)
@@ -186,6 +198,38 @@ export const validateUsername = async (
     return 'Only Numbers are not allowed. '
   } else if (usernameExist) {
     return 'This ID has already been taken. Please choose another.'
+  }
+}
+export const validateUserName = async (username: string): Promise<String | undefined> => {
+  let whiteSpaceRegex = /^\S*$/
+  let notContainSymbolsRegex = /^(?!\-)[a-z\/\a-zA-Z\-\0-9]+$/
+  let notOnlyNumberRegex = /(?!^\d+$)^.+$/
+
+  let notOnlyNumber = username.match(notOnlyNumberRegex)
+  let notContainsWhitespace = username.match(whiteSpaceRegex)
+  let notContainSymbol = username.match(notContainSymbolsRegex)
+  let lowerCasedUserName = username.toLocaleLowerCase()
+
+  const alreadyExist = await db.user.count({
+    where: {
+      username: lowerCasedUserName,
+    },
+  })
+
+  if (!username) {
+    return 'userName is required.'
+  } else if (username.length > 20) {
+    return 'userName can not be greater than 20 characters.'
+  } else if (!notContainSymbol) {
+    return 'Only alphabets, numbers and - sign is allowed.'
+  } else if (username.length < 6) {
+    return 'userName should be atleast 6 characters long.'
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if (!notOnlyNumber) {
+    return 'Only Numbers are not allowed. '
+  } else if (alreadyExist) {
+    return 'userName has already been taken. Please choose another.'
   }
 }
 
@@ -331,5 +375,103 @@ export async function validateTestimonialBy(name: string) {
   }
   if (name.length < 3) {
     return 'Name should be atleast 3 characters long.'
+  }
+}
+
+export const validateConnectAppFirstName = (name: string) => {
+  name = name.trim()
+  let onlyAlphabetsRegex = /^[a-z|A-Z]+(?: [a-z|A-Z ]+)*$/
+  let notContainsSymbols = name.match(onlyAlphabetsRegex)
+  let firstAndMiddleNameRegex = /^(?!.{32,})(\w+\s+\w+ ?)$/
+  let singleSpace = /^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$/
+  let validSingleSpace = name.match(singleSpace)
+  let validName = name.match(firstAndMiddleNameRegex)
+  let whiteSpaceRegex = /^\S*$/
+  let notContainsWhitespace = name.match(whiteSpaceRegex)
+
+  if (!name) {
+    return 'First Name is required.'
+  } else if (name.length > 25) {
+    return `First Name Should not exceed 25 characters in length.`
+  } else if (!notContainsSymbols) {
+    return 'Only alphabets allowed.'
+  } else if (!validSingleSpace) {
+    return 'Single whitespace allowed.'
+  } else if (!notContainsWhitespace) {
+    if (!validName) {
+      return 'Single whitespace allowed.'
+    }
+  }
+}
+
+export const validateConnectAppLastName = (name: string) => {
+  name = name.trim()
+  let onlyAlphabetsRegex = /^[a-zA-Z]+$/
+  let whiteSpaceRegex = /^\S*$/
+
+  let notContainsSymbols = name.match(onlyAlphabetsRegex)
+  let notContainsWhitespace = name.match(whiteSpaceRegex)
+
+  if (!name) {
+    return 'Last Name is required.'
+  } else if (!notContainsWhitespace) {
+    return 'Whitespaces are not allowed.'
+  } else if (name.length > 25) {
+    return `Last Name Should not exceed 25 characters in length.`
+  }
+  if (!notContainsSymbols) {
+    return 'Only alphabets allowed.'
+  }
+}
+
+export const validateConnectAppEmail = async (email: string) => {
+  email = email.toLowerCase().trim()
+  let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+  let notContainsSymbols = email.match(regex)
+
+  const user = await db.user.findFirst({
+    where: {
+      email,
+    },
+  })
+
+  if (!email) {
+    return 'Email is required.'
+  } else if (email.length > 50) return `Email Should not exceed 50 characters in length.`
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return 'Invalid email address.'
+  } else if (user) {
+    return 'Email already exists.'
+  } else if (!notContainsSymbols) {
+    return 'Invalid email address.'
+  }
+}
+
+export const validateConnectAppUserName = async (userName: string) => {
+  try {
+    userName = userName.trim()
+    let isValid = /^[a-zA-Z0-9-]*$/.test(userName)
+    if (isValid) isValid = /.*[a-zA-Z].*/.test(userName)
+
+    const alreadyExist = await db.user.count({
+      where: {
+        username: userName.toLowerCase(),
+      },
+    })
+
+    if (alreadyExist) return 'userName already exists.'
+
+    if (!userName) {
+      return 'userName is required.'
+    } else if (userName.length < 5) {
+      return 'userName Should be at least 5 characters in length.'
+    } else if (userName.length > 20) {
+      return 'userName Should not exceed 20 characters in length.'
+    } else if (!isValid) {
+      return 'Only alphabets, numbers and - sign is allowed.'
+    } else return undefined
+  } catch {
+    return 'Only alphabets, numbers and - sign is allowed.'
   }
 }
