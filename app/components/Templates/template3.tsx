@@ -29,18 +29,20 @@ export default function Template3({
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
-        className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none ${
+        className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none
+         ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
-        } ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${
+        } 
+        ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${
           nav ? '' : ''
         }`}
         style={myStyle}
       >
         <div
-          className={`flex-shrink-0 h-full flex flex-col justify-center items-center bg-black py-[2rem] ${
+          className={`flex-shrink-0 xl:h-screen h-full flex flex-col justify-center items-center bg-black py-8 ${
             mode === 'mobile'
               ? 'w-full'
-              : 'w-full lg:items-center xl:py-[10rem] xl:w-[30rem] med:w-[32rem] mediumLaptop:w-[30rem] largeLaptop:w-[34rem]'
+              : 'w-full lg:items-center xl:w-[30rem]'
           } ${nav ? '' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
@@ -83,7 +85,7 @@ export default function Template3({
             <span></span>
           )}
 
-          <div
+          {/* <div
             className={`px-4 pb-[1rem]  bg-black w-full px-[1rem] ${
               mode === 'mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'
             } `}
@@ -136,11 +138,18 @@ export default function Template3({
                 <span></span>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div
-          className={`w-full px-[2rem] ${mode === 'mobile' ? '' : 'xl:pt-[6rem]'} ${
+          // className={`w-full px-[2rem] ${mode === 'mobile' ? '' : 'xl:pt-[6rem]'} ${
+          //   nav
+          //     ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]'
+          //     : mode != 'mobile'
+          //     ? 'xl:w-[23rem] med:w-[30rem] mediumLaptop:w-[40rem] largeLaptop:w-[45rem] large:w-[60rem]'
+          //     : ''
+          // }`}
+          className={`w-full flex flex-col items-end justify-start px-[2rem] ${mode === 'mobile' ? '' : 'xl:pt-[6rem]'} ${
             nav
               ? 'xl:w-[42rem] med:w-[45rem] mediumLaptop:w-[52rem] largeLaptop:w-[55rem]'
               : mode != 'mobile'

@@ -1,6 +1,6 @@
 export default function TestimonialAddOn({ testimonialText, testimonialBy, loaderData }: any) {
   return (
-    <section className="mt-[1rem] overflow-hidden">
+    <section className="mt-4 overflow-hidden">
       <div
         className={`mx-auto ${
           loaderData?.profileInfo?.templateNumber == '10' ? 'w-[100%]' : 'max-w-7xl '
@@ -69,7 +69,7 @@ export default function TestimonialAddOn({ testimonialText, testimonialBy, loade
               </div>
 
               <div
-                className={`mb-[-3rem] flex justify-end pt-3 text-7xl ${
+                className={`flex justify-end text-7xl ${
                   loaderData?.profileInfo?.templateNumber == '4' ||
                   loaderData?.profileInfo?.templateNumber == '9' ||
                   loaderData?.profileInfo?.templateNumber == '16'

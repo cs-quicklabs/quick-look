@@ -65,7 +65,7 @@ export default function Template5({
             input.location ||
             loaderData?.profileInfo?.location ? (
               <h3
-                className={`text-xs leading-5 font-normal text-gray-500 lg:text-2xl lg:leading-8 lg:font-medium lg:text-gray-600 ${
+                className={`text-xs leading-5 lg:mb-2 font-normal text-gray-500 lg:text-2xl lg:leading-8 lg:font-medium lg:text-gray-600 ${
                   mode === 'mobile' ? '' : ''
                 }  ${nav ? '=' : ''} `}
               >
@@ -115,7 +115,7 @@ export default function Template5({
 
                     <h2
                       className={`text-gray-600 w-max text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${
-                        mode === 'mobile' ? '' : 'lg:mt-[-0.25rem] xl:w-[65%] largeLaptop:w-max'
+                        mode === 'mobile' ? '' : 'lg:mt-[-0.25rem] xl:w-full largeLaptop:w-max'
                       }  ${nav ? '' : ''}`}
                     >
                       {input.company}

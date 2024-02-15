@@ -38,7 +38,7 @@ export default function Template8({
         } `}
       >
         <div
-          className={`pt-[1rem] w-full bg-white px-[2rem] pb-[3rem] ${
+          className={`pt-[1rem] w-full px-[2rem] pb-[3rem] ${
             mode === 'mobile'
               ? ''
               : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'
@@ -121,7 +121,7 @@ export default function Template8({
                   </h2>
                   <h2
                     className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-[65%]'
+                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-full'
                     }`}
                   >
                     {input.company}
