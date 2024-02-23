@@ -28,7 +28,7 @@ export default function Template11({
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
 
       <div
-        className={`flex overflow-auto scrollbar-hide font-inter bg-white overflow-none pb-[3rem] ${
+        className={`flex scrollbar-hide font-inter bg-white overflow-none pb-[3rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
         } ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:gap-[4rem]'} ${nav ? '' : ''}`}
       >
@@ -326,7 +326,7 @@ export default function Template11({
                         nav
                           ? 'xl:w-max med:w-max'
                           : mode != 'mobile'
-                          ? ' xl:w-[65%] med:w-[65%] medium:w-max'
+                          ? ' xl:w-[65%] md:w-[65%] medium:w-max'
                           : ''
                       }`}
                     >
@@ -372,7 +372,15 @@ export default function Template11({
               </div>
             </div>
 
-            <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            {/* <div
+              className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''} xs:w-[32rem] sm:w-full md:w-[32rem] w-full
+          `}> */}
+            <div
+              className={`${mode === 'mobile' ? '' : ''} ${
+                nav ? '' : ''
+              } md:w-[32rem] w-full flex justify-center
+        `}
+            >
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn
                   testimonialText={loaderData?.testimonial?.testimonialText}

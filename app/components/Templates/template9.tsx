@@ -27,13 +27,13 @@ export default function Template9({
     <>
       {loaderData?.supportBanner?.bannerText && <BannerAddOn mode={mode} loaderData={loaderData} />}
       <div
-        className={`mb-[3rem] flex h-full ${nav ? 'w-screen' : ''}  items-center justify-center`}
+        className={`mb-[3rem] flex h-full ${nav ? '' : ''} items-center justify-center`}
       >
         <div
           className={`mb-[5rem] flex items-center justify-center bg-gray-900 rounded-2xl px-[2rem] ${
             mode == 'mobile'
-              ? 'lg:w-[28rem] medium:w-[32rem] mediumLaptop:w-[38rem]'
-              : 'w-[90%] md:w-[40rem] lg:w-[35rem] medium:w-[40rem] mediumLaptop:w-[45rem] largeLaptop:w-[50rem]'
+              ? 'lg:w-[28rem] medium:w-[32rem] md:w-[38rem]'
+              : 'w-[90%] md:w-[40rem] lg:w-[35rem] md:w-[40rem] md:w-[45rem] lg:w-[50rem]'
           } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
           <div className="flex flex-col">
@@ -95,7 +95,7 @@ export default function Template9({
 
               <div
                 className={`${
-                  mode === 'mobile' ? 'lg:w-[24rem] medium:w-[28rem] mediumLaptop:w-[33rem]' : ''
+                  mode === 'mobile' ? 'lg:w-[24rem] md:w-[28rem] md:w-[33rem]' : ''
                 }`}
               >
                 <div className={`${mode === 'mobile' ? '' : ''}`}>
@@ -116,7 +116,7 @@ export default function Template9({
                     {input?.description?.trim()}{' '}
                   </pre>{' '}
                 </div>
-                <div className="]">
+                <div className="w-[42rem]">
                   {loaderData?.testimonial?.testimonialText && (
                     <TestimonialAddOn
                       loaderData={loaderData}
