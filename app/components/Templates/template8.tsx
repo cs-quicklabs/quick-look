@@ -22,7 +22,6 @@ export default function Template8({
 }: any) {
   const Location = useLocation()
   const nav = Location.pathname.includes(`${loaderData.username}`)
-
   return (
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
@@ -38,11 +37,17 @@ export default function Template8({
         } `}
       >
         <div
-          className={`pt-[1rem] w-full px-[2rem] pb-[3rem] ${
+          className={`pt-[1rem] sm:w-[32rem] px-[2rem] pb-[3rem] ${
             mode === 'mobile'
-              ? ''
+              ? 'small:w-[29rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] largeLaptop:w-[64rem]'
               : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'
-          } ${nav ? 'SmMedium:w-[35rem] med:w-[40rem]' : ''}`}
+          } ${
+            nav
+              ? 'lg:w-full px-[2rem] SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]'
+              : mode != 'mobile'
+              ? 'lg:w-[35rem] med:w-[30rem]'
+              : ''
+          }`}
         >
           {loaderData?.profileInfo?.occupation === '' &&
           !loaderData?.spotlightButton &&

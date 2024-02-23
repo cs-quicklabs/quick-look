@@ -36,22 +36,30 @@ export default function Template5({
         </div>
 
         <div
-          className={`flex flex-col-reverse items-end ml-[0.1rem] pb-[3rem] ${
-            mode === 'mobile' ? '' : 'xl:flex-row xl:items-start xl:justify-between'
-          } ${nav ? '' : ' '}`}
+          className={`flex overflow-auto scrollbar-hide flex-col-reverse justify-center items-center bg-no-repeat object-cover overflow-none ${
+            mode === 'mobile'
+              ? '  flex-col'
+              : ' flex-col xl:items-start xl:justify-around xl:flex-row '
+          } ${
+            nav
+              ? 'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start'
+              : 'min-h-[calc(95.5vh+50px)] '
+          } `}
         >
           <div
-            className={`w-full px-[2rem] mt-[3rem] h-full ${
-              mode === 'mobile'
-                ? 'lg:px-[3rem]'
-                : 'xl:mt-[10rem] medium:pl-[3rem]  mediumLaptop:pl-[5rem] '
-            } ${
-              nav
-                ? 'xl:w-[53%] mediumLaptop:w-[50rem] largeLaptop:w-[55rem]'
-                : mode != 'mobile'
-                ? 'xl:w-[53%] mediumLaptop:w-[40rem] largeLaptop:w-[45rem]'
-                : ''
-            }`}
+            className={`w-[21rem] sm:w-[36rem] md:w-[44rem] 
+    ${
+      mode === 'mobile'
+        ? 'small:w-[29rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] largeLaptop:w-[64rem]'
+        : 'xl:w-[25rem] xl:mt-[9.5rem] xl:ml-[0rem] mediumLaptop:w-[33rem] largeLaptop:w-[38rem]'
+    } 
+    ${
+      nav
+        ? 'lg:w-full px-[2rem] SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]'
+        : mode != 'mobile'
+        ? 'lg:w-[35rem] med:w-[30rem]'
+        : ''
+    }`}
           >
             <h4
               className={`text-xl leading-8 font-semibold text-black lg:text-4xl lg:leading-10 lg:font-extrabold lg:text-gray-800 ${
@@ -147,7 +155,7 @@ export default function Template5({
               </div>
             </div>
 
-            <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={` ${mode === 'mobile' ? '' : 'w-full'} ${nav ? '' : ''}w-full`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn
                   testimonialText={loaderData?.testimonial?.testimonialText}
