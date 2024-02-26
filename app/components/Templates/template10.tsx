@@ -37,7 +37,9 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
         ) : null}
       </div>
 
-      <div className="xl:flex xl:flex-col xl:items-center ">
+      <div className="xl:flex xl:flex-col xl:items-center flex flex-col items-center">
+
+        
         <div
           className={`flex flex-col ${mode === 'mobile' ? '' : ''}  ${
             mode === 'mobile'
@@ -46,7 +48,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
           }`}
         >
           <div
-            className={`relative flex justify-center  ${
+            className={`relative flex-col flex justify-center items-center  ${
               primaryRestore || loaderData?.profileImage?.primaryImage
                 ? ` ${
                     mode === 'mobile' ? 'bottom-[5rem] right-0' : 'bottom-[4rem] md:bottom-[9rem]'
@@ -101,7 +103,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             <div className={`flex flex-wrap ${mode === 'mobile' ? '' : ''}`}>
               {' '}
               <pre
-                className={`max-w-[472px] whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${
+                className={`whitespace-pre-wrap break-normal font-sans text-xs font-normal leading-5 text-gray-500 lg:text-base ${
                   loaderData?.spotlightButton?.toggleSpotlight ? 'mt-1' : 'mt-[1rem]'
                 }`}
               >
@@ -109,6 +111,8 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
               </pre>{' '}
             </div>
 
+            <div className={` ${mode === 'mobile' ? 'w-full' : ''} ${nav ? 'w-full' : ''} sm:w-[42rem] lg:w-full w-[32rem]`}>
+            {/* <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''} w-[100%]`}> */}
             {loaderData?.testimonial?.testimonialText && (
               <TestimonialAddOn
                 loaderData={loaderData}
@@ -116,6 +120,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
                 testimonialBy={loaderData?.testimonial?.testimonialBy}
               />
             )}
+            </div>
 
             <div className={`w-auto sm:w-[472px] ${mode === 'mobile' ? '' : ''}`}>
               {loaderData?.video?.videoLink && (
