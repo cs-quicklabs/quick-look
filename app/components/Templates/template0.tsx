@@ -124,7 +124,7 @@ export default function Template1({
                   <div className="flex flex-col">
                     <h2 className="w-max text-sm font-medium leading-5 text-gray-500">WORK</h2>
                     <h2
-                      className={`w-[65%] text-sm font-normal leading-5 text-gray-900 break-normal ${
+                      className={`w-full text-sm font-normal leading-5 text-gray-900 break-normal ${
                         mode === 'mobile' ? '' : ''
                       }`}
                     >

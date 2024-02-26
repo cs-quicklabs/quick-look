@@ -133,7 +133,7 @@ export default function Template14({
           </div>
 
           <div
-            className={`pb-[1rem] w-full  ${
+            className={`pb-[1rem] xl:w-full w-[32rem]  ${
               mode === 'mobile' ? 'xl:mt-[-1rem]' : 'xl:hidden xl:pl-[0rem]'
             } `}
           >
@@ -204,7 +204,7 @@ export default function Template14({
           </div>
 
           <pre
-            className={`text-gray-700 text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
+            className={`text-gray-700 xl:w-full w-[32rem] text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
               mode === 'mobile' ? '' : ''
             } ${nav ? '' : ''}`}
           >
@@ -270,7 +270,7 @@ export default function Template14({
             </div>
           </div>
 
-          <div className="">
+          <div className="xl:w-full w-[32rem]">
             <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn
