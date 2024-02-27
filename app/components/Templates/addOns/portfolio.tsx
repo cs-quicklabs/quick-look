@@ -6,34 +6,8 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
   return (
     <div className="img">
       <LightGallery
-        elementClassNames={`grid gap-4 ${
-          mode === 'mobile' ? 'grid-cols-2 w-[20rem] lg:w-full lg:grid-cols-3' : ''
-        } ${
-          loaderData.portfolioImage.length == 1
-            ? 'grid-cols-1'
-            : loaderData.portfolioImage.length == 2
-            ? 'grid-cols-2'
-            : loaderData.portfolioImage.length == 3
-            ? 'grid-cols-3'
-            : loaderData.portfolioImage.length == 4
-            ? 'grid-cols-4'
-            : loaderData.portfolioImage.length >= 5
-            ? 'grid-cols-5'
-            : ''
-        }
-        ${
-          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '10'
-            ? 'grid-cols-2 w-[20rem] lg:w-full lg:w-full md:grid-cols-3'
-            : loaderData?.profileInfo?.templateNumber == '10'
-            ? 'grid-cols-2 w-[20rem] lg:w-full md:grid-cols-3'
-            : ''
-        }
-        ${
-          mode === 'mobile' && loaderData?.profileInfo?.templateNumber == '14'
-            ? 'grid-cols-2 w-[20rem] lg:w-[75%] xl:w-full'
-            : loaderData?.profileInfo?.templateNumber == '14'
-            ? 'w-[90%]'
-            : ''
+       elementClassNames={`{
+        flex flex-wrap
         }`}
         counter
         animateThumb={false}
@@ -44,19 +18,17 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
         plugins={[lgZoom, lgVideo]}
         mode="lg-slide"
       >
-        {/* <div  className='grid grid-cols-4  gap-4 items-center'> */}
         {loaderData.portfolioImage.map((img: any, inx: number) => (
           <span data-lg-size="1406-1390" className="gallery-item" data-src={img.imageUrl} key={inx}>
             <img
               draggable={false}
               loading="lazy"
-              className="img-responsive h-[10rem] w-[16rem] cursor-pointer object-cover"
+              className="img-responsive mr-4 lg:mr-6 mb-4 w-8 h-10 lg:mb-6 md:w-16 md:h-20 cursor-pointer object-cover"
               src={img.imageUrl}
               alt="portfolio"
             />
           </span>
         ))}
-        {/* </div> */}
       </LightGallery>
     </div>
   )

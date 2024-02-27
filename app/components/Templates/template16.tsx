@@ -289,8 +289,8 @@ export default function Template16({
             </div>
           </div>
 
-          <div className="">
-            <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className="w-[42rem] lg:w-full">
+            <div className={`${mode === 'mobile' ? 'w-full' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn
                   testimonialText={loaderData?.testimonial?.testimonialText}
