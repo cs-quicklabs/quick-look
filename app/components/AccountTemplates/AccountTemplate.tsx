@@ -95,6 +95,7 @@ export default function AccountTemplate({ setshowTemplate, mode, setmode }: any)
               <button
                 type="submit"
                 className="disabled:cursor-pointer"
+                // className="disabled:cursor-pointer relative"
                 onClick={(e: any) => {
                   setSelectTemplate('0')
                 }}
