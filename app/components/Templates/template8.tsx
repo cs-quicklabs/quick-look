@@ -32,15 +32,15 @@ export default function Template8({
             : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '
         } ${
           nav
-            ? 'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start'
+            ? 'min-h-[calc(96.5vh+50px)] items-center justify-center xl:justify-around xl:items-start'
             : 'min-h-[calc(95.5vh+50px)] '
         } `}
       >
         <div
-          className={`pt-[1rem] sm:w-[32rem] px-[2rem] pb-[3rem] ${
+          className={`pt-[1rem] w-[full] px-[2rem] pb-[3rem] ${
             mode === 'mobile'
               ? 'small:w-[29rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] largeLaptop:w-[64rem]'
-              : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'
+              : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'} 
           } ${
             nav
               ? 'lg:w-full px-[2rem] SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]'
@@ -90,7 +90,7 @@ export default function Template8({
           )}
 
           <div>
-            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''} justify-center items-center`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <Spotlightbtn loaderData={loaderData} />
               )}
