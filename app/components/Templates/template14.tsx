@@ -28,7 +28,7 @@ export default function Template14({
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
 
       <div
-        className={`flex overflow-auto scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1rem] ${
+        className={`flex scrollbar-hide font-inter bg-white justify-center overflow-none pb-[1rem] ${
           nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'
         } ${mode === 'mobile' ? 'flex-col' : 'flex-col'} ${nav ? '' : ''}`}
       >
@@ -123,7 +123,7 @@ export default function Template14({
                   mode === 'mobile'
                     ? ''
                     : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'
-                }  ${nav ? 'lg:w-full' : ''} `}
+                }  ${nav ? '' : ''} `}
               >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
               </h3>
@@ -133,7 +133,8 @@ export default function Template14({
           </div>
 
           <div
-            className={`pb-[1rem] xl:w-full w-[32rem]  ${
+            // className={`pb-[1rem] xl:w-full w-[32rem]  ${
+              className={`pb-[1rem] w-full  ${
               mode === 'mobile' ? 'xl:mt-[-1rem]' : 'xl:hidden xl:pl-[0rem]'
             } `}
           >
@@ -204,9 +205,12 @@ export default function Template14({
           </div>
 
           <pre
-            className={`text-gray-700 xl:w-full w-[32rem] text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
-              mode === 'mobile' ? '' : ''
-            } ${nav ? '' : ''}`}
+            // className={`text-gray-700 xl:w-full w-[32rem] text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
+            //   mode === 'mobile' ? '' : ''
+            // } ${nav ? '' : ''}`}
+            className={`text-gray-700 w-[100%] text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
+                mode === 'mobile' ? '' : ''
+              } ${nav ? '' : ''}`}
           >
             {input?.description?.trim()}
           </pre>
@@ -270,7 +274,8 @@ export default function Template14({
             </div>
           </div>
 
-          <div className="xl:w-full w-[32rem]">
+          <div className="w-[100%]">
+          {/* <div className=""> */}
             <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn

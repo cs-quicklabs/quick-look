@@ -201,7 +201,7 @@ export default function Template3({
                       WORK
                     </h2>
                     <h2
-                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${
+                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal whitespace-pre-wrap   ${
                         mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
                       }`}
                     >
