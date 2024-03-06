@@ -118,7 +118,7 @@ export default function Template13({
           </div>
 
           <div
-            className={`pb-[1rem] xl:w-full w-[32rem]  ${
+            className={`pb-[1rem] xl:w-full  ${
               mode === 'mobile' ? 'xl:mt-[-1rem]' : 'xl:hidden xl:pl-[0rem]'
             } `}
           >
@@ -137,7 +137,7 @@ export default function Template13({
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-[70%] sm:w-max  text-xs leading-5 font-normal break-normal   ${
+                    className={`text-gray-800 w-[70%] text-xs leading-5 font-normal break-normal   ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
                         : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem] xl:w-max'
@@ -189,7 +189,7 @@ export default function Template13({
           </div>
 
           <pre
-            className={`text-gray-700 xl:w-full w-[32rem] text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
+            className={`text-gray-700 xl:w-full text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
               mode === 'mobile' ? '' : ''
             } ${nav ? '' : ''}`}
           >
@@ -255,7 +255,7 @@ export default function Template13({
             </div>
           </div>
 
-          <div className="xl:w-full w-[32rem]">
+          <div className="xl:w-full">
             <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn

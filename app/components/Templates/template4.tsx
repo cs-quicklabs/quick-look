@@ -411,7 +411,7 @@ export default function Template4({
               </div>
             </div>
 
-            <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''} border border-gray-500 mt-3`}>
               {loaderData?.video?.videoLink && (
                 <VideoAddOn videoLink={loaderData?.video?.videoLink} loaderData={loaderData} />
               )}
