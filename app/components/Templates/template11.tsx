@@ -134,23 +134,23 @@ export default function Template11({
               >
                 <div className={`flex pt-4 justify-between ${mode === 'mobile' ? '' : ''}`}>
                   {loaderData?.profileInfo?.company || input.company ? (
-                    <div className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'}`}>
+                    <div className={`flex-1 flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'}`}>
                       <h2
-                        className={`text-white text-xs leading-5 font-normal w-max ${
+                        className={`text-white text-xs leading-5 font-normal ${
                           mode === 'mobile' ? '' : 'xl:hidden'
                         }`}
                       >
                         Work
                       </h2>
                       <h2
-                        className={`text-black font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem] hidden ${
+                        className={`text-black font-medium text-sm leading-5 w-6 h-6 mr-[0.5rem] hidden ${
                           mode === 'mobile' ? '' : 'xl:block'
                         }`}
                       >
                         <BriefcaseIcon />
                       </h2>
                       <h2
-                        className={`text-white text-xs leading-5 font-normal w-max ${
+                        className={`text-white text-xs leading-5 font-normal ${
                           mode === 'mobile'
                             ? 'lg:text-sm'
                             : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem] '
@@ -164,12 +164,12 @@ export default function Template11({
                   )}
                   {loaderData?.profileInfo?.education || input.education ? (
                     <div
-                      className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'} ${
+                      className={`flex-1 flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'} ${
                         nav ? '' : ''
                       }`}
                     >
                       <h2
-                        className={`text-white text-xs leading-5 font-normal w-max  ${
+                        className={`text-white text-xs leading-5 font-normal  ${
                           mode === 'mobile' ? '' : 'xl:hidden'
                         }`}
                       >
@@ -183,7 +183,7 @@ export default function Template11({
                         <AcademicCapIcon />
                       </h2>
                       <h2
-                        className={`text-white w-max text-xs leading-5 font-normal break-normal  ${
+                        className={`text-white text-xs leading-5 font-normal break-normal  ${
                           mode === 'mobile'
                             ? 'lg:text-sm'
                             : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'
@@ -304,7 +304,7 @@ export default function Template11({
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className={`flex flex-col ${mode === 'mobile' ? '' : 'xl:flex-row'}`}>
                     <h2
-                      className={`text-white text-xs leading-5 font-normal w-max ${
+                      className={`text-white text-xs leading-5 font-normal ${
                         mode === 'mobile' ? '' : 'xl:hidden'
                       }`}
                     >
@@ -318,7 +318,7 @@ export default function Template11({
                       <BriefcaseIcon />
                     </h2>
                     <h2
-                      className={`text-white text-xs leading-5 font-normal w-max ${
+                      className={`text-white text-xs leading-5 font-normal ${
                         mode === 'mobile'
                           ? 'lg:text-sm'
                           : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'
@@ -343,7 +343,7 @@ export default function Template11({
                     }`}
                   >
                     <h2
-                      className={`text-white text-xs leading-5 font-normal w-max  ${
+                      className={`text-white text-xs leading-5 font-normal  ${
                         mode === 'mobile' ? '' : 'xl:hidden'
                       }`}
                     >
@@ -357,7 +357,7 @@ export default function Template11({
                       <AcademicCapIcon />
                     </h2>
                     <h2
-                      className={`text-white w-max text-xs leading-5 font-normal break-normal  ${
+                      className={`text-white text-xs leading-5 font-normal break-normal  ${
                         mode === 'mobile'
                           ? 'lg:text-sm'
                           : 'lg:text-sm xl:text-gray-600 lg:mt-[-0.15rem]'
@@ -378,7 +378,7 @@ export default function Template11({
             <div
               className={`${mode === 'mobile' ? '' : ''} ${
                 nav ? '' : ''
-              } md:w-[32rem] w-full flex justify-center
+              } w-full flex justify-center
         `}
             >
               {loaderData?.testimonial?.testimonialText && (

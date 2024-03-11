@@ -32,11 +32,12 @@ export default function Template9({
         <div
           className={`mb-[5rem] flex items-center justify-center bg-gray-900 rounded-2xl px-[2rem] ${
             mode == 'mobile'
-              ? 'lg:w-[28rem] medium:w-[32rem] md:w-[38rem]'
-              : 'w-[90%] md:w-[40rem] lg:w-[35rem] md:w-[40rem] md:w-[45rem] lg:w-[50rem]'
+              ? 'lg:w-[100%] md:w-[32rem]'
+              : 'w-[90%] md:w-[40rem] lg:w-[35rem]'
+              // : 'w-[90%] md:w-[70%] lg:w-[50%]'
           } ${nav ? 'mt-[8rem]' : 'mt-[5rem]'}`}
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <div
               className={`relative flex items-center justify-center ${
                 mode == 'mobile' ? 'top-[-3rem]' : 'top-[-5rem]'
@@ -67,7 +68,7 @@ export default function Template9({
               }`}
             >
               <h1
-                className={`w-fit px-4 font-bold leading-8 text-gray-50 ${
+                className={`px-4 font-bold leading-8 text-gray-50 ${
                   mode == 'mobile'
                     ? 'text-2xl'
                     : 'text-2xl md:text-4xl lg:leading-10 lg:font-extrabold'
@@ -82,8 +83,8 @@ export default function Template9({
                 <h3
                   className={`break-normal mt-1 text-gray-50 ${
                     mode == 'mobile'
-                      ? 'w-fit px-4 text-xl'
-                      : 'w-fit px-4 text-xl md:text-2xl lg:leading-8 lg:font-medium'
+                      ? ' px-4 text-xl'
+                      : ' px-4 text-xl md:text-2xl lg:leading-8 lg:font-medium'
                   }`}
                 >
                   {input.occupation} {input.location && input.occupation ? `in` : ''}{' '}
@@ -95,7 +96,7 @@ export default function Template9({
 
               <div
                 className={`${
-                  mode === 'mobile' ? 'lg:w-[24rem] md:w-[28rem] md:w-[33rem]' : ''
+                  mode === 'mobile' ? 'lg:w-[24rem]' : ''
                 }`}
               >
                 <div className={`${mode === 'mobile' ? '' : ''}`}>
@@ -116,7 +117,7 @@ export default function Template9({
                     {input?.description?.trim()}{' '}
                   </pre>{' '}
                 </div>
-                <div className="w-[42rem]">
+                <div className="">
                   {loaderData?.testimonial?.testimonialText && (
                     <TestimonialAddOn
                       loaderData={loaderData}
@@ -136,15 +137,15 @@ export default function Template9({
                   <PortfolioAddon mode={mode} loaderData={loaderData} />
                 </div>
                 <div className="mt-[2rem] flex flex-col gap-6">
-                  <div className="flex items-center justify-center gap-4">
+                  <div className="flex-1 items-center justify-center gap-4">
                     {input.company && <BriefcaseIcon className="h-6 w-6 text-gray-100" />}
-                    <h2 className="w-max break-normal  text-base font-normal leading-5 text-gray-100">
+                    <h2 className="break-normal  text-base font-normal leading-5 text-gray-100">
                       {input.company}{' '}
                     </h2>
                   </div>
-                  <div className="flex items-center justify-center gap-4">
+                  <div className="flex-1 items-center justify-center gap-4">
                     {input.education && <AcademicCapIcon className="h-6 w-6 text-gray-100" />}
-                    <h2 className="w-max break-normal text-base font-normal leading-5 text-gray-100">
+                    <h2 className="break-normal text-base font-normal leading-5 text-gray-100">
                       {input.education}{' '}
                     </h2>
                   </div>

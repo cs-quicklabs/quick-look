@@ -104,10 +104,10 @@ export default function Template13({
             input.location ||
             loaderData?.profileInfo?.location ? (
               <h3
-                className={`mt-1 text-gray-600 text-center break-normal text-xs leading-5 font-normal lg:text-base ${
+                className={`mt-1 text-gray-600 text-center md:text-left break-normal text-xs leading-5 font-normal lg:text-base ${
                   mode === 'mobile'
                     ? ''
-                    : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'
+                    : ' xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'
                 }  ${nav ? 'lg:w-full' : ''} `}
               >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
@@ -118,7 +118,7 @@ export default function Template13({
           </div>
 
           <div
-            className={`pb-[1rem] xl:w-full w-[32rem]  ${
+            className={`pb-[1rem] xl:w-full  ${
               mode === 'mobile' ? 'xl:mt-[-1rem]' : 'xl:hidden xl:pl-[0rem]'
             } `}
           >
@@ -137,10 +137,10 @@ export default function Template13({
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-[70%] sm:w-max  text-xs leading-5 font-normal break-normal   ${
+                    className={`text-gray-800 text-xs leading-5 font-normal break-normal   ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
-                        : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem] xl:w-max'
+                        : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem]'
                     }`}
                   >
                     {input.company}
@@ -161,7 +161,7 @@ export default function Template13({
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-800 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
                         : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem]'
@@ -189,7 +189,7 @@ export default function Template13({
           </div>
 
           <pre
-            className={`text-gray-700 xl:w-full w-[32rem] text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
+            className={`text-gray-700 xl:w-full text-xs leading-5 font-normal break-normal font-sans flex text-justify whitespace-pre-wrap lg:text-base xl:mt-[1.5rem] ${
               mode === 'mobile' ? '' : ''
             } ${nav ? '' : ''}`}
           >
@@ -207,7 +207,7 @@ export default function Template13({
               } ${nav ? '' : ''}`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
-                <div className={`flex ${mode === 'mobile' ? '' : ''}`}>
+                <div className={`flex-1 ${mode === 'mobile' ? '' : ''}`}>
                   <h2
                     className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
                       mode === 'mobile' ? '' : 'xl:text-black'
@@ -216,10 +216,10 @@ export default function Template13({
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal   ${
+                    className={`text-gray-800 text-xs leading-5 font-normal break-normal   ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
-                        : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem] xl:w-max'
+                        : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem]'
                     }`}
                   >
                     {input.company}
@@ -230,7 +230,7 @@ export default function Template13({
               )}
               {loaderData?.profileInfo?.education || input.education ? (
                 <div
-                  className={`flex  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${nav ? '' : ''}`}
+                  className={`flex-1  ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${nav ? '' : ''}`}
                 >
                   <h2
                     className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
@@ -240,7 +240,7 @@ export default function Template13({
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-800 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
                         : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem]'
@@ -255,7 +255,7 @@ export default function Template13({
             </div>
           </div>
 
-          <div className="xl:w-full w-[32rem]">
+          <div className="xl:w-full">
             <div className={` ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn

@@ -32,15 +32,15 @@ export default function Template8({
             : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '
         } ${
           nav
-            ? 'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start'
+            ? 'min-h-[calc(96.5vh+50px)] items-center justify-center xl:justify-around xl:items-start'
             : 'min-h-[calc(95.5vh+50px)] '
         } `}
       >
         <div
-          className={`pt-[1rem] sm:w-[32rem] px-[2rem] pb-[3rem] ${
+          className={`pt-[1rem] w-[full] px-[2rem] pb-[3rem] ${
             mode === 'mobile'
               ? 'small:w-[29rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] largeLaptop:w-[64rem]'
-              : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'
+              : 'lg:pt-[1.5rem] lg:px-[4rem] lg:mt-[0rem] xl:pl-[2rem] xl:pr-[4rem] xl:bg-purple-50 xl:w-[33rem] medium:w-[40rem] mediumLaptop:w-[42rem] largeLaptop:w-[46rem]'} 
           } ${
             nav
               ? 'lg:w-full px-[2rem] SmMedium:w-[30rem] med:w-[35rem] medium:w-[40rem] mediumLaptop:w-[43rem] largeLaptop:w-[46rem]'
@@ -90,7 +90,7 @@ export default function Template8({
           )}
 
           <div>
-            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+            <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''} justify-center items-center`}>
               {loaderData?.spotlightButton?.toggleSpotlight && (
                 <Spotlightbtn loaderData={loaderData} />
               )}
@@ -115,18 +115,18 @@ export default function Template8({
 
           <div className={`flex flex-col ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             <div
-              className={`flex flex-col pt-[1.5rem] ${
+              className={`flex flex-col gap-2 pt-[1.5rem] ${
                 mode === 'mobile' ? ' ' : 'xl:flex-row xl:justify-between'
               } ${nav ? '' : ''}`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
-                <div className={`flex ${mode === 'mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
+                <div className={`flex-1 ${mode === 'mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-full'
+                    className={`text-gray-600 text-xs lg:text-base leading-5 font-normal break-normal ${
+                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem]'
                     }`}
                   >
                     {input.company}
@@ -136,12 +136,12 @@ export default function Template8({
                 <span></span>
               )}
               {loaderData?.profileInfo?.education || input.education ? (
-                <div className={`flex mt-[2rem]  ${mode === 'mobile' ? ' ' : 'xl:mt-0 '}`}>
+                <div className={`flex-1 mt-[2rem]  ${mode === 'mobile' ? ' ' : 'xl:mt-0 '}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
+                    className={`text-gray-600 text-xs lg:text-base leading-5 font-normal break-normal ${
                       mode === 'mobile' ? ' lg:mt-[-0.25rem]' : 'xl:mt-[-0.25rem] '
                     }`}
                   >

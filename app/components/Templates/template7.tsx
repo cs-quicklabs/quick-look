@@ -65,7 +65,7 @@ export default function Template7({
             input.location ||
             loaderData?.profileInfo?.location ? (
               <h3
-                className={`text-xs leading-5 lg:text-2xl lg:leading-8 font-normal text-gray-600 w-max break-normal text-center ${
+                className={`text-xs leading-5 lg:text-2xl lg:leading-8 font-normal text-gray-600 break-normal text-center ${
                   mode === 'mobile' ? '' : ''
                 } `}
               >
@@ -112,11 +112,11 @@ export default function Template7({
             >
               <div className={`flex flex-col  items-center justify-center ${nav ? '' : ''}`}>
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div className="flex pt-[1.5rem]">
+                  <div className="flex-1 pt-[1.5rem]">
                     <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
                       <BriefcaseIcon />
                     </h2>
-                    <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-normal">
+                    <h2 className="text-gray-600 text-base leading-5 font-normal break-normal">
                       {input.company}
                     </h2>
                   </div>
@@ -124,11 +124,11 @@ export default function Template7({
                   <span></span>
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
-                  <div className="flex pt-[1.5rem]">
+                  <div className="flex-1 pt-[1.5rem]">
                     <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
                       <AcademicCapIcon />
                     </h2>
-                    <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-normal">
+                    <h2 className="text-gray-600 text-base leading-5 font-normal break-normal">
                       {input.education}
                     </h2>
                   </div>

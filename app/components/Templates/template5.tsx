@@ -112,7 +112,7 @@ export default function Template5({
                 }  ${nav ? '' : ''}`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div className={`flex  ${mode === 'mobile' ? '' : ''}`}>
+                  <div className={`flex-1  ${mode === 'mobile' ? '' : ''}`}>
                     <h2
                       className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] lg:text-gray-800 ${
                         mode === 'mobile' ? '' : ''
@@ -122,7 +122,7 @@ export default function Template5({
                     </h2>
 
                     <h2
-                      className={`text-gray-600 w-max text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${
+                      className={`text-gray-600 text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${
                         mode === 'mobile' ? '' : 'lg:mt-[-0.25rem] xl:w-full largeLaptop:w-max'
                       }  ${nav ? '' : ''}`}
                     >
@@ -133,7 +133,7 @@ export default function Template5({
                   <span></span>
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
-                  <div className={`flex mt-[0.75rem] ${mode === 'mobile' ? '' : ' xl:mt-0'}`}>
+                  <div className={`flex-1 mt-[0.75rem] ${mode === 'mobile' ? '' : ' xl:mt-0'}`}>
                     <h2
                       className={`text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[1.18rem] lg:text-gray-800 ${
                         mode === 'mobile' ? '' : ''
@@ -142,7 +142,7 @@ export default function Template5({
                       <AcademicCapIcon />
                     </h2>
                     <h2
-                      className={`text-gray-600 w-max text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${
+                      className={`text-gray-600 text-xs leading-5 lg:text-base lg:leading-6 font-normal break-normal ${
                         mode === 'mobile' ? '' : 'lg:mt-[-0.25rem]'
                       }  ${nav ? '' : ''}`}
                     >

@@ -29,7 +29,7 @@ export default function Template3({
     <>
       {loaderData?.supportBanner?.toggleBanner && <BannerAddOn loaderData={loaderData} />}
       <div
-        className={`flex overflow-auto scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none
+        className={`flex scrollbar-hide lg:justify-start lg:items-start bg-no-repeat object-cover overflow-none
          ${nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)]'} 
         ${mode === 'mobile' ? 'flex-col' : 'flex-col xl:flex-row xl:gap-[2rem]'} ${nav ? '' : ''}`}
         style={myStyle}
@@ -70,7 +70,7 @@ export default function Template3({
           loaderData?.profileInfo?.location ? (
             <h3
               className={`text-white text-center break-normal text-xs leading-5 font-normal lg:text-gray-50 lg:text-base ${
-                mode === 'mobile' ? '' : 'lg:w-max mediumLaptop:w-full'
+                mode === 'mobile' ? '' : 'mediumLaptop:w-full'
               }  ${nav ? 'lg:w-full' : ''} `}
             >
               {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
@@ -194,14 +194,14 @@ export default function Template3({
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className={`flex flex-col lg:w-[50%] ${mode === 'mobile' ? '' : ''}`}>
                     <h2
-                      className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${
+                      className={`text-white text-xs leading-5 font-normal lg:text-sm  ${
                         mode === 'mobile' ? '' : 'lg:leading-5 lg:font-medium lg:text-gray-600'
                       }`}
                     >
                       WORK
                     </h2>
                     <h2
-                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${
+                      className={`text-gray-100 text-xs leading-5 font-normal break-normal whitespace-pre-wrap   ${
                         mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
                       }`}
                     >
@@ -214,7 +214,7 @@ export default function Template3({
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div className={`flex flex-col  ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                     <h2
-                      className={`text-white w-max text-xs leading-5 font-normal  ${
+                      className={`text-white text-xs leading-5 font-normal  ${
                         mode === 'mobile'
                           ? 'lg:text-sm'
                           : 'lg:text-sm lg:leading-5 lg:font-medium lg:text-gray-600'
@@ -223,7 +223,7 @@ export default function Template3({
                       EDUCATION
                     </h2>
                     <h2
-                      className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${
+                      className={`text-gray-100 text-xs leading-5 font-normal break-normal  ${
                         mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-black'
                       }`}
                     >
