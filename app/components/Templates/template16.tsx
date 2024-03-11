@@ -169,7 +169,7 @@ export default function Template16({
                 } ${nav ? '' : ''}`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div className={`flex ${mode === 'mobile' ? '' : ''}`}>
+                  <div className={`flex-1 ${mode === 'mobile' ? '' : ''}`}>
                     <h2
                       className={`text-white font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
                         mode === 'mobile' ? '' : 'xl:text-yellow-500'
@@ -178,10 +178,10 @@ export default function Template16({
                       <BriefcaseIcon />
                     </h2>
                     <h2
-                      className={`text-gray-50 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal mt-[-0.15rem] xl:text-base xl:leading-6 xl:font-normal  ${
+                      className={`text-gray-50 w-[65%]lg:w-[65%] text-xs leading-5 font-normal break-normal mt-[-0.15rem] xl:text-base xl:leading-6 xl:font-normal  ${
                         mode === 'mobile'
-                          ? 'lg:text-sm xl:w-max'
-                          : 'lg:text-white lg:text-sm lg:mt-[-0.15rem] xl:w-max'
+                          ? 'lg:text-sm'
+                          : 'lg:text-white lg:text-sm lg:mt-[-0.15rem]'
                       }`}
                     >
                       {input.company}
@@ -192,7 +192,7 @@ export default function Template16({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div
-                    className={`flex mt-[1rem] ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                    className={`flex-1 mt-[1rem] ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
                       nav ? '' : ''
                     }`}
                   >
@@ -204,7 +204,7 @@ export default function Template16({
                       <AcademicCapIcon />
                     </h2>
                     <h2
-                      className={`text-gray-50 w-max text-xs leading-5 font-normal break-normal xl:text-base xl:leading-6 xl:font-normal ${
+                      className={`text-gray-50 text-xs leading-5 font-normal break-normal xl:text-base xl:leading-6 xl:font-normal ${
                         mode === 'mobile'
                           ? 'lg:text-sm'
                           : 'lg:text-sm lg:text-white lg:mt-[-0.15rem]'
@@ -241,7 +241,7 @@ export default function Template16({
               } ${nav ? '' : ''}`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
-                <div className={`flex ${mode === 'mobile' ? '' : ''}`}>
+                <div className={`flex-1 ${mode === 'mobile' ? '' : ''}`}>
                   <h2
                     className={`text-white font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem] ${
                       mode === 'mobile' ? '' : 'xl:text-yellow-500'
@@ -250,10 +250,10 @@ export default function Template16({
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-50 w-[65%] md:w-max lg:w-[65%] text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-50 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
-                        : 'lg:text-white lg:text-sm lg:mt-[-0.15rem] xl:w-max'
+                        : 'lg:text-white lg:text-sm lg:mt-[-0.15rem]'
                     }`}
                   >
                     {input.company}
@@ -264,7 +264,7 @@ export default function Template16({
               )}
               {loaderData?.profileInfo?.education || input.education ? (
                 <div
-                  className={`flex mt-[1rem] ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
+                  className={`flex-1 mt-[1rem] ${mode === 'mobile' ? '' : 'xl:mt-[1.5rem]'} ${
                     nav ? '' : ''
                   }`}
                 >
@@ -276,7 +276,7 @@ export default function Template16({
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-50 w-max text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-50 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile' ? 'lg:text-sm' : 'lg:text-sm lg:text-white lg:mt-[-0.15rem]'
                     }`}
                   >
@@ -289,7 +289,7 @@ export default function Template16({
             </div>
           </div>
 
-          <div className="w-[42rem] lg:w-full">
+          <div className="w-full">
             <div className={`${mode === 'mobile' ? 'w-full' : ''} ${nav ? '' : ''}`}>
               {loaderData?.testimonial?.testimonialText && (
                 <TestimonialAddOn

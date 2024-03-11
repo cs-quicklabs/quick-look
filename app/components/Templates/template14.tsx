@@ -119,10 +119,10 @@ export default function Template14({
             input.location ||
             loaderData?.profileInfo?.location ? (
               <h3
-                className={`mt-1 text-gray-600 text-center break-normal whitespace-pre-wrap text-xs leading-5 font-normal lg:text-base ${
+                className={`mt-1 text-gray-600 text-center md:text-left break-normal whitespace-pre-wrap text-xs leading-5 font-normal lg:text-base ${
                   mode === 'mobile'
                     ? ''
-                    : 'xl:w-max xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'
+                    : 'xl:text-gray-500 mediumLaptop:w-full xl:text-2xl xl:leading-8 xl:font-medium xl:mt-1'
                 }  ${nav ? '' : ''} `}
               >
                 {input.occupation} {input.location && input.occupation ? `in` : ''} {input.location}
@@ -177,7 +177,7 @@ export default function Template14({
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-800 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
                         : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem]'
@@ -259,7 +259,7 @@ export default function Template14({
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-800 w-max text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-800 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile'
                         ? 'lg:text-sm'
                         : 'lg:text-sm lg:text-gray-600 lg:mt-[-0.15rem]'

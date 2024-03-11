@@ -115,18 +115,18 @@ export default function Template8({
 
           <div className={`flex flex-col ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
             <div
-              className={`flex flex-col pt-[1.5rem] ${
+              className={`flex flex-col gap-2 pt-[1.5rem] ${
                 mode === 'mobile' ? ' ' : 'xl:flex-row xl:justify-between'
               } ${nav ? '' : ''}`}
             >
               {loaderData?.profileInfo?.company || input.company ? (
-                <div className={`flex ${mode === 'mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
+                <div className={`flex-1 ${mode === 'mobile' ? ' ' : ''} ${nav ? '' : ''}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <BriefcaseIcon />
                   </h2>
                   <h2
-                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
-                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem] xl:w-full'
+                    className={`text-gray-600 text-xs lg:text-base leading-5 font-normal break-normal ${
+                      mode === 'mobile' ? 'lg:mt-[-0.25rem] ' : 'xl:mt-[-0.25rem]'
                     }`}
                   >
                     {input.company}
@@ -136,12 +136,12 @@ export default function Template8({
                 <span></span>
               )}
               {loaderData?.profileInfo?.education || input.education ? (
-                <div className={`flex mt-[2rem]  ${mode === 'mobile' ? ' ' : 'xl:mt-0 '}`}>
+                <div className={`flex-1 mt-[2rem]  ${mode === 'mobile' ? ' ' : 'xl:mt-0 '}`}>
                   <h2 className="text-gray-800 font-medium text-sm leading-5 w-[1.125rem] mr-[0.5rem]">
                     <AcademicCapIcon />
                   </h2>
                   <h2
-                    className={`text-gray-600 w-max text-xs lg:text-base leading-5 font-normal break-normal ${
+                    className={`text-gray-600 text-xs lg:text-base leading-5 font-normal break-normal ${
                       mode === 'mobile' ? ' lg:mt-[-0.25rem]' : 'xl:mt-[-0.25rem] '
                     }`}
                   >

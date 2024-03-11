@@ -122,9 +122,9 @@ export default function Template1({
               <div className="flex  pt-[2rem] justify-between">
                 {loaderData?.profileInfo?.company || input.company ? (
                   <div className="flex flex-col">
-                    <h2 className="w-max text-sm font-medium leading-5 text-gray-500">WORK</h2>
+                    <h2 className="text-sm font-medium leading-5 text-gray-500">WORK</h2>
                     <h2
-                      className={`w-full text-sm font-normal leading-5 text-gray-900 break-normal ${
+                      className={`text-sm font-normal leading-5 text-gray-900 break-normal ${
                         mode === 'mobile' ? '' : ''
                       }`}
                     >
@@ -136,8 +136,8 @@ export default function Template1({
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
                   <div className="flex flex-col">
-                    <h2 className="w-max text-sm font-medium leading-5 text-gray-500">EDUCATION</h2>
-                    <h2 className="w-max text-sm font-normal leading-5 text-gray-900 break-words">
+                    <h2 className="text-sm font-medium leading-5 text-gray-500">EDUCATION</h2>
+                    <h2 className="text-sm font-normal leading-5 text-gray-900 break-words">
                       {input.education}
                     </h2>
                   </div>

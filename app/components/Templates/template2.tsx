@@ -92,7 +92,7 @@ export default function Template2({
             input.location ||
             loaderData?.profileInfo?.location ? (
               <h3
-                className={`text-gray-600 w-max break-normal text-xs leading-5 font-normal ${
+                className={`text-gray-600 break-normal text-xs leading-5 font-normal ${
                   mode === 'mobile' ? 'xl:text-base' : 'lg:text-base'
                 }  ${nav ? '' : ''} `}
               >
@@ -119,13 +119,13 @@ export default function Template2({
                         <BriefcaseIcon />
                       </h2>
                       <h2
-                        className={`text-gray-500 font-medium text-sm leading-5 w-max hidden ${
+                        className={`text-gray-500 font-medium text-sm leading-5 hidden ${
                           mode === 'mobile' ? '' : 'xl:block'
                         }`}
                       >
                         WORK
                       </h2>
-                      <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-normal">
+                      <h2 className="text-gray-900 text-sm leading-5 font-normal break-normal">
                         {input.company}
                       </h2>
                     </div>
@@ -146,13 +146,13 @@ export default function Template2({
                         <AcademicCapIcon />
                       </h2>
                       <h2
-                        className={`text-gray-500 font-medium text-sm leading-5 w-max hidden ${
+                        className={`text-gray-500 font-medium text-sm leading-5 hidden ${
                           mode === 'mobile' ? '' : 'xl:block'
                         }`}
                       >
                         EDUCATION
                       </h2>
-                      <h2 className="text-gray-900 w-max text-sm leading-5 font-normal break-normal">
+                      <h2 className="text-gray-900 text-sm leading-5 font-normal break-normal">
                         {input.education}
                       </h2>
                     </div>

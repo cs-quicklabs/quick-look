@@ -75,7 +75,7 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
         </div>
 
         <div
-          className={`flex overflow-auto scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-start justify-start pt-[2rem] ${
+          className={`flex scrollbar-hide ml-[0.1rem] pb-[3rem] flex-col items-start justify-start pt-[2rem] ${
             nav ? 'min-h-[calc(96.5vh+50px)]' : 'min-h-[calc(95.5vh+50px)] '
           } ${
             mode === 'mobile' ? 'lg:w-full]' : 'lg:pt-[2rem]'
@@ -137,11 +137,11 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
             >
               <div className={`flex flex-col  items-center justify-center ${nav ? '' : ''}`}>
                 {loaderData?.profileInfo?.company || input.company ? (
-                  <div className="flex pt-[0rem]">
+                  <div className="flex-1 pt-[0rem]">
                     <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
                       <BriefcaseIcon />
                     </h2>
-                    <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-normal">
+                    <h2 className="text-gray-600 text-base leading-5 font-normal break-normal">
                       {input.company}
                     </h2>
                   </div>
@@ -149,11 +149,11 @@ function Template10({ input, loaderData, primaryRestore, secondaryRestore, mode 
                   <span></span>
                 )}
                 {loaderData?.profileInfo?.education || input.education ? (
-                  <div className="flex pt-[1.5rem]">
+                  <div className="flex-1 pt-[1.5rem]">
                     <h2 className="text-gray-900 font-medium text-base leading-5 w-[1.125rem] mr-[0.5rem]">
                       <AcademicCapIcon />
                     </h2>
-                    <h2 className="text-gray-600 w-max text-base leading-5 font-normal break-normal">
+                    <h2 className="text-gray-600 text-base leading-5 font-normal break-normal">
                       {input.education}
                     </h2>
                   </div>
