@@ -29,10 +29,10 @@ export default function Template8({
         className={`flex overflow-auto scrollbar-hide flex-col-reverse bg-purple-50 justify-center items-center bg-no-repeat object-cover overflow-none ${
           mode === 'mobile'
             ? '  flex-col'
-            : ' flex-col xl:items-start xl:justify-around xl:pt-[5rem] xl:flex-row '
+            : ' flex-col xl:items-start xl:pt-[5rem] xl:flex-row '
         } ${
           nav
-            ? 'min-h-[calc(96.5vh+50px)] items-center justify-center xl:justify-around xl:items-start'
+            ? 'min-h-[calc(96.5vh+50px)] items-center justify-center xl:items-start'
             : 'min-h-[calc(95.5vh+50px)] '
         } `}
       >

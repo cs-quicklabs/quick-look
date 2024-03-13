@@ -39,10 +39,10 @@ export default function Template5({
           className={`flex overflow-auto scrollbar-hide flex-col-reverse justify-center items-center bg-no-repeat object-cover overflow-none ${
             mode === 'mobile'
               ? '  flex-col'
-              : ' flex-col xl:items-start xl:justify-around xl:flex-row '
+              : ' flex-col xl:items-start xl:flex-row xl:gap-[8rem]'
           } ${
             nav
-              ? 'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:justify-around xl:items-start'
+              ? 'min-h-[calc(96.5vh+50px)] lg:items-center lg:justify-center xl:items-start'
               : 'min-h-[calc(95.5vh+50px)] '
           } `}
         >
