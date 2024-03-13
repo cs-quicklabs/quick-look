@@ -38,7 +38,7 @@ export default function Template2({
           } ${
             mode === 'mobile'
               ? 'flex-col'
-              : 'flex-col xl:flex-row xl:gap-[0rem] xl:items-start xl:justify-around'
+              : 'flex-col xl:flex-row xl:gap-[8rem] xl:items-start'
           } ${nav ? '' : ''}`}
           style={myStyle}
         >

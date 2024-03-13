@@ -72,7 +72,7 @@ export default function Template13({
         </div>
 
         <div
-          className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[16rem] mx-[1rem] px-[1rem] sm:w-[95%] md:mt-[20rem] ${
+          className={`shadow-xl rounded-lg flex flex-col justify-center items-center w-[90%] mt-[16rem] mx-[1rem] px-[4rem] sm:w-[95%] md:mt-[20rem] ${
             mode === 'mobile'
               ? 'lg:mt-[11rem] xl:mt-[10rem] medium:mt-[8rem] mediumLaptop:mt-[10rem] largeLaptop:mt-[11rem]'
               : 'lg:mt-[29rem] xl:items-start xl:mt-[12rem] xl:rounded-none xl:shadow-none xl:ml-[25rem] med:mt-[20rem] medium:mt-[20rem] mediumLaptop:ml-[30rem] mediumLaptop:mt-[20rem] largeLaptop:ml-[32rem] largeLaptop:mt-[20rem]'

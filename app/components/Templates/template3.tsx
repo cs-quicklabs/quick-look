@@ -35,14 +35,14 @@ export default function Template3({
         style={myStyle}
       >
         <div
-          className={`flex-shrink-0 xl:h-screen h-full flex flex-col justify-center items-center bg-black py-8 ${
+          className={`xl:h-screen h-full flex flex-col justify-start items-center bg-black py-8 ${
             mode === 'mobile' ? 'w-full' : 'w-full lg:items-center xl:w-[30rem]'
           } ${nav ? '' : ''}`}
         >
           {secondaryRestore || loaderData?.profileImage?.secondaryImage ? (
             <img
               loading="lazy"
-              className={`rounded-full object-cover w-[10rem] h-[10rem] ${
+              className={`rounded-full object-cover w-[10rem] h-[10rem] xl:mt-[4rem] ${
                 mode === 'mobile'
                   ? 'lg:w-[18rem] lg:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'
                   : 'lg:w-[18rem] lg:h-[18rem] mediumLaptop:w-[18rem] mediumLaptop:h-[18rem] largeLaptop:w-[30rem] largeLaptop:h-[30rem]'
@@ -79,8 +79,8 @@ export default function Template3({
             <span></span>
           )}
 
-          {/* <div
-            className={`px-4 pb-[1rem]  bg-black w-full px-[1rem] ${
+          <div
+            className={`pb-[1rem]  bg-black w-full px-[1rem] ${
               mode === 'mobile' ? 'lg:px-[3rem]' : 'lg:bg-transparent xl:hidden'
             } `}
           >
@@ -92,14 +92,14 @@ export default function Template3({
               {loaderData?.profileInfo?.company || input.company ? (
                 <div className={`flex flex-col lg:w-[50%] ${mode === 'mobile' ? '' : ''}`}>
                   <h2
-                    className={`text-white w-max text-xs leading-5 font-normal lg:text-sm  ${
+                    className={`text-white text-xs leading-5 font-normal lg:text-sm  ${
                       mode === 'mobile' ? '' : 'xl:leading-5 xl:font-medium xl:text-gray-600'
                     }`}
                   >
                     WORK
                   </h2>
                   <h2
-                    className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal   ${
+                    className={`text-gray-100 text-xs leading-5 font-normal break-normal   ${
                       mode === 'mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'
                     }`}
                   >
@@ -112,7 +112,7 @@ export default function Template3({
               {loaderData?.profileInfo?.education || input.education ? (
                 <div className={`flex flex-col  ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
                   <h2
-                    className={`text-white w-max text-xs leading-5 font-normal  ${
+                    className={`text-white text-xs leading-5 font-normal  ${
                       mode === 'mobile'
                         ? 'xl:text-sm'
                         : 'xl:text-sm xl:leading-5 xl:font-medium xl:text-gray-600'
@@ -121,7 +121,7 @@ export default function Template3({
                     EDUCATION
                   </h2>
                   <h2
-                    className={`text-gray-100 w-max text-xs leading-5 font-normal break-normal  ${
+                    className={`text-gray-100 text-xs leading-5 font-normal break-normal  ${
                       mode === 'mobile' ? 'xl:text-sm' : 'xl:text-sm xl:text-black'
                     }`}
                   >
@@ -132,7 +132,7 @@ export default function Template3({
                 <span></span>
               )}
             </div>
-          </div> */}
+          </div>
         </div>
 
         <div
@@ -174,7 +174,7 @@ export default function Template3({
               }`}
             >
               <pre
-                className={`text-gray-700 xl:w-full w-screen text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${
+                className={`text-gray-700 xl:w-full text-xs leading-5 font-normal font-sans flex whitespace-pre-wrap text-justify lg:text-base ${
                   mode === 'mobile' ? '' : ''
                 } ${nav ? '' : ''}`}
               >
@@ -188,7 +188,7 @@ export default function Template3({
             >
               <div
                 className={`flex pt-6 justify-between ${mode === 'mobile' ? '' : ''} ${
-                  nav ? 'lg:gap-[10rem]' : ''
+                  nav ? 'lg:gap-[4rem] gap-[4rem]' : 'gap-[4rem]'
                 }`}
               >
                 {loaderData?.profileInfo?.company || input.company ? (
