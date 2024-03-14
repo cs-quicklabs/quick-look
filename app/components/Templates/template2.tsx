@@ -243,7 +243,7 @@ export default function Template2({
           </div>
         </div>
 
-        <div className="w-full pb-10 -mt-8 text-center">
+        <div className="w-full -mt-8 text-center">
           <PoweredBy />
         </div>
       </>
