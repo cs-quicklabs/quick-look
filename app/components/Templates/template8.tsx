@@ -237,7 +237,7 @@ export default function Template8({
         </div>
       </div>
 
-      <div className="-mt-8 pb-4">
+      <div className="-mt-8">
         <PoweredBy />
       </div>
     </>

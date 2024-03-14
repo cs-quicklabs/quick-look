@@ -7,7 +7,7 @@ export default function PortfolioAddon({ loaderData, mode }: any) {
     <div className="img">
       <LightGallery
        elementClassNames={`{
-        flex flex-wrap mt-4
+        flex flex-wrap justify-center mt-4
         }`}
         counter
         animateThumb={false}
