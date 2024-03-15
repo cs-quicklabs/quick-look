@@ -59,7 +59,7 @@
     "@types/react-slick": "^0.23.11",
     "@types/uuid": "^9.0.6",
     "autoprefixer": "^10.4.13",
-    "concurrently": "^8.0.1",
+    "concurrently": "^8.2.2",
     "cypress": "^13.3.2",
     "cypress-xpath": "^2.0.1",
     "esbuild": "^0.20.1",
