@@ -58,7 +58,7 @@ export default function Template4({
           </div>
 
           <div
-            className={`w-[21rem] sm:w-[36rem] md:w-[44rem] 
+            className={`sm:w-[36rem] md:w-[44rem] 
             ${
               mode === 'mobile'
                 ? 'small:w-[29rem] med:w-[38rem] medium:w-[41rem] mediumLaptop:w-[53rem] largeLaptop:w-[64rem]'
