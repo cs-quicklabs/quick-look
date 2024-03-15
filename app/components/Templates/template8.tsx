@@ -97,7 +97,7 @@ export default function Template8({
             </div>
           </div>
 
-          <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+          <div className={`flex ${mode === 'mobile' ? '' : ''} ${nav ? '' : ''} justify-center items-center`}>
             {loaderData?.spotlightButton?.toggleSpotlight && (
               <AdditionalLinksAddOn loaderData={loaderData} />
             )}
