@@ -107,13 +107,11 @@ export default function Template4({
               </div>
             </div>
 
-            <div>
-              <div className={`${mode === 'mobile' ? '' : ''}`}>
-                <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
-                  {loaderData?.spotlightButton?.toggleSpotlight && (
-                    <AdditionalLinksAddOn loaderData={loaderData} />
-                  )}
-                </div>
+            <div className={`${mode === 'mobile' ? '' : ''} lg:flex`}>
+              <div className={`${mode === 'mobile' ? '' : ''} ${nav ? '' : ''}`}>
+                {loaderData?.spotlightButton?.toggleSpotlight && (
+                  <AdditionalLinksAddOn loaderData={loaderData} />
+                )}
               </div>
             </div>
 
