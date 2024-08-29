@@ -21,7 +21,7 @@
     "@aws-sdk/lib-storage": "^3.438.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.17",
-    "@prisma/client": "^5.5.2",
+    "@prisma/client": "^5.19.0",
     "@remix-run/node": "^2.5.1",
     "@remix-run/react": "^2.0.0",
     "@remix-run/serve": "^2.5.1",
