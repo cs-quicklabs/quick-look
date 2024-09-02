@@ -56,7 +56,7 @@
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.19",
     "@types/react-google-recaptcha": "^2.1.5",
-    "@types/react-slick": "^0.23.11",
+    "@types/react-slick": "^0.23.13",
     "@types/uuid": "^9.0.6",
     "autoprefixer": "^10.4.13",
     "concurrently": "^8.2.2",
