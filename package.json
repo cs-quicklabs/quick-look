@@ -42,7 +42,7 @@
     "react-dropzone": "^14.2.3",
     "react-google-recaptcha": "^3.0.0",
     "react-spinners": "^0.13.8",
-    "stripe": "^14.2.0",
+    "stripe": "^16.9.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "uuid": "^9.0.0"
   },
