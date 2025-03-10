@@ -62,7 +62,7 @@
     "concurrently": "^8.2.2",
     "cypress": "^13.7.0",
     "cypress-xpath": "^2.0.1",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.25.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.0.0",
     "postcss": "^8.4.31",
