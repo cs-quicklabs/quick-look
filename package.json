@@ -65,7 +65,7 @@
     "esbuild": "^0.20.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.0.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.5.14",
     "prettier": "^3.0.0",
     "prisma": "^5.8.1",
     "react-error-overlay": "^6.0.11",
